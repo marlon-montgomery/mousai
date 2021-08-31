@@ -1,0 +1,76 @@
+@import "variables";
+
+:host {
+  display: block;
+  color: mat-color($app-foreground, secondary-text);
+  font-size: 1.5rem;
+  padding: 55px 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.first-row {
+  border-bottom: 1px solid mat-color($app-foreground, divider-lighter);
+  padding-bottom: 20px;
+}
+
+.second-row {
+  padding-top: 20px;
+}
+
+.first-menu {
+  color: mat-color($app-accent, default);
+
+  ::ng-deep .custom-menu-item:first-child {
+    padding-left: 0 !important;
+  }
+}
+
+.second-menu {
+  ::ng-deep {
+    .custom-menu-item {
+      padding-right: 10px !important;
+      padding-left: 10px !important;
+    }
+
+    .mat-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.first-col {
+  margin-right: auto;
+}
+
+.second-col {
+  margin-left: 15px;
+}
+
+.button-with-icon {
+  .mat-icon {
+    margin-right: 5px;
+  }
+
+  svg {
+    display: block;
+  }
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+@media only screen and (max-width: $medium) {
+  .row {
+    flex-direction: column;
+  }
+
+  .first-col {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,73 @@
+<div class="datatable-page-header">
+  <h1 trans>Uploaded Files</h1>
+
+  <div class="header">
+    <datatable-filters pluralName="links" [filters]="filters"></datatable-filters>
+    <div class="action-buttons"></div>
+  </div>
+</div>
+
+<div class="datatable responsive-table">
+  <mat-progress-bar
+    class="loading-bar"
+    mode="indeterminate"
+    color="accent"
+    *ngIf="datatable.paginator && datatable.paginator.loading$ | async"
+  ></mat-progress-bar>
+  <table class="material-table">
+    <thead>
+      <tr>
+        <th table-header-checkbox></th>
+        <th table-sort-header trans>Name</th>
+        <th table-sort-header trans>File Name</th>
+        <th table-sort-header="user_id" trans>Owner</th>
+        <th table-sort-header trans>Type</th>
+        <th table-sort-header trans>Public</th>
+        <th table-sort-header trans>File Size</th>
+        <th table-sort-header="created_at" trans>Uploaded At</th>
+      </tr>
+      <tr *ngIf="datatable.selectedRows$.value.length as selectedCount">
+          <th colspan="9">
+              <div
+                class="bulk-actions-title"
+                [transValues]="{count: selectedCount, resource: 'file(s)'}"
+                trans
+              >
+                  :count :resource selected:
+              </div>
+              <div class="bulk-actions">
+                  <button
+                    mat-raised-button
+                    color="warn"
+                    (click)="maybeDeleteSelectedEntries()"
+                    *ngIf="currentUser.hasPermission('files.delete')"
+                    trans
+                  >
+                      Delete
+                  </button>
+              </div>
+          </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let file of files$ | async">
+        <td [table-body-checkbox]="file.id"></td>
+        <td data-label="Name">{{ file.name }}</td>
+        <td data-label="File Name">{{ file.file_name }}</td>
+        <td>
+          <user-column [user]="file.users[0]"></user-column>
+        </td>
+        <td data-label="Type">{{ file.type }}</td>
+        <td data-label="Public">{{ file.public ? 'Yes' : 'No' }}</td>
+        <td data-label="File Size">
+          {{ file.file_size ? (file.file_size | formattedFileSize) : '-' }}
+        </td>
+        <td>{{ file.created_at | formattedDate }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <no-results-message svgImage="file-searching.svg" *ngIf="datatable.paginator.noResults$ | async">
+    <span primary-text trans>No files have been created yet</span>
+  </no-results-message>
+  <datatable-footer></datatable-footer>
+</div>

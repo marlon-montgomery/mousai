@@ -1,0 +1,43 @@
+<?php
+
+namespace DummyNamespace;
+
+use Common\Auth\BaseUser;
+use NamespacedDummyModel;
+use Common\Core\Policies\BasePolicy;
+
+class DummyClass extends BasePolicy
+{
+    public function index(BaseUser $user, $userId = null)
+    {
+        return $user->hasPermission('dummyModel.view') || $user->id === (int) $userId;
+    }
+
+    public function show(BaseUser $user, DummyModel $dummyModel)
+    {
+        return $user->hasPermission('dummyModel.view') || $dummyModel->user_id === $user->id;
+    }
+
+    public function store(BaseUser $user)
+    {
+        return $user->hasPermission('dummyModel.create');
+    }
+
+    public function update(BaseUser $user, DummyModel $dummyModel)
+    {
+        return $user->hasPermission('dummyModel.update') || $dummyModel->user_id === $user->id;
+    }
+
+    public function destroy(BaseUser $user, $dummyModelIds)
+    {
+        if ($user->hasPermission('dummyModel.delete')) {
+            return true;
+        } else {
+            $dbCount = app(DummyModel::class)
+                ->whereIn('id', $dummyModelIds)
+                ->where('user_id', $user->id)
+                ->count();
+            return $dbCount === count($dummyModelIds);
+        }
+    }
+}

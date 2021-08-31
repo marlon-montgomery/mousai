@@ -1,0 +1,26 @@
+<?php
+
+namespace DummyNamespace;
+
+use Eloquent;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * DummyNamespace\DummyClass
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @mixin Eloquent
+ */
+class DummyClass extends Model
+{
+    protected $guarded = ['id'];
+
+     protected $casts = [
+         'id' => 'integer',
+         'user_id' => 'integer',
+     ];
+}

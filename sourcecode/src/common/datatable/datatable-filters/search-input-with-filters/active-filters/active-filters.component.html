@@ -1,0 +1,11 @@
+<ng-container *ngFor="let control of form.controls | keyvalue; index as index">
+    <active-filter
+        [compact]="compact"
+        [key]="control.key"
+        [form]="form"
+        [filter]="filter"
+        *ngIf="config[control.value.value.key] as filter"
+        [attr.data-index]="index"
+    ></active-filter>
+</ng-container>
+<ng-content></ng-content>

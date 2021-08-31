@@ -1,0 +1,98 @@
+<h1 trans>Tell us about yourself</h1>
+
+<form (ngSubmit)="requestAccess()" ngNativeValidate [formGroup]="form" class="many-inputs" *ngIf="errors$ | async as errors">
+    <ng-container *ngIf="requestType$ | async as requestType">
+        <upload-image-control formControlName="image" [compact]="true"></upload-image-control>
+
+        <div class="input-container" *ngIf="requestType !== 'become-artist'">
+            <label for="backstage-artist" trans>Select Artist</label>
+            <select-artist-control [listAll]="true" id="backstage-artist" formControlName="artist"></select-artist-control>
+            <div class="error" *ngIf="errors.artist_id">{{errors.artist_id}}</div>
+        </div>
+
+        <div class="input-container" *ngIf="requestType === 'become-artist'">
+            <label for="backstage-name" trans>Your artist name</label>
+            <input type="text" id="backstage-name" formControlName="artist_name" required>
+            <div class="error" *ngIf="errors.name">{{errors.name}}</div>
+        </div>
+        <div class="inline-inputs-container many-inputs">
+            <div class="input-container">
+                <label for="backstage-first-name" trans>First name</label>
+                <input type="text" id="backstage-first-name" formControlName="first_name" required>
+                <div class="error" *ngIf="errors.first_name">{{errors.first_name}}</div>
+            </div>
+            <div class="input-container">
+                <label for="backstage-last-name" trans>Last name</label>
+                <input type="text" id="backstage-last-name" formControlName="last_name" required>
+                <div class="error" *ngIf="errors.last_name">{{errors.last_name}}</div>
+            </div>
+        </div>
+        <div class="input-container" *ngIf="requestType === 'claim-artist'">
+            <label for="backstage-role" trans>Role</label>
+            <select type="text" id="backstage-role" formControlName="role" required>
+                <option [value]="null" disabled trans>Select role</option>
+                <option value="artist" trans>Artist</option>
+                <option value="agent" trans>Agent</option>
+                <option value="composer" trans>Composer</option>
+                <option value="label" trans>Label</option>
+                <option value="manager" trans>Manager</option>
+                <option value="musician" trans>Musician</option>
+                <option value="producer" trans>Producer</option>
+                <option value="publisher" trans>Publisher</option>
+                <option value="songwriter" trans>Songwriter</option>
+            </select>
+            <div class="error" *ngIf="errors.role">{{errors.role}}</div>
+        </div>
+        <div class="input-container">
+            <label for="backstage-company" trans>Company (optional)</label>
+            <input type="text" id="backstage-company" formControlName="company">
+            <div class="error" *ngIf="errors.company">{{errors.company}}</div>
+        </div>
+
+        <div class="speed-up-container">
+            <div class="speed-up-title" trans>Speed up the process by connecting artist social media accounts or uploading your passport scan.</div>
+            <div class="speed-up-buttons">
+                <button type="button" class="twitter-btn speed-up-button" mat-flat-button color="accent" (click)="retrieveSocialProfile('twitter')">
+                    <mat-icon class="social-icon" svgIcon="twitter"></mat-icon>
+                    <span trans>Connect to Twitter</span>
+                </button>
+                <button type="button" mat-flat-button class="facebook-btn speed-up-button" color="accent" (click)="retrieveSocialProfile('facebook')">
+                    <mat-icon class="social-icon" svgIcon="facebook"></mat-icon>
+                    <span trans>Connect to Facebook</span>
+                </button>
+                <button type="button" mat-flat-button color="accent" class="passport-btn speed-up-button" [uploadButton]="{types: ['image/*']}" (filesSelected)="uploadPassportScan($event)">
+                    <mat-icon class="social-icon" svgIcon="document-scanner"></mat-icon>
+                    <span trans>Upload Passport Scan</span>
+                </button>
+            </div>
+            <div class="attached-verifications">
+                <div class="facebook-profile verification" *ngFor="let profile of socialProfiles$ | async | keyvalue">
+                    <img class="verification-img" [src]="profile.value.avatar" alt="">
+                    <div class="verification-details">
+                        <div class="verification-name" trans>{{profile.key}} Profile</div>
+                        <a [href]="profile.value.profileUrl" target="_blank" class="verification-url">{{profile.value.profileUrl}}</a>
+                    </div>
+                    <button class="remove-verification" type="button" mat-icon-button (click)="removeSocialProfile(profile.key)">
+                        <mat-icon svgIcon="close"></mat-icon>
+                    </button>
+                </div>
+                <div class="passport-attachment verification" *ngIf="uploadedPassportEntry$ | async as entry">
+                    <mat-icon class="verification-img" svgIcon="document-scanner"></mat-icon>
+                    <div class="verification-details">
+                        <div class="verification-name" trans>Passport Scan</div>
+                        <div>{{entry.name}} ({{entry.file_size | formattedFileSize}})</div>
+                    </div>
+                    <button class="remove-verification" type="button" mat-icon-button (click)="removePassportUpload()">
+                        <mat-icon svgIcon="close"></mat-icon>
+                    </button>
+                </div>
+                <upload-progress-bar></upload-progress-bar>
+            </div>
+        </div>
+
+        <div class="backstage-action-buttons">
+            <a class="backstage-action-button" type="button" routerLink="/backstage/requests" mat-raised-button trans>Go Back</a>
+            <button class="backstage-action-button" type="submit" mat-raised-button color="accent" [disabled]="loading$ | async" trans>Submit Request</button>
+        </div>
+    </ng-container>
+</form>

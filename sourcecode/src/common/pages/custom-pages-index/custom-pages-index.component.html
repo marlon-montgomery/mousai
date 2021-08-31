@@ -1,0 +1,103 @@
+<div class="datatable-page-header">
+  <h1 trans>
+    <span trans>Custom Pages</span>
+  </h1>
+
+  <div class="header">
+    <datatable-filters pluralName="pages" [filters]="filters"></datatable-filters>
+    <div class="action-buttons">
+      <a
+        *ngIf="currentUser.hasPermission('custom_pages.create')"
+        mat-raised-button
+        color="accent"
+        routerLink="new"
+        class="button-with-icon"
+      >
+        <mat-icon svgIcon="add"></mat-icon>
+        <span trans>Add New Page</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="datatable responsive-table">
+  <mat-progress-bar
+    class="loading-bar"
+    mode="indeterminate"
+    color="accent"
+    *ngIf="datatable.paginator && datatable.paginator.loading$ | async"
+  ></mat-progress-bar>
+  <table class="material-table">
+    <thead>
+      <tr>
+        <th table-header-checkbox></th>
+        <th table-sort-header trans>Slug</th>
+        <th table-sort-header trans>Owner</th>
+        <th class="body-column" trans>Body</th>
+        <th class="type-column" table-sort-header *ngIf="!endpoint" trans>Type</th>
+        <th trans>Last Updated</th>
+        <th></th>
+      </tr>
+      <tr *ngIf="datatable.selectedRows$.value.length as selectedCount">
+        <th colspan="7">
+          <div
+            class="bulk-actions-title"
+            [transValues]="{count: selectedCount, resource: 'page(s)'}"
+            trans
+          >
+            :count :resource selected:
+          </div>
+          <div class="bulk-actions">
+            <button
+              type="button"
+              mat-raised-button
+              color="warn"
+              (click)="maybeDeleteSelectedPages()"
+              trans
+            >
+              Delete
+            </button>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let page of pages$ | async">
+        <td [table-body-checkbox]="page.id"></td>
+        <td data-label="Slug">
+          <a [href]="getPageUrl(page)" target="_blank">{{ page.slug }}</a>
+        </td>
+        <td data-label="Owner">
+          <user-column [user]="page.user"></user-column>
+        </td>
+        <td data-label="Body" class="body-column">{{ page.body }}</td>
+        <td data-label="Type" class="type-column" *ngIf="!endpoint">
+          {{ page.type ? viewName(page.type) : 'default' }}
+        </td>
+        <td data-label="Last Updated">{{ page.updated_at | formattedDate }}</td>
+        <td class="edit-column">
+          <a
+            [routerLink]="[page.id, 'edit']"
+            mat-icon-button
+            *ngIf="currentUser.hasPermission('custom_pages.update')"
+            [matTooltip]="'Edit page' | trans"
+          >
+            <mat-icon svgIcon="edit"></mat-icon>
+          </a>
+          <button
+            type="button"
+            mat-icon-button
+            (click)="maybeDeleteSelectedPages([page.id])"
+            trans
+          >
+            <mat-icon svgIcon="delete"></mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <no-results-message svgImage="custom-page.svg" *ngIf="datatable.paginator.noResults$ | async">
+    <span primary-text trans>No pages have been created yet</span>
+  </no-results-message>
+  <datatable-footer></datatable-footer>
+</div>

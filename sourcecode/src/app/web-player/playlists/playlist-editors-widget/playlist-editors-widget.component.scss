@@ -1,0 +1,32 @@
+@import "variables";
+
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.editor-images {
+  display: flex;
+  margin-left: -4px;
+  margin-right: 5px;
+}
+
+.image-link {
+  display: block;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border: 3px solid mat-color($app-background, background);
+  overflow: hidden;
+
+  &:not(:first-of-type) {
+    margin-left: -15px;
+  }
+}
+
+.creator-link {
+  color: inherit;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,9 @@
+<ng-container *ngIf="playlist?.editors">
+    <div class="editor-images">
+        <a class="image-link" [matTooltip]="editor.display_name" [style.z-index]="playlist.editors.length - index" [routerLink]="urls.user(editor)" *ngFor="let editor of playlist.editors; index as index">
+            <media-image class="editor-image" [media]="editor"></media-image>
+        </a>
+    </div>
+    <a class="creator-link" [routerLink]="urls.user(playlist.editors[0])">{{playlist.editors[0].display_name}}</a>
+    <ng-container *ngIf="playlist.editors.length > 1">&nbsp;+ {{playlist.editors.length - 1}} {{ 'more' | trans}}</ng-container>
+</ng-container>

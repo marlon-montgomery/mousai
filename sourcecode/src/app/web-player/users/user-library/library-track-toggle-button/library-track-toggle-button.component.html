@@ -1,0 +1,9 @@
+<button mat-icon-button (click)="library.add([track])" *ngIf="!library.has(track); else removeTrack" [matTooltip]="'Add to library' | trans">
+    <mat-icon svgIcon="favorite-border"></mat-icon>
+</button>
+
+<ng-template #removeTrack>
+    <button mat-icon-button (click)="library.remove([track])" class="active" *ngIf="library.has(track)" [matTooltip]="'Remove from library' | trans">
+        <mat-icon svgIcon="favorite"></mat-icon>
+    </button>
+</ng-template>

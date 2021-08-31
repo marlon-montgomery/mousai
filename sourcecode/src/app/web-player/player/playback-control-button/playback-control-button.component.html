@@ -1,0 +1,11 @@
+<button class="play-button" mat-icon-button [class.visible]="!trackIsPlaying()" (click)="play.emit(); $event.stopPropagation()">
+    <mat-icon svgIcon="play-arrow"></mat-icon>
+</button>
+
+<button class="pause-button" mat-icon-button [class.visible]="trackIsPlaying()" (click)="pause.emit(); $event.stopPropagation()">
+    <mat-icon svgIcon="pause"></mat-icon>
+</button>
+
+<playing-indicator [class.visible]="trackIsPlaying()"></playing-indicator>
+
+<ng-content></ng-content>

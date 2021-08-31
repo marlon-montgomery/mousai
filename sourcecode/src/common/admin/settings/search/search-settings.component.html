@@ -1,0 +1,72 @@
+<div class="header">
+    <div class="title" trans>Search</div>
+    <div class="subtitle" trans>Configure search method used on the site as well as related 3rd party integrations.</div>
+</div>
+
+<form class="body many-inputs" (submit)="saveSettings()" ngNativeValidate>
+    <div class="error-group many-inputs no-border-top" id="search_group">
+        <div class="input-container">
+            <label for="scout.driver" trans>Search Method</label>
+            <select name="scout.driver" id="scout.driver" [(ngModel)]="state.server['scout_driver']" (ngModelChange)="clearErrors()">
+                <option value="mysql">Mysql</option>
+                <option value="meilisearch">Meilisearch</option>
+                <option value="tntsearch">TNTSearch</option>
+                <option value="Matchish\ScoutElasticSearch\Engines\ElasticSearchEngine">Elasticsearch</option>
+                <option value="algolia">Algolia</option>
+            </select>
+            <p trans>Which method should be used for search related functionality across the site.</p>
+        </div>
+
+        <div class="input-container" *ngIf="state.server['scout_driver'] === 'mysql'">
+            <label for="mysql-mode" trans>Mysql Mode</label>
+            <select name="mysql-mode" id="mysql-mode" [(ngModel)]="state.server['scout_mysql_mode']" (ngModelChange)="clearErrors()">
+                <option value="basic">Basic</option>
+                <option value="extended">Extended</option>
+                <option value="fulltext">Fulltext</option>
+            </select>
+        </div>
+
+        <!-- ALGOLIA-->
+        <ng-container *ngIf="state.server['scout_driver'] === 'algolia'">
+            <div class="input-container">
+                <label for="scout.algolia_app_id" trans>Algolia App ID</label>
+                <input name="scout.algolia_app_id" id="scout.algolia_app_id" [(ngModel)]="state.server['algolia_app_id']" required>
+            </div>
+
+            <div class="input-container">
+                <label for="scout.algolia_secret" trans>Algolia Secret</label>
+                <input name="scout.algolia_secret" id="scout.algolia_secret" [(ngModel)]="state.server['algolia_secret']" required>
+            </div>
+        </ng-container>
+        <p class="error" *ngIf="(errors$ | async).search_group as errorMessage" [innerHTML]="errorMessage"></p>
+    </div>
+
+    <div class="widget widget-info widget-important" *ngIf="state.server['scout_driver'] === 'meilisearch'">
+        <div class="title" trans>Important!</div>
+        <p trans><a href="https://www.meilisearch.com" target="_blank">"Meilisearch"</a> needs to be installed and running for this method to work.</p>
+    </div>
+
+    <div class="widget widget-info widget-important" *ngIf="state.server['scout_driver'] === 'elastic'">
+        <div class="title" trans>Important!</div>
+        <p trans><a href="https://www.elastic.co/elasticsearch" target="_blank">"Elasticsearch"</a> needs to be installed and running for this method to work.</p>
+    </div>
+
+    <div class="widget widget-flat">
+        <div class="title" trans>Import Records</div>
+        <p trans>Whenever a new search method is enabled, records that already exist in database need to be imported into the index. All records created after search method is enabled will be imported automatically.</p>
+        <p>Depending on number of records in database, importing could take some time. Don't close this window while it is in progress.</p>
+        <div class="import-flex">
+            <div class="input-container">
+                <label for="searchable-model" class="hidden" trans>Record Type</label>
+                <select id="searchable-model" [formControl]="searchableModelControl">
+                    <option [ngValue]="null" trans>All</option>
+                    <option [ngValue]="value.model" *ngFor="let value of models$ | async" trans>{{value.name}}</option>
+                </select>
+            </div>
+            <button type="button" mat-stroked-button color="accent" (click)="importRecords()" [disabled]="loading$ | async" trans>Import Now</button>
+        </div>
+    </div>
+
+    <button mat-raised-button color="accent" class="update-button" type="submit" [disabled]="loading$ | async" trans>Update</button>
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading$ | async"></mat-progress-bar>
+</form>

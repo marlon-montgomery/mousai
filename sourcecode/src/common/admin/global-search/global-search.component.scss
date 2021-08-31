@@ -1,0 +1,22 @@
+@import "variables";
+
+:host {
+  display: block;
+  position: relative;
+}
+
+.input-container {
+  height: 100%;
+}
+
+.suggestions {
+  position: absolute;
+  left: 0;
+  margin-top: 5px;
+  width: 100%;
+  @include mat-elevation(5);
+  background-color: mat-color($app-background, card);
+  border-radius: 4px;
+  padding: 10px;
+  color: mat-color($app-foreground, text);
+}

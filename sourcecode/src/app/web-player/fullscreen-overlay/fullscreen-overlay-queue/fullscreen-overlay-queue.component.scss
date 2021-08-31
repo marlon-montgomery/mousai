@@ -1,0 +1,10 @@
+:host {
+  width: 100%;
+  height: calc(100% - 40px);
+  flex: 1 1 auto;
+  padding: 25px;
+
+  track-list .track-list-header {
+    background-color: transparent;
+  }
+}

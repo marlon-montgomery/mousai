@@ -1,0 +1,52 @@
+<div class="row first-row">
+  <custom-menu position="footer" class="first-menu first-col" [horizontal]="true"></custom-menu>
+  <custom-menu position="footer-secondary" class="second-menu second-col" [horizontal]="true"></custom-menu>
+</div>
+
+<div class="row second-row">
+  <div class="copyright first-col">
+    {{ copyrightText }}
+  </div>
+  <div class="selectors second-col">
+    <button
+      type="button"
+      mat-button
+      class="button-with-icon"
+      (click)="theme.toggle()"
+      *ngIf="settings.get('themes.user_change')"
+    >
+      <ng-container *ngIf="(theme.selectedTheme$ | async)?.is_dark; else lightMode">
+        <mat-icon svgIcon="light-mode"></mat-icon>
+        <span trans>Light Mode</span>
+      </ng-container>
+      <ng-template #lightMode>
+        <mat-icon svgIcon="dark-mode"></mat-icon>
+        <span trans>Dark Mode</span>
+      </ng-template>
+    </button>
+
+    <button
+      type="button"
+      class="button-with-icon"
+      [matMenuTriggerFor]="menu"
+      mat-button
+      [disabled]="changingLang$ | async"
+      (menuOpened)="langMenuOpened()"
+    >
+      <mat-icon svgIcon="language"></mat-icon>
+      <span trans>{{i18n.localization?.model?.name || 'English'}}</span>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button
+        mat-menu-item
+        class="capitalize"
+        *ngFor="let loc of localizations$ | async"
+        (click)="changeLanguage(loc)"
+        trans
+      >
+        <mat-icon svgIcon="check" [class.invisible]="!i18n.isActive(loc)"></mat-icon>
+        {{ loc.name }}
+      </button>
+    </mat-menu>
+  </div>
+</div>

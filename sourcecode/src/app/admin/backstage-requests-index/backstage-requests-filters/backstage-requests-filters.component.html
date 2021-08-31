@@ -1,0 +1,29 @@
+<div [formGroup]="form" class="many-inputs">
+    <div class="input-container">
+        <label for="backstage-request-type-filter" trans>Type</label>
+        <select id="backstage-request-type-filter" formControlName="type">
+            <option [ngValue]="null" trans>All</option>
+            <option value="become-artist" trans>Become Artist</option>
+            <option value="verify-artist" trans>Verify Artist</option>
+            <option value="claim-artist" trans>Claim Artist</option>
+        </select>
+    </div>
+
+    <div class="input-container">
+        <label for="file-status-filter" trans>Status</label>
+        <select id="file-status-filter" formControlName="status">
+            <option [ngValue]="null" trans>All</option>
+            <option value="approved" trans>Approved</option>
+            <option value="denied" trans>Denied</option>
+            <option value="pending" trans>Pending</option>
+        </select>
+    </div>
+
+    <div class="input-container">
+        <between-input formControlName="created_at" [setDefaultDate]="false" [showLabels]="false">Submitted Between</between-input>
+    </div>
+
+    <div class="input-container">
+        <select-user-input formControlName="requester"></select-user-input>
+    </div>
+</div>

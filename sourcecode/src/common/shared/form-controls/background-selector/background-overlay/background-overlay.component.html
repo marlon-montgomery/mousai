@@ -1,0 +1,90 @@
+<div class="builder-overlay-header">
+  <div class="builder-overlay-title" trans>Background</div>
+  <button type="button" class="builder-overlay-close-btn" (click)="overlayPanelRef.close()" mat-icon-button>
+    <mat-icon svgIcon="close"></mat-icon>
+  </button>
+</div>
+
+<background-selector [formControl]="bgControl"></background-selector>
+
+<div class="builder-overlay-header" trans>Background Properties</div>
+
+<div class="image-properties" [formGroup]="form">
+  <div class="property-row">
+    <div class="property-panel">
+      <div class="property-title" trans>Repeat</div>
+      <mat-radio-group class="controls" formControlName="backgroundRepeat">
+        <mat-radio-button value="no-repeat" trans>None</mat-radio-button>
+        <mat-radio-button value="repeat-x" trans>Horizontal</mat-radio-button>
+        <mat-radio-button value="repeat-y" trans>Vertical</mat-radio-button>
+        <mat-radio-button value="repeat" trans>All</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="property-panel">
+      <div class="property-title" trans>Size</div>
+      <mat-radio-group class="controls" formControlName="backgroundSize">
+        <mat-radio-button value="auto" trans>Auto</mat-radio-button>
+        <mat-radio-button value="contain" trans>Contain</mat-radio-button>
+        <mat-radio-button value="cover" trans>Cover</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="position property-panel">
+      <div class="property-title" trans>Position</div>
+      <div class="position-grid">
+        <button
+          class="no-style position-box"
+          [class.active]="form.get('backgroundPosition').value === 'top left'"
+          (click)="setBgPosition('top left')"
+        ></button>
+        <button
+          class="no-style position-box"
+          [class.active]="form.get('backgroundPosition').value === 'top center'"
+          (click)="setBgPosition('top center')"
+        ></button>
+        <button
+          class="no-style position-box"
+          [class.active]="form.get('backgroundPosition').value === 'top right'"
+          (click)="setBgPosition('top right')"
+        ></button>
+        <button
+          class="no-style position-box"
+          [class.active]="form.get('backgroundPosition').value === 'center center'"
+          (click)="setBgPosition('center center')"
+        ></button>
+        <button
+          class="no-style position-box"
+          [class.active]="form.get('backgroundPosition').value === 'center right'"
+          (click)="setBgPosition('center right')"
+        ></button>
+        <button
+          class="no-style position-box"
+          [class.active]="form.get('backgroundPosition').value === 'center left'"
+          (click)="setBgPosition('center left')"
+        ></button>
+        <button
+          class="no-style position-box"
+          [class.active]="form.get('backgroundPosition').value === 'bottom left'"
+          (click)="setBgPosition('bottom left')"
+        ></button>
+        <button
+          class="no-style position-box"
+          [class.active]="form.get('backgroundPosition').value === 'bottom center'"
+          (click)="setBgPosition('bottom center')"
+        ></button>
+        <button
+          class="no-style position-box"
+          [class.active]="form.get('backgroundPosition').value === 'bottom right'"
+          (click)="setBgPosition('bottom right')"
+        ></button>
+      </div>
+    </div>
+  </div>
+
+  <mat-button-toggle-group formControlName="backgroundAttachment" class="attachment-toggle">
+    <mat-button-toggle value="fixed">Fixed</mat-button-toggle>
+    <mat-button-toggle value="scroll">Not Fixed</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+

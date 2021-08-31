@@ -1,0 +1,27 @@
+<main-playback-buttons></main-playback-buttons>
+
+<player-seekbar></player-seekbar>
+
+<button class="lyrics" mat-icon-button (click)="showLyricsModal()" [disabled]="!player.cued()" *ngIf="!shouldHideLyricsButton" trans>Lyrics</button>
+
+<div class="lyrics-button-separator"></div>
+
+<button class="player-action" mat-icon-button (click)="downloadCurrentTrack()" *ngIf="!shouldHideDownloadButton" [disabled]="!player.cued() || player.state.activePlaybackStrategy !== 'html5'" [matTooltip]="'Download song' | trans">
+    <mat-icon svgIcon="cloud-download"></mat-icon>
+</button>
+
+<button class="player-action" mat-icon-button (click)="overlay.maximize()" *ngIf="!shouldHideVideoButton" [disabled]="!player.cued()" [matTooltip]="'Toggle video' | trans">
+    <mat-icon svgIcon="ondemand-video"></mat-icon>
+</button>
+
+<button class="player-action" mat-icon-button (click)="queueSidebar.toggle()" [matTooltip]="'Toggle queue' | trans">
+    <mat-icon svgIcon="queue-music"></mat-icon>
+</button>
+
+<button class="player-action shuffle-button" mat-icon-button [class.active]="player.getState().shuffling" (click)="player.toggleShuffle()" [matTooltip]="'Shuffle' | trans">
+    <mat-icon svgIcon="shuffle"></mat-icon>
+</button>
+
+<repeat-button></repeat-button>
+
+<volume-controls></volume-controls>

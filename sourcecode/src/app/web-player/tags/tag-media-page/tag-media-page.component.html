@@ -1,0 +1,25 @@
+<h1>{{('Most popular ' + activeTab + ' for') | trans}} #{{(tagName$ | async)}}</h1>
+
+<mat-tab-group color="accent" (selectedTabChange)="onTabChange($event)" animationDuration="0">
+    <mat-tab label="Tracks">
+        <ng-container *ngIf="trackPagination$ | async as pagination">
+            <no-results-message *ngIf="!pagination.data.length">
+                <span primary-text trans>No tracks yet</span>
+                <span secondary-text>This tag is not attached to any tracks yet, check back later.</span>
+            </no-results-message>
+            <media-list-item [media]="track" *ngFor="let track of pagination.data" [tracks]="pagination.data"></media-list-item>
+        </ng-container>
+        <loading-indicator [isVisible]="loading$ | async" class="inline"></loading-indicator>
+
+    </mat-tab>
+    <mat-tab label="Albums">
+        <ng-container *ngIf="albumPagination$ | async as pagination">
+            <no-results-message *ngIf="!pagination.data.length">
+                <span primary-text trans>No albums yet</span>
+                <span secondary-text trans>This tag is not attached to any albums yet, check back later.</span>
+            </no-results-message>
+            <media-list-item [media]="album" *ngFor="let album of pagination.data"></media-list-item>
+        </ng-container>
+        <loading-indicator [isVisible]="loading$ | async" class="inline"></loading-indicator>
+    </mat-tab>
+</mat-tab-group>

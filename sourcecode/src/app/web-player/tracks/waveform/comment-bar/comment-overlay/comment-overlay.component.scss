@@ -1,0 +1,21 @@
+@import "variables";
+
+:host {
+  display: block;
+  max-width: 200px;
+  padding: 4px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: mat-color($app-background, background);
+  @include mat-elevation(1);
+}
+
+.user {
+  color: mat-color($app-accent, default);
+}
+
+.content {
+  padding: 0 5px;
+}

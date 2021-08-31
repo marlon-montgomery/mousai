@@ -1,0 +1,2 @@
+<ng-content></ng-content>
+<div class="backdrop" [class.visible]="navIsOpen$ | async" (click)="navIsOpen$.next(false)"></div>

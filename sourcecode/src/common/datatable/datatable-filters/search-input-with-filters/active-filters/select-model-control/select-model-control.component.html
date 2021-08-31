@@ -1,0 +1,7 @@
+<ng-container *ngIf="value$ | async as value; else defaultHint">
+    <img class="image" [src]="value.image" />
+    <div class="name">{{ value.name }}</div>
+</ng-container>
+<ng-template #defaultHint>
+    <div trans>Click to select</div>
+</ng-template>

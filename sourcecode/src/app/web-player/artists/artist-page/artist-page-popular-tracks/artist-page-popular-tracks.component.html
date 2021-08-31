@@ -1,0 +1,8 @@
+<div class="popular-tracks">
+    <div class="title" trans>Popular Songs</div>
+    <track-table [dataSource]="datatable" [queueItemId]="artistQueueId" [showHeader]="false"></track-table>
+    <button class="no-style dark-button" (click)="togglePopularTracksCount()">
+        <span *ngIf="visibleTrackCount === 5" trans>Show More</span>
+        <span *ngIf="visibleTrackCount !== 5" trans>Show Less</span>
+    </button>
+</div>

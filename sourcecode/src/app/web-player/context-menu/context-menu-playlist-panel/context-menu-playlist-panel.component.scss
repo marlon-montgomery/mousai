@@ -1,0 +1,43 @@
+@import "../../../../scss/variables";
+
+context-menu-playlist-panel {
+  display: block;
+  padding: 0 10px 10px;
+
+  .panel-header {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid mat-color($app-foreground, divider-lighter);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
+    &:hover {
+      color: mat-color($app-foreground, text);
+    }
+
+    .mat-icon {
+      vertical-align: middle;
+      color: mat-color($app-foreground, icon);
+      margin-right: 5px;
+    }
+  }
+
+  .panel-body {
+    .title {
+      margin: 8px 0;
+      color: mat-color($app-foreground, hint-text);
+    }
+
+    .new-playlist {
+      .mat-icon:not(:disabled) {
+        color: mat-color($app-accent, default);
+      }
+    }
+  }
+
+  .playlists {
+    max-height: 130px;
+    overflow: auto;
+  }
+}

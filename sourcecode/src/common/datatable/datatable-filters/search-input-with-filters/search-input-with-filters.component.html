@@ -1,0 +1,35 @@
+<active-filters [form]="form" [config]="keyedFilters" [compact]="compact">
+    <div class="input-container search-input-container">
+        <mat-icon class="search-icon" svgIcon="search"></mat-icon>
+        <input
+            type="text"
+            class="search-input"
+            #searchInput
+            [placeholder]="('Type to search for ' + pluralName) | trans"
+            [formControl]="searchControl"
+            (focus)="inputFocus.emit()"
+        />
+    </div>
+</active-filters>
+
+<button type="button" class="clear-button" (click)="clearSearch()" *ngIf="haveFiltersOrQuery$ | async" mat-icon-button>
+    <mat-icon svgIcon="close"></mat-icon>
+</button>
+
+<button
+    type="button"
+    mat-button
+    class="filter-button"
+    (click)="toggleFilterDropdown()"
+    *ngIf="keyedFilters"
+>
+    <mat-icon class="filter-button-icon" svgIcon="filter-list"></mat-icon>
+    <span class="filter-button-text" *ngIf="!compact" trans>Filter</span>
+</button>
+
+<filter-suggestions
+    [filters]="keyedFilters"
+    (filterSelected)="addFilterFromDropdownClick($event)"
+    [style.top]="filterBarHeight + 5 + 'px'"
+    [class.visible]="filterDropdownVisible$ | async"
+></filter-suggestions>

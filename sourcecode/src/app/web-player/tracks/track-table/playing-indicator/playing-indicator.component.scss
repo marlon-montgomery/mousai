@@ -1,0 +1,13 @@
+@import "../../../../../scss/variables";
+
+playing-indicator {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+
+  .mat-icon {
+    vertical-align: middle;
+  }
+}
+

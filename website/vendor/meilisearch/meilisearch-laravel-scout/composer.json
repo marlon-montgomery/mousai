@@ -1,0 +1,56 @@
+{
+    "name": "meilisearch/meilisearch-laravel-scout",
+    "description": "Laravel Scout custom engine for MeiliSearch",
+    "keywords": ["meilisearch", "laravel", "scout", "search"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jordan Massart",
+            "email": "hello@jordan-massart.be"
+        }
+    ],
+    "scripts": {
+        "lint": [
+            "./vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --verbose --config=./.php_cs.dist --show-progress=estimating --dry-run --using-cache=yes"
+        ],
+        "lint:fix": [
+            "./vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --verbose --config=./.php_cs.dist --diff --show-progress=estimating --using-cache=no"
+        ],
+        "test": [
+            "./vendor/bin/phpunit --coverage-text --color"
+        ]
+    },
+    "require": {
+        "php": "^7.2|^8.0",
+        "laravel/scout": "^8.0",
+        "meilisearch/meilisearch-php": "^0.17",
+        "http-interop/http-factory-guzzle": "^1.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^5.0|^6.0",
+        "mockery/mockery": "^1.3",
+        "phpunit/phpunit": "^8.5|^9.5",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "guzzlehttp/guzzle": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Meilisearch\\Scout\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Meilisearch\\Scout\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Meilisearch\\Scout\\MeilisearchServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

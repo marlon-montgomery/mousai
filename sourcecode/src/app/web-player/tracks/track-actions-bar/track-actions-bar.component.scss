@@ -1,0 +1,41 @@
+@import "variables";
+
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.action-button {
+  margin-right: 5px;
+
+  .mat-icon {
+    margin-right: 3px;
+  }
+}
+
+.action-button.active:not([disabled]) {
+  color: mat-color($app-accent, default);
+  border-color: mat-color($app-accent, default);
+}
+
+.buttons {
+  margin-right: 20px;
+}
+
+.info {
+  margin-left: auto;
+
+  .mat-icon {
+    vertical-align: middle;
+    color: mat-color($app-foreground, icon);
+    width: 17px;
+    height: 17px;
+    line-height: 17px;
+  }
+}
+
+@media only screen and (max-width: $medium) {
+  .action-button:not(.more-button) {
+    display: none;
+  }
+}

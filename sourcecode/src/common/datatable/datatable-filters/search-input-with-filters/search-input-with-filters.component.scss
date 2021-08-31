@@ -1,0 +1,71 @@
+@import "variables";
+
+:host {
+  display: flex;
+  background-color: mat-color($app-background, card);
+  border: 1px solid mat-color($app-foreground, divider);
+  height: $datatable-filter-bar-height;
+  border-radius: 4px;
+  position: relative;
+  padding-left: 3px;
+  overflow: hidden;
+  width: 100%;
+
+  @media only screen and (max-width: $medium) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &:focus-within {
+    outline: none;
+    border-color: mat-color($app-accent, lighter);
+    box-shadow: 0 0 0 2px mat-color($app-accent, lighter);
+    z-index: 3;
+    overflow: visible;
+    height: auto !important;
+  }
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  width: auto;
+  height: $datatable-filter-bar-height - 2px;
+  padding-left: 8px;
+}
+
+.search-icon {
+  display: block;
+  color: mat-color($app-foreground, icon);
+  margin-right: 5px;
+}
+
+.search-input {
+  border: none;
+  height: 100%;
+  padding: 0;
+
+  &:focus {
+    box-shadow: none;
+    z-index: 1;
+  }
+}
+
+.filter-button {
+  min-width: auto;
+  padding: 0 14px;
+  color: mat-color($app-accent, default);
+  height: $datatable-filter-bar-height - 2px;
+}
+
+.clear-button {
+  height: $datatable-filter-bar-height - 2px;
+  width: $datatable-filter-bar-height - 2px;
+  line-height: $datatable-filter-bar-height - 2px;
+  color: mat-color($app-accent, default);
+}
+
+.filter-button-text {
+  margin-left: 10px;
+}

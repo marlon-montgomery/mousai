@@ -1,0 +1,84 @@
+<div class="hero header-overlay" [style.background]="overlayBackground">
+    <div class="background-image" [style.background-image]="'url('+ content.headerImage +')'"></div>
+    <svg viewBox="0 0 100 15" style="position: absolute;bottom: 0;left: 0;z-index: 2;">
+        <path fill="#fff" opacity="0.1" d="M0 30 V15 Q30 3 60 15 V30z"></path>
+        <path class="wave-fill" d="M0 30 V12 Q30 17 55 12 T100 11 V30z"></path>
+    </svg>
+    <div class="hero-content">
+        <material-navbar [transparent]="true" [container]="true" class="login-button-white" menuPosition="landing-page-navbar"></material-navbar>
+        <div class="be-container">
+            <h1 class="header-title" trans>{{content.headerTitle}}</h1>
+            <p class="header-description" trans>{{content.headerSubtitle}}</p>
+
+            <form (ngSubmit)="search()" class="search-form" ngNativeValidate>
+                <div class="input-container">
+                    <label for="landing-search" class="hidden">{{content.actions.inputText}}</label>
+                    <input type="text" id="landing-search" [placeholder]="content.actions.inputText | trans" [formControl]="searchControl" required>
+                    <button type="submit" class="submit-button" mat-icon-button>
+                        <mat-icon svgIcon="search"></mat-icon>
+                    </button>
+                </div>
+            </form>
+
+            <div class="action-buttons">
+                <a class="get-started-button" mat-raised-button color="accent" *ngIf="content?.actions?.cta1" routerLink="/login" trans>{{content.actions.cta1}}</a>
+                <a class="learn-more-button" mat-button routerLink="/discover" *ngIf="content?.actions?.cta2" trans>{{content.actions.cta2}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="content.primaryFeatures.length">
+    <div class="be-container">
+        <ad-host slot="ads.landing.top"></ad-host>
+        <ul class="inline-features unstyled-list">
+            <li class="inline-feature" *ngFor="let primaryFeature of content.primaryFeatures">
+                <img [src]="primaryFeature.image" alt="">
+                <h3 trans>{{primaryFeature.title}}</h3>
+                <p trans>{{primaryFeature.subtitle}}</p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="spacer"></div>
+</ng-container>
+
+<ul class="big-features unstyled-list">
+    <ng-container *ngFor="let secondaryFeature of content.secondaryFeatures; first as first; last as last; even as even">
+        <li class="big-feature be-container"  [class.first-secondary-feature]="first" [class.reverse]="even">
+            <img [src]="secondaryFeature.image + '?v2'" alt="">
+            <section class="info">
+                <small trans>{{secondaryFeature.subtitle}}</small>
+                <h2 trans>{{secondaryFeature.title}}</h2>
+                <div class="feature-border"></div>
+                <p trans>{{secondaryFeature.description}}</p>
+            </section>
+        </li>
+
+        <div class="spacer" *ngIf="!last"></div>
+    </ng-container>
+</ul>
+
+<div class="spacer"></div>
+
+<div class="stats be-container" *ngIf="channels$ | async as channels">
+    <channel-show [channel]="channel" class="center-channel-title" *ngFor="let channel of channels"></channel-show>
+</div>
+
+<div class="bottom-cta" [style.background-image]="'url('+ content.footerImage +')'">
+    <div class="be-container">
+        <h2 class="footer-title" trans>{{content.footerTitle}}</h2>
+        <p class="footer-description" trans>{{content.footerSubtitle}}</p>
+        <a mat-stroked-button routerLink="/login" *ngIf="content.actions?.cta1" trans>{{content.actions.cta1}}</a>
+    </div>
+</div>
+
+<footer>
+    <div class="be-container">
+        <div class="meta">
+            <span>{{copyrightText()}}, </span>
+            <a [routerLink]="'/'">{{settings.get('branding.site_name')}}</a>
+        </div>
+        <custom-menu position="landing-page-footer" [horizontal]="true"></custom-menu>
+    </div>
+</footer>

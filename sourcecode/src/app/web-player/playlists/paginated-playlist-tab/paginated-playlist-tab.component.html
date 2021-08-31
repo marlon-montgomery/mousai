@@ -1,0 +1,13 @@
+<ng-container *ngIf="pagination$ | async as pagination">
+    <media-grid *ngIf="pagination.data.length">
+        <ng-container *ngFor="let playlist of pagination.data">
+            <playlist-item [playlist]="playlist" *ngIf="playlist.public"></playlist-item>
+        </ng-container>
+    </media-grid>
+
+    <no-results-message *ngIf="!pagination.data.length">
+        <span primary-text trans>Seems like this user has not created any playlists yet.</span>
+    </no-results-message>
+</ng-container>
+
+<loading-indicator [isVisible]="loading$ | async" class="inline"></loading-indicator>

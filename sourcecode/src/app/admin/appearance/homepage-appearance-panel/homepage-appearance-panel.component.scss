@@ -1,0 +1,70 @@
+@import "variables";
+
+.separator {
+  height: 1px;
+  width: 100%;
+  background-color: mat-color($app-foreground, divider);
+  margin: 20px 0;
+}
+
+.feature-group {
+  border-bottom: 1px solid mat-color($app-foreground, divider);
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.feature-group-header {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  border-bottom: 1px solid mat-color($app-foreground, divider);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+
+  .mat-icon-button {
+    margin-left: auto;
+  }
+}
+
+.channels-panel {
+  display: block;
+
+  .input-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+
+    .search-button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+  }
+
+  .lists {
+    margin: 15px 0;
+  }
+}
+
+.channel-list-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid mat-color($app-foreground, divider);
+  border-radius: 4px;
+  background-color: mat-color($app-background, card);
+  margin-bottom: 10px;
+
+  .actions {
+    margin-left: auto;
+    color: mat-color($app-foreground, icon);
+  }
+
+  .name {
+    text-transform: capitalize;
+    margin-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1 1 auto;
+  }
+}

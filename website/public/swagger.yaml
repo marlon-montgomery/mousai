@@ -1,0 +1,1634 @@
+openapi: 3.0.0
+info:
+  description: "Access token should be sent along with every request to SITE_NAME API in authorization header: `Authorization: Bearer <Token>` <br> This token can either be acquired via `auth/login` endpoint or from account settings page on [SITE_NAME website](https://bedrive.vebto.com/account/settings)."
+  version: "1.0.0"
+  title: SITE_NAME API
+security:
+  - accessToken: [ ]
+tags:
+  - name: Search
+  - name: Playlists
+  - name: Artists
+  - name: Albums
+  - name: Tracks
+  - name: Tags
+  - name: Genres
+  - name: Users
+  - name: Uploads
+    description: Upload files to SITE_NAME
+  - name: Chunked Uploads
+    description: Upload files using chunked uploading
+  - name: Auth
+    description: Authenticate requests to the API
+  - name: Files and Folders
+    description: FileEntry refers to either a file or folder on SITE_NAME
+  - name: Sharing
+    description: Manage file entry collaborators
+  - name: Starring
+    description: Mark or unmark entries as starred
+  - name: Shareable Links
+    description: Manage shareable links for file or folder
+paths:
+  /search:
+    get:
+      tags:
+        - Search
+      summary: Get information about albums, artists, playlists, tracks or users that match a keyword string.
+      operationId: searchIndex
+      parameters:
+        - name: query
+          in: query
+          description: Search query keywords
+          schema:
+            type: string
+            example: led zeppelin
+            default: null
+        - name: types
+          in: query
+          description: 'A comma-separated list of item types to search across.
+Valid types are: album , artist, playlist, track, and user.
+Search results include hits from all the specified types.'
+          schema:
+            type: string
+            example: artist,album,track
+            default: null
+        - name: limit
+          in: query
+          description: 'Maximum number of results to return. The limit is applied within each type, not on the total response.'
+          schema:
+            type: integer
+            example: 3
+            default: 3
+      responses:
+        '200':
+          description: For each type provided in the type parameter, the response body contains an array of artist, album, track, playlist and user objects in JSON.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  query:
+                    type: string
+                    example: led zeppelin
+                  results:
+                    type: object
+                    properties:
+                      artists:
+                        $ref: '#/components/schemas/Artist'
+                      albums:
+                        $ref: '#/components/schemas/Album'
+                      tracks:
+                        $ref: '#/components/schemas/Track'
+                      playlists:
+                        $ref: '#/components/schemas/Playlist'
+                      users:
+                        $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+
+  /playlists/{id}:
+    get:
+      tags:
+        - Playlists
+      summary: Get a Playlist
+      operationId: getPlaylist
+      parameters:
+        - name: id
+          in: path
+          description: ID of the playlist
+          example: 1
+      responses:
+        '200':
+          description: Response body contains a playlist object in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  playlist:
+                    allOf:
+                      - $ref: '#/components/schemas/Playlist'
+                      - type: object
+                        properties:
+                          totalDuration:
+                            nullable: true
+                            type: integer
+                            example: 386493
+                            description: Total duration of all playlist tracks in milliseconds
+                          tracks:
+                            nullable: true
+                            allOf:
+                              - $ref: '#/components/schemas/Pagination'
+                              - type: object
+                                properties:
+                                  data:
+                                    type: array
+                                    items:
+                                      $ref: '#/components/schemas/Track'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+    delete:
+      tags:
+        - Playlists
+      summary: Delete a playlist
+      operationId: deletePlaylist
+      parameters:
+        - in: path
+          name: ID
+          required: true
+          description: ID of playlist to delete
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Playlist has been deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /playlists:
+    post:
+      tags:
+        - Playlists
+      summary: Create a Playlist for current user
+      operationId: createPlaylist
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: My playlist
+                description:
+                  type: string
+                  nullable: true
+                  description: Short description (between 20 and 170 chracaters) for playlist
+                image:
+                  type: string
+                  nullable: true
+                  description: Image url for playlist
+                public:
+                  type: string
+                  nullable: true
+                  default: false
+                  description: Whether this playlist will be set as public
+                collaborative:
+                  type: string
+                  nullable: true
+                  default: false
+                  description: Whether this playlist will be set as collaborative
+      responses:
+        '200':
+          description: On success, the response body contains the created playlist object in JSON format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  playlist:
+                    $ref: '#/components/schemas/Playlist'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+        '422':
+          description: Invalid data specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/422-Response'
+    put:
+      tags:
+        - Playlists
+      summary: Update specified playlist details
+      operationId: updatePlaylist
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: My playlist
+                description:
+                  type: string
+                  nullable: true
+                  description: Short description (between 20 and 170 chracaters) for playlist
+                image:
+                  type: string
+                  nullable: true
+                  description: Image url for playlist
+                public:
+                  type: string
+                  nullable: true
+                  default: false
+                  description: Whether this playlist will be set as public
+                collaborative:
+                  type: string
+                  nullable: true
+                  default: false
+                  description: Whether this playlist will be set as collaborative
+      responses:
+        '200':
+          description: On success, the response body contains the updated playlist object in JSON format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  playlist:
+                    $ref: '#/components/schemas/Playlist'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+        '422':
+          description: Invalid data specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/422-Response'
+  /playlists/{id}/tracks:
+    get:
+      tags:
+        - Playlists
+      summary: Get full details of playlist tracks
+      operationId: getPlaylistTracks
+      parameters:
+        - name: id
+          in: path
+          description: ID of the playlist
+          example: 1
+        - name: perPage
+          in: query
+          description: How many tracks to return per page
+          schema:
+            type: "integer"
+            default: 20
+        - name: page
+          in: query
+          description: Which page to return
+          schema:
+            type: "integer"
+            default: 1
+      responses:
+        '200':
+          description: Response body contains a paginated list of playlist tracks in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  pagination:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Track'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /playlists/{id}/tracks/add:
+    get:
+      tags:
+        - Playlists
+      summary: Add one or more tracks to a user's playlist
+      operationId: addTracksToPlaylist
+      parameters:
+        - name: id
+          in: path
+          description: ID of the playlist
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  description: Array of track ID's to add to this playlist
+                  type: array
+                  example: [1]
+                  items:
+                    type: integer
+      responses:
+        '200':
+          description: Response body contains a playlist object in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  playlist:
+                    $ref: '#/components/schemas/Playlist'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /playlists/{id}/tracks/remove:
+    get:
+      tags:
+        - Playlists
+      summary: Remove one or more tracks from a user's playlist
+      operationId: removeTracksFromPlaylist
+      parameters:
+        - name: id
+          in: path
+          description: ID of the playlist
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  description: Array of track ID's to remove from this playlist
+                  type: array
+                  example: [1]
+                  items:
+                    type: integer
+      responses:
+        '200':
+          description: Response body contains a playlist object in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  playlist:
+                    $ref: '#/components/schemas/Playlist'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /playlists/{id}/follow:
+    post:
+      tags:
+        - Playlists
+      summary: Follow specified playlist with current user
+      operationId: followPlaylist
+      parameters:
+        - in: path
+          name: ID
+          required: true
+          description: ID of playlist to follow
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Playlist has been followed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /playlists/{id}/unfollow:
+    post:
+      tags:
+        - Playlists
+      summary: Unfollow specified playlist with current user
+      operationId: unfollowPlaylist
+      parameters:
+        - in: path
+          name: ID
+          required: true
+          description: ID of playlist to unfollow
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Playlist has been unfollowed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+
+  /artists/{id}:
+    get:
+      tags:
+        - Artists
+      summary: Get an Artist
+      operationId: getArtist
+      parameters:
+        - name: id
+          in: path
+          description: ID of the artist
+          example: 1
+        - name: with
+          in: query
+          description: 'Comma separated list of additional data to fetch for this artist. Supported values: similar, genres, albums, topTracks.'
+          schema:
+            type: string
+            example: albums, genres
+            default: null
+      responses:
+        '200':
+          description: Response body contains an artist object in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  artist:
+                    allOf:
+                      - $ref: '#/components/schemas/Artist'
+                      - type: object
+                        properties:
+                          albums:
+                            nullable: true
+                            allOf:
+                              - $ref: '#/components/schemas/Pagination'
+                              - type: object
+                                properties:
+                                  data:
+                                    type: array
+                                    items:
+                                      $ref: '#/components/schemas/Album'
+                          similar:
+                            nullable: true
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Artist'
+                          top_tracks:
+                            nullable: true
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Track'
+                          genres:
+                            nullable: true
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Genre'
+                          profile:
+                            $ref: '#/components/schemas/Profile'
+                          profile_images:
+                            nullable: true
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/ProfileImage'
+                          links:
+                            nullable: true
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/ProfileLink'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /artists/{id}/tracks:
+    get:
+      tags:
+        - Artists
+      summary: Paginate artist tracks
+      operationId: getArtistTracks
+      parameters:
+        - name: id
+          in: path
+          description: ID of the artist
+          example: 1
+        - name: perPage
+          in: query
+          description: How many tracks to return per page
+          schema:
+            type: "integer"
+
+            default: 20
+        - name: page
+          in: query
+          description: Which page to return
+          schema:
+            type: "integer"
+            default: 1
+      responses:
+        '200':
+          description: Response body contains a paginated list of artist tracks in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  pagination:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Track'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /artists/{id}/albums:
+    get:
+      tags:
+        - Artists
+      summary: Paginate artist albums
+      operationId: getArtistAlbums
+      parameters:
+        - name: id
+          in: path
+          description: ID of the artist
+          example: 1
+        - name: perPage
+          in: query
+          description: How many tracks to return per page
+          schema:
+            type: "integer"
+            default: 20
+        - name: page
+          in: query
+          description: Which page to return
+          schema:
+            type: "integer"
+            default: 1
+      responses:
+        '200':
+          description: Response body contains a paginated list of artist albums in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  pagination:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Album'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /artists/{id}/followers:
+    get:
+      tags:
+        - Artists
+      summary: Get all users that follow specified artist
+      operationId: getArtistFollowers
+      parameters:
+        - name: id
+          in: path
+          description: ID of the artist
+          example: 1
+        - name: perPage
+          in: query
+          description: How many tracks to return per page
+          schema:
+            type: "integer"
+            default: 20
+        - name: page
+          in: query
+          description: Which page to return
+          schema:
+            type: "integer"
+            default: 1
+      responses:
+        '200':
+          description: Response body contains a paginated list of users that follow specified artist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  pagination:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+
+  /albums/{id}:
+    get:
+      tags:
+        - Albums
+      summary: Get an Album
+      operationId: getAlbum
+      parameters:
+        - name: id
+          in: path
+          description: ID of the album
+          example: 1
+        - name: with
+          in: query
+          description: 'Comma separated list of additional data to fetch for this album. Supported values: tags, genres, artists, tracks.'
+          schema:
+            type: string
+            example: artists, genres, tags
+            default: null
+      responses:
+        '200':
+          description: Response body contains an album object in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  album:
+                    allOf:
+                      - $ref: '#/components/schemas/Album'
+                      - type: object
+                        properties:
+                          genres:
+                            nullable: true
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Genre'
+                          tags:
+                            nullable: true
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Tag'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+
+  /tracks/{id}:
+    get:
+      tags:
+        - Tracks
+      summary: Get a Track
+      operationId: getTrack
+      parameters:
+        - name: id
+          in: path
+          description: ID of the track
+          example: 1
+        - name: with
+          in: query
+          description: 'Comma separated list of additional data to fetch for this track. Supported values: tags, genres, artists, album.'
+          schema:
+            type: string
+            example: album, genres, tags
+            default: null
+      responses:
+        '200':
+          description: Response body contains a track object in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  track:
+                    allOf:
+                      - $ref: '#/components/schemas/Track'
+                      - type: object
+                        properties:
+                          album:
+                            $ref: '#/components/schemas/Album'
+                          genres:
+                            nullable: true
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Genre'
+                          tags:
+                            nullable: true
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Tag'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /tracks/{id}/comments:
+    get:
+      tags:
+        - Tracks
+      summary: List all track comments
+      operationId: getTrackComments
+      parameters:
+        - name: id
+          in: path
+          description: ID of the track
+          example: 1
+        - name: perPage
+          in: query
+          description: How many comments to return per page
+          schema:
+            type: "integer"
+            default: 20
+        - name: page
+          in: query
+          description: Which page to return
+          schema:
+            type: "integer"
+            default: 1
+      responses:
+        '200':
+          description: Response body contains a paginated list of track comments in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  pagination:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Comment'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /tracks/{id}/lyrics:
+    get:
+      tags:
+        - Tracks
+      summary: Get lyric for specified track
+      operationId: getTrackLyric
+      parameters:
+        - name: id
+          in: path
+          description: ID of the track
+          example: 1
+      responses:
+        '200':
+          description: Response body contains a lyric object for specified track
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  lyric:
+                    $ref: '#/components/schemas/Lyric'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+
+  /tags/{name}/tracks:
+    get:
+      tags:
+        - Tags
+      summary: List tracks for specified tag
+      operationId: getTagTracks
+      parameters:
+        - name: name
+          in: path
+          description: Name of the tag
+          example: mellow
+        - name: perPage
+          in: query
+          description: How many tracks to return per page
+          schema:
+            type: "integer"
+            default: 20
+        - name: page
+          in: query
+          description: Which page to return
+          schema:
+            type: "integer"
+            default: 1
+      responses:
+        '200':
+          description: Response body contains a paginated list of tracks for specified tag in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  tag:
+                    $ref: '#/components/schemas/Tag'
+                  tracks:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Track'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+        '404':
+          $ref: '#/components/schemas/404-Response'
+  /tags/{name}/albums:
+    get:
+      tags:
+        - Tags
+      summary: List albums for specified tag
+      operationId: getTagAlbums
+      parameters:
+        - name: name
+          in: path
+          description: Name of the tag
+          example: mellow
+        - name: perPage
+          in: query
+          description: How many albums to return per page
+          schema:
+            type: "integer"
+            default: 20
+        - name: page
+          in: query
+          description: Which page to return
+          schema:
+            type: "integer"
+            default: 1
+      responses:
+        '200':
+          description: Response body contains a paginated list of albums for specified tag in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  tag:
+                    $ref: '#/components/schemas/Tag'
+                  tracks:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Album'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+        '404':
+            $ref: '#/components/schemas/404-Response'
+
+  /genres:
+    get:
+      tags:
+        - Genres
+      summary: List all available genres
+      operationId: indexGenres
+      responses:
+        '200':
+          description: Response body contains a paginated list of all existing genres in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  pagination:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Genre'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+
+  /users/{id}:
+    get:
+      tags:
+        - Users
+      summary: Get public profile information about a user.
+      operationId: getUser
+      parameters:
+        - name: id
+          in: path
+          description: ID of the user or "me" for currently logged in user.
+          example: me
+      responses:
+        '200':
+          description: Response body contains a user object in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  user:
+                    $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+        '404':
+          $ref: '#/components/schemas/404-Response'
+  /users/me/liked-tracks:
+    get:
+      tags:
+        - Users
+      summary: List tracks current user has liked
+      operationId: getUserLikedTracks
+      parameters:
+        - name: perPage
+          in: query
+          description: How many tracks to return per page
+          schema:
+            type: "integer"
+            default: 20
+        - name: page
+          in: query
+          description: Which page to return
+          schema:
+            type: "integer"
+            default: 1
+      responses:
+        '200':
+          description: Response body contains a paginated list of tracks user has liked in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  pagination:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Track'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /users/me/liked-albums:
+    get:
+      tags:
+        - Users
+      summary: List albums current user has liked
+      operationId: getUserLikedAlbums
+      parameters:
+        - name: perPage
+          in: query
+          description: How many tracks to return per page
+          schema:
+            type: "integer"
+            default: 20
+        - name: page
+          in: query
+          description: Which page to return
+          schema:
+            type: "integer"
+            default: 1
+      responses:
+        '200':
+          description: Response body contains a paginated list of albums user has liked in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  pagination:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Album'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /users/me/liked-artists:
+    get:
+      tags:
+        - Users
+      summary: List artists current user has liked
+      operationId: getUserLikedArtists
+      parameters:
+        - name: perPage
+          in: query
+          description: How many tracks to return per page
+          schema:
+            type: "integer"
+            default: 20
+        - name: page
+          in: query
+          description: Which page to return
+          schema:
+            type: "integer"
+            default: 1
+      responses:
+        '200':
+          description: Response body contains a paginated list of artists user has liked in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  pagination:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Artist'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /users/me/playlists:
+    get:
+      tags:
+        - Users
+      summary: List playlists current user has followed or created
+      operationId: getUserLikedPlaylists
+      parameters:
+        - name: perPage
+          in: query
+          description: How many tracks to return per page
+          schema:
+            type: "integer"
+            default: 20
+        - name: page
+          in: query
+          description: Which page to return
+          schema:
+            type: "integer"
+            default: 1
+      responses:
+        '200':
+          description: Response body contains a paginated list of playlists user has liked in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  pagination:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Playlist'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /users/me/followers:
+    get:
+      tags:
+        - Users
+      summary: List users that are following current user
+      operationId: getUserFollowers
+      parameters:
+        - name: perPage
+          in: query
+          description: How many items to return per page
+          schema:
+            type: "integer"
+            default: 20
+        - name: page
+          in: query
+          description: Which page to return
+          schema:
+            type: "integer"
+            default: 1
+      responses:
+        '200':
+          description: Response body contains a paginated list of users that are following current user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  pagination:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+  /users/me/followed-users:
+    get:
+      tags:
+        - Users
+      summary: List users that current user is currently following
+      operationId: getUserFollowed
+      parameters:
+        - name: perPage
+          in: query
+          description: How many items to return per page
+          schema:
+            type: "integer"
+            default: 20
+        - name: page
+          in: query
+          description: Which page to return
+          schema:
+            type: "integer"
+            default: 1
+      responses:
+        '200':
+          description: Response body contains a paginated list of users that current user is currently following
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  pagination:
+                    allOf:
+                      - $ref: '#/components/schemas/Pagination'
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+
+  /auth/register:
+    post:
+      security:
+        [ ]
+      tags:
+        - Auth
+      summary: Register for a new account
+      operationId: register
+      responses:
+        '200':
+          description: User registered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  user:
+                    $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+        '422':
+          description: Invalid data specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/422-Response'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: 'example@gmail.com'
+                password:
+                  type: string
+                  example: 'password'
+                device_name:
+                  type: string
+                  example: 'iphone 12'
+  /auth/login:
+    post:
+      security:
+        [ ]
+      tags:
+        - Auth
+      summary: Get access token
+      description: "Logs in specified user and returns user object along with access token. <br><br> Access Token is a string that enables SITE_NAME to verify that a request belongs to an authorized session. This token should be sent along with every request to SITE_NAME API in a authorization header: `Authorization: Bearer <Token>`."
+      operationId: login
+      responses:
+        '200':
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  user:
+                    $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/schemas/401-Response'
+        '403':
+          $ref: '#/components/schemas/403-Response'
+        '422':
+          description: Invalid data specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/422-Response'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: 'example@gmail.com'
+                password:
+                  type: string
+                  example: 'password'
+                device_name:
+                  type: string
+                  example: 'iphone 12'
+components:
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          format: int64
+          example: 1
+        from:
+          type: integer
+          format: int64
+          example: 1
+        to:
+          type: integer
+          format: int64
+          example: 100
+        per_page:
+          type: integer
+          format: int64
+          example: 25
+        last_page:
+          type: integer
+          format: int64
+          example: 156
+        total:
+          type: integer
+          format: int64
+          example: 264
+    Artist:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Led Zeppelin
+        image_small:
+          type: string
+          example: https://example.com/image1.jpg
+          description: Small image for artist, usually 320x320px in size.
+        verified:
+          type: boolean
+          example: true
+          description: Whether artist has been verified by SITE_NAME staff
+    Album:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Coda
+        image:
+          type: string
+          example: https://example.com/image1.jpg
+          description: Artwork image for album, usually 300x300px in size
+        release_date:
+          type: string
+          example: '1982-11-19'
+          description: Release date of the album in YYYY-MM-DD format
+        description:
+          type: string
+          nullable: true
+          description: description for the album
+        tracks:
+          nullable: true
+          type: array
+          description: Tracks of the album
+          items:
+            $ref: '#/components/schemas/Track'
+        artists:
+          nullable: true
+          type: array
+          description: Artists of the album
+          items:
+            $ref: '#/components/schemas/Artist'
+    Track:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Hey Hey What Can I Do
+        release_date:
+          type: string
+          example: '1982-11-19'
+          description: Release date of the album in YYYY-MM-DD format
+        image:
+          type: string
+          example: https://example.com/image1.jpg
+          description: Artwork image for album, usually 300x300px in size
+        duration:
+          type: integer
+          format: int64
+          example: 5645848548
+          description: Duration for track in milliseconds
+        description:
+          type: string
+          nullable: true
+          description: description for the track
+        artists:
+          description: List of artists who performed the track
+          type: array
+          items:
+            $ref: '#/components/schemas/Artist'
+    Playlist:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Some Playlist
+        public:
+          type: boolean
+          example: true
+          description: Whether this playlist is public
+        collaborative:
+          type: boolean
+          example: false
+          description: Whether this playlist is collaborative
+        image:
+          type: string
+          example: https://example.com/image1.jpg
+          description: Artwork image for playlist, usually 300x300px in size
+        description:
+          type: string
+          nullable: true
+          description: description for the playlist
+    Genre:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: rock
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        content:
+          type: string
+          example: comment text
+        position:
+          type: integer
+          example: 0
+        depth:
+          type: integer
+          example: 1
+        deleted:
+          type: boolean
+          example: false
+        user:
+          $ref: '#/components/schemas/User'
+    Lyric:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        text:
+          type: string
+          example: lyric for a song...
+    Profile:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        description:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+    ProfileImage:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        url:
+          type: string
+          example: https://site.com/image.jpg
+    ProfileLink:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        url:
+          type: string
+          example: https://facebook.com
+        title:
+          type: string
+          example: Facebook
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        display_name:
+          type: string
+        avatar:
+          type: string
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    401-Response:
+      description: Unauthenticated. Either access token is not provided or is invalid.
+    403-Response:
+      description: Unauthorized access. You don't have permissions required to perform this operation.
+    404-Response:
+      description: Resource not found. Could not find a resource with specified name or ID.
+    422-Response:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: 'Reason for the error'
+        errors:
+          type: object
+          properties:
+            some_data_1:
+              type: string
+              example: Error message for data 1
+            some_data_2:
+              type: string
+              example: Error message for data 2
+
+  securitySchemes:
+    accessToken:
+      type: http
+      scheme: bearer

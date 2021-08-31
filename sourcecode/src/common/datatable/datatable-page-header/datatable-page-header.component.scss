@@ -1,0 +1,38 @@
+@import "variables";
+
+h1 {
+  margin: 0 0 15px;
+  font-size: 30px;
+  text-transform: capitalize;
+  font-weight: 300;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+
+  datatable-filters {
+    flex: 1 1 auto;
+    max-width: 950px;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+
+  .action-buttons::ng-deep {
+    .mat-button-base {
+      margin-left: 10px;
+      line-height: $datatable-filter-bar-height - 5px;
+    }
+
+    .button-with-icon {
+      .mat-icon {
+        margin-right: 5px;
+      }
+
+      svg {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+<ng-container *ngIf="shouldShowLanding$ | async; else player">
+    <landing></landing>
+</ng-container>
+<ng-template #player>
+    <web-player></web-player>
+</ng-template>

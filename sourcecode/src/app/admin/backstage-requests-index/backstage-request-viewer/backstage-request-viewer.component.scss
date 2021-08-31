@@ -1,0 +1,107 @@
+@import "variables";
+
+:host {
+  display: block;
+}
+
+.action-row {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.go-back-btn {
+  margin-right: auto;
+}
+
+.approve-btn, .decline-btn {
+  margin-right: 15px;
+}
+
+h2 {
+  margin: 0 0 15px 0;
+  font-size: 2.1rem;
+}
+
+.panel-container {
+  margin-bottom: 50px;
+}
+
+.panel-row {
+  display: flex;
+  padding: 20px 0;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid mat-color($app-foreground, divider-lighter);
+  }
+}
+
+.panel-row-name {
+  min-width: 200px;
+  padding-right: 25px;
+  text-transform: capitalize;
+}
+
+.panel-row-value {
+  flex: 1 1 auto;
+  overflow: hidden;
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.name-with-image {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+}
+
+.main-image, skeleton.main-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.verification {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.verification-details {
+  overflow: hidden;
+  flex: 1 1 auto;
+}
+
+.verification-url {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.verification-value {
+  font-size: 1.3rem;
+  line-height: 21px;
+}
+
+.verification-img, skeleton.verification-img {
+  width: 77px;
+  height: 77px;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin-right: 20px;
+  border-radius: 4px;
+}
+
+.passport-scan-img {
+  cursor: pointer;
+}

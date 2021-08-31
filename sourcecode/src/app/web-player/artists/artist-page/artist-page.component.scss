@@ -1,0 +1,49 @@
+@import "../../../../scss/variables";
+
+artist-page {
+  display: block;
+  padding-bottom: 25px;
+
+  .tab {
+    padding: 0 25px;
+
+    .title {
+      margin: 16px 0;
+      color: mat-color($app-foreground, secondary-text);
+      font-size: 1.6rem;
+      line-height: 1.75;
+      font-weight: 400;
+    }
+
+    .dark-button {
+      padding: 8px 16px;
+      background-color: mat-color($app-background, raised-button);
+      border: 1px solid mat-color($app-foreground, divider);
+      border-radius: 3px;
+      text-align: center;
+
+      &:hover {
+        background-color: mat-color($app-background, unselected-chip);
+      }
+    }
+  }
+
+  .ads-artist_top-host {
+    margin-top: 30px;
+  }
+
+  .no-results-message {
+    .icon {
+      height: 60px;
+      margin-bottom: 5px;
+    }
+
+    .main {
+      font-size: 1.6rem;
+    }
+
+    .secondary {
+      font-size: 1.4rem;
+    }
+  }
+}

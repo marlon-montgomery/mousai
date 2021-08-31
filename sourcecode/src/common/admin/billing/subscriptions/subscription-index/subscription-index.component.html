@@ -1,0 +1,66 @@
+<div class="datatable-page-header">
+    <h1 trans>Subscriptions</h1>
+
+    <div class="header">
+        <datatable-filters pluralName="subscriptions" [filters]="filters"></datatable-filters>
+        <div class="action-buttons">
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="openCrupdateSubscriptionModal()"
+              [disabled]="!currentUser.hasPermission('subscriptions.create')"
+              class="button-with-icon"
+            >
+                <mat-icon svgIcon="add"></mat-icon>
+                <span trans>Add New Subscription</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="datatable responsive-table">
+    <table class="material-table">
+        <thead>
+        <tr>
+            <th table-sort-header="user_id" trans>User</th>
+            <th table-sort-header trans>Gateway</th>
+            <th table-sort-header="ends_at" trans>Cancelled</th>
+            <th trans>On Grace Period</th>
+            <th table-sort-header trans>Renews At</th>
+            <th table-sort-header trans>Ends At</th>
+            <th table-sort-header="created_at" trans>Created At</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let subscription of subscriptions$ | async">
+            <td>
+                <user-column [user]="subscription.user"></user-column>
+            </td>
+            <td data-label="Gateway">{{subscription.gateway_name}}</td>
+            <td data-label="Cancelled">
+                <mat-icon svgIcon="check" *ngIf="subscription.cancelled"></mat-icon>
+                <span *ngIf="!subscription.cancelled">-</span>
+            </td>
+            <td data-label="On Grace Period">
+                <mat-icon svgIcon="check" *ngIf="subscription.on_grace_period"></mat-icon>
+                <span *ngIf="!subscription.on_grace_period">-</span>
+            </td>
+            <td data-label="Renews At">{{subscription.renews_at ? (subscription.renews_at | formattedDate) : '-'}}</td>
+            <td data-label="Ends At">{{subscription.ends_at ? (subscription.ends_at | formattedDate) : '-'}}</td>
+            <td data-label="Created At">{{subscription.created_at | formattedDate}}</td>
+            <td class="edit-column">
+                <ng-container *ngIf="currentUser.hasPermission('subscriptions.delete')">
+                    <button mat-icon-button (click)="openCrupdateSubscriptionModal(subscription)" [matTooltip]="'Edit' | trans"><mat-icon svgIcon="edit"></mat-icon></button>
+                    <button mat-icon-button (click)="maybeCancelSubscription(subscription)" [disabled]="subscription.cancelled" [matTooltip]="'Cancel/Suspend' | trans"><mat-icon svgIcon="pause"></mat-icon></button>
+                    <button mat-icon-button (click)="maybeDeleteSubscription(subscription)" [matTooltip]="'Delete' | trans"><mat-icon svgIcon="delete"></mat-icon></button>
+                </ng-container>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <no-results-message svgImage="subscriptions.svg" *ngIf="datatable.paginator.noResults$ | async">
+        <span primary-text trans>No subscriptions have been created yet</span>
+    </no-results-message>
+    <datatable-footer></datatable-footer>
+</div>

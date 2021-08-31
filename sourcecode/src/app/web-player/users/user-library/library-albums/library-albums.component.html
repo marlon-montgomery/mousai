@@ -1,0 +1,24 @@
+<ng-container *ngIf="datatable.paginator.paginatedOnce$ | async">
+    <header>
+        <h1>{{ (totalAlbums$ | async)}} <span trans>Albums</span></h1>
+        <div class="right-column">
+            <datatable-header-search-input placeholder="Search artists..." [hideIcon]="true"></datatable-header-search-input>
+        </div>
+    </header>
+
+    <ad-host slot="ads.general_top" class="margin-bottom"></ad-host>
+
+    <media-grid>
+        <album-item *ngFor="let album of datatable.data$ | async; trackBy: trackByFn" [album]="album" [contextMenu]="{item: album, type: 'album'}"></album-item>
+    </media-grid>
+</ng-container>
+
+<loading-indicator [isVisible]="datatable.paginator.loading$ | async" class="inline"></loading-indicator>
+
+<div class="no-results-message" *ngIf="datatable.paginator.noResults$ | async">
+    <mat-icon class="icon" svgIcon="album"></mat-icon>
+    <div class="text">
+        <div class="main" trans>Nothing to display.</div>
+        <div class="secondary" trans>You have not added any albums to your library yet.</div>
+    </div>
+</div>

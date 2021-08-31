@@ -1,0 +1,43 @@
+<div class="many-inputs">
+    <div class="input-container">
+        <div class="fake-label" trans>Album</div>
+        <div class="fake-input" #fakeInput tabindex="0" [matMenuTriggerFor]="menu" (menuOpened)="onMenuOpened()" (menuClosed)="onMenuClosed()">
+            <ng-container *ngIf="selectedAlbum$ | async as selectedAlbum; else anyAlbum">
+                <media-image [media]="selectedAlbum"></media-image>
+                <div class="title-name">{{selectedAlbum.name}}</div>
+            </ng-container>
+            <ng-template #anyAlbum>
+                <div class="title-name" trans>None</div>
+            </ng-template>
+            <div class="arrow-container">
+                <div class="arrow"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<mat-menu #menu="matMenu" class="add-album-control-menu">
+    <div class="input-container search-input-container" (click)="$event.stopPropagation()">
+        <div class="search-input-wrapper">
+            <input type="text" [formControl]="searchFormControl" placeholder="Search..." (blur)="searchInput.focus()" #searchInput mat-menu-item trans-placeholder>
+            <button class="clear-search-input-button" mat-icon-button (click)="clearSearchInput()" *ngIf="searchFormControl.value">
+                <mat-icon svgIcon="close"></mat-icon>
+            </button>
+            <loading-indicator [isVisible]="loading$ | async" class="small"></loading-indicator>
+        </div>
+    </div>
+    <button mat-menu-item (click)="selectAlbum(null)">
+        <media-image default="album"></media-image>
+        <div class="info any-user-info">
+            <div class="name" trans>No Album</div>
+        </div>
+    </button>
+    <button mat-menu-item *ngFor="let album of results$ | async" (click)="selectAlbum(album)">
+        <media-image [media]="album"></media-image>
+        <div class="user-info">
+            <div class="name">{{album.name}}</div>
+            <artists-links-list class="email" [artists]="album.artists"></artists-links-list>
+        </div>
+    </button>
+    <button mat-menu-item disabled *ngIf="searchedOnce && !(results$ | async).length" trans>No albums found.</button>
+</mat-menu>

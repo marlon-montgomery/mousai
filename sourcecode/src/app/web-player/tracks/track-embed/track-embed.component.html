@@ -1,0 +1,8 @@
+<media-list-item [media]="media" [showArtwork]="false" [showActions]="false"
+                 [linksInNewTab]="true">
+    <div class="track-artwork">
+        <div class="player-container youtube-player" id="youtube-player" [class.active]="player.state.activePlaybackStrategy === 'youtube'"></div>
+        <div class="player-container html5-player" [class.active]="player.state.activePlaybackStrategy === 'html5'"></div>
+        <div class="player-container soundcloud-player" [class.active]="player.state.activePlaybackStrategy === 'soundcloud'"></div>
+    </div>
+</media-list-item>

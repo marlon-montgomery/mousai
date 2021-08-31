@@ -1,0 +1,24 @@
+<image-or-icon *ngIf="src$ | async as src; else defaultBg" [src]="src" class="inherit-size"></image-or-icon>
+<ng-template #defaultBg>
+    <image-or-icon *ngIf="defaultBackground" [src]="defaultBackground" class="inherit-size"></image-or-icon>
+</ng-template>
+<div class="action-buttons">
+    <ng-container *ngIf="compact && !(isDisabled$ | async)">
+        <span [matMenuTriggerFor]="menu"></span>
+        <button type="button" mat-icon-button (click)="openUploadDialog()" class="action-button">
+            <mat-icon svgIcon="add-photo-alternate"></mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button type="button" mat-menu-item [uploadButton]="uploadInputConfig" (filesSelected)="uploadImage($event)">{{buttonText | trans}}</button>
+            <button type="button" mat-menu-item (click)="deleteUpload()" trans>Remove</button>
+        </mat-menu>
+    </ng-container>
+
+    <ng-container *ngIf="!compact && !(isDisabled$ | async)">
+        <button type="button" class="action-button" mat-stroked-button color="accent" [uploadButton]="uploadInputConfig" (filesSelected)="uploadImage($event)">{{buttonText | trans}}</button>
+        <button type="button" class="action-button delete-button" mat-icon-button *ngIf="src$ | async" (click)="deleteUpload()">
+            <mat-icon svgIcon="delete"></mat-icon>
+        </button>
+    </ng-container>
+</div>
+<upload-progress-bar></upload-progress-bar>

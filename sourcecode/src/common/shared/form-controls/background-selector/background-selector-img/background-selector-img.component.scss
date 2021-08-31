@@ -1,0 +1,23 @@
+:host {
+  color: #fff;
+  position: relative;
+}
+
+.icon-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 4px 4px 6px 6px;
+  border-radius: 4px;
+  width: 50px;
+  height: 50px;
+}
+
+.mat-icon {
+  width: 40px;
+  height: 40px;
+}

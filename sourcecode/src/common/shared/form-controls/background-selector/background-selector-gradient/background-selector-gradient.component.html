@@ -1,0 +1,11 @@
+<div class="auto-height-grid">
+  <div
+    class="grid-item"
+    [class.active]="data.active?.configId === gradient.configId"
+    *ngFor="let gradient of gradients"
+    (click)="selectGradient(gradient)"
+  >
+    <div class="grid-content" [style.background-image]="gradient.backgroundImage"></div>
+    <div class="grid-label"></div>
+  </div>
+</div>

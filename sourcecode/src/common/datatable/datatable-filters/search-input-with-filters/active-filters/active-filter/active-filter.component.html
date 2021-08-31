@@ -1,0 +1,58 @@
+<ng-container [formGroup]="formGroup" *ngIf="form.controls[key] as formGroup">
+  <div class="filter-label" (click)="el.nativeElement.focus()" trans>{{ filter.label }}</div>
+  <operator-select
+    *ngIf="filter.operators"
+    [compact]="compact"
+    [formGroup]="formGroup"
+    [operators]="filter.operators"
+  ></operator-select>
+  <ng-container [ngSwitch]="filter.type">
+    <div class="filter-input-container" *ngSwitchCase="'select'">
+      <select
+        [id]="key"
+        #valueInput
+        class="filter-input filter-value"
+        formControlName="value"
+        (ngModelChange)="resizeInput()"
+        [compareWith]="compareFilterValueFn"
+      >
+        <option *ngFor="let option of filter.options" [ngValue]="option.value" trans>
+          {{ option.key }}
+        </option>
+      </select>
+      <svg viewBox="0 0 24 24" class="caret-svg">
+        <path d="M7 10l5 5 5-5z"></path>
+        <path d="M0 0h24v24H0z" fill="none"></path>
+      </svg>
+    </div>
+    <div class="date-picker-container" *ngSwitchCase="'datePicker'">
+      <input
+        type="date"
+        class="date-input filter-value"
+        #valueInput
+        [id]="key"
+        formControlName="value"
+      />
+    </div>
+    <select-model-control
+      [component]="filter.component"
+      *ngSwitchCase="'selectModel'"
+      #valueInput
+      [id]="key"
+      formControlName="value"
+      class="filter-value select-model-input"
+    ></select-model-control>
+    <div class="filter-input-container" *ngSwitchCase="'input'">
+      <input
+        #valueInput
+        [id]="key"
+        formControlName="value"
+        (ngModelChange)="resizeInput()"
+        [type]="filter.inputType || 'text'"
+        class="filter-input filter-value"
+        min="1"
+        required
+      />
+    </div>
+  </ng-container>
+</ng-container>

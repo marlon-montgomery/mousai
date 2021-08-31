@@ -1,0 +1,44 @@
+<ad-host slot="ads.general_top" class="margin-bottom"></ad-host>
+
+<header class="media-page-header" [contextMenu]="{item: track, type: 'track'}" [class.with-wave]="showWave">
+    <div class="flex-container">
+        <media-image class="header-image" [media]="track"></media-image>
+        <div class="header-content">
+            <h1 class="title">{{track.name}}</h1>
+            <h2 class="artist">
+                <media-image class="artist-image" [media]="track.artists[0]"></media-image>
+                <artists-links-list class="artist-name" [artists]="track.artists"></artists-links-list>
+            </h2>
+            <div class="subtitle">
+                <div class="running-time meta-item">{{duration}} {{'mins' | trans}}</div>
+                <div class="release-date meta-item">{{(track?.album?.release_date || track.created_at) | formattedDate}}</div>
+                <a class="genre meta-item" *ngIf="track?.genres?.length" [routerLink]="urls.genre(track.genres[0])">{{track.genres[0].display_name || track.genres[0].name}}</a>
+            </div>
+            <div class="action-buttons">
+                <track-actions-bar [media]="track">
+                    <header-play-button [queueId]="queueId" [tracks]="tracks" [select]="track"></header-play-button>
+                </track-actions-bar>
+            </div>
+            <waveform [track]="track" [album]="track.album" [startPlaybackOnSeek]="true" *ngIf="showWave"></waveform>
+        </div>
+    </div>
+</header>
+
+<new-comment-form [focusOnMarkerMove]="true" *ngIf="settings.get('player.track_comments') && currentUser.hasPermission('comments.create')"></new-comment-form>
+
+<mat-chip-list *ngIf="track.tags?.length" class="tags-list">
+    <mat-chip class="genre" *ngFor="let tag of track.tags">
+        <a [routerLink]="['/tag', tag.name]">#{{tag.name}}</a>
+    </mat-chip>
+</mat-chip-list>
+
+<truncated-description *ngIf="track.description" [content]="track.description" class="description"></truncated-description>
+
+<comment-list *ngIf="settings.get('player.track_comments')"></comment-list>
+
+<ng-container *ngIf="track.album">
+    <div class="album-header">
+        <span trans>Featured in</span> <a class="hover-underline" [routerLink]="urls.album(track.album)"><strong> {{track.album.name}}</strong></a>
+    </div>
+    <track-table [dataSource]="datatable" [showTrackImage]="false" [select]="track" [showPopularity]="true" [queueItemId]="queueId"></track-table>
+</ng-container>

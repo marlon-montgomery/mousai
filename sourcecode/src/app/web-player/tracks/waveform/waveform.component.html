@@ -1,0 +1,17 @@
+<div class="seekbar" #seekbar>
+    <div class="elapsed-time" #elapsedTimeEl>0:00</div>
+
+    <div class="outer-track" #outerTrack>
+        <div class="inner-track">
+            <canvas #canvas [width]="waveWidth" [height]="waveHeight"></canvas>
+        </div>
+        <div class="progress-track" #progressTrack>
+            <canvas #overlayCanvas [width]="waveWidth" [height]="waveHeight"></canvas>
+        </div>
+        <div class="progress-handle" #progressHandle></div>
+    </div>
+
+    <div class="track-length" #trackLengthEl>0:00</div>
+</div>
+
+<comment-bar></comment-bar>

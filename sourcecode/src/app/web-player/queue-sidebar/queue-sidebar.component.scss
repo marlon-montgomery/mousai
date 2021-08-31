@@ -1,0 +1,124 @@
+@import "variables";
+
+queue-sidebar {
+  display: block;
+  flex: 0 0 250px;
+  width: 250px;
+  max-width: 250px;
+  overflow: auto;
+  background-color: mat-color($app-background, card);
+  border-left: 1px solid mat-color($app-foreground, divider);
+  transition: flex .4s cubic-bezier(.25,.8,.25,1);
+  position: relative;
+  z-index: 3;
+
+  .scroll-wrapper {
+    height: calc(100% - #{$wp-video-minimized-height});
+    overflow: auto;
+
+    &.full-height {
+      height: 100%;
+    }
+  }
+
+  @media only screen and (max-width: $xlarge) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    @include mat-elevation(4);
+  }
+
+  &.hide {
+    width: 0;
+    flex: 0;
+  }
+
+  &.full-height {
+    height: 100%;
+  }
+
+  .queue-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    position: relative;
+    border-bottom: 1px solid mat-color($app-foreground, divider-lighter);
+
+    &.active {
+      background-color: mat-color($app-accent, default);
+
+      .meta .track-name, .meta .artist-name {
+        color: mat-color($app-accent, default-contrast);
+      }
+      
+      playback-control-button {
+        display: flex;
+      }
+    }
+    
+    &:hover {
+      playback-control-button {
+        display: flex;
+      }
+      
+      .toggle-menu {
+        display: block;
+      }
+    }
+
+    .img-container {
+      width: 35px;
+      height: 35px;
+      flex: 0 0 35px;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+
+      img, playback-control-button {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      playback-control-button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0,0,0,0.3);
+        border-radius: 4px;
+      }
+    }
+
+    .meta {
+      flex: 1 1 auto;
+      margin-left: 10px;
+      overflow: hidden;
+
+      .track-name, .artist-name {
+        max-width: 190px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .track-name {
+        font-size: 1.4rem;
+        color: mat-color($app-foreground, text);
+      }
+
+      .artist-name {
+        font-size: 1.2rem;
+        color: mat-color($app-foreground, secondary-text);
+      }
+    }
+
+    .toggle-menu {
+      display: none;
+      
+      .mat-icon {
+        display: block;
+      }
+    }
+  }
+}

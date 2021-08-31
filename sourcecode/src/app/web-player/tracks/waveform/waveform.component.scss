@@ -1,0 +1,51 @@
+@import "variables";
+
+:host {
+  display: block;
+  height: 70px;
+  cursor: pointer;
+  position: relative;
+  max-width: 1000px;
+}
+
+.outer-track {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.inner-track {
+  width: 100%;
+}
+
+.progress-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.elapsed-time, .track-length {
+  position: absolute;
+  bottom: 32px;
+  background-color: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 3px 4px;
+  border-radius: 2px;
+  font-size: 1rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.elapsed-time {
+  left: 0;
+}
+
+.track-length {
+  right: 0;
+}
+
+.progress-handle {
+  display: none;
+}

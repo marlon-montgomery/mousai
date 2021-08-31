@@ -1,0 +1,52 @@
+{
+    "name": "meilisearch/meilisearch-php",
+    "description": "PHP wrapper for the MeiliSearch API",
+    "keywords": ["meilisearch", "instant", "search", "api", "client", "php"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Clementine Urquizar",
+            "email": "clementine@meilisearch.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.2",
+        "ext-json": "*",
+        "php-http/discovery": "^1.7",
+        "php-http/httplug": "^2.1",
+        "php-http/client-common": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MeiliSearch\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "suggest": {
+        "guzzlehttp/guzzle": "Use Guzzle ^7 as HTTP client",
+        "http-interop/http-factory-guzzle": "Factory for guzzlehttp/guzzle"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5 || ^9.0",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "guzzlehttp/guzzle": "^7.1",
+        "http-interop/http-factory-guzzle": "^1.0"
+    },
+    "scripts": {
+        "lint": [
+            "./vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --verbose --config=./.php_cs.dist --diff --show-progress=estimating --dry-run --using-cache=yes --allow-risky=yes"
+        ],
+        "lint:fix": [
+            "./vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --verbose --config=./.php_cs.dist --diff --show-progress=estimating --using-cache=no --allow-risky=yes"
+        ],
+        "test": [
+            "sh scripts/tests.sh"
+        ]
+    }
+}

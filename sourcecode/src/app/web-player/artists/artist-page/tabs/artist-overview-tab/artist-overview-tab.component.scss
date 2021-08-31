@@ -1,0 +1,77 @@
+@import "variables";
+
+:host {
+  display: block;
+}
+
+.first-section {
+  display: flex;
+}
+
+.left-col {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  @media only screen and (max-width: $medium) {
+    width: 100%;
+  }
+}
+
+.right-col {
+  width: 30%;
+  flex: 0 0 30%;
+}
+
+.similar-artists {
+  margin-left: 30px;
+}
+
+.similar-artist {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  margin-bottom: 5px;
+  color: inherit;
+  border-radius: 4px;
+
+  &:hover {
+    background: mat-color($app-background, hover);
+  }
+
+  media-image {
+    width: 45px;
+    height: 45px;
+    margin-right: 15px;
+    border-radius: 50%;
+    @include mat-elevation(2);
+  }
+}
+
+.albums {
+  padding-top: 45px;
+
+  media-grid {
+    padding: 0;
+  }
+}
+
+.albums-section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid mat-color($app-foreground, divider-lighter);
+
+  .actions {
+    margin-left: auto;
+
+    .active {
+      color: mat-color($app-accent, default);
+    }
+
+    .mat-icon:nth-child(1) {
+      margin-right: 6px;
+    }
+  }
+}
+

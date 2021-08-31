@@ -1,0 +1,28 @@
+<header>
+    <h1>{{totalCount()}} <span trans>Liked tracks</span></h1>
+    <header-play-button [queueId]="queueId()"></header-play-button>
+    <div class="right-column">
+        <datatable-header-search-input placeholder="Search within tracks..." [hideIcon]="true"></datatable-header-search-input>
+    </div>
+</header>
+
+<ad-host slot="ads.general_top" class="margin-bottom"></ad-host>
+
+<track-table
+    [showArtist]="true"
+    [showAddedAt]="true"
+    [showAlbum]="true"
+    [queueItemId]="queueId()"
+    [dataSource]="datatable"
+></track-table>
+
+<loading-indicator [isVisible]="datatable.paginator.loading$ | async" class="inline"></loading-indicator>
+
+<div class="no-results-message" *ngIf="datatable.paginator.noResults$ | async">
+    <mat-icon class="icon" svgIcon="audiotrack"></mat-icon>
+    <div class="text">
+        <div class="main" trans>Nothing to display.</div>
+        <div class="secondary" trans>You have not added any songs to your library yet.</div>
+    </div>
+</div>
+

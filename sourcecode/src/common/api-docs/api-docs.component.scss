@@ -1,0 +1,16 @@
+@import "variables";
+
+:host-context(.be-dark-mode) {
+  :host::ng-deep .swagger-ui .scheme-container {
+    background: mat-color($app-background, background);
+  }
+
+  :host::ng-deep .swagger-ui *:not(select):not(input) {
+    color: mat-color($app-foreground, text) !important;
+  }
+
+  :host::ng-deep .swagger-ui svg {
+    fill: mat-color($app-foreground, text);
+  }
+}
+

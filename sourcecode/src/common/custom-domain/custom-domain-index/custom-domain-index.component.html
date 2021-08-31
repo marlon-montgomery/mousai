@@ -1,0 +1,99 @@
+<div class="datatable-page-header">
+  <h1 trans>Custom Domains</h1>
+
+  <div class="header">
+    <datatable-filters pluralName="domains" [filters]="filters"></datatable-filters>
+    <div class="action-buttons">
+      <button
+        mat-raised-button
+        color="accent"
+        [disabled]="!currentUser.hasPermission('custom_domains.create')"
+        (click)="showCrupdateDomainModal()"
+        class="button-with-icon"
+      >
+        <mat-icon svgIcon="add"></mat-icon>
+        <span trans>Connect New Domain</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="datatable responsive-table">
+  <mat-progress-bar
+    class="loading-bar"
+    mode="indeterminate"
+    color="accent"
+    *ngIf="datatable.paginator && datatable.paginator.loading$ | async"
+  ></mat-progress-bar>
+  <table class="material-table">
+    <thead>
+      <tr>
+        <th table-header-checkbox></th>
+        <th table-sort-header trans>Host</th>
+        <th *ngIf="showUserColumn()" table-sort-header="user_id" trans>Owner</th>
+        <th table-sort-header trans>Global</th>
+        <th table-sort-header="updated_at" trans>Last Updated</th>
+        <th></th>
+      </tr>
+      <tr *ngIf="datatable.selectedRows$.value.length as selectedCount">
+        <th colspan="6">
+          <div
+            class="bulk-actions-title"
+            [transValues]="{count: selectedCount, resource: 'domain(s)'}"
+            trans
+          >
+            :count :resource selected:
+          </div>
+          <div class="bulk-actions">
+            <button
+              type="button"
+              mat-raised-button
+              color="warn"
+              [disabled]="!currentUser.hasPermission('custom_domains.delete')"
+              (click)="maybeDeleteSelectedDomains()"
+              trans
+            >
+              Delete
+            </button>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let domain of domains$ | async">
+        <td [table-body-checkbox]="domain.id"></td>
+        <td data-label="Host">
+          <img class="favicon-img" [src]="domain.host | favicon" alt="" />
+          <span>{{ domain.host }}</span>
+        </td>
+        <td data-label="Owner" *ngIf="showUserColumn()">
+          <user-column [user]="domain.user"></user-column>
+        </td>
+        <td data-label="Global">{{ domain.global ? 'Yes' : 'No' }}</td>
+        <td data-label="Updated At">{{ domain.updated_at | formattedDate }}</td>
+        <td class="edit-column">
+          <button
+            mat-icon-button
+            (click)="showCrupdateDomainModal(domain)"
+            [matTooltip]="'Edit domain' | trans"
+          >
+            <mat-icon svgIcon="edit"></mat-icon>
+          </button>
+          <button
+            class="visible-on-mobile"
+            type="button"
+            mat-icon-button
+            (click)="maybeDeleteSelectedDomains([domain.id])"
+            trans
+          >
+            <mat-icon svgIcon="delete"></mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <no-results-message svgImage="custom-domain.svg" *ngIf="datatable.paginator.noResults$ | async">
+    <span primary-text trans>No custom domains have been added yet</span>
+  </no-results-message>
+  <datatable-footer></datatable-footer>
+</div>
