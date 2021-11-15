@@ -1,0 +1,24 @@
+@import "src/scss/variables";
+
+:host {
+  display: block;
+}
+
+.comment-list-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid mat-color($app-foreground, divider);
+
+  .mat-icon {
+    color: mat-color($app-foreground, icon);
+    vertical-align: middle;
+    margin-right: 3px;
+  }
+}
+
+.no-results-message {
+  margin-top: 30px;
+
+  .mat-icon {
+    color: mat-color($app-foreground, icon);
+  }
+}

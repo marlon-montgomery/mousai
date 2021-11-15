@@ -1,0 +1,64 @@
+@import "variables";
+
+:host {
+  display: block;
+  color: mat-color($app-foreground, secondary-text);
+  font-size: 1.5rem;
+  padding: 55px 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.first-row custom-menu {
+  border-bottom: 1px solid mat-color($app-foreground, divider-lighter);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.first-menu {
+  flex: 1 1 auto;
+  color: mat-color($app-accent, default);
+  padding-right: 10px;
+
+  ::ng-deep .custom-menu-item:first-child {
+    padding-left: 0 !important;
+  }
+}
+
+.second-menu {
+  margin-left: auto;
+  flex-shrink: 0;
+
+  ::ng-deep {
+    .custom-menu-item {
+      padding-right: 10px !important;
+      padding-left: 10px !important;
+    }
+
+    .mat-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.first-col {
+  margin-right: auto;
+}
+
+.second-col {
+  margin-left: 15px;
+}
+
+@media only screen and (max-width: $medium) {
+  .row {
+    flex-direction: column;
+  }
+
+  .first-col {
+    margin-right: 0;
+  }
+}

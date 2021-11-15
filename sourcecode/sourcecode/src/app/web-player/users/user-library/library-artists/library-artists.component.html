@@ -1,0 +1,29 @@
+<ng-container *ngIf="datatable.paginator.paginatedOnce$ | async">
+    <header>
+        <h1>{{ (totalArtists$ | async)}} <span trans>Artists</span></h1>
+        <div class="right-column">
+            <datatable-header-search-input placeholder="Search artists..." [hideIcon]="true"></datatable-header-search-input>
+        </div>
+    </header>
+
+    <ad-host slot="ads.general_top" class="margin-bottom"></ad-host>
+
+    <media-grid>
+        <artist-item *ngFor="let artist of datatable.data$ | async; trackBy: trackByFn" [artist]="artist" [contextMenu]="{item: artist, type: 'artist'}">
+            <div class="secondary-text">
+                {{artist['number_of_tracks']}}
+                <span trans>Songs</span>
+            </div>
+        </artist-item>
+    </media-grid>
+</ng-container>
+
+<loading-indicator [isVisible]="datatable.paginator.loading$ | async" class="inline"></loading-indicator>
+
+<div class="no-results-message" *ngIf="datatable.paginator.noResults$ | async">
+    <mat-icon class="icon" svgIcon="mic"></mat-icon>
+    <div class="text">
+        <div class="main" trans>Nothing to display.</div>
+        <div class="secondary" trans>You have not added any artists to your library yet.</div>
+    </div>
+</div>

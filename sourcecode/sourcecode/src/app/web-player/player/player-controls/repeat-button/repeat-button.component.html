@@ -1,0 +1,7 @@
+<button class="player-action repeat-button" mat-icon-button *ngIf="!player.getState().repeatingOne" (click)="player.toggleRepeatMode()" [class.active]="player.getState().repeating" [matTooltip]="'Repeat' | trans">
+    <mat-icon svgIcon="repeat"></mat-icon>
+</button>
+
+<button class="player-action repeat-button active" mat-icon-button *ngIf="player.getState().repeatingOne" (click)="player.toggleRepeatMode()" [matTooltip]="'Repeat One' | trans">
+    <mat-icon svgIcon="repeat-one"></mat-icon>
+</button>

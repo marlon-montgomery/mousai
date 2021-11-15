@@ -1,0 +1,43 @@
+@import "variables";
+
+.gmail-input-container {
+  margin-bottom: 20px;
+}
+
+.authorized-gmail-account {
+  display: flex;
+  align-items: center;
+  background-color: mat-color($app-background, background);
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid mat-color($app-foreground, divider);
+
+  button {
+    margin-left: auto;
+  }
+}
+
+.connect-gmail-button {
+  line-height: 58px;
+  width: 100%;
+  position: relative;
+
+  .gmail-img {
+    position: absolute;
+    top: 15px;
+    left: 12px;
+  }
+}
+
+.gmail-img {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.gmail-label {
+  color: mat-color($app-foreground, label);
+  padding-bottom: 5px;
+}

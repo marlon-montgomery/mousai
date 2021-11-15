@@ -1,0 +1,22 @@
+<div class="meta">
+    <div class="name">{{upload.uploadedFile.name}}</div>
+    <div class="time-left" *ngIf="(progress.percentage && progress.percentage < 100) && !upload.error$.value">
+        {{progress.eta}}
+        <span trans>left</span>
+    </div>
+    <div class="actions">
+        <mat-icon
+                class="error-icon action-icon"
+                svgIcon="error-outline"
+                *ngIf="upload.error$ | async as error; else noError"
+                [matTooltip]="error | trans"
+                matTooltipPosition="left"
+        ></mat-icon>
+        <ng-template #noError>
+            <span *ngIf="upload.completed" trans>Upload complete.</span>
+            <span *ngIf="upload.processing$ | async" trans>We are processing your track for playback…</span>
+            <span class="cancel-button" *ngIf="!(upload.processing$ | async) && !upload.completed" (click)="upload.cancel()" trans>Cancel</span>
+        </ng-template>
+    </div>
+</div>
+<mat-progress-bar [mode]="(upload.processing$ | async) ? 'indeterminate' : 'determinate'" color="accent" [value]="progress.percentage"></mat-progress-bar>

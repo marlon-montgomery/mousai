@@ -1,0 +1,9 @@
+<div class="comment-track" [class.marker-active]="trackComments.markerActive$ | async">
+    <div class="comment" *ngFor="let comment of trackComments.waveComments$ | async" [style.left]="comment.position + '%'" (mouseenter)="showContent($event, comment)" (mouseleave)="hideContent()">
+        <media-image [media]="comment.user"></media-image>
+    </div>
+
+    <div class="comment comment-marker" #commentMarker [class.hidden]="!(trackComments.markerActive$ | async)">
+        <media-image [media]="currentUser.getModel()"></media-image>
+    </div>
+</div>

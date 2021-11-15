@@ -1,0 +1,49 @@
+<div class="comment-wrapper" [class.deleted]="comment.deleted">
+  <img class="avatar" [src]="comment.user.avatar" alt="" />
+  <div class="comment-meta">
+    <a
+      [routerLink]="['/users', comment.user.id]"
+      target="_blank"
+      class="comment-header"
+      *ngIf="!comment.deleted"
+    >
+      {{ comment.user.display_name }}
+    </a>
+    <div class="comment-content">
+      {{ comment.deleted ? ('This comment was deleted' | trans) : comment.content }}
+    </div>
+  </div>
+  <div class="right-column">
+    <div class="created_at">{{ comment['relative_created_at'] }}</div>
+    <div class="comment-actions">
+      <ng-container *ngIf="!comment.deleted">
+        <button
+          mat-stroked-button
+          class="reply-button comment-action"
+          *ngIf="comment.depth < 5 && currentUser.hasPermission('comments.create')"
+          (click)="toggleNewCommentForm()"
+          trans
+        >
+          Reply
+        </button>
+        <button
+          class="comment-action delete-button"
+          mat-stroked-button
+          #deleteBtn
+          (click)="confirmDeletion(deleteButton, comment)"
+          *ngIf="canDeleteAllComments || comment.user_id === currentUser.get('id')"
+        >
+          <mat-icon svgIcon="delete"></mat-icon>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<new-comment-form
+  [commentable]="commentable"
+  [inReplyTo]="comment"
+  [autoFocus]="true"
+  *ngIf="commentFormVisible$ | async"
+  (created)="onCommentCreated($event)"
+></new-comment-form>

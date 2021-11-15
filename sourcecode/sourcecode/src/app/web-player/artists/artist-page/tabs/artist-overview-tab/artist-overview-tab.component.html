@@ -1,0 +1,37 @@
+<ng-container *ngIf="artistPage.artist$ | async as artist">
+    <ad-host slot="ads.artist_top"></ad-host>
+    <div class="first-section">
+        <div class="left-col">
+            <artist-page-popular-tracks [tracks]="artist.top_tracks" [artistQueueId]="artistPage.artistQueueId$ | async"></artist-page-popular-tracks>
+        </div>
+        <div class="right-col" *ngIf="!state.isMobile">
+            <div class="similar-artists" *ngIf="artist.similar.length">
+                <div class="title" trans>Similar Artists</div>
+                <a class="similar-artist" *ngFor="let artist of artistPage.topSimilar$ | async" [routerLink]="urls.artist(artist)">
+                    <media-image [media]="artist"></media-image>
+                    <div class="artist-name">{{artist.name}}</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section class="albums" [ngClass]="albumsLayout$ | async">
+        <div class="albums-section-header title">
+            <span trans>Albums</span>
+            <div class="actions">
+                <button class="no-style" [class.active]="(albumsLayout$ | async) === 'list'" (click)="setAlbumLayout('list')"><mat-icon svgIcon="format-list-bulleted"></mat-icon></button>
+                <button class="no-style" [class.active]="(albumsLayout$ | async) === 'grid'" (click)="setAlbumLayout('grid')"><mat-icon svgIcon="border-all"></mat-icon></button>
+            </div>
+        </div>
+
+        <ng-container *ngIf="(albumsLayout$ | async) === 'list'">
+            <ng-container *ngFor="let album of (artistPage.albums$ | async).data; trackBy: albumTrackByFn">
+                <artist-page-album-list-item [album]="album" [artist]="artist" *ngIf="album.tracks.length"></artist-page-album-list-item>
+            </ng-container>
+        </ng-container>
+        <media-grid *ngIf="(albumsLayout$ | async) === 'grid'">
+            <album-item *ngFor="let album of (artistPage.albums$ | async).data; trackBy: albumTrackByFn" [album]="album"></album-item>
+        </media-grid>
+        <loading-indicator [isVisible]="loading$ | async" class="inline"></loading-indicator>
+    </section>
+</ng-container>

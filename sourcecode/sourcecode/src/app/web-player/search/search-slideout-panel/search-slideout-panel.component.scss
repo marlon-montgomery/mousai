@@ -1,0 +1,122 @@
+@import "../../../../scss/variables";
+
+search-slideout-panel {
+  display: block;
+  background-color: mat-color($app-background, background);
+  padding: 20px;
+  width: $wp-search-panel-width;
+  height: 100%;
+  overflow: auto;
+
+  @media only screen and (max-width: $medium) {
+    display: none;
+  }
+
+  .view-all-link {
+    display: flex;
+    align-items: center;
+    background-color: mat-color($app-background, raised-button);
+    border: 1px solid mat-color($app-foreground, divider-lighter);
+    border-radius: 3px;
+    padding: 15px;
+    margin-bottom: 25px;
+    font-weight: 500;
+    transition: background-color .3s ease;
+    color: inherit;
+
+    &:hover {
+      background-color: mat-color($app-background, unselected-chip);
+    }
+
+    .mat-icon {
+      margin-left: auto;
+    }
+  }
+
+  .result-type {
+    color: mat-color($app-foreground, hint-text);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 20px 0 15px;
+    text-transform: capitalize;
+  }
+
+  .result-with-image {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .img-container {
+      display: block;
+      flex: 0 0 auto;
+      position: relative;
+
+      playback-control-button {
+        display: flex;
+        visibility: hidden;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -17.5px 0 0 -17.5px;
+        border: 1px solid hsla(0, 0%, 100%, .6);
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        transition: transform 0.3s cubic-bezier(0, 0, 0, 2.41);
+        z-index: 1;
+      }
+    }
+
+    img {
+      width: 55px;
+      height: 55px;
+      flex: 0 0 55px;
+      object-fit: cover;
+      transition: filter 0.3s;
+    }
+
+    .names {
+      margin-left: 10px;
+      flex: 1 1 auto;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      .primary {
+        color: mat-color($app-foreground, text);
+      }
+
+      .secondary {
+        display: block;
+        color: mat-color($app-foreground, secondary-text);
+      }
+    }
+  }
+
+  .tracks {
+    .track {
+      cursor: pointer;
+      width: 100%;
+      background-color: mat-color($app-background, raised-button);
+      border: 1px solid mat-color($app-foreground, divider-lighter);
+      padding: 7px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+
+      &:hover {
+        background-color: mat-color($app-background, unselected-chip);
+      }
+
+      .img-container:hover {
+        img {
+          filter: brightness(0.3);
+        }
+
+        playback-control-button {
+          visibility: visible;
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+}

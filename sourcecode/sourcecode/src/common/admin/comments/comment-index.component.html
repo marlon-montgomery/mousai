@@ -1,0 +1,95 @@
+<div class="datatable-page-header">
+  <h1 trans>Comments</h1>
+  <div class="header">
+    <datatable-filters pluralName="comments" [filters]="filters"></datatable-filters>
+  </div>
+</div>
+
+<div class="datatable responsive-table">
+  <mat-progress-bar
+    class="loading-bar"
+    mode="indeterminate"
+    color="accent"
+    *ngIf="datatable.paginator && datatable.paginator.loading$ | async"
+  ></mat-progress-bar>
+  <table class="material-table">
+    <thead>
+      <tr>
+        <th table-header-checkbox></th>
+        <th trans>Content</th>
+        <th trans>Commentable</th>
+        <th table-sort-header="user_id" trans>User</th>
+        <th table-sort-header trans>Created At</th>
+        <th></th>
+      </tr>
+      <tr *ngIf="datatable.selectedRows$.value.length as selectedCount">
+        <th colspan="6">
+          <div
+            class="bulk-actions-title"
+            [transValues]="{count: selectedCount, resource: 'comment(s)'}"
+            trans
+          >
+            :count :resource selected:
+          </div>
+          <div class="bulk-actions">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="maybeDeleteComments()"
+              *ngIf="currentUser.hasPermission('comments.delete')"
+              trans
+            >
+              Delete
+            </button>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let comment of comments$ | async">
+        <td [table-body-checkbox]="comment.id"></td>
+        <td data-label="Content">{{ comment.content }}</td>
+        <td>
+          <div class="column-with-image">
+            <img [src]="comment.commentable.image" alt="">
+            <a class="link" target="_blank" [routerLink]="url.generate(comment.commentable)">
+              <div>{{ comment.commentable.name }}</div>
+              <div class="secondary capitalize">{{ comment.commentable.model_type }}</div>
+            </a>
+          </div>
+        </td>
+        <td>
+          <user-column [user]="comment.user"></user-column>
+        </td>
+        <td data-label="Created At">{{ comment.created_at | formattedDate }}</td>
+        <td class="edit-column">
+          <button
+            mat-button
+            color="warn"
+            *ngIf="!comment.deleted"
+            (click)="maybeDeleteComments(comment)"
+            trans
+          >
+            Delete
+          </button>
+          <button
+            mat-button
+            color="accent"
+            *ngIf="comment.deleted"
+            (click)="restoreComment(comment)"
+            trans
+          >
+            Restore
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <no-results-message
+    svgImage="public-discussion.svg"
+    *ngIf="datatable.paginator.noResults$ | async"
+  >
+    <span primary-text trans>No comments have been created yet</span>
+  </no-results-message>
+  <datatable-footer></datatable-footer>
+</div>

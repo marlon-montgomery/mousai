@@ -1,0 +1,74 @@
+@import "variables";
+
+.web-player-theme {
+  .mat-menu-panel {
+    background-color: mat-color($app-background, raised-button);
+
+    .mat-menu-item {
+      color: mat-color($app-foreground, secondary-text);
+
+      .mat-icon {
+        color: mat-color($app-foreground, secondary-text);
+      }
+    }
+  }
+
+  .mat-dialog-container {
+    background-color: darken($wp-bg-color-400, 3%);
+    color: mat-color($app-foreground, secondary-text);
+
+    .modal-header {
+      color: inherit;
+    }
+
+    .close-button {
+      color: inherit;
+    }
+
+    .input-container {
+      > input, select, textarea {
+        background-color: mat-color($app-background, raised-button);
+        border-color: mat-color($app-foreground, divider);
+      }
+
+      p {
+        color: mat-color($app-foreground, hint-text);
+      }
+    }
+  }
+
+  upload-file-modal .upload-panel {
+    > .tabs .dropzone {
+      background-color: mat-color($app-background, raised-button);
+      border-color: mat-color($app-foreground, divider);
+
+      &:hover {
+        background-color: mat-color($app-background, unselected-chip);
+      }
+    }
+
+    .menu .menu-item {
+      color: inherit;
+    }
+  }
+
+  .mat-tooltip-panel .mat-tooltip {
+    background-color: mat-color($app-background, unselected-chip);
+  }
+}
+
+web-player {
+  loading-indicator.overlay {
+    .spinner > div {
+      background-color: mat-color($app-accent, default);
+    }
+  }
+}
+
+.auth-page loading-indicator.overlay {
+  background-color: rgba(0,0,0,0.2);
+
+  .spinner > div {
+    background-color: mat-color($app-accent, default);
+  }
+}

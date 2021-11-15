@@ -1,0 +1,10 @@
+<ng-container *ngIf="pagination$ | async as pagination">
+    <no-results-message *ngIf="!pagination.data.length" svgIcon="album">
+        <span primary-text trans>No albums yet</span>
+        <span secondary-text><ng-content></ng-content></span>
+    </no-results-message>
+    <div>
+        <media-list-item [media]="album" *ngFor="let album of pagination.data"></media-list-item>
+    </div>
+</ng-container>
+<loading-indicator [isVisible]="loading$ | async" class="inline"></loading-indicator>

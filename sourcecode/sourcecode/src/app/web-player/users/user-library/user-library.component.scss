@@ -1,0 +1,43 @@
+@import "../../../../scss/variables";
+
+$userLibMobileNavHeight: 70px;
+
+user-library {
+  display: block;
+  min-width: 0;
+  width: 100%;
+  flex: 1 1 auto;
+
+  .nav {
+    display: flex;
+    padding: 10px 0;
+    color: mat-color($app-foreground, hint-text);
+    background-color: mat-color($app-background, card);
+    border-bottom: 1px solid mat-color($app-foreground, divider);
+
+    .nav-item {
+      display: block;
+      flex: 1 1 auto;
+      text-align: center;
+      color: inherit;
+      font-size: 1.1rem;
+
+      &.active {
+        color: mat-color($app-foreground, text);
+      }
+
+      .mat-icon {
+        display: block;
+        margin: 0 auto 5px;
+        width: 28px;
+        height: 28px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: $medium) {
+    .user-library-page {
+      height: calc(100% - #{$userLibMobileNavHeight});
+    }
+  }
+}

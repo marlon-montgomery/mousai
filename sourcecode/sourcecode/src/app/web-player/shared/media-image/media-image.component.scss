@@ -1,0 +1,33 @@
+@import "variables";
+
+:host-context(.auto-height) {
+  img {
+    height: auto;
+  }
+}
+
+:host-context(.auto-width) {
+  img {
+    width: auto;
+  }
+}
+
+:host {
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  background-color: mat-color($app-background, raised-button);
+}
+
+img.ng-lazyloaded {
+  @keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  animation: fadein 0.5s;
+}

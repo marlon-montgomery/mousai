@@ -1,0 +1,16 @@
+<header class="media-page-header">
+    <div class="flex-container">
+        <media-image class="header-image" [media]="seed"></media-image>
+        <div class="header-content">
+            <h1 class="title" [ngClass]="type">{{seed.name}}</h1>
+            <div class="subtitle">
+                <div class="radio-type">{{type}} <span trans>Radio</span></div>
+            </div>
+            <div class="action-buttons">
+                <header-play-button [queueId]="queueId" [tracks]="tracks"></header-play-button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<track-table [dataSource]="datatable" [showArtist]="true" [queueItemId]="queueId"></track-table>

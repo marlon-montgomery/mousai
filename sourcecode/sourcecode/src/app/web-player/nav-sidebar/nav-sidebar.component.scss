@@ -1,0 +1,246 @@
+@import "../../../scss/variables";
+
+$side-padding: 18px;
+
+.be-light-mode nav-sidebar {
+  border-right: 1px solid mat-color($app-foreground, divider);
+
+  .search-bar-container input {
+    background-color: transparent;
+  }
+}
+
+nav-sidebar {
+  display: block;
+  width: $wp-nav-sidebar-width;
+  flex-shrink: 0;
+  background-color: mat-color($app-background, card);
+  color: inherit;
+  z-index: 5;
+
+  @media only screen and (max-width: $medium) {
+    display: none;
+  }
+
+  .content {
+    height: calc(100% - #{$wp-nav-sidebar-current-track-height});
+    padding: 15px 0;
+    overflow: auto;
+  }
+
+  .current-user {
+    display: flex;
+    align-items: center;
+
+    .img-container {
+      display: block;
+      flex: 0 0 auto;
+
+      img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+    }
+
+    .name {
+      color: inherit;
+      margin-right: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .settings-button {
+      background-color: transparent;
+      margin-left: auto;
+      color: currentColor;
+
+      mat-icon {
+        width: 22px;
+        height: 22px;
+      }
+    }
+  }
+
+  .playlists-container {
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 0 $side-padding;
+      margin-top: 20px;
+
+      .name {
+        font-weight: 300;
+        text-transform: uppercase;
+      }
+
+      .new-playlist-button {
+        display: block;
+        margin-left: auto;
+      }
+    }
+  }
+
+  .current-track {
+    display: flex;
+    align-items: center;
+    height: $wp-nav-sidebar-current-track-height;
+    padding: 5px;
+    border-top: 1px solid mat-color($app-foreground, divider-lighter);
+
+    media-image {
+      width: 55px;
+      height: 55px;
+      flex-shrink: 0;
+    }
+
+    .meta {
+      margin-left: 10px;
+      flex: 1 1 auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      .track-name {
+        display: block;
+        color: inherit;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .artist-name {
+        display: block;
+        color: mat-color($app-foreground, secondary-text);
+        font-size: 1.3rem;
+
+        a {
+          color: inherit;
+        }
+      }
+    }
+
+    .check-icon {
+      color: mat-color($app-accent, default);
+    }
+  }
+
+  .logo-container {
+    width: 100%;
+
+    img {
+      width: 100%;
+      max-width: 155px;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
+
+  .search-bar-container {
+    margin: 15px 0;
+    position: relative;
+    padding: 0 $side-padding;
+
+    input {
+      background-color: mat-color($app-background, unselected-chip);
+      padding: 0 30px 0 10px;
+      border-radius: 3px;
+      border: 1px solid mat-color($app-foreground, divider);
+      height: 38px;
+      width: 100%;
+      overflow: hidden;
+      color: inherit;
+
+      &:focus {
+        outline: 0;
+        border-color: mat-color($app-accent, lighter);
+        box-shadow: 0 0 0 1px mat-color($app-accent, lighter);
+      }
+    }
+
+    .search-bar-icon {
+      position: absolute;
+      top: 7px;
+      right: $side-padding + 5px;
+    }
+
+    loading-indicator {
+      position: absolute;
+      top: 8px;
+      right: $side-padding + 8px;
+    }
+  }
+
+  .sidebar-nav {
+    display: block;
+    margin-left: 8px;
+    margin-right: 8px;
+
+    .custom-menu-item, .sidebar-nav-item {
+      display: block;
+      color: inherit;
+      padding: 8px ($side-padding - 8px);
+      font-size: 1.5rem;
+      font-weight: 300;
+      border-right: 3px solid transparent;
+      white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-transform: capitalize;
+
+      &.active {
+        background-color: mat-color($app-accent, emphasis);
+        border-color: mat-color($app-accent, default);
+      }
+
+      &:hover {
+        background-color: mat-color($app-background, hover);
+      }
+
+      .mat-icon {
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        margin-right: 14px;
+      }
+    }
+  }
+
+  .separator {
+    height: 1px;
+    margin: 25px $side-padding 0;
+    background-color: mat-color($app-foreground, divider);
+  }
+
+  .auth-container {
+    margin: 0 $side-padding 0;
+    padding: 25px 0;
+    white-space: nowrap;
+  }
+
+  .upload-button {
+    display: block;
+    width: 80%;
+    line-height: 40px;
+    margin: 15px auto 0;
+  }
+
+  .your-music-container {
+    .title {
+      padding: 0 $side-padding;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    custom-menu {
+      margin-top: 10px;
+    }
+  }
+
+  .mat-badge-small.mat-badge-overlap.mat-badge-after .mat-badge-content {
+    top: 1px;
+    right: 1px;
+  }
+}

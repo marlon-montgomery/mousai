@@ -1,0 +1,19 @@
+@import "variables";
+
+.auto-height-grid {
+  grid-template-columns: repeat(auto-fill, minmax(130px,1fr));
+}
+
+.grid-item {
+  padding-top: 140%;
+}
+
+.grid-content {
+  background-size: cover;
+  background-position: center center;
+  border-radius: 4px;
+}
+
+background-selector-img.grid-content {
+  border: 1px dashed mat-color($app-foreground, secondary-text);
+}

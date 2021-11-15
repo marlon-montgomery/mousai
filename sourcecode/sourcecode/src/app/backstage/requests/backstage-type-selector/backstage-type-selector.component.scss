@@ -1,0 +1,43 @@
+@import "src/scss/variables";
+
+:host {
+  display: block;
+  max-width: 800px;
+  margin: auto;
+}
+
+.claim-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.claim-col {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 2px solid mat-color($app-foreground, divider);
+  border-radius: 10px;
+  width: calc(50% - 30px);
+  padding: 35px 25px;
+  transition: box-shadow 0.2s ease 0s;
+  color: inherit;
+
+  &:hover {
+    @include mat-elevation(14);
+    background: mat-color($app-background, card);
+  }
+
+  img {
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+}

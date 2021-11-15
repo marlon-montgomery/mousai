@@ -1,0 +1,29 @@
+@import "variables";
+
+:host-context(.be-light-mode) .content-wrapper:not(.showing-all):after {
+  background: linear-gradient(transparent, #fff);
+}
+
+:host {
+  display: block;
+}
+
+.more-button {
+  margin-top: 10px;
+}
+
+.content-wrapper:not(.showing-all) {
+  max-height: 160px;
+  overflow: hidden;
+  position: relative;
+
+  &:after {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(transparent, mat-color($app-background, background));
+    width: 100%;
+    height: 20px;
+  }
+}

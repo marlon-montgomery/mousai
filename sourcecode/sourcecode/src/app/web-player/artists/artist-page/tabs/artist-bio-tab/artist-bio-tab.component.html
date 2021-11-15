@@ -1,0 +1,17 @@
+<ng-container *ngIf="artistPage.artist$ | async as artist">
+    <ng-container *ngIf="artist.profile?.description || artist.profile_images?.length; else noBio">
+        <div class="bio-images" *ngIf="artist.profile_images?.length">
+            <img [src]="image.url" *ngFor="let image of artist?.profile_images; index as index" (click)="openImageGallery(index)" alt="">
+        </div>
+        <div class="bio-text" *ngIf="artistPage.fullDescription$ | async as description" [innerHTML]="description"></div>
+    </ng-container>
+
+    <ng-template #noBio>
+        <no-results-message svgIcon="info">
+            <span primary-text>
+                {{ ('Could not find biography for' | trans) }} {{artist.name}}
+            </span>
+        </no-results-message>
+    </ng-template>
+
+</ng-container>

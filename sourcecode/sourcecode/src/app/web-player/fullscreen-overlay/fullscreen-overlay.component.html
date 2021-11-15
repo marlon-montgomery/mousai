@@ -1,0 +1,66 @@
+<div class="top-nav" *ngIf="overlay.isMaximized()">
+    <button class="no-style minimize" (click)="minimize()" [matTooltip]="'Minimize' | trans">
+        <mat-icon svgIcon="keyboard-arrow-down"></mat-icon>
+    </button>
+    <button class="no-style toggle-queue" (click)="overlay.openQueuePanel()" *ngIf="overlay.activePanelIs('video')" [matTooltip]="'Show Queue' | trans">
+        <mat-icon svgIcon="queue-music"></mat-icon>
+    </button>
+    <button class="no-style toggle-queue" (click)="overlay.openVideoPanel()" *ngIf="overlay.activePanelIs('queue')" [matTooltip]="'Show video' | trans">
+        <mat-icon svgIcon="music-video"></mat-icon>
+    </button>
+    <button class="no-style full-screen-button" (click)="toggleBrowserFullscreen()" *ngIf="!state.isMobile" [matTooltip]="'Fullscreen' | trans">
+        <mat-icon svgIcon="fullscreen"></mat-icon>
+    </button>
+</div>
+
+<div class="carousel" [class.hidden]="overlay.activePanelIs('queue')">
+    <div class="previous" *ngIf="overlay.isMaximized() && overlay.activePanelIs('video') && getPrevious() as previous" (click)="player.playPrevious()">
+        <media-image [media]="previous" class="box-shadow"></media-image>
+        <mat-icon svgIcon="skip-previous"></mat-icon>
+        <div class="track-meta">
+            <div class="track-name">{{previous.name}}</div>
+            <div class="artist-name" *ngIf="previous.artists">{{previous.artists[0]?.name}}</div>
+        </div>
+    </div>
+    <div class="video-container box-shadow current" #videoContainer>
+        <div class="video-overlay" *ngIf="!player.cued()"></div>
+        <ng-content class="current"></ng-content>
+    </div>
+    <div class="next" *ngIf="overlay.isMaximized() && overlay.activePanelIs('video') && getNext() as next" (click)="player.playNext()">
+        <media-image [media]="next" class="box-shadow"></media-image>
+        <mat-icon svgIcon="skip-next"></mat-icon>
+        <div class="track-meta">
+            <div class="track-name">{{next.name}}</div>
+            <div class="artist-name" *ngIf="next.artists">{{next.artists[0]?.name}}</div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="overlay.isMaximized() && overlay.activePanelIs('video')">
+    <div class="track-meta current-track-meta">
+        <library-track-toggle-button [track]="getCurrent()"></library-track-toggle-button>
+        <div class="names">
+            <div class="track-name">{{getCurrent().name}}</div>
+            <div class="artist-name">
+                <artists-links-list [artists]="getCurrent()?.artists"></artists-links-list>
+            </div>
+        </div>
+        <button class="no-style" (click)="openTrackContextMenu(getCurrent(), $event)"><mat-icon svgIcon="more-vert"></mat-icon></button>
+    </div>
+
+    <player-seekbar></player-seekbar>
+
+    <div class="controls">
+        <button class="player-action no-style shuffle-button" [class.active]="player.getState().shuffling" (click)="player.toggleShuffle()" [matTooltip]="'Shuffle' | trans">
+            <mat-icon svgIcon="shuffle"></mat-icon>
+        </button>
+
+        <main-playback-buttons></main-playback-buttons>
+
+        <repeat-button></repeat-button>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="overlay.isMaximized() && overlay.activePanelIs('queue')">
+    <fullscreen-overlay-queue></fullscreen-overlay-queue>
+</ng-container>

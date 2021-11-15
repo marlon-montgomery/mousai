@@ -1,0 +1,69 @@
+version: '3.4'
+
+services:
+  app:
+    build:
+      context: ./docker/app
+      dockerfile: Dockerfile
+      target: php-${APP_ENV}
+    user: "1000:1000"
+    depends_on:
+      - elasticsearch
+      - db
+    volumes:
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
+      - ./:/app:rw
+      - home-dir:/home/user
+    working_dir: /app
+    environment:
+      HOME: /home/user
+      XDEBUG_CONFIG: ${XDEBUG_CONFIG}
+      PHP_IDE_CONFIG: ${PHP_IDE_CONFIG}
+      ELASTICSEARCH_HOST: ${ELASTICSEARCH_HOST}
+      DB_HOST: ${DB_HOST}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - default
+  db:
+    image: mysql:5.7.22
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - default
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.1.1
+    user: "1000:1000"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    environment:
+      - discovery.type=single-node
+      - cluster.routing.allocation.disk.threshold_enabled=false
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+    networks:
+      - default
+  cerebro:
+    image: lmenezes/cerebro
+    ports:
+     - "9002:9000"
+    networks:
+      - default
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  elasticsearch-data:
+  home-dir:

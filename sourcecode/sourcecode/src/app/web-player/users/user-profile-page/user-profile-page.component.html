@@ -1,0 +1,66 @@
+<ng-container *ngIf="user$ | async as user">
+    <div class="media-page-header">
+        <div class="header-bg" [style.background-image]="getProfileBackground()"></div>
+        <div class="flex-container">
+            <media-image class="header-image" [media]="user"></media-image>
+            <div class="header-content-wrapper">
+                <div class="header-content">
+                    <h1 class="title">
+                        {{user.display_name}}
+                        <button type="button" class="pro-badge" *ngIf="isSubscribed()" mat-icon-button [matTooltip]="'Pro member' | trans">
+                            <mat-icon svgIcon="star"></mat-icon>
+                        </button>
+                    </h1>
+                    <profile-follower-info [followers]="user.followers_count" [followed]="user.followed_users_count"></profile-follower-info>
+                    <div class="action-buttons" *ngIf="user.id !== currentUser.get('id')">
+                        <button mat-flat-button color="accent" class="action-button" (click)="profile.follow(user, cd)" *ngIf="!profile.currentUserIsFollowing(user)" trans>Follow</button>
+                        <button mat-flat-button color="accent" class="action-button" (click)="profile.unfollow(user, cd)" *ngIf="profile.currentUserIsFollowing(user)" trans>Unfollow</button>
+                    </div>
+                    <profile-description [onDarkBg]="true" [description]="user.profile.description" [country]="user.profile.country" [city]="user.profile.city"></profile-description>
+                </div>
+                <div class="edit-buttons">
+                    <button type="button" mat-stroked-button *ngIf="user.id === currentUser.get('id')" (click)="openEditProfileModal()">
+                        <mat-icon svgIcon="edit"></mat-icon>
+                        <span trans>Edit</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="nav-links-wrapper">
+            <div class="nav-links">
+                <a class="nav-link" *ngFor="let tab of tabs$ | async" [routerLink]="urls.user(user, tab.uri)" [class.active]="activeTabIs(tab.uri)" trans>{{tab.name}}</a>
+            </div>
+            <div class="user-links">
+                <a [href]="userLink.url" target="_blank" mat-icon-button *ngFor="let userLink of user.links" [matTooltip]="userLink.title">
+                    <img class="user-link-image" [src]="favicon(userLink.url)" [alt]="userLink.title">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <ad-host slot="ads.general_top" class="margin-top"></ad-host>
+
+    <div class="tabs">
+        <paginated-album-list *ngIf="activeTabIs('albums')" [loadFn]="loadMoreLikedAlbums" class="tab">
+            <span secondary-text trans [transValues]="{displayName: user.display_name}">Follow :displayName for updates on albums they share in the future.</span>
+        </paginated-album-list>
+        <paginated-track-list *ngIf="activeTabIs('reposts') && settings.get('player.enable_repost')" [reposter]="user" [loadFn]="loadMoreReposts" class="tab">
+            <span secondary-text trans [transValues]="{displayName: user.display_name}">Follow :displayName for updates on reposts they share in the future.</span>
+        </paginated-track-list>
+        <paginated-track-list *ngIf="activeTabIs('tracks')" [reposter]="user" [loadFn]="loadMoreLikedTracks" class="tab">
+            <span trans [transValues]="{displayName: user.display_name}">Follow :displayName for updates on tracks they like in the future.</span>
+        </paginated-track-list>
+        <paginated-artist-list *ngIf="activeTabIs('artists')" [loadFn]="loadMoreLikedArtists" class="tab">
+            <span trans [transValues]="{displayName: user.display_name}">Follow :displayName for updates on artists they like in the future.</span>
+        </paginated-artist-list>
+        <paginated-playlist-tab *ngIf="activeTabIs('playlists')" class="tab" [loadFn]="loadMorePlaylists"></paginated-playlist-tab>
+        <paginated-followers-tab *ngIf="activeTabIs('following')" class="tab" [loadFn]="loadMoreFollowedUsers">
+            <span trans [transValues]="{displayName: user.display_name}">Seems like :displayName is not following anyone yet.</span>
+        </paginated-followers-tab>
+        <paginated-followers-tab *ngIf="activeTabIs('followers')" class="tab" [loadFn]="loadMoreFollowers">
+            <span trans [transValues]="{displayName: user.display_name}">Seems like no one is following :displayName yet.</span>
+        </paginated-followers-tab>
+    </div>
+
+    <ad-host slot="ads.general_bottom" class="margin-bottom"></ad-host>
+</ng-container>

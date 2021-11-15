@@ -1,0 +1,7 @@
+<div class="img-container" [routerLink]="urls.artist(artist)">
+    <media-image [media]="artist"></media-image>
+    <playback-control-button (play)="play()" (pause)="pause()" [playing]="playing()" *ngIf="!disablePlayback"></playback-control-button>
+</div>
+<div class="footer">
+    <artists-links-list class="artist-name primary-text" [artists]="[artist]"></artists-links-list>
+</div>

@@ -1,0 +1,38 @@
+<header class="media-page-header" [contextMenu]="{item: album, type: 'album'}">
+    <div class="flex-container">
+        <media-image class="header-image" [media]="album"></media-image>
+        <div class="header-content">
+            <h1 class="title">{{album.name}}</h1>
+            <h2 class="artist">
+                <media-image class="artist-image" [media]="album.artists[0]"></media-image>
+                <artists-links-list class="artist-name" [artists]="album.artists"></artists-links-list>
+            </h2>
+            <div class="subtitle">
+                <div class="tracks-number meta-item">{{album.tracks.length}} {{'tracks' | trans}}</div>
+                <div class="running-time meta-item">{{totalDuration}} {{'mins' | trans}}</div>
+                <div class="release-date meta-item">{{album.release_date | formattedDate}}</div>
+            </div>
+            <div class="action-buttons">
+                <track-actions-bar [media]="album">
+                    <header-play-button [queueId]="queueId()" [tracks]="album.tracks"></header-play-button>
+                </track-actions-bar>
+            </div>
+        </div>
+    </div>
+</header>
+
+<new-comment-form [focusOnMarkerMove]="true" *ngIf="settings.get('player.track_comments') && currentUser.hasPermission('comments.create')"></new-comment-form>
+
+<mat-chip-list *ngIf="album.tags?.length" class="tags-list">
+    <mat-chip class="genre" *ngFor="let tag of album.tags">
+        <a [routerLink]="['/tag', tag.name]">#{{tag.name}}</a>
+    </mat-chip>
+</mat-chip-list>
+
+<ad-host slot="ads.album_above" class="margin-bottom"></ad-host>
+
+<truncated-description *ngIf="album.description" [content]="album.description" class="description"></truncated-description>
+
+<track-table [dataSource]="datatable" [showTrackImage]="false" [queueItemId]="queueId()" [showPopularity]="true"></track-table>
+
+<comment-list *ngIf="settings.get('player.track_comments')"></comment-list>

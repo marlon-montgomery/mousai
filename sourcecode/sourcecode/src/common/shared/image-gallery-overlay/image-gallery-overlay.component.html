@@ -1,0 +1,14 @@
+<div class="img-container">
+    <img [src]="activeImage$ | async">
+</div>
+<button class="close-button" mat-mini-fab (click)="close()">
+    <mat-icon svgIcon="close"></mat-icon>
+</button>
+
+<button type="button" class="prev-btn" mat-icon-button (click)="showPrevious()" *ngIf="data.images.length > 1">
+    <mat-icon svgIcon="keyboard-arrow-left"></mat-icon>
+</button>
+
+<button type="button" class="next-btn" mat-icon-button (click)="showNext()" *ngIf="data.images.length > 1">
+    <mat-icon svgIcon="keyboard-arrow-right"></mat-icon>
+</button>

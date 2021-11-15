@@ -1,0 +1,94 @@
+<div class="datatable-page-header">
+  <h1 trans>Backstage Requests</h1>
+  <div class="header">
+    <datatable-filters pluralName="requests" [filters]="filters"></datatable-filters>
+  </div>
+</div>
+
+<div class="datatable responsive-table">
+  <mat-progress-bar
+    class="loading-bar"
+    mode="indeterminate"
+    color="accent"
+    *ngIf="datatable.paginator && datatable.paginator.loading$ | async"
+  ></mat-progress-bar>
+  <table class="material-table">
+    <thead>
+      <tr>
+        <th table-header-checkbox></th>
+        <th table-sort-header="type" trans>Type</th>
+        <th table-sort-header="artist_name" trans>Requested Name</th>
+        <th trans>User</th>
+        <th trans>Artist</th>
+        <th table-sort-header="created_at" trans>Requested At</th>
+        <th table-sort-header="status" trans>Status</th>
+        <th></th>
+      </tr>
+      <tr *ngIf="datatable.selectedRows$.value.length as selectedCount">
+        <th colspan="8">
+          <div
+            class="bulk-actions-title"
+            [transValues]="{count: selectedCount, resource: 'request(s)'}"
+            trans
+          >
+            :count :resource selected:
+          </div>
+          <div class="bulk-actions">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="confirmRequestDeletion()"
+              *ngIf="currentUser.hasPermission('requests.delete')"
+              trans
+            >
+              Delete
+            </button>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of requests$ | async">
+        <td [table-body-checkbox]="request.id"></td>
+        <td data-label="Type" trans>{{ request.type | titleCase }}</td>
+        <td data-label="Requested Name" trans>
+          {{ request.type === 'become-artist' ? request.artist_name : '-' }}
+        </td>
+        <td data-label="User">
+          <a [routerLink]="urls.user(request.user)" target="_blank">
+            <user-column [user]="request.user"></user-column>
+          </a>
+        </td>
+        <td data-label="Artist">
+          <a
+            [routerLink]="urls.artist(request.artist)"
+            target="_blank"
+            *ngIf="request.artist"
+            class="column-with-image"
+          >
+            <img [src]="request.artist.image_small" alt="" />
+            <div class="content">
+              <div>{{ request.artist.name }}</div>
+            </div>
+          </a>
+          <span *ngIf="!request.artist">-</span>
+        </td>
+        <td data-label="Requested At">{{ request.created_at | formattedDate }}</td>
+        <td data-label="Status" class="status-col" trans>{{ request.status }}</td>
+        <td class="edit-column">
+          <a
+            mat-flat-button
+            color="accent"
+            [routerLink]="['/admin/backstage-requests/', request.id]"
+            trans
+            >View</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <no-results-message svgImage="accept-request.svg" *ngIf="datatable.paginator.noResults$ | async">
+    <span primary-text>No requests have been submitted yet</span>
+  </no-results-message>
+  <datatable-footer></datatable-footer>
+</div>

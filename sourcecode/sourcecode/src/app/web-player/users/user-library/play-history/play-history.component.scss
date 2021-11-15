@@ -1,0 +1,54 @@
+@import "variables";
+
+:host {
+  display: block;
+  padding: $page-margin;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 30px;
+  border-bottom: 1px solid mat-color($app-foreground, divider);
+
+  @media only screen and (max-width: $medium) {
+    flex-wrap: wrap;
+
+    h1 {
+      max-width: calc(100% - 100px);
+    }
+
+    .right-column {
+      margin-top: 15px;
+      width: 100%;
+    }
+  }
+
+  .input-container {
+    min-width: 250px;
+  }
+}
+
+.right-column {
+  margin-left: auto;
+}
+
+h1 {
+  margin: 0;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+header-play-button {
+  margin-left: 15px;
+}
+
+loading-indicator {
+  margin: 30px 0;
+}
+
+.no-results-message {
+  margin: 40px 0;
+}

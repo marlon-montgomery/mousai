@@ -1,0 +1,26 @@
+:host-context(.inherit-size) {
+  img, svg-image {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+:host-context(.icon) {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.mat-icon {
+  width: 100%;
+  height: 100%;
+}
+
+img, svg-image {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: top;
+  margin: auto;
+}

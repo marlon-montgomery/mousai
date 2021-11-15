@@ -1,0 +1,32 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/admin-artist-edit-main-info";
+
+.tab {
+  padding-top: 20px;
+}
+
+.profile-images {
+  padding-top: 20px;
+  margin-top: 30px;
+  border-top: 1px solid mat-color($app-foreground, divider-lighter);
+}
+
+.profile-images-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.profile-images-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  upload-image-control {
+    margin: 0 15px 15px 0;
+  }
+}
+
+artist-albums-table {
+  padding-top: 35px;
+  margin-top: 35px;
+  border-top: 1px solid mat-color($app-foreground, divider-lighter);
+}

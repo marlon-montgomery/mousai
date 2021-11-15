@@ -1,0 +1,33 @@
+@import "variables";
+
+:host {
+  display: block;
+  padding: $page-margin;
+}
+
+header {
+  display: flex;
+  align-items: center;
+
+  @media only screen and (max-width: $medium) {
+    display: block;
+    margin-bottom: 25px;
+  }
+}
+
+.right-column {
+  margin-left: auto;
+}
+
+h1 {
+  margin: 0 0 20px;
+  font-weight: 400;
+}
+
+loading-indicator {
+  margin: 30px 0;
+}
+
+.no-results-message {
+  margin-top: 50px;
+}

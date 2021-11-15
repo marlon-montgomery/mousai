@@ -1,0 +1,17 @@
+<button class="previous-track" mat-icon-button (click)="player.playPrevious()" [disabled]="!player.ready()">
+  <mat-icon svgIcon="skip-previous"></mat-icon>
+</button>
+
+<button class="play-track" mat-icon-button [disabled]="!player.ready()" [class.hidden]="player.isPlaying() || player.isBuffering()" (click)="player.play()">
+  <mat-icon svgIcon="play-arrow"></mat-icon>
+</button>
+
+<button class="pause-track" mat-icon-button [disabled]="!player.ready()" [class.hidden]="!player.isPlaying()" (click)="player.pause()">
+  <mat-icon svgIcon="pause"></mat-icon>
+</button>
+
+<div class="buffering" [class.hidden]="!player.isBuffering()"><div class="spinner"></div></div>
+
+<button class="next-track" mat-icon-button (click)="player.playNext()" [disabled]="!player.ready()">
+  <mat-icon svgIcon="skip-next"></mat-icon>
+</button>

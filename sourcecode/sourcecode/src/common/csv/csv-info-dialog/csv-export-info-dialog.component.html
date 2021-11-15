@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h2 class="modal-title" mat-dialog-title>CSV Export</h2>
+    <button type="button" (click)="close()" class="close-button no-style" tabindex="-1">
+        <mat-icon svgIcon="close"></mat-icon>
+    </button>
+</div>
+
+<div class="mat-dialog-contents" mat-dialog-content>
+    <div class="message-container">
+        <mat-icon svgIcon="check" class="success-icon" color="su"></mat-icon>
+        <div trans>
+            Your request is being processed. We'll email you when the report is ready to download. In
+            certain cases, it might take a little longer, depending on the number of items beings
+            exported and the volume of activity.
+        </div>
+    </div>
+</div>
+
+<div class="buttons right mat-dialog-actions" mat-dialog-actions>
+    <button
+        mat-raised-button
+        color="accent"
+        class="button primary submit-button"
+        cdkFocusInitial
+        (click)="close()"
+        trans
+    >
+        Got it
+    </button>
+</div>

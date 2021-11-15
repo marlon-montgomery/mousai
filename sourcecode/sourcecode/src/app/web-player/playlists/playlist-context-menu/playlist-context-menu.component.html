@@ -1,0 +1,26 @@
+<div class="header" *ngIf="getImage()">
+    <media-image [media]="data.item"></media-image>
+    <div class="meta">
+        <a class="primary-name hover-underline" [routerLink]="urls.playlist(data.item)">{{data.item.name}}</a>
+        <a class="secondary-name hover-underline" *ngIf="data.item.editors[0] as editor" [routerLink]="urls.user(editor)"><span trans>By</span> {{editor.display_name}}</a>
+    </div>
+</div>
+
+<div class="context-menu-panel primary-panel" [class.hidden]="!activePanelIs('primary')">
+    <div class="panel-body">
+        <div class="context-menu-item" *ngIf="!userIsCreator() && !userIsFollowing()" (click)="follow()" trans>Add to Your Music</div>
+        <div class="context-menu-item" *ngIf="!userIsCreator() && userIsFollowing()" (click)="unfollow()" trans>Remove from Your Music</div>
+        <div class="context-menu-item" *ngIf="userIsCreator()" (click)="openEditModal()" trans>Edit</div>
+        <div class="context-menu-item" *ngIf="userIsCreator()" (click)="maybeDeletePlaylist()" trans>Delete</div>
+        <div class="context-menu-item" *ngIf="userIsCreator()" (click)="setCollaborative(!data.item.collaborative)">
+            <span trans>Collaborative Playlist</span>
+            <mat-icon svgIcon="check" class="collab-menu-icon" *ngIf="data.item.collaborative"></mat-icon>
+        </div>
+        <div class="context-menu-item" *ngIf="userIsCreator() && !isPublic()" (click)="setPublic(true)" trans>Make Public</div>
+        <div class="context-menu-item" *ngIf="userIsCreator() && isPublic()" (click)="setPublic(false)" trans>Make Private</div>
+        <div class="context-menu-item" (click)="copyLinkToClipboard()" trans>Copy Link</div>
+        <div class="context-menu-item" *ngIf="isPublic()" (click)="openShareModal()" trans>Share</div>
+    </div>
+</div>
+
+<context-menu-playlist-panel class="context-menu-panel" *ngIf="activePanelIs('playlist')" [tracks]="getTracks()" (close$)="openPanel('primary')"></context-menu-playlist-panel>

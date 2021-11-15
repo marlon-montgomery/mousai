@@ -1,0 +1,135 @@
+<ng-container *ngIf="request$ | async as request">
+    <div class="action-row">
+        <a routerLink="/admin/backstage-requests" type="button" class="go-back-btn" mat-raised-button [disabled]="loading$ | async" trans>Go Back</a>
+        <ng-container *ngIf="request.status === 'pending'">
+            <button type="button" class="approve-btn" mat-raised-button color="accent" (click)="handleRequest('approve')" [disabled]="loading$ | async" trans>Approve Request</button>
+            <button type="button" class="decline-btn" mat-raised-button (click)="handleRequest('deny')" [disabled]="loading$ | async" trans>Deny Request</button>
+        </ng-container>
+        <button type="button" mat-raised-button [matTooltip]="'Delete' | trans" (click)="deleteRequest()" [disabled]="loading$ | async" trans>
+            <mat-icon svgIcon="delete"></mat-icon>
+        </button>
+    </div>
+    <div class="panel-container">
+        <h2 trans>Request Details</h2>
+        <div class="panel material-panel">
+            <div class="panel-row">
+                <div class="panel-row-name" trans>Image</div>
+                <div class="panel-row-value">
+                    <img class="main-image" [src]="request.data.image || request.artist?.image_small" alt="" *ngIf="request.id">
+                    <skeleton class="main-image" variant="avatar" *ngIf="!request.id"></skeleton>
+                </div>
+            </div>
+            <div class="panel-row">
+                <div class="panel-row-name" trans>Type</div>
+                <div class="panel-row-value">
+                    <span *ngIf="request.id">{{request.type | titleCase}}</span>
+                    <skeleton *ngIf="!request.id"></skeleton>
+                </div>
+            </div>
+            <div class="panel-row">
+                <div class="panel-row-name" trans>Requester</div>
+                <div class="panel-row-value">
+                    <a *ngIf="request.id" class="name-with-image" [routerLink]="urls.user(request.user)" target="_blank">
+                        <img [src]="request.user.avatar" alt="">
+                        <div>{{request.user.display_name}}</div>
+                    </a>
+                    <skeleton *ngIf="!request.id"></skeleton>
+                </div>
+            </div>
+            <div class="panel-row" *ngIf="request.artist">
+                <div class="panel-row-name" trans>Artist</div>
+                <div class="panel-row-value">
+                    <a *ngIf="request.id" class="name-with-image" [routerLink]="urls.artist(request.artist)" target="_blank">
+                        <img [src]="request.artist.image_small" alt="">
+                        <div>{{request.artist.name}}</div>
+                    </a>
+                    <skeleton *ngIf="!request.id"></skeleton>
+                </div>
+            </div>
+            <div class="panel-row">
+                <div class="panel-row-name" trans>Requested artist name</div>
+                <div class="panel-row-value">
+                    <span *ngIf="request.id">{{request.type === 'become-artist' ? request.artist_name : '-'}}</span>
+                    <skeleton *ngIf="!request.id"></skeleton>
+                </div>
+            </div>
+            <div class="panel-row">
+                <div class="panel-row-name" trans>Requested role</div>
+                <div class="panel-row-value capitalize">
+                    <span *ngIf="request.id">{{request.data.role}}</span>
+                    <skeleton *ngIf="!request.id"></skeleton>
+                </div>
+            </div>
+            <div class="panel-row">
+                <div class="panel-row-name" trans>First name</div>
+                <div class="panel-row-value capitalize">
+                    <span *ngIf="request.id">{{request.data.first_name}}</span>
+                    <skeleton *ngIf="!request.id"></skeleton>
+                </div>
+            </div>
+            <div class="panel-row">
+                <div class="panel-row-name capitalize" trans>Last name</div>
+                <div class="panel-row-value">
+                    <span *ngIf="request.id">{{request.data.last_name}}</span>
+                    <skeleton *ngIf="!request.id"></skeleton>
+                </div>
+            </div>
+            <div class="panel-row">
+                <div class="panel-row-name" trans>Company</div>
+                <div class="panel-row-value">
+                    <span *ngIf="request.id">{{request.data.company || '-'}}</span>
+                    <skeleton *ngIf="!request.id"></skeleton>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-container">
+        <h2 trans>Attached Verifications</h2>
+        <div class="material-panel">
+            <div class="panel-row" *ngFor="let profile of request.data?.socialProfiles | keyvalue">
+                <div class="panel-row-name" trans>{{profile.key}}</div>
+                <div class="panel-row-value">
+                    <div class="verification">
+                        <img class="verification-img" [src]="profile.value.avatar" alt="">
+                        <div class="verification-details">
+                            <div class="verification-value">{{profile.value.id}}</div>
+                            <div class="verification-value">{{profile.value.name}}</div>
+                            <div class="verification-value">{{profile.value.email}}</div>
+                            <a [href]="profile.value.profileUrl" target="_blank" class="verification-value verification-url">{{profile.value.profileUrl}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-row" *ngIf="request.data?.passportScanEntry">
+                <div class="panel-row-name" trans>Passport Scan</div>
+                <div class="panel-row-value">
+                    <div class="verification">
+                        <img class="verification-img passport-scan-img" [src]="request.data.passportScanEntry.url" alt="" (click)="openPassportScanModal()">
+                        <div class="verification-details">
+                            <div class="verification-value">{{request.data.passportScanEntry.name}}</div>
+                            <div class="verification-value">{{request.data.passportScanEntry.file_size | formattedFileSize}}</div>
+                            <div class="verification-value">{{request.data.passportScanEntry.created_at | formattedDate}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <no-results-message *ngIf="request.id && !request.data?.socialProfiles && !request.data?.passportScanEntry" svgImage="accept-request.svg">
+                <span primary-text>This request has no attachments</span>
+            </no-results-message>
+            <div class="panel-row" *ngIf="!request.id">
+                <div class="panel-row-name">Facebook</div>
+                <div class="panel-row-value">
+                    <div class="verification">
+                        <skeleton class="verification-img" variant="avatar"></skeleton>
+                        <div class="verification-details">
+                            <div class="verification-value"><skeleton></skeleton></div>
+                            <div class="verification-value"><skeleton></skeleton></div>
+                            <div class="verification-value"><skeleton></skeleton></div>
+                            <div class="verification-value verification-url"><skeleton></skeleton></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

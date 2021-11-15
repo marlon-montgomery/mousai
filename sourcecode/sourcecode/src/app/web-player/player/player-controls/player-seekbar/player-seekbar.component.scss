@@ -1,0 +1,62 @@
+@import "../../../../../scss/variables";
+
+.be-light-mode player-seekbar .progress-handle {
+  border: 1px solid mat-color($app-foreground, divider);
+}
+
+player-seekbar {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  height: 100%;
+  cursor: pointer;
+
+  .outer-track {
+    flex: 1 1 auto;
+    height: 100%;
+    margin: 0 10px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .inner-track {
+      height: 5px;
+      background-color: mat-color($app-foreground, divider);
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    .progress-track {
+      position: absolute;
+      left: 0;
+      top: calc(50% - #{$wp-controls-progress-height / 2});
+      height: 5px;
+      background-color: mat-color($app-accent, default);
+      width: 0;
+    }
+  }
+
+  .progress-handle {
+    position: absolute;
+    left: 0;
+    top: calc(50% - #{$wp-controls-handle-height / 2});
+    width: $wp-controls-handle-height;
+    height: $wp-controls-handle-height;
+    background-color: mat-color($app-accent, default-contrast);
+    border-radius: 50%;
+  }
+
+  // make sure these stay the same width regardless of how long track length is
+  .elapsed-time, .track-length {
+    width: 40px;
+  }
+  .elapsed-time {
+    text-align: right;
+  }
+
+  .elapsed-time, .track-length, .lyrics {
+    color: mat-color($app-foreground, secondary-text);
+    font-size: 1.3rem;
+  }
+}

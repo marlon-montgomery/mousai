@@ -1,0 +1,26 @@
+@import "variables";
+
+web-player, .web-player-theme {
+  .ps {
+    .ps__rail-y, .ps__rail-x {
+      opacity: 1;
+    }
+
+    .ps__rail-y > .ps__thumb-y, .ps__rail-y > .ps__thumb-y {
+      background-color: mat-color($app-background, unselected-chip);
+      opacity: 1;
+    }
+
+    .ps__rail-x:hover, .ps__rail-y:hover, .ps__rail-x:focus, .ps__rail-y:focus {
+      background-color: inherit;
+      opacity: 1;
+    }
+
+    .ps__rail-y:hover > .ps__thumb-y, .ps__rail-y:focus > .ps__thumb-y {
+      background-color: $wp-bg-color-200;
+      opacity: 1;
+      width: 6px;
+    }
+  }
+}
+

@@ -1,0 +1,51 @@
+@import "../../../../../scss/variables";
+
+main-playback-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: mat-color($app-foreground, text);
+
+  .previous-track, .next-track {
+    width: $wp-next-prev-button-size;
+    height: $wp-next-prev-button-size;
+
+    mat-icon {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .play-track, .pause-track {
+    padding-top: 3px;
+    width: $wp-play-button-size;
+    height: $wp-play-button-size;
+
+    mat-icon {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .buffering {
+    width: $wp-play-button-size;
+    height: $wp-play-button-size;
+    padding: 7px 5px;
+
+    > .spinner {
+      border: 4px solid mat-color($app-foreground, text);
+      border-top-color: mat-color($app-accent, default);
+      border-radius: 50%;
+      width: $wp-play-button-size - 10px;
+      height: $wp-play-button-size - 10px;
+      animation: spin 2s linear infinite;
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    }
+  }
+}

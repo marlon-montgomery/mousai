@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  margin: auto;
+  max-width: 800px;
+}
+
+.check-icon {
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  margin-bottom: 25px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+ul {
+  font-size: 1.6rem;
+  line-height: 28px;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.action-buttons {
+  margin-top: 70px;
+  justify-content: center;
+}
+
+.backstage-action-buttons {
+  justify-content: center;
+}

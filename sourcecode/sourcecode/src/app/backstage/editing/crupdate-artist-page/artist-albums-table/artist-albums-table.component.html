@@ -1,0 +1,48 @@
+<div class="datatable">
+    <datatable-header pluralResourceName="albums">
+        <ng-container leftContent>
+            <div class="new-album-container">
+                <a mat-raised-button color="accent" [routerLink]="urls.createAlbum(insideAdmin)" [queryParams]="{artist: encodedArtist}" *ngIf="currentUser.hasPermission('music.create')" [disabled]="!artist" trans>New Album</a>
+                <p class="save-message" *ngIf="!artist">
+                    <mat-icon svgIcon="warning"></mat-icon>
+                    <span trans>Save artist first to enable album creation.</span>
+                </p>
+            </div>
+        </ng-container>
+    </datatable-header>
+    <table class="material-table">
+        <thead>
+        <tr>
+            <th table-sort-header="name" trans>Album</th>
+            <th table-sort-header trans>Release Date</th>
+            <th table-sort-header="views" trans>Views</th>
+            <th table-sort-header="tracks_count" trans>Number Of Tracks</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let album of albums$ | async">
+            <td>
+                <div class="column-with-image">
+                    <media-image [media]="album" default="album"></media-image>
+                    <span>{{album.name}}</span>
+                </div>
+            </td>
+            <td data-label="Release Date">{{album.release_date ? album.release_date: '&ndash;'}}</td>
+            <td data-label="Views">{{album.views}}</td>
+            <td data-label="Number of Tracks">{{album.tracks_count ? album.tracks_count : '&ndash;'}}</td>
+            <td class="edit-column">
+                <a [routerLink]="urls.editAlbum(album, insideAdmin)" [queryParams]="{artist: encodedArtist}" mat-icon-button [matTooltip]="'Edit album' | trans">
+                    <mat-icon svgIcon="edit"></mat-icon>
+                </a>
+                <button mat-icon-button (click)="maybeDeleteAlbum(album)" [matTooltip]="'Delete album' | trans" *ngIf="currentUser.hasPermission('albums.delete')" trans>
+                    <mat-icon svgIcon="delete"></mat-icon>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <no-results-message svgImage="music.svg" *ngIf="!datatable.data.length">
+        <span primary-text trans>This artist has no albums yet</span>
+    </no-results-message>
+</div>

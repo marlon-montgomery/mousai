@@ -1,0 +1,44 @@
+<?php
+
+namespace DummyNamespace;
+
+use Auth;
+use DummyFullModelClass;
+
+class CrupdateDummyModelClass
+{
+    /**
+     * @var DummyModelClass
+     */
+    private $DummyModelVariable;
+
+    /**
+     * @param DummyModelClass $DummyModelVariable
+     */
+    public function __construct(DummyModelClass $DummyModelVariable)
+    {
+        $this->DummyModelVariable = $DummyModelVariable;
+    }
+
+    /**
+     * @param array $data
+     * @param DummyModelClass $DummyModelVariable
+     * @return DummyModelClass
+     */
+    public function execute($data, $DummyModelVariable = null)
+    {
+        if ( ! $DummyModelVariable) {
+            $DummyModelVariable = $this->DummyModelVariable->newInstance([
+                 'user_id' => Auth::id(),
+            ]);
+        }
+
+        $attributes = [
+            'name' => $data['name'],
+        ];
+
+        $DummyModelVariable->fill($attributes)->save();
+
+        return $DummyModelVariable;
+    }
+}

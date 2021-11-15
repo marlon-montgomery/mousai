@@ -1,0 +1,13 @@
+<div class="input-container">
+  <label for="global-search" class="hidden" trans>Global Search</label>
+  <input type="text" id="global-search" [formControl]="searchControl"/>
+</div>
+
+<div class="suggestions">
+  <div class="suggestion-group" *ngFor="let group of results$ | async | keyvalue">
+    <div class="suggestion-title">{{group.key}}</div>
+    <div class="suggestion" *ngFor="let model of group.value">
+      {{model.name || model.title}}
+    </div>
+  </div>
+</div>

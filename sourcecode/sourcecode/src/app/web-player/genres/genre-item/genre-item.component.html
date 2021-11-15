@@ -1,0 +1,6 @@
+<a [routerLink]="urls.genre(genre)">
+    <div class="img-container">
+        <media-image [media]="genre" class="genre-image" default="artist"></media-image>
+    </div>
+    <div class="genre-name" trans>{{genre.display_name || genre.name}}</div>
+</a>

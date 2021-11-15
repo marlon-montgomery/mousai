@@ -1,0 +1,170 @@
+@import "variables";
+
+.material-table {
+  border-spacing: 0;
+  width: 100%;
+
+  th:first-of-type, td:first-of-type {
+    padding-left: 24px;
+  }
+
+  th:last-of-type, td:last-of-type {
+    padding-right: 24px;
+  }
+
+  th, td {
+    padding: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: mat-color($app-foreground, divider);
+  }
+
+  th {
+    color: mat-color($app-foreground, secondary-text);
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  tr {
+    background-color: inherit;
+  }
+
+  thead tr {
+    height: 56px;
+  }
+
+  tbody tr {
+    height: 48px;
+  }
+
+  .table-checkbox {
+    width: 50px;
+    padding-right: 25px;
+  }
+
+  .edit-column {
+    color: mat-color($app-foreground, secondary-text);
+    padding-left: 25px;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .column-with-image {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      width: 35px;
+      height: 35px;
+      margin-right: 10px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .secondary {
+      color: mat-color($app-foreground, secondary-text);
+      font-size: 12px;
+    }
+  }
+
+  .link {
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.datatable {
+  position: relative;
+  border: $admin-card-border;
+  box-shadow: $admin-card-box-shadow;
+  background-color: mat-color($app-background, dialog);
+  border-radius: 4px;
+
+  .loading-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  .bulk-actions-title {
+    font-size: 1.5rem;
+    margin: 15px 0 10px 0;
+  }
+
+  .bulk-actions {
+    display: flex;
+    margin-bottom: 15px;
+
+    button {
+      margin-right: 8px;
+    }
+  }
+
+  no-results-message {
+    padding: 65px 0;
+  }
+}
+
+.datatable-page-header {
+  h1 {
+    margin: 0 0 15px;
+    font-size: 30px;
+    text-transform: capitalize;
+    font-weight: 300;
+  }
+
+  .header {
+    margin-bottom: 25px;
+
+    @media only screen and (min-width: $medium) {
+      display: flex;
+      align-items: center;
+    }
+
+    datatable-filters {
+      flex: 1 1 auto;
+      max-width: 950px;
+      margin-right: auto;
+      margin-bottom: 0;
+    }
+
+    .action-buttons {
+      white-space: nowrap;
+
+      @media only screen and (max-width: $medium) {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .mat-button-base {
+        margin-top: 15px;
+        line-height: $datatable-filter-bar-height - 5px;
+
+        @media only screen and (min-width: $medium) {
+          margin-left: 10px;
+          margin-top: 0;
+        }
+      }
+
+      .button-with-icon {
+        .mat-icon {
+          margin-right: 5px;
+        }
+
+        svg {
+          display: block;
+        }
+      }
+    }
+  }
+}

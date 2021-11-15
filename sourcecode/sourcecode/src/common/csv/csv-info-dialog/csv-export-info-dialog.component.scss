@@ -1,0 +1,23 @@
+@import "variables";
+
+:host {
+  display: block;
+  max-width: 500px;
+}
+
+.modal-header {
+  margin-bottom: 10px;
+}
+
+.message-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+
+.success-icon {
+  color: mat-color($app-success, default);
+  margin-right: 10px;
+  flex-shrink: 0;
+}

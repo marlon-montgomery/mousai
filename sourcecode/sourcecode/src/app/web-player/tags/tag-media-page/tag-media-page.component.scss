@@ -1,0 +1,31 @@
+@import "variables";
+
+:host {
+  display: block;
+  padding: 25px;
+
+  ::ng-deep {
+    .mat-tab-body {
+      padding-top: 25px;
+    }
+
+    .mat-tab-body-content {
+      overflow: hidden;
+    }
+  }
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 400;
+  margin: 0 0 30px;
+}
+
+media-list-item {
+  margin-bottom: 35px;
+  overflow: hidden;
+}
+
+.no-results-message {
+  margin: 30px 0;
+}

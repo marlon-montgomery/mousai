@@ -1,0 +1,81 @@
+<table class="material-table" [class.mobile]="state.isMobile" cdkDropList [cdkDropListDisabled]="!reorderEnabled" (cdkDropListDropped)="orderChanged.emit($event)">
+    <thead *ngIf="!state.isMobile && showHeader">
+    <tr class="header-row">
+        <th class="number-column" *ngIf="!state.isMobile">#</th>
+        <th *ngIf="!state.isMobile" class="like-column"></th>
+        <th class="name-column" table-sort-header="name" trans>Title</th>
+        <th class="options-column"></th>
+        <th *ngIf="showArtist || state.isMobile" class="artist-column" trans>Artist</th>
+        <th *ngIf="showAlbum && !state.isMobile" table-sort-header="album_name" class="album-column" trans>Album</th>
+        <th table-sort-header="created_at" class="created-at-column" *ngIf="showAddedAt && !state.isMobile">
+            <mat-icon svgIcon="date-range"></mat-icon>
+        </th>
+        <th table-sort-header="duration" *ngIf="!state.isMobile" class="duration-column">
+            <mat-icon svgIcon="access-time"></mat-icon>
+        </th>
+        <th *ngIf="showPopularity && !state.isMobile" table-sort-header="popularity" class="popularity-column">
+            <mat-icon svgIcon="trending-up"></mat-icon>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+        *ngFor="let track of dataSource.data$ | async; trackBy: trackByFn; let i = index"
+        [class.selected]="selectedTracks.has(track)"
+        [attr.data-id]="track.id"
+        [class.playing]="trackIsPlaying(track)"
+        [contextMenu]="getContextMenuParams(track)"
+        class="track-list-row"
+        cdkDrag
+    >
+        <td *ngIf="!state.isMobile" class="number-column">
+            <span class="number">{{i+1}}</span>
+            <playback-control-button class="small" [track]="track" (play)="playTrack(track, i)" (pause)="player.pause()"></playback-control-button>
+        </td>
+        <td *ngIf="!state.isMobile" class="like-column">
+            <library-track-toggle-button [track]="track"></library-track-toggle-button>
+        </td>
+        <td class="name-column">
+            <media-image class="track-image" *ngIf="showTrackImage" [media]="track"></media-image>
+            <span>{{track.name}}</span>
+        </td>
+        <td class="options-column">
+            <button mat-icon-button class="track-options-button" (click)="showContextMenu(track, $event)" [matTooltip]="'Show options' | trans">
+                <mat-icon svgIcon="more-horiz"></mat-icon>
+            </button>
+        </td>
+        <td *ngIf="showArtist || state.isMobile" class="artist-column">
+            <artists-links-list [artists]="track.artists"></artists-links-list>
+        </td>
+        <td *ngIf="showAlbum && !state.isMobile" class="album-column">
+            <a class="link album-link" *ngIf="track.album" [routerLink]="urls.album(track.album, track?.artists[0])">{{track.album.name}}</a>
+        </td>
+        <td *ngIf="showAddedAt && !state.isMobile" class="created-at-column">
+            {{track.added_at || track.created_at}}
+        </td>
+        <td *ngIf="!state.isMobile" class="duration-column">
+            {{formatTrackDuration(track)}}
+        </td>
+        <td *ngIf="showPopularity && !state.isMobile" class="popularity-column">
+            <div class="popularity-track">
+                <div class="popularity-track-inner" [style.width]="track.popularity + '%'"></div>
+            </div>
+        </td>
+    </tr>
+
+<!--    <ng-container *ngIf="dataSource.paginator.loading$ | async">-->
+<!--        <tr *ngFor="let i of [1,2,3,4,5]">-->
+<!--            <td *ngIf="!state.isMobile" class="number-column"><skeleton></skeleton></td>-->
+<!--            <td *ngIf="!state.isMobile" class="like-column"><skeleton></skeleton></td>-->
+<!--            <td class="name-column"><skeleton></skeleton></td>-->
+<!--            <td class="options-column"></td>-->
+<!--            <td *ngIf="showArtist || state.isMobile" class="artist-column"><skeleton></skeleton></td>-->
+<!--            <td *ngIf="showAlbum && !state.isMobile" class="album-column"><skeleton></skeleton></td>-->
+<!--            <td *ngIf="showAddedAt && !state.isMobile" class="created-at-column"><skeleton></skeleton></td>-->
+<!--            <td *ngIf="!state.isMobile" class="duration-column"><skeleton></skeleton></td>-->
+<!--            <td *ngIf="showPopularity && !state.isMobile" class="popularity-column"><skeleton></skeleton></td>-->
+<!--        </tr>-->
+<!--    </ng-container>-->
+
+    </tbody>
+</table>

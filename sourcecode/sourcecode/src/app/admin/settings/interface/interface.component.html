@@ -1,0 +1,221 @@
+<div class="header">
+  <div class="title" trans>Interface</div>
+  <div class="subtitle" trans>Configure site look and behaviour.</div>
+</div>
+
+<form class="body" (submit)="saveSettings()" ngNativeValidate *ngIf="state.errors$ | async as errors">
+  <mat-tab-group
+    color="accent"
+    animationDuration="0"
+    [selectedIndex]="selectedIndex"
+    (selectedTabChange)="onTabChange($event)"
+  >
+    <mat-tab [label]="'General' | trans">
+      <div class="many-inputs tab-body">
+        <div class="setting-toggle-container">
+          <mat-slide-toggle
+            name="player.show_upload_btn"
+            id="player.show_upload_btn"
+            [(ngModel)]="state.client['player.show_upload_btn']"
+            trans
+            >Upload Button</mat-slide-toggle
+          >
+          <p trans>
+            Whether upload button should be shown in left sidebar (Assuming user has permissions to
+            upload tracks).
+          </p>
+        </div>
+        <div class="setting-toggle-container">
+          <mat-slide-toggle
+            name="uploads.autoMatch"
+            id="uploads.autoMatch"
+            [(ngModel)]="state.client['uploads.autoMatch']"
+            trans
+            >Upload Metadata Matching</mat-slide-toggle
+          >
+          <p trans>
+            When uploading music, this will automatically match uploaded file to existing album and
+            artist based on file metadata, or create a new album and artist if they do not yet
+            exist.
+          </p>
+        </div>
+        <div class="setting-toggle-container margin-top">
+          <mat-slide-toggle
+            name="player.hide_queue"
+            id="player.hide_queue"
+            [(ngModel)]="state.client['player.hide_queue']"
+            trans
+            >Hide Queue</mat-slide-toggle
+          >
+          <p trans>Should player queue (right sidebar) be hidden by default.</p>
+        </div>
+        <div class="setting-toggle-container">
+          <mat-slide-toggle
+            name="player.hide_radio_button"
+            id="player.hide_radio_button"
+            [(ngModel)]="state.client['player.hide_radio_button']"
+            trans
+            >Hide Radio Button</mat-slide-toggle
+          >
+          <p trans>Hide all "go to radio" buttons across the site.</p>
+        </div>
+        <div class="setting-toggle-container">
+          <mat-slide-toggle
+            name="player.enable_repost"
+            id="player.enable_repost"
+            [(ngModel)]="state.client['player.enable_repost']"
+            trans
+            >Enable Reposts</mat-slide-toggle
+          >
+          <p trans>Enable reposting functionality for albums and tracks.</p>
+        </div>
+        <div class="many-inputs">
+          <div class="setting-toggle-container">
+            <mat-slide-toggle
+              name="player.hide_lyrics"
+              id="player.hide_lyrics"
+              [(ngModel)]="state.client['player.hide_lyrics']"
+              trans
+              >Hide Lyrics Button</mat-slide-toggle
+            >
+            <p trans>Hide "Lyrics" button in player controls bar.</p>
+          </div>
+          <div class="setting-toggle-container">
+            <mat-slide-toggle
+              name="player.hide_video_button"
+              id="player.hide_video_button"
+              [(ngModel)]="state.client['player.hide_video_button']"
+              trans
+              >Hide Video Button</mat-slide-toggle
+            >
+            <p trans>Hide video toggle button in player controls bar.</p>
+          </div>
+          <div class="setting-toggle-container">
+            <mat-slide-toggle
+              name="player.show_become_artist_btn"
+              id="player.show_become_artist_btn"
+              [(ngModel)]="state.client['player.show_become_artist_btn']"
+              trans
+              >Show Become Artist Button</mat-slide-toggle
+            >
+            <p trans>Whether "Become an artist" button should be shown in user drop down menu.</p>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab [label]="'Tracks' | trans">
+      <div class="many-inputs tab-body">
+        <div class="input-container">
+          <label for="player.seekbar_type" trans>Seekbar Type</label>
+          <select
+            name="player.seekbar_type"
+            id="player.seekbar_type"
+            [(ngModel)]="state.client['player.seekbar_type']"
+          >
+            <option value="waveform" trans>Waveform</option>
+            <option value="line" trans>Simple Bar</option>
+          </select>
+          <p trans>This will only affect tracks uploaded by users.</p>
+        </div>
+        <div class="setting-toggle-container">
+          <mat-slide-toggle
+            name="player.enable_download"
+            id="player.enable_download"
+            [(ngModel)]="state.client['player.enable_download']"
+            trans
+            >Allow Track Downloading</mat-slide-toggle
+          >
+          <p trans>Only works for custom uploaded tracks.</p>
+        </div>
+        <div class="setting-toggle-container">
+          <mat-slide-toggle
+            name="player.track_comments"
+            id="player.track_comments"
+            [(ngModel)]="state.client['player.track_comments']"
+            trans
+          >
+            Track and Album Comments
+          </mat-slide-toggle>
+          <p trans>Whether comments functionality should be enabled on track and album pages.</p>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab [label]="'Artist Page' | trans">
+      <div class="many-inputs tab-body">
+        <div class="selection-list-container">
+          <div class="selection-list-title" trans>Artist Page Tabs</div>
+          <p class="selection-list-description" trans>
+            Select which tabs should appear on artist page and in which order.
+          </p>
+          <ul
+            class="unstyled-list selection-list"
+            cdkDropList
+            (cdkDropListDropped)="artistPageListDrop($event)"
+          >
+            <li class="list-item" cdkDrag *ngFor="let tab of artistTabs">
+              <div *cdkDragPreview>{{ allArtistTabs[tab.id].name }}</div>
+              <div class="list-item-header" (click)="toggleArtistTab(tab.id)" matRipple>
+                <button cdkDragHandle mat-icon-button class="drag-handle">
+                  <mat-icon svgIcon="drag-handle"></mat-icon>
+                </button>
+                <div class="meta">
+                  <div class="list-item-name" trans>{{ allArtistTabs[tab.id].name }}</div>
+                  <div class="list-item-description" trans>
+                    {{ allArtistTabs[tab.id].description }}
+                  </div>
+                </div>
+                <mat-pseudo-checkbox
+                  [state]="tabIsActive(tab) ? 'checked' : 'unchecked'"
+                ></mat-pseudo-checkbox>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="input-container error-group">
+          <label for="player.default_artist_view" trans>Default Albums Layout</label>
+          <select
+            name="player.default_artist_view"
+            id="player.default_artist_view"
+            [(ngModel)]="state.client['player.default_artist_view']"
+          >
+            <option value="list" trans>List</option>
+            <option value="grid" trans>Grid</option>
+          </select>
+          <p trans>How should albums on main artist page be displayed by default.</p>
+        </div>
+        <div class="setting-toggle-container">
+          <mat-slide-toggle
+            name="artistPage.showFollowers"
+            id="artistPage.showFollowers"
+            [(ngModel)]="state.client['artistPage.showFollowers']"
+            trans
+            >Show Followers</mat-slide-toggle
+          >
+          <p trans>Whether artist followers widget should be shown.</p>
+        </div>
+        <div class="setting-toggle-container">
+          <mat-slide-toggle
+            name="artistPage.showDescription"
+            id="artistPage.showDescription"
+            [(ngModel)]="state.client['artistPage.showDescription']"
+            trans
+            >Show Description</mat-slide-toggle
+          >
+          <p trans>Whether short artist biography be shown in main artist page header.</p>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <button
+    mat-raised-button
+    color="accent"
+    class="button primary update-button"
+    type="submit"
+    [disabled]="state.loading$ | async"
+    trans
+  >
+    Update
+  </button>
+  <mat-progress-bar mode="indeterminate" color="accent" *ngIf="state.loading$ | async"></mat-progress-bar>
+</form>

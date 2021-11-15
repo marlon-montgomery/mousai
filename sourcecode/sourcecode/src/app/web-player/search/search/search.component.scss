@@ -1,0 +1,113 @@
+@import "../../../../scss/variables";
+
+search {
+  .main-header {
+    padding: 25px;
+
+    .title {
+      margin-bottom: 35px;
+      font-size: 2.8rem;
+      font-weight: 300;
+    }
+
+    .tab-nav {
+      display: flex;
+      border-bottom: 1px solid mat-color($app-foreground, divider);
+
+      @media only screen and (max-width: $medium) {
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .tab-nav-item {
+          margin-top: 10px;
+        }
+      }
+
+      .tab-nav-item {
+        padding: 10px 15px;
+        border-bottom: 3px solid transparent;
+        color: inherit;
+        white-space: nowrap;
+        text-transform: capitalize;
+
+        &.active {
+          border-color: mat-color($app-accent, default);
+        }
+      }
+    }
+  }
+
+  .tabs {
+    padding: 0 25px;
+
+    media-grid {
+      padding: 0;
+    }
+  }
+
+  .top-results-row {
+
+    .artists-row, .albums-row {
+      margin: 0 -10px;
+    }
+
+    .header {
+      display: flex;
+      margin-top: 35px;
+      border-bottom: 1px solid mat-color($app-foreground, divider);
+
+      .title {
+        font-size: 2.8rem;
+        font-weight: 300;
+      }
+
+      .link {
+        display: block;
+        color: mat-color($app-foreground, hint-text);
+        font-size: 1.6rem;
+        margin-left: auto;
+        align-self: flex-end;
+        padding-bottom: 3px;
+      }
+    }
+  }
+
+  no-results-message {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+
+    @media only screen and (max-width: $medium) {
+      height: calc(100% - 95px);
+    }
+  }
+
+  .search-input-container {
+    position: relative;
+    padding: 15px 15px 0;
+
+    input {
+      background-color: mat-color($app-background, raised-button);
+      padding: 0 30px 0 10px;
+      border-radius: 5px;
+      border: none;
+      height: 45px;
+      color: inherit;
+
+      &:active, &:focus {
+        outline-color: lighten($wp-border-color-200, 10%);
+      }
+    }
+
+    .mat-icon {
+      position: absolute;
+      top: 26px;
+      right: 26px;
+    }
+
+    loading-indicator {
+      top: 25px;
+      right: 27px;
+    }
+  }
+}

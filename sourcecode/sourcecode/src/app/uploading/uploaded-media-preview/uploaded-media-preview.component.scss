@@ -1,0 +1,85 @@
+@import "variables";
+
+:host {
+  display: flex;
+  align-items: center;
+  min-width: 800px;
+  max-width: 100%;
+}
+
+.media-image-container {
+  flex-shrink: 0;
+  width: 130px;
+  height: 130px;
+
+  &.show-album-border {
+    position: relative;
+    margin: 15px 15px 15px 20px;
+
+    .album-border-image {
+      display: block;
+    }
+  }
+}
+
+media-image ::ng-deep img {
+  position: relative;
+  z-index: 2
+}
+
+.album-border-image {
+  display: none;
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  top: -15px;
+  left: -15px;
+  z-index: 1;
+}
+
+.middle-column, .right-column {
+  flex: 1 1 auto;
+}
+
+.middle-column {
+  padding: 0 20px;
+}
+
+.artist-name {
+  color: mat-color($app-foreground, secondary-text);
+}
+
+.track-name {
+  font-weight: 500;
+}
+
+.genre-row {
+  margin: 10px 0 20px;
+}
+
+.right-column {
+  .title {
+    color: mat-color($app-foreground, secondary-text);
+    margin-bottom: 5px;
+  }
+
+  .share-icons {
+    margin-bottom: 30px;
+  }
+
+  .mat-icon-button {
+    margin-right: 5px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.input-container input {
+  height: 35px;
+}

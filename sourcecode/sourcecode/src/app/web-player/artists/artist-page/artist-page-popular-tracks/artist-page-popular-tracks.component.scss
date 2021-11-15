@@ -1,0 +1,15 @@
+@import "variables";
+
+.dark-button {
+  margin-top: 20px;
+}
+
+.title {
+  margin-left: 15px;
+}
+
+@media only screen and (max-width: $medium) {
+  .title {
+    margin-left: 0;
+  }
+}

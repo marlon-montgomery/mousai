@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="152px" height="100px" viewBox="0 0 152 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g stroke="#A5B2BD" stroke-width="4">
+            <g transform="translate(2.000000, 2.000000)">
+                <path d="M51,1 L29,1 C12.984,1 0,13.984 0,30 L0,40 C0,47.25 2.667,53.874 7.065,58.958 L6,72 L18.592,67.068 C21.823,68.312 25.33,69 29,69 L51,69 C67.016,69 80,56.016 80,40 L80,30 C80,13.984 67.016,1 51,1 L51,1 Z" id="Stroke-1"></path>
+                <path d="M148,24 C148,37.255 137.255,48 124,48 C110.745,48 100,37.255 100,24 C100,10.745 110.745,0 124,0 C137.255,0 148,10.745 148,24 L148,24 Z" id="Stroke-3"></path>
+                <path d="M99,26 L89,26 C85.814,26 82.751,26.521 79.883,27.471 C79.956,28.305 80,29.147 80,30" id="Stroke-4"></path>
+                <polyline id="Stroke-5" points="116 23 123 30 135.5 17.5"></polyline>
+                <path d="M19,47 L43,47" id="Stroke-6"></path>
+                <path d="M19,35 L63,35" id="Stroke-7"></path>
+                <path d="M19,23 L53,23" id="Stroke-8"></path>
+                <path d="M78,76 L79,76" id="Stroke-9"></path>
+                <path d="M87,76 L88,76" id="Stroke-10"></path>
+                <path d="M96,76 L97,76" id="Stroke-11"></path>
+                <path d="M60.1167,67.5294 C61.3987,82.3604 73.8367,94.0004 88.9997,94.0004 L111,94.0004 C114.67,94.0004 118.177,93.3114 121.408,92.0684 L134,97.0004 L132.935,83.9584 C137.333,78.8744 140,72.2504 140,65.0004 L140,55.0004 C140,50.9884 139.182,47.1694 137.708,43.6964" id="Stroke-12"></path>
+            </g>
+        </g>
+    </g>
+</svg>

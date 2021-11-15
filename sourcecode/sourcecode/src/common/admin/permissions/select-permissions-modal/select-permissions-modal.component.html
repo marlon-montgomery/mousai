@@ -1,0 +1,105 @@
+<div class="modal-header">
+    <h2 class="modal-title mat-dialog-title" mat-dialog-title trans>Select Permissions</h2>
+    <button type="button" tabindex="-1" (click)="close()" class="close-button no-style">
+        <mat-icon svgIcon="close"></mat-icon>
+    </button>
+</div>
+
+<mat-dialog-content>
+    <mat-accordion>
+        <mat-expansion-panel
+            class="mat-elevation-z2"
+            *ngFor="let pair of filteredPermissions$ | async | keyvalue"
+            [expanded]="false"
+        >
+            <mat-expansion-panel-header>
+                <mat-panel-title trans>{{ pair.key.replace('_', ' ') }}</mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <ul class="unstyled-list selection-list">
+                <li class="list-item" *ngFor="let permission of pair.value">
+                    <div
+                        class="list-item-header"
+                        (click)="selectionModel.toggle(permission)"
+                        matRipple
+                    >
+                        <div class="meta">
+                            <div class="list-item-name" trans>
+                                {{ permission.display_name || permission.name }}
+                            </div>
+                            <p *ngIf="permission.description" class="list-item-description" trans>
+                                {{ permission.description }}
+                            </p>
+                        </div>
+                        <mat-pseudo-checkbox
+                            [state]="
+                                selectionModel.isSelected(permission) ? 'checked' : 'unchecked'
+                            "
+                        ></mat-pseudo-checkbox>
+                    </div>
+                    <div
+                        class="list-item-restrictions"
+                        *ngIf="
+                            !data?.hideRestrictions &&
+                            permission.restrictions?.length &&
+                            selectionModel.isSelected(permission)
+                        "
+                    >
+                        <ng-container *ngFor="let restriction of permission.restrictions">
+                            <ng-container [ngSwitch]="restriction.type">
+                                <div
+                                    class="input-container list-item-restriction"
+                                    *ngSwitchCase="'number'"
+                                >
+                                    <label [for]="permission.name + '-' + restriction.name">{{
+                                        viewName(restriction.name)
+                                    }}</label>
+                                    <input
+                                        type="number"
+                                        min="0"
+                                        [id]="permission.name + '-' + restriction.name"
+                                        [(ngModel)]="restriction.value"
+                                    />
+                                    <p class="description" *ngIf="restriction.description" trans>
+                                        {{ restriction.description }}
+                                    </p>
+                                </div>
+                                <div
+                                    class="setting-toggle-container list-item-restriction"
+                                    *ngSwitchCase="'bool'"
+                                >
+                                    <mat-slide-toggle
+                                        [id]="permission.name + '-' + restriction.name"
+                                        *ngSwitchCase="'bool'"
+                                        [(ngModel)]="restriction.value"
+                                        trans
+                                        >{{ viewName(restriction.name) }}</mat-slide-toggle
+                                    >
+                                    <p class="description" *ngIf="restriction.description" trans>
+                                        {{ restriction.description }}
+                                    </p>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </li>
+            </ul>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="show-advanced-container">
+        <mat-slide-toggle [formControl]="showAdvancedControl" trans
+            >Show advanced permissions</mat-slide-toggle
+        >
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button (click)="close()" mat-button type="button" trans>Cancel</button>
+    <button type="submit" mat-raised-button color="accent" (click)="confirm()" trans>Select</button>
+</mat-dialog-actions>
+
+<loading-indicator
+    [isVisible]="loading$ | async"
+    class="overlay overlay-partial"
+></loading-indicator>

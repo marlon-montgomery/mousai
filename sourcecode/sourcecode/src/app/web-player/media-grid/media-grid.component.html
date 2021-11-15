@@ -1,0 +1,14 @@
+<div class="carousel-track">
+    <div class="media-grid-content" #gridContentEl>
+        <ng-content></ng-content>
+    </div>
+</div>
+
+<div class="nav-arrows" *ngIf="carousel">
+    <button type="button" mat-icon-button [disabled]="!(hasPrevious$ | async)" (click)="slidePrevious()">
+        <mat-icon svgIcon="keyboard-arrow-left"></mat-icon>
+    </button>
+    <button type="button" mat-icon-button [disabled]="!(hasNext$ | async)" (click)="slideNext()">
+        <mat-icon svgIcon="keyboard-arrow-right"></mat-icon>
+    </button>
+</div>

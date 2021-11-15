@@ -1,0 +1,13 @@
+<div class="scroll-wrapper" [class.full-height]="videoIsHidden">
+    <div class="queue-item" *ngFor="let track of queue.getAll(); index as index;" [class.active]="trackIsPlaying(track)" [contextMenu]="{item: track, type: 'track'}">
+        <div class="img-container">
+            <media-image [media]="track"></media-image>
+            <playback-control-button [track]="track" (play)="playTrack(track, index)" (pause)="player.pause()"></playback-control-button>
+        </div>
+        <div class="meta">
+            <div class="track-name">{{track.name}}</div>
+            <artists-links-list class="artist-name" [artists]="track.artists"></artists-links-list>
+        </div>
+        <button class="no-style toggle-menu" (click)="showContextMenu(track, $event)"><mat-icon svgIcon="more-horiz"></mat-icon></button>
+    </div>
+</div>

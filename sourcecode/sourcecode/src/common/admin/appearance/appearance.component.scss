@@ -1,0 +1,73 @@
+@import "variables";
+
+$sidebar-width: 330px;
+
+.mat-sidenav-container {
+  height: 100vh;
+}
+
+.sidebar-toggle-button {
+  display: none;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 4;
+}
+
+sidenav {
+  --nav-width: 330px;
+}
+
+.sidebar {
+  @include mat-elevation(2);
+  padding: 0;
+
+  .root-navigation {
+    padding: 10px;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    border-bottom: 1px solid mat-color($app-foreground, divider);
+    height: 50px;
+
+    .title {
+      padding-left: 10px;
+      font-size: 1.7rem;
+      font-weight: 300;
+    }
+
+    .save-button {
+      margin-left: auto;
+      max-height: 36px;
+      box-shadow: none;
+
+      &:disabled {
+        cursor: default;
+      }
+    }
+  }
+}
+
+.live-preview {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 auto;
+  position: relative;
+
+  iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: $medium) {
+ .sidebar-toggle-button {
+   display: block;
+ }
+}

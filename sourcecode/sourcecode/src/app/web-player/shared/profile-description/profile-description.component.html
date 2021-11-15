@@ -1,0 +1,9 @@
+<div class="text-emphasis" [class.on-dark-bg]="onDarkBg" *ngIf="description">
+    <p class="description-text" [innerHTML]="description"></p>
+</div>
+<div class="profile-location" *ngIf="city || country">
+    <span class="text-emphasis" [class.on-dark-bg]="onDarkBg">
+        <span class="city" *ngIf="city">{{city}}</span>
+        <span class="country" *ngIf="country">, {{country}}</span>
+    </span>
+</div>

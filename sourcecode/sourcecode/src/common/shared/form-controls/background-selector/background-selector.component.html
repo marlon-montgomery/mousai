@@ -1,0 +1,28 @@
+<div class="auto-height-grid">
+    <ng-container *ngFor="let item of backgrounds">
+        <div>
+            <div class="grid-item" [class.active]="(selectedBg$ | async)?.id === item.configId">
+                <ng-container [ngSwitch]="item.configId">
+                    <background-selector-img
+                        class="grid-content"
+                        matRipple
+                        *ngSwitchCase="'uploadedImg'"
+                        (imgUploaded)="selectBackground($event)"
+                        [selectedBg]="selectedBg$ | async"
+                    ></background-selector-img>
+                    <div
+                        *ngSwitchDefault
+                        class="grid-content"
+                        matRipple
+                        [style.background-color]="item.color"
+                        [style.background-image]="item.backgroundImage | backgroundUrl"
+                        (click)="onBgClick(item, $event)"
+                    ></div>
+                </ng-container>
+            </div>
+            <div class="grid-label">
+                {{ item.configLabel || (item.backgroundImage | labelFromFilename) | trans }}
+            </div>
+        </div>
+    </ng-container>
+</div>

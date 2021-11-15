@@ -1,0 +1,22 @@
+{
+    "/secure": {
+        "target": "http://bemusic.test",
+        "secure": false,
+        "changeOrigin": true
+    },
+    "/storage": {
+        "target": "http://bemusic.test",
+        "secure": false,
+        "changeOrigin": true
+    },
+    "/client": {
+        "target": "http://bemusic.test",
+        "secure": false,
+        "changeOrigin": true
+    },
+    "/__clockwork": {
+        "target": "http://bemusic.test/public",
+        "secure": false,
+        "changeOrigin": true
+    }
+}
