@@ -1,2 +1,0 @@
-    // dummyResourceComment
-    Route::apiResource('dummyResourceName', 'dummyControllerName');

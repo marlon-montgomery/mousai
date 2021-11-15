@@ -1,5 +1,0 @@
-phpunit.xml
-infection-log.txt
-.idea
-vendor
-.phpunit.result.cache

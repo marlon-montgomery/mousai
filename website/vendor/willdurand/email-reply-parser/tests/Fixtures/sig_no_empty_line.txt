@@ -1,3 +1,0 @@
-this is an email with a signature with no empty line above.
---
-rick
