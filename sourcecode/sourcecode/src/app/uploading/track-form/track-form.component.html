@@ -54,11 +54,6 @@
                     <p>Remote or local url to music or video file for this track. If available, this will always play instead of youtube video.</p>
                 </div>
 
-                <div class="input-container" *ngIf="insideAdmin && settings.get('spotify_is_setup')">
-                    <label for="track-spotify-id" trans>Spotify ID</label>
-                    <input type="text" id="track-spotify-id" formControlName="spotify_id" minlength="22" maxlength="22">
-                </div>
-
                 <div class="input-container">
                     <label [for]="'track-form-' + uniqueId + '-track-genres'" trans>Genres</label>
                     <chip-input placeholder="+Add genre" [id]="'track-form-' + uniqueId + '-track-genres'" [suggestFn]="suggestGenreFn" formControlName="genres"></chip-input>

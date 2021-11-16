@@ -25,7 +25,6 @@ import {CookieNoticeModule} from '@common/gdpr/cookie-notice/cookie-notice.modul
 import {PagesModule} from '@common/pages/shared/pages.module';
 import {CurrentUser} from '@common/auth/current-user';
 import {AppCurrentUser} from './app-current-user';
-import {CsvExportInfoDialogModule} from '@common/csv/csv-info-dialog/csv-export-info-dialog.module';
 
 @NgModule({
     declarations: [
@@ -42,7 +41,6 @@ import {CsvExportInfoDialogModule} from '@common/csv/csv-info-dialog/csv-export-
 
         AppRoutingModule,
         WebPlayerModule,
-        CsvExportInfoDialogModule,
         // account settings and pages modules must come after web player
         // module for proper account settings and custom page route override
         AccountSettingsModule,

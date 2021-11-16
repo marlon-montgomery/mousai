@@ -1,11 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    ComponentRef,
-    Input,
-    OnChanges,
-    OnDestroy,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ComponentRef, Input, OnChanges, OnDestroy} from '@angular/core';
 import {FileEntry} from '../../uploads/types/file-entry';
 import {PreviewFilesService} from '../preview-files.service';
 import {BaseFilePreview} from '../base-file-preview';
@@ -36,7 +29,7 @@ export class PreviewContainerComponent implements OnChanges, OnDestroy {
 
     public listenForDownloadClick(comp: ComponentRef<BaseFilePreview>) {
         if (this.downloadSub) this.downloadSub.unsubscribe();
-        if (!this.disableDownload) {
+        if ( ! this.disableDownload) {
             this.downloadSub = comp.instance.download.subscribe(() => {
                 this.previewFiles.download.next();
             });

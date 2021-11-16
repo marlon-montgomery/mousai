@@ -12,13 +12,14 @@ import {NoResultsMessageModule} from '@common/core/ui/no-results-message/no-resu
 import {FormatPipesModule} from '@common/core/ui/format-pipes/format-pipes.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DatatableModule} from '../datatable/datatable.module';
+import {CustomDomainTableComponent} from './custom-domain-index/custom-domain-table/custom-domain-table.component';
 import {LoadingIndicatorModule} from '../core/ui/loading-indicator/loading-indicator.module';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
     declarations: [
         CustomDomainIndexComponent,
         CrupdateCustomDomainModalComponent,
+        CustomDomainTableComponent,
     ],
     imports: [
         CommonModule,
@@ -36,10 +37,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         MatTooltipModule,
         MatDialogModule,
         MatSlideToggleModule,
-        MatProgressBarModule,
     ],
     exports: [
         CrupdateCustomDomainModalComponent,
+        CustomDomainTableComponent,
     ]
 })
 export class CustomDomainModule {}

@@ -6,9 +6,8 @@ import {Modal} from '@common/core/ui/dialogs/modal.service';
 import {CurrentUser} from '@common/auth/current-user';
 import {Settings} from '@common/core/config/settings.service';
 import {CrupdateLyricModalComponent} from './crupdate-lyric-modal/crupdate-lyric-modal.component';
-import {DatatableService} from '@common/datatable/datatable.service';
+import {DatatableService} from '../../../common/datatable/datatable.service';
 import {Observable} from 'rxjs';
-import {LYRIC_INDEX_FILTERS} from './lyric-index-filters';
 
 @Component({
     selector: 'lyrics-page',
@@ -18,15 +17,14 @@ import {LYRIC_INDEX_FILTERS} from './lyric-index-filters';
     providers: [DatatableService],
 })
 export class LyricsPageComponent implements OnInit {
-    lyrics$ = this.datatable.data$ as Observable<Lyric[]>;
-    filters = LYRIC_INDEX_FILTERS;
+    public lyrics$ = this.datatable.data$ as Observable<Lyric[]>;
     constructor(
         public datatable: DatatableService<Lyric>,
         private lyrics: Lyrics,
         private modal: Modal,
         public currentUser: CurrentUser,
         private settings: Settings,
-        private images: WebPlayerImagesService
+        private images: WebPlayerImagesService,
     ) {}
 
     ngOnInit() {
@@ -37,8 +35,7 @@ export class LyricsPageComponent implements OnInit {
     }
 
     public openCrupdateLyricModal(lyric?: Lyric) {
-        this.datatable
-            .openCrupdateResourceModal(CrupdateLyricModalComponent, {lyric})
+        this.datatable.openCrupdateResourceModal(CrupdateLyricModalComponent, {lyric})
             .subscribe(() => {
                 this.datatable.reset();
             });
@@ -46,11 +43,9 @@ export class LyricsPageComponent implements OnInit {
 
     public confirmLyricsDeletion() {
         this.datatable.confirmResourceDeletion('lyrics').subscribe(() => {
-            this.lyrics
-                .delete(this.datatable.selectedRows$.value)
-                .subscribe(() => {
-                    this.datatable.reset();
-                });
+            this.lyrics.delete(this.datatable.selectedRows$.value).subscribe(() => {
+                this.datatable.reset();
+            });
         });
     }
 

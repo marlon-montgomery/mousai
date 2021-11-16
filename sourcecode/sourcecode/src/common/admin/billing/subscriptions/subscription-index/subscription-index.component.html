@@ -1,28 +1,16 @@
-<div class="datatable-page-header">
-    <h1 trans>Subscriptions</h1>
-
-    <div class="header">
-        <datatable-filters pluralName="subscriptions" [filters]="filters"></datatable-filters>
-        <div class="action-buttons">
-            <button
-              mat-raised-button
-              color="accent"
-              (click)="openCrupdateSubscriptionModal()"
-              [disabled]="!currentUser.hasPermission('subscriptions.create')"
-              class="button-with-icon"
-            >
-                <mat-icon svgIcon="add"></mat-icon>
-                <span trans>Add New Subscription</span>
-            </button>
-        </div>
-    </div>
-</div>
-
 <div class="datatable responsive-table">
+    <datatable-header pluralResourceName="subscriptions">
+        <ng-container leftContent>
+            <button mat-raised-button color="accent" headerActions [disabled]="loading$ | async" (click)="openCrupdateSubscriptionModal()" *ngIf="currentUser.hasPermission('subscriptions.create')" trans>Add</button>
+        </ng-container>
+        <ng-template #tableFilters>
+            <subscription-index-filters></subscription-index-filters>
+        </ng-template>
+    </datatable-header>
     <table class="material-table">
         <thead>
         <tr>
-            <th table-sort-header="user_id" trans>User</th>
+            <th table-sort-header="user_id" trans>Owner</th>
             <th table-sort-header trans>Gateway</th>
             <th table-sort-header="ends_at" trans>Cancelled</th>
             <th trans>On Grace Period</th>
@@ -37,15 +25,9 @@
             <td>
                 <user-column [user]="subscription.user"></user-column>
             </td>
-            <td data-label="Gateway">{{subscription.gateway_name}}</td>
-            <td data-label="Cancelled">
-                <mat-icon svgIcon="check" *ngIf="subscription.cancelled"></mat-icon>
-                <span *ngIf="!subscription.cancelled">-</span>
-            </td>
-            <td data-label="On Grace Period">
-                <mat-icon svgIcon="check" *ngIf="subscription.on_grace_period"></mat-icon>
-                <span *ngIf="!subscription.on_grace_period">-</span>
-            </td>
+            <td data-label="Gateway">{{subscription.gateway}}</td>
+            <td data-label="Cancelled">{{subscription.cancelled ? 'Yes' : 'No' }}</td>
+            <td data-label="On Grace Period">{{subscription.on_grace_period ? 'Yes' : 'No' }}</td>
             <td data-label="Renews At">{{subscription.renews_at ? (subscription.renews_at | formattedDate) : '-'}}</td>
             <td data-label="Ends At">{{subscription.ends_at ? (subscription.ends_at | formattedDate) : '-'}}</td>
             <td data-label="Created At">{{subscription.created_at | formattedDate}}</td>

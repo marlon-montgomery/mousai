@@ -16,7 +16,7 @@ import {ThemeService} from '../../theme.service';
 })
 export class SkeletonComponent {
     @Input() animation: 'pulsate' | 'wave' = 'wave';
-    @Input() variant: 'avatar' | 'text' | 'rect' | 'icon' = 'text';
+    @Input() variant: 'avatar' | 'text' | 'rect' = 'text';
     @HostBinding('class.dark') dark = this.theme.isDarkMode();
 
     @HostBinding('class.pulsate') get pulsate() {
@@ -37,10 +37,6 @@ export class SkeletonComponent {
 
     @HostBinding('class.rect') get rect() {
         return this.variant === 'rect';
-    }
-
-    @HostBinding('class.icon') get icon() {
-        return this.variant === 'icon';
     }
 
     constructor(private theme: ThemeService) {}

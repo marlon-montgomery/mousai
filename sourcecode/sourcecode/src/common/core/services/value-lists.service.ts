@@ -20,12 +20,6 @@ export interface Timezone {
     value: string;
 }
 
-export interface FontConfig {
-    family: string;
-    category?: string;
-    google?: boolean;
-}
-
 export interface SelectOptionLists {
     countries?: CountryListItem[];
     timezones?: {[key: string]: Timezone[]};
@@ -37,7 +31,6 @@ export interface SelectOptionLists {
     themes?: CssTheme[];
     permissions?: Permission[];
     menuItemCategories?: MenuItemCategory[];
-    googleFonts?: FontConfig[];
     [key: string]: any;
 }
 

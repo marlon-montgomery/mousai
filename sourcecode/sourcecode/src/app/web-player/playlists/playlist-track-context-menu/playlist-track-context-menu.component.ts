@@ -25,7 +25,7 @@ export class PlaylistTrackContextMenuComponent extends TrackContextMenuComponent
     }
 
     public removeFromPlaylist() {
-        this.playlists.removeTracks(this.data.playlist.id, this.getTracks()).subscribe();
+        this.playlists.removeTracks(this.data.playlistId, this.getTracks()).subscribe();
         this.contextMenu.close();
     }
 }

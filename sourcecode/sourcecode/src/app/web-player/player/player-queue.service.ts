@@ -56,7 +56,7 @@ export class PlayerQueue {
 
     public override(params: {tracks: Track[], queuedItemId?: string}, queuePointer: number = 0) {
         this.queuedMediaItemId = params.queuedItemId;
-        this.shuffledQueue$.next([...params.tracks]);
+        this.shuffledQueue$.next(params.tracks.slice());
         if (this.state.shuffling) this.shuffle(true);
         this.originalQueue = params.tracks.slice();
         this.set(queuePointer);

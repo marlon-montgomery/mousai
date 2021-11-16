@@ -15,6 +15,8 @@ import {GENRE_MODEL} from '../../../models/Genre';
 import {map} from 'rxjs/operators';
 import {Search} from '../../../web-player/search/search.service';
 import {BackendErrorResponse} from '@common/core/types/backend-error-response';
+import {insideAdmin} from '@common/core/utils/inside-admin';
+import {PaginationResponse} from '@common/core/types/pagination/pagination-response';
 import {Album} from '../../../models/Album';
 import {ComponentCanDeactivate} from '@common/guards/pending-changes/component-can-deactivate';
 import {WebPlayerUrls} from '../../../web-player/web-player-urls.service';
@@ -34,9 +36,9 @@ export class CrupdateArtistPageComponent implements OnInit, ComponentCanDeactiva
 
     public form = this.fb.group({
         name: [''],
+        bitclout: [''],
         verified: [''],
         image_small: [''],
-        spotify_id: [''],
         genres: [[]],
         description: [''],
         country: [''],
@@ -46,7 +48,7 @@ export class CrupdateArtistPageComponent implements OnInit, ComponentCanDeactiva
     });
 
     constructor(
-        public settings: Settings,
+        private settings: Settings,
         private uploadQueue: UploadQueueService,
         private artists: Artists,
         private route: ActivatedRoute,
@@ -102,9 +104,9 @@ export class CrupdateArtistPageComponent implements OnInit, ComponentCanDeactiva
                 this.albums = data.api.albums;
                 this.form.patchValue({
                     name: data.api.artist.name,
+                    bitclout: data.api.artist.bitclout,
                     verified: data.api.artist.verified,
                     image_small: data.api.artist.image_small,
-                    spotify_id: data.api.artist.spotify_id,
                     genres: (data.api.artist.genres || []).map(g => g.name),
                     description: data.api.artist.profile?.description,
                     country: data.api.artist.profile?.country,

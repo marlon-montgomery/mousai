@@ -2,7 +2,7 @@
     <datatable-header pluralResourceName="albums">
         <ng-container leftContent>
             <div class="new-album-container">
-                <a mat-raised-button color="accent" [routerLink]="urls.createAlbum(insideAdmin)" [queryParams]="{artist: encodedArtist}" *ngIf="currentUser.hasPermission('music.create')" [disabled]="!artist" trans>New Album</a>
+                <a mat-raised-button color="accent" [routerLink]="urls.createAlbum(true)" [queryParams]="{artist: encodedArtist}" *ngIf="currentUser.hasPermission('albums.create')" [disabled]="!artist" trans>New Album</a>
                 <p class="save-message" *ngIf="!artist">
                     <mat-icon svgIcon="warning"></mat-icon>
                     <span trans>Save artist first to enable album creation.</span>
@@ -32,7 +32,7 @@
             <td data-label="Views">{{album.views}}</td>
             <td data-label="Number of Tracks">{{album.tracks_count ? album.tracks_count : '&ndash;'}}</td>
             <td class="edit-column">
-                <a [routerLink]="urls.editAlbum(album, insideAdmin)" [queryParams]="{artist: encodedArtist}" mat-icon-button [matTooltip]="'Edit album' | trans">
+                <a [routerLink]="urls.editAlbum(album, true)" [queryParams]="{artist: encodedArtist}" mat-icon-button [matTooltip]="'Edit album' | trans">
                     <mat-icon svgIcon="edit"></mat-icon>
                 </a>
                 <button mat-icon-button (click)="maybeDeleteAlbum(album)" [matTooltip]="'Delete album' | trans" *ngIf="currentUser.hasPermission('albums.delete')" trans>
@@ -43,6 +43,6 @@
         </tbody>
     </table>
     <no-results-message svgImage="music.svg" *ngIf="!datatable.data.length">
-        <span primary-text trans>This artist has no albums yet</span>
+        <span primary-text>This artist has no albums yet</span>
     </no-results-message>
 </div>

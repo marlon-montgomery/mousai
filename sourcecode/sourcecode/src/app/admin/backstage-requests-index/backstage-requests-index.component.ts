@@ -5,7 +5,6 @@ import {Observable} from 'rxjs';
 import {BackstageRequest} from '../../models/backstage-request';
 import {BackstagRequestService} from '../../backstage/requests/backstag-request.service';
 import {WebPlayerUrls} from '../../web-player/web-player-urls.service';
-import {BACKSTAGE_REQUEST_INDEX_FILTERS} from './backstage-request-index-filters';
 
 @Component({
     selector: 'backstage-requests-index',
@@ -15,14 +14,13 @@ import {BACKSTAGE_REQUEST_INDEX_FILTERS} from './backstage-request-index-filters
     providers: [DatatableService],
 })
 export class BackstageRequestsIndexComponent implements OnInit {
-    requests$ = this.datatable.data$ as Observable<BackstageRequest[]>;
-    filters = BACKSTAGE_REQUEST_INDEX_FILTERS;
+    public requests$ = this.datatable.data$ as Observable<BackstageRequest[]>;
 
     constructor(
         public datatable: DatatableService<BackstageRequest>,
         public currentUser: CurrentUser,
         private backstage: BackstagRequestService,
-        public urls: WebPlayerUrls
+        public urls: WebPlayerUrls,
     ) {}
 
     ngOnInit(): void {

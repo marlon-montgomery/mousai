@@ -1,0 +1,18 @@
+<div [formGroup]="form" class="many-inputs">
+    <div class="input-container">
+        <label for="comment-type-filter" trans>Type</label>
+        <select id="comment-type-filter" formControlName="deleted">
+            <option [ngValue]="null" trans>All</option>
+            <option [ngValue]="false" trans>Active</option>
+            <option [ngValue]="true" trans>Deleted</option>
+        </select>
+    </div>
+
+    <div class="input-container">
+        <between-input formControlName="created_at" [setDefaultDate]="false" [showLabels]="false">Uploaded Between</between-input>
+    </div>
+
+    <div class="input-container">
+        <select-user-input formControlName="user"></select-user-input>
+    </div>
+</div>

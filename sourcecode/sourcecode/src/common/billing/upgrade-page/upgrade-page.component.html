@@ -11,7 +11,7 @@
             <contact-widget></contact-widget>
         </mat-step>
 
-        <mat-step [label]="'Subscription duration' | trans" [completed]="!!(state.selectedPlan$ | async)">
+        <mat-step [label]="'Subscription interval' | trans" [completed]="!!(state.selectedPlan$ | async)">
             <select-plan-period-panel [showSidebar]="true" (selected)="nextStep()"></select-plan-period-panel>
         </mat-step>
 

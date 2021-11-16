@@ -1,182 +1,107 @@
 <div class="header">
-  <div class="title" trans>Data Providers</div>
-  <div class="subtitle" trans>
-    Select and configure providers that will be used to automate the site.
-  </div>
+    <div class="title" trans>Data Providers</div>
+    <div class="subtitle" trans>Select and configure providers that will be used to automate the site.</div>
 </div>
 
-<form
-  class="body many-inputs"
-  (submit)="saveSettings()"
-  ngNativeValidate
-  *ngIf="state.errors$ | async as errors"
->
-  <div class="widget widget-info">
-    <div class="title" trans>Information</div>
-    <p trans>
-      Local provider means that only data already in local database (created via admin, uploaded by
-      users, previously imported etc.) will be used. No attempt will be made to fetch it from any
-      3rd party APIs or sites.
-    </p>
-  </div>
+<form class="body many-inputs" (submit)="saveSettings()" ngNativeValidate *ngIf="errors$ | async as errors">
+    <div class="widget widget-info">
+        <div class="title" trans>Information</div>
+        <p trans>Local provider means that only data already in local database (created via admin, uploaded by users, previously imported etc.) will be used. No attempt will be made to fetch it from any 3rd party APIs or sites.</p>
+    </div>
 
-  <div class="input-container">
-    <label for="artist_provider" trans>Artist Provider</label>
-    <select
-      name="artist_provider"
-      id="artist_provider"
-      [(ngModel)]="state.client['artist_provider']"
-    >
-      <option value="spotify">Spotify</option>
-      <option value="local">Local</option>
-    </select>
-  </div>
-
-  <div class="input-container">
-    <label for="album_provider" trans>Album Provider</label>
-    <select name="album_provider" id="album_provider" [(ngModel)]="state.client['album_provider']">
-      <option value="spotify">Spotify</option>
-      <option value="local">Local</option>
-    </select>
-  </div>
-
-  <div class="input-container">
-    <label for="search_provider" trans>Search Provider</label>
-    <select
-      name="search_provider"
-      id="search_provider"
-      [(ngModel)]="state.client['search_provider']"
-    >
-      <option value="spotify">Spotify</option>
-      <option value="local">Local</option>
-      <option value="localAndSpotify">Local and Spotify</option>
-    </select>
-  </div>
-
-  <div class="error-group many-inputs no-bottom-border">
     <div class="input-container">
-      <label for="providers.lyrics" trans>Lyrics Provider</label>
-      <select
-        name="providers.lyrics"
-        id="providers.lyrics"
-        [(ngModel)]="state.client['providers.lyrics']"
-      >
-        <option value="ovh">Lyrics.ovh</option>
-        <option value="lyricswikia">LyricsWikia</option>
-        <option value="azlyrics">AZLyrics</option>
-        <option value="local">Local</option>
-      </select>
+        <label for="artist_provider" trans>Artist Provider</label>
+        <select name="artist_provider" id="artist_provider" [(ngModel)]="state.client['artist_provider']">
+            <option value="spotify">Spotify</option>
+            <option value="local">Local</option>
+        </select>
     </div>
 
-    <div class="input-container" *ngIf="state.client['providers.lyrics'] === 'rapidapi'">
-      <label for="rapidapi_app_key" trans>RapidAPI Application Key</label>
-      <input
-        name="rapidapi_app_key"
-        id="rapidapi_app_key"
-        [(ngModel)]="state.server['rapidapi_app_key']"
-        required
-      />
-      <div class="error" *ngIf="errors.rapidapi_app_key">{{ errors.rapidapi_app_key }}</div>
-    </div>
-  </div>
-
-  <div class="error-group many-inputs">
     <div class="input-container">
-      <label for="providers.biography" trans>Artist Biography Provider</label>
-      <select
-        name="providers.biography"
-        id="providers.biography"
-        [(ngModel)]="state.client['artist_bio_provider']"
-      >
-        <option value="wikipedia">Wikipedia</option>
-        <option value="local">Local</option>
-      </select>
+        <label for="album_provider" trans>Album Provider</label>
+        <select name="album_provider" id="album_provider" [(ngModel)]="state.client['album_provider']">
+            <option value="spotify">Spotify</option>
+            <option value="local">Local</option>
+        </select>
     </div>
 
-    <div
-      class="input-container"
-      *ngIf="state.client['artist_bio_provider'] === 'wikipedia'"
-      [class.has-error]="errors.wikipedia_language"
-    >
-      <label for="wikipedia_language" trans>Wikipedia Language</label>
-      <input
-        name="wikipedia_language"
-        id="wikipedia_language"
-        [(ngModel)]="state.client['wikipedia_language']"
-        required
-        minlength="2"
-        maxlength="2"
-      />
-      <p class="error" *ngIf="errors.wikipedia_language">{{ errors.wikipedia_language }}</p>
-      <p trans>ISO 639-1 (two letter) language code.</p>
-    </div>
-  </div>
-
-  <!--SPOTIFY KEYS-->
-  <div
-    class="error-group many-inputs"
-    id="spotify_group"
-    [class.has-error]="errors.spotify_group"
-    *ngIf="needProviderKeys('spotify')"
-  >
-    <div class="input-container" [class.has-error]="errors.spotify_id">
-      <label for="spotify_id" trans>Spotify ID</label>
-      <input name="spotify_id" id="spotify_id" [(ngModel)]="state.server['spotify_id']" required />
-      <div class="error" *ngIf="errors.spotify_id">{{ errors.spotify_id }}</div>
+    <div class="input-container">
+        <label for="search_provider" trans>Search Provider</label>
+        <select name="search_provider" id="search_provider" [(ngModel)]="state.client['search_provider']">
+            <option value="spotify">Spotify</option>
+            <option value="local">Local</option>
+            <option value="localAndSpotify">Local and Spotify</option>
+        </select>
     </div>
 
-    <div class="input-container" [class.has-error]="errors.spotify_secret">
-      <label for="spotify_secret" trans>Spotify Secret</label>
-      <input
-        name="spotify_secret"
-        id="spotify_secret"
-        [(ngModel)]="state.server['spotify_secret']"
-        required
-      />
-      <div class="error" *ngIf="errors.spotify_secret">{{ errors.spotify_secret }}</div>
+    <div class="error-group many-inputs no-bottom-border">
+        <div class="input-container">
+            <label for="providers.lyrics" trans>Lyrics Provider</label>
+            <select name="providers.lyrics" id="providers.lyrics" [(ngModel)]="state.client['providers.lyrics']">
+                <option value="ovh">Lyrics.ovh</option>
+                <option value="lyricswikia">LyricsWikia</option>
+                <option value="azlyrics">AZLyrics</option>
+                <option value="local">Local</option>
+            </select>
+        </div>
+
+        <div class="input-container" *ngIf="state.client['providers.lyrics'] === 'rapidapi'">
+            <label for="rapidapi_app_key" trans>RapidAPI Application Key</label>
+            <input name="rapidapi_app_key" id="rapidapi_app_key" [(ngModel)]="state.server['rapidapi_app_key']" required>
+            <div class="error" *ngIf="errors.rapidapi_app_key">{{errors.rapidapi_app_key}}</div>
+        </div>
     </div>
 
-    <div class="error group-error" *ngIf="errors.spotify_group">{{ errors.spotify_group }}</div>
-  </div>
+    <div class="error-group many-inputs">
+        <div class="input-container">
+            <label for="providers.biography" trans>Artist Biography Provider</label>
+            <select name="providers.biography" id="providers.biography" [(ngModel)]="state.client['artist_bio_provider']">
+                <option value="wikipedia">Wikipedia</option>
+                <option value="local">Local</option>
+            </select>
+        </div>
 
-  <!--LAST.FM KEYS-->
-  <ng-container *ngIf="needProviderKeys('spotify')">
-    <div class="input-container" [class.has-error]="errors.lastfm_api_key">
-      <label for="lastfm_api_key" trans>Last.fm Api Key</label>
-      <input
-        name="lastfm_api_key"
-        id="lastfm_api_key"
-        [(ngModel)]="state.server['lastfm_api_key']"
-        required
-      />
-      <div class="error" *ngIf="errors.lastfm_api_key">{{ errors.lastfm_api_key }}</div>
+        <div class="input-container" *ngIf="state.client['artist_bio_provider'] === 'wikipedia'" [class.has-error]="errors.wikipedia_language">
+            <label for="wikipedia_language" trans>Wikipedia Language</label>
+            <input name="wikipedia_language" id="wikipedia_language" [(ngModel)]="state.client['wikipedia_language']" required minlength="2" maxlength="2">
+            <p class="error" *ngIf="errors.wikipedia_language">{{errors.wikipedia_language}}</p>
+            <p trans>ISO 639-1 (two letter) language code.</p>
+        </div>
     </div>
-  </ng-container>
 
-  <div class="setting-toggle-container">
-    <mat-slide-toggle
-      name="https.enable_cert_verification"
-      id="https.enable_cert_verification"
-      [(ngModel)]="state.client['https.enable_cert_verification']"
-    >
-      Enable Certificate Verification
-    </mat-slide-toggle>
-    <p trans>Should only be disabled if there are problems with 3rd party data providers.</p>
-  </div>
+    <!--SPOTIFY KEYS-->
+    <div class="error-group many-inputs" id="spotify_group" [class.has-error]="errors.spotify_group" *ngIf="needProviderKeys('spotify')">
+        <div class="input-container" [class.has-error]="errors.spotify_id">
+            <label for="spotify_id" trans>Spotify ID</label>
+            <input name="spotify_id" id="spotify_id" [(ngModel)]="state.server['spotify_id']" required>
+            <div class="error" *ngIf="errors.spotify_id">{{errors.spotify_id}}</div>
+        </div>
 
-  <button
-    mat-raised-button
-    color="accent"
-    class="update-button"
-    type="submit"
-    [disabled]="state.loading$ | async"
-    trans
-  >
-    Update
-  </button>
-  <mat-progress-bar
-    mode="indeterminate"
-    color="accent"
-    *ngIf="state.loading$ | async"
-  ></mat-progress-bar>
+        <div class="input-container" [class.has-error]="errors.spotify_secret">
+            <label for="spotify_secret" trans>Spotify Secret</label>
+            <input name="spotify_secret" id="spotify_secret" [(ngModel)]="state.server['spotify_secret']" required>
+            <div class="error" *ngIf="errors.spotify_secret">{{errors.spotify_secret}}</div>
+        </div>
+
+        <div class="error group-error" *ngIf="errors.spotify_group">{{errors.spotify_group}}</div>
+    </div>
+
+    <!--LAST.FM KEYS-->
+    <ng-container *ngIf="state.client['genre_artists_provider'] === 'lastfm'">
+        <div class="input-container" [class.has-error]="errors.lastfm_api_key">
+            <label for="lastfm_api_key" trans>Last.fm Api Key</label>
+            <input name="lastfm_api_key" id="lastfm_api_key" [(ngModel)]="state.server['lastfm_api_key']" required>
+            <div class="error" *ngIf="errors.lastfm_api_key">{{errors.lastfm_api_key}}</div>
+        </div>
+    </ng-container>
+
+    <div class="setting-toggle-container">
+        <mat-slide-toggle name="https.enable_cert_verification" id="https.enable_cert_verification" [(ngModel)]="state.client['https.enable_cert_verification']">
+            Enable Certificate Verification
+        </mat-slide-toggle>
+        <p trans>Should only be disabled if there are problems with 3rd party data providers.</p>
+    </div>
+
+    <button mat-raised-button color="accent" class="update-button" type="submit" [disabled]="loading$ | async" trans>Update</button>
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading$ | async"></mat-progress-bar>
 </form>

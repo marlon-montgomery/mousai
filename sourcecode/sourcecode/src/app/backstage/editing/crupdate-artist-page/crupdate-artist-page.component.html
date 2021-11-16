@@ -20,16 +20,14 @@
                             <chip-input placeholder="+Add genre" id="artist-genres" [suggestFn]="suggestGenreFn" formControlName="genres"></chip-input>
                             <div class="error" *ngIf="errors.genres">{{errors.genres}}</div>
                         </div>
-                        <ng-container *ngIf="insideAdmin">
-                            <div class="input-container" *ngIf="settings.get('spotify_is_setup')">
-                                <label for="artist-spotify-id" trans>Spotify ID</label>
-                                <input type="text" id="artist-spotify-id" formControlName="spotify_id" minlength="22" maxlength="22">
-                            </div>
-                            <div class="setting-toggle-container">
-                                <mat-slide-toggle formControlName="verified" trans>Verified</mat-slide-toggle>
-                                <div class="error" *ngIf="errors.verified">{{errors.verified}}</div>
-                            </div>
-                        </ng-container>
+                        <div class="input-container">
+                            <label for="artist-bitclout" trans>Bitclout Username</label>
+                            <input type="text" formControlName="bitclout" id="artist-bitclout" [readOnly]="!insideAdmin">
+                        </div>
+                        <div class="setting-toggle-container" *ngIf="insideAdmin">
+                            <mat-slide-toggle formControlName="verified" trans>Verified</mat-slide-toggle>
+                            <div class="error" *ngIf="errors.verified">{{errors.verified}}</div>
+                        </div>
                     </div>
                 </mat-tab>
                 <mat-tab [label]="'Links' | trans">

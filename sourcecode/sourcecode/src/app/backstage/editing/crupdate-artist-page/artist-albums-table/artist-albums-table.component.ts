@@ -16,7 +16,6 @@ import {ConfirmModalComponent} from '@common/core/ui/confirm-modal/confirm-modal
 import {DatatableService} from '@common/datatable/datatable.service';
 import {Observable} from 'rxjs';
 import {WebPlayerUrls} from '../../../../web-player/web-player-urls.service';
-import {Router} from '@angular/router';
 
 @Component({
     selector: 'artist-albums-table',
@@ -28,9 +27,8 @@ import {Router} from '@angular/router';
 export class ArtistAlbumsTableComponent implements OnInit, OnChanges {
     @Input() artist: Artist;
     @Input() albums: Album[] = [];
-    albums$ = this.datatable.data$ as Observable<Album[]>;
-    encodedArtist: string;
-    insideAdmin: boolean;
+    public albums$ = this.datatable.data$ as Observable<Album[]>;
+    public encodedArtist: string;
     constructor(
         private modal: Modal,
         private albumsApi: Albums,
@@ -38,10 +36,10 @@ export class ArtistAlbumsTableComponent implements OnInit, OnChanges {
         public images: WebPlayerImagesService,
         public datatable: DatatableService<Album>,
         public urls: WebPlayerUrls,
-        private router: Router,
     ) {}
 
-    ngOnChanges(changes: SimpleChanges) {
+    public ngOnChanges(changes: SimpleChanges) {
+        console.log('changes');
         if (this.artist) {
             this.encodedArtist = btoa(JSON.stringify({
                 id: this.artist.id,
@@ -52,7 +50,7 @@ export class ArtistAlbumsTableComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        this.insideAdmin = this.router.url.includes('admin');
+        console.log();
         this.datatable.init({
             initialData: this.albums ? this.albums : []
         });

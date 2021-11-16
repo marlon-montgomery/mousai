@@ -11,7 +11,6 @@ const routes: Routes = [
     {
         path: 'backstage',
         component: BackstageHostComponent,
-        canLoad: [AuthGuard],
         loadChildren: () => import('src/app/backstage/backstage.module').then(m => m.BackstageModule),
     },
     {path: 'api-docs', loadChildren: () => import('@common/api-docs/api-docs.module').then(m => m.ApiDocsModule)},

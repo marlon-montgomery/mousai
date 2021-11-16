@@ -28,6 +28,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "aot": true,
                         "preserveSymlinks": true,
                         "outputPath": "dist/client/browser",
                         "index": "src/index.html",
@@ -52,13 +53,7 @@
                                 "src/scss",
                                 "src/common/scss"
                             ]
-                        },
-                        "vendorChunk": true,
-                        "extractLicenses": false,
-                        "buildOptimizer": false,
-                        "sourceMap": true,
-                        "optimization": false,
-                        "namedChunks": true
+                        }
                     },
                     "configurations": {
                         "production": {
@@ -78,12 +73,12 @@
                             "outputHashing": "all",
                             "sourceMap": false,
                             "namedChunks": false,
+                            "aot": true,
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true
                         }
-                    },
-                    "defaultConfiguration": ""
+                    }
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
@@ -144,9 +139,7 @@
                                 "src/scss",
                                 "src/common/scss"
                             ]
-                        },
-                        "sourceMap": true,
-                        "optimization": false
+                        }
                     },
                     "configurations": {
                         "production": {
@@ -160,8 +153,7 @@
                             "sourceMap": false,
                             "optimization": true
                         }
-                    },
-                    "defaultConfiguration": ""
+                    }
                 },
                 "serve-ssr": {
                     "builder": "@nguniversal/builders:ssr-dev-server",

@@ -12,7 +12,7 @@
 
 .search-input-container {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   position: relative;
 }
 
@@ -25,21 +25,18 @@ loading-indicator {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 -15px;
 }
 
 .user {
   display: flex;
-  align-items: center;
   width: calc(50% - 10px);
   flex-shrink: 0;
   min-width: 0;
-  padding: 12px;
-  border-radius: 4px;
+  margin-bottom: 20px;
   cursor: pointer;
 
   &:hover {
-    background-color: mat-color($app-background, hover);
+    color: mat-color($app-accent, default);
   }
 
   img {

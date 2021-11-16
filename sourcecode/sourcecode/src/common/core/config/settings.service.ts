@@ -16,7 +16,7 @@ export class Settings {
     public csrfToken: string;
 
     public setMultiple(settings: AppConfig) {
-        if (!settings) return;
+        if ( ! settings) return;
         const newConfig = {...this.config$.value};
         Object.entries(settings).forEach(([key, value]) => {
             if (value === '0' || value === '1') {
@@ -31,10 +31,7 @@ export class Settings {
         this.config$.next(merge(this.config$.value, config));
     }
 
-    public set(
-        name: keyof AppConfig | any,
-        value: AppConfig[keyof AppConfig] | any
-    ) {
+    public set(name: keyof AppConfig|any, value: AppConfig[keyof AppConfig]|any) {
         const newConfig = {...this.config$.value};
         Dot.set(name, value, newConfig);
         this.config$.next(newConfig);
@@ -44,7 +41,7 @@ export class Settings {
         this.config$.next(config);
     }
 
-    public get(name: keyof AppConfig | any, defaultValue: any = null): any {
+    public get(name: keyof AppConfig|any, defaultValue: any = null): any {
         const value = Dot.pick(name, this.config$.value);
         if (value == null) {
             return defaultValue;
@@ -85,13 +82,10 @@ export class Settings {
         // sometimes we might need to get base url supplied by backend
         // even in development environment, for example, to prevent
         // uploaded images from having proxy urls like "localhost:4200"
-        if (
-            this.has('base_url') &&
-            (this.get('vebto.environment') === 'production' || forceServerUrl)
-        ) {
-            return this.get('base_url');
+        if (this.has('base_url') && (this.get('vebto.environment') === 'production' || forceServerUrl)) {
+            return this.get('base_url') + '/';
         } else if (document.querySelector('base')) {
-            return document.querySelector('base').href.replace(/\/$/, '');
+            return document.querySelector('base')['href'];
         } else {
             // 'https://site.com/subdomain/index.html/" => 'https://site.com/subdomain/'
             const url = window.location.href.split('?')[0];
@@ -103,9 +97,7 @@ export class Settings {
      * Get app's asset base url.
      */
     public getAssetUrl(suffix?: string, forceServerUrl = false): string {
-        let uri =
-            (this.get('vebto.assetsUrl') || this.getBaseUrl(forceServerUrl)) +
-            '/';
+        let uri = (this.get('vebto.assetsUrl') || this.getBaseUrl(forceServerUrl));
         const prefix = this.get('vebto.assetsPrefix');
 
         // in production assets will be in "client" sub-folder
@@ -136,9 +128,12 @@ export class Settings {
         return this.http.post('settings', data);
     }
 
-    public anySocialLoginEnabled(): boolean {
+    /**
+     * Check if any social login is enabled.
+     */
+    public anySocialLoginEnabled() {
         const names = ['facebook', 'google', 'twitter'];
-        return names.some(name => this.get('social.' + name + '.enable'));
+        return names.filter(name => this.get('social.' + name + '.enable')).length > -1;
     }
 
     /**

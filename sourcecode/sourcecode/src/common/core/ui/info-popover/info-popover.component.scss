@@ -16,10 +16,6 @@ info-popover {
   padding: 15px;
   max-width: 350px;
 
-  &.wider {
-    max-width: 550px;
-  }
-
   .title {
     font-size: 1.6rem;
     margin-bottom: 8px;
@@ -44,10 +40,5 @@ info-popover {
     a:hover {
       text-decoration: underline;
     }
-  }
-
-  ul, ol {
-    padding-left: 15px;
-    margin: 0;
   }
 }

@@ -36,6 +36,7 @@ export class TrackEmbedComponent implements OnInit {
 
         if (this.media.model_type === ALBUM_MODEL) {
             activeTrack = this.media.tracks[0];
+            activeTrack.album = this.media;
             this.el.nativeElement.classList.add('album');
         } else if (this.media.model_type === PLAYLIST_MODEL) {
             (this.media as Playlist).tracks = data.api.tracks.data;

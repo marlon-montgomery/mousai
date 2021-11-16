@@ -52,7 +52,7 @@ export class PaypalSubscriptions {
     public subscribe(params: {plan_id: number, start_date?: string}): Promise<User> {
         this.subscriptionPending = true;
 
-        this.popup = this.openPaypalPopup(this.settings.getBaseUrl(true) + '/billing/paypal/loading');
+        this.popup = this.openPaypalPopup(this.settings.getBaseUrl(true) + 'billing/paypal/loading');
 
         return new Promise((resolve, reject) => {
             this.rejectSubscribe = reject;

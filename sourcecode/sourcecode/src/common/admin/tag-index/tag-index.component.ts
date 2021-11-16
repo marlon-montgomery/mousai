@@ -6,7 +6,6 @@ import {CurrentUser} from '@common/auth/current-user';
 import {DatatableService} from '../../datatable/datatable.service';
 import {Observable} from 'rxjs';
 import {Settings} from '../../core/config/settings.service';
-import {TAG_INDEX_FILTERS} from '@common/admin/tag-index/tag-index-filters';
 
 @Component({
     selector: 'tags',
@@ -14,35 +13,34 @@ import {TAG_INDEX_FILTERS} from '@common/admin/tag-index/tag-index-filters';
     providers: [DatatableService],
 })
 export class TagIndexComponent implements OnInit {
-    filters = TAG_INDEX_FILTERS(this.settings.get('vebto.admin.tagTypes'));
-    tags$ = this.datatable.data$ as Observable<Tag[]>;
+    public tags$ = this.datatable.data$ as Observable<Tag[]>;
+    public showFilterPanel: boolean;
 
     constructor(
         private tags: TagsService,
         public currentUser: CurrentUser,
         public datatable: DatatableService<Tag>,
-        public settings: Settings
-    ) {}
+        public settings: Settings,
+    ) { }
 
     ngOnInit() {
+        this.showFilterPanel = this.settings.get('vebto.admin.tagTypes')?.length > 1;
         this.datatable.init({
             uri: TagsService.BASE_URI,
         });
     }
 
-    maybeDeleteSelectedTags() {
-        this.datatable.confirmResourceDeletion('tags').subscribe(() => {
-            this.tags
-                .delete(this.datatable.selectedRows$.value)
-                .subscribe(() => {
+    public maybeDeleteSelectedTags() {
+        this.datatable.confirmResourceDeletion('tags')
+            .subscribe(() => {
+                this.tags.delete(this.datatable.selectedRows$.value).subscribe(() => {
                     this.datatable.reset();
                 });
-        });
+            });
     }
 
-    showCrupdateTagModal(tag?: Tag) {
-        this.datatable
-            .openCrupdateResourceModal(CrupdateTagModalComponent, {tag})
-            .subscribe();
+    public showCrupdateTagModal(tag?: Tag) {
+        this.datatable.openCrupdateResourceModal(CrupdateTagModalComponent, {tag})
+          .subscribe();
     }
 }

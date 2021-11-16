@@ -15,15 +15,12 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
-import {
-    MatNativeDateModule,
-    MatPseudoCheckboxModule,
-    MatRippleModule,
-} from '@angular/material/core';
+import {MatNativeDateModule, MatPseudoCheckboxModule, MatRippleModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -61,15 +58,15 @@ import {CrupdateTagModalComponent} from '@common/admin/tag-index/crupdate-tag-mo
 import {SlugControlModule} from '../shared/form-controls/slug-control/slug-control.module';
 import {RoleManagerModule} from './users/role-manager/role-manager.module';
 import {CustomPageIndexModule} from '../pages/custom-pages-index/custom-page-index.module';
+import {PlanIndexFiltersComponent} from './billing/plans/plan-index/plan-index-filters/plan-index-filters.component';
 import {SubscriptionIndexFiltersComponent} from './billing/subscriptions/subscription-index/subscription-index-filters/subscription-index-filters.component';
 import {BetweenDateInputModule} from '../core/ui/between-date-input/between-date-input.module';
+import {UserIndexFiltersComponent} from './users/user-index-filters/user-index-filters.component';
+import {FileEntryIndexFiltersComponent} from './file-entry-index/file-entry-index-filters/file-entry-index-filters.component';
+import {TagIndexFiltersComponent} from './tag-index/tag-index-filters/tag-index-filters.component';
 import {SelectUserInputModule} from '../core/ui/select-user-input/select-user-input.module';
 import {SkeletonModule} from '../core/ui/skeleton/skeleton.module';
 import {DatatableModule} from '../datatable/datatable.module';
-import {GlobalSearchModule} from '@common/admin/global-search/global-search.module';
-import {SidenavModule} from '@common/shared/sidenav/sidenav.module';
-import {CsvExportInfoDialogModule} from '@common/csv/csv-info-dialog/csv-export-info-dialog.module';
-import {CommentIndexComponent} from '@common/admin/comments/comment-index.component';
 
 @NgModule({
     imports: [
@@ -94,9 +91,6 @@ import {CommentIndexComponent} from '@common/admin/comments/comment-index.compon
         RoleManagerModule,
         BaseAdminRoutingModule,
         CustomPageIndexModule,
-        GlobalSearchModule,
-        SidenavModule,
-        CsvExportInfoDialogModule,
 
         // material
         MatButtonModule,
@@ -107,6 +101,7 @@ import {CommentIndexComponent} from '@common/admin/comments/comment-index.compon
         MatSlideToggleModule,
         MatChipsModule,
         MatAutocompleteModule,
+        MatSidenavModule,
         DragDropModule,
         MatProgressBarModule,
 
@@ -144,14 +139,17 @@ import {CommentIndexComponent} from '@common/admin/comments/comment-index.compon
         FileEntryIndexComponent,
         TagIndexComponent,
         CrupdateTagModalComponent,
-        CommentIndexComponent,
 
         // billing
         PlanIndexComponent,
+        PlanIndexFiltersComponent,
         SubscriptionIndexComponent,
         SubscriptionIndexFiltersComponent,
         CrupdatePlanModalComponent,
         CrupdateSubscriptionModalComponent,
+        UserIndexFiltersComponent,
+        FileEntryIndexFiltersComponent,
+        TagIndexFiltersComponent,
     ],
     exports: [
         RouterModule,
@@ -178,7 +176,9 @@ import {CommentIndexComponent} from '@common/admin/comments/comment-index.compon
         MatSlideToggleModule,
         MatChipsModule,
     ],
-    providers: [Modal],
+    providers: [
+        Modal,
+    ]
 })
 export class BaseAdminModule {
     constructor(private settings: Settings) {

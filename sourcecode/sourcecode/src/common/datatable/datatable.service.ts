@@ -1,10 +1,5 @@
 import {Injectable} from '@angular/core';
-import {
-    animationFrameScheduler,
-    BehaviorSubject,
-    combineLatest,
-    Subscription,
-} from 'rxjs';
+import {animationFrameScheduler, BehaviorSubject, combineLatest, Subscription} from 'rxjs';
 import {Paginator} from '../shared/paginator.service';
 import {debounceTime, filter, map, pairwise, tap} from 'rxjs/operators';
 import {DatatableFilters, DatatableFilterValue} from './types/datatable-filters';
@@ -23,14 +18,13 @@ import {filterDatatableData} from '@common/datatable/utils/filter-datatable-data
 import {Router} from '@angular/router';
 import {AppHttpClient} from '@common/core/http/app-http-client.service';
 import {LocalStorage} from '../core/services/local-storage.service';
-import {FormControl} from '@angular/forms';
 
-export type DatatableStaticParams = Record<string, string | number | boolean | string[]>;
+export type DatatableStaticParams = Record<string, string|number|boolean|string[]>;
 
 interface DatatableConfig<T> {
     uri?: string;
     staticParams?: DatatableStaticParams;
-    initialData?: PaginationResponse<T> | T[];
+    initialData?: PaginationResponse<T>|T[];
     disableSort?: boolean;
     infiniteScroll?: boolean;
 }
@@ -39,13 +33,10 @@ interface DatatableConfig<T> {
 export class DatatableService<T extends Model> {
     public sort$ = new BehaviorSubject<DatatableSort>({});
     public filters$ = new BehaviorSubject<DatatableFilters>({});
-    public searchControl = new FormControl();
-    public searchTerm$ = new BehaviorSubject<string>(null);
     public staticParams$ = new BehaviorSubject<DatatableStaticParams>({});
     public paginator = new Paginator<T>(this.router, this.http, this.localStorage);
     private paginatorSub: Subscription;
     private mainSub: Subscription;
-    private searchControlSub: Subscription;
     private ignoreNextParamChange = false;
     private originalData$ = new BehaviorSubject<T[]>([]);
     public data$ = new BehaviorSubject<T[]>([]);
@@ -56,7 +47,7 @@ export class DatatableService<T extends Model> {
         protected modal: Modal,
         protected router: Router,
         protected http: AppHttpClient,
-        protected localStorage: LocalStorage
+        protected localStorage: LocalStorage,
     ) {}
 
     get data() {
@@ -74,54 +65,18 @@ export class DatatableService<T extends Model> {
     }
 
     public init(config: DatatableConfig<T> = {}) {
-        // TODO: don't add static params to current url query params
-
         this.config = config;
-        this.staticParams$.next({
-            ...this.staticParams$.value,
-            ...config.staticParams,
-        });
+        this.staticParams$.next({...this.staticParams$.value, ...config.staticParams});
         if (config.uri) {
             this.connectToPaginator();
         } else if (config.initialData) {
             this.data = config.initialData as T[];
         }
 
-        // set search term from queryParams
-        if (config.uri) {
-            const qp = this.router.routerState.root.snapshot.queryParams;
-            const initialSearchTerm = qp.query as string;
-            this.searchControl.setValue(initialSearchTerm);
-            this.searchTerm$.next(initialSearchTerm);
-            this.sort$.next({
-                orderBy: qp.orderBy,
-                orderDir: qp.orderDir,
-            });
-        }
-        this.searchControlSub = this.searchControl.valueChanges
-            .pipe(debounceTime(300))
-            .subscribe(value => {
-                this.searchTerm$.next(value);
-            });
-
-        this.mainSub = combineLatest([
-            this.sort$,
-            this.filters$,
-            this.searchTerm$.pipe(
-                map(query => {
-                    return {query};
-                })
-            ),
-            // static params needs to be last, so it can override all the other params
-            this.staticParams$,
-        ])
-            .pipe(
-                debounceTime(0, animationFrameScheduler),
-                map(params => Object.assign({}, ...params))
-            )
-            .subscribe((params: PaginationParams) => {
+        this.mainSub = combineLatest([this.sort$, this.filters$, this.staticParams$])
+            .pipe(debounceTime(0, animationFrameScheduler), map(params => Object.assign({}, ...params))).subscribe((params: PaginationParams) => {
                 if (this.ignoreNextParamChange) {
-                    return (this.ignoreNextParamChange = false);
+                    return this.ignoreNextParamChange = false;
                 }
                 params = removeNullFromObject(params);
                 Object.entries(params).forEach(([key, value]) => {
@@ -131,11 +86,7 @@ export class DatatableService<T extends Model> {
                     }
                 });
                 if (this.config.uri) {
-                    this.paginator.paginate(
-                        params,
-                        this.config.uri,
-                        this.config.initialData as PaginationResponse<T>
-                    );
+                    this.paginator.paginate(params, this.config.uri, this.config.initialData as PaginationResponse<T>);
                 } else if (Object.keys(params).length && this.data.length) {
                     this.applyLocalTransforms(params);
                 }
@@ -145,19 +96,15 @@ export class DatatableService<T extends Model> {
     }
 
     private connectToPaginator() {
-        this.paginatorSub = this.paginator.response$
-            .pipe(pairwise())
-            .subscribe(([prev, current]) => {
-                // append data instead of overriding with next page data (infinite scroll).
-                // if page did not change, we can assume that it was filter or sort
-                // change and we should use only new data, even on infinite scroll
-                const data =
-                    this.config.infiniteScroll &&
-                    prev?.pagination?.current_page !== current.pagination.current_page
-                        ? [...this.data$.value, ...current.pagination.data]
-                        : current.pagination.data;
-                this.data$.next(data);
-            });
+        this.paginatorSub = this.paginator.response$.pipe(pairwise()).subscribe(([prev, current]) => {
+            // append data instead of overriding with next page data (infinite scroll).
+            // if page did not change, we can assume that it was filter or sort
+            // change and we should use only new data, even on infinite scroll
+            const data = this.config.infiniteScroll && prev?.pagination?.current_page !== current.pagination.current_page ?
+                [...this.data$.value, ...current.pagination.data] :
+                current.pagination.data;
+            this.data$.next(data);
+        });
     }
 
     private applyLocalTransforms(params: PaginationParams) {
@@ -193,14 +140,8 @@ export class DatatableService<T extends Model> {
         }
     }
 
-    public openCrupdateResourceModal(
-        cmp: ComponentType<any>,
-        data?: object,
-        config?: MatDialogConfig
-    ) {
-        return this.modal
-            .open(cmp, data, config)
-            .beforeClosed()
+    public openCrupdateResourceModal(cmp: ComponentType<any>, data?: object, config?: MatDialogConfig) {
+        return this.modal.open(cmp, data, config).beforeClosed()
             .pipe(
                 filter(modifiedResource => !!modifiedResource),
                 tap(() => this.reset())
@@ -209,9 +150,7 @@ export class DatatableService<T extends Model> {
 
     public confirmResourceDeletion(resource: string) {
         const data = {...DELETE_RESOURCE_MESSAGE, replacements: {resource}};
-        return this.modal
-            .open(ConfirmModalComponent, data)
-            .afterClosed()
+        return this.modal.open(ConfirmModalComponent, data).afterClosed()
             .pipe(filter(confirmed => confirmed));
     }
 
@@ -227,6 +166,5 @@ export class DatatableService<T extends Model> {
     public destroy() {
         this.paginatorSub?.unsubscribe();
         this.mainSub?.unsubscribe();
-        this.searchControlSub?.unsubscribe();
     }
 }

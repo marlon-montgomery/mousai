@@ -4,7 +4,6 @@
   display: block;
   min-height: 100vh;
   flex: 1 1 auto;
-  background-color: mat-color($app-background, background);
 }
 
 .content {
@@ -12,17 +11,11 @@
 }
 
 .header {
-  font-size: 3.6rem;
-  margin: 25px 0 0;
-  font-weight: 400;
+  font-size: 3.5rem;
+  margin: 25px 0;
+  font-weight: 300;
   display: flex;
   align-items: center;
-}
-
-.header-description {
-  font-size: 1.6rem;
-  margin-bottom: 40px;
-  color: mat-color($app-foreground, secondary-text);
 }
 
 .header-text {
@@ -38,16 +31,19 @@
 }
 
 .panels {
-  width: 820px;
-  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: -15px;
 }
 
 ::ng-deep .account-settings-panel {
+  box-shadow: none;
   border: 1px solid mat-color($app-foreground, divider);
   border-radius: 4px;
+  width: calc(50% - 30px);
+  margin: 15px;
   padding: 15px;
   background-color: mat-color($app-background, dialog);
-  margin-bottom: 25px;
 
   .panel-header {
     display: flex;
@@ -70,6 +66,7 @@
 
   .panel-body {
     padding: 25px 0 0;
+    min-height: 314px;
   }
 
   .panel-footer {

@@ -10,9 +10,9 @@ export const ARTIST_MODEL = 'artist';
 export interface Artist {
     id: number;
     name: string;
+    bitclout: string;
     model_type: 'artist';
     verified?: boolean;
-    spotify_id?: string;
     followers_count?: number;
     spotify_popularity?: boolean;
     albums_count?: number;

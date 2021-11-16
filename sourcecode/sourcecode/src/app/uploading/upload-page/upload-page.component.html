@@ -1,57 +1,25 @@
-<div
-    class="dropzone"
-    [fileDropzone]="uploadConfig"
-    [clickButton]="clickButton"
-    (filesDropped)="uploadTracks($event)"
->
+<div class="dropzone" [fileDropzone]="uploadConfig" [clickButton]="clickButton" (filesDropped)="uploadTracks($event)">
     <div class="title" trans>Drag and drop your tracks, videos & albums here.</div>
     <div class="action-button">
-        <button
-            mat-flat-button
-            color="accent"
-            type="button"
-            class="upload-button"
-            #clickMatButton
-            trans
-        >
-            or choose files to upload
-        </button>
+        <button mat-flat-button color="accent" type="button" class="upload-button" #clickMatButton trans>or choose files to upload</button>
     </div>
     <div class="setting-toggle-container" *ngIf="uploadQueue.isEmpty()">
-        <mat-slide-toggle (change)="createAlbum$.next($event.checked)" trans
-            >Make an album when multiple files are selected</mat-slide-toggle
-        >
+        <mat-slide-toggle (change)="createAlbum$.next($event.checked)" trans>Create Album</mat-slide-toggle>
+        <p trans>Attach all uploaded files to a new album.</p>
     </div>
 </div>
 
-<div
-    class="minutes-container"
-    *ngIf="currentUser.getRestrictionValue('tracks.create', 'minutes') as minuteLimit"
->
-    <span
-        >You have {{ minuteLimit }} minutes left. Try
-        <a class="hover-underline" routerLink="/billing/upgrade" target="_blank">Pro accounts</a> to
-        get more time and access to advanced features.</span
-    >
+<div class="minutes-container" *ngIf="currentUser.getRestrictionValue('tracks.create', 'minutes') as minuteLimit">
+    <span>You have {{minuteLimit}} minutes left. Try <a class="hover-underline" routerLink="/billing/upgrade" target="_blank">Pro accounts</a> to get more time and access to advanced features.</span>
 </div>
 
 <div class="track-upload-queue" *ngIf="uploadQueue.uploads$ | async as uploads">
     <ng-container *ngIf="uploads.length">
-        <album-form
-            class="material-panel"
-            *ngIf="createAlbum$ | async; else createTracks"
-            (saved)="addSavedMedia($event)"
-        ></album-form>
+        <album-form class="material-panel" *ngIf="createAlbum$ | async; else createTracks" (saved)="addSavedMedia($event)"></album-form>
         <ng-template #createTracks>
             <ng-container *ngIf="errors$ | async as errors">
-                <div
-                    class="track-panel material-panel"
-                    *ngFor="let upload of uploads; trackBy: trackByFn"
-                >
-                    <track-form
-                        [uploadQueueItem]="upload"
-                        (saved)="addSavedMedia($event)"
-                    ></track-form>
+                <div class="track-panel material-panel" *ngFor="let upload of uploads; trackBy: trackByFn">
+                    <track-form [uploadQueueItem]="upload" (saved)="addSavedMedia($event)"></track-form>
                 </div>
             </ng-container>
         </ng-template>
@@ -59,8 +27,5 @@
 </div>
 
 <div class="saved-tracks">
-    <uploaded-media-preview
-        [media]="media"
-        *ngFor="let media of savedMedia$ | async"
-    ></uploaded-media-preview>
+    <uploaded-media-preview [media]="media" *ngFor="let media of savedMedia$ | async"></uploaded-media-preview>
 </div>

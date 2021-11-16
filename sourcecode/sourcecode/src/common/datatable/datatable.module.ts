@@ -15,14 +15,10 @@ import {MatChipsModule} from '@angular/material/chips';
 import {DatatableFiltersPanelComponent} from './datatable-filters-panel/datatable-filters-panel.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {ChipsModule} from '../core/ui/chips/chips.module';
-import {DatatableHeaderSearchInputComponent} from './datatable-header/datatable-header-search-input/datatable-header-search-input.component';
+import { DatatableHeaderSearchInputComponent } from './datatable-header/datatable-header-search-input/datatable-header-search-input.component';
 import {NoResultsMessageModule} from '../core/ui/no-results-message/no-results-message.module';
 import {NoResultsMessageComponent} from '../core/ui/no-results-message/no-results-message.component';
 import {FormatPipesModule} from '@common/core/ui/format-pipes/format-pipes.module';
-import {DatatableFiltersComponent} from '@common/datatable/datatable-filters/datatable-filters.component';
-import {DatatablePageHeaderComponent} from '@common/datatable/datatable-page-header/datatable-page-header.component';
-import {SearchInputWithFiltersModule} from './datatable-filters/search-input-with-filters/search-input-with-filters.module';
-import {RouterModule} from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -35,8 +31,6 @@ import {RouterModule} from '@angular/router';
         DatatableHeaderSearchInputComponent,
         DatatableFiltersPanelComponent,
         DatatableHeaderSearchInputComponent,
-        DatatableFiltersComponent,
-        DatatablePageHeaderComponent,
     ],
     imports: [
         CommonModule,
@@ -46,8 +40,6 @@ import {RouterModule} from '@angular/router';
         ChipsModule,
         NoResultsMessageModule,
         FormatPipesModule,
-        SearchInputWithFiltersModule,
-        RouterModule,
 
         // material
         MatButtonModule,
@@ -67,8 +59,7 @@ import {RouterModule} from '@angular/router';
         DatatableFiltersPanelComponent,
         DatatableHeaderSearchInputComponent,
         NoResultsMessageComponent,
-        DatatableFiltersComponent,
-        DatatablePageHeaderComponent,
-    ],
+    ]
 })
-export class DatatableModule {}
+export class DatatableModule {
+}

@@ -37,6 +37,7 @@ export class SelectPermissionsModalComponent implements OnInit {
     ngOnInit() {
         this.fetchAllPermissions();
         this.showAdvancedControl.valueChanges.subscribe(() => {
+            console.log('x');
             this.setShowAdvanced();
         });
     }

@@ -9,23 +9,20 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {BehaviorSubject} from 'rxjs';
 import {randomString} from '@common/core/utils/random-string';
 import {finalize} from 'rxjs/operators';
-import {UploadUri} from '@common/uploads/types/upload-uri.enum';
+import { UploadUri } from '@common/uploads/types/upload-uri.enum';
 import {UploadApiConfig} from '@common/uploads/types/upload-api-config';
 
 @Component({
     selector: 'appearance-image-input',
     templateUrl: './appearance-image-input.component.html',
     styleUrls: ['./appearance-image-input.component.scss'],
-    host: {tabindex: '0'},
+    host: {'tabindex': '0'},
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        UploadQueueService,
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: AppearanceImageInputComponent,
-            multi: true,
-        },
-    ],
+    providers: [UploadQueueService, {
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: AppearanceImageInputComponent,
+        multi: true,
+    }]
 })
 export class AppearanceImageInputComponent implements ControlValueAccessor {
     @Input() defaultValue: string;
@@ -39,7 +36,7 @@ export class AppearanceImageInputComponent implements ControlValueAccessor {
         private editor: AppearanceEditor,
         private uploadQueue: UploadQueueService,
         private validator: AppearanceImageUploadValidator,
-        public settings: Settings
+        public settings: Settings,
     ) {
         this.validator.showToast = true;
     }
@@ -52,8 +49,7 @@ export class AppearanceImageInputComponent implements ControlValueAccessor {
         };
         openUploadWindow({types: [UploadInputTypes.image]}).then(files => {
             this.loading$.next(true);
-            this.uploadQueue
-                .start(files, params)
+            this.uploadQueue.start(files, params)
                 .pipe(finalize(() => this.loading$.next(false)))
                 .subscribe(response => {
                     this.updateValue(response.fileEntry.url);
@@ -69,10 +65,10 @@ export class AppearanceImageInputComponent implements ControlValueAccessor {
         this.updateValue(this.defaultValue);
     }
 
-    private updateValue(val?: string) {
-        this.propagateChange(val);
+    private updateValue(value?: string) {
+        this.propagateChange(value);
         // make sure new image is loaded by browser as path will be the same
-        this.image$.next(val ? val + `?v=${randomString(8)}` : null);
+        this.image$.next(value + `?v=${randomString(8)}`);
     }
 
     public writeValue(value: string) {

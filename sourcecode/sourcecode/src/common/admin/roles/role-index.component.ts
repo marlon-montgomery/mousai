@@ -12,7 +12,6 @@ import {FindUserModalComponent} from '@common/auth/find-user-modal/find-user-mod
 import {BreakpointsService} from '@common/core/ui/breakpoints.service';
 import {Users} from '../../auth/users.service';
 import {DatatableService} from '../../datatable/datatable.service';
-import {NormalizedModel} from '../../core/types/models/normalized-model';
 
 @Component({
     selector: 'role-index',
@@ -86,9 +85,9 @@ export class RoleIndexComponent implements OnInit {
     public showAssignUsersModal() {
         this.modal.open(FindUserModalComponent)
             .afterClosed()
-            .subscribe((user: NormalizedModel) => {
+            .subscribe((user: User) => {
                 if (user) {
-                    this.roleApi.addUsers(this.selectedRole$.value.id, [user.id]).subscribe(() => {
+                    this.roleApi.addUsers(this.selectedRole$.value.id, [user.email]).subscribe(() => {
                         this.toast.open('User assigned to role');
                         this.refreshRoleUsers(this.selectedRole$.value);
                     });

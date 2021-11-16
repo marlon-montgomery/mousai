@@ -6,7 +6,7 @@ export class MenuItem {
     // ID for model if action matches to specific model. If action
     // points to a specific custom page, model_id will be that page's ID.
     model_id: number;
-    type: MenuItemType = 'link';
+    type: 'page' | 'link' | 'route' = 'link';
     icon: string;
     condition: MenuItemCondition = null;
     target: string = null;
@@ -21,4 +21,3 @@ export class MenuItem {
 }
 
 export type MenuItemCondition = string|string[]|Function;
-export type MenuItemType = 'link' | 'route' | 'scrollTo';

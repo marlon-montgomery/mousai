@@ -6,7 +6,7 @@
     <ng-container *ngIf="compact && !(isDisabled$ | async)">
         <span [matMenuTriggerFor]="menu"></span>
         <button type="button" mat-icon-button (click)="openUploadDialog()" class="action-button">
-            <mat-icon svgIcon="add-photo-alternate"></mat-icon>
+            <mat-icon svgIcon="edit"></mat-icon>
         </button>
         <mat-menu #menu="matMenu">
             <button type="button" mat-menu-item [uploadButton]="uploadInputConfig" (filesSelected)="uploadImage($event)">{{buttonText | trans}}</button>

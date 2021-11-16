@@ -29,9 +29,9 @@ export class DatatableFooterComponent implements OnInit, OnDestroy {
         this.changeRef = this.datable.paginator.response$
             .pipe(filter(r => !!r?.pagination), map(r => r.pagination))
             .subscribe(pagination => {
+                this.to = pagination.per_page * pagination.current_page;
+                this.from = (this.to - pagination.per_page) || 1;
                 this.totalRecords = pagination.total;
-                this.to = Math.min((pagination.per_page * pagination.current_page), this.totalRecords);
-                this.from = Math.max((this.to - pagination.per_page), 1);
                 this.havePrevious = this.datable.paginator.canLoadPrevPage();
                 this.haveNext = this.datable.paginator.canLoadNextPage();
                 this.perPageControl.setValue(parseInt('' + pagination.per_page), {emitEvent: false});

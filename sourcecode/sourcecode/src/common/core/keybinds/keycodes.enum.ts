@@ -7,8 +7,6 @@ export enum Keycodes {
     ARROW_RIGHT = 39,
     ARROW_DOWN = 40,
     ARROW_LEFT = 37,
-    BACKSPACE = 8,
-    TAB = 9,
     S = 83,
     N = 78,
     A = 65,

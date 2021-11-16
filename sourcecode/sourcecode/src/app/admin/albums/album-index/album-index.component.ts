@@ -9,7 +9,6 @@ import {DatatableService} from '@common/datatable/datatable.service';
 import {Observable} from 'rxjs';
 import {ImportMediaModalComponent} from '../../import-media-modal/import-media-modal.component';
 import {Modal} from '@common/core/ui/dialogs/modal.service';
-import {ALBUM_INDEX_FILTERS} from './album-index-filters';
 
 @Component({
     selector: 'album-index',
@@ -19,8 +18,7 @@ import {ALBUM_INDEX_FILTERS} from './album-index-filters';
     providers: [DatatableService],
 })
 export class AlbumIndexComponent implements OnInit {
-    albums$ = this.datatable.data$ as Observable<Album[]>;
-    filters = ALBUM_INDEX_FILTERS;
+    public albums$ = this.datatable.data$ as Observable<Album[]>;
     constructor(
         public datatable: DatatableService<Album>,
         public settings: Settings,

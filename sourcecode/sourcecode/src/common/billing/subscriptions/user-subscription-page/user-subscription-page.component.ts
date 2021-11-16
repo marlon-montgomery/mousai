@@ -122,7 +122,7 @@ export class UserSubscriptionPageComponent implements OnInit {
             .pipe(share());
 
         request.subscribe(response => {
-            // set new active subscription, if user had more than one
+            // set new active subscription, if user had more then one
             this.updateUserAndSubscription(response.user);
         });
 

@@ -1,91 +1,43 @@
-<div class="datatable-page-header">
-  <h1 trans>Genres</h1>
-  <div class="header">
-    <datatable-filters pluralName="genres" [filters]="filters"></datatable-filters>
-    <div class="action-buttons">
-      <button
-        mat-raised-button
-        color="accent"
-        (click)="openCrupdateGenreModal()"
-        *ngIf="currentUser.hasPermission('genres.create')"
-        class="button-with-icon"
-      >
-        <mat-icon svgIcon="add"></mat-icon>
-        <span trans>Add New Genre</span>
-      </button>
-    </div>
-  </div>
-</div>
-
 <div class="datatable responsive-table">
-  <mat-progress-bar
-    class="loading-bar"
-    mode="indeterminate"
-    color="accent"
-    *ngIf="datatable.paginator && datatable.paginator.loading$ | async"
-  ></mat-progress-bar>
-  <table class="material-table">
-    <thead>
-      <tr>
-        <th table-header-checkbox></th>
-        <th table-sort-header="name" trans>Genre</th>
-        <th table-sort-header trans>Display Name</th>
-        <th table-sort-header="artists_count" trans>Number of Artists</th>
-        <th table-sort-header="updated_at" trans>Last Updated</th>
-        <th></th>
-      </tr>
-      <tr *ngIf="datatable.selectedRows$.value.length as selectedCount">
-        <th colspan="6">
-          <div
-            class="bulk-actions-title"
-            [transValues]="{count: selectedCount, resource: 'genre(s)'}"
-            trans
-          >
-            :count :resource selected:
-          </div>
-          <div class="bulk-actions">
-            <button
-              mat-raised-button
-              color="warn"
-              (click)="confirmGenresDeletion()"
-              *ngIf="currentUser.hasPermission('genres.delete')"
-              trans
-            >
-              Delete
-            </button>
-          </div>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let genre of genres$ | async">
-        <td [table-body-checkbox]="genre.id"></td>
-        <td>
-          <div class="column-with-image">
-            <media-image [media]="genre"></media-image>
-            <a [routerLink]="urls.genre(genre)" class="link" target="_blank">{{ genre.name }}</a>
-          </div>
-        </td>
-        <td data-label="Display Name">{{ genre.display_name ? genre.display_name : '-' }}</td>
-        <td data-label="Number of Artists">
-          {{ genre.artists_count ? genre.artists_count : '-' }}
-        </td>
-        <td data-label="Last Updated">{{ genre.updated_at | formattedDate }}</td>
-        <td class="edit-column">
-          <button
-            mat-icon-button
-            (click)="openCrupdateGenreModal(genre)"
-            *ngIf="currentUser.hasPermission('genres.update')"
-            [matTooltip]="'Edit genre' | trans"
-          >
-            <mat-icon svgIcon="edit"></mat-icon>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <no-results-message svgImage="folder.svg" *ngIf="datatable.paginator.noResults$ | async">
-    <span primary-text>No genres have been created yet</span>
-  </no-results-message>
-  <datatable-footer></datatable-footer>
+    <datatable-header pluralResourceName="genres">
+        <ng-container leftContent>
+            <button mat-raised-button color="accent" (click)="openCrupdateGenreModal()" *ngIf="currentUser.hasPermission('genres.create')" trans>Add</button>
+        </ng-container>
+        <button rightContent mat-raised-button color="accent" (click)="confirmGenresDeletion()" *ngIf="currentUser.hasPermission('genres.delete')" trans>Delete Selected</button>
+    </datatable-header>
+    <table class="material-table">
+        <thead>
+        <tr>
+            <th table-header-checkbox></th>
+            <th table-sort-header="name" trans>Genre</th>
+            <th table-sort-header trans>Display Name</th>
+            <th table-sort-header="artists_count" trans>Number of Artists</th>
+            <th table-sort-header="updated_at" trans>Last Updated</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let genre of genres$ | async">
+            <td [table-body-checkbox]="genre.id"></td>
+            <td>
+                <div class="column-with-image">
+                    <media-image [media]="genre"></media-image>
+                    <a [routerLink]="urls.genre(genre)" class="link" target="_blank">{{genre.name}}</a>
+                </div>
+            </td>
+            <td data-label="Display Name">{{genre.display_name ? genre.display_name : '-' }}</td>
+            <td data-label="Number of Artists">{{genre.artists_count ? genre.artists_count : '-' }}</td>
+            <td data-label="Last Updated">{{genre.updated_at | formattedDate}}</td>
+            <td class="edit-column">
+                <button mat-icon-button (click)="openCrupdateGenreModal(genre)" *ngIf="currentUser.hasPermission('genres.update')" [matTooltip]="'Edit genre' | trans">
+                    <mat-icon svgIcon="edit"></mat-icon>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <no-results-message svgImage="folder.svg" *ngIf="datatable.paginator.noResults$ | async">
+        <span primary-text>No genres have been created yet</span>
+    </no-results-message>
+    <datatable-footer></datatable-footer>
 </div>

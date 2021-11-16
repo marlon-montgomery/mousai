@@ -6,10 +6,6 @@ interface WebKitDirectoryReader {
     readEntries(successCallback: WebKitEntriesCallback, errorCallback?: WebKitErrorCallback): void;
 }
 
-interface Selection {
-    modify(s: string, t: string, u: string): void;
-}
-
 interface WebKitEntry {
     readonly filesystem: WebKitFileSystem;
     readonly fullPath: string;

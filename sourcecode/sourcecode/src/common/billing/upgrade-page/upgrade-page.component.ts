@@ -122,7 +122,7 @@ export class UpgradePageComponent implements OnInit {
             return;
         }
         this.loading$.next(true);
-        if (activeSubscription.gateway_name === 'paypal') {
+        if (activeSubscription.gateway === 'paypal') {
             this.paypalSubscriptions.changePlan(activeSubscription, plan).then(user => {
                 this.loading$.next(false);
                 this.currentUser.assignCurrent(user);

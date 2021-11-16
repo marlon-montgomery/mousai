@@ -1,14 +1,9 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    Input,
-    OnChanges,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges} from '@angular/core';
 import {ARTIST_MODEL} from '../../../models/Artist';
 import {Album, ALBUM_MODEL} from '../../../models/Album';
 import {Track, TRACK_MODEL} from '../../../models/Track';
 import {DefaultImagePaths} from '../../default-image-paths.enum';
-import {USER_MODEL} from '@common/core/types/models/User';
+import {User, USER_MODEL} from '@common/core/types/models/User';
 import {PLAYLIST_MODEL} from '../../../models/Playlist';
 import {ChannelContentItem} from '../../../admin/channels/channel-content-item';
 import {CHANNEL_MODEL} from '../../../admin/channels/channel';
@@ -18,19 +13,19 @@ import {GENRE_MODEL} from '../../../models/Genre';
     selector: 'media-image',
     templateUrl: './media-image.component.html',
     styleUrls: ['./media-image.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MediaImageComponent implements OnChanges {
-    @Input() media: ChannelContentItem | string;
-    @Input() default: 'artist' | 'album' | 'track' = 'album';
+    @Input() media: ChannelContentItem|string;
+    @Input() default: 'artist'|'album'|'track' = 'album';
     public src: string;
 
     ngOnChanges() {
         this.src = this.getSrc(this.media);
     }
 
-    private getSrc(media: ChannelContentItem | string) {
-        if (!media) {
+    private getSrc(media: ChannelContentItem|string) {
+        if ( ! media) {
             return DefaultImagePaths.album;
         }
         if (typeof media === 'string') {
@@ -38,11 +33,7 @@ export class MediaImageComponent implements OnChanges {
         }
         switch (media.model_type) {
             case ARTIST_MODEL:
-                return (
-                    media.image_small ||
-                    media.albums?.[0]?.image ||
-                    DefaultImagePaths.artistSmall
-                );
+                return media.image_small || media.albums?.[0]?.image || DefaultImagePaths.artistSmall;
             case ALBUM_MODEL:
                 return this.albumImage(media);
             case TRACK_MODEL:
@@ -74,8 +65,8 @@ export class MediaImageComponent implements OnChanges {
     }
 
     public alt() {
-        return this.media
-            ? this.media['name'] || this.media['display_name'] || this.default
-            : this.default;
+        return this.media ?
+            this.media['name'] || this.media['display_name'] || this.default :
+            this.default;
     }
 }

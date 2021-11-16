@@ -1,184 +1,93 @@
 <div class="header">
-  <div class="title" trans>Player</div>
-  <div class="subtitle" trans>
-    Select streaming method and configure player defaults and interface.
-  </div>
+    <div class="title" trans>Player</div>
+    <div class="subtitle" trans>Select streaming method and configure player defaults and interface.</div>
 </div>
 
-<form
-  class="body many-inputs"
-  (submit)="saveSettings()"
-  ngNativeValidate
-  *ngIf="state.errors$ | async as errors"
->
-  <div class="many-inputs" id="youtube_group" [class.has-error]="errors.youtube_group">
+<form class="body many-inputs" (submit)="saveSettings()" ngNativeValidate *ngIf="errors$ | async as errors">
+    <div class="many-inputs" id="youtube_group" [class.has-error]="errors.youtube_group">
+        <div class="input-container">
+            <label for="youtube.search_method" trans>Youtube Search Method</label>
+            <select name="youtube.search_method" id="youtube.search_method" [(ngModel)]="state.client['youtube.search_method']" required>
+                <option value="site" trans>Youtube Website (Recommended)</option>
+                <option value="api" trans>Youtube API</option>
+            </select>
+            <p trans>Which method should be used to find a matching video for tracks.</p>
+        </div>
+
+        <div class="input-container" [class.has-error]="errors.youtube_api_key" *ngIf="state.client['youtube.search_method'] !== 'site'">
+            <label for="youtube_api_key" trans>Youtube Api Key</label>
+            <textarea name="youtube_api_key" id="youtube_api_key" [(ngModel)]="state.client['youtube_api_key']" required></textarea>
+            <div class="error" *ngIf="errors.youtube_api_key">{{errors.youtube_api_key}}</div>
+        </div>
+
+        <div class="input-container">
+            <label for="youtube.suggested_quality" trans>Suggested Video Quality</label>
+            <select name="youtube.suggested_quality" id="youtube.suggested_quality" [(ngModel)]="state.client['youtube.suggested_quality']" required>
+                <option value="default" trans>Default</option>
+                <option value="small" trans>Small</option>
+                <option value="medium" trans>Medium</option>
+                <option value="large" trans>Large</option>
+                <option value="hd720" trans>HD720</option>
+                <option value="hd1080" trans>HD1080</option>
+                <option value="highres" trans>Highres</option>
+            </select>
+            <p trans>What quality should be used for youtube videos.</p>
+        </div>
+
+        <div class="input-container" [class.has-error]="errors['youtube.region_code']" *ngIf="state.client['youtube.search_method'] !== 'site'">
+            <label for="youtube.region_code" trans>Youtube Region Code</label>
+            <select name="youtube.region_code" id="youtube.region_code" [(ngModel)]="state.client['youtube.region_code']">
+                <option [ngValue]="null" trans>None</option>
+                <option [ngValue]="country.code" *ngFor="let country of countries">{{country.name}}</option>
+            </select>
+            <div class="error" *ngIf="errors['youtube.region_code']">{{errors['youtube.region_code']}}</div>
+            <p trans>Instructs youtube API to return only videos that can be viewed in the specified country.</p>
+        </div>
+
+        <div class="setting-toggle-container">
+            <mat-slide-toggle name="youtube.store_id" id="youtube.store_id" [(ngModel)]="state.client['youtube.store_id']" trans>
+                Store Youtube ID
+            </mat-slide-toggle>
+            <p trans>Store youtube video ID for tracks in database to improve performance for subsequent plays of same song.</p>
+        </div>
+
+        <div class="error group-error" *ngIf="errors.youtube_group">{{errors.youtube_group}}</div>
+    </div>
+
+    <ng-container *ngIf="state.client['audio_search_provider'] === 'soundcloud'">
+        <div class="input-container" [class.has-error]="errors.soundcloud_api_key">
+            <label for="soundcloud_api_key" trans>Soundcloud Api Key</label>
+            <input name="soundcloud_api_key" id="soundcloud_api_key" [(ngModel)]="state.server['soundcloud_api_key']" required>
+            <p class="error" *ngIf="errors.soundcloud_api_key">{{errors.soundcloud_api_key}}</p>
+        </div>
+    </ng-container>
+
     <div class="input-container">
-      <label for="youtube.search_method" trans>Youtube Search Method</label>
-      <select
-        name="youtube.search_method"
-        id="youtube.search_method"
-        [(ngModel)]="state.client['youtube.search_method']"
-        required
-      >
-        <option value="site" trans>Youtube Website (Recommended)</option>
-        <option value="api" trans>Youtube API</option>
-      </select>
-      <p trans>Which method should be used to find a matching video for tracks.</p>
-    </div>
-
-    <div
-      class="input-container"
-      [class.has-error]="errors.youtube_api_key"
-      *ngIf="state.client['youtube.search_method'] !== 'site'"
-    >
-      <label for="youtube_api_key" trans>Youtube Api Key</label>
-      <textarea
-        name="youtube_api_key"
-        id="youtube_api_key"
-        [(ngModel)]="state.client['youtube_api_key']"
-        required
-      ></textarea>
-      <div class="error" *ngIf="errors.youtube_api_key">{{ errors.youtube_api_key }}</div>
+        <label for="player.default_volume" trans>Default Player Volume (1 to 100)</label>
+        <input type="number" name="player.default_volume" id="player.default_volume" [(ngModel)]="state.client['player.default_volume']" min="1" max="100">
     </div>
 
     <div class="input-container">
-      <label for="youtube.suggested_quality" trans>Suggested Video Quality</label>
-      <select
-        name="youtube.suggested_quality"
-        id="youtube.suggested_quality"
-        [(ngModel)]="state.client['youtube.suggested_quality']"
-        required
-      >
-        <option value="default" trans>Default</option>
-        <option value="small" trans>Small</option>
-        <option value="medium" trans>Medium</option>
-        <option value="large" trans>Large</option>
-        <option value="hd720" trans>HD720</option>
-        <option value="hd1080" trans>HD1080</option>
-        <option value="highres" trans>Highres</option>
-      </select>
-      <p trans>What quality should be used for youtube videos.</p>
-    </div>
-
-    <div
-      class="input-container"
-      [class.has-error]="errors['youtube.region_code']"
-      *ngIf="state.client['youtube.search_method'] !== 'site'"
-    >
-      <label for="youtube.region_code" trans>Youtube Region Code</label>
-      <select
-        name="youtube.region_code"
-        id="youtube.region_code"
-        [(ngModel)]="state.client['youtube.region_code']"
-      >
-        <option [ngValue]="null" trans>None</option>
-        <option [ngValue]="country.code" *ngFor="let country of countries">
-          {{ country.name }}
-        </option>
-      </select>
-      <div class="error" *ngIf="errors['youtube.region_code']">
-        {{ errors['youtube.region_code'] }}
-      </div>
-      <p trans>
-        Instructs youtube API to return only videos that can be viewed in the specified country.
-      </p>
+        <label for="player.sort_method" trans>Sort Method</label>
+        <select name="player.sort_method" id="player.sort_method" [(ngModel)]="state.client['player.sort_method']" required>
+            <option value="external" trans>External Popularity</option>
+            <option value="local" trans>Local Views</option>
+        </select>
+        <p trans>This will be used to sort artists, albums and tracks across the site.</p>
     </div>
 
     <div class="setting-toggle-container">
-      <mat-slide-toggle
-        name="youtube.store_id"
-        id="youtube.store_id"
-        [(ngModel)]="state.client['youtube.store_id']"
-        trans
-      >
-        Store Youtube ID
-      </mat-slide-toggle>
-      <p trans>
-        Store youtube video ID for tracks in database to improve performance for subsequent plays of
-        same song.
-      </p>
+        <mat-slide-toggle name="player.hide_video" id="player.hide_video" [(ngModel)]="state.client['player.hide_video']" trans>Hide Video</mat-slide-toggle>
+        <p trans>Should small video in the bottom right corner be hidden by default.</p>
     </div>
 
-    <div class="error group-error" *ngIf="errors.youtube_group">{{ errors.youtube_group }}</div>
-  </div>
-
-  <ng-container *ngIf="state.client['audio_search_provider'] === 'soundcloud'">
-    <div class="input-container" [class.has-error]="errors.soundcloud_api_key">
-      <label for="soundcloud_api_key" trans>Soundcloud Api Key</label>
-      <input
-        name="soundcloud_api_key"
-        id="soundcloud_api_key"
-        [(ngModel)]="state.server['soundcloud_api_key']"
-        required
-      />
-      <p class="error" *ngIf="errors.soundcloud_api_key">{{ errors.soundcloud_api_key }}</p>
+    <div class="setting-toggle-container margin-top">
+        <mat-slide-toggle name="player.mobile.auto_open_overlay" id="player.mobile.auto_open_overlay" [(ngModel)]="state.client['player.mobile.auto_open_overlay']" trans>
+            Automatically Open Overlay on Mobile
+        </mat-slide-toggle>
+        <p trans>Should fullscreen video overlay be opened automatically on mobile when user starts playback.</p>
     </div>
-  </ng-container>
 
-  <div class="input-container">
-    <label for="player.default_volume" trans>Default Player Volume (1 to 100)</label>
-    <input
-      type="number"
-      name="player.default_volume"
-      id="player.default_volume"
-      [(ngModel)]="state.client['player.default_volume']"
-      min="1"
-      max="100"
-    />
-  </div>
-
-  <div class="input-container">
-    <label for="player.sort_method" trans>Sort Method</label>
-    <select
-      name="player.sort_method"
-      id="player.sort_method"
-      [(ngModel)]="state.client['player.sort_method']"
-      required
-    >
-      <option value="external" trans>Spotify Popularity</option>
-      <option value="local" trans>Local Plays</option>
-    </select>
-    <p trans>When content is sorted by popularity (eg. In track table), should it be sorted based on how popular that content is on spotify or by number of plays on the site.</p>
-  </div>
-
-  <div class="setting-toggle-container">
-    <mat-slide-toggle
-      name="player.hide_video"
-      id="player.hide_video"
-      [(ngModel)]="state.client['player.hide_video']"
-      trans
-      >Hide Video</mat-slide-toggle
-    >
-    <p trans>Should small video in the bottom right corner be hidden by default.</p>
-  </div>
-
-  <div class="setting-toggle-container margin-top">
-    <mat-slide-toggle
-      name="player.mobile.auto_open_overlay"
-      id="player.mobile.auto_open_overlay"
-      [(ngModel)]="state.client['player.mobile.auto_open_overlay']"
-      trans
-    >
-      Automatically Open Overlay on Mobile
-    </mat-slide-toggle>
-    <p trans>
-      Should fullscreen video overlay be opened automatically on mobile when user starts playback.
-    </p>
-  </div>
-
-  <button
-    mat-raised-button
-    color="accent"
-    class="update-button"
-    type="submit"
-    [disabled]="state.loading$ | async"
-    trans
-  >
-    Update
-  </button>
-  <mat-progress-bar
-    mode="indeterminate"
-    color="accent"
-    *ngIf="state.loading$ | async"
-  ></mat-progress-bar>
+    <button mat-raised-button color="accent" class="update-button" type="submit" [disabled]="loading$ | async" trans>Update</button>
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading$ | async"></mat-progress-bar>
 </form>

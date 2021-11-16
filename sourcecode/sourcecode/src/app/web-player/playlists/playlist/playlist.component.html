@@ -9,7 +9,7 @@
                 <div class="details subtitle-line">
                     <div class="tracks-number meta-item">{{playlist.tracks_count}} {{'tracks' | trans}}</div>
                     <div class="running-time meta-item">{{totalDuration}}</div>
-                    <div class="collaborative meta-item" *ngIf="playlist.collaborative" trans>Collaborative</div>
+                    <div class="collaborative meta-item" *ngIf="playlist.collaborative">Collaborative</div>
                 </div>
             </div>
             <div class="action-buttons">
@@ -42,7 +42,7 @@
 </div>
 
 <track-table
-        [contextMenuParams]="{type: 'playlistTrack', extra: {playlist: playlist}}"
+        [contextMenuParams]="{type: 'playlistTrack', extra: {playlistId: playlist.id}}"
         [showArtist]="true"
         [showAlbum]="true"
         (delete)="removeTracksFromPlaylist($event)"

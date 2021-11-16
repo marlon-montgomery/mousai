@@ -10,9 +10,9 @@ import {finalize} from 'rxjs/operators';
 })
 export class CacheSettingsComponent extends SettingsPanelComponent {
     public clearCache() {
-        this.state.loading$.next(true);
+        this.loading$.next(true);
         this.http.post('cache/flush')
-            .pipe(finalize(() => this.state.loading$.next(false)))
+            .pipe(finalize(() => this.loading$.next(false)))
             .subscribe(() => {
                 this.toast.open('Cache cleared.');
             });

@@ -15,14 +15,8 @@ export class FormattedDatePipe implements PipeTransform {
     }
 
     transform(value: any, format?: string, timezone?: string, locale?: string): string | null {
-        if (value && typeof value === 'string') {
-            // 2 days ago
-            if (value.endsWith('ago')) {
-                return value;
-            }
-            // slash as separator for date will cause parse errors
-            value = value.replace(/\//g, '-');
-        }
+        // slash as separator for date will cause parse errors
+        value = (value && typeof value === 'string') ? value.replace(/\//g, '-') : value;
         return this.angularPipe.transform(value, format || this.format, timezone, locale);
     }
 }

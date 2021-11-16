@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {DatetimeInputComponent} from './datetime-input.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {TranslationsModule} from '@common/core/translations/translations.module';
-import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     declarations: [DatetimeInputComponent],
@@ -11,8 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
         CommonModule,
         ReactiveFormsModule,
         TranslationsModule,
-
-        MatButtonModule,
     ],
     exports: [
         DatetimeInputComponent,

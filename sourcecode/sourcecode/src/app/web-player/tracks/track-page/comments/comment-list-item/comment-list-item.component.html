@@ -3,37 +3,18 @@
     <div class="comment-meta">
         <div class="comment-header" *ngIf="!comment.deleted">
             {{ comment.user.display_name }}
-            <ng-container *ngIf="comment.position"
-                >{{ 'at' | trans }} {{ postedAt(comment.position) }}</ng-container
-            >
+            <ng-container *ngIf="comment.position">{{ 'at' | trans }} {{ postedAt(comment.position) }}</ng-container>
         </div>
         <div class="comment-content">
-            {{ comment.deleted ? ('This comment was deleted' | trans) : comment.content }}
+            {{comment.deleted ? ('This comment was deleted' | trans) : comment.content}}
         </div>
     </div>
     <div class="right-column">
-        <div class="created_at">{{ comment.relative_created_at }}</div>
+        <div class="created_at">{{comment.relative_created_at}}</div>
         <div class="comment-actions">
             <ng-container *ngIf="!comment.deleted">
-                <button
-                    mat-stroked-button
-                    class="reply-button comment-action"
-                    *ngIf="comment.depth < 5 && currentUser.hasPermission('comments.create')"
-                    (click)="toggleNewCommentForm()"
-                    trans
-                >
-                    Reply
-                </button>
-                <button
-                    class="comment-action delete-button"
-                    mat-stroked-button
-                    #deleteBtn
-                    (click)="trackComments.confirmDeletion(deleteButton, comment)"
-                    *ngIf="
-                        trackComments.canDeleteAllComments ||
-                        comment.user_id === currentUser.get('id')
-                    "
-                >
+                <button mat-stroked-button class="reply-button comment-action" *ngIf="comment.depth < 5 && currentUser.hasPermission('comments.create')" (click)="toggleNewCommentForm()" trans>Reply</button>
+                <button class="comment-action delete-button" mat-stroked-button #deleteBtn (click)="trackComments.confirmDeletion(deleteButton, comment)" *ngIf="trackComments.canDeleteAllComments || comment.user_id === currentUser.get('id')">
                     <mat-icon svgIcon="delete"></mat-icon>
                 </button>
             </ng-container>
@@ -41,9 +22,4 @@
     </div>
 </div>
 
-<new-comment-form
-    [inReplyTo]="comment"
-    [autoFocus]="true"
-    *ngIf="commentFormVisible$ | async"
-    (created)="hideNewCommentForm()"
-></new-comment-form>
+<new-comment-form [inReplyTo]="comment" [autoFocus]="true" *ngIf="commentFormVisible$ | async" (created)="hideNewCommentForm()"></new-comment-form>

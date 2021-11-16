@@ -94,5 +94,5 @@ export interface NavbarDropdownItem {route: string;
     icon: string;
     permission?: string;
     role?: string;
-    showFn?: (settings: Settings, user: CurrentUser) => boolean;
+    showFn: (settings: Settings, user: CurrentUser) => boolean;
 }

@@ -10,7 +10,6 @@ import {DatatableService} from '@common/datatable/datatable.service';
 import {Observable} from 'rxjs';
 import {ImportMediaModalComponent} from '../../import-media-modal/import-media-modal.component';
 import {Settings} from '@common/core/config/settings.service';
-import {TRACK_INDEX_FILTERS} from './track-index-filters';
 
 @Component({
     selector: 'track-index',
@@ -20,8 +19,7 @@ import {TRACK_INDEX_FILTERS} from './track-index-filters';
     providers: [DatatableService],
 })
 export class TrackIndexComponent implements OnInit {
-    tracks$ = this.datatable.data$ as Observable<Track[]>;
-    filters = TRACK_INDEX_FILTERS;
+    public tracks$ = this.datatable.data$ as Observable<Track[]>;
     constructor(
         private modal: Modal,
         private tracks: Tracks,

@@ -7,17 +7,14 @@ import {
     OnInit,
     Output,
     QueryList,
-    ViewChildren,
+    ViewChildren
 } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {UploadQueueService} from '@common/uploads/upload-queue/upload-queue.service';
 import {UploadQueueItem} from '@common/uploads/upload-queue/upload-queue-item';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {Albums} from '../../web-player/albums/albums.service';
-import {
-    TrackFormComponent,
-    TrackUploadResponse,
-} from '../track-form/track-form.component';
+import {TrackFormComponent} from '../track-form/track-form.component';
 import {Album} from '../../models/Album';
 import {BehaviorSubject} from 'rxjs';
 import {finalize, map} from 'rxjs/operators';
@@ -27,10 +24,7 @@ import {Toast} from '@common/core/ui/toast.service';
 import {AudioUploadValidator} from '../../web-player/audio-upload-validator';
 import {Track} from '../../models/Track';
 import {UploadedFile} from '@common/uploads/uploaded-file';
-import {
-    UploadInputConfig,
-    UploadInputTypes,
-} from '@common/uploads/upload-input-config';
+import {UploadInputConfig, UploadInputTypes} from '@common/uploads/upload-input-config';
 import {Settings} from '@common/core/config/settings.service';
 import {scrollInvalidInputIntoView} from '@common/core/utils/scroll-invalid-input-into-view';
 import {UploadApiConfig} from '@common/uploads/types/upload-api-config';
@@ -40,8 +34,6 @@ import {BackendErrorResponse} from '@common/core/types/backend-error-response';
 import {AppCurrentUser} from '../../app-current-user';
 import {TAG_MODEL} from '@common/core/types/models/Tag';
 import {Artist} from '../../models/Artist';
-import {Router} from '@angular/router';
-import {WaveformGenerator} from '../../web-player/tracks/waveform/waveform-generator';
 
 @Component({
     selector: 'album-form',
@@ -50,11 +42,7 @@ import {WaveformGenerator} from '../../web-player/tracks/waveform/waveform-gener
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlbumFormComponent implements OnInit {
-    public uploadButtonConfig: UploadInputConfig = {
-        multiple: true,
-        types: [UploadInputTypes.audio, UploadInputTypes.video],
-    };
-    public insideAdmin: boolean;
+    public uploadButtonConfig: UploadInputConfig = {multiple: true, types: [UploadInputTypes.audio, UploadInputTypes.video]};
     // album that is being edited
     @Input() album: Album;
     @Input() artist: Artist;
@@ -65,7 +53,7 @@ export class AlbumFormComponent implements OnInit {
 
     public errors: {[K in keyof Partial<Album>]: string} = {};
     public loading$ = new BehaviorSubject(false);
-    public allTracks$ = new BehaviorSubject<(UploadQueueItem | Track)[]>([]);
+    public allTracks$ = new BehaviorSubject<(UploadQueueItem|Track)[]>([]);
 
     public form = this.fb.group({
         name: [''],
@@ -73,7 +61,6 @@ export class AlbumFormComponent implements OnInit {
         artists: [[]],
         release_date: [new Date().toISOString().slice(0, 10)],
         description: [''],
-        spotify_id: [''],
         tags: [[]],
         genres: [[]],
     });
@@ -89,12 +76,9 @@ export class AlbumFormComponent implements OnInit {
         private audioValidator: AudioUploadValidator,
         public settings: Settings,
         private search: Search,
-        private router: Router,
-        private waveform: WaveformGenerator
     ) {}
 
     ngOnInit() {
-        this.insideAdmin = this.router.url.includes('admin');
         this.allTracks$ = new BehaviorSubject([
             ...(this.album ? this.album.tracks : []),
             ...this.onlyValidUploads(this.uploadQueue.uploads$.value),
@@ -116,14 +100,11 @@ export class AlbumFormComponent implements OnInit {
             this.form.patchValue(value);
         } else if (this.artist) {
             this.form.get('artists').setValue([this.artist]);
-            // set album artist as primary artist of current user
-        } else if (!this.currentUser.canAttachMusicToAnyArtist()) {
-            this.form
-                .get('artists')
-                .setValue([
-                    this.currentUser.get('artists')[0] ||
-                        this.currentUser.artistPlaceholder(),
-                ]);
+        // set album artist as primary artist of current user
+        } else if ( ! this.currentUser.canAttachMusicToAnyArtist()) {
+            this.form.get('artists').setValue([
+                this.currentUser.get('artists')[0] || this.currentUser.artistPlaceholder(),
+            ]);
         }
     }
 
@@ -139,9 +120,7 @@ export class AlbumFormComponent implements OnInit {
 
     public submit() {
         if (this.trackForms.some(f => f.isUploading())) {
-            this.toast.open(
-                'Some tracks are still uploading or failed to upload.'
-            );
+            this.toast.open('Some tracks are still uploading or failed to upload.');
             return;
         }
 
@@ -151,77 +130,54 @@ export class AlbumFormComponent implements OnInit {
             ...this.form.value,
             tracks: this.trackForms.map(f => f.getPayload()),
         };
-        payload.artists = payload.artists.map(a =>
-            typeof a !== 'number' ? a.id : a
-        );
+        payload.artists = payload.artists.map(a => typeof a !== 'number' ? a.id : a);
 
-        const request = this.album
-            ? this.albums.update(this.album.id, payload)
-            : this.albums.create(payload);
+        const request = this.album ?
+            this.albums.update(this.album.id, payload) :
+            this.albums.create(payload);
 
-        request.pipe(finalize(() => this.loading$.next(false))).subscribe(
-            response => {
+        request
+            .pipe(finalize(() => this.loading$.next(false)))
+            .subscribe(response => {
                 this.form.markAsPristine();
                 this.trackForms.forEach(tf => tf.form.markAsPristine());
                 this.toast.open('Album saved.');
                 this.uploadQueue.reset();
                 this.saved.emit(response.album);
-            },
-            (errResponse: BackendErrorResponse) => {
+            }, (errResponse: BackendErrorResponse) => {
                 this.errors = errResponse.errors;
                 scrollInvalidInputIntoView(this.errors, 'track-form');
                 this.cd.markForCheck();
-            }
-        );
+            });
     }
 
     public maybeCancel() {
-        if (!this.confirmCancel) {
+        if ( ! this.confirmCancel) {
             this.canceled.emit();
             return;
         }
-        this.modal
-            .show(ConfirmModalComponent, {
-                title: 'Delete Album',
-                body: 'Are you sure you want to cancel all uploads and delete this album?',
-                ok: 'Delete',
-            })
-            .beforeClosed()
-            .subscribe(confirmed => {
-                if (confirmed) {
-                    this.form.reset();
-                    this.uploadQueue.reset();
-                    this.canceled.emit();
-                }
-            });
+        this.modal.show(ConfirmModalComponent, {
+            title: 'Delete Album',
+            body:  'Are you sure you want to cancel all uploads and delete this album?',
+            ok:    'Delete'
+        }).beforeClosed().subscribe(confirmed => {
+            if (confirmed) {
+                this.form.reset();
+                this.uploadQueue.reset();
+                this.canceled.emit();
+            }
+        });
     }
 
     public uploadFiles(uploadedFiles: UploadedFile[]) {
         const params = {
             uri: 'uploads',
-            httpParams: {
-                autoMatchAlbum: false,
-                diskPrefix: 'track_media',
-                disk: 'public',
-            },
-            validator: this.audioValidator,
+            httpParams: {diskPrefix: 'track_media', disk: 'public'},
+            validator: this.audioValidator
         } as UploadApiConfig;
-        this.uploadQueue.start(uploadedFiles, params).subscribe(
-            (response: TrackUploadResponse) => {
-                const queueItem = this.uploadQueue.find(response.queueItemId);
-                const trackForm = this.trackForms.find(
-                    tf => tf.uploadQueueItem?.id === response.queueItemId
-                ).form;
-                this.waveform
-                    .generate(queueItem.uploadedFile.native)
-                    .then(waveData => {
-                        trackForm.patchValue({waveData});
-                        queueItem.finishProcessing();
-                    });
-                trackForm.markAsDirty();
-            },
-            () => this.toast.open('Could not upload tracks.')
-        );
+        this.uploadQueue.start(uploadedFiles, params).subscribe(response => {
+            this.trackForms.find(tf => tf.uploadQueueItem?.id === response.queueItemId).form.markAsDirty();
+        }, () => this.toast.open('Could not upload tracks.'));
     }
 
     public trackRemoved(track: UploadQueueItem | Track) {
@@ -229,22 +185,15 @@ export class AlbumFormComponent implements OnInit {
         this.allTracks$.next(newTracks);
     }
 
-    public trackByFn = (i: number, upload: UploadQueueItem | Track) =>
-        upload.id;
+    public trackByFn = (i: number, upload: UploadQueueItem|Track) => upload.id;
 
     public suggestTagFn = (query: string) => {
-        return this.search
-            .media(query, {types: [TAG_MODEL], limit: 5})
+        return this.search.media(query, {types: [TAG_MODEL], limit: 5})
             .pipe(map(response => response.results.tags.map(tag => tag.name)));
     };
 
     public suggestGenreFn = (query: string) => {
-        return this.search
-            .media(query, {types: [GENRE_MODEL], limit: 5})
-            .pipe(
-                map(response =>
-                    response.results.genres.map(genre => genre.name)
-                )
-            );
-    };
+        return this.search.media(query, {types: [GENRE_MODEL], limit: 5})
+            .pipe(map(response => response.results.genres.map(genre => genre.name)));
+    }
 }

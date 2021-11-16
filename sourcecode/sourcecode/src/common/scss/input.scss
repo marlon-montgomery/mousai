@@ -52,7 +52,7 @@
     box-sizing: border-box;
     border-radius: 4px;
     transition-duration: 0.15s;
-    transition-property: border, background-color, box-shadow;
+    transition-property: border,background-color,color,box-shadow;
     transition-timing-function: ease-in;
     overflow: visible;
     position: relative;
@@ -83,12 +83,6 @@
     }
   }
 
-  .fake-input.disabled {
-    opacity: 0.6;
-    cursor: default;
-    pointer-events: none;
-  }
-
   option {
     color: rgba(0, 0, 0, 0.87);
   }
@@ -107,12 +101,12 @@
     &:not(.hide-action) {
       display: flex;
 
-      input, select, textarea {
+      input, select {
         flex: 1;
       }
 
       &:not(.action-left) {
-        input, select, textarea {
+        input, select {
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
           border-right: none;
@@ -125,7 +119,7 @@
       }
 
       &.action-left {
-        input, select, textarea {
+        input, select {
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
           border-left: none;

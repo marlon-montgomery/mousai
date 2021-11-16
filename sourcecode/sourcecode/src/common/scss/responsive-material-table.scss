@@ -104,10 +104,6 @@ $table-header-height: 85px;
 }
 
 .responsive-table {
-  .visible-on-mobile {
-    display: none;
-  }
-
   @media screen and (max-width: $medium) {
     padding: 0;
     background-color: initial;
@@ -203,10 +199,6 @@ $table-header-height: 85px;
       padding: 10px 0 0;
       text-align: center;
       justify-content: center;
-    }
-
-    .visible-on-mobile {
-      display: block;
     }
 
     .hidden-on-mobile, .table-checkbox {

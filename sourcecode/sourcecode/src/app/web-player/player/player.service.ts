@@ -344,9 +344,8 @@ export class Player {
 
     private putQueueIntoLocalStorage(queue: {tracks: Track[], queuedItemId?: string}) {
         if ( ! queue.tracks) return;
-        const copy = {...queue};
-        copy.tracks = copy.tracks.slice(0, 15);
-        this.storage.set('player.queue', copy);
+        queue.tracks = queue.tracks.slice(0, 15);
+        this.storage.set('player.queue', queue);
     }
 
     private setStrategy(track: Track): PlaybackStrategy {

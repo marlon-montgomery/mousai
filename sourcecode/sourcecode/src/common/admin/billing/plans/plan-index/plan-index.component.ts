@@ -6,8 +6,7 @@ import {CurrentUser} from '@common/auth/current-user';
 import {Toast} from '@common/core/ui/toast.service';
 import {Plan} from '@common/core/types/models/Plan';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {DatatableService} from '@common/datatable/datatable.service';
-import { PLAN_INDEX_FILTERS } from '@common/admin/billing/plans/plan-index/plan-index-filters';
+import {DatatableService} from '../../../../datatable/datatable.service';
 
 @Component({
     selector: 'plan-index',
@@ -17,9 +16,8 @@ import { PLAN_INDEX_FILTERS } from '@common/admin/billing/plans/plan-index/plan-
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlanIndexComponent implements OnInit {
-    filters = PLAN_INDEX_FILTERS;
-    loading$ = new BehaviorSubject<boolean>(false);
-    plans$ = this.datatable.data$ as Observable<Plan[]>;
+    public loading$ = new BehaviorSubject<boolean>(false);
+    public plans$ = this.datatable.data$ as Observable<Plan[]>;
 
     constructor(
         private plans: Plans,

@@ -148,7 +148,7 @@ export class AppearanceEditor {
     }
 
     private initIframe(iframe: HTMLIFrameElement) {
-        const url = this.settings.getBaseUrl() + '/' + this.config.defaultRoute + `?be-preview-mode=${APPEARANCE_TOKEN}`;
+        const url = this.settings.getBaseUrl() + this.config.defaultRoute + `?be-preview-mode=${APPEARANCE_TOKEN}`;
         iframe.src = removeDuplicateSlashes(url);
         this.previewWindow = iframe.contentWindow;
     }

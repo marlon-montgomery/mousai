@@ -6,7 +6,7 @@ export class Subscription {
     plan_id: number;
     user_id: number;
     on_grace_period?: boolean;
-    gateway_name: string;
+    gateway: string;
     gateway_id: string;
     valid?: boolean;
     cancelled?: boolean;

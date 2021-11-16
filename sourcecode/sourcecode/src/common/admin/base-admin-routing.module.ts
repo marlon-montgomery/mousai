@@ -30,7 +30,6 @@ import {TagIndexComponent} from '@common/admin/tag-index/tag-index.component';
 import {CustomPagesIndexComponent} from '../pages/custom-pages-index/custom-pages-index.component';
 import {CrupdateCustomPageComponent} from '../pages/custom-pages-index/crupdate-custom-page/crupdate-custom-page.component';
 import {SearchSettingsComponent} from '@common/admin/settings/search/search-settings.component';
-import {CommentIndexComponent} from '@common/admin/comments/comment-index.component';
 
 const routes: Routes = [
     {
@@ -79,11 +78,6 @@ const routes: Routes = [
                 path: 'files',
                 component: FileEntryIndexComponent,
                 data: {permissions: ['files.view']}
-            },
-            {
-                path: 'comments',
-                component: CommentIndexComponent,
-                data: {permissions: ['comments.view']}
             },
             {
                 path: 'ads',

@@ -6,7 +6,7 @@ import {
     OnDestroy,
     OnInit,
     Optional,
-    ViewChild,
+    ViewChild
 } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppearanceEditor} from './appearance-editor/appearance-editor.service';
@@ -15,11 +15,7 @@ import {Subscription} from 'rxjs';
 import {ComponentPortal} from '@angular/cdk/portal';
 import {map} from 'rxjs/operators';
 import {BreakpointsService} from '@common/core/ui/breakpoints.service';
-import {
-    APPEARANCE_EDITOR_CONFIG,
-    AppearanceEditorConfig,
-} from './appearance-editor-config.token';
-import {SidenavComponent} from '@common/shared/sidenav/sidenav.component';
+import {APPEARANCE_EDITOR_CONFIG, AppearanceEditorConfig} from './appearance-editor-config.token';
 
 @Component({
     selector: 'appearance',
@@ -28,39 +24,33 @@ import {SidenavComponent} from '@common/shared/sidenav/sidenav.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppearanceComponent implements OnInit, OnDestroy {
-    @ViewChild('iframe', {static: true}) iframe: ElementRef;
-    @ViewChild(SidenavComponent, {static: true}) sidenav: SidenavComponent;
+    @ViewChild('iframe', { static: true }) iframe: ElementRef;
     private routerSub: Subscription;
+    public leftColumnIsHidden = false;
 
-    public panelPortal$ = this.editor.activePanel$.pipe(
-        map(panel => {
-            return panel && panel.component
-                ? new ComponentPortal(panel.component)
-                : null;
-        })
-    );
+    public panelPortal$ = this.editor.activePanel$.pipe(map(panel => {
+        return (panel && panel.component) ? new ComponentPortal(panel.component) : null;
+    }));
 
     constructor(
         public editor: AppearanceEditor,
         private router: Router,
         private route: ActivatedRoute,
         public breakpoints: BreakpointsService,
-        @Inject(APPEARANCE_EDITOR_CONFIG)
-        @Optional()
-        public config: AppearanceEditorConfig[]
+        @Inject(APPEARANCE_EDITOR_CONFIG) @Optional() public config: AppearanceEditorConfig[],
     ) {}
 
     ngOnInit() {
+        this.leftColumnIsHidden = this.breakpoints.isMobile$.value;
         this.editor.init(
             this.iframe.nativeElement,
             this.route.snapshot.data.defaultSettings,
-            this.config
+            this.config,
         );
-        this.routerSub = this.route.queryParams.subscribe(
-            (params: {panel?: string}) => {
+        this.routerSub = this.route.queryParams
+            .subscribe((params: {panel?: string}) => {
                 this.editor.openPanel(params.panel);
-            }
-        );
+            });
     }
 
     ngOnDestroy() {
@@ -77,5 +67,9 @@ export class AppearanceComponent implements OnInit, OnDestroy {
 
     public viewName(name: string) {
         return name.replace('-', ' ');
+    }
+
+    public toggleLeftSidebar() {
+        this.leftColumnIsHidden = !this.leftColumnIsHidden;
     }
 }

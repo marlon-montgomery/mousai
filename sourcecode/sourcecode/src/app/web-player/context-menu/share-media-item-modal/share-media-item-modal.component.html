@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h2 mat-dialog-title [transValues]="{resource: getType()}" trans>Share this :resource</h2>
+    <h2 mat-dialog-title trans>Share this {{getType()}}</h2>
     <button type="button" mat-dialog-close class="close-button" mat-icon-button tabindex="-1">
         <mat-icon svgIcon="close"></mat-icon>
     </button>
@@ -10,7 +10,7 @@
         <ng-container *ngIf="shouldShowNav">
             <div class="tab-nav">
                 <button mat-button class="tab-button" type="button" (click)="openTab('share')" [class.active]="activeTab === 'share'" trans>Share</button>
-                <button mat-button class="tab-button" type="button" (click)="openTab('embed')" [class.active]="activeTab === 'embed'" *ngIf="currentUser.hasPermission('music.embed')" trans>Embed</button>
+                <button mat-button class="tab-button" type="button" (click)="openTab('embed')" [class.active]="activeTab === 'embed'" trans>Embed</button>
             </div>
         </ng-container>
 
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <div class="tab share-tab" *ngIf="activeTab === 'embed' && currentUser.hasPermission('music.embed')">
+            <div class="tab share-tab" *ngIf="activeTab === 'embed' && currentUser.hasPermission('tracks.embed')">
                 <iframe [src]="embedLinkSafe" [style.max-height]="iframeHeight + 'px'"></iframe>
                 <div class="input-container">
                     <textarea readonly [value]="embedCode" (click)="selectLink($event)" rows="3"></textarea>

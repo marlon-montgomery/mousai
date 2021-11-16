@@ -18,6 +18,7 @@ export interface User {
     permissions?: Permission[];
     email: string;
     password: string;
+    api_token: string;
     language: string;
     timezone: string;
     country: string;
@@ -33,5 +34,4 @@ export interface User {
     unread_notifications_count?: number;
     card_last_four?: number;
     card_brand?: string;
-    model_type: 'user';
 }

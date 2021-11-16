@@ -14,11 +14,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SlugControlModule} from '../../shared/form-controls/slug-control/slug-control.module';
 import {TextEditorModule} from '../../text-editor/text-editor.module';
 import {LoadingIndicatorModule} from '../../core/ui/loading-indicator/loading-indicator.module';
+import {CustomPageTableComponent} from './custom-page-table/custom-page-table.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 @NgModule({
-    declarations: [CustomPagesIndexComponent, CrupdateCustomPageComponent],
+    declarations: [
+        CustomPagesIndexComponent,
+        CrupdateCustomPageComponent,
+        CustomPageTableComponent,
+    ],
     imports: [
         CommonModule,
         RouterModule,
@@ -38,8 +43,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         MatButtonModule,
         MatTooltipModule,
         MatSlideToggleModule,
-        MatProgressBarModule,
     ],
-    exports: [CustomPagesIndexComponent, CrupdateCustomPageComponent],
+    exports: [
+        CustomPagesIndexComponent,
+        CrupdateCustomPageComponent,
+        CustomPageTableComponent,
+    ]
 })
-export class CustomPageIndexModule {}
+export class CustomPageIndexModule {
+}

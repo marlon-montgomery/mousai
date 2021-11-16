@@ -10,27 +10,27 @@ import {PaginatedBackendResponse} from '../../core/types/pagination/paginated-ba
 export class RoleService {
     constructor(private httpClient: HttpCacheClient) {}
 
-    getRoles(): PaginatedBackendResponse<Role> {
+    public getRoles(): PaginatedBackendResponse<Role> {
         return this.httpClient.getWithCache('roles?perPage=15');
     }
 
-    createNew(data): Observable<Role> {
+    public createNew(data): Observable<Role> {
         return this.httpClient.post('roles', data);
     }
 
-    update(roleId, data): Observable<Role> {
+    public update(roleId, data): Observable<Role> {
         return this.httpClient.put('roles/' + roleId, data);
     }
 
-    delete(roleId: number): Observable<any> {
+    public delete(roleId: number): Observable<any> {
         return this.httpClient.delete('roles/' + roleId);
     }
 
-    addUsers(roleId: number, userIds: number[]): Observable<Role> {
-        return this.httpClient.post('roles/' + roleId + '/add-users', {userIds});
+    public addUsers(roleId: number, emails: string[]): Observable<Role> {
+        return this.httpClient.post('roles/' + roleId + '/add-users', {emails});
     }
 
-    removeUsers(roleId: number, userIds: number[]): Observable<Role> {
+    public removeUsers(roleId: number, userIds: number[]): Observable<Role> {
         return this.httpClient.post('roles/' + roleId + '/remove-users', {ids: userIds});
     }
 }

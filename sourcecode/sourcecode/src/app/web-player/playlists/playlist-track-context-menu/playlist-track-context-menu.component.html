@@ -12,7 +12,7 @@
         <div class="context-menu-item" (click)="goToTrackRadio()"  *ngIf="!multipleTracksSelected() && !settings.get('player.hide_radio_button')" trans>Go to Track Radio</div>
         <div class="context-menu-item" (click)="addToQueue()" *ngIf="!inQueue() || multipleTracksSelected()" trans>Add to Queue</div>
         <div class="context-menu-item" (click)="removeFromQueue()" *ngIf="inQueue() && !multipleTracksSelected()" trans>Remove from Queue</div>
-        <div class="context-menu-item" (click)="removeFromPlaylist()" *ngIf="data.playlist.collaborative || data.playlist.owner_id === currentUser.get('id')" trans>Remove from Playlist</div>
+        <div class="context-menu-item" (click)="removeFromPlaylist()" trans>Remove from Playlist</div>
         <div class="context-menu-item" (click)="saveToLibrary()" *ngIf="!inLibrary() || multipleTracksSelected()" trans>Save to Your Music</div>
         <div class="context-menu-item" (click)="removeFromLibrary()" *ngIf="inLibrary() && !multipleTracksSelected()" trans>Remove from Your Music</div>
         <div class="context-menu-item" (click)="showLyricsModal()"  *ngIf="!multipleTracksSelected()" trans>Show Lyrics</div>
@@ -22,4 +22,3 @@
         <a class="context-menu-item"  routerLink="admin/tracks" [queryParams]="{track_id: data.item.id}" *ngIf="currentUser.hasPermission('tracks.update')" trans>Edit</a>
     </div>
 </div>
-

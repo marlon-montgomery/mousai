@@ -17,22 +17,23 @@ interface PreviewFilesMeta {
 }
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class PreviewFilesService {
     private files: FileEntry[] = [];
     private portal = new BehaviorSubject(null);
     private meta: BehaviorSubject<PreviewFilesMeta> = new BehaviorSubject({});
-    private previewUriTransformer: PreviewUrlTransformer | null = null;
+    private previewUriTransformer: PreviewUrlTransformer|null = null;
     public download = new Subject();
 
     constructor(
         @Inject(AVAILABLE_PREVIEWS) private availablePreviews: DefaultPreviews,
-        private injector: Injector
+        private injector: Injector,
     ) {}
 
     public pagination(): Observable<PreviewFilesMeta> {
-        return this.meta.pipe(filter(data => data && !!data.entry));
+        return this.meta
+            .pipe(filter(data => data && !!data.entry));
     }
 
     public getCurrent(): FileEntry {
@@ -48,18 +49,18 @@ export class PreviewFilesService {
     }
 
     public showNext() {
-        if (!this.meta.value.haveNext) return;
+        if ( ! this.meta.value.haveNext) return;
         this.updateMeta('next');
         this.updatePortal();
     }
 
     public showPrevious() {
-        if (!this.meta.value.havePrevious) return;
+        if ( ! this.meta.value.havePrevious) return;
         this.updateMeta('previous');
         this.updatePortal();
     }
 
-    private updateMeta(dir?: 'next' | 'previous' | number) {
+    private updateMeta(dir?: 'next'|'previous'|number) {
         let newPointer = 0;
 
         if (typeof dir === 'string') {
@@ -73,22 +74,19 @@ export class PreviewFilesService {
             pointer: newPointer,
             entry: this.files[newPointer],
             total: this.files.length,
-            haveNext: newPointer + 1 < this.files.length,
-            havePrevious: newPointer - 1 > -1,
+            haveNext: (newPointer + 1) < this.files.length,
+            havePrevious: (newPointer - 1) > -1,
         });
     }
 
     private updatePortal() {
-        const file = this.getCurrent();
-        const comp =
-            this.availablePreviews[file?.mime] ||
-            this.availablePreviews[file?.type] ||
-            DefaultPreviewComponent;
+        const current = this.getCurrent();
+        const comp = (current && this.availablePreviews[current.type]) || DefaultPreviewComponent;
         this.portal.next(new ComponentPortal(comp, null, this.createInjector()));
     }
 
     public set(files: FileEntry[], activeFile?: number) {
-        if (!files || files.length === 0) return;
+        if ( ! files || files.length === 0) return;
         this.files = files.filter(entry => entry.type !== 'folder');
         this.updateMeta(activeFile);
         this.updatePortal();

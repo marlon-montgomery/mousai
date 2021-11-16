@@ -36,7 +36,9 @@ import {ConfirmRequestHandledModalComponent} from './backstage-requests-index/ba
 import {BetweenDateInputModule} from '@common/core/ui/between-date-input/between-date-input.module';
 import {SelectUserInputModule} from '@common/core/ui/select-user-input/select-user-input.module';
 import {BackstageRequestsFiltersComponent} from './backstage-requests-index/backstage-requests-filters/backstage-requests-filters.component';
+import {SearchSettingsComponent} from './settings/search/search-settings.component';
 import {CommentIndexComponent} from './comments/comment-index.component';
+import {CommentIndexFiltersComponent} from './comments/comment-index-filters/comment-index-filters.component';
 import {ImportMediaModalComponent} from './import-media-modal/import-media-modal.component';
 import { FormattedChannelConfigPipe } from './channels/channel-index/formatted-channel-config.pipe';
 
@@ -75,6 +77,7 @@ import { FormattedChannelConfigPipe } from './channels/channel-index/formatted-c
         PlaylistsPageComponent,
         ChannelIndexComponent,
         CommentIndexComponent,
+        CommentIndexFiltersComponent,
         BackstageRequestsIndexComponent,
         BackstageRequestsFiltersComponent,
         BackstageRequestViewerComponent,
@@ -87,6 +90,7 @@ import { FormattedChannelConfigPipe } from './channels/channel-index/formatted-c
         // settings
         ProvidersSettingsComponent,
         PlayerSettingsComponent,
+        SearchSettingsComponent,
         BlockedArtistsSettingsComponent,
         InterfaceComponent,
         FormattedChannelConfigPipe,

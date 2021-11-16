@@ -1,5 +1,6 @@
 import {AppConfig} from '@common/core/config/app-config';
 import {Settings} from '@common/core/config/settings.service';
+import {CurrentUser} from '@common/auth/current-user';
 import {AppCurrentUser} from './app-current-user';
 
 export const BEMUSIC_CONFIG: AppConfig = {

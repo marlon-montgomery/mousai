@@ -25,28 +25,10 @@
 
 .channel-content {
   margin-top: 40px;
-}
-
-.content-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
 
   h2 {
     font-weight: 400;
-    margin: 0 10px 0 0;
-  }
-
-  .mat-icon {
-    margin-right: 5px;
-    flex-shrink: 0;
-  }
-
-  .header-info {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    color: mat-color($app-foreground, secondary-text);
+    margin: 0 0 10px;
   }
 }
 

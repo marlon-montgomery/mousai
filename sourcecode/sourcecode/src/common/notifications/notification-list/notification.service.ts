@@ -15,11 +15,11 @@ const BASE_URI = 'notifications';
     providedIn: 'root'
 })
 export class NotificationService {
-    all$ = new BehaviorSubject<DatabaseNotification[]>(null);
-    loading$ = new BehaviorSubject(false);
-    canLoadMore = new BehaviorSubject(false);
-    unreadCount$ = new BehaviorSubject(null);
-    clickedOnNotification$ = new Subject<{
+    public all$ = new BehaviorSubject<DatabaseNotification[]>(null);
+    public loading$ = new BehaviorSubject(false);
+    public canLoadMore = new BehaviorSubject(false);
+    public unreadCount$ = new BehaviorSubject(null);
+    public clickedOnNotification$ = new Subject<{
         notification: DatabaseNotification,
         action: DatabaseNotificationAction,
     }>();

@@ -10,8 +10,6 @@ import {WebPlayerUrls} from '../../web-player/web-player-urls.service';
 import {ImportMediaModalComponent} from '../import-media-modal/import-media-modal.component';
 import {ARTIST_MODEL} from '../../models/Artist';
 import {Modal} from '@common/core/ui/dialogs/modal.service';
-import {Settings} from '@common/core/config/settings.service';
-import {PLAYLIST_INDEX_FILTERS} from './playlist-index-filters';
 
 @Component({
     selector: 'playlists-page',
@@ -20,13 +18,11 @@ import {PLAYLIST_INDEX_FILTERS} from './playlist-index-filters';
     providers: [DatatableService],
 })
 export class PlaylistsPageComponent implements OnInit {
-    playlists$ = this.datatable.data$ as Observable<Playlist[]>;
-    filters = PLAYLIST_INDEX_FILTERS;
+    public playlists$ = this.datatable.data$ as Observable<Playlist[]>;
     constructor(
         public datatable: DatatableService<Playlist>,
         private playlists: Playlists,
         public currentUser: CurrentUser,
-        public settings: Settings,
         public wpImages: WebPlayerImagesService,
         public urls: WebPlayerUrls,
         private modal: Modal,

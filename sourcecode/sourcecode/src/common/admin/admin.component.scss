@@ -10,9 +10,24 @@ material-navbar {
   left: 0;
 }
 
-.nav-searchbar {
-  display: block;
-  flex: 1 1 auto;
+.admin-page-content {
+  position: relative;
+  top: $material-navbar-height;
+  min-height: calc(100vh - #{$material-navbar-height});
+}
+
+.left-column {
+  width: 225px;
+  flex-shrink: 0;
+  border-right: $admin-card-border;
+  box-shadow: $admin-card-box-shadow;
+}
+
+.left-column-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px 8px 0;
 }
 
 .version {
@@ -22,7 +37,9 @@ material-navbar {
 }
 
 .content-inner {
+  flex: 1 1 auto;
   padding: $admin-page-padding;
+  overflow: initial;
 
   @media only screen and (max-width: $medium) {
     padding: 10px;

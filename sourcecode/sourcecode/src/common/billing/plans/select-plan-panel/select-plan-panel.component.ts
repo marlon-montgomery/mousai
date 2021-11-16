@@ -1,13 +1,7 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    OnInit,
-    Output,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SubscriptionStepperState} from '../../subscriptions/subscription-stepper-state.service';
 import {Plan} from '@common/core/types/models/Plan';
-import {CurrentUser} from '@common/auth/current-user';
+import { CurrentUser } from '@common/auth/current-user';
 
 @Component({
     selector: 'select-plan-panel',
@@ -21,12 +15,11 @@ export class SelectPlanPanelComponent implements OnInit {
 
     constructor(
         public state: SubscriptionStepperState,
-        public currentUser: CurrentUser
+        public currentUser: CurrentUser,
     ) {}
 
     ngOnInit() {
-        this.hasRecommendedPlan =
-            this.state.plans.filter(plan => plan.recommended).length > 0;
+        this.hasRecommendedPlan = this.state.plans.filter(plan => plan.recommended).length > 0;
     }
 
     public selectPlan(plan: Plan) {
@@ -40,11 +33,7 @@ export class SelectPlanPanelComponent implements OnInit {
     }
 
     public userSubscribedToPlan(plan: Plan): boolean {
-        if (
-            this.state.mode !== 'pricing' &&
-            plan.free &&
-            !this.currentUser.model$?.value?.subscriptions?.length
-        ) {
+        if (this.state.mode !== 'pricing' && plan.free && !this.currentUser.model$?.value?.subscriptions?.length) {
             return true;
         }
         return !!this.currentUser.getSubscription({planId: plan.id});
@@ -58,12 +47,5 @@ export class SelectPlanPanelComponent implements OnInit {
         } else {
             return 'Choose Plan';
         }
-    }
-
-    shouldDisablePlanSelection(plan: Plan) {
-        return (
-            (this.state.mode !== 'pricing' && plan.free) ||
-            this.userSubscribedToPlan(plan)
-        );
     }
 }

@@ -7,11 +7,11 @@ export interface NotificationSubscription {
 
 export interface NotificationSubscriptionGroup {
     group_name: string;
-    subscriptions: Pick<NotificationSubscription, 'name' | 'notif_id'>[];
+    notifications: Pick<NotificationSubscription, 'name' | 'notif_id'>[];
 }
 
 export interface NotificationSubscriptionsResponse {
     available_channels: string[];
-    subscriptions: NotificationSubscriptionGroup[];
+    grouped_notifications: NotificationSubscriptionGroup[];
     user_selections: NotificationSubscription[];
 }

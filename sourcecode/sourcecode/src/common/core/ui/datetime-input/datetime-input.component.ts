@@ -1,48 +1,39 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
-import {
-    ControlValueAccessor,
-    FormBuilder,
-    NG_VALUE_ACCESSOR,
-} from '@angular/forms';
-import { val } from 'cheerio/lib/api/attributes';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
     selector: 'datetime-input',
     templateUrl: './datetime-input.component.html',
     styleUrls: ['./datetime-input.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: DatetimeInputComponent,
-            multi: true,
-        },
-    ],
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: DatetimeInputComponent,
+        multi: true,
+    }]
 })
 export class DatetimeInputComponent implements ControlValueAccessor {
     @Input() id: string;
     @Input() currentDateAsDefault = false;
 
-    currentDate: string;
-    currentTime: string;
+    public currentDate: string;
+    public currentTime: string;
     private initiated = false;
 
     private propagateChange: Function;
-    form = this.fb.group({
+    public form = this.fb.group({
         date: [''],
         time: [''],
     });
 
-    constructor(private fb: FormBuilder, private cd: ChangeDetectorRef) {
+    constructor(private fb: FormBuilder) {
         this.setCurrentDatetime();
     }
 
-    writeValue(value: string) {
-        value = (value || '').replace('Z', '');
-        let [date, time] = value.includes('T') ? value.split('T') : value.split(' ');
-        time = time ? time.substr(0, 5) : '';
+    public writeValue(value: string) {
+        let [date, time] = (value || '').split(' ');
 
-        if (!this.initiated && this.currentDateAsDefault) {
+        if ( ! this.initiated && this.currentDateAsDefault) {
             date = date || this.currentDate;
             time = time || this.currentTime;
         }
@@ -51,49 +42,25 @@ export class DatetimeInputComponent implements ControlValueAccessor {
         this.form.patchValue({date, time});
     }
 
-    registerOnChange(fn: Function) {
+    public registerOnChange(fn: Function) {
         this.propagateChange = fn;
         this.form.valueChanges.subscribe(value => {
-            let datetime: string;
-            if ( ! value.date) {
-                datetime = null;
-            } else {
-                if (!value.time) {
-                    value.time = '00:00';
-                }
-                datetime = `${value.date} ${value.time}`;
-                // add seconds, if don't already exist
-                if (datetime.split(':').length === 2) {
-                    datetime += ':00';
-                }
+            if ( ! value.time) {
+                value.time = '00:00';
+            }
+            let datetime = `${value.date} ${value.time}`;
+            // add seconds, if don't already exist
+            if (datetime.split(':').length === 2) {
+               datetime += ':00';
             }
             this.propagateChange(datetime);
         });
     }
 
-    registerOnTouched() {}
-
-    setDisabledState(isDisabled: boolean) {
-        if (isDisabled) {
-            this.form.disable();
-        } else {
-            this.form.enable();
-        }
-        this.cd.markForCheck();
-    }
-
-    clearValue() {
-        this.form.patchValue({
-            date: null,
-            time: null,
-        });
-    }
+    public registerOnTouched() {}
 
     private setCurrentDatetime() {
-        const [date, time] = new Date()
-            .toISOString()
-            .replace('Z', '')
-            .split('T');
+        const [date, time] = (new Date).toISOString().replace('Z', '').split('T');
         const [hours, minutes] = time.split(':');
         this.currentDate = date;
         this.currentTime = `${hours}:${minutes}`;

@@ -72,7 +72,7 @@ export class GoogleDocsViewerComponent extends BaseFilePreview implements AfterV
 
     private getFullPreviewUrl(previewUrl: string) {
         // https://docs.google.com/gview?embedded=true&url=
-        previewUrl = isAbsoluteUrl(previewUrl) ? previewUrl : this.settings.getBaseUrl() + '/' + previewUrl;
+        previewUrl = isAbsoluteUrl(previewUrl) ? previewUrl : this.settings.getBaseUrl() + previewUrl;
         return 'https://view.officeapps.live.com/op/embed.aspx?src=' + encodeURIComponent(previewUrl);
     }
 }

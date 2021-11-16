@@ -24,7 +24,6 @@ export class CrupdateAlbumPageResolverService implements Resolve<any> {
         const params = {
             with: ['tags', 'genres', 'artists', 'fullTracks'],
             albumsPerPage: 50,
-            forEditing: true,
         };
         const id = +route.paramMap.get('id');
         return this.albums.get(id, params).pipe(

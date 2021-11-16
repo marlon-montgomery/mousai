@@ -19,9 +19,7 @@ export class ChannelShowComponent implements OnInit {
     constructor(private route: ActivatedRoute, private state: WebPlayerState) {}
 
     ngOnInit() {
-        if (this.state.scrollContainer) {
-            this.state.scrollContainer.nativeElement.scrollTop = 0;
-        }
+        this.state.scrollContainer.nativeElement.scrollTop = 0;
         this.route.data.subscribe(data => {
             if (data.api && data.api.channel) {
                 this.channel$.next(data.api.channel);

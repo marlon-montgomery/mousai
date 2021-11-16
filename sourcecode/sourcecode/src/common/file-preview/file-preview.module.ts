@@ -14,12 +14,10 @@ import {GoogleDocsViewerComponent} from './google-docs-viewer/google-docs-viewer
 import {LoadingIndicatorModule} from '@common/core/ui/loading-indicator/loading-indicator.module';
 import {OverlayPanel} from '@common/core/ui/overlay-panel/overlay-panel.service';
 import {PreviewFilesService} from '@common/file-preview/preview-files.service';
-import {TranslationsModule} from '@common/core/translations/translations.module';
 
 @NgModule({
     imports: [
         CommonModule,
-        TranslationsModule,
 
         // material
         PortalModule,

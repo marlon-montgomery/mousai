@@ -7,11 +7,11 @@ import {map} from 'rxjs/operators';
 import {Permission} from '@common/core/types/models/permission';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class CurrentUser {
-    model$ = new BehaviorSubject<Partial<User>>(null);
-    isLoggedIn$ = this.model$.pipe(map(u => !!u.id));
+    public model$ = new BehaviorSubject<Partial<User>>(null);
+    public isLoggedIn$ = this.model$.pipe(map(u => !!u.id));
     private guestsRole: Role;
     private permissions: {[key: string]: Permission} = {};
 
@@ -19,22 +19,22 @@ export class CurrentUser {
      * Uri user was attempting to open before
      * redirect to login page, if any.
      */
-    redirectUri?: string;
+    public redirectUri?: string;
 
-    get<K extends keyof User>(prop: K): Partial<User>[K] {
+    public get<K extends keyof User>(prop: K): Partial<User>[K]  {
         return this.model$.value && this.model$.value[prop];
     }
 
-    getModel(): Partial<User> {
+    public getModel(): Partial<User> {
         return {...this.model$.value};
     }
 
-    set(key: string, value: any): void {
+    public set(key: string, value: any): void {
         this.model$.next({...this.model$.value, [key]: value});
     }
 
-    assignCurrent(model?: Partial<User>) {
-        if (!model) {
+    public assignCurrent(model?: Partial<User>) {
+        if ( ! model) {
             // guest model
             model = {roles: [this.guestsRole], permissions: this.guestsRole.permissions};
         }
@@ -42,76 +42,66 @@ export class CurrentUser {
         this.model$.next(model);
     }
 
-    hasPermissions(permissions: string[]): boolean {
-        return (
-            permissions.filter(permission => {
-                return !this.hasPermission(permission);
-            }).length === 0
-        );
+    public hasPermissions(permissions: string[]): boolean {
+        return permissions.filter(permission => {
+            return !this.hasPermission(permission);
+        }).length === 0;
     }
 
-    hasPermission(permission: string): boolean {
+    public hasPermission(permission: string): boolean {
         return !!this.permissions['admin'] || !!this.permissions[permission];
     }
 
-    hasRole(role: string): boolean {
-        return (
-            this.model$.value.roles &&
-            !!this.model$.value.roles.find(r => r.name === role)
-        );
+    public hasRole(role: string): boolean {
+        return this.model$.value.roles && !!this.model$.value.roles.find(r => r.name === role);
     }
 
-    getRestrictionValue(
-        permissionName: string,
-        restrictionName: string
-    ): number | boolean | null {
+    public getRestrictionValue(permissionName: string, restrictionName: string): number|null {
         const permission = this.permissions[permissionName];
         let restrictionValue = null;
         if (permission) {
-            const restriction = permission.restrictions.find(
-                r => r.name === restrictionName
-            );
+            const restriction = permission.restrictions.find(r => r.name === restrictionName);
             restrictionValue = restriction ? restriction.value : null;
         }
         return restrictionValue;
     }
 
-    isLoggedIn(): boolean {
+    public isLoggedIn(): boolean {
         return this.get('id') > 0;
     }
 
     /**
      * Check if user subscription is active, on trial, or on grace period.
      */
-    isSubscribed(): boolean {
-        if (!this.model$.value?.subscriptions) return false;
+    public isSubscribed(): boolean {
+        if ( ! this.model$.value?.subscriptions) return false;
         return this.model$.value.subscriptions.find(sub => sub.valid) !== undefined;
     }
 
     /**
      * Check if user subscription is active
      */
-    subscriptionIsActive(): boolean {
+    public subscriptionIsActive(): boolean {
         return this.isSubscribed() && !this.onTrial();
     }
 
-    onTrial() {
+    public onTrial() {
         const sub = this.getSubscription();
         return sub && sub.on_trial;
     }
 
-    onGracePeriod(): boolean {
+    public onGracePeriod(): boolean {
         const sub = this.getSubscription();
         return sub && sub.on_grace_period;
     }
 
-    getSubscription(filters: {gateway?: string; planId?: number} = {}): Subscription {
+    public getSubscription(filters: { gateway?: string, planId?: number } = {}): Subscription {
         if (!this.isSubscribed()) return null;
 
         let subs = this.model$.value.subscriptions.slice();
 
         if (filters.gateway) {
-            subs = subs.filter(sub => sub.gateway_name === filters.gateway);
+            subs = subs.filter(sub => sub.gateway === filters.gateway);
         }
 
         if (filters.planId) {
@@ -121,10 +111,8 @@ export class CurrentUser {
         return subs[0];
     }
 
-    setSubscription(subscription: Subscription) {
-        const i = this.model$.value.subscriptions.findIndex(
-            sub => sub.id === subscription.id
-        );
+    public setSubscription(subscription: Subscription) {
+        const i = this.model$.value.subscriptions.findIndex(sub => sub.id === subscription.id);
 
         if (i > -1) {
             this.model$.value.subscriptions[i] = subscription;
@@ -133,14 +121,15 @@ export class CurrentUser {
         }
     }
 
-    isAdmin(): boolean {
+    public isAdmin(): boolean {
         return this.hasPermission('admin');
     }
 
-    init(params: {user?: User; guestsRole: Role}) {
+    public init(params: { user?: User, guestsRole: Role }) {
         this.guestsRole = params.guestsRole || ({} as Role);
         this.assignCurrent(params.user);
     }
+
 
     private setPermissions(model: Partial<User>) {
         this.permissions = {};
