@@ -38,7 +38,7 @@ gulp.task('dist', function(done) {
     const cssSearch = /{{--angular styles begin--}}[\s\S]*{{--angular styles end--}}/;
     const cssReplaceStr = '{{--angular styles begin--}}' + "\n\t\t" + styles.join("\n\t\t") + "\n\t{{--angular styles end--}}";
 
-    const laravelViewPath = './../server/resources/views/app.blade.php';
+    const laravelViewPath = '/Users/marlon.montgomery/Documents/GitHub/mousai/sourcecode/sourcecode/website/resources/views/app.blade.php';
 
     //replace app stylesheet links and js script tags with new ones
     let content = fs.readFileSync(laravelViewPath, 'utf8');
