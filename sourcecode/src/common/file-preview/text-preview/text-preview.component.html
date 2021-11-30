@@ -1,6 +1,0 @@
-<default-preview *ngIf="fileTooLarge$ | async; else textPreview" message="This file is too large to preview."></default-preview>
-<ng-template #textPreview>
-    <div class="text-wrapper preview-object">
-        <pre>{{ content$ | async }}</pre>
-    </div>
-</ng-template>
