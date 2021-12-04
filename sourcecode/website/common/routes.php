@@ -34,6 +34,7 @@ Route::group(['prefix' => 'secure', 'middleware' => 'web'], function () {
     Route::get('auth/email/verify/{id}/{hash}', 'Common\Auth\Controllers\VerifyEmailController@verify')->name('verification.verify');
 
     //SOCIAL AUTHENTICATION
+    Route::post('auth/social/bitclout', 'Common\Auth\Controllers\SocialAuthController@bitclout');
     Route::get('auth/social/{provider}/connect', 'Common\Auth\Controllers\SocialAuthController@connect');
     Route::get('auth/social/{provider}/login', 'Common\Auth\Controllers\SocialAuthController@login');
     Route::get('auth/social/{provider}/retrieve-profile', 'Common\Auth\Controllers\SocialAuthController@retrieveProfile');

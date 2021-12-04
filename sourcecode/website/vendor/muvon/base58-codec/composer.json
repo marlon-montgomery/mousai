@@ -1,0 +1,29 @@
+{
+  "name": "muvon/base58-codec",
+  "description": "Base58 codec",
+  "keywords": [
+    "base58",
+    "codec",
+    "kiss",
+    "encoder",
+    "decoder",
+    "lightweight"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Muvon Co. Ltd",
+      "email": "contact@muvon.io"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require-dev": {
+    "phpunit/phpunit": "^10"
+  },
+  "autoload": {
+    "psr-4": {
+      "Muvon\\KISS\\": "src/"
+    }
+  }
+}
