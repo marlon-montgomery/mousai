@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     ) {
         this.matIconRegistry.addSvgIcon(
             'bitclout',
-            this.domSanitzer.bypassSecurityTrustResourceUrl('assets/icons/individual/bitclout.svg')
+            this.domSanitzer.bypassSecurityTrustResourceUrl('client/assets/icons/individual/bitclout.svg')
         );
     }
 
