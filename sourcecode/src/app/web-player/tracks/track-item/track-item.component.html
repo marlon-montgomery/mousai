@@ -1,8 +1,0 @@
-<div class="img-container" [routerLink]="urls.track(track)">
-    <media-image [media]="track" default="track"></media-image>
-    <playback-control-button (play)="play()" (pause)="pause()" [playing]="playing()"></playback-control-button>
-</div>
-<div class="footer">
-    <a class="track-name primary-text" [routerLink]="urls.track(track)">{{track.name}}</a>
-    <artists-links-list class="artist-name secondary-text" [artists]="track.artists"></artists-links-list>
-</div>

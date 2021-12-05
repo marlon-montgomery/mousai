@@ -10,6 +10,9 @@ import {ChannelShowComponent} from './web-player/channels/channel-show/channel-s
 import {ChannelResolverService} from './admin/channels/crupdate-channel-page/channel-resolver.service';
 import {CookieNoticeService} from '@common/gdpr/cookie-notice/cookie-notice.service';
 import {CustomHomepage} from '@common/pages/shared/custom-homepage.service';
+import {MatIconRegistry} from '@angular/material/icon';
+import {DomSanitizer} from '@angular/platform-browser';
+
 
 export const LANDING_PAGE_NAME = 'Landing Page';
 
@@ -29,7 +32,14 @@ export class AppComponent implements OnInit {
         private customHomepage: CustomHomepage,
         private meta: MetaTagsService,
         private cookieNotice: CookieNoticeService,
-    ) {}
+        private matIconRegistry: MatIconRegistry,
+        private domSanitzer: DomSanitizer,
+    ) {
+        this.matIconRegistry.addSvgIcon(
+            'bitclout',
+            this.domSanitzer.bypassSecurityTrustResourceUrl('assets/icons/individual/bitclout.svg')
+        );
+    }
 
     ngOnInit() {
         this.browserEvents.subscribeToEvents(this.el.nativeElement);

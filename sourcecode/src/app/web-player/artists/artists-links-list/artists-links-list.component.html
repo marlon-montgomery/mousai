@@ -1,3 +1,0 @@
-<a class="hover-underline artist-link" [routerLink]="artist.route" [target]="linksInNewTab ? '_blank' : '_self'" *ngFor="let artist of artists$ | async; last as last">
-    <span>{{artist.name}}<ng-container *ngIf="!last">, </ng-container></span>
-</a>

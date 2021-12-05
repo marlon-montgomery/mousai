@@ -1,16 +1,16 @@
 {
     "/secure": {
-        "target": "http://bemusic.test",
+        "target": "http://localhost:8081",
         "secure": false,
         "changeOrigin": true
     },
     "/storage": {
-        "target": "http://bemusic.test",
+        "target": "http://localhost:8081",
         "secure": false,
         "changeOrigin": true
     },
     "/client": {
-        "target": "http://bemusic.test",
+        "target": "http://localhost:8081",
         "secure": false,
         "changeOrigin": true
     },

@@ -1,3 +1,0 @@
-<ng-container *ngIf="previewFiles.getPortal() | async as portal">
-    <ng-template [cdkPortalOutlet]="portal" (attached)="listenForDownloadClick($event)"></ng-template>
-</ng-container>
