@@ -2,7 +2,8 @@
 
 @section('angular-styles')
     {{--angular styles begin--}}
-		<link rel="stylesheet" href="client/styles.b29cfa4658be177d6ca0.css">
+		<link rel="stylesheet" href="client/styles.41f9cd8f18e85618bcff.css" media="print" onload="this.media=&apos;all&apos;">
+		<link rel="stylesheet" href="client/styles.41f9cd8f18e85618bcff.css">
 	{{--angular styles end--}}
 @endsection
 
@@ -12,11 +13,11 @@
         var spinner = document.querySelector('.global-spinner');
         if (spinner) spinner.style.display = 'flex';
     }, 100);</script>
-		<script src="client/runtime-es2015.5b4eff44a04776dfe432.js" type="module"></script>
-		<script src="client/runtime-es5.5b4eff44a04776dfe432.js" nomodule defer></script>
-		<script src="client/polyfills-es5.85a146d3b567a2ddbb57.js" nomodule defer></script>
-		<script src="client/polyfills-es2015.394385f3043280af1d7f.js" type="module"></script>
-		<script src="client/main-es2015.b61305a94665a17bbe0a.js" type="module"></script>
-		<script src="client/main-es5.b61305a94665a17bbe0a.js" nomodule defer></script>
+		<script src="client/runtime-es2015.898157147968052a8b58.js" type="module"></script>
+		<script src="client/runtime-es5.898157147968052a8b58.js" nomodule defer></script>
+		<script src="client/polyfills-es5.7dec1fefa52cfcc5108b.js" nomodule defer></script>
+		<script src="client/polyfills-es2015.f93fa6be99734e20273f.js" type="module"></script>
+		<script src="client/main-es2015.07f483a3bbaeee2fcb1b.js" type="module"></script>
+		<script src="client/main-es5.07f483a3bbaeee2fcb1b.js" nomodule defer></script>
 	{{--angular scripts end--}}
 @endsection
