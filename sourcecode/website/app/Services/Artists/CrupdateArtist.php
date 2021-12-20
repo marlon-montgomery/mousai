@@ -32,6 +32,7 @@ class CrupdateArtist
 
         $artist->fill([
             'name' => $data['name'],
+            'bitclout' => $data['bitclout'] ?? null,
             'verified' => $data['verified'] ?? false,
             'image_small' => $data['image_small'],
             'auto_update' => $data['auto_update'] ?? false,
