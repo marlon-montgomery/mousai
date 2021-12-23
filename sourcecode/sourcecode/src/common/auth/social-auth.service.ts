@@ -13,7 +13,6 @@ import {User} from '../core/types/models/User';
 import {AppHttpClient} from '../core/http/app-http-client.service';
 import {ExternalSocialProfile} from '@common/auth/external-social-profile';
 import {identityLogin} from './bitclout';
-import {BackendErrorResponse} from '@common/core/types/backend-error-response';
 
 @Injectable({
     providedIn: 'root',
@@ -38,7 +37,7 @@ export class SocialAuthService {
     /**
      * Resolve for latest social login or connect call.
      */
-    private resolve: Function;
+    private resolve: (value: any) => void;
 
     constructor(
         protected httpClient: AppHttpClient,
@@ -69,10 +68,10 @@ export class SocialAuthService {
                 publicKey: user.publicKey,
                 jwt: user.jwt,
             })
-                .subscribe(response  => {
-                    this.bootstrapper.bootstrap(response['data']);
+                .subscribe(({data}) => {
+                    this.bootstrapper.bootstrap(data);
                     this.router.navigate([this.auth.getRedirectUri()]);
-                }, (errResponse: BackendErrorResponse) => null);
+                }, () => null);
         } catch (err) {
             this.toast.open('Try later', {duration: 6000});
         }
@@ -100,7 +99,7 @@ export class SocialAuthService {
      * Handle social login callback, based on returned status.
      */
     public socialLoginCallback(status: string, data = null) {
-        if ( ! status) return;
+        if (!status) return;
         switch (status.toUpperCase()) {
             case 'SUCCESS':
                 this.currentUser.assignCurrent(data.user);
@@ -130,7 +129,7 @@ export class SocialAuthService {
     public showRequestExtraCredentialsModal(config: object) {
         this.extraCredentialsModal = this.modal.open(RequestExtraCredentialsModalComponent, config);
         this.extraCredentialsModal.componentInstance.onSubmit$.subscribe(credentials => {
-            if ( ! credentials) return;
+            if (!credentials) return;
             this.sendExtraCredentialsToBackend(credentials);
         });
     }
@@ -138,9 +137,9 @@ export class SocialAuthService {
     /**
      * Send specified credentials to backend and handle success/error.
      */
-    public sendExtraCredentialsToBackend(data: object) {
-        this.httpClient.post('auth/social/extra-credentials', data).subscribe(response => {
-            this.currentUser.assignCurrent(response['data']);
+    public sendExtraCredentialsToBackend(params: object) {
+        this.httpClient.post('auth/social/extra-credentials', params).subscribe(({data}) => {
+            this.currentUser.assignCurrent(data);
             this.extraCredentialsModal.close();
             this.router.navigate([this.auth.getRedirectUri()]).then(() => {
                 this.toast.open('Accounts connected');
@@ -173,7 +172,7 @@ export class SocialAuthService {
     private listenForMessageFromPopup() {
         window.addEventListener('message', e => {
             if (e.data.type !== 'social-auth' || this.settings.getBaseUrl().indexOf(e.origin) === -1) return;
-            this.socialLoginCallback(e.data.status, e.data['callbackData']);
+            this.socialLoginCallback(e.data.status, e.data.callbackData);
         }, false);
     }
 }
