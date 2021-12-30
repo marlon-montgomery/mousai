@@ -111,9 +111,8 @@ nav-sidebar {
       }
 
       .artist-name {
-        display: block;
-        color: mat-color($app-foreground, secondary-text);
         font-size: 1.3rem;
+        color: mat-color($app-foreground, secondary-text);
 
         a {
           color: inherit;

@@ -1,6 +1,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    ElementRef,
     Input,
     OnChanges,
     SimpleChanges,
@@ -19,12 +20,16 @@ import {User} from '@common/core/types/models/User';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArtistsLinksListComponent implements OnChanges {
-    @Input() artists: (Artist|User)[] = [];
+    @Input() artists: (Artist | User)[] = [];
     @Input() linksInNewTab = false;
 
-    public artists$ = new BehaviorSubject<{name: string, route: any[] | string}[]>([]);
+    public artists$ = new BehaviorSubject<{ name: string, route: any[] | string }[]>([]);
 
-    constructor(public urls: WebPlayerUrls) {}
+    constructor(
+        protected host: ElementRef,
+        public urls: WebPlayerUrls
+    ) {
+    }
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.artists && changes.artists.currentValue) {
@@ -32,7 +37,7 @@ export class ArtistsLinksListComponent implements OnChanges {
         }
     }
 
-    private normalizeArtists(artists: (Artist|User)[]) {
+    private normalizeArtists(artists: (Artist | User)[]) {
         const normalizedArtists = (artists || []).filter(a => !!a).map(artist => {
             if (artist.model_type === ARTIST_MODEL) {
                 return {name: artist.name, route: this.urls.artist(artist)};

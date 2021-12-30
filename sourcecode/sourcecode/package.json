@@ -51,6 +51,7 @@
     "tinymce": "^5.4.2",
     "tslib": "^2.0.0",
     "url-polyfill": "^1.1.9",
+    "uuid": "^8.3.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -62,6 +63,7 @@
     "@types/chartist": "^0.9.48",
     "@types/deepmerge": "^2.2.0",
     "@types/dot-object": "^2.1.1",
+    "@types/google.analytics": "^0.0.42",
     "@types/google.fonts": "^1.0.1",
     "@types/hammerjs": "^2.0.36",
     "@types/jasmine": "~3.6.0",

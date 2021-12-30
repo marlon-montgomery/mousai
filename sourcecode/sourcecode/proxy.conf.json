@@ -1,4 +1,9 @@
 {
+    "/node": {
+        "target": "https://bitclout.com",
+        "secure": true,
+        "changeOrigin": true
+    },
     "/secure": {
         "target": "http://localhost:8081",
         "secure": false,

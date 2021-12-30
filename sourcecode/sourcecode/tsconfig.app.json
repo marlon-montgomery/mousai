@@ -11,8 +11,9 @@
         ]
     },
     "files": [
-        "src/main.ts",
-        "src/polyfills.ts"
+      "src/main.ts",
+      "src/polyfills.ts",
+      "node_modules/@types/google.analytics/index.d.ts"
     ],
     "include": [
         "src/**/*.d.ts",
