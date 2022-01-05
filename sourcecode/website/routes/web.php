@@ -17,6 +17,7 @@ use App\Http\Controllers\Artist\ArtistTracksController;
 use App\Http\Controllers\ArtistAlbumsController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\BackstageRequestController;
+use App\Http\Controllers\BitCloutController;
 use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\ImportMediaController;
 use App\Http\Controllers\PlaylistController;
@@ -38,6 +39,9 @@ use App\Http\Controllers\UserProfile\UserPlaylistsController;
 use App\Http\Controllers\UserProfileController;
 
 Route::group(['prefix' => 'secure'], function () {
+    // ON DONATION
+    Route::post('bitclout/on-tip', [BitCloutController::class, 'onTip']);
+
     // SEARCH
     Route::get('search/audio/{trackId}/{artistName}/{trackName}', [SearchController::class, 'searchAudio']);
     Route::get('search', [SearchController::class, 'index']);
@@ -174,11 +178,11 @@ Route::get('search/{query}', [SearchController::class, 'index'])->middleware('pr
 Route::get('search/{query}/{tab}', [SearchController::class, 'index'])->middleware('prerenderIfCrawler');
 
 // REDIRECT LEGACY ROUTES
-Route::get('genre/{name}', function($genre) {
+Route::get('genre/{name}', function ($genre) {
     return redirect("channel/genre/$genre", 301);
 });
 
-Route::get('channels/{name}', function($name) {
+Route::get('channels/{name}', function ($name) {
     return redirect("channel/$name", 301);
 });
 

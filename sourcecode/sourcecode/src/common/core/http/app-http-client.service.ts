@@ -20,8 +20,8 @@ export class AppHttpClient {
             .pipe(catchError(err => this.errorHandler.handle(err, uri, options)));
     }
 
-    public post<T>(uri: string, payload: object = null): Observable<T> {
-        return this.httpClient.post<T>(this.prefixUri(uri), payload)
+    public post<T>(uri: string, payload: object = null, options: object = {}): Observable<T> {
+        return this.httpClient.post<T>(this.prefixUri(uri), payload, options)
             .pipe(catchError(err => this.errorHandler.handle(err, uri)));
     }
 

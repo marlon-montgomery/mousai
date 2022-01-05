@@ -1,7 +1,7 @@
 {
-    "/node": {
+    "/api/v0": {
         "target": "https://bitclout.com",
-        "secure": true,
+        "secure": false,
         "changeOrigin": true
     },
     "/secure": {

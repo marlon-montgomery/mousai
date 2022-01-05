@@ -10,10 +10,35 @@ type Response<T = { [key: string]: any }> = { id: string, payload?: T };
 
 type Info = Response<{ hasStorageAccess: boolean, browserSupported: boolean }>;
 
+export type User = {
+    hasExtraText: boolean
+    btcDepositAddress: string
+    ethDepositAddress: string
+    version: number
+    encryptedSeedHex: string
+    network: string
+    accessLevel: number
+    accessLevelHmac: string
+};
+
+export type SignRequest = {
+    accessLevel: number;
+    accessLevelHmac: string;
+    encryptedSeedHex: string;
+    transactionHex: string;
+};
+
+type Sign = Response<{ signedTransactionHex: string }>;
+
 @Injectable({
     providedIn: 'root',
 })
 export class BitcloutService {
+    protected static readonly KEY_USERS = 'deso.users';
+    protected static readonly KEY_CURRENT_USER = 'deso.currentUser';
+    protected static users: { [key: string]: User } = {};
+    protected static currentUserPublicKey: string;
+
     protected frame: HTMLIFrameElement;
 
     protected allowedOrigins: string[] = ['https://identity.bitclout.com'];
@@ -46,6 +71,48 @@ export class BitcloutService {
     }
 
     constructor(@Inject(DOCUMENT) protected document: HTMLDocument) {
+    }
+
+    static set CurrentUserPublicKey(value: string) {
+        this.currentUserPublicKey = value;
+        localStorage.setItem(this.KEY_CURRENT_USER, value);
+    }
+
+    static get CurrentUserPublicKey() {
+        if (typeof this.currentUserPublicKey === 'undefined') {
+            const value = localStorage.getItem(this.KEY_CURRENT_USER);
+            const [publicKey] = Object.keys(this.Users) ?? [];
+
+            if (value === null && typeof publicKey === 'undefined') {
+                return null;
+            }
+
+            if (value === null) {
+                this.CurrentUserPublicKey = publicKey;
+            }
+
+            this.currentUserPublicKey = value === null ? publicKey : value;
+        }
+
+        return this.currentUserPublicKey;
+    }
+
+    static get CurrentUser() {
+        return this.Users[this.CurrentUserPublicKey];
+    }
+
+    static set Users(value: { [key: string]: User }) {
+        this.users = value;
+        localStorage.setItem(this.KEY_USERS, JSON.stringify(value));
+    }
+
+    static get Users() {
+        if (Object.keys(this.users).length === 0) {
+            const value = localStorage.getItem(this.KEY_USERS);
+            this.users = value === null ? {} : JSON.parse(value);
+        }
+
+        return this.users;
     }
 
     async initialize(): Promise<HTMLIFrameElement> {
@@ -127,7 +194,8 @@ export class BitcloutService {
             if (hasMethod) {
                 const handlers = {
                     initialize: (value: MessageEvent) => this.onInitialized(value),
-                    storageGranted: () => this.onStorageGranted()
+                    storageGranted: () => this.onStorageGranted(),
+                    sign: () => this.response.next(event.data)
                 };
 
                 const handler = handlers[method];
@@ -138,5 +206,20 @@ export class BitcloutService {
                 this.response.next(event.data);
             }
         }
+    }
+
+    sign(payload: SignRequest): Promise<Sign> {
+        const request = this.sendMessage({method: 'sign', payload});
+        return this.waitForResponse<Sign>(request);
+    }
+
+    paramsForPublicKey(publicKey: string) {
+        const {
+            encryptedSeedHex,
+            accessLevel,
+            accessLevelHmac
+        } = BitcloutService.Users[publicKey];
+
+        return {encryptedSeedHex, accessLevel, accessLevelHmac};
     }
 }

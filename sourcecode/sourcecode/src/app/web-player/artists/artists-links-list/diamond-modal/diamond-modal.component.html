@@ -1,0 +1,37 @@
+<ng-container *ngIf="initialized; else pending;">
+    <span mat-dialog-title>
+        Tip
+        <strong>
+            {{ Artist.Name }}
+            <small>
+                (<a [href]="Artist.URL" target="_blank">@{{ Artist.Username }}</a>)
+            </small>
+        </strong>
+    </span>
+    <mat-dialog-content>
+        They'll receive this amount as a tip from you.
+        <div class="diamond-wrap">
+            <div (click)="select(index)"
+                 *ngFor="let index of diamondIndexes;"
+                 [class.disabled]="SendingDiamond"
+                 [class.selected]="selectedIndex === index"
+                 class="diamond">
+                <mat-icon svgIcon="diamond"></mat-icon>
+                <span>{{ valueOf(index) }}</span>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button (click)="onCancel()" [disabled]="!CanCancel" mat-button mat-dialog-close>
+            CANCEL
+        </button>
+        <button (click)="onSend()" [disabled]="!CanSend" color="accent" mat-raised-button>
+            SEND
+        </button>
+        <mat-progress-bar mode="indeterminate"
+                          [style.opacity]="SendingDiamond ? 1 : 0"></mat-progress-bar>
+    </mat-dialog-actions>
+</ng-container>
+<ng-template #pending>
+    <mat-spinner [diameter]="16"></mat-spinner>
+</ng-template>

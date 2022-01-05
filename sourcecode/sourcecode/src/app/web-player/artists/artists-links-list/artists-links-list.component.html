@@ -4,7 +4,7 @@
            [target]="linksInNewTab ? '_blank' : '_self'">
             {{ artist.name }}
         </a>
-        <mat-icon svgIcon="diamond"></mat-icon>
+        <diamond *ngIf="artist.meta.bitclout" [artist]="artist"></diamond>
         <ng-container *ngIf="!last">,</ng-container>
     </div>
 </app-marquee>

@@ -7,11 +7,13 @@
     "require": {
         "php": ">=7.3.0",
         "algolia/algoliasearch-client-php": "^3.0",
+        "bitwasp/bitcoin": "^1.0",
         "cocur/slugify": "^4.0",
         "doctrine/dbal": "^3.0",
         "fideloper/proxy": "^4.4",
         "firebase/php-jwt": "^5.5",
         "fruitcake/laravel-cors": "^2.0",
+        "furqansiddiqui/base58check-php": "^0.1.5",
         "guzzlehttp/guzzle": "^7.0.1",
         "http-interop/http-factory-guzzle": "^1.0",
         "intervention/image": "^2.5.1",
