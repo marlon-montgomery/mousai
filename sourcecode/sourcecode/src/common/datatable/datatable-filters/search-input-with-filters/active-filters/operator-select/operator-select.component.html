@@ -1,0 +1,12 @@
+<ng-container [formGroup]="formGroup">
+    <select
+        class="operator-select"
+        formControlName="operator"
+        #select
+        (ngModelChange)="resizeSelect()"
+    >
+        <option [value]="operator" *ngFor="let operator of operators">
+            {{ operator | operatorDisplayName:compact }}
+        </option>
+    </select>
+</ng-container>

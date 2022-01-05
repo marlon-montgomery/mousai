@@ -1,0 +1,16 @@
+<ng-container *ngIf="channel$ | async as channel">
+    <div class="header-container" *ngIf="!channel.config.hideTitle">
+        <h1 trans>{{channel.name}}</h1>
+        <div class="header-actions" *ngIf="channel.config.actions">
+            <a type="button" class="header-action" [matTooltip]="action.tooltip | trans" [routerLink]="action.route" mat-icon-button *ngFor="let action of channel.config.actions">
+                <mat-icon [svgIcon]="action.icon"></mat-icon>
+            </a>
+        </div>
+    </div>
+
+    <ad-host slot="ads.general_top"></ad-host>
+
+    <channel-content [channel]="channel"></channel-content>
+
+    <ad-host slot="ads.general_bottom" class="margin-bottom"></ad-host>
+</ng-container>

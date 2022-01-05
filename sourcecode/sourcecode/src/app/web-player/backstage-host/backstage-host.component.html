@@ -1,0 +1,5 @@
+<material-navbar [transparent]="(themes.selectedTheme$ | async).is_dark"></material-navbar>
+
+<div class="container backstage-centered-content">
+    <router-outlet></router-outlet>
+</div>

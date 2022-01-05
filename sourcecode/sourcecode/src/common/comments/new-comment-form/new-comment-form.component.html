@@ -1,0 +1,20 @@
+<form (ngSubmit)="submit()" ngNativeValidate>
+  <div class="input-container">
+    <label for="track-new-comment" class="hidden" trans>New Comment</label>
+    <div class="action-container">
+      <img class="avatar" [src]="currentUser.get('avatar')" alt="" />
+      <input
+        #input
+        type="text"
+        id="track-new-comment"
+        [placeholder]="inReplyTo ? 'Write a reply' : 'Write a comment'"
+        trans-placeholder
+        [formControl]="commentControl"
+        minlength="4"
+        maxlength="1000"
+        required
+      />
+    </div>
+  </div>
+  <button class="hidden" [disabled]="loading$ | async" trans>Submit</button>
+</form>

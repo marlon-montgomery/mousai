@@ -1,0 +1,89 @@
+@import "src/scss/variables";
+
+:host {
+  display: block;
+
+  &.nested media-image {
+    width: 30px;
+    height: 30px;
+  }
+
+  &:hover {
+    .comment-actions {
+      visibility: visible;
+    }
+  }
+}
+
+.comment-wrapper {
+  display: flex;
+  padding: 15px 0;
+
+  &.deleted {
+    align-items: center;
+    font-size: 1.3rem;
+    color: mat-color($app-foreground, secondary-text);
+  }
+}
+
+.comment-header {
+  display: block;
+  color: mat-color($app-foreground, secondary-text);
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.comment-content {
+  margin-right: 40px;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.right-column {
+  margin-left: auto;
+  position: relative;
+}
+
+.created_at {
+  color: mat-color($app-foreground, secondary-text);
+  font-size: 1.3rem;
+  white-space: nowrap;
+}
+
+.comment-actions {
+  visibility: hidden;
+  white-space: nowrap;
+  margin-top: 4px;
+  min-width: 107px;
+}
+
+.comment-action {
+  line-height: 20px;
+  font-size: 1.3rem;
+  min-width: 0;
+
+  .mat-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.delete-button {
+  padding: 0 10px;
+  margin-left: 5px;
+}
+
+new-comment-form {
+  margin-left: 40px;
+}

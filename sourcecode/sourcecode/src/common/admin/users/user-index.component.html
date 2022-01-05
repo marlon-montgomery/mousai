@@ -1,0 +1,110 @@
+<div class="datatable-page-header">
+  <h1 trans>Users</h1>
+
+  <div class="header">
+    <datatable-filters pluralName="users" [filters]="filters"></datatable-filters>
+    <div class="action-buttons">
+      <button mat-raised-button class="btn-with-dropdown-icon" [matMenuTriggerFor]="menu">
+        <span trans>More Actions</span>
+        <mat-icon svgIcon="keyboard-arrow-down"></mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="exportCsv()">
+          <mat-icon svgIcon="export-csv"></mat-icon>
+          <span trans>Export users in CSV</span>
+        </button>
+      </mat-menu>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="showCrupdateUserModal()"
+        class="button-with-icon"
+      >
+        <mat-icon svgIcon="add"></mat-icon>
+        <span trans>Add New User</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="datatable responsive-table">
+  <mat-progress-bar
+    class="loading-bar"
+    mode="indeterminate"
+    color="accent"
+    *ngIf="datatable.paginator && datatable.paginator.loading$ | async"
+  ></mat-progress-bar>
+  <table class="material-table">
+    <thead>
+      <tr>
+        <th table-header-checkbox></th>
+        <th table-sort-header="email" trans>User</th>
+        <th *ngIf="settings.get('billing.enable')" trans>Subscribed</th>
+        <th trans>Roles</th>
+        <th table-sort-header trans>First Name</th>
+        <th table-sort-header trans>Last Name</th>
+        <th table-sort-header trans>Created At</th>
+        <th></th>
+      </tr>
+      <tr *ngIf="datatable.selectedRows$.value.length as selectedCount">
+        <th colspan="8">
+          <div
+            class="bulk-actions-title"
+            [transValues]="{count: selectedCount, resource: 'user(s)'}"
+            trans
+          >
+            :count :resource selected:
+          </div>
+          <div class="bulk-actions">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="maybeDeleteSelectedUsers()"
+              *ngIf="currentUser.hasPermission('users.delete')"
+              trans
+            >
+              Delete
+            </button>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users$ | async">
+        <td [table-body-checkbox]="user.id"></td>
+        <td>
+          <user-column [user]="user"></user-column>
+        </td>
+        <td data-label="Subscribed" *ngIf="settings.get('billing.enable')">
+          {{ user.subscriptions?.length ? 'Yes' : 'No' }}
+        </td>
+        <td data-label="Roles">{{ makeRolesList(user.roles) }}</td>
+        <td data-label="First Name">{{ user.first_name || '-' }}</td>
+        <td data-label="Last Name">{{ user.last_name || '-' }}</td>
+        <td>{{ user.created_at | formattedDate }}</td>
+        <td class="edit-column">
+          <button
+            mat-icon-button
+            (click)="showCrupdateUserModal(user)"
+            *ngIf="currentUser.hasPermission('users.update')"
+            [matTooltip]="'Edit user' | trans"
+          >
+            <mat-icon svgIcon="edit"></mat-icon>
+          </button>
+          <button
+              mat-icon-button
+              (click)="loginAs(user)"
+              *ngIf="currentUser.hasPermission('admin')"
+              [matTooltip]="'Login as user' | trans"
+          >
+            <mat-icon svgIcon="login"></mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <no-results-message svgImage="people.svg" *ngIf="datatable.paginator.noResults$ | async">
+    <span primary-text trans>No users have been created yet</span>
+  </no-results-message>
+  <datatable-footer></datatable-footer>
+</div>

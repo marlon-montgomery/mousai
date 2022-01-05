@@ -1,0 +1,51 @@
+<div class="modal-header">
+    <h2 mat-dialog-title [transValues]="{resource: getType()}" trans>Share this :resource</h2>
+    <button type="button" mat-dialog-close class="close-button" mat-icon-button tabindex="-1">
+        <mat-icon svgIcon="close"></mat-icon>
+    </button>
+</div>
+
+<mat-dialog-content>
+    <ng-container *ngIf="activeTab$ | async as activeTab">
+        <ng-container *ngIf="shouldShowNav">
+            <div class="tab-nav">
+                <button mat-button class="tab-button" type="button" (click)="openTab('share')" [class.active]="activeTab === 'share'" trans>Share</button>
+                <button mat-button class="tab-button" type="button" (click)="openTab('embed')" [class.active]="activeTab === 'embed'" *ngIf="currentUser.hasPermission('music.embed')" trans>Embed</button>
+            </div>
+        </ng-container>
+
+        <div class="tabs">
+            <div class="tab share-tab" *ngIf="activeTab === 'share'">
+
+                <div class="media-preview">
+                    <media-image [media]="mediaItem"></media-image>
+                    <div class="preview-body">
+                        <div class="preview-name">{{mediaItem.name}}</div>
+                        <div class="input-container link-input-container">
+                            <label for="media-item-link" class="hidden">Media item link</label>
+                            <input type="text" [(ngModel)]="link" (click)="selectLink($event)" id="media-item-link" readonly tabindex="1" cdkFocusInitial>
+                            <button mat-flat-button color="accent" class="input-addon" (click)="copyLink()" trans>Copy</button>
+                        </div>
+                        <div class="share-icons">
+                            <button mat-icon-button (click)="shareUsing('facebook')"><img src="{{getShareImage('facebook')}}"></button>
+                            <button mat-icon-button (click)="shareUsing('twitter')"><img src="{{getShareImage('twitter')}}"></button>
+                            <button mat-icon-button (click)="shareUsing('tumblr')"><img src="{{getShareImage('tumblr')}}"></button>
+                            <button mat-icon-button (click)="shareUsing('blogger')"><img src="{{getShareImage('bloggr')}}"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab share-tab" *ngIf="activeTab === 'embed' && currentUser.hasPermission('music.embed')">
+                <iframe [src]="embedLinkSafe" [style.max-height]="iframeHeight + 'px'"></iframe>
+                <div class="input-container">
+                    <textarea readonly [value]="embedCode" (click)="selectLink($event)" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-dialog-close type="button" mat-button class="cancel-button" trans>Close</button>
+</mat-dialog-actions>

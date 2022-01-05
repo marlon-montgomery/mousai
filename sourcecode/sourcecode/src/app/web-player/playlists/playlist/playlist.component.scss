@@ -1,0 +1,55 @@
+@import "../../../../scss/variables";
+
+:host {
+  display: block;
+  padding: $page-margin;
+}
+
+.media-page-header {
+  padding: 0;
+  margin: 0;
+}
+
+.creator {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 5px 0 20px;
+}
+
+playlist-editors-widget {
+  margin: 5px 0 20px;
+}
+
+.playlist-description {
+  margin-bottom: 20px;
+  font-size: 1.7rem;
+  white-space: initial;
+}
+
+.action-buttons {
+  margin-bottom: 0;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+
+  .meta-item:not(:first-of-type):before {
+    content: "\B7";
+    margin: 0 5px;
+  }
+}
+
+.track-list-header {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 25px;
+  border-bottom: 1px solid mat-color($app-foreground, divider);
+}
+
+.no-results-message {
+  margin-top: 40px;
+}

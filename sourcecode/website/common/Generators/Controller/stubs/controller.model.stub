@@ -1,0 +1,105 @@
+<?php
+
+namespace DummyNamespace;
+
+use Common\Core\BaseController;
+use Common\Database\Paginator;
+use Illuminate\Http\Request;
+use DummyFullModelClass;
+use Illuminate\Http\Response;
+use App\Http\Requests\CrupdateDummyModelNameRequest;
+use App\Actions\DummyModelName\CrupdateDummyModelName;
+
+class DummyClass extends BaseController
+{
+    /**
+     * @var DummyModelClass
+     */
+    private $DummyModelVariable;
+
+    /**
+     * @var Request
+     */
+    private $request;
+
+    /**
+     * @param DummyModelClass $DummyModelVariable
+     * @param Request $request
+     */
+    public function __construct(DummyModelClass $DummyModelVariable, Request $request)
+    {
+        $this->DummyModelVariable = $DummyModelVariable;
+        $this->request = $request;
+    }
+
+    /**
+     * @return Response
+     */
+    public function index()
+    {
+        $userId = $this->request->get('userId');
+        $this->authorize('index', [DummyModelClass::class, $userId]);
+
+        $paginator = new Paginator($this->DummyModelVariable, $this->request->all());
+
+        if ($userId = $paginator->param('userId')) {
+            $paginator->where('user_id', $userId);
+        }
+
+        $pagination = $paginator->paginate();
+
+        return $this->success(['pagination' => $pagination]);
+    }
+
+    /**
+     * @param DummyModelClass $DummyModelVariable
+     * @return Response
+     */
+    public function show(DummyModelClass $DummyModelVariable)
+    {
+        $this->authorize('show', $DummyModelVariable);
+
+        return $this->success(['DummyModelVariable' => $DummyModelVariable]);
+    }
+
+    /**
+     * @param CrupdateDummyModelNameRequest $request
+     * @return Response
+     */
+    public function store(CrupdateDummyModelNameRequest $request)
+    {
+        $this->authorize('store', DummyModelClass::class);
+
+        $DummyModelVariable = app(CrupdateDummyModelClass::class)->execute($request->all());
+
+        return $this->success(['DummyModelVariable' => $DummyModelVariable]);
+    }
+
+    /**
+     * @param DummyModelClass $DummyModelVariable
+     * @param CrupdateDummyModelNameRequest $request
+     * @return Response
+     */
+    public function update(DummyModelClass $DummyModelVariable, CrupdateDummyModelNameRequest $request)
+    {
+        $this->authorize('store', $DummyModelVariable);
+
+        $DummyModelVariable = app(CrupdateDummyModelClass::class)->execute($request->all(), $DummyModelVariable);
+
+        return $this->success(['DummyModelVariable' => $DummyModelVariable]);
+    }
+
+    /**
+     * @param string $ids
+     * @return Response
+     */
+    public function destroy($ids)
+    {
+        $DummyModelVariableIds = explode(',', $ids);
+        $this->authorize('store', [DummyModelClass::class, $DummyModelVariableIds]);
+
+        $this->DummyModelVariable->whereIn('id', $DummyModelVariableIds)->delete();
+
+        return $this->success();
+    }
+}

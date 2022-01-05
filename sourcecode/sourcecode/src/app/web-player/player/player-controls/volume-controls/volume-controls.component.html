@@ -1,0 +1,13 @@
+<button class="player-action volume-button volume-on" mat-icon-button [class.visible]="!player.isMuted()" (click)="player.mute()" [matTooltip]="'Mute' | trans">
+    <mat-icon svgIcon="volume-up"></mat-icon>
+</button>
+
+<button class="player-action volume-button volume-off" mat-icon-button [class.visible]="player.isMuted()" (click)="player.unMute()" [matTooltip]="'Unmute' | trans">
+    <mat-icon svgIcon="volume-off"></mat-icon>
+</button>
+
+<div class="outer-track" #outerTrack>
+    <div class="inner-track"></div>
+    <div class="progress-track" [class.hidden]="player.isMuted()" #progressTrack></div>
+    <div class="progress-handle" #progressHandle></div>
+</div>

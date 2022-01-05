@@ -1,0 +1,17 @@
+@import "variables";
+
+.import-flex {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+
+  .input-container {
+    max-width: 100px;
+  }
+
+  .mat-stroked-button {
+    line-height: 46px;
+    margin-top: 0;
+    margin-left: 10px;
+  }
+}

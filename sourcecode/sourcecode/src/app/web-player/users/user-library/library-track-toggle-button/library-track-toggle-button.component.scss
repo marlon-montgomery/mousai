@@ -1,0 +1,17 @@
+@import "../../../../../scss/variables";
+
+:host {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mat-icon {
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+}
+
+.active {
+  color: mat-color($app-accent, default);
+}

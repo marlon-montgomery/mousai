@@ -1,0 +1,4 @@
+<channel-show *ngIf="channel$ | async; else notFoundPage"></channel-show>
+<ng-template #notFoundPage>
+    <not-found-page></not-found-page>
+</ng-template>

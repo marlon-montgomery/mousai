@@ -1,0 +1,113 @@
+<div class="datatable-page-header">
+  <h1 trans>Playlists</h1>
+  <div class="header">
+    <datatable-filters pluralName="playlists" [filters]="filters"></datatable-filters>
+    <div class="action-buttons">
+      <button
+        mat-raised-button
+        color="accent"
+        class="button-with-icon"
+        [matMenuTriggerFor]="menu"
+      >
+        <mat-icon svgIcon="add"></mat-icon>
+        <span trans>New Playlist</span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+          *ngIf="currentUser.hasPermission('playlists.create')"
+          (click)="showCrupdatePlaylistModal()"
+          class="button-with-icon"
+          trans
+        >
+          Create Playlist
+        </button>
+        <button
+          mat-menu-item
+          type="button"
+          *ngIf="settings.get('spotify_is_setup')"
+          (click)="openImportMedialModal()"
+          trans
+        >
+          Import Playlist
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>
+
+<div class="datatable responsive-table">
+  <mat-progress-bar
+    class="loading-bar"
+    mode="indeterminate"
+    color="accent"
+    *ngIf="datatable.paginator && datatable.paginator.loading$ | async"
+  ></mat-progress-bar>
+  <table class="material-table">
+    <thead>
+      <tr>
+        <th table-header-checkbox></th>
+        <th table-sort-header="name" trans>Playlist</th>
+        <th trans>Owner</th>
+        <th table-sort-header trans>Public</th>
+        <th table-sort-header trans>Views</th>
+        <th table-sort-header="updated_at" trans>Last Updated</th>
+        <th></th>
+      </tr>
+      <tr *ngIf="datatable.selectedRows$.value.length as selectedCount">
+        <th colspan="7">
+          <div
+            class="bulk-actions-title"
+            [transValues]="{count: selectedCount, resource: 'playlist(s)'}"
+            trans
+          >
+            :count :resource selected:
+          </div>
+          <div class="bulk-actions">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="confirmPlaylistsDeletion()"
+              *ngIf="currentUser.hasPermission('playlists.delete')"
+              trans
+            >
+              Delete
+            </button>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let playlist of playlists$ | async">
+        <td [table-body-checkbox]="playlist.id"></td>
+        <td>
+          <div class="column-with-image">
+            <img [src]="wpImages.getPlaylistImage(playlist)" alt="Playlist image" />
+            <a [routerLink]="urls.playlist(playlist)" target="_blank" class="link">{{
+              playlist.name
+            }}</a>
+          </div>
+        </td>
+        <td data-label="Owner">
+          <user-column [user]="playlist.owner"></user-column>
+        </td>
+        <td data-label="Public">{{ playlist.public ? 'Yes' : 'No' }}</td>
+        <td data-label="Views">{{ playlist.views }}</td>
+        <td data-label="Last Updated">{{ playlist.updated_at | formattedDate }}</td>
+        <td class="edit-column">
+          <button
+            mat-icon-button
+            (click)="showCrupdatePlaylistModal(playlist)"
+            [matTooltip]="'Edit playlist' | trans"
+          >
+            <mat-icon svgIcon="edit"></mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <no-results-message svgImage="playlist.svg" *ngIf="datatable.paginator.noResults$ | async">
+    <span primary-text>No playlists have been created yet</span>
+  </no-results-message>
+  <datatable-footer></datatable-footer>
+</div>

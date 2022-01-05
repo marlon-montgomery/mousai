@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: docker/dev/app
+      dockerfile: Dockerfile
+    depends_on:
+      - php
+    ports:
+      - '8081:81'
+    volumes:
+      - ./:/var/www
+
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=default
+      - MYSQL_USER=default
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=secret
+    ports:
+      - '26944:3306'
+    volumes:
+      - db:/var/lib/mysql
+
+  php:
+    build:
+      context: docker/dev/php
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+    volumes:
+      - ./sourcecode/website:/var/www/sourcecode/website
+
+  redis:
+    image: redis:6.2-buster
+    volumes:
+      - redis:/data
+
+volumes:
+  db:
+    driver: local
+  redis:
+    driver: local

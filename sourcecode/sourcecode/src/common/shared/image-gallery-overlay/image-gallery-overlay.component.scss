@@ -1,0 +1,66 @@
+@import "variables";
+
+.image-gallery-overlay-container {
+  width: calc(100% - 50px);
+  height: calc(100% - 50px);
+}
+
+.image-gallery-overlay-backdrop {
+  background: rgba(0,0,0,0.8);
+}
+
+image-gallery-overlay {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .img-container {
+    display: block;
+    @include mat-elevation(6);
+    border-radius: 4px;
+    background-color: #000;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    object-position: top;
+    margin: auto;
+  }
+
+  .close-button {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+  }
+
+  .prev-btn, .next-btn {
+    position: absolute;
+    top: calc(50% - 40px);
+    color: mat-color($app-accent, default-contrast);
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 4px;
+
+    .mat-icon {
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+    }
+  }
+
+  .prev-btn {
+    left: 10px;
+  }
+
+  .next-btn {
+    right: 10px;
+  }
+}

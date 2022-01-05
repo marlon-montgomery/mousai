@@ -1,0 +1,76 @@
+@import "variables";
+
+:host {
+  display: block;
+  padding: $page-margin;
+
+  @media only screen and (max-width: 1485px) {
+    ::ng-deep track-actions-bar {
+      .share-button, .repost-button {
+        display: none;
+      }
+    }
+  }
+}
+
+.media-page-header.with-wave .header-image {
+  width: 285px;
+  height: 285px;
+}
+
+.media-page-header {
+  padding: 0;
+}
+
+.artist {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 5px 0 20px;
+}
+
+.artist-image {
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  margin-right: 6px;
+}
+
+.album-header {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-top: 25px;
+}
+
+.subtitle {
+  display: flex;
+  align-items: center;
+
+  .meta-item {
+    display: block;
+    color: inherit;
+  }
+
+  .meta-item:not(:first-child):before {
+    content: "\B7";
+    margin: 0 5px;
+  }
+}
+
+.description {
+  margin-top: 30px;
+}
+
+comment-list {
+  margin-top: 35px;
+}
+
+.tags-list {
+  display: block;
+  margin-top: 20px;
+}
+
+.mat-chip a {
+  color: inherit;
+}

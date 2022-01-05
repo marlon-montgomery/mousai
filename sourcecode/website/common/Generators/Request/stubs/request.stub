@@ -1,0 +1,35 @@
+<?php
+
+namespace DummyNamespace;
+
+use Auth;
+use Common\Core\BaseFormRequest;
+use Illuminate\Validation\Rule;
+
+class DummyClass extends BaseFormRequest
+{
+    /**
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * @return array
+     */
+    public function rules()
+    {
+        $required = $this->getMethod() === 'POST' ? 'required' : '';
+        $ignore = $this->getMethod() === 'PUT' ? $this->route('DummyModel')->id : '';
+        $userId = $this->route('DummyModel') ? $this->route('DummyModel')->user_id : Auth::id();
+
+        return [
+            'name' => [
+                $required, 'string', 'min:3',
+                Rule::unique('DummyTable')->where('user_id', $userId)->ignore($ignore)
+            ],
+        ];
+    }
+}

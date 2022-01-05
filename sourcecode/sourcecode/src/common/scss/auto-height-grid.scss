@@ -1,0 +1,42 @@
+@import "variables";
+
+.auto-height-grid {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(99px, 1fr));
+
+  .grid-item {
+    padding-top: 100%;
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      background-color: mat-color($app-background, hover);
+    }
+  }
+
+  .active .grid-content {
+    border-color: mat-color($app-accent, default);
+  }
+
+  .grid-content {
+    border: 1px solid mat-color($app-foreground, divider);
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    overflow: hidden;
+  }
+
+  .grid-label {
+    margin-top: 6px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+  }
+}

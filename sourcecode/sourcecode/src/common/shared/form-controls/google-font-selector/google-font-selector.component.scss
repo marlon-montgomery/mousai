@@ -1,0 +1,87 @@
+@import "variables";
+
+:host {
+  display: block;
+}
+
+.font-grid {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(99px, 1fr));
+}
+
+.grid-item {
+  padding-top: 100%;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    background-color: mat-color($app-background, hover);
+  }
+}
+
+.active .grid-content {
+  border-color: mat-color($app-accent, default);
+}
+
+.grid-content {
+  border: 1px solid mat-color($app-foreground, divider);
+  border-radius: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.label {
+  margin-top: 6px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5px;
+}
+
+.preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  height: 100%;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+
+  text {
+    font-size: 4rem;
+    dominant-baseline: central;
+    text-anchor: middle;
+  }
+}
+
+.range-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.range-label {
+  color: mat-color($app-foreground, secondary-text);
+  margin: 0 32px 0 24px;
+  font-size: 1.2rem;
+}
+
+.range-button {
+  color: mat-color($app-foreground, icon);
+
+  .mat-icon {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+  }
+}

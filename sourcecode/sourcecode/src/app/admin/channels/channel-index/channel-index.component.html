@@ -1,0 +1,91 @@
+<div class="datatable-page-header">
+  <h1 trans>Channels</h1>
+  <div class="header">
+    <datatable-filters pluralName="channels" [filters]="filters"></datatable-filters>
+    <div class="action-buttons">
+      <a mat-raised-button color="accent" routerLink="/admin/channels/new" class="button-with-icon">
+        <mat-icon svgIcon="add"></mat-icon>
+        <span trans>Create New Channel</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="datatable responsive-table">
+  <mat-progress-bar
+    class="loading-bar"
+    mode="indeterminate"
+    color="accent"
+    *ngIf="datatable.paginator && datatable.paginator.loading$ | async"
+  ></mat-progress-bar>
+  <table class="material-table">
+    <thead>
+      <tr>
+        <th table-header-checkbox></th>
+        <th table-sort-header trans>Name</th>
+        <th trans>Content Type</th>
+        <th trans>Layout</th>
+        <th trans>Auto Update</th>
+        <th table-sort-header="updated_at" trans>Last Updated</th>
+        <th></th>
+      </tr>
+      <tr *ngIf="datatable.selectedRows$.value.length as selectedCount">
+        <th colspan="7">
+          <div
+            class="bulk-actions-title"
+            [transValues]="{count: selectedCount, resource: 'channel(s)'}"
+            trans
+          >
+            :count :resource selected:
+          </div>
+          <div class="bulk-actions">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="maybeDeleteSelectedChannels()"
+              *ngIf="currentUser.hasPermission('channels.delete')"
+              trans
+            >
+              Delete
+            </button>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let channel of channels$ | async">
+        <td [table-body-checkbox]="channel.id"></td>
+        <td>
+          <a [routerLink]="urls.channel(channel)" class="link" target="_blank">{{
+            channel.name
+          }}</a>
+        </td>
+        <td data-label="Content Type">
+          {{ channel.config.contentModel | formattedChannelConfig }}
+        </td>
+        <td data-label="Layout">{{ channel.config.layout | formattedChannelConfig }}</td>
+        <td class="hidden-on-mobile">
+          {{
+            channel.config.autoUpdateMethod
+              ? (channel.config.autoUpdateMethod | formattedChannelConfig)
+              : '-'
+          }}
+        </td>
+        <td class="hidden-on-mobile">{{ channel.updated_at | formattedDate }}</td>
+        <td class="edit-column">
+          <a
+            mat-icon-button
+            [routerLink]="['/admin/channels', channel.id]"
+            [matTooltip]="'Edit channel' | trans"
+          >
+            <mat-icon svgIcon="edit"></mat-icon>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <no-results-message svgImage="playlist.svg" *ngIf="datatable.paginator.noResults$ | async">
+    <span primary-text>No channels have been created yet</span>
+  </no-results-message>
+  <datatable-footer></datatable-footer>
+</div>

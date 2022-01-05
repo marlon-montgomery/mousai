@@ -1,0 +1,10 @@
+<div class="content-wrapper" [class.showing-all]="showingAll$ | async" #contentWrapperEl>
+    <div class="content" #contentEl [innerHTML]="linkifiedContent$ | async"></div>
+</div>
+
+<button mat-stroked-button class="more-button" *ngIf="moreButtonVisible$ | async" (click)="toggleContent()">
+    <span *ngIf="showingAll$ | async; else showMore" trans>Show Less</span>
+    <ng-template #showMore>
+        <span trans>Show More</span>
+    </ng-template>
+</button>

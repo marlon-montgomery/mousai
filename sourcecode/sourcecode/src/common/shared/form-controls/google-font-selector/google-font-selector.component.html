@@ -1,0 +1,59 @@
+<form class="filters inline-inputs-container many-inputs" [formGroup]="filters">
+  <div class="input-container">
+    <label for="font-selector-search" class="hidden" trans>Search</label>
+    <input type="text" id="font-selector-search" formControlName="query" placeholder="Search..." />
+  </div>
+  <div class="input-container">
+    <label for="font-selector-category" class="hidden" trans>Category</label>
+    <select id="font-selector-category" formControlName="category">
+      <option [ngValue]="null" trans>All Categories</option>
+      <option value="serif" trans>Serif</option>
+      <option value="sans-serif" trans>Sans Serif</option>
+      <option value="display" trans>Display</option>
+      <option value="handwriting" trans>Handwriting</option>
+      <option value="monospace" trans>monospace</option>
+    </select>
+  </div>
+</form>
+
+<div class="font-grid">
+  <div
+    class="font"
+    *ngFor="let font of fonts$ | async"
+    (click)="selectFamily(font.family)"
+    [class.active]="(selectedFamily$ | async) === font.family"
+  >
+    <div class="grid-item" role="button" matRipple>
+      <div class="grid-content">
+        <svg viewBox="0 0 100 100">
+          <text x="50%" y="50%" [style.fontFamily]="font.family">Aa</text>
+        </svg>
+      </div>
+    </div>
+    <div class="label">{{ font.family | fontDisplayName }}</div>
+  </div>
+</div>
+
+<div class="range-actions">
+  <div class="range-label">
+    {{ from$ | async }} - {{ to$ | async }} {{ 'of' | trans }} {{ total$ | async | number }}
+  </div>
+  <button
+    type="button"
+    [disabled]="!havePrev()"
+    class="range-button"
+    (click)="prevPage()"
+    mat-icon-button
+  >
+    <mat-icon svgIcon="chevron-left"></mat-icon>
+  </button>
+  <button
+    type="button"
+    [disabled]="!haveNext()"
+    class="range-button"
+    (click)="nextPage()"
+    mat-icon-button
+  >
+    <mat-icon svgIcon="chevron-right"></mat-icon>
+  </button>
+</div>

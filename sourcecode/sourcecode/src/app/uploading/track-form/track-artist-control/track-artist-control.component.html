@@ -1,0 +1,29 @@
+<div class="input-container">
+    <label [for]="id" trans>Artists</label>
+    <input
+        type="text"
+        [id]="id"
+        [formControl]="searchControl"
+        [matAutocomplete]="artistAuto"
+        placeholder="Search artists..."
+        trans-placeholder
+        #searchInput
+    >
+
+    <mat-chip-list [selectable]="false">
+        <mat-chip class="chip-with-image" *ngFor="let artist of value$ | async" [removable]="true" (removed)="deselectArtist(artist)">
+            <img [src]="artist.image_small" [alt]="artist.name">
+            {{artist.name}}
+            <mat-icon svgIcon="cancel" matChipRemove></mat-icon>
+        </mat-chip>
+    </mat-chip-list>
+
+    <mat-autocomplete #artistAuto="matAutocomplete" class="media-autocomplete-panel" (optionSelected)="selectArtist($event.option.value)" [displayWith]="displayFn">
+        <mat-option *ngFor="let artist of searchResults$ | async" [value]="artist">
+            <img [src]="artist.image_small" [alt]="artist.name + ' image'">
+            <span>{{artist.name}}</span>
+        </mat-option>
+    </mat-autocomplete>
+
+    <div class="error" *ngIf="error">{{error}}</div>
+</div>

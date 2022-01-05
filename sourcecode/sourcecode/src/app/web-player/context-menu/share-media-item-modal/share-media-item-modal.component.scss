@@ -1,0 +1,83 @@
+@import "variables";
+
+:host {
+  display: block;
+  width: 600px;
+  max-width: 100%;
+
+  .modal-header {
+    margin-bottom: 10px;
+  }
+}
+
+iframe {
+  width: 100%;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.tab-button {
+  height: 48px;
+  padding: 0 24px;
+  min-width: 160px;
+  text-align: center;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  opacity: 0.6;
+  border-radius: 0;
+
+  &.active {
+    border-color: mat-color($app-accent, default);
+    opacity: 1;
+  }
+}
+
+.tab {
+  padding-top: 20px;
+}
+
+.media-preview {
+  display: flex;
+
+  media-image {
+    width: 130px;
+    height: 130px;
+    margin-right: 15px;
+  }
+
+  .preview-body {
+    flex: 1 1 auto;
+  }
+
+  .preview-name {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+  }
+}
+
+.link-input-container {
+  display: flex;
+
+  .input-addon {
+    min-width: 65px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.share-icons {
+  margin: 10px 0 20px;
+
+  .mat-icon-button {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 4px;
+    margin-right: 6px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}

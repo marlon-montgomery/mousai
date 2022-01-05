@@ -1,0 +1,47 @@
+<media-image [media]="media" *ngIf="showArtwork"></media-image>
+<ng-content></ng-content>
+<div class="content">
+    <div class="header">
+        <playback-control-button [track]="activeTrack" (play)="play(activeTrack)" (pause)="player.pause()" (playing)="playing(activeTrack)"></playback-control-button>
+        <div class="text middle-column">
+            <div class="artist-name">
+                <artists-links-list class="original-artist" [linksInNewTab]="linksInNewTab" *ngIf="artists" [artists]="artists"></artists-links-list>
+                <ng-container *ngIf="reposter">
+                    <mat-icon class="repost-icon" svgIcon="repeat"></mat-icon>
+                    <a class="reposter-name" [target]="linksInNewTab ? '_blank' : '_self'" [routerLink]="urls.user(reposter)">{{reposter.display_name}}</a>
+                </ng-container>
+            </div>
+            <a class="media-item-name" [target]="linksInNewTab ? '_blank' : '_self'" [routerLink]="mediaLink()">{{media.name}}</a>
+        </div>
+        <div class="text last-text">
+            <div class="date">{{media?.release_date || media?.created_at}}</div>
+            <mat-chip-list class="genre-chip-list" *ngIf="media.genres?.length">
+                <mat-chip class="genre">{{media.genres[0]?.display_name || media.genres[0]?.name}}</mat-chip>
+            </mat-chip-list>
+        </div>
+    </div>
+
+    <ng-container *ngIf="shouldShowWave(); else simpleSeekbar">
+        <waveform [track]="activeTrack" [album]="isAlbum() ? media : null" [startPlaybackOnSeek]="true"></waveform>
+        <new-comment-form [autoFocus]="true" *ngIf="showActions && (trackComments.markerActive$ | async)"></new-comment-form>
+    </ng-container>
+    <ng-template #simpleSeekbar>
+        <player-seekbar [track]="activeTrack" [album]="isAlbum() ? media : null" [startPlaybackOnSeek]="true"></player-seekbar>
+    </ng-template>
+
+    <div class="track-list" *ngIf="media.tracks">
+        <div class="track-list-item" *ngFor="let track of media.tracks; index as index" (click)="play(track)" [class.active]="player.cued(track)">
+            <media-image [media]="track"></media-image>
+            <div class="track-number">{{index + 1}}</div>
+            <div class="track-name">{{track.name}}</div>
+            <div class="plays">
+                <button mat-icon-button class="options-button" *ngIf="userLoggedIn" (click)="showContextMenu(track, $event)">
+                    <mat-icon svgIcon="more-vert"></mat-icon>
+                </button>
+                <mat-icon svgIcon="play-arrow" class="play-icon"></mat-icon>
+                <span>{{track.plays | number}}</span>
+            </div>
+        </div>
+    </div>
+    <track-actions-bar [media]="media" *ngIf="showActions" class="action-buttons"></track-actions-bar>
+</div>

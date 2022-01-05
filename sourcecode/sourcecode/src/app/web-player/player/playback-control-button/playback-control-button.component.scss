@@ -1,0 +1,43 @@
+@import "../../../../scss/variables";
+
+playback-control-button {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: transparent;
+  color: mat-color($app-accent, default-contrast);
+  
+  &:hover {
+    .pause-button.visible {
+      display: block;
+    }
+    
+    playing-indicator.visible {
+      display: none;
+    }
+  }
+
+  &.small {
+    playing-indicator .mat-icon {
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+    }
+  }
+  
+  .visible.pause-button {
+    display: none;
+  }
+  
+  .play-button, .pause-button, playing-indicator, .buffering {
+    display: none;
+  }
+  
+  .visible {
+    display: block;
+  }
+}

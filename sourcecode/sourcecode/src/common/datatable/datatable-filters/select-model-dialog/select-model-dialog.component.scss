@@ -1,0 +1,67 @@
+@import "variables";
+
+:host {
+  display: block;
+  width: 600px;
+  max-width: 100%;
+}
+
+.modal-header {
+  margin-bottom: 15px;
+}
+
+.search-input-container {
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+loading-indicator {
+  top: 12px;
+  right: 12px;
+}
+
+.results {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.result {
+  display: flex;
+  align-items: flex-start;
+  padding: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 0;
+
+  &:hover {
+    background-color: mat-color($app-background, hover);
+  }
+
+  img {
+    width: 50px;
+    height: auto;
+    max-height: 80px;
+    flex-shrink: 0;
+    margin-right: 15px;
+    border-radius: 4px;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+  .name {
+    color: mat-color($app-foreground, text);
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+  }
+
+  .description {
+    color: mat-color($app-foreground, secondary-text);
+  }
+}
+
+.overflow-hidden {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

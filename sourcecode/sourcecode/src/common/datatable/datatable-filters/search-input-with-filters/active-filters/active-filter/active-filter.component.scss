@@ -1,0 +1,87 @@
+@import "src/scss/variables";
+
+$active-filter-height: $datatable-filter-bar-height - 6px - 2px;
+
+:host {
+  display: inline-flex;
+  align-items: flex-start;
+  border-radius: 4px;
+  height: $active-filter-height;
+  background-color: mat-color($app-background, unselected-chip);
+  margin: 3px 5px 3px 0;
+
+  &:focus {
+    outline: none;
+    box-shadow: mat-color($app-accent, default) 0 0 0 1px;
+  }
+}
+
+.filter-label {
+  color: mat-color($app-foreground, text);
+  line-height: $active-filter-height;
+  cursor: pointer;
+  padding: 0 12px;
+  text-transform: capitalize;
+  white-space: nowrap;
+  font-weight: 500;
+  user-select: none;
+}
+
+.filter-input-container {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0 4px 4px 0;
+}
+
+.caret-svg {
+  position: absolute;
+  top: ($active-filter-height / 2) - 9px;
+  right: 5px;
+  z-index: 11;
+  fill: mat-color($app-accent, default-contrast);
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.filter-input {
+  border: 0;
+  transition: width 0.1s ease-in-out 0s;
+  padding: 0 12px;
+  min-width: 60px;
+  max-width: 200px;
+  z-index: 10;
+  text-overflow: ellipsis;
+  appearance: none;
+  height: 100%;
+  font-weight: 500;
+}
+
+select.filter-select {
+  padding: 0 25px 0 12px;
+}
+
+.date-input {
+  position: relative;
+  max-width: 30ch;
+  line-height: $active-filter-height;
+  height: $active-filter-height;
+  font-size: inherit;
+  border: none;
+  margin: 0;
+  padding: 0 12px;
+  width: 20ch;
+  font-weight: 500;
+}
+
+.select-model-input {
+  min-width: 76px;
+  height: 100%;
+}
+
+.filter-value {
+  background-color: mat-color($app-accent, default);
+  color: mat-color($app-accent, default-contrast);
+  border-radius: 0 4px 4px 0;
+}

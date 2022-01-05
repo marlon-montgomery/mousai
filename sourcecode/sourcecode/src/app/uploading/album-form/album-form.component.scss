@@ -1,0 +1,56 @@
+@import "variables";
+
+:host {
+  display: block;
+  padding: 25px;
+}
+
+.main-info-fields {
+  display: flex;
+}
+
+.text-fields-container {
+  flex: 1 1 auto;
+  margin-left: 20px;
+}
+
+.track-list {
+  margin-top: 30px;
+  padding: 0 15px;
+}
+
+.track-list-item:not(.cdk-drag-preview) {
+  border-bottom: 1px solid mat-color($app-foreground, divider-lighter);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.upload-tracks-button {
+  margin-top: 15px;
+  width: 100%;
+  line-height: 40px;
+}
+
+@media only screen and (max-width: $medium) {
+  :host {
+    padding: 10px;
+  }
+
+  .track-list {
+    padding: 0;
+  }
+
+  .main-info-fields {
+    display: block;
+  }
+
+  .left-column {
+    max-width: 220px;
+    margin: auto;
+    margin-bottom: 25px;
+  }
+
+  .text-fields-container {
+    margin-left: 0;
+  }
+}

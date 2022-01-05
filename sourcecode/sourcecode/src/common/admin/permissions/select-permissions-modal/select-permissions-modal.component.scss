@@ -1,0 +1,26 @@
+@import "variables";
+
+:host {
+  display: block;
+  width: 550px;
+  max-width: 100%;
+  position: relative;
+}
+
+.mat-expansion-panel-header-title {
+  text-transform: capitalize;
+}
+
+p {
+  color: mat-color($app-foreground, secondary-text);
+  font-size: 1.3rem;
+}
+
+.setting-toggle-container {
+  margin-bottom: 0;
+}
+
+.show-advanced-container {
+  margin-top: 25px;
+  margin-bottom: 20px;
+}

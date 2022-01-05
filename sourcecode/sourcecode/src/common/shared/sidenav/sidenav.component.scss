@@ -1,0 +1,83 @@
+@import "variables";
+
+:host {
+  display: flex;
+  padding-top: var(--top-offset);
+  --nav-width: 225px;
+  --top-offset: 70px;
+
+  &.no-navbar {
+    --top-offset: 0px;
+  }
+
+  &.nav-closed {
+    ::ng-deep nav {
+      transform: translate3d(-100%, 0, 0);
+      box-shadow: none;
+    }
+  }
+
+  &.enable-transitions {
+    ::ng-deep nav {
+      transition-duration: 400ms;
+      transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+      transition-property: transform;
+    }
+  }
+
+  ::ng-deep nav {
+    width: var(--nav-width);
+    overflow: auto;
+    padding: 26px 8px 16px;
+    border-right: 1px solid mat-color($app-foreground, divider);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: var(--top-offset);
+    bottom: 0;
+    z-index: 4;
+    background-color: mat-color($app-background, card);
+
+    @media only screen and (max-width: $medium) {
+      @include mat-elevation(5);
+    }
+  }
+
+  .backdrop {
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 1;
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-property: background-color,visibility;
+    visibility: hidden;
+
+    &.visible {
+      visibility: visible;
+      background-color: mat-color($app-background, backdrop);
+      opacity: .6;
+    }
+
+    @media only screen and (min-width: $medium) {
+      display: none;
+    }
+  }
+
+  ::ng-deep main {
+    min-width: 0;
+    flex: 1 1 auto;
+    background-color: mat-color($app-background, background);
+    min-height: calc(100vh - var(--top-offset, 0px));
+    display: flex;
+    flex-direction: column;
+
+    @media only screen and (min-width: $medium) {
+      margin-left: var(--nav-width);
+    }
+  }
+}
+

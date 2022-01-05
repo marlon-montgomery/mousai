@@ -1,0 +1,8 @@
+<button mat-flat-button color="accent" class="play-button action-button" *ngIf="!isPlaying()" (click)="player.playMediaItem(queueId, tracks, select)">
+    <mat-icon svgIcon="play-arrow"></mat-icon>
+    <span trans>Play</span>
+</button>
+<button mat-flat-button color="accent" class="play-button action-button" *ngIf="isPlaying()" (click)="player.pause()">
+    <mat-icon svgIcon="pause"></mat-icon>
+    <span trans>Pause</span>
+</button>

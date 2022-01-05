@@ -1,0 +1,19 @@
+@import "variables";
+
+:host {
+  display: block;
+}
+
+.button-with-icon {
+  .mat-icon {
+    margin-right: 5px;
+  }
+
+  svg {
+    display: block;
+  }
+}
+
+.invisible {
+  visibility: hidden;
+}

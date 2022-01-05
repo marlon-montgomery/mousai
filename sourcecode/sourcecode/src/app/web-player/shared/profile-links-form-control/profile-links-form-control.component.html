@@ -1,0 +1,23 @@
+<div class="links-header">
+    <div class="text" trans>Your Links</div>
+    <button type="button" class="add-link-button" mat-icon-button color="accent" (click)="addNewLink()" trans>
+        <mat-icon svgIcon="add"></mat-icon>
+    </button>
+</div>
+<ul class="unstyled-list" [formGroup]="form">
+    <li *ngFor="let link of form.controls; let index = index" [formGroupName]="index">
+        <div class="inline-inputs-container inline-link-container many-inputs">
+            <div class="input-container">
+                <label [for]="'url-' + index" trans>Url</label>
+                <input type="url" [id]="'url-' + index" formControlName="url" required>
+            </div>
+            <div class="input-container">
+                <label [for]="'title-' + index" trans>Short Title</label>
+                <input type="text" [id]="'title-' + index" formControlName="title" required>
+            </div>
+            <button type="button" mat-icon-button class="remove-link-button" (click)="deleteLink(index)">
+                <mat-icon svgIcon="delete"></mat-icon>
+            </button>
+        </div>
+    </li>
+</ul>

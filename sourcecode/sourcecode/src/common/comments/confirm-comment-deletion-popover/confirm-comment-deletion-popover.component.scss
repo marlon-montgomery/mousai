@@ -1,0 +1,15 @@
+@import "src/scss/variables";
+
+:host {
+  display: block;
+  background: mat-color($app-background, card);
+  @include mat-elevation(6);
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}

@@ -1,0 +1,24 @@
+<div class="comment-list-header" *ngIf="(pagination$ | async)?.data?.length">
+  <mat-icon svgIcon="comment"></mat-icon>
+  {{ commentCount$ | async }} {{ 'comments' | trans }}
+</div>
+<div class="comment-list">
+  <ng-container *ngFor="let comment of (pagination$ | async)?.data">
+    <comment-list-item
+      [commentable]="commentable"
+      (removed)="deleteComment($event)"
+      (created)="addComment($event)"
+      [comment]="comment"
+    ></comment-list-item>
+  </ng-container>
+</div>
+
+<loading-indicator [isVisible]="loading$ | async" class="inline"></loading-indicator>
+
+<div class="no-results-message" *ngIf="(pagination$ | async) && !(pagination$ | async)?.data.length">
+  <mat-icon class="icon" svgIcon="public-discussion"></mat-icon>
+  <div class="text">
+    <div class="main" trans>Seems a little quiet over here</div>
+    <div class="secondary" trans>Be the first to leave a comment</div>
+  </div>
+</div>

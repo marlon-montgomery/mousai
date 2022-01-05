@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h2 mat-dialog-title [transValues]="{resource: modelName}" trans>Find :resource</h2>
+  <button type="button" (click)="close()" class="no-style close-button" tabindex="-1">
+    <mat-icon svgIcon="close"></mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <div class="input-container search-input-container">
+    <input
+      type="text"
+      placeholder="Search for :resource by name..."
+      trans-placeholder
+      [transValues]="{resource: modelName}"
+      [formControl]="searchFormControl"
+    />
+    <loading-indicator [isVisible]="loading$ | async" class="small"></loading-indicator>
+  </div>
+
+  <div class="results">
+    <div class="result" *ngFor="let model of results$ | async" (click)="close(model)">
+      <img [src]="model.image" alt="" />
+      <div class="meta overflow-hidden">
+        <div class="name overflow-hidden">{{ model.name }}</div>
+        <div class="description overflow-hidden" *ngIf="model.description">{{ model.description }}</div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

@@ -1,0 +1,50 @@
+@import "src/scss/variables";
+
+:host {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    left: 0;
+    background-color: mat-color($app-background, unselected-chip);
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    right: 0;
+    background-color: mat-color($app-accent, default);
+  }
+}
+
+.operator-select {
+  transition: width 0.1s ease-in-out 0s;
+  padding: 2px 8px;
+  min-width: 60px;
+  max-width: 200px;
+  height: $datatable-filter-bar-height - 8px - 10px;
+  color: mat-color($app-accent, default);
+  z-index: 10;
+  background-color: mat-color($app-accent, default-contrast);
+  text-overflow: ellipsis;
+  appearance: none;
+  border-radius: 10px;
+  text-align-last: center;
+  border: 1px solid transparent;
+
+  &:focus-visible {
+    outline: 0;
+    border-color: mat-color($app-accent, default);
+    box-shadow: 0 0 0 1px #fff;
+  }
+}

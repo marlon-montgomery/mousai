@@ -1,0 +1,57 @@
+<ng-container *ngIf="artistPage.artist$ | async as artist">
+    <div [contextMenu]="{item: artist, type: 'artist'}">
+        <div class="flex-container">
+            <div class="image-container">
+                <div class="verified-badge" *ngIf="artist.verified">
+                    <div class="verified-container">
+                        <mat-icon class="verified-icon" svgIcon="check"></mat-icon>
+                    </div>
+                    <span trans>Verified Artist</span>
+                </div>
+                <media-image class="header-image round" [media]="artist"></media-image>
+            </div>
+            <div class="header-content">
+                <h1 class="title">{{artist.name}}</h1>
+                <profile-follower-info *ngIf="settings.get('artistPage.showFollowers') && artist.followers_count" [followers]="artist.followers_count" class="subtitle"></profile-follower-info>
+                <div class="subtitle" *ngIf="!state.isMobile">
+                    <a [routerLink]="urls.genre(genre)" class="genre hover-underline" *ngFor="let genre of artist.genres">{{genre.display_name || genre.name}}</a>
+                </div>
+                <div class="action-buttons">
+                    <header-play-button [queueId]="artistPage.artistQueueId$ | async"></header-play-button>
+                    <button mat-stroked-button class="add-button action-button" (click)="toggleLike()" [disabled]="artistPage.addingToLibrary$ | async">
+                        <ng-container *ngIf="library.has(artist); else add">
+                            <mat-icon svgIcon="favorite" color="accent"></mat-icon>
+                            <span trans>Following</span>
+                        </ng-container>
+                        <ng-template #add>
+                            <mat-icon svgIcon="favorite-border"></mat-icon>
+                            <span trans>Follow</span>
+                        </ng-template>
+                    </button>
+                    <button mat-stroked-button class="action-button more-button" (click)="showArtistContextMenu($event)">
+                        <span trans>More</span>
+                        <mat-icon svgIcon="arrow-drop-down"></mat-icon>
+                    </button>
+                </div>
+                <profile-description *ngIf="settings.get('artistPage.showDescription')" [description]="artistPage.shortDescription$ | async" [country]="artist.profile?.country" [city]="artist.profile?.city"></profile-description>
+            </div>
+        </div>
+        <div class="nav-links-wrapper">
+            <div class="nav-links">
+                <a class="nav-link"
+                   matRipple
+                   *ngFor="let tab of artistPage.tabs$ | async"
+                   [routerLink]="urls.artist(artist)"
+                   [class.active]="(artistPage.activeTab$ | async) === allTabs[tab.id].queryParam"
+                   [queryParams]="{tab: allTabs[tab.id].queryParam}"
+                   trans
+                >{{allTabs[tab.id].name}}</a>
+            </div>
+            <div class="profile-links">
+                <a [href]="userLink.url" target="_blank" mat-icon-button *ngFor="let userLink of artist.links" [matTooltip]="userLink.title">
+                    <img class="profile-link-image" [src]="favicon(userLink.url)" [alt]="userLink.title">
+                </a>
+            </div>
+        </div>
+    </div>
+</ng-container>

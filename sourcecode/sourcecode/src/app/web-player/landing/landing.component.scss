@@ -1,0 +1,304 @@
+@import "variables";
+
+.hero {
+  text-align: center;
+  position: relative;
+  padding-bottom: 140px;
+  margin-bottom: 60px;
+
+  @media only screen and (max-width: $medium) {
+    padding-bottom: 30px;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+}
+
+svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.wave-fill {
+  fill: mat-color($app-background, card);
+}
+
+material-navbar {
+  box-shadow: none;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 3.8rem;
+  margin: 0 0 10px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-description {
+  margin: 0 auto;
+  font-size: 1.8rem;
+  font-weight: 300;
+  max-width: 600px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-form {
+  max-width: 700px;
+  margin: 80px auto 0;
+
+  .input-container {
+    position: relative;
+    border-radius: 50px;
+    overflow: hidden;
+  }
+
+  input {
+    height: 50px;
+    border-color: transparent;
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 1.7rem;
+    padding: 0 70px 0 30px;
+  }
+
+  .submit-button {
+    position: absolute;
+    top: (50px - 40px) / 2;
+    right: 15px;
+    z-index: 2;
+  }
+
+  .mat-icon {
+    width: 31px;
+    height: 31px;
+    line-height: 31px;
+    color: mat-color($app-foreground, icon);
+  }
+}
+
+.action-buttons {
+  margin: 50px 0;
+}
+
+.get-started-button {
+  min-width: 180px;
+  height: 50px;
+  border-radius: 30px;
+  line-height: 50px;
+  margin-right: 15px;
+  font-size: 1.7rem;
+  background: mat-color($app-primary, default-contrast);
+  color: rgba(0,0,0,0.87);
+}
+
+.learn-more-button {
+  font-size: 1.6rem;
+}
+
+.inline-features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-content: space-between;
+  text-align: center;
+
+  @media only screen and (max-width: $medium) {
+    display: block;
+
+    .inline-feature {
+      min-width: auto;
+    }
+  }
+}
+
+.inline-feature {
+  max-width: 360px;
+
+  img {
+    width: 150px;
+    height: 120px;
+    margin: 0 auto 30px;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 1.5rem;
+    color: mat-color($app-foreground, secondary-text);
+  }
+}
+
+.spacer {
+  border-bottom: 1px solid mat-color($app-foreground, divider-lighter);
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+.big-feature {
+  display: flex;
+  padding: 15px 0;
+
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+
+  img {
+    border-radius: 10px;
+    width: 580px;
+    max-width: 100%;
+    margin-right: auto;
+    box-shadow: 0 0 80px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .info {
+    margin-left: 30px;
+    margin-right: auto;
+    max-width: 350px;
+    padding-top: 30px;
+  }
+
+  small {
+    text-transform: uppercase;
+    margin: 0 0 15px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: mat-color($app-foreground, secondary-text);
+  }
+
+  h2 {
+    margin: 15px 0;
+    font-size: 3.1rem;
+    font-weight: 400;
+  }
+
+  .feature-border {
+    width: 50px;
+    height: 2px;
+    background-color: mat-color($app-primary, default);
+  }
+
+  p {
+    font-size: 1.5rem;
+    margin: 20px 0;
+  }
+
+  @media only screen and (max-width: $medium) {
+    display: block;
+    padding: 0 15px;
+
+    .info {
+      margin-left: 0;
+    }
+  }
+}
+
+
+.stats {
+  margin: 90px auto;
+
+  @media only screen and (max-width: $medium) {
+    display: none;
+  }
+}
+
+.bottom-cta {
+  padding: 70px 0;
+  position: relative;
+  color: mat-color($app-primary, default-contrast);
+  background-repeat: no-repeat;
+  background-position: 160% 45%;
+  background-color: #2B2B2B;
+  background-size: cover;
+
+  .be-container {
+    position: relative;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0) 100%);
+    pointer-events: none;
+  }
+
+  h2 {
+    font-size: 3.4rem;
+    margin: 0;
+    max-width: 600px;
+    font-weight: 400;
+  }
+
+  p {
+    font-size: 2.6rem;
+    margin: 8px 0 50px;
+    font-weight: 300;
+    max-width: 600px;
+  }
+
+  .mat-stroked-button {
+    min-width: 185px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.7rem;
+    font-weight: 500;
+    border-color: mat-color($app-primary, default-contrast);
+  }
+
+  @media only screen and (max-width: $medium) {
+    display: none;
+  }
+}
+
+footer {
+  padding: 50px 0;
+  font-size: 1.5rem;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  @media only screen and (max-width: $medium) {
+    padding: 25px 0;
+    text-align: center;
+  }
+}
+
+.ads-landing-top-host {
+  margin-top: 60px;
+}
+
+.header-overlay {
+  color: mat-color($app-primary, default-contrast);
+}
+
+.background-image {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0.2;
+}

@@ -1,0 +1,8 @@
+<div class="img-container" [routerLink]="urls.album(album)">
+    <media-image [media]="album" default="album"></media-image>
+    <playback-control-button (play)="play()" (pause)="pause()" [playing]="playing()" *ngIf="!disablePlayback"></playback-control-button>
+</div>
+<div class="footer">
+    <a class="album-name primary-text" [routerLink]="urls.album(album)">{{album.name}}</a>
+    <artists-links-list class="artist-name secondary-text" [artists]="album.artists"></artists-links-list>
+</div>

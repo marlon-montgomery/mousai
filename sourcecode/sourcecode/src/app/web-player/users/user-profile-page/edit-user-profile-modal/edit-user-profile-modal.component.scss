@@ -1,0 +1,26 @@
+@import "variables";
+
+:host {
+  display: block;
+  width: 800px;
+  max-width: 100%;
+}
+
+.header-image-control {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 25px;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.right-column {
+  flex: 1 1 auto;
+}
+
+upload-image-control {
+  flex-shrink: 0;
+  margin-right: 25px;
+}

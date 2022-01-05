@@ -1,0 +1,49 @@
+@import "variables";
+
+track-embed {
+  display: block;
+  padding: 10px;
+  overflow: hidden;
+  max-width: 1000px;
+  background: mat-color($app-background, background);
+  border: 1px solid mat-color($app-foreground, divider);
+  border-radius: 4px;
+
+  &.track {
+    max-height: 165px;
+
+    media-list-item {
+      align-items: center;
+      height: 145px;
+    }
+  }
+
+  &.album {
+    max-height: 450px;
+    overflow: auto;
+  }
+
+  .track-artwork {
+    flex-shrink: 0;
+    margin-right: 20px;
+    width: 145px;
+    height: 145px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  video, iframe, .player-container {
+    height: 100%;
+    width: 100%;
+  }
+
+  .player-container:not(.active) {
+    display: none;
+  }
+
+  @media (max-width: 460px) {
+    .last-text {
+      display: none;
+    }
+  }
+}

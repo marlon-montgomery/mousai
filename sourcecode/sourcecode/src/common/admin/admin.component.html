@@ -1,0 +1,23 @@
+<material-navbar
+  menuPosition="admin-navbar"
+  color="primary"
+  [showToggleButton]="true"
+  (toggleButtonClick)="sidenav.toggleSidebarMode()"
+>
+</material-navbar>
+
+<sidenav>
+  <nav>
+    <custom-menu
+      [position]="menu"
+      [vertical]="true"
+      [compact]="sidenav.isCompact$ | async"
+    ></custom-menu>
+    <div class="version">{{ 'Version:' | trans }} {{ settings.get('version') }}</div>
+  </nav>
+  <main>
+    <div class="content-inner">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</sidenav>

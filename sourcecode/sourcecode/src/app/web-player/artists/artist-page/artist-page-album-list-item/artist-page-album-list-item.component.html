@@ -1,0 +1,11 @@
+<div class="album">
+    <div class="album-header">
+        <media-image [media]="album"></media-image>
+        <div class="meta">
+            <a class="album-name hover-underline" [routerLink]="urls.album(album, artist)">{{album.name}}</a>
+            <div class="release-date">{{album.release_date}}</div>
+            <button mat-stroked-button class="more-button" (click)="showAlbumContextMenu(album, $event)" trans>More...</button>
+        </div>
+    </div>
+    <track-table [dataSource]="datatable" [showTrackImage]="false" [album]="album" [queueItemId]="albumQueueId"></track-table>
+</div>

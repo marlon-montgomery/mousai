@@ -1,0 +1,28 @@
+<div class="table">
+  <div class="filter-suggestion-header row">
+    <div class="column" trans>Field</div>
+    <div class="column" trans>Description</div>
+  </div>
+  <div class="body" role="list">
+    <div
+      role="listitem"
+      class="row filter-suggestion-item"
+      *ngFor="let filter of filters | keyvalue: originalOrder; index as index"
+      tabindex="0"
+      #filterSuggestion
+      [attr.data-filter-key]="filter.key"
+      [attr.data-index]="index"
+      (click)="filterSelected.emit(filter.value)"
+    >
+      <div class="column label-column" trans>{{ filter.value.label }}</div>
+      <div class="column" trans>{{ filter.value.description }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="help-container">
+  <mat-icon svgIcon="info"></mat-icon>
+  <div trans>
+    Use arrows, tab or mouse to navigate added filters. Backspace or delete key to remove them.
+  </div>
+</div>

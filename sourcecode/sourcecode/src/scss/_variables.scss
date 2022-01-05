@@ -1,0 +1,39 @@
+@import "common-variables";
+
+//$site-primary-color-100: #37474f;
+//$site-primary-color-200: #263238;
+
+//web player
+$wp-bg-color-600: #23232C;
+$wp-bg-color-500: #1e1e26; // mat-color($app-background, background)
+$wp-bg-color-400: #2a2a35; // mat-color($app-background, raised-button)
+$wp-bg-color-300: #353543; // mat-color($app-background, unselected-chip)
+$wp-bg-color-200: #414151;
+$wp-bg-color-100: #7b7b96;
+$wp-border-color-200: rgba(255,255,255,0.05); // mat-color($app-foreground, divider)
+$wp-border-color-100: rgba(255,255,255,0.1); // mat-color($app-foreground, divider-lighter)
+$wp-text-color-300: #898B8C; // mat-color($app-foreground, hint-text)
+$wp-text-color-200: #C2C2CA; // mat-color($app-foreground, secondary-text)
+$wp-text-color-100: #fff; // mat-color($app-foreground, text)
+$page-margin: 30px;
+
+//web-player nav sidebar
+$wp-nav-sidebar-width: 220px;
+$wp-nav-sidebar-current-track-height: 65px;
+
+//web-player search slideout panel
+$wp-search-panel-width: 365px;
+
+//web-player controls bar
+$wp-controls-height: 65px;
+$wp-controls-handle-height: 14px;
+$wp-controls-progress-height: 5px;
+$wp-mobile-controls-height: 137px;
+$wp-play-button-size: 55px;
+$wp-next-prev-button-size: 30px;
+$wp-controls-action-button-size: 22px;
+
+//web-player video
+$wp-video-minimized-width: 250px;
+$wp-video-minimized-height: 207px;
+

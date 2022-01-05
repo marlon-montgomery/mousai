@@ -1,0 +1,102 @@
+@import "../../../../scss/variables";
+
+mobile-player-controls {
+  display: block;
+  background-color: inherit;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+
+  .controls {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+
+    .maximize {
+      display: block;
+      flex-shrink: 0;
+
+      .mat-icon {
+        display: block;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    main-playback-buttons {
+      width: 115px;
+      flex: 0 0 115px;
+    }
+
+    .track-info {
+      flex: 1 1 auto;
+      text-align: center;
+      padding: 0 10px;
+      min-width: 0;
+
+      .track-name {
+        font-size: 1.3rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .artist-name {
+        font-size: 1.2rem;
+        color: mat-color($app-foreground, hint-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .nav {
+    display: flex;
+    border-top: 1px solid mat-color($app-foreground, divider);
+    padding: 15px;
+
+    .nav-item {
+      flex: 1 1 auto;
+      text-align: center;
+      font-size: 1.1rem;
+      color: inherit;
+
+      a {
+        color: inherit;
+
+        &.active {
+          color: mat-color($app-foreground, text);
+        }
+      }
+
+      .mat-icon {
+        display: block;
+        margin: 0 auto 3px;
+      }
+    }
+  }
+
+  player-seekbar {
+    pointer-events: none;
+
+    .elapsed-time, .track-length {
+      display: none;
+    }
+
+    .outer-track {
+      margin: 0;
+
+      .progress-handle {
+        display: none;
+        top: 0;
+      }
+
+      .progress-track {
+        top: 0;
+      }
+    }
+  }
+}

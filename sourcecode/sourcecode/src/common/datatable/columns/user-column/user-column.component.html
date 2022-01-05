@@ -1,0 +1,11 @@
+<ng-container *ngIf="user">
+    <img [src]="user.avatar" alt="">
+    <a [routerLink]="url.generate(user)" target="_blank" class="link content" *ngIf="haveUrl">
+        <div>{{user.display_name}}</div>
+        <div class="email secondary">{{user.email}}</div>
+    </a>
+    <div class="content" *ngIf="!haveUrl">
+        <div>{{user.display_name}}</div>
+        <div class="email secondary">{{user.email}}</div>
+    </div>
+</ng-container>
