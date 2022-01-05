@@ -1,4 +1,9 @@
 {
+    "/api/v0": {
+        "target": "https://bitclout.com",
+        "secure": false,
+        "changeOrigin": true
+    },
     "/secure": {
         "target": "http://localhost:8081",
         "secure": false,

@@ -41,7 +41,8 @@ use Storage;
  * @property int owner_id
  * @mixin Eloquent
  */
-class Track extends Model {
+class Track extends Model
+{
     use OrdersByPopularity, Searchable, HasFactory;
 
     const MODEL_TYPE = 'track';
@@ -69,9 +70,9 @@ class Track extends Model {
     ];
 
     protected $casts = [
-        'id'       => 'integer',
+        'id' => 'integer',
         'album_id' => 'integer',
-        'number'   => 'integer',
+        'number' => 'integer',
         'spotify_popularity' => 'integer',
         'duration' => 'integer',
         'auto_update' => 'boolean',
@@ -84,7 +85,7 @@ class Track extends Model {
     {
         parent::__construct($attributes);
 
-        if ( ! request()->isFromFrontend()) {
+        if (!request()->isFromFrontend()) {
             $this->hidden[] = 'url';
             $this->hidden[] = 'youtube_id';
             $this->hidden[] = 'spotify_popularity';
@@ -126,7 +127,7 @@ class Track extends Model {
     public function artists(): BelongsToMany
     {
         return $this->belongsToMany(Artist::class)
-            ->select(['artists.id', 'artists.name', 'artists.image_small']);
+            ->select(['artists.id', 'artists.name', 'artists.image_small', 'artists.bitclout']);
     }
 
     public function plays()
@@ -181,7 +182,8 @@ class Track extends Model {
         return Storage::disk(config('common.site.wave_storage_disk'));
     }
 
-    public function toNormalizedArray(): array {
+    public function toNormalizedArray(): array
+    {
         return [
             'id' => $this->id,
             'name' => $this->name,

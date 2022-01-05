@@ -1,0 +1,68 @@
+diamond-modal {
+  display: flex;
+  flex-direction: column;
+
+  & > mat-spinner {
+    --be-primary-default: currentColor;
+
+    opacity: .74;
+  }
+
+  .diamond-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    justify-content: space-between;
+
+    .diamond {
+      padding: 8px;
+      display: flex;
+      transition: .2s;
+      align-items: center;
+      transform: scale(.9);
+      flex-direction: column;
+
+      &.selected {
+        color: var(--be-accent-default);
+      }
+
+      &:not(.disabled) {
+        cursor: pointer;
+
+        &:not(.selected):hover {
+          transform: scale(1);
+        }
+      }
+
+      & > mat-icon {
+        width: 32px;
+        height: 32px;
+
+        & > svg {
+          width: 100% !important;
+          height: 100% !important;
+        }
+      }
+
+      & > span {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  mat-dialog-actions {
+    button {
+      margin-bottom: 12px !important;
+
+      &:first-child {
+        margin-left: auto;
+      }
+    }
+
+    mat-progress-bar {
+      margin-bottom: -12px;
+      margin-left: -24px;
+      min-width: calc(100% + 24px * 2);
+    }
+  }
+}

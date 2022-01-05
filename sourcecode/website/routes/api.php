@@ -15,6 +15,7 @@ use App\Http\Controllers\Artist\ArtistFollowersController;
 use App\Http\Controllers\Artist\ArtistTracksController;
 use App\Http\Controllers\ArtistAlbumsController;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\BitCloutController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\PlaylistTracksController;
 use App\Http\Controllers\Search\SearchController;
@@ -31,8 +32,10 @@ use App\Http\Controllers\UserProfileController;
 use Common\Auth\Controllers\GetAccessTokenController;
 use Common\Auth\Controllers\RegisterController;
 
-Route::group(['prefix' => 'v1'], function() {
-    Route::group(['middleware' => 'auth:sanctum'], function() {
+Route::group(['prefix' => 'v1'], function () {
+    Route::group(['middleware' => 'auth:sanctum'], function () {
+        // ON DONATION
+        Route::post('bitclout/on-tip', [BitCloutController::class, 'onTip']);
 
         // SEARCH
         Route::get('search', [SearchController::class, 'index']);

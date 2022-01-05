@@ -1,10 +1,12 @@
+import {BitcloutService} from '@common/auth/bitclout.service';
+
 export function identityLogin(accessLevel) {
     let identityWindow = null;
     let initialized = false;
     let iframe = null;
     let user = null;
 
-    return new Promise((resolve, reject) => {
+    return new Promise<{[key: string]: any}>((resolve) => {
         function login() {
             const h = 600;
             const w = 800;
@@ -23,30 +25,34 @@ export function identityLogin(accessLevel) {
                 initialized = true;
                 iframe = event.source;
             }
-            event.source.postMessage({id: event.data.id, service: 'identity'}, '*')
+            event.source.postMessage({id: event.data.id, service: 'identity'}, '*');
         }
 
-        function handleLogin(payload) {
+        function handleLogin({publicKeyAdded, users}) {
+            BitcloutService.Users = users;
+            BitcloutService.CurrentUserPublicKey = publicKeyAdded;
+
             user = {
-                ...payload.users[payload['publicKeyAdded']],
-                publicKey: payload['publicKeyAdded']
-            }
+                ...users[publicKeyAdded],
+                publicKey: publicKeyAdded
+            };
+
             if (identityWindow) {
                 iframe.postMessage({
                     id: Math.random().toString(36).substr(2, 5),
                     service: 'identity',
                     method: 'jwt',
                     payload: {
-                        accessLevel: user['accessLevel'],
-                        accessLevelHmac: user['accessLevelHmac'],
-                        encryptedSeedHex: user['encryptedSeedHex'],
+                        accessLevel: user.accessLevel,
+                        accessLevelHmac: user.accessLevelHmac,
+                        encryptedSeedHex: user.encryptedSeedHex,
                     }
                 }, '*');
             }
         }
 
         function handleJWT(payload) {
-            user.jwt = payload['jwt'];
+            user.jwt = payload.jwt;
             if (identityWindow) {
                 identityWindow.close();
                 identityWindow = null;
@@ -55,7 +61,7 @@ export function identityLogin(accessLevel) {
         }
 
         window.addEventListener('message', event => {
-            const {data: {_, service, method, payload}} = event;
+            const {data: {service, method, payload}} = event;
 
             if (service !== 'identity') {
                 return;
@@ -70,6 +76,6 @@ export function identityLogin(accessLevel) {
             }
         });
 
-        login()
+        login();
     });
 }

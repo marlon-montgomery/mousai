@@ -70,7 +70,7 @@ class Album extends Model {
     public function artists(): BelongsToMany
     {
     	return $this->belongsToMany(Artist::class, 'artist_album')
-            ->select(['artists.id', 'artists.name', 'artists.image_small'])
+            ->select(['artists.id', 'artists.name', 'artists.image_small', 'artists.bitclout'])
     	    ->orderBy('artist_album.primary', 'desc');
     }
 

@@ -1,3 +1,4 @@
+import '../types';
 import {filter} from 'rxjs/operators';
 import {Component, ElementRef, OnInit, ViewEncapsulation} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
@@ -12,6 +13,7 @@ import {CookieNoticeService} from '@common/gdpr/cookie-notice/cookie-notice.serv
 import {CustomHomepage} from '@common/pages/shared/custom-homepage.service';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
+import {BitcloutService} from '@common/auth/bitclout.service';
 
 
 export const LANDING_PAGE_NAME = 'Landing Page';
@@ -33,12 +35,31 @@ export class AppComponent implements OnInit {
         private meta: MetaTagsService,
         private cookieNotice: CookieNoticeService,
         private matIconRegistry: MatIconRegistry,
-        private domSanitzer: DomSanitizer,
+        private domSanitizer: DomSanitizer,
+        private bitclout: BitcloutService
     ) {
+        const prefix = window.location.hostname === 'localhost' ? '' : 'client/';
+
         this.matIconRegistry.addSvgIcon(
             'bitclout',
-            this.domSanitzer.bypassSecurityTrustResourceUrl('client/assets/icons/individual/bitclout.svg')
+            this.domSanitizer.bypassSecurityTrustResourceUrl(`${prefix}/assets/icons/individual/bitclout.svg`)
         );
+
+        this.matIconRegistry.addSvgIcon(
+            'diamond',
+            this.domSanitizer.bypassSecurityTrustResourceUrl(`${prefix}/assets/icons/individual/diamond.svg`)
+        );
+    }
+
+    private static loadCssVariablesPolyfill() {
+        const isNativeSupport = typeof window !== 'undefined' &&
+            window.CSS &&
+            window.CSS.supports &&
+            window.CSS.supports('(--a: 0)');
+
+        if (!isNativeSupport) {
+            cssVars();
+        }
     }
 
     ngOnInit() {
@@ -67,7 +88,9 @@ export class AppComponent implements OnInit {
             }]
         });
 
-        this.loadCssVariablesPolyfill();
+        AppComponent.loadCssVariablesPolyfill();
+
+        this.bitclout.initialize();
         this.cookieNotice.maybeShow();
     }
 
@@ -75,19 +98,9 @@ export class AppComponent implements OnInit {
         this.router.events
             .pipe(filter(e => e instanceof NavigationEnd))
             .subscribe((event: NavigationEnd) => {
-                if ( ! window['ga']) return;
-                window['ga']('set', 'page', event.urlAfterRedirects);
-                window['ga']('send', 'pageview');
+                if (!window.ga) return;
+                window.ga('set', 'page', event.urlAfterRedirects);
+                window.ga('send', 'pageview');
             });
-    }
-
-    private loadCssVariablesPolyfill() {
-        const isNativeSupport = typeof window !== 'undefined' &&
-            window['CSS'] &&
-            window['CSS'].supports &&
-            window['CSS'].supports('(--a: 0)');
-        if ( ! isNativeSupport) {
-            cssVars();
-        }
     }
 }

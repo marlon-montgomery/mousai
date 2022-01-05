@@ -9,8 +9,10 @@ import {HttpErrorHandler} from '@common/core/http/errors/http-error-handler.serv
 })
 export class AppHttpClient {
     static prefix = 'secure';
+    static reserved = ['secure', 'node', 'api'];
 
-    constructor(protected httpClient: HttpClient, protected errorHandler: HttpErrorHandler) {}
+    constructor(protected httpClient: HttpClient, protected errorHandler: HttpErrorHandler) {
+    }
 
     public get<T>(uri: string, params = {}, options: object = {}): Observable<T> {
         const httpParams = this.transformQueryParams(params);
@@ -18,8 +20,8 @@ export class AppHttpClient {
             .pipe(catchError(err => this.errorHandler.handle(err, uri, options)));
     }
 
-    public post<T>(uri: string, payload: object = null): Observable<T> {
-        return this.httpClient.post<T>(this.prefixUri(uri), payload)
+    public post<T>(uri: string, payload: object = null, options: object = {}): Observable<T> {
+        return this.httpClient.post<T>(this.prefixUri(uri), payload, options)
             .pipe(catchError(err => this.errorHandler.handle(err, uri)));
     }
 
@@ -46,13 +48,16 @@ export class AppHttpClient {
     }
 
     protected prefixUri(uri: string) {
-        if (uri.indexOf('://') > -1 || uri.startsWith(AppHttpClient.prefix) || uri.startsWith('api')) {
+        const isReserved = AppHttpClient.reserved.map(value => uri.startsWith(value)).includes(true);
+        const containsProtocol = uri.indexOf('://') > -1;
+
+        if (containsProtocol || isReserved) {
             return uri;
         }
         return `${AppHttpClient.prefix}/${uri}`;
     }
 
-    protected transformQueryParams(params: object|null) {
+    protected transformQueryParams(params: object | null) {
         let httpParams = new HttpParams();
 
         if (params) {
@@ -64,11 +69,11 @@ export class AppHttpClient {
         return httpParams;
     }
 
-    protected spoofHttpMethod(params: object|FormData, method: 'PUT'|'DELETE'): object|FormData {
+    protected spoofHttpMethod(params: { [key: string]: any } | FormData, method: 'PUT' | 'DELETE'): object | FormData {
         if (params instanceof FormData) {
             (params as FormData).append('_method', method);
         } else {
-            params['_method'] = method;
+            params._method = method;
         }
 
         return params;
