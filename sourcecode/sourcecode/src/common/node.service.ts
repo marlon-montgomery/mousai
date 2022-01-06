@@ -125,7 +125,7 @@ export class NodeService {
     }
 
     protected apiUrl(path: string, version: string = 'v0'): string {
-        return `api/${version}/${path}`;
+        return `https://deso.mousai.stream/api/${version}/${path}`;
     }
 
     constructor(
