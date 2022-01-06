@@ -55,7 +55,7 @@ export class DiamondComponent {
     }
 
     protected throwError() {
-        const matSnackBarRef = this.toast.open('To send a diamond, you need to login with BitClout.', {action: 'Login'});
+        const matSnackBarRef = this.toast.open('To send a diamond, you need to login with DeSo.', {action: 'Login'});
 
         const onActionSubscription = matSnackBarRef.onAction().subscribe(() => this.onAction());
         const afterDismissedSubscription = matSnackBarRef.afterDismissed().subscribe(() => {
