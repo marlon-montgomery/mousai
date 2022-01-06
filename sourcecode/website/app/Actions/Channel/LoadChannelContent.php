@@ -210,7 +210,7 @@ class LoadChannelContent
                 return ($channel
                     ? $channel->artists()
                     : app(Artist::class)
-                )->select(['name', 'artists.id', 'image_small']);
+                )->select(['name', 'artists.id', 'image_small', 'artists.bitclout']);
             case User::MODEL_TYPE:
                 return ($channel
                     ? $channel->users()
