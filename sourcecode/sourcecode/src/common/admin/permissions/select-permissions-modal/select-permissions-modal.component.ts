@@ -6,7 +6,7 @@ import {SelectionModel} from '@common/core/utils/SelectionModel';
 import {groupBy} from '@common/core/utils/group-by';
 import {flattenArray} from '@common/core/utils/flatten-array';
 import {BehaviorSubject} from 'rxjs';
-import {filter, finalize} from 'rxjs/operators';
+import {finalize} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
 
 export interface SelectPermissionsModalData {

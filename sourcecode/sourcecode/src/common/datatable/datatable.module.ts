@@ -15,7 +15,10 @@ import {MatChipsModule} from '@angular/material/chips';
 import {DatatableFiltersPanelComponent} from './datatable-filters-panel/datatable-filters-panel.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {ChipsModule} from '../core/ui/chips/chips.module';
+
+// tslint:disable-next-line:max-line-length
 import {DatatableHeaderSearchInputComponent} from './datatable-header/datatable-header-search-input/datatable-header-search-input.component';
+
 import {NoResultsMessageModule} from '../core/ui/no-results-message/no-results-message.module';
 import {NoResultsMessageComponent} from '../core/ui/no-results-message/no-results-message.component';
 import {FormatPipesModule} from '@common/core/ui/format-pipes/format-pipes.module';
@@ -32,6 +35,7 @@ import {RouterModule} from '@angular/router';
         TableHeaderCheckboxComponent,
         DatatableFooterComponent,
         DatatableHeaderComponent,
+        DatatableHeaderSearchInputComponent,
         DatatableFiltersPanelComponent,
         DatatableHeaderSearchInputComponent,
         DatatableFiltersComponent,

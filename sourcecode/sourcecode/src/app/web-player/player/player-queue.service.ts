@@ -3,7 +3,6 @@ import {Track} from '../../models/Track';
 import {PlayerState} from './player-state.service';
 import {shuffler} from './shuffler';
 import {LocalStorage} from '@common/core/services/local-storage.service';
-import {Settings} from '@common/core/config/settings.service';
 import {BehaviorSubject} from 'rxjs';
 
 @Injectable({

@@ -5,6 +5,7 @@ export class MenuItem {
 
     // ID for model if action matches to specific model. If action
     // points to a specific custom page, model_id will be that page's ID.
+    // tslint:disable-next-line:variable-name
     model_id: number;
     type: MenuItemType = 'link';
     icon: string;
@@ -13,6 +14,7 @@ export class MenuItem {
     activeExact = false;
 
     constructor(params: Partial<MenuItem> = {}) {
+        // tslint:disable-next-line:forin
         for (const name in params) {
             this[name] = params[name];
         }
@@ -20,5 +22,6 @@ export class MenuItem {
     }
 }
 
+// tslint:disable-next-line:ban-types
 export type MenuItemCondition = string|string[]|Function;
 export type MenuItemType = 'link' | 'route' | 'scrollTo';

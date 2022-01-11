@@ -1,7 +1,8 @@
-import { Directive, ElementRef, EventEmitter, OnDestroy, OnInit, Output, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 
 @Directive({
+    // tslint:disable-next-line:directive-selector
     selector: '[enterKeybind]',
 })
 export class EnterKeybindDirective implements OnInit, OnDestroy {

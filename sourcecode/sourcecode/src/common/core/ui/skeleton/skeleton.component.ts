@@ -7,11 +7,11 @@ import {ThemeService} from '../../theme.service';
     styleUrls: ['./skeleton.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
+        role: 'progressbar',
         'aria-busy': 'true',
         'aria-valuemin': '0',
         'aria-valuemax': '100',
         'aria-valuetext': 'Loading...',
-        'role': 'progressbar',
     }
 })
 export class SkeletonComponent {

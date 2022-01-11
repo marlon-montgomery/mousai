@@ -28,6 +28,10 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "allowedCommonJsDependencies": [
+                            "raven-js",
+                            "copy-to-clipboard"
+                        ],
                         "aot": true,
                         "preserveSymlinks": true,
                         "outputPath": "dist/client/browser",
@@ -39,10 +43,26 @@
                             "src/favicon.ico",
                             "src/assets",
                             "src/manifest.json",
-                            { "glob": "swagger-ui.css", "input": "node_modules/swagger-ui/dist", "output": "./assets/css" },
-                            { "glob": "**/*", "input": "src/common/assets/images", "output": "./assets/images" },
-                            { "glob": "**/*", "input": "node_modules/tinymce", "output": "./assets/js/tinymce" },
-                            { "glob": "**/*", "input": "node_modules/ace-builds/src-min-noconflict", "output": "./assets/js/ace" }
+                            {
+                                "glob": "swagger-ui.css",
+                                "input": "node_modules/swagger-ui/dist",
+                                "output": "./assets/css"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "src/common/assets/images",
+                                "output": "./assets/images"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "node_modules/tinymce",
+                                "output": "./assets/js/tinymce"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "node_modules/ace-builds/src-min-noconflict",
+                                "output": "./assets/js/ace"
+                            }
                         ],
                         "styles": [
                             "src/scss/styles.scss"

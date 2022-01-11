@@ -1,7 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {Settings} from '@common/core/config/settings.service';
-import {Deselect, Navigate, Select, SetConfig} from '@common/shared/appearance/commands/appearance-commands';
+import {
+    Deselect,
+    Navigate,
+    Select,
+    SetConfig
+} from '@common/shared/appearance/commands/appearance-commands';
 import {AppearanceCommand} from '@common/shared/appearance/commands/appearance-command';
 import {APPEARANCE_TOKEN} from '@common/shared/appearance/appearance-listener.service';
 import {BehaviorSubject, fromEvent, Observable, ReplaySubject} from 'rxjs';
@@ -12,11 +17,17 @@ import {AppHttpClient} from '@common/core/http/app-http-client.service';
 import {Toast} from '@common/core/ui/toast.service';
 import {GenericBackendResponse} from '@common/core/types/backend-response';
 import {removeDuplicateSlashes} from '@common/core/utils/remove-duplicate-slashes';
-import {AppearanceEditorConfig, AppearanceEditorField} from '@common/admin/appearance/appearance-editor-config.token';
+import {
+    AppearanceEditorConfig,
+    AppearanceEditorField
+} from '@common/admin/appearance/appearance-editor-config.token';
+
+// @ts-ignore
 import deepmerge from 'deepmerge';
 
 export interface EditorChanges {
-    [key: string]: string|number|object;
+    [key: string]: string | number | object;
+
     colors?: CssThemeColors;
 }
 
@@ -25,7 +36,7 @@ export interface EditorChanges {
 })
 export class AppearanceEditor {
     public activePanel$ = new BehaviorSubject<AppearanceEditorField>(null);
-    public defaultSettings: {[key: string]: any} = {};
+    public defaultSettings: { [key: string]: any } = {};
     public initiated$ = new ReplaySubject(1);
     private previewWindow: Window;
 
@@ -39,7 +50,8 @@ export class AppearanceEditor {
         private router: Router,
         private http: AppHttpClient,
         private toast: Toast,
-    ) {}
+    ) {
+    }
 
     public addChanges(value: EditorChanges) {
         this.changes$.next({...this.changes$.value, ...value});
@@ -53,18 +65,18 @@ export class AppearanceEditor {
         this.navigate(panel);
     }
 
-    public init(iframe: HTMLIFrameElement, defaultSettings: {name: string, value: any}[], config: AppearanceEditorConfig[]) {
+    public init(iframe: HTMLIFrameElement, defaultSettings: { name: string, value: any }[], config: AppearanceEditorConfig[]) {
         // listen for 'initiated' event from iframe window
         fromEvent(window, 'message')
             .pipe(filter((e: MessageEvent) => {
                 return e.data === APPEARANCE_TOKEN && (new URL(e.origin).hostname) === window.location.hostname;
             })).subscribe(() => {
-                this.initiated$.next(true);
-                this.initiated$.complete();
-                if (this.activePanel$.value) {
-                    this.navigate(this.activePanel$.value);
-                }
-            });
+            this.initiated$.next(true);
+            this.initiated$.complete();
+            if (this.activePanel$.value) {
+                this.navigate(this.activePanel$.value);
+            }
+        });
 
         defaultSettings.forEach(setting => {
             if (setting.name === 'env') {
@@ -92,10 +104,12 @@ export class AppearanceEditor {
                 finalize(() => this.loading$.next(false)),
                 share()
             );
-            observable.subscribe(() => {
-                this.changes$.next(null);
-                this.toast.open('Appearance saved');
-            });
+
+        observable.subscribe(() => {
+            this.changes$.next(null);
+            this.toast.open('Appearance saved');
+        });
+
         return observable;
     }
 
@@ -112,12 +126,12 @@ export class AppearanceEditor {
         this.postMessage(new Navigate(route, panelConfig?.queryParams));
     }
 
-    public setConfig(key: string, value: string|number) {
+    public setConfig(key: string, value: string | number) {
         this.postMessage(new SetConfig(key, value));
     }
 
     public selectNode(selector: string, index = 0) {
-        if ( ! selector) return;
+        if (!selector) return;
         this.postMessage(new Select(selector, index));
     }
 
@@ -140,7 +154,7 @@ export class AppearanceEditor {
     private initConfig(config: AppearanceEditorConfig[]) {
         const merged = deepmerge.all(config) as AppearanceEditorConfig;
         merged.sections = merged.sections.sort((a, b) => (a.position > b.position) ? 1 : -1);
-        if ( ! merged.defaultRoute) merged.defaultRoute = '/';
+        if (!merged.defaultRoute) merged.defaultRoute = '/';
         if (this.settings.get('site.has_mobile_app')) {
             merged.menus.positions.push('mobile-app-about');
         }

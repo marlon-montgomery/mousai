@@ -1,8 +1,9 @@
+@use "sass:math";
 @import "variables";
 
 $button-height: $text-editor-header-height - 1;
 $button-icon-size: 22px !default;
-$button-padding: ($button-height - $button-icon-size) / 2;
+$button-padding: math.div(($button-height - $button-icon-size), 2);
 
 :host {
   display: flex;
@@ -45,7 +46,7 @@ $button-padding: ($button-height - $button-icon-size) / 2;
   }
 
   &.active {
-    background-color: rgba(0,0,0,0.04);
+    background-color: rgba(0, 0, 0, 0.04);
   }
 
   &.success {
@@ -53,7 +54,7 @@ $button-padding: ($button-height - $button-icon-size) / 2;
   }
 
   &:hover {
-    background-color: rgba(0,0,0,0.04);
+    background-color: rgba(0, 0, 0, 0.04);
   }
 }
 

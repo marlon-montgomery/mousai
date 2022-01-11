@@ -9,6 +9,7 @@ export class FormattedDatePipe implements PipeTransform {
     private readonly format: string;
     private angularPipe: DatePipe;
 
+    // tslint:disable-next-line:variable-name
     constructor(private settings: Settings, @Inject(LOCALE_ID) private _locale: string) {
         this.format = this.settings.get('dates.format', 'yyyy-MM-dd');
         this.angularPipe = new DatePipe(_locale);

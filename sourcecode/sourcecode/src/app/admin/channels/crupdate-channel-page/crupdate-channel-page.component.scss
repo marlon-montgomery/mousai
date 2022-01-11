@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "variables";
 
 .header {
@@ -116,15 +117,15 @@
   overflow: hidden;
 
   @media only screen and (min-width: $medium) {
-    flex: 0 0 (100% / 3);
+    flex: 0 0 math.div(100%, 3);
   }
 
   @media only screen and (min-width: $large) {
-    flex: 0 0 (100% / 4);
+    flex: 0 0 math.div(100%, 4);
   }
 
   @media only screen and (min-width: $xlarge) {
-    flex: 0 0 (100% / 5);
+    flex: 0 0 math.div(100%, 5);
   }
 }
 

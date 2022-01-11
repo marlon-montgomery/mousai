@@ -24,6 +24,7 @@
             "dom"
         ],
         "types": [
+            "@types/wicg-mediasession",
             "@types/google.analytics"
         ]
     },

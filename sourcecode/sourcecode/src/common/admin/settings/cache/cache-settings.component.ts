@@ -6,7 +6,9 @@ import {finalize} from 'rxjs/operators';
     selector: 'cache-settings',
     templateUrl: './cache-settings.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    host: {'class': 'settings-panel'},
+    host: {
+        class: 'settings-panel'
+    },
 })
 export class CacheSettingsComponent extends SettingsPanelComponent {
     public clearCache() {

@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "../../../scss/variables";
 
 .be-light-mode media-grid .media-grid-item .img-container img {
@@ -44,19 +45,19 @@ media-grid {
     overflow: hidden;
 
     @media only screen and (min-width: 280px) {
-      flex: 0 0 (100% / 2);
+      flex: 0 0 math.div(100%, 2);
     }
 
     @media only screen and (min-width: $medium) {
-      flex: 0 0 (100% / 3);
+      flex: 0 0 math.div(100%, 3);
     }
 
     @media only screen and (min-width: $large) {
-      flex: 0 0 (100% / 4);
+      flex: 0 0 math.div(100%, 4);
     }
 
     @media only screen and (min-width: $xlarge) {
-      flex: 0 0 (100% / 5);
+      flex: 0 0 math.div(100%, 5);
     }
 
     .img-container {

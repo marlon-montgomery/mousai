@@ -15,10 +15,11 @@ import {Settings} from '@common/core/config/settings.service';
     }]
 })
 export class SlugControlComponent implements ControlValueAccessor {
+    // tslint:disable-next-line:ban-types
     private propagateChange: Function;
-    public public slug$ = new BehaviorSubject<string>('');
-    public public editing$ = new BehaviorSubject<boolean>(false);
-    public public slugControl = new FormControl();
+    public slug$ = new BehaviorSubject<string>('');
+    public editing$ = new BehaviorSubject<boolean>(false);
+    public slugControl = new FormControl();
     @Input() prefix: string;
 
     @Input() set baseUri(uri: string) {
@@ -37,6 +38,7 @@ export class SlugControlComponent implements ControlValueAccessor {
         this.slugControl.setValue(value);
     }
 
+    // tslint:disable-next-line:ban-types
     public registerOnChange(fn: Function) {
         this.propagateChange = fn;
     }

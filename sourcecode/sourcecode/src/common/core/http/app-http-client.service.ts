@@ -18,13 +18,14 @@ export class AppHttpClient {
     constructor(
         protected httpClient: HttpClient,
         protected errorHandler: HttpErrorHandler
-    ) {}
+    ) {
+    }
 
     static prefixUri(uri: string) {
         if (
-          uri.indexOf('://') > -1 ||
-          uri.startsWith(AppHttpClient.prefix) ||
-          uri.startsWith('api')
+            uri.indexOf('://') > -1 ||
+            uri.startsWith(AppHttpClient.prefix) ||
+            uri.startsWith('api')
         ) {
             return uri;
         }
@@ -47,9 +48,8 @@ export class AppHttpClient {
             );
     }
 
-    public post<T>(uri: string, payload: object = null): Observable<T> {
-        return this.httpClient
-            .post<T>(AppHttpClient.prefixUri(uri), payload)
+    public post<T>(uri: string, payload: object = null, options: object = {}): Observable<T> {
+        return this.httpClient.post<T>(AppHttpClient.prefixUri(uri), payload, options)
             .pipe(catchError(err => this.errorHandler.handle(err, uri)));
     }
 

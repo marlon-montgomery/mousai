@@ -6,7 +6,9 @@ import {SettingsPanelComponent} from '@common/admin/settings/settings-panel.comp
     templateUrl: './blocked-artists-settings.component.html',
     styleUrls: ['./blocked-artists-settings.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    host: {'class': 'settings-panel'},
+    host: {
+        class: 'settings-panel'
+    },
 })
 export class BlockedArtistsSettingsComponent extends SettingsPanelComponent implements OnInit {
 

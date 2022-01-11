@@ -1,10 +1,14 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Input
+} from '@angular/core';
 import {
     ControlValueAccessor,
     FormBuilder,
     NG_VALUE_ACCESSOR,
 } from '@angular/forms';
-import { val } from 'cheerio/lib/api/attributes';
 
 @Component({
     selector: 'datetime-input',
@@ -27,7 +31,7 @@ export class DatetimeInputComponent implements ControlValueAccessor {
     currentTime: string;
     private initiated = false;
 
-    private propagateChange: Function;
+    private propagateChange: (value: null | string) => any;
     form = this.fb.group({
         date: [''],
         time: [''],
@@ -51,11 +55,11 @@ export class DatetimeInputComponent implements ControlValueAccessor {
         this.form.patchValue({date, time});
     }
 
-    registerOnChange(fn: Function) {
+    registerOnChange(fn: (value: null | string) => any) {
         this.propagateChange = fn;
         this.form.valueChanges.subscribe(value => {
             let datetime: string;
-            if ( ! value.date) {
+            if (!value.date) {
                 datetime = null;
             } else {
                 if (!value.time) {
@@ -71,7 +75,8 @@ export class DatetimeInputComponent implements ControlValueAccessor {
         });
     }
 
-    registerOnTouched() {}
+    registerOnTouched() {
+    }
 
     setDisabledState(isDisabled: boolean) {
         if (isDisabled) {

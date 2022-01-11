@@ -8,7 +8,6 @@ import {Modal} from '../../core/ui/dialogs/modal.service';
 import {CustomHomepage} from '../../pages/shared/custom-homepage.service';
 import {AppHttpClient} from '../../core/http/app-http-client.service';
 import {SettingsPayload} from '../../core/config/settings-payload';
-import {BehaviorSubject} from 'rxjs';
 import {ValueLists} from '@common/core/services/value-lists.service';
 import {scrollInvalidInputIntoView} from '@common/core/utils/scroll-invalid-input-into-view';
 import {BackendErrorResponse} from '@common/core/types/backend-error-response';

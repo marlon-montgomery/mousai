@@ -16,7 +16,7 @@ import {SettingsState} from '@common/admin/settings/settings-state.service';
 import {RECAPTCHA_ACTIONS} from '@common/admin/settings/recaptcha/recaptcha-actions.token';
 import {RecaptchaAction} from '@common/admin/settings/recaptcha/recaptcha-action';
 import {flattenArray} from '@common/core/utils/flatten-array';
-import {SocialAuthService} from '../../../auth/social-auth.service';
+import {SocialAuthService} from '@common/auth/social-auth.service';
 
 @Component({
     selector: 'recaptcha-settings',

@@ -35,10 +35,14 @@ import {SkeletonModule} from '@common/core/ui/skeleton/skeleton.module';
 import {ConfirmRequestHandledModalComponent} from './backstage-requests-index/backstage-request-viewer/confirm-request-handled-modal/confirm-request-handled-modal.component';
 import {BetweenDateInputModule} from '@common/core/ui/between-date-input/between-date-input.module';
 import {SelectUserInputModule} from '@common/core/ui/select-user-input/select-user-input.module';
+
+// tslint:disable-next-line:max-line-length
 import {BackstageRequestsFiltersComponent} from './backstage-requests-index/backstage-requests-filters/backstage-requests-filters.component';
+
 import {CommentIndexComponent} from './comments/comment-index.component';
 import {ImportMediaModalComponent} from './import-media-modal/import-media-modal.component';
-import { FormattedChannelConfigPipe } from './channels/channel-index/formatted-channel-config.pipe';
+import {FormattedChannelConfigPipe} from './channels/channel-index/formatted-channel-config.pipe';
+import {EnterKeybindDirective} from '@common/core/ui/enter-keybind.directive';
 
 @NgModule({
     imports: [
@@ -67,6 +71,7 @@ import { FormattedChannelConfigPipe } from './channels/channel-index/formatted-c
         MatRippleModule,
     ],
     declarations: [
+        EnterKeybindDirective,
         ArtistIndexComponent,
         CrupdateLyricModalComponent,
         TrackIndexComponent,
