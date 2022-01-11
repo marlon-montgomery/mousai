@@ -91,23 +91,19 @@ export class BackstageRequestViewerComponent implements OnInit {
     }
 
     public deleteRequest() {
-        this.modal
-            .show(ConfirmModalComponent, {
-                title: 'Approve Request',
-                body: 'Are you sure you want to delete this request?',
-                ok: 'Delete',
-            })
-            .afterClosed()
-            .subscribe(confirmed => {
-                if (!confirmed) return;
-                this.loading$.next(true);
-                this.backstage
-                    .deleteRequests([this.request$.value.id])
-                    .pipe(finalize(() => this.loading$.next(false)))
-                    .subscribe(() => {
-                        this.toast.open('Request has been deleted');
-                        this.router.navigate(['/admin/backstage-requests']);
-                    });
-            });
+        this.modal.show(ConfirmModalComponent, {
+            title: 'Approve Request',
+            body: 'Are you sure you want to delete this request?',
+            ok: 'Delete'
+        }).afterClosed().subscribe(confirmed => {
+            if ( ! confirmed) return;
+            this.loading$.next(true);
+            this.backstage.deleteRequests([this.request$.value.id])
+                .pipe(finalize(() => this.loading$.next(false)))
+                .subscribe(() => {
+                    this.toast.open('Request has been deleted');
+                    this.router.navigate(['/admin/backstage-requests']);
+                });
+        });
     }
 }

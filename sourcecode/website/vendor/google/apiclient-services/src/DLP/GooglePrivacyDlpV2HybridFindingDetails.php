@@ -21,17 +21,8 @@ class GooglePrivacyDlpV2HybridFindingDetails extends \Google\Model
 {
   protected $containerDetailsType = GooglePrivacyDlpV2Container::class;
   protected $containerDetailsDataType = '';
-  /**
-   * @var string
-   */
   public $fileOffset;
-  /**
-   * @var string[]
-   */
   public $labels;
-  /**
-   * @var string
-   */
   public $rowOffset;
   protected $tableOptionsType = GooglePrivacyDlpV2TableOptions::class;
   protected $tableOptionsDataType = '';
@@ -50,44 +41,26 @@ class GooglePrivacyDlpV2HybridFindingDetails extends \Google\Model
   {
     return $this->containerDetails;
   }
-  /**
-   * @param string
-   */
   public function setFileOffset($fileOffset)
   {
     $this->fileOffset = $fileOffset;
   }
-  /**
-   * @return string
-   */
   public function getFileOffset()
   {
     return $this->fileOffset;
   }
-  /**
-   * @param string[]
-   */
   public function setLabels($labels)
   {
     $this->labels = $labels;
   }
-  /**
-   * @return string[]
-   */
   public function getLabels()
   {
     return $this->labels;
   }
-  /**
-   * @param string
-   */
   public function setRowOffset($rowOffset)
   {
     $this->rowOffset = $rowOffset;
   }
-  /**
-   * @return string
-   */
   public function getRowOffset()
   {
     return $this->rowOffset;

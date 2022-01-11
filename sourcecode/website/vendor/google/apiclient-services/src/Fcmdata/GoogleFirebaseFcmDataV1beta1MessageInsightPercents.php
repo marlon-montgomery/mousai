@@ -19,21 +19,12 @@ namespace Google\Service\Fcmdata;
 
 class GoogleFirebaseFcmDataV1beta1MessageInsightPercents extends \Google\Model
 {
-  /**
-   * @var float
-   */
   public $priorityLowered;
 
-  /**
-   * @param float
-   */
   public function setPriorityLowered($priorityLowered)
   {
     $this->priorityLowered = $priorityLowered;
   }
-  /**
-   * @return float
-   */
   public function getPriorityLowered()
   {
     return $this->priorityLowered;

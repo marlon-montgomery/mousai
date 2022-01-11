@@ -20,27 +20,15 @@ namespace Google\Service\GameServices;
 class PreviewGameServerDeploymentRolloutResponse extends \Google\Collection
 {
   protected $collection_key = 'unavailable';
-  /**
-   * @var string
-   */
   public $etag;
   protected $targetStateType = TargetState::class;
   protected $targetStateDataType = '';
-  /**
-   * @var string[]
-   */
   public $unavailable;
 
-  /**
-   * @param string
-   */
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-  /**
-   * @return string
-   */
   public function getEtag()
   {
     return $this->etag;
@@ -59,16 +47,10 @@ class PreviewGameServerDeploymentRolloutResponse extends \Google\Collection
   {
     return $this->targetState;
   }
-  /**
-   * @param string[]
-   */
   public function setUnavailable($unavailable)
   {
     $this->unavailable = $unavailable;
   }
-  /**
-   * @return string[]
-   */
   public function getUnavailable()
   {
     return $this->unavailable;

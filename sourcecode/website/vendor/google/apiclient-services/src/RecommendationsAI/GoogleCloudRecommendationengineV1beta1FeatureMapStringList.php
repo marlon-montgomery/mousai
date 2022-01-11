@@ -20,21 +20,12 @@ namespace Google\Service\RecommendationsAI;
 class GoogleCloudRecommendationengineV1beta1FeatureMapStringList extends \Google\Collection
 {
   protected $collection_key = 'value';
-  /**
-   * @var string[]
-   */
   public $value;
 
-  /**
-   * @param string[]
-   */
   public function setValue($value)
   {
     $this->value = $value;
   }
-  /**
-   * @return string[]
-   */
   public function getValue()
   {
     return $this->value;

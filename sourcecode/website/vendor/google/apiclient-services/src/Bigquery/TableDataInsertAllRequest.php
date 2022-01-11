@@ -20,49 +20,25 @@ namespace Google\Service\Bigquery;
 class TableDataInsertAllRequest extends \Google\Collection
 {
   protected $collection_key = 'rows';
-  /**
-   * @var bool
-   */
   public $ignoreUnknownValues;
-  /**
-   * @var string
-   */
   public $kind;
   protected $rowsType = TableDataInsertAllRequestRows::class;
   protected $rowsDataType = 'array';
-  /**
-   * @var bool
-   */
   public $skipInvalidRows;
-  /**
-   * @var string
-   */
   public $templateSuffix;
 
-  /**
-   * @param bool
-   */
   public function setIgnoreUnknownValues($ignoreUnknownValues)
   {
     $this->ignoreUnknownValues = $ignoreUnknownValues;
   }
-  /**
-   * @return bool
-   */
   public function getIgnoreUnknownValues()
   {
     return $this->ignoreUnknownValues;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
@@ -81,30 +57,18 @@ class TableDataInsertAllRequest extends \Google\Collection
   {
     return $this->rows;
   }
-  /**
-   * @param bool
-   */
   public function setSkipInvalidRows($skipInvalidRows)
   {
     $this->skipInvalidRows = $skipInvalidRows;
   }
-  /**
-   * @return bool
-   */
   public function getSkipInvalidRows()
   {
     return $this->skipInvalidRows;
   }
-  /**
-   * @param string
-   */
   public function setTemplateSuffix($templateSuffix)
   {
     $this->templateSuffix = $templateSuffix;
   }
-  /**
-   * @return string
-   */
   public function getTemplateSuffix()
   {
     return $this->templateSuffix;

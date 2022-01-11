@@ -19,21 +19,12 @@ namespace Google\Service\HangoutsChat;
 
 class DateInput extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $msSinceEpoch;
 
-  /**
-   * @param string
-   */
   public function setMsSinceEpoch($msSinceEpoch)
   {
     $this->msSinceEpoch = $msSinceEpoch;
   }
-  /**
-   * @return string
-   */
   public function getMsSinceEpoch()
   {
     return $this->msSinceEpoch;

@@ -22,9 +22,6 @@ class ListDataSourcesResponse extends \Google\Collection
   protected $collection_key = 'dataSources';
   protected $dataSourcesType = DataSource::class;
   protected $dataSourcesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListDataSourcesResponse extends \Google\Collection
   {
     return $this->dataSources;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

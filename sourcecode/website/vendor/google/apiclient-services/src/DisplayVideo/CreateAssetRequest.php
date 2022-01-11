@@ -19,21 +19,12 @@ namespace Google\Service\DisplayVideo;
 
 class CreateAssetRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $filename;
 
-  /**
-   * @param string
-   */
   public function setFilename($filename)
   {
     $this->filename = $filename;
   }
-  /**
-   * @return string
-   */
   public function getFilename()
   {
     return $this->filename;

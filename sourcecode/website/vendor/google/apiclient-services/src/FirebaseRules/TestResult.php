@@ -20,9 +20,6 @@ namespace Google\Service\FirebaseRules;
 class TestResult extends \Google\Collection
 {
   protected $collection_key = 'visitedExpressions';
-  /**
-   * @var string[]
-   */
   public $debugMessages;
   protected $errorPositionType = SourcePosition::class;
   protected $errorPositionDataType = '';
@@ -30,23 +27,14 @@ class TestResult extends \Google\Collection
   protected $expressionReportsDataType = 'array';
   protected $functionCallsType = FunctionCall::class;
   protected $functionCallsDataType = 'array';
-  /**
-   * @var string
-   */
   public $state;
   protected $visitedExpressionsType = VisitedExpression::class;
   protected $visitedExpressionsDataType = 'array';
 
-  /**
-   * @param string[]
-   */
   public function setDebugMessages($debugMessages)
   {
     $this->debugMessages = $debugMessages;
   }
-  /**
-   * @return string[]
-   */
   public function getDebugMessages()
   {
     return $this->debugMessages;
@@ -93,16 +81,10 @@ class TestResult extends \Google\Collection
   {
     return $this->functionCalls;
   }
-  /**
-   * @param string
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return string
-   */
   public function getState()
   {
     return $this->state;

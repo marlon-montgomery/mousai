@@ -19,41 +19,23 @@ namespace Google\Service\Container;
 
 class NodeManagement extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $autoRepair;
-  /**
-   * @var bool
-   */
   public $autoUpgrade;
   protected $upgradeOptionsType = AutoUpgradeOptions::class;
   protected $upgradeOptionsDataType = '';
 
-  /**
-   * @param bool
-   */
   public function setAutoRepair($autoRepair)
   {
     $this->autoRepair = $autoRepair;
   }
-  /**
-   * @return bool
-   */
   public function getAutoRepair()
   {
     return $this->autoRepair;
   }
-  /**
-   * @param bool
-   */
   public function setAutoUpgrade($autoUpgrade)
   {
     $this->autoUpgrade = $autoUpgrade;
   }
-  /**
-   * @return bool
-   */
   public function getAutoUpgrade()
   {
     return $this->autoUpgrade;

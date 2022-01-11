@@ -19,21 +19,12 @@ namespace Google\Service\Directory;
 
 class MobileDeviceAction extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $action;
 
-  /**
-   * @param string
-   */
   public function setAction($action)
   {
     $this->action = $action;
   }
-  /**
-   * @return string
-   */
   public function getAction()
   {
     return $this->action;

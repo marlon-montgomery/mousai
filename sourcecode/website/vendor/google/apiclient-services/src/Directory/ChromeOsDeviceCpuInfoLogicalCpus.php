@@ -22,17 +22,8 @@ class ChromeOsDeviceCpuInfoLogicalCpus extends \Google\Collection
   protected $collection_key = 'cStates';
   protected $cStatesType = ChromeOsDeviceCpuInfoLogicalCpusCStates::class;
   protected $cStatesDataType = 'array';
-  /**
-   * @var int
-   */
   public $currentScalingFrequencyKhz;
-  /**
-   * @var string
-   */
   public $idleDuration;
-  /**
-   * @var int
-   */
   public $maxScalingFrequencyKhz;
 
   /**
@@ -49,44 +40,26 @@ class ChromeOsDeviceCpuInfoLogicalCpus extends \Google\Collection
   {
     return $this->cStates;
   }
-  /**
-   * @param int
-   */
   public function setCurrentScalingFrequencyKhz($currentScalingFrequencyKhz)
   {
     $this->currentScalingFrequencyKhz = $currentScalingFrequencyKhz;
   }
-  /**
-   * @return int
-   */
   public function getCurrentScalingFrequencyKhz()
   {
     return $this->currentScalingFrequencyKhz;
   }
-  /**
-   * @param string
-   */
   public function setIdleDuration($idleDuration)
   {
     $this->idleDuration = $idleDuration;
   }
-  /**
-   * @return string
-   */
   public function getIdleDuration()
   {
     return $this->idleDuration;
   }
-  /**
-   * @param int
-   */
   public function setMaxScalingFrequencyKhz($maxScalingFrequencyKhz)
   {
     $this->maxScalingFrequencyKhz = $maxScalingFrequencyKhz;
   }
-  /**
-   * @return int
-   */
   public function getMaxScalingFrequencyKhz()
   {
     return $this->maxScalingFrequencyKhz;

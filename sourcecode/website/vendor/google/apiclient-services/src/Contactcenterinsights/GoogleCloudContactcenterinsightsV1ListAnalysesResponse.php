@@ -22,9 +22,6 @@ class GoogleCloudContactcenterinsightsV1ListAnalysesResponse extends \Google\Col
   protected $collection_key = 'analyses';
   protected $analysesType = GoogleCloudContactcenterinsightsV1Analysis::class;
   protected $analysesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudContactcenterinsightsV1ListAnalysesResponse extends \Google\Col
   {
     return $this->analyses;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

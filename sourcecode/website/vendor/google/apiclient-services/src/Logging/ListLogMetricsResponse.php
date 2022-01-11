@@ -22,9 +22,6 @@ class ListLogMetricsResponse extends \Google\Collection
   protected $collection_key = 'metrics';
   protected $metricsType = LogMetric::class;
   protected $metricsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListLogMetricsResponse extends \Google\Collection
   {
     return $this->metrics;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

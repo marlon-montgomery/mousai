@@ -21,13 +21,7 @@ class FindDevicesByDeviceIdentifierRequest extends \Google\Model
 {
   protected $deviceIdentifierType = DeviceIdentifier::class;
   protected $deviceIdentifierDataType = '';
-  /**
-   * @var string
-   */
   public $limit;
-  /**
-   * @var string
-   */
   public $pageToken;
 
   /**
@@ -44,30 +38,18 @@ class FindDevicesByDeviceIdentifierRequest extends \Google\Model
   {
     return $this->deviceIdentifier;
   }
-  /**
-   * @param string
-   */
   public function setLimit($limit)
   {
     $this->limit = $limit;
   }
-  /**
-   * @return string
-   */
   public function getLimit()
   {
     return $this->limit;
   }
-  /**
-   * @param string
-   */
   public function setPageToken($pageToken)
   {
     $this->pageToken = $pageToken;
   }
-  /**
-   * @return string
-   */
   public function getPageToken()
   {
     return $this->pageToken;

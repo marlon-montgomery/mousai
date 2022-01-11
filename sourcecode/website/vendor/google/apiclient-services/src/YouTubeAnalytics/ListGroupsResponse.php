@@ -22,19 +22,10 @@ class ListGroupsResponse extends \Google\Collection
   protected $collection_key = 'items';
   protected $errorsType = Errors::class;
   protected $errorsDataType = '';
-  /**
-   * @var string
-   */
   public $etag;
   protected $itemsType = Group::class;
   protected $itemsDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -51,16 +42,10 @@ class ListGroupsResponse extends \Google\Collection
   {
     return $this->errors;
   }
-  /**
-   * @param string
-   */
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-  /**
-   * @return string
-   */
   public function getEtag()
   {
     return $this->etag;
@@ -79,30 +64,18 @@ class ListGroupsResponse extends \Google\Collection
   {
     return $this->items;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

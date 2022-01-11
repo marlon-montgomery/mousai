@@ -22,9 +22,6 @@ class TextAtom extends \Google\Collection
   protected $collection_key = 'inputs';
   protected $inputsType = TextInput::class;
   protected $inputsDataType = 'array';
-  /**
-   * @var string
-   */
   public $key;
 
   /**
@@ -41,16 +38,10 @@ class TextAtom extends \Google\Collection
   {
     return $this->inputs;
   }
-  /**
-   * @param string
-   */
   public function setKey($key)
   {
     $this->key = $key;
   }
-  /**
-   * @return string
-   */
   public function getKey()
   {
     return $this->key;

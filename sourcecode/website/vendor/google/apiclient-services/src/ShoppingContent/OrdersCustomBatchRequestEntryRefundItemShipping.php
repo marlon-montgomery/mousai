@@ -21,9 +21,6 @@ class OrdersCustomBatchRequestEntryRefundItemShipping extends \Google\Model
 {
   protected $amountType = Price::class;
   protected $amountDataType = '';
-  /**
-   * @var bool
-   */
   public $fullRefund;
 
   /**
@@ -40,16 +37,10 @@ class OrdersCustomBatchRequestEntryRefundItemShipping extends \Google\Model
   {
     return $this->amount;
   }
-  /**
-   * @param bool
-   */
   public function setFullRefund($fullRefund)
   {
     $this->fullRefund = $fullRefund;
   }
-  /**
-   * @return bool
-   */
   public function getFullRefund()
   {
     return $this->fullRefund;

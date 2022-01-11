@@ -22,9 +22,6 @@ class GoogleCloudRetailV2ListCatalogsResponse extends \Google\Collection
   protected $collection_key = 'catalogs';
   protected $catalogsType = GoogleCloudRetailV2Catalog::class;
   protected $catalogsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudRetailV2ListCatalogsResponse extends \Google\Collection
   {
     return $this->catalogs;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

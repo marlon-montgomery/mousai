@@ -21,13 +21,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCard extends \Google
 {
   protected $cardContentType = GoogleCloudDialogflowV2beta1IntentMessageRbmCardContent::class;
   protected $cardContentDataType = '';
-  /**
-   * @var string
-   */
   public $cardOrientation;
-  /**
-   * @var string
-   */
   public $thumbnailImageAlignment;
 
   /**
@@ -44,30 +38,18 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCard extends \Google
   {
     return $this->cardContent;
   }
-  /**
-   * @param string
-   */
   public function setCardOrientation($cardOrientation)
   {
     $this->cardOrientation = $cardOrientation;
   }
-  /**
-   * @return string
-   */
   public function getCardOrientation()
   {
     return $this->cardOrientation;
   }
-  /**
-   * @param string
-   */
   public function setThumbnailImageAlignment($thumbnailImageAlignment)
   {
     $this->thumbnailImageAlignment = $thumbnailImageAlignment;
   }
-  /**
-   * @return string
-   */
   public function getThumbnailImageAlignment()
   {
     return $this->thumbnailImageAlignment;

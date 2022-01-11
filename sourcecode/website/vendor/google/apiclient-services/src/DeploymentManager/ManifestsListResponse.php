@@ -22,9 +22,6 @@ class ManifestsListResponse extends \Google\Collection
   protected $collection_key = 'manifests';
   protected $manifestsType = Manifest::class;
   protected $manifestsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ManifestsListResponse extends \Google\Collection
   {
     return $this->manifests;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

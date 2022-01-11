@@ -25,13 +25,7 @@ class TestSpecification extends \Google\Model
   protected $androidRoboTestDataType = '';
   protected $androidTestLoopType = AndroidTestLoop::class;
   protected $androidTestLoopDataType = '';
-  /**
-   * @var bool
-   */
   public $disablePerformanceMetrics;
-  /**
-   * @var bool
-   */
   public $disableVideoRecording;
   protected $iosTestLoopType = IosTestLoop::class;
   protected $iosTestLoopDataType = '';
@@ -41,9 +35,6 @@ class TestSpecification extends \Google\Model
   protected $iosXcTestDataType = '';
   protected $testSetupType = TestSetup::class;
   protected $testSetupDataType = '';
-  /**
-   * @var string
-   */
   public $testTimeout;
 
   /**
@@ -88,30 +79,18 @@ class TestSpecification extends \Google\Model
   {
     return $this->androidTestLoop;
   }
-  /**
-   * @param bool
-   */
   public function setDisablePerformanceMetrics($disablePerformanceMetrics)
   {
     $this->disablePerformanceMetrics = $disablePerformanceMetrics;
   }
-  /**
-   * @return bool
-   */
   public function getDisablePerformanceMetrics()
   {
     return $this->disablePerformanceMetrics;
   }
-  /**
-   * @param bool
-   */
   public function setDisableVideoRecording($disableVideoRecording)
   {
     $this->disableVideoRecording = $disableVideoRecording;
   }
-  /**
-   * @return bool
-   */
   public function getDisableVideoRecording()
   {
     return $this->disableVideoRecording;
@@ -172,16 +151,10 @@ class TestSpecification extends \Google\Model
   {
     return $this->testSetup;
   }
-  /**
-   * @param string
-   */
   public function setTestTimeout($testTimeout)
   {
     $this->testTimeout = $testTimeout;
   }
-  /**
-   * @return string
-   */
   public function getTestTimeout()
   {
     return $this->testTimeout;

@@ -21,9 +21,6 @@ class NetworkConfiguration extends \Google\Model
 {
   protected $downRuleType = TrafficRule::class;
   protected $downRuleDataType = '';
-  /**
-   * @var string
-   */
   public $id;
   protected $upRuleType = TrafficRule::class;
   protected $upRuleDataType = '';
@@ -42,16 +39,10 @@ class NetworkConfiguration extends \Google\Model
   {
     return $this->downRule;
   }
-  /**
-   * @param string
-   */
   public function setId($id)
   {
     $this->id = $id;
   }
-  /**
-   * @return string
-   */
   public function getId()
   {
     return $this->id;

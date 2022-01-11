@@ -19,27 +19,15 @@ namespace Google\Service\Pubsub;
 
 class PushConfig extends \Google\Model
 {
-  /**
-   * @var string[]
-   */
   public $attributes;
   protected $oidcTokenType = OidcToken::class;
   protected $oidcTokenDataType = '';
-  /**
-   * @var string
-   */
   public $pushEndpoint;
 
-  /**
-   * @param string[]
-   */
   public function setAttributes($attributes)
   {
     $this->attributes = $attributes;
   }
-  /**
-   * @return string[]
-   */
   public function getAttributes()
   {
     return $this->attributes;
@@ -58,16 +46,10 @@ class PushConfig extends \Google\Model
   {
     return $this->oidcToken;
   }
-  /**
-   * @param string
-   */
   public function setPushEndpoint($pushEndpoint)
   {
     $this->pushEndpoint = $pushEndpoint;
   }
-  /**
-   * @return string
-   */
   public function getPushEndpoint()
   {
     return $this->pushEndpoint;

@@ -19,39 +19,21 @@ namespace Google\Service\Compute;
 
 class ManagedInstanceInstanceHealth extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $detailedHealthState;
-  /**
-   * @var string
-   */
   public $healthCheck;
 
-  /**
-   * @param string
-   */
   public function setDetailedHealthState($detailedHealthState)
   {
     $this->detailedHealthState = $detailedHealthState;
   }
-  /**
-   * @return string
-   */
   public function getDetailedHealthState()
   {
     return $this->detailedHealthState;
   }
-  /**
-   * @param string
-   */
   public function setHealthCheck($healthCheck)
   {
     $this->healthCheck = $healthCheck;
   }
-  /**
-   * @return string
-   */
   public function getHealthCheck()
   {
     return $this->healthCheck;

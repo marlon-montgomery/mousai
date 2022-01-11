@@ -21,9 +21,6 @@ class TestOrderLineItem extends \Google\Model
 {
   protected $productType = TestOrderLineItemProduct::class;
   protected $productDataType = '';
-  /**
-   * @var string
-   */
   public $quantityOrdered;
   protected $returnInfoType = OrderLineItemReturnInfo::class;
   protected $returnInfoDataType = '';
@@ -44,16 +41,10 @@ class TestOrderLineItem extends \Google\Model
   {
     return $this->product;
   }
-  /**
-   * @param string
-   */
   public function setQuantityOrdered($quantityOrdered)
   {
     $this->quantityOrdered = $quantityOrdered;
   }
-  /**
-   * @return string
-   */
   public function getQuantityOrdered()
   {
     return $this->quantityOrdered;

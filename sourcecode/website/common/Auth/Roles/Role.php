@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read Collection|Permission[] $permissions
  * @mixin Eloquent
  * @property int $guests
+ * @property string|null $legacy_permissions
  * @property string|null $description
  * @property string $type
  * @property int $internal
@@ -65,8 +66,6 @@ class Role extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_role')->withPivot(
-            'created_at',
-        );
+        return $this->belongsToMany(User::class, 'user_role')->withPivot('created_at');
     }
 }

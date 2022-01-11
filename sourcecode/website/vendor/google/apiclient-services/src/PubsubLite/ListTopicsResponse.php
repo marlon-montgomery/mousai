@@ -20,23 +20,14 @@ namespace Google\Service\PubsubLite;
 class ListTopicsResponse extends \Google\Collection
 {
   protected $collection_key = 'topics';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $topicsType = Topic::class;
   protected $topicsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

@@ -20,49 +20,25 @@ namespace Google\Service\ToolResults;
 class NonSdkApi extends \Google\Collection
 {
   protected $collection_key = 'insights';
-  /**
-   * @var string
-   */
   public $apiSignature;
-  /**
-   * @var string[]
-   */
   public $exampleStackTraces;
   protected $insightsType = NonSdkApiInsight::class;
   protected $insightsDataType = 'array';
-  /**
-   * @var int
-   */
   public $invocationCount;
-  /**
-   * @var string
-   */
   public $list;
 
-  /**
-   * @param string
-   */
   public function setApiSignature($apiSignature)
   {
     $this->apiSignature = $apiSignature;
   }
-  /**
-   * @return string
-   */
   public function getApiSignature()
   {
     return $this->apiSignature;
   }
-  /**
-   * @param string[]
-   */
   public function setExampleStackTraces($exampleStackTraces)
   {
     $this->exampleStackTraces = $exampleStackTraces;
   }
-  /**
-   * @return string[]
-   */
   public function getExampleStackTraces()
   {
     return $this->exampleStackTraces;
@@ -81,30 +57,18 @@ class NonSdkApi extends \Google\Collection
   {
     return $this->insights;
   }
-  /**
-   * @param int
-   */
   public function setInvocationCount($invocationCount)
   {
     $this->invocationCount = $invocationCount;
   }
-  /**
-   * @return int
-   */
   public function getInvocationCount()
   {
     return $this->invocationCount;
   }
-  /**
-   * @param string
-   */
   public function setList($list)
   {
     $this->list = $list;
   }
-  /**
-   * @return string
-   */
   public function getList()
   {
     return $this->list;

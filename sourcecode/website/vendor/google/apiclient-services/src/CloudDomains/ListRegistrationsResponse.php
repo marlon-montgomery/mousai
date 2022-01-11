@@ -20,23 +20,14 @@ namespace Google\Service\CloudDomains;
 class ListRegistrationsResponse extends \Google\Collection
 {
   protected $collection_key = 'registrations';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $registrationsType = Registration::class;
   protected $registrationsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

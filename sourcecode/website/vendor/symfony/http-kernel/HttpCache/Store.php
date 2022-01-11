@@ -25,10 +25,8 @@ use Symfony\Component\HttpFoundation\Response;
 class Store implements StoreInterface
 {
     protected $root;
-    /** @var \SplObjectStorage<Request, string> */
     private $keyCache;
-    /** @var array<string, resource> */
-    private $locks = [];
+    private $locks;
 
     /**
      * @throws \RuntimeException
@@ -40,6 +38,7 @@ class Store implements StoreInterface
             throw new \RuntimeException(sprintf('Unable to create the store directory (%s).', $this->root));
         }
         $this->keyCache = new \SplObjectStorage();
+        $this->locks = [];
     }
 
     /**
@@ -126,7 +125,7 @@ class Store implements StoreInterface
     /**
      * Locates a cached Response for the Request provided.
      *
-     * @return Response|null
+     * @return Response|null A Response instance, or null if no cache entry was found
      */
     public function lookup(Request $request)
     {
@@ -167,7 +166,7 @@ class Store implements StoreInterface
      * Existing entries are read and any that match the response are removed. This
      * method calls write with the new list of cache entries.
      *
-     * @return string
+     * @return string The key under which the response is stored
      *
      * @throws \RuntimeException
      */
@@ -419,7 +418,7 @@ class Store implements StoreInterface
      * headers, use a Vary header to indicate them, and each representation will
      * be stored independently under the same cache key.
      *
-     * @return string
+     * @return string A key for the given Request
      */
     protected function generateCacheKey(Request $request)
     {

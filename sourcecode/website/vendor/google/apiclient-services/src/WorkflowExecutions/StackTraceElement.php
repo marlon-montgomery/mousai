@@ -21,13 +21,7 @@ class StackTraceElement extends \Google\Model
 {
   protected $positionType = Position::class;
   protected $positionDataType = '';
-  /**
-   * @var string
-   */
   public $routine;
-  /**
-   * @var string
-   */
   public $step;
 
   /**
@@ -44,30 +38,18 @@ class StackTraceElement extends \Google\Model
   {
     return $this->position;
   }
-  /**
-   * @param string
-   */
   public function setRoutine($routine)
   {
     $this->routine = $routine;
   }
-  /**
-   * @return string
-   */
   public function getRoutine()
   {
     return $this->routine;
   }
-  /**
-   * @param string
-   */
   public function setStep($step)
   {
     $this->step = $step;
   }
-  /**
-   * @return string
-   */
   public function getStep()
   {
     return $this->step;

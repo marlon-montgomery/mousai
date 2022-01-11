@@ -24,27 +24,12 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateRespon
   protected $additionsDataType = 'array';
   protected $checksumType = GoogleSecuritySafebrowsingV4Checksum::class;
   protected $checksumDataType = '';
-  /**
-   * @var string
-   */
   public $newClientState;
-  /**
-   * @var string
-   */
   public $platformType;
   protected $removalsType = GoogleSecuritySafebrowsingV4ThreatEntrySet::class;
   protected $removalsDataType = 'array';
-  /**
-   * @var string
-   */
   public $responseType;
-  /**
-   * @var string
-   */
   public $threatEntryType;
-  /**
-   * @var string
-   */
   public $threatType;
 
   /**
@@ -75,30 +60,18 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateRespon
   {
     return $this->checksum;
   }
-  /**
-   * @param string
-   */
   public function setNewClientState($newClientState)
   {
     $this->newClientState = $newClientState;
   }
-  /**
-   * @return string
-   */
   public function getNewClientState()
   {
     return $this->newClientState;
   }
-  /**
-   * @param string
-   */
   public function setPlatformType($platformType)
   {
     $this->platformType = $platformType;
   }
-  /**
-   * @return string
-   */
   public function getPlatformType()
   {
     return $this->platformType;
@@ -117,44 +90,26 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateRespon
   {
     return $this->removals;
   }
-  /**
-   * @param string
-   */
   public function setResponseType($responseType)
   {
     $this->responseType = $responseType;
   }
-  /**
-   * @return string
-   */
   public function getResponseType()
   {
     return $this->responseType;
   }
-  /**
-   * @param string
-   */
   public function setThreatEntryType($threatEntryType)
   {
     $this->threatEntryType = $threatEntryType;
   }
-  /**
-   * @return string
-   */
   public function getThreatEntryType()
   {
     return $this->threatEntryType;
   }
-  /**
-   * @param string
-   */
   public function setThreatType($threatType)
   {
     $this->threatType = $threatType;
   }
-  /**
-   * @return string
-   */
   public function getThreatType()
   {
     return $this->threatType;

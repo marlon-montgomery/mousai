@@ -19,21 +19,12 @@ namespace Google\Service\AIPlatformNotebooks;
 
 class RuntimeMetrics extends \Google\Model
 {
-  /**
-   * @var string[]
-   */
   public $systemMetrics;
 
-  /**
-   * @param string[]
-   */
   public function setSystemMetrics($systemMetrics)
   {
     $this->systemMetrics = $systemMetrics;
   }
-  /**
-   * @return string[]
-   */
   public function getSystemMetrics()
   {
     return $this->systemMetrics;

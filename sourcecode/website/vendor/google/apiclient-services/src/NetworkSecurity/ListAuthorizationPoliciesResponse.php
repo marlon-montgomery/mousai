@@ -22,9 +22,6 @@ class ListAuthorizationPoliciesResponse extends \Google\Collection
   protected $collection_key = 'authorizationPolicies';
   protected $authorizationPoliciesType = AuthorizationPolicy::class;
   protected $authorizationPoliciesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListAuthorizationPoliciesResponse extends \Google\Collection
   {
     return $this->authorizationPolicies;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

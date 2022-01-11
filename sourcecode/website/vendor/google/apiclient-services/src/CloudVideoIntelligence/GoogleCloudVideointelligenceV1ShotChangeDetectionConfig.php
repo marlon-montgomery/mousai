@@ -19,21 +19,12 @@ namespace Google\Service\CloudVideoIntelligence;
 
 class GoogleCloudVideointelligenceV1ShotChangeDetectionConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $model;
 
-  /**
-   * @param string
-   */
   public function setModel($model)
   {
     $this->model = $model;
   }
-  /**
-   * @return string
-   */
   public function getModel()
   {
     return $this->model;

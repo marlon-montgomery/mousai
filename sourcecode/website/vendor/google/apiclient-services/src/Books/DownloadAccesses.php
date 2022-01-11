@@ -22,9 +22,6 @@ class DownloadAccesses extends \Google\Collection
   protected $collection_key = 'downloadAccessList';
   protected $downloadAccessListType = DownloadAccessRestriction::class;
   protected $downloadAccessListDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -41,16 +38,10 @@ class DownloadAccesses extends \Google\Collection
   {
     return $this->downloadAccessList;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

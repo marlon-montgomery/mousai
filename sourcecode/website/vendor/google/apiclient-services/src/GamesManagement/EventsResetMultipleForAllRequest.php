@@ -23,39 +23,21 @@ class EventsResetMultipleForAllRequest extends \Google\Collection
   protected $internal_gapi_mappings = [
         "eventIds" => "event_ids",
   ];
-  /**
-   * @var string[]
-   */
   public $eventIds;
-  /**
-   * @var string
-   */
   public $kind;
 
-  /**
-   * @param string[]
-   */
   public function setEventIds($eventIds)
   {
     $this->eventIds = $eventIds;
   }
-  /**
-   * @return string[]
-   */
   public function getEventIds()
   {
     return $this->eventIds;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

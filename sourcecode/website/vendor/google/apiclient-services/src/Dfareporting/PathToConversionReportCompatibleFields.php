@@ -24,9 +24,6 @@ class PathToConversionReportCompatibleFields extends \Google\Collection
   protected $conversionDimensionsDataType = 'array';
   protected $customFloodlightVariablesType = Dimension::class;
   protected $customFloodlightVariablesDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
   protected $metricsType = Metric::class;
   protected $metricsDataType = 'array';
@@ -61,16 +58,10 @@ class PathToConversionReportCompatibleFields extends \Google\Collection
   {
     return $this->customFloodlightVariables;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

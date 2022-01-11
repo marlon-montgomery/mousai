@@ -19,21 +19,12 @@ namespace Google\Service\MyBusinessLodging;
 
 class LodgingMetadata extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $updateTime;
 
-  /**
-   * @param string
-   */
   public function setUpdateTime($updateTime)
   {
     $this->updateTime = $updateTime;
   }
-  /**
-   * @return string
-   */
   public function getUpdateTime()
   {
     return $this->updateTime;

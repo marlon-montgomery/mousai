@@ -19,21 +19,12 @@ namespace Google\Service\Container;
 
 class WorkloadIdentityConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $workloadPool;
 
-  /**
-   * @param string
-   */
   public function setWorkloadPool($workloadPool)
   {
     $this->workloadPool = $workloadPool;
   }
-  /**
-   * @return string
-   */
   public function getWorkloadPool()
   {
     return $this->workloadPool;

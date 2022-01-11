@@ -19,41 +19,23 @@ namespace Google\Service\ContainerAnalysis;
 
 class Location extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $cpeUri;
-  /**
-   * @var string
-   */
   public $path;
   protected $versionType = Version::class;
   protected $versionDataType = '';
 
-  /**
-   * @param string
-   */
   public function setCpeUri($cpeUri)
   {
     $this->cpeUri = $cpeUri;
   }
-  /**
-   * @return string
-   */
   public function getCpeUri()
   {
     return $this->cpeUri;
   }
-  /**
-   * @param string
-   */
   public function setPath($path)
   {
     $this->path = $path;
   }
-  /**
-   * @return string
-   */
   public function getPath()
   {
     return $this->path;

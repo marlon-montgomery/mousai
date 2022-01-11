@@ -19,21 +19,12 @@ namespace Google\Service\AndroidManagement;
 
 class ApiLevelCondition extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $minApiLevel;
 
-  /**
-   * @param int
-   */
   public function setMinApiLevel($minApiLevel)
   {
     $this->minApiLevel = $minApiLevel;
   }
-  /**
-   * @return int
-   */
   public function getMinApiLevel()
   {
     return $this->minApiLevel;

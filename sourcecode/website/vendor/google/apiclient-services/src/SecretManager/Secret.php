@@ -20,25 +20,10 @@ namespace Google\Service\SecretManager;
 class Secret extends \Google\Collection
 {
   protected $collection_key = 'topics';
-  /**
-   * @var string
-   */
   public $createTime;
-  /**
-   * @var string
-   */
   public $etag;
-  /**
-   * @var string
-   */
   public $expireTime;
-  /**
-   * @var string[]
-   */
   public $labels;
-  /**
-   * @var string
-   */
   public $name;
   protected $replicationType = Replication::class;
   protected $replicationDataType = '';
@@ -46,77 +31,44 @@ class Secret extends \Google\Collection
   protected $rotationDataType = '';
   protected $topicsType = Topic::class;
   protected $topicsDataType = 'array';
-  /**
-   * @var string
-   */
   public $ttl;
 
-  /**
-   * @param string
-   */
   public function setCreateTime($createTime)
   {
     $this->createTime = $createTime;
   }
-  /**
-   * @return string
-   */
   public function getCreateTime()
   {
     return $this->createTime;
   }
-  /**
-   * @param string
-   */
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-  /**
-   * @return string
-   */
   public function getEtag()
   {
     return $this->etag;
   }
-  /**
-   * @param string
-   */
   public function setExpireTime($expireTime)
   {
     $this->expireTime = $expireTime;
   }
-  /**
-   * @return string
-   */
   public function getExpireTime()
   {
     return $this->expireTime;
   }
-  /**
-   * @param string[]
-   */
   public function setLabels($labels)
   {
     $this->labels = $labels;
   }
-  /**
-   * @return string[]
-   */
   public function getLabels()
   {
     return $this->labels;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
@@ -163,16 +115,10 @@ class Secret extends \Google\Collection
   {
     return $this->topics;
   }
-  /**
-   * @param string
-   */
   public function setTtl($ttl)
   {
     $this->ttl = $ttl;
   }
-  /**
-   * @return string
-   */
   public function getTtl()
   {
     return $this->ttl;

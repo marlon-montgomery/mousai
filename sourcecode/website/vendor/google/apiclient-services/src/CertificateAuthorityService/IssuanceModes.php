@@ -19,39 +19,21 @@ namespace Google\Service\CertificateAuthorityService;
 
 class IssuanceModes extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $allowConfigBasedIssuance;
-  /**
-   * @var bool
-   */
   public $allowCsrBasedIssuance;
 
-  /**
-   * @param bool
-   */
   public function setAllowConfigBasedIssuance($allowConfigBasedIssuance)
   {
     $this->allowConfigBasedIssuance = $allowConfigBasedIssuance;
   }
-  /**
-   * @return bool
-   */
   public function getAllowConfigBasedIssuance()
   {
     return $this->allowConfigBasedIssuance;
   }
-  /**
-   * @param bool
-   */
   public function setAllowCsrBasedIssuance($allowCsrBasedIssuance)
   {
     $this->allowCsrBasedIssuance = $allowCsrBasedIssuance;
   }
-  /**
-   * @return bool
-   */
   public function getAllowCsrBasedIssuance()
   {
     return $this->allowCsrBasedIssuance;

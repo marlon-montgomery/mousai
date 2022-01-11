@@ -1,12 +1,6 @@
 CHANGELOG
 =========
 
-5.4
----
-
- * Add `TesterTrait::assertCommandIsSuccessful()` to test command
- * Deprecate `HelperSet::setCommand()` and `getCommand()` without replacement
-
 5.3
 ---
 
@@ -18,7 +12,6 @@ CHANGELOG
  * Add support for bright colors
  * Add `#[AsCommand]` attribute for declaring commands on PHP 8
  * Add `Helper::width()` and `Helper::length()`
- * The `--ansi` and `--no-ansi` options now default to `null`.
 
 5.2.0
 -----

@@ -19,9 +19,6 @@ namespace Google\Service\Datastore;
 
 class Mutation extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $baseVersion;
   protected $deleteType = Key::class;
   protected $deleteDataType = '';
@@ -32,16 +29,10 @@ class Mutation extends \Google\Model
   protected $upsertType = Entity::class;
   protected $upsertDataType = '';
 
-  /**
-   * @param string
-   */
   public function setBaseVersion($baseVersion)
   {
     $this->baseVersion = $baseVersion;
   }
-  /**
-   * @return string
-   */
   public function getBaseVersion()
   {
     return $this->baseVersion;

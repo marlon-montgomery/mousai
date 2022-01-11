@@ -20,9 +20,6 @@ namespace Google\Service\Transcoder;
 class Denoise extends \Google\Model
 {
   public $strength;
-  /**
-   * @var string
-   */
   public $tune;
 
   public function setStrength($strength)
@@ -33,16 +30,10 @@ class Denoise extends \Google\Model
   {
     return $this->strength;
   }
-  /**
-   * @param string
-   */
   public function setTune($tune)
   {
     $this->tune = $tune;
   }
-  /**
-   * @return string
-   */
   public function getTune()
   {
     return $this->tune;

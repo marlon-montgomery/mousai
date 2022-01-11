@@ -132,9 +132,6 @@ class Tables extends \Google\Service\Resource
    * @param string $tableId Table ID of the table to update
    * @param Table $postBody
    * @param array $optParams Optional parameters.
-   *
-   * @opt_param bool autodetect_schema When true will autodetect schema, else will
-   * keep original schema
    * @return Table
    */
   public function patch($projectId, $datasetId, $tableId, Table $postBody, $optParams = [])
@@ -191,9 +188,6 @@ class Tables extends \Google\Service\Resource
    * @param string $tableId Table ID of the table to update
    * @param Table $postBody
    * @param array $optParams Optional parameters.
-   *
-   * @opt_param bool autodetect_schema When true will autodetect schema, else will
-   * keep original schema
    * @return Table
    */
   public function update($projectId, $datasetId, $tableId, Table $postBody, $optParams = [])

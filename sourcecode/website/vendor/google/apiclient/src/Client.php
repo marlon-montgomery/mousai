@@ -49,7 +49,7 @@ use LogicException;
  */
 class Client
 {
-  const LIBVER = "2.12.1";
+  const LIBVER = "2.11.0";
   const USER_AGENT_SUFFIX = "google-api-php-client/";
   const OAUTH2_REVOKE_URI = 'https://oauth2.googleapis.com/revoke';
   const OAUTH2_TOKEN_URI = 'https://oauth2.googleapis.com/token';
@@ -87,11 +87,6 @@ class Client
   private $logger;
 
   /**
-   * @var CredentialsLoader $credentials
-   */
-  private $credentials;
-
-  /**
    * @var boolean $deferExecution
    */
   private $deferExecution = false;
@@ -119,9 +114,8 @@ class Client
           'client_id' => '',
           'client_secret' => '',
 
-          // Can be a path to JSON credentials or an array representing those
-          // credentials (@see Google\Client::setAuthConfig), or an instance of
-          // Google\Auth\CredentialsLoader.
+          // Path to JSON credentials or an array representing those credentials
+          // @see Google\Client::setAuthConfig
           'credentials' => null,
           // @see Google\Client::setScopes
           'scopes' => null,
@@ -181,11 +175,7 @@ class Client
     );
 
     if (!is_null($this->config['credentials'])) {
-      if ($this->config['credentials'] instanceof CredentialsLoader) {
-        $this->credentials = $this->config['credentials'];
-      } else {
-        $this->setAuthConfig($this->config['credentials']);
-      }
+      $this->setAuthConfig($this->config['credentials']);
       unset($this->config['credentials']);
     }
 
@@ -415,33 +405,25 @@ class Client
    */
   public function authorize(ClientInterface $http = null)
   {
+    $credentials = null;
+    $token = null;
+    $scopes = null;
     $http = $http ?: $this->getHttpClient();
     $authHandler = $this->getAuthHandler();
 
     // These conditionals represent the decision tree for authentication
-    //   1.  Check if a Google\Auth\CredentialsLoader instance has been supplied via the "credentials" option
-    //   2.  Check for Application Default Credentials
+    //   1.  Check for Application Default Credentials
+    //   2.  Check for API Key
     //   3a. Check for an Access Token
     //   3b. If access token exists but is expired, try to refresh it
-    //   4.  Check for API Key
-    if ($this->credentials) {
-      return $authHandler->attachCredentials(
-          $http,
-          $this->credentials,
-          $this->config['token_callback']
-      );
-    }
-
     if ($this->isUsingApplicationDefaultCredentials()) {
       $credentials = $this->createApplicationDefaultCredentials();
-      return $authHandler->attachCredentialsCache(
+      $http = $authHandler->attachCredentialsCache(
           $http,
           $credentials,
           $this->config['token_callback']
       );
-    }
-
-    if ($token = $this->getAccessToken()) {
+    } elseif ($token = $this->getAccessToken()) {
       $scopes = $this->prepareScopes();
       // add refresh subscriber to request a new token
       if (isset($token['refresh_token']) && $this->isAccessTokenExpired()) {
@@ -449,18 +431,16 @@ class Client
             $scopes,
             $token['refresh_token']
         );
-        return $authHandler->attachCredentials(
+        $http = $authHandler->attachCredentials(
             $http,
             $credentials,
             $this->config['token_callback']
         );
+      } else {
+        $http = $authHandler->attachToken($http, $token, (array) $scopes);
       }
-
-      return $authHandler->attachToken($http, $token, (array) $scopes);
-    }
-
-    if ($key = $this->config['developer_key']) {
-      return $authHandler->attachKey($http, $key);
+    } elseif ($key = $this->config['developer_key']) {
+      $http = $authHandler->attachKey($http, $key);
     }
 
     return $http;

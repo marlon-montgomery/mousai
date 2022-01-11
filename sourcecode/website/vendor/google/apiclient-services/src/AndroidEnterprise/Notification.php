@@ -25,9 +25,6 @@ class Notification extends \Google\Model
   protected $appUpdateEventDataType = '';
   protected $deviceReportUpdateEventType = DeviceReportUpdateEvent::class;
   protected $deviceReportUpdateEventDataType = '';
-  /**
-   * @var string
-   */
   public $enterpriseId;
   protected $installFailureEventType = InstallFailureEvent::class;
   protected $installFailureEventDataType = '';
@@ -35,17 +32,11 @@ class Notification extends \Google\Model
   protected $newDeviceEventDataType = '';
   protected $newPermissionsEventType = NewPermissionsEvent::class;
   protected $newPermissionsEventDataType = '';
-  /**
-   * @var string
-   */
   public $notificationType;
   protected $productApprovalEventType = ProductApprovalEvent::class;
   protected $productApprovalEventDataType = '';
   protected $productAvailabilityChangeEventType = ProductAvailabilityChangeEvent::class;
   protected $productAvailabilityChangeEventDataType = '';
-  /**
-   * @var string
-   */
   public $timestampMillis;
 
   /**
@@ -90,16 +81,10 @@ class Notification extends \Google\Model
   {
     return $this->deviceReportUpdateEvent;
   }
-  /**
-   * @param string
-   */
   public function setEnterpriseId($enterpriseId)
   {
     $this->enterpriseId = $enterpriseId;
   }
-  /**
-   * @return string
-   */
   public function getEnterpriseId()
   {
     return $this->enterpriseId;
@@ -146,16 +131,10 @@ class Notification extends \Google\Model
   {
     return $this->newPermissionsEvent;
   }
-  /**
-   * @param string
-   */
   public function setNotificationType($notificationType)
   {
     $this->notificationType = $notificationType;
   }
-  /**
-   * @return string
-   */
   public function getNotificationType()
   {
     return $this->notificationType;
@@ -188,16 +167,10 @@ class Notification extends \Google\Model
   {
     return $this->productAvailabilityChangeEvent;
   }
-  /**
-   * @param string
-   */
   public function setTimestampMillis($timestampMillis)
   {
     $this->timestampMillis = $timestampMillis;
   }
-  /**
-   * @return string
-   */
   public function getTimestampMillis()
   {
     return $this->timestampMillis;

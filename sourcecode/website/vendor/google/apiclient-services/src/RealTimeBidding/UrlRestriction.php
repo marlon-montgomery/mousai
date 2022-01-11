@@ -21,15 +21,9 @@ class UrlRestriction extends \Google\Model
 {
   protected $endDateType = Date::class;
   protected $endDateDataType = '';
-  /**
-   * @var string
-   */
   public $restrictionType;
   protected $startDateType = Date::class;
   protected $startDateDataType = '';
-  /**
-   * @var string
-   */
   public $url;
 
   /**
@@ -46,16 +40,10 @@ class UrlRestriction extends \Google\Model
   {
     return $this->endDate;
   }
-  /**
-   * @param string
-   */
   public function setRestrictionType($restrictionType)
   {
     $this->restrictionType = $restrictionType;
   }
-  /**
-   * @return string
-   */
   public function getRestrictionType()
   {
     return $this->restrictionType;
@@ -74,16 +62,10 @@ class UrlRestriction extends \Google\Model
   {
     return $this->startDate;
   }
-  /**
-   * @param string
-   */
   public function setUrl($url)
   {
     $this->url = $url;
   }
-  /**
-   * @return string
-   */
   public function getUrl()
   {
     return $this->url;

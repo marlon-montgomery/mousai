@@ -26,19 +26,10 @@ class SearchResponse extends \Google\Collection
   protected $errorInfoDataType = '';
   protected $facetResultsType = FacetResult::class;
   protected $facetResultsDataType = 'array';
-  /**
-   * @var bool
-   */
   public $hasMoreResults;
   protected $queryInterpretationType = QueryInterpretation::class;
   protected $queryInterpretationDataType = '';
-  /**
-   * @var string
-   */
   public $resultCountEstimate;
-  /**
-   * @var string
-   */
   public $resultCountExact;
   protected $resultCountsType = ResultCounts::class;
   protected $resultCountsDataType = '';
@@ -91,16 +82,10 @@ class SearchResponse extends \Google\Collection
   {
     return $this->facetResults;
   }
-  /**
-   * @param bool
-   */
   public function setHasMoreResults($hasMoreResults)
   {
     $this->hasMoreResults = $hasMoreResults;
   }
-  /**
-   * @return bool
-   */
   public function getHasMoreResults()
   {
     return $this->hasMoreResults;
@@ -119,30 +104,18 @@ class SearchResponse extends \Google\Collection
   {
     return $this->queryInterpretation;
   }
-  /**
-   * @param string
-   */
   public function setResultCountEstimate($resultCountEstimate)
   {
     $this->resultCountEstimate = $resultCountEstimate;
   }
-  /**
-   * @return string
-   */
   public function getResultCountEstimate()
   {
     return $this->resultCountEstimate;
   }
-  /**
-   * @param string
-   */
   public function setResultCountExact($resultCountExact)
   {
     $this->resultCountExact = $resultCountExact;
   }
-  /**
-   * @return string
-   */
   public function getResultCountExact()
   {
     return $this->resultCountExact;

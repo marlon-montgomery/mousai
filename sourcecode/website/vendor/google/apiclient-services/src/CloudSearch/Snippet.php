@@ -22,9 +22,6 @@ class Snippet extends \Google\Collection
   protected $collection_key = 'matchRanges';
   protected $matchRangesType = MatchRange::class;
   protected $matchRangesDataType = 'array';
-  /**
-   * @var string
-   */
   public $snippet;
 
   /**
@@ -41,16 +38,10 @@ class Snippet extends \Google\Collection
   {
     return $this->matchRanges;
   }
-  /**
-   * @param string
-   */
   public function setSnippet($snippet)
   {
     $this->snippet = $snippet;
   }
-  /**
-   * @return string
-   */
   public function getSnippet()
   {
     return $this->snippet;

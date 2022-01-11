@@ -19,21 +19,12 @@ namespace Google\Service\Cloudchannel;
 
 class GoogleCloudChannelV1RegisterSubscriberRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $serviceAccount;
 
-  /**
-   * @param string
-   */
   public function setServiceAccount($serviceAccount)
   {
     $this->serviceAccount = $serviceAccount;
   }
-  /**
-   * @return string
-   */
   public function getServiceAccount()
   {
     return $this->serviceAccount;

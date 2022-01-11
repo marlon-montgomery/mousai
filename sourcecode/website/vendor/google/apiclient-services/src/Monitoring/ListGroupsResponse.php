@@ -22,9 +22,6 @@ class ListGroupsResponse extends \Google\Collection
   protected $collection_key = 'group';
   protected $groupType = Group::class;
   protected $groupDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListGroupsResponse extends \Google\Collection
   {
     return $this->group;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

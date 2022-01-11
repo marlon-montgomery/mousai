@@ -22,45 +22,21 @@ class TestOrder extends \Google\Collection
   protected $collection_key = 'promotions';
   protected $deliveryDetailsType = TestOrderDeliveryDetails::class;
   protected $deliveryDetailsDataType = '';
-  /**
-   * @var bool
-   */
   public $enableOrderinvoices;
-  /**
-   * @var string
-   */
   public $kind;
   protected $lineItemsType = TestOrderLineItem::class;
   protected $lineItemsDataType = 'array';
-  /**
-   * @var string
-   */
   public $notificationMode;
   protected $pickupDetailsType = TestOrderPickupDetails::class;
   protected $pickupDetailsDataType = '';
-  /**
-   * @var string
-   */
   public $predefinedBillingAddress;
-  /**
-   * @var string
-   */
   public $predefinedDeliveryAddress;
-  /**
-   * @var string
-   */
   public $predefinedEmail;
-  /**
-   * @var string
-   */
   public $predefinedPickupDetails;
   protected $promotionsType = OrderPromotion::class;
   protected $promotionsDataType = 'array';
   protected $shippingCostType = Price::class;
   protected $shippingCostDataType = '';
-  /**
-   * @var string
-   */
   public $shippingOption;
 
   /**
@@ -77,30 +53,18 @@ class TestOrder extends \Google\Collection
   {
     return $this->deliveryDetails;
   }
-  /**
-   * @param bool
-   */
   public function setEnableOrderinvoices($enableOrderinvoices)
   {
     $this->enableOrderinvoices = $enableOrderinvoices;
   }
-  /**
-   * @return bool
-   */
   public function getEnableOrderinvoices()
   {
     return $this->enableOrderinvoices;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
@@ -119,16 +83,10 @@ class TestOrder extends \Google\Collection
   {
     return $this->lineItems;
   }
-  /**
-   * @param string
-   */
   public function setNotificationMode($notificationMode)
   {
     $this->notificationMode = $notificationMode;
   }
-  /**
-   * @return string
-   */
   public function getNotificationMode()
   {
     return $this->notificationMode;
@@ -147,58 +105,34 @@ class TestOrder extends \Google\Collection
   {
     return $this->pickupDetails;
   }
-  /**
-   * @param string
-   */
   public function setPredefinedBillingAddress($predefinedBillingAddress)
   {
     $this->predefinedBillingAddress = $predefinedBillingAddress;
   }
-  /**
-   * @return string
-   */
   public function getPredefinedBillingAddress()
   {
     return $this->predefinedBillingAddress;
   }
-  /**
-   * @param string
-   */
   public function setPredefinedDeliveryAddress($predefinedDeliveryAddress)
   {
     $this->predefinedDeliveryAddress = $predefinedDeliveryAddress;
   }
-  /**
-   * @return string
-   */
   public function getPredefinedDeliveryAddress()
   {
     return $this->predefinedDeliveryAddress;
   }
-  /**
-   * @param string
-   */
   public function setPredefinedEmail($predefinedEmail)
   {
     $this->predefinedEmail = $predefinedEmail;
   }
-  /**
-   * @return string
-   */
   public function getPredefinedEmail()
   {
     return $this->predefinedEmail;
   }
-  /**
-   * @param string
-   */
   public function setPredefinedPickupDetails($predefinedPickupDetails)
   {
     $this->predefinedPickupDetails = $predefinedPickupDetails;
   }
-  /**
-   * @return string
-   */
   public function getPredefinedPickupDetails()
   {
     return $this->predefinedPickupDetails;
@@ -231,16 +165,10 @@ class TestOrder extends \Google\Collection
   {
     return $this->shippingCost;
   }
-  /**
-   * @param string
-   */
   public function setShippingOption($shippingOption)
   {
     $this->shippingOption = $shippingOption;
   }
-  /**
-   * @return string
-   */
   public function getShippingOption()
   {
     return $this->shippingOption;

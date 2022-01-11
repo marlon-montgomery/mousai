@@ -20,23 +20,14 @@ namespace Google\Service\Area120Tables;
 class ListWorkspacesResponse extends \Google\Collection
 {
   protected $collection_key = 'workspaces';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $workspacesType = Workspace::class;
   protected $workspacesDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

@@ -20,45 +20,24 @@ namespace Google\Service\Compute;
 class UsableSubnetwork extends \Google\Collection
 {
   protected $collection_key = 'secondaryIpRanges';
-  /**
-   * @var string
-   */
   public $ipCidrRange;
-  /**
-   * @var string
-   */
   public $network;
   protected $secondaryIpRangesType = UsableSubnetworkSecondaryRange::class;
   protected $secondaryIpRangesDataType = 'array';
-  /**
-   * @var string
-   */
   public $subnetwork;
 
-  /**
-   * @param string
-   */
   public function setIpCidrRange($ipCidrRange)
   {
     $this->ipCidrRange = $ipCidrRange;
   }
-  /**
-   * @return string
-   */
   public function getIpCidrRange()
   {
     return $this->ipCidrRange;
   }
-  /**
-   * @param string
-   */
   public function setNetwork($network)
   {
     $this->network = $network;
   }
-  /**
-   * @return string
-   */
   public function getNetwork()
   {
     return $this->network;
@@ -77,16 +56,10 @@ class UsableSubnetwork extends \Google\Collection
   {
     return $this->secondaryIpRanges;
   }
-  /**
-   * @param string
-   */
   public function setSubnetwork($subnetwork)
   {
     $this->subnetwork = $subnetwork;
   }
-  /**
-   * @return string
-   */
   public function getSubnetwork()
   {
     return $this->subnetwork;

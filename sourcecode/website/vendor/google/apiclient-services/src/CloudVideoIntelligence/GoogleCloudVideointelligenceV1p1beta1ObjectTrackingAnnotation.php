@@ -20,9 +20,6 @@ namespace Google\Service\CloudVideoIntelligence;
 class GoogleCloudVideointelligenceV1p1beta1ObjectTrackingAnnotation extends \Google\Collection
 {
   protected $collection_key = 'frames';
-  /**
-   * @var float
-   */
   public $confidence;
   protected $entityType = GoogleCloudVideointelligenceV1p1beta1Entity::class;
   protected $entityDataType = '';
@@ -30,25 +27,13 @@ class GoogleCloudVideointelligenceV1p1beta1ObjectTrackingAnnotation extends \Goo
   protected $framesDataType = 'array';
   protected $segmentType = GoogleCloudVideointelligenceV1p1beta1VideoSegment::class;
   protected $segmentDataType = '';
-  /**
-   * @var string
-   */
   public $trackId;
-  /**
-   * @var string
-   */
   public $version;
 
-  /**
-   * @param float
-   */
   public function setConfidence($confidence)
   {
     $this->confidence = $confidence;
   }
-  /**
-   * @return float
-   */
   public function getConfidence()
   {
     return $this->confidence;
@@ -95,30 +80,18 @@ class GoogleCloudVideointelligenceV1p1beta1ObjectTrackingAnnotation extends \Goo
   {
     return $this->segment;
   }
-  /**
-   * @param string
-   */
   public function setTrackId($trackId)
   {
     $this->trackId = $trackId;
   }
-  /**
-   * @return string
-   */
   public function getTrackId()
   {
     return $this->trackId;
   }
-  /**
-   * @param string
-   */
   public function setVersion($version)
   {
     $this->version = $version;
   }
-  /**
-   * @return string
-   */
   public function getVersion()
   {
     return $this->version;

@@ -323,7 +323,7 @@ class ProcessPool implements Countable
      *
      * @return int
      */
-    public function count(): int
+    public function count()
     {
         return count($this->processes);
     }

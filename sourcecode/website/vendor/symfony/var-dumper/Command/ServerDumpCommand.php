@@ -12,8 +12,6 @@
 namespace Symfony\Component\VarDumper\Command;
 
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Completion\CompletionInput;
-use Symfony\Component\Console\Completion\CompletionSuggestions;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -57,8 +55,10 @@ class ServerDumpCommand extends Command
 
     protected function configure()
     {
+        $availableFormats = implode(', ', array_keys($this->descriptors));
+
         $this
-            ->addOption('format', null, InputOption::VALUE_REQUIRED, sprintf('The output format (%s)', implode(', ', $this->getAvailableFormats())), 'cli')
+            ->addOption('format', null, InputOption::VALUE_REQUIRED, sprintf('The output format (%s)', $availableFormats), 'cli')
             ->setDescription(self::$defaultDescription)
             ->setHelp(<<<'EOF'
 <info>%command.name%</info> starts a dump server that collects and displays
@@ -98,17 +98,5 @@ EOF
         });
 
         return 0;
-    }
-
-    public function complete(CompletionInput $input, CompletionSuggestions $suggestions): void
-    {
-        if ($input->mustSuggestOptionValuesFor('format')) {
-            $suggestions->suggestValues($this->getAvailableFormats());
-        }
-    }
-
-    private function getAvailableFormats(): array
-    {
-        return array_keys($this->descriptors);
     }
 }

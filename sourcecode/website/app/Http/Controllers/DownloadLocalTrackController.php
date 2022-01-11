@@ -38,7 +38,7 @@ class DownloadLocalTrackController extends BaseController
             abort(404);
         }
 
-        preg_match('/.*?\/?storage\/track_media\/(.+?\.[a-z0-9]+)/', $track->url, $matches);
+        preg_match('/.+?\/?storage\/track_media\/(.+?\.[a-z0-9]+)/', $track->url, $matches);
 
         // track is local
         if (isset($matches[1])) {

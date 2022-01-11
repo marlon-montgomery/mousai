@@ -37,11 +37,4 @@ final class NativeClientState extends ClientState
     {
         $this->id = random_int(\PHP_INT_MIN, \PHP_INT_MAX);
     }
-
-    public function reset()
-    {
-        $this->responseCount = 0;
-        $this->dnsCache = [];
-        $this->hosts = [];
-    }
 }

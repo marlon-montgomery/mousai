@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class InstanceGroupManagerStatusStatefulPerInstanceConfigs extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $allEffective;
 
-  /**
-   * @param bool
-   */
   public function setAllEffective($allEffective)
   {
     $this->allEffective = $allEffective;
   }
-  /**
-   * @return bool
-   */
   public function getAllEffective()
   {
     return $this->allEffective;

@@ -22,13 +22,7 @@ class MetricAbsence extends \Google\Collection
   protected $collection_key = 'aggregations';
   protected $aggregationsType = Aggregation::class;
   protected $aggregationsDataType = 'array';
-  /**
-   * @var string
-   */
   public $duration;
-  /**
-   * @var string
-   */
   public $filter;
   protected $triggerType = Trigger::class;
   protected $triggerDataType = '';
@@ -47,30 +41,18 @@ class MetricAbsence extends \Google\Collection
   {
     return $this->aggregations;
   }
-  /**
-   * @param string
-   */
   public function setDuration($duration)
   {
     $this->duration = $duration;
   }
-  /**
-   * @return string
-   */
   public function getDuration()
   {
     return $this->duration;
   }
-  /**
-   * @param string
-   */
   public function setFilter($filter)
   {
     $this->filter = $filter;
   }
-  /**
-   * @return string
-   */
   public function getFilter()
   {
     return $this->filter;

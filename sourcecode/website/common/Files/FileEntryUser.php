@@ -16,6 +16,7 @@ use Common\Auth\BaseUser;
  * @property string|null $last_name
  * @property string|null $avatar_url
  * @property string|null $gender
+ * @property string|null $legacy_permissions
  * @property string $email
  * @property string|null $password
  * @property string|null $card_brand

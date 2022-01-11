@@ -21,17 +21,8 @@ class DataValidationRule extends \Google\Model
 {
   protected $conditionType = BooleanCondition::class;
   protected $conditionDataType = '';
-  /**
-   * @var string
-   */
   public $inputMessage;
-  /**
-   * @var bool
-   */
   public $showCustomUi;
-  /**
-   * @var bool
-   */
   public $strict;
 
   /**
@@ -48,44 +39,26 @@ class DataValidationRule extends \Google\Model
   {
     return $this->condition;
   }
-  /**
-   * @param string
-   */
   public function setInputMessage($inputMessage)
   {
     $this->inputMessage = $inputMessage;
   }
-  /**
-   * @return string
-   */
   public function getInputMessage()
   {
     return $this->inputMessage;
   }
-  /**
-   * @param bool
-   */
   public function setShowCustomUi($showCustomUi)
   {
     $this->showCustomUi = $showCustomUi;
   }
-  /**
-   * @return bool
-   */
   public function getShowCustomUi()
   {
     return $this->showCustomUi;
   }
-  /**
-   * @param bool
-   */
   public function setStrict($strict)
   {
     $this->strict = $strict;
   }
-  /**
-   * @return bool
-   */
   public function getStrict()
   {
     return $this->strict;

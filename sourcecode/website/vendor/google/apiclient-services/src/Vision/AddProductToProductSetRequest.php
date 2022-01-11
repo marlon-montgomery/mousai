@@ -19,21 +19,12 @@ namespace Google\Service\Vision;
 
 class AddProductToProductSetRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $product;
 
-  /**
-   * @param string
-   */
   public function setProduct($product)
   {
     $this->product = $product;
   }
-  /**
-   * @return string
-   */
   public function getProduct()
   {
     return $this->product;

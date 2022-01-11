@@ -19,32 +19,17 @@ namespace Google\Service\DisplayVideo;
 
 class PoiAssignedTargetingOptionDetails extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $displayName;
   public $latitude;
   public $longitude;
   public $proximityRadiusAmount;
-  /**
-   * @var string
-   */
   public $proximityRadiusUnit;
-  /**
-   * @var string
-   */
   public $targetingOptionId;
 
-  /**
-   * @param string
-   */
   public function setDisplayName($displayName)
   {
     $this->displayName = $displayName;
   }
-  /**
-   * @return string
-   */
   public function getDisplayName()
   {
     return $this->displayName;
@@ -73,30 +58,18 @@ class PoiAssignedTargetingOptionDetails extends \Google\Model
   {
     return $this->proximityRadiusAmount;
   }
-  /**
-   * @param string
-   */
   public function setProximityRadiusUnit($proximityRadiusUnit)
   {
     $this->proximityRadiusUnit = $proximityRadiusUnit;
   }
-  /**
-   * @return string
-   */
   public function getProximityRadiusUnit()
   {
     return $this->proximityRadiusUnit;
   }
-  /**
-   * @param string
-   */
   public function setTargetingOptionId($targetingOptionId)
   {
     $this->targetingOptionId = $targetingOptionId;
   }
-  /**
-   * @return string
-   */
   public function getTargetingOptionId()
   {
     return $this->targetingOptionId;

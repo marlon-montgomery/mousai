@@ -20,23 +20,14 @@ namespace Google\Service\Firestore;
 class PartitionQueryResponse extends \Google\Collection
 {
   protected $collection_key = 'partitions';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $partitionsType = Cursor::class;
   protected $partitionsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

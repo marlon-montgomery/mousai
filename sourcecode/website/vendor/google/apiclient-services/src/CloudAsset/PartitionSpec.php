@@ -19,21 +19,12 @@ namespace Google\Service\CloudAsset;
 
 class PartitionSpec extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $partitionKey;
 
-  /**
-   * @param string
-   */
   public function setPartitionKey($partitionKey)
   {
     $this->partitionKey = $partitionKey;
   }
-  /**
-   * @return string
-   */
   public function getPartitionKey()
   {
     return $this->partitionKey;

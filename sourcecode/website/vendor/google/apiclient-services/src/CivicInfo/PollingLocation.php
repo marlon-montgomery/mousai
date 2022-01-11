@@ -22,33 +22,15 @@ class PollingLocation extends \Google\Collection
   protected $collection_key = 'sources';
   protected $addressType = SimpleAddressType::class;
   protected $addressDataType = '';
-  /**
-   * @var string
-   */
   public $endDate;
   public $latitude;
   public $longitude;
-  /**
-   * @var string
-   */
   public $name;
-  /**
-   * @var string
-   */
   public $notes;
-  /**
-   * @var string
-   */
   public $pollingHours;
   protected $sourcesType = Source::class;
   protected $sourcesDataType = 'array';
-  /**
-   * @var string
-   */
   public $startDate;
-  /**
-   * @var string
-   */
   public $voterServices;
 
   /**
@@ -65,16 +47,10 @@ class PollingLocation extends \Google\Collection
   {
     return $this->address;
   }
-  /**
-   * @param string
-   */
   public function setEndDate($endDate)
   {
     $this->endDate = $endDate;
   }
-  /**
-   * @return string
-   */
   public function getEndDate()
   {
     return $this->endDate;
@@ -95,44 +71,26 @@ class PollingLocation extends \Google\Collection
   {
     return $this->longitude;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
   }
-  /**
-   * @param string
-   */
   public function setNotes($notes)
   {
     $this->notes = $notes;
   }
-  /**
-   * @return string
-   */
   public function getNotes()
   {
     return $this->notes;
   }
-  /**
-   * @param string
-   */
   public function setPollingHours($pollingHours)
   {
     $this->pollingHours = $pollingHours;
   }
-  /**
-   * @return string
-   */
   public function getPollingHours()
   {
     return $this->pollingHours;
@@ -151,30 +109,18 @@ class PollingLocation extends \Google\Collection
   {
     return $this->sources;
   }
-  /**
-   * @param string
-   */
   public function setStartDate($startDate)
   {
     $this->startDate = $startDate;
   }
-  /**
-   * @return string
-   */
   public function getStartDate()
   {
     return $this->startDate;
   }
-  /**
-   * @param string
-   */
   public function setVoterServices($voterServices)
   {
     $this->voterServices = $voterServices;
   }
-  /**
-   * @return string
-   */
   public function getVoterServices()
   {
     return $this->voterServices;

@@ -22,9 +22,6 @@ class Header extends \Google\Collection
   protected $collection_key = 'content';
   protected $contentType = StructuralElement::class;
   protected $contentDataType = 'array';
-  /**
-   * @var string
-   */
   public $headerId;
 
   /**
@@ -41,16 +38,10 @@ class Header extends \Google\Collection
   {
     return $this->content;
   }
-  /**
-   * @param string
-   */
   public function setHeaderId($headerId)
   {
     $this->headerId = $headerId;
   }
-  /**
-   * @return string
-   */
   public function getHeaderId()
   {
     return $this->headerId;

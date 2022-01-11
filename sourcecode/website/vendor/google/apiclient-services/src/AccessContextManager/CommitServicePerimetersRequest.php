@@ -19,21 +19,12 @@ namespace Google\Service\AccessContextManager;
 
 class CommitServicePerimetersRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $etag;
 
-  /**
-   * @param string
-   */
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-  /**
-   * @return string
-   */
   public function getEtag()
   {
     return $this->etag;

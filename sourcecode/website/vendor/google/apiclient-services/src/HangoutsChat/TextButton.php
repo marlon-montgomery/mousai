@@ -21,9 +21,6 @@ class TextButton extends \Google\Model
 {
   protected $onClickType = OnClick::class;
   protected $onClickDataType = '';
-  /**
-   * @var string
-   */
   public $text;
 
   /**
@@ -40,16 +37,10 @@ class TextButton extends \Google\Model
   {
     return $this->onClick;
   }
-  /**
-   * @param string
-   */
   public function setText($text)
   {
     $this->text = $text;
   }
-  /**
-   * @return string
-   */
   public function getText()
   {
     return $this->text;

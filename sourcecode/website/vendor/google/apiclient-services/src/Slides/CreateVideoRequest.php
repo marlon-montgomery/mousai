@@ -21,17 +21,8 @@ class CreateVideoRequest extends \Google\Model
 {
   protected $elementPropertiesType = PageElementProperties::class;
   protected $elementPropertiesDataType = '';
-  /**
-   * @var string
-   */
   public $id;
-  /**
-   * @var string
-   */
   public $objectId;
-  /**
-   * @var string
-   */
   public $source;
 
   /**
@@ -48,44 +39,26 @@ class CreateVideoRequest extends \Google\Model
   {
     return $this->elementProperties;
   }
-  /**
-   * @param string
-   */
   public function setId($id)
   {
     $this->id = $id;
   }
-  /**
-   * @return string
-   */
   public function getId()
   {
     return $this->id;
   }
-  /**
-   * @param string
-   */
   public function setObjectId($objectId)
   {
     $this->objectId = $objectId;
   }
-  /**
-   * @return string
-   */
   public function getObjectId()
   {
     return $this->objectId;
   }
-  /**
-   * @param string
-   */
   public function setSource($source)
   {
     $this->source = $source;
   }
-  /**
-   * @return string
-   */
   public function getSource()
   {
     return $this->source;

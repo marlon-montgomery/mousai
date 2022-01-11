@@ -170,7 +170,7 @@ class JobPayload implements ArrayAccess
      * @param  string  $offset
      * @return bool
      */
-    public function offsetExists($offset): bool
+    public function offsetExists($offset)
     {
         return array_key_exists($offset, $this->decoded);
     }
@@ -181,7 +181,6 @@ class JobPayload implements ArrayAccess
      * @param  string  $offset
      * @return mixed
      */
-    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->decoded[$offset];
@@ -194,7 +193,7 @@ class JobPayload implements ArrayAccess
      * @param  mixed  $value
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value)
     {
         $this->decoded[$offset] = $value;
     }
@@ -205,7 +204,7 @@ class JobPayload implements ArrayAccess
      * @param  string  $offset
      * @return void
      */
-    public function offsetUnset($offset): void
+    public function offsetUnset($offset)
     {
         unset($this->decoded[$offset]);
     }

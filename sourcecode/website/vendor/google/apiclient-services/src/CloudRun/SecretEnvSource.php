@@ -21,13 +21,7 @@ class SecretEnvSource extends \Google\Model
 {
   protected $localObjectReferenceType = LocalObjectReference::class;
   protected $localObjectReferenceDataType = '';
-  /**
-   * @var string
-   */
   public $name;
-  /**
-   * @var bool
-   */
   public $optional;
 
   /**
@@ -44,30 +38,18 @@ class SecretEnvSource extends \Google\Model
   {
     return $this->localObjectReference;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
   }
-  /**
-   * @param bool
-   */
   public function setOptional($optional)
   {
     $this->optional = $optional;
   }
-  /**
-   * @return bool
-   */
   public function getOptional()
   {
     return $this->optional;

@@ -19,23 +19,14 @@ namespace Google\Service\Dns;
 
 class ManagedZoneServiceDirectoryConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $kind;
   protected $namespaceType = ManagedZoneServiceDirectoryConfigNamespace::class;
   protected $namespaceDataType = '';
 
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

@@ -21,13 +21,7 @@ class LightSettings extends \Google\Model
 {
   protected $colorType = Color::class;
   protected $colorDataType = '';
-  /**
-   * @var string
-   */
   public $lightOffDuration;
-  /**
-   * @var string
-   */
   public $lightOnDuration;
 
   /**
@@ -44,30 +38,18 @@ class LightSettings extends \Google\Model
   {
     return $this->color;
   }
-  /**
-   * @param string
-   */
   public function setLightOffDuration($lightOffDuration)
   {
     $this->lightOffDuration = $lightOffDuration;
   }
-  /**
-   * @return string
-   */
   public function getLightOffDuration()
   {
     return $this->lightOffDuration;
   }
-  /**
-   * @param string
-   */
   public function setLightOnDuration($lightOnDuration)
   {
     $this->lightOnDuration = $lightOnDuration;
   }
-  /**
-   * @return string
-   */
   public function getLightOnDuration()
   {
     return $this->lightOnDuration;

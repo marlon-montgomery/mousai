@@ -19,39 +19,21 @@ namespace Google\Service\CloudMachineLearningEngine;
 
 class GoogleCloudMlV1SuggestTrialsRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $clientId;
-  /**
-   * @var int
-   */
   public $suggestionCount;
 
-  /**
-   * @param string
-   */
   public function setClientId($clientId)
   {
     $this->clientId = $clientId;
   }
-  /**
-   * @return string
-   */
   public function getClientId()
   {
     return $this->clientId;
   }
-  /**
-   * @param int
-   */
   public function setSuggestionCount($suggestionCount)
   {
     $this->suggestionCount = $suggestionCount;
   }
-  /**
-   * @return int
-   */
   public function getSuggestionCount()
   {
     return $this->suggestionCount;

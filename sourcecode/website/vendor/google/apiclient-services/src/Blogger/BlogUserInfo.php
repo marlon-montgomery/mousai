@@ -26,9 +26,6 @@ class BlogUserInfo extends \Google\Model
   protected $blogDataType = '';
   protected $blogUserInfoType = BlogPerUserInfo::class;
   protected $blogUserInfoDataType = '';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -59,16 +56,10 @@ class BlogUserInfo extends \Google\Model
   {
     return $this->blogUserInfo;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

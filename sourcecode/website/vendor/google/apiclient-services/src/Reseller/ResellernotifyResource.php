@@ -19,21 +19,12 @@ namespace Google\Service\Reseller;
 
 class ResellernotifyResource extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $topicName;
 
-  /**
-   * @param string
-   */
   public function setTopicName($topicName)
   {
     $this->topicName = $topicName;
   }
-  /**
-   * @return string
-   */
   public function getTopicName()
   {
     return $this->topicName;

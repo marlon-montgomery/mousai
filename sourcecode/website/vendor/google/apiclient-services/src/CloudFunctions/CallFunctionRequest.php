@@ -19,21 +19,12 @@ namespace Google\Service\CloudFunctions;
 
 class CallFunctionRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $data;
 
-  /**
-   * @param string
-   */
   public function setData($data)
   {
     $this->data = $data;
   }
-  /**
-   * @return string
-   */
   public function getData()
   {
     return $this->data;

@@ -22,9 +22,6 @@ class GoogleCloudRecaptchaenterpriseV1ListKeysResponse extends \Google\Collectio
   protected $collection_key = 'keys';
   protected $keysType = GoogleCloudRecaptchaenterpriseV1Key::class;
   protected $keysDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudRecaptchaenterpriseV1ListKeysResponse extends \Google\Collectio
   {
     return $this->keys;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

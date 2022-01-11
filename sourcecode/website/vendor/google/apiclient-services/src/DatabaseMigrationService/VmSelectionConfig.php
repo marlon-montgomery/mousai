@@ -19,21 +19,12 @@ namespace Google\Service\DatabaseMigrationService;
 
 class VmSelectionConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $vmZone;
 
-  /**
-   * @param string
-   */
   public function setVmZone($vmZone)
   {
     $this->vmZone = $vmZone;
   }
-  /**
-   * @return string
-   */
   public function getVmZone()
   {
     return $this->vmZone;

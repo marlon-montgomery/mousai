@@ -19,21 +19,12 @@ namespace Google\Service\PubsubLite;
 
 class ComputeHeadCursorRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $partition;
 
-  /**
-   * @param string
-   */
   public function setPartition($partition)
   {
     $this->partition = $partition;
   }
-  /**
-   * @return string
-   */
   public function getPartition()
   {
     return $this->partition;

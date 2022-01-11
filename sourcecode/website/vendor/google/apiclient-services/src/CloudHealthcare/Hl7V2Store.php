@@ -20,47 +20,26 @@ namespace Google\Service\CloudHealthcare;
 class Hl7V2Store extends \Google\Collection
 {
   protected $collection_key = 'notificationConfigs';
-  /**
-   * @var string[]
-   */
   public $labels;
-  /**
-   * @var string
-   */
   public $name;
   protected $notificationConfigsType = Hl7V2NotificationConfig::class;
   protected $notificationConfigsDataType = 'array';
   protected $parserConfigType = ParserConfig::class;
   protected $parserConfigDataType = '';
-  /**
-   * @var bool
-   */
   public $rejectDuplicateMessage;
 
-  /**
-   * @param string[]
-   */
   public function setLabels($labels)
   {
     $this->labels = $labels;
   }
-  /**
-   * @return string[]
-   */
   public function getLabels()
   {
     return $this->labels;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
@@ -93,16 +72,10 @@ class Hl7V2Store extends \Google\Collection
   {
     return $this->parserConfig;
   }
-  /**
-   * @param bool
-   */
   public function setRejectDuplicateMessage($rejectDuplicateMessage)
   {
     $this->rejectDuplicateMessage = $rejectDuplicateMessage;
   }
-  /**
-   * @return bool
-   */
   public function getRejectDuplicateMessage()
   {
     return $this->rejectDuplicateMessage;

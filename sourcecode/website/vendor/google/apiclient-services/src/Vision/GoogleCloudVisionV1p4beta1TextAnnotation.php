@@ -22,9 +22,6 @@ class GoogleCloudVisionV1p4beta1TextAnnotation extends \Google\Collection
   protected $collection_key = 'pages';
   protected $pagesType = GoogleCloudVisionV1p4beta1Page::class;
   protected $pagesDataType = 'array';
-  /**
-   * @var string
-   */
   public $text;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudVisionV1p4beta1TextAnnotation extends \Google\Collection
   {
     return $this->pages;
   }
-  /**
-   * @param string
-   */
   public function setText($text)
   {
     $this->text = $text;
   }
-  /**
-   * @return string
-   */
   public function getText()
   {
     return $this->text;

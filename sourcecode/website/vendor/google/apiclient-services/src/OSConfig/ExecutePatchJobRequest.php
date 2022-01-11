@@ -19,21 +19,9 @@ namespace Google\Service\OSConfig;
 
 class ExecutePatchJobRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $description;
-  /**
-   * @var string
-   */
   public $displayName;
-  /**
-   * @var bool
-   */
   public $dryRun;
-  /**
-   * @var string
-   */
   public $duration;
   protected $instanceFilterType = PatchInstanceFilter::class;
   protected $instanceFilterDataType = '';
@@ -42,58 +30,34 @@ class ExecutePatchJobRequest extends \Google\Model
   protected $rolloutType = PatchRollout::class;
   protected $rolloutDataType = '';
 
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;
   }
-  /**
-   * @param string
-   */
   public function setDisplayName($displayName)
   {
     $this->displayName = $displayName;
   }
-  /**
-   * @return string
-   */
   public function getDisplayName()
   {
     return $this->displayName;
   }
-  /**
-   * @param bool
-   */
   public function setDryRun($dryRun)
   {
     $this->dryRun = $dryRun;
   }
-  /**
-   * @return bool
-   */
   public function getDryRun()
   {
     return $this->dryRun;
   }
-  /**
-   * @param string
-   */
   public function setDuration($duration)
   {
     $this->duration = $duration;
   }
-  /**
-   * @return string
-   */
   public function getDuration()
   {
     return $this->duration;

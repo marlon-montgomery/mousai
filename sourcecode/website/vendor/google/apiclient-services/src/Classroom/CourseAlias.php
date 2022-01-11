@@ -19,21 +19,12 @@ namespace Google\Service\Classroom;
 
 class CourseAlias extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $alias;
 
-  /**
-   * @param string
-   */
   public function setAlias($alias)
   {
     $this->alias = $alias;
   }
-  /**
-   * @return string
-   */
   public function getAlias()
   {
     return $this->alias;

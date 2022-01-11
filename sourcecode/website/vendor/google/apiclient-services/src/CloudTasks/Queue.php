@@ -21,13 +21,7 @@ class Queue extends \Google\Model
 {
   protected $appEngineRoutingOverrideType = AppEngineRouting::class;
   protected $appEngineRoutingOverrideDataType = '';
-  /**
-   * @var string
-   */
   public $name;
-  /**
-   * @var string
-   */
   public $purgeTime;
   protected $rateLimitsType = RateLimits::class;
   protected $rateLimitsDataType = '';
@@ -35,9 +29,6 @@ class Queue extends \Google\Model
   protected $retryConfigDataType = '';
   protected $stackdriverLoggingConfigType = StackdriverLoggingConfig::class;
   protected $stackdriverLoggingConfigDataType = '';
-  /**
-   * @var string
-   */
   public $state;
 
   /**
@@ -54,30 +45,18 @@ class Queue extends \Google\Model
   {
     return $this->appEngineRoutingOverride;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
   }
-  /**
-   * @param string
-   */
   public function setPurgeTime($purgeTime)
   {
     $this->purgeTime = $purgeTime;
   }
-  /**
-   * @return string
-   */
   public function getPurgeTime()
   {
     return $this->purgeTime;
@@ -124,16 +103,10 @@ class Queue extends \Google\Model
   {
     return $this->stackdriverLoggingConfig;
   }
-  /**
-   * @param string
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return string
-   */
   public function getState()
   {
     return $this->state;

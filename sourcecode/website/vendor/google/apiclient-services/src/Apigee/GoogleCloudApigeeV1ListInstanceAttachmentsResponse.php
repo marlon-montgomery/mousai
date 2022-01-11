@@ -22,9 +22,6 @@ class GoogleCloudApigeeV1ListInstanceAttachmentsResponse extends \Google\Collect
   protected $collection_key = 'attachments';
   protected $attachmentsType = GoogleCloudApigeeV1InstanceAttachment::class;
   protected $attachmentsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudApigeeV1ListInstanceAttachmentsResponse extends \Google\Collect
   {
     return $this->attachments;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

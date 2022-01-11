@@ -21,9 +21,6 @@ class Token extends \Google\Model
 {
   protected $dependencyEdgeType = DependencyEdge::class;
   protected $dependencyEdgeDataType = '';
-  /**
-   * @var string
-   */
   public $lemma;
   protected $partOfSpeechType = PartOfSpeech::class;
   protected $partOfSpeechDataType = '';
@@ -44,16 +41,10 @@ class Token extends \Google\Model
   {
     return $this->dependencyEdge;
   }
-  /**
-   * @param string
-   */
   public function setLemma($lemma)
   {
     $this->lemma = $lemma;
   }
-  /**
-   * @return string
-   */
   public function getLemma()
   {
     return $this->lemma;

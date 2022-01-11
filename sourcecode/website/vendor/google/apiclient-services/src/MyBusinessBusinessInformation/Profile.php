@@ -19,21 +19,12 @@ namespace Google\Service\MyBusinessBusinessInformation;
 
 class Profile extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $description;
 
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;

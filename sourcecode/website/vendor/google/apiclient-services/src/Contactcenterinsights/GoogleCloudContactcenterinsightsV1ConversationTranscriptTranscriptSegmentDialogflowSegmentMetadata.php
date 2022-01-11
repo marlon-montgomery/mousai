@@ -19,21 +19,12 @@ namespace Google\Service\Contactcenterinsights;
 
 class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $smartReplyAllowlistCovered;
 
-  /**
-   * @param bool
-   */
   public function setSmartReplyAllowlistCovered($smartReplyAllowlistCovered)
   {
     $this->smartReplyAllowlistCovered = $smartReplyAllowlistCovered;
   }
-  /**
-   * @return bool
-   */
   public function getSmartReplyAllowlistCovered()
   {
     return $this->smartReplyAllowlistCovered;

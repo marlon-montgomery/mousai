@@ -131,7 +131,6 @@ abstract class AbstractEncoder
 
             case 'jpg':
             case 'jpeg':
-            case 'jfif':
             case 'image/jp2':
             case 'image/jpg':
             case 'image/jpeg':

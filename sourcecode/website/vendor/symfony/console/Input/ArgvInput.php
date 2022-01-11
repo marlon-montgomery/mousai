@@ -68,25 +68,18 @@ class ArgvInput extends Input
         $parseOptions = true;
         $this->parsed = $this->tokens;
         while (null !== $token = array_shift($this->parsed)) {
-            $parseOptions = $this->parseToken($token, $parseOptions);
+            if ($parseOptions && '' == $token) {
+                $this->parseArgument($token);
+            } elseif ($parseOptions && '--' == $token) {
+                $parseOptions = false;
+            } elseif ($parseOptions && str_starts_with($token, '--')) {
+                $this->parseLongOption($token);
+            } elseif ($parseOptions && '-' === $token[0] && '-' !== $token) {
+                $this->parseShortOption($token);
+            } else {
+                $this->parseArgument($token);
+            }
         }
-    }
-
-    protected function parseToken(string $token, bool $parseOptions): bool
-    {
-        if ($parseOptions && '' == $token) {
-            $this->parseArgument($token);
-        } elseif ($parseOptions && '--' == $token) {
-            return false;
-        } elseif ($parseOptions && str_starts_with($token, '--')) {
-            $this->parseLongOption($token);
-        } elseif ($parseOptions && '-' === $token[0] && '-' !== $token) {
-            $this->parseShortOption($token);
-        } else {
-            $this->parseArgument($token);
-        }
-
-        return $parseOptions;
     }
 
     /**
@@ -141,7 +134,7 @@ class ArgvInput extends Input
         $name = substr($token, 2);
 
         if (false !== $pos = strpos($name, '=')) {
-            if ('' === $value = substr($name, $pos + 1)) {
+            if (0 === \strlen($value = substr($name, $pos + 1))) {
                 array_unshift($this->parsed, $value);
             }
             $this->addLongOption(substr($name, 0, $pos), $value);

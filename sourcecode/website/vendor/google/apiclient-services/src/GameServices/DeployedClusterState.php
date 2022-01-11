@@ -20,23 +20,14 @@ namespace Google\Service\GameServices;
 class DeployedClusterState extends \Google\Collection
 {
   protected $collection_key = 'fleetDetails';
-  /**
-   * @var string
-   */
   public $cluster;
   protected $fleetDetailsType = DeployedFleetDetails::class;
   protected $fleetDetailsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setCluster($cluster)
   {
     $this->cluster = $cluster;
   }
-  /**
-   * @return string
-   */
   public function getCluster()
   {
     return $this->cluster;

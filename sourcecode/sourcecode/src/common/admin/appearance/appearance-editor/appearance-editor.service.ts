@@ -44,7 +44,7 @@ export class AppearanceEditor {
     public addChanges(value: EditorChanges) {
         this.changes$.next({...this.changes$.value, ...value});
     }
-    
+
     public openPanel(name: string) {
         const panel = this.config.sections.find(value => {
             return slugifyString(value.name) === name;

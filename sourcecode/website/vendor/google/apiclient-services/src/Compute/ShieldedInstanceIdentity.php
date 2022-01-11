@@ -21,9 +21,6 @@ class ShieldedInstanceIdentity extends \Google\Model
 {
   protected $encryptionKeyType = ShieldedInstanceIdentityEntry::class;
   protected $encryptionKeyDataType = '';
-  /**
-   * @var string
-   */
   public $kind;
   protected $signingKeyType = ShieldedInstanceIdentityEntry::class;
   protected $signingKeyDataType = '';
@@ -42,16 +39,10 @@ class ShieldedInstanceIdentity extends \Google\Model
   {
     return $this->encryptionKey;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

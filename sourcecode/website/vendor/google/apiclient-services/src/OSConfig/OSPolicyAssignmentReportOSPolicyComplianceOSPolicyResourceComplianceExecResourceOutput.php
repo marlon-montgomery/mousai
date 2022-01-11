@@ -19,21 +19,12 @@ namespace Google\Service\OSConfig;
 
 class OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceExecResourceOutput extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $enforcementOutput;
 
-  /**
-   * @param string
-   */
   public function setEnforcementOutput($enforcementOutput)
   {
     $this->enforcementOutput = $enforcementOutput;
   }
-  /**
-   * @return string
-   */
   public function getEnforcementOutput()
   {
     return $this->enforcementOutput;

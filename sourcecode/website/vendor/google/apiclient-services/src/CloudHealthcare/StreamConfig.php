@@ -22,9 +22,6 @@ class StreamConfig extends \Google\Collection
   protected $collection_key = 'resourceTypes';
   protected $bigqueryDestinationType = GoogleCloudHealthcareV1FhirBigQueryDestination::class;
   protected $bigqueryDestinationDataType = '';
-  /**
-   * @var string[]
-   */
   public $resourceTypes;
 
   /**
@@ -41,16 +38,10 @@ class StreamConfig extends \Google\Collection
   {
     return $this->bigqueryDestination;
   }
-  /**
-   * @param string[]
-   */
   public function setResourceTypes($resourceTypes)
   {
     $this->resourceTypes = $resourceTypes;
   }
-  /**
-   * @return string[]
-   */
   public function getResourceTypes()
   {
     return $this->resourceTypes;

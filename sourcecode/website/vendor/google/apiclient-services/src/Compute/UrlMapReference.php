@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class UrlMapReference extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $urlMap;
 
-  /**
-   * @param string
-   */
   public function setUrlMap($urlMap)
   {
     $this->urlMap = $urlMap;
   }
-  /**
-   * @return string
-   */
   public function getUrlMap()
   {
     return $this->urlMap;

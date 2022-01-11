@@ -21,9 +21,6 @@ class Volume extends \Google\Model
 {
   protected $configMapType = ConfigMapVolumeSource::class;
   protected $configMapDataType = '';
-  /**
-   * @var string
-   */
   public $name;
   protected $secretType = SecretVolumeSource::class;
   protected $secretDataType = '';
@@ -42,16 +39,10 @@ class Volume extends \Google\Model
   {
     return $this->configMap;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

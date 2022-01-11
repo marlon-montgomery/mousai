@@ -21,13 +21,7 @@ class VideoRecordingDetails extends \Google\Model
 {
   protected $locationType = GeoPoint::class;
   protected $locationDataType = '';
-  /**
-   * @var string
-   */
   public $locationDescription;
-  /**
-   * @var string
-   */
   public $recordingDate;
 
   /**
@@ -44,30 +38,18 @@ class VideoRecordingDetails extends \Google\Model
   {
     return $this->location;
   }
-  /**
-   * @param string
-   */
   public function setLocationDescription($locationDescription)
   {
     $this->locationDescription = $locationDescription;
   }
-  /**
-   * @return string
-   */
   public function getLocationDescription()
   {
     return $this->locationDescription;
   }
-  /**
-   * @param string
-   */
   public function setRecordingDate($recordingDate)
   {
     $this->recordingDate = $recordingDate;
   }
-  /**
-   * @return string
-   */
   public function getRecordingDate()
   {
     return $this->recordingDate;

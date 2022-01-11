@@ -20,51 +20,24 @@ namespace Google\Service\Eventarc;
 class Trigger extends \Google\Collection
 {
   protected $collection_key = 'eventFilters';
-  /**
-   * @var string
-   */
   public $createTime;
   protected $destinationType = Destination::class;
   protected $destinationDataType = '';
-  /**
-   * @var string
-   */
   public $etag;
   protected $eventFiltersType = EventFilter::class;
   protected $eventFiltersDataType = 'array';
-  /**
-   * @var string[]
-   */
   public $labels;
-  /**
-   * @var string
-   */
   public $name;
-  /**
-   * @var string
-   */
   public $serviceAccount;
   protected $transportType = Transport::class;
   protected $transportDataType = '';
-  /**
-   * @var string
-   */
   public $uid;
-  /**
-   * @var string
-   */
   public $updateTime;
 
-  /**
-   * @param string
-   */
   public function setCreateTime($createTime)
   {
     $this->createTime = $createTime;
   }
-  /**
-   * @return string
-   */
   public function getCreateTime()
   {
     return $this->createTime;
@@ -83,16 +56,10 @@ class Trigger extends \Google\Collection
   {
     return $this->destination;
   }
-  /**
-   * @param string
-   */
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-  /**
-   * @return string
-   */
   public function getEtag()
   {
     return $this->etag;
@@ -111,44 +78,26 @@ class Trigger extends \Google\Collection
   {
     return $this->eventFilters;
   }
-  /**
-   * @param string[]
-   */
   public function setLabels($labels)
   {
     $this->labels = $labels;
   }
-  /**
-   * @return string[]
-   */
   public function getLabels()
   {
     return $this->labels;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
   }
-  /**
-   * @param string
-   */
   public function setServiceAccount($serviceAccount)
   {
     $this->serviceAccount = $serviceAccount;
   }
-  /**
-   * @return string
-   */
   public function getServiceAccount()
   {
     return $this->serviceAccount;
@@ -167,30 +116,18 @@ class Trigger extends \Google\Collection
   {
     return $this->transport;
   }
-  /**
-   * @param string
-   */
   public function setUid($uid)
   {
     $this->uid = $uid;
   }
-  /**
-   * @return string
-   */
   public function getUid()
   {
     return $this->uid;
   }
-  /**
-   * @param string
-   */
   public function setUpdateTime($updateTime)
   {
     $this->updateTime = $updateTime;
   }
-  /**
-   * @return string
-   */
   public function getUpdateTime()
   {
     return $this->updateTime;

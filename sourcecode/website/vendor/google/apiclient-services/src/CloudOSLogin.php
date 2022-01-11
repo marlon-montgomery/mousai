@@ -135,17 +135,7 @@ class CloudOSLogin extends \Google\Service
         'sshPublicKeys',
         [
           'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/sshPublicKeys',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'delete' => [
+            'delete' => [
               'path' => 'v1/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [

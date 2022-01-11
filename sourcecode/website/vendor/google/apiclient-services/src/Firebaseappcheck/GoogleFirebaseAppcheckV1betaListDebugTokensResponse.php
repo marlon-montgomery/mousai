@@ -22,9 +22,6 @@ class GoogleFirebaseAppcheckV1betaListDebugTokensResponse extends \Google\Collec
   protected $collection_key = 'debugTokens';
   protected $debugTokensType = GoogleFirebaseAppcheckV1betaDebugToken::class;
   protected $debugTokensDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleFirebaseAppcheckV1betaListDebugTokensResponse extends \Google\Collec
   {
     return $this->debugTokens;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

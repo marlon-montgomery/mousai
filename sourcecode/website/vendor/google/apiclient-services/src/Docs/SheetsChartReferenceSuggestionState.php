@@ -19,39 +19,21 @@ namespace Google\Service\Docs;
 
 class SheetsChartReferenceSuggestionState extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $chartIdSuggested;
-  /**
-   * @var bool
-   */
   public $spreadsheetIdSuggested;
 
-  /**
-   * @param bool
-   */
   public function setChartIdSuggested($chartIdSuggested)
   {
     $this->chartIdSuggested = $chartIdSuggested;
   }
-  /**
-   * @return bool
-   */
   public function getChartIdSuggested()
   {
     return $this->chartIdSuggested;
   }
-  /**
-   * @param bool
-   */
   public function setSpreadsheetIdSuggested($spreadsheetIdSuggested)
   {
     $this->spreadsheetIdSuggested = $spreadsheetIdSuggested;
   }
-  /**
-   * @return bool
-   */
   public function getSpreadsheetIdSuggested()
   {
     return $this->spreadsheetIdSuggested;

@@ -19,21 +19,12 @@ namespace Google\Service\Firebaseappcheck;
 
 class GoogleFirebaseAppcheckV1betaExchangeRecaptchaTokenRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $recaptchaToken;
 
-  /**
-   * @param string
-   */
   public function setRecaptchaToken($recaptchaToken)
   {
     $this->recaptchaToken = $recaptchaToken;
   }
-  /**
-   * @return string
-   */
   public function getRecaptchaToken()
   {
     return $this->recaptchaToken;

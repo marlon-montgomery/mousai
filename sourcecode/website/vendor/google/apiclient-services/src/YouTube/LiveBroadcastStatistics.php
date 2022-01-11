@@ -19,21 +19,12 @@ namespace Google\Service\YouTube;
 
 class LiveBroadcastStatistics extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $totalChatCount;
 
-  /**
-   * @param string
-   */
   public function setTotalChatCount($totalChatCount)
   {
     $this->totalChatCount = $totalChatCount;
   }
-  /**
-   * @return string
-   */
   public function getTotalChatCount()
   {
     return $this->totalChatCount;

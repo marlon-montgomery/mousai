@@ -24,9 +24,6 @@ class ListenersConfigDump extends \Google\Collection
   protected $dynamicListenersDataType = 'array';
   protected $staticListenersType = StaticListener::class;
   protected $staticListenersDataType = 'array';
-  /**
-   * @var string
-   */
   public $versionInfo;
 
   /**
@@ -57,16 +54,10 @@ class ListenersConfigDump extends \Google\Collection
   {
     return $this->staticListeners;
   }
-  /**
-   * @param string
-   */
   public function setVersionInfo($versionInfo)
   {
     $this->versionInfo = $versionInfo;
   }
-  /**
-   * @return string
-   */
   public function getVersionInfo()
   {
     return $this->versionInfo;

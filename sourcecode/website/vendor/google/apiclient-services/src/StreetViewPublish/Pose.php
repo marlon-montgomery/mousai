@@ -19,9 +19,6 @@ namespace Google\Service\StreetViewPublish;
 
 class Pose extends \Google\Model
 {
-  /**
-   * @var float
-   */
   public $accuracyMeters;
   public $altitude;
   public $heading;
@@ -32,16 +29,10 @@ class Pose extends \Google\Model
   public $pitch;
   public $roll;
 
-  /**
-   * @param float
-   */
   public function setAccuracyMeters($accuracyMeters)
   {
     $this->accuracyMeters = $accuracyMeters;
   }
-  /**
-   * @return float
-   */
   public function getAccuracyMeters()
   {
     return $this->accuracyMeters;

@@ -19,21 +19,12 @@ namespace Google\Service\MyBusinessAccountManagement;
 
 class TransferLocationRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $destinationAccount;
 
-  /**
-   * @param string
-   */
   public function setDestinationAccount($destinationAccount)
   {
     $this->destinationAccount = $destinationAccount;
   }
-  /**
-   * @return string
-   */
   public function getDestinationAccount()
   {
     return $this->destinationAccount;

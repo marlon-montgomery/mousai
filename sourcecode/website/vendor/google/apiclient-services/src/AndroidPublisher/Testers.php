@@ -20,21 +20,12 @@ namespace Google\Service\AndroidPublisher;
 class Testers extends \Google\Collection
 {
   protected $collection_key = 'googleGroups';
-  /**
-   * @var string[]
-   */
   public $googleGroups;
 
-  /**
-   * @param string[]
-   */
   public function setGoogleGroups($googleGroups)
   {
     $this->googleGroups = $googleGroups;
   }
-  /**
-   * @return string[]
-   */
   public function getGoogleGroups()
   {
     return $this->googleGroups;

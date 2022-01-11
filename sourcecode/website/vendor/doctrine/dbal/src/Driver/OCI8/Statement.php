@@ -2,16 +2,21 @@
 
 namespace Doctrine\DBAL\Driver\OCI8;
 
+use Doctrine\DBAL\Driver\Exception;
 use Doctrine\DBAL\Driver\OCI8\Exception\Error;
 use Doctrine\DBAL\Driver\OCI8\Exception\UnknownParameterIndex;
 use Doctrine\DBAL\Driver\Result as ResultInterface;
 use Doctrine\DBAL\Driver\Statement as StatementInterface;
 use Doctrine\DBAL\ParameterType;
+use Doctrine\DBAL\SQL\Parser;
 
+use function assert;
 use function is_int;
+use function is_resource;
 use function oci_bind_by_name;
 use function oci_execute;
 use function oci_new_descriptor;
+use function oci_parse;
 
 use const OCI_B_BIN;
 use const OCI_B_BLOB;
@@ -24,62 +29,87 @@ use const SQLT_CHR;
 final class Statement implements StatementInterface
 {
     /** @var resource */
-    private $connection;
+    protected $_dbh;
 
     /** @var resource */
-    private $statement;
-
-    /** @var array<int,string> */
-    private $parameterMap;
+    protected $_sth;
 
     /** @var ExecutionMode */
     private $executionMode;
 
+    /** @var string[] */
+    protected $_paramMap = [];
+
     /**
+     * Holds references to bound parameter values.
+     *
+     * This is a new requirement for PHP7's oci8 extension that prevents bound values from being garbage collected.
+     *
+     * @var mixed[]
+     */
+    private $boundValues = [];
+
+    /**
+     * Creates a new OCI8Statement that uses the given connection handle and SQL statement.
+     *
      * @internal The statement can be only instantiated by its driver connection.
      *
-     * @param resource          $connection
-     * @param resource          $statement
-     * @param array<int,string> $parameterMap
+     * @param resource $dbh   The connection handle.
+     * @param string   $query The SQL query.
+     *
+     * @throws Exception
      */
-    public function __construct($connection, $statement, array $parameterMap, ExecutionMode $executionMode)
+    public function __construct($dbh, $query, ExecutionMode $executionMode)
     {
-        $this->connection    = $connection;
-        $this->statement     = $statement;
-        $this->parameterMap  = $parameterMap;
+        $parser  = new Parser(false);
+        $visitor = new ConvertPositionalToNamedPlaceholders();
+
+        $parser->parse($query, $visitor);
+
+        $stmt = oci_parse($dbh, $visitor->getSQL());
+        assert(is_resource($stmt));
+
+        $this->_sth          = $stmt;
+        $this->_dbh          = $dbh;
+        $this->_paramMap     = $visitor->getParameterMap();
         $this->executionMode = $executionMode;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function bindValue($param, $value, $type = ParameterType::STRING): bool
+    public function bindValue($param, $value, $type = ParameterType::STRING)
     {
-        return $this->bindParam($param, $value, $type);
+        return $this->bindParam($param, $value, $type, null);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function bindParam($param, &$variable, $type = ParameterType::STRING, $length = null): bool
+    public function bindParam($param, &$variable, $type = ParameterType::STRING, $length = null)
     {
         if (is_int($param)) {
-            if (! isset($this->parameterMap[$param])) {
+            if (! isset($this->_paramMap[$param])) {
                 throw UnknownParameterIndex::new($param);
             }
 
-            $param = $this->parameterMap[$param];
+            $param = $this->_paramMap[$param];
         }
 
         if ($type === ParameterType::LARGE_OBJECT) {
-            $lob = oci_new_descriptor($this->connection, OCI_D_LOB);
+            $lob = oci_new_descriptor($this->_dbh, OCI_D_LOB);
+
+            assert($lob !== false);
+
             $lob->writeTemporary($variable, OCI_TEMP_BLOB);
 
             $variable =& $lob;
         }
 
+        $this->boundValues[$param] =& $variable;
+
         return oci_bind_by_name(
-            $this->statement,
+            $this->_sth,
             $param,
             $variable,
             $length ?? -1,
@@ -125,11 +155,11 @@ final class Statement implements StatementInterface
             $mode = OCI_NO_AUTO_COMMIT;
         }
 
-        $ret = @oci_execute($this->statement, $mode);
+        $ret = @oci_execute($this->_sth, $mode);
         if (! $ret) {
-            throw Error::new($this->statement);
+            throw Error::new($this->_sth);
         }
 
-        return new Result($this->statement);
+        return new Result($this->_sth);
     }
 }

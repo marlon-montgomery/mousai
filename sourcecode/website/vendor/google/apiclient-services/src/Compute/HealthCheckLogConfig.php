@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class HealthCheckLogConfig extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $enable;
 
-  /**
-   * @param bool
-   */
   public function setEnable($enable)
   {
     $this->enable = $enable;
   }
-  /**
-   * @return bool
-   */
   public function getEnable()
   {
     return $this->enable;

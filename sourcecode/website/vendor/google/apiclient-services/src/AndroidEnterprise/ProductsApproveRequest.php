@@ -21,9 +21,6 @@ class ProductsApproveRequest extends \Google\Model
 {
   protected $approvalUrlInfoType = ApprovalUrlInfo::class;
   protected $approvalUrlInfoDataType = '';
-  /**
-   * @var string
-   */
   public $approvedPermissions;
 
   /**
@@ -40,16 +37,10 @@ class ProductsApproveRequest extends \Google\Model
   {
     return $this->approvalUrlInfo;
   }
-  /**
-   * @param string
-   */
   public function setApprovedPermissions($approvedPermissions)
   {
     $this->approvedPermissions = $approvedPermissions;
   }
-  /**
-   * @return string
-   */
   public function getApprovedPermissions()
   {
     return $this->approvedPermissions;

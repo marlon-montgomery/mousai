@@ -20,21 +20,12 @@ namespace Google\Service\Apigee;
 class GoogleCloudApigeeV1OptimizedStatsNode extends \Google\Collection
 {
   protected $collection_key = 'data';
-  /**
-   * @var array[]
-   */
   public $data;
 
-  /**
-   * @param array[]
-   */
   public function setData($data)
   {
     $this->data = $data;
   }
-  /**
-   * @return array[]
-   */
   public function getData()
   {
     return $this->data;

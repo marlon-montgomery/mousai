@@ -22,9 +22,6 @@ class BatchUpdateSpreadsheetResponse extends \Google\Collection
   protected $collection_key = 'replies';
   protected $repliesType = Response::class;
   protected $repliesDataType = 'array';
-  /**
-   * @var string
-   */
   public $spreadsheetId;
   protected $updatedSpreadsheetType = Spreadsheet::class;
   protected $updatedSpreadsheetDataType = '';
@@ -43,16 +40,10 @@ class BatchUpdateSpreadsheetResponse extends \Google\Collection
   {
     return $this->replies;
   }
-  /**
-   * @param string
-   */
   public function setSpreadsheetId($spreadsheetId)
   {
     $this->spreadsheetId = $spreadsheetId;
   }
-  /**
-   * @return string
-   */
   public function getSpreadsheetId()
   {
     return $this->spreadsheetId;

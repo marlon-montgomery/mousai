@@ -22,9 +22,6 @@ class CreateManagedShortLinkResponse extends \Google\Collection
   protected $collection_key = 'warning';
   protected $managedShortLinkType = ManagedShortLink::class;
   protected $managedShortLinkDataType = '';
-  /**
-   * @var string
-   */
   public $previewLink;
   protected $warningType = DynamicLinkWarning::class;
   protected $warningDataType = 'array';
@@ -43,16 +40,10 @@ class CreateManagedShortLinkResponse extends \Google\Collection
   {
     return $this->managedShortLink;
   }
-  /**
-   * @param string
-   */
   public function setPreviewLink($previewLink)
   {
     $this->previewLink = $previewLink;
   }
-  /**
-   * @return string
-   */
   public function getPreviewLink()
   {
     return $this->previewLink;

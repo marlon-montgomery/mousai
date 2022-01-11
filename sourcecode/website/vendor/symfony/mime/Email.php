@@ -535,9 +535,6 @@ class Email extends Message
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     private function setListAddressHeaderBody(string $name, array $addresses)
     {
         $addresses = Address::createArray($addresses);

@@ -19,25 +19,16 @@ namespace Google\Service\Docs;
 
 class NamedStyleSuggestionState extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $namedStyleType;
   protected $paragraphStyleSuggestionStateType = ParagraphStyleSuggestionState::class;
   protected $paragraphStyleSuggestionStateDataType = '';
   protected $textStyleSuggestionStateType = TextStyleSuggestionState::class;
   protected $textStyleSuggestionStateDataType = '';
 
-  /**
-   * @param string
-   */
   public function setNamedStyleType($namedStyleType)
   {
     $this->namedStyleType = $namedStyleType;
   }
-  /**
-   * @return string
-   */
   public function getNamedStyleType()
   {
     return $this->namedStyleType;

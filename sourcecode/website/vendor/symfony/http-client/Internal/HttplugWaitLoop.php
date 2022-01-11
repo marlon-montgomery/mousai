@@ -12,8 +12,6 @@
 namespace Symfony\Component\HttpClient\Internal;
 
 use Http\Client\Exception\NetworkException;
-use Http\Promise\Promise;
-use Psr\Http\Message\RequestInterface as Psr7RequestInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface as Psr7ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -35,9 +33,6 @@ final class HttplugWaitLoop
     private $responseFactory;
     private $streamFactory;
 
-    /**
-     * @param \SplObjectStorage<ResponseInterface, array{Psr7RequestInterface, Promise}>|null $promisePool
-     */
     public function __construct(HttpClientInterface $client, ?\SplObjectStorage $promisePool, ResponseFactoryInterface $responseFactory, StreamFactoryInterface $streamFactory)
     {
         $this->client = $client;

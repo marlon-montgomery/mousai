@@ -20,23 +20,14 @@ namespace Google\Service\CloudAsset;
 class SearchAllResourcesResponse extends \Google\Collection
 {
   protected $collection_key = 'results';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $resultsType = ResourceSearchResult::class;
   protected $resultsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

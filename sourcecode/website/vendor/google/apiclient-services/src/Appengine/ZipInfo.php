@@ -19,39 +19,21 @@ namespace Google\Service\Appengine;
 
 class ZipInfo extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $filesCount;
-  /**
-   * @var string
-   */
   public $sourceUrl;
 
-  /**
-   * @param int
-   */
   public function setFilesCount($filesCount)
   {
     $this->filesCount = $filesCount;
   }
-  /**
-   * @return int
-   */
   public function getFilesCount()
   {
     return $this->filesCount;
   }
-  /**
-   * @param string
-   */
   public function setSourceUrl($sourceUrl)
   {
     $this->sourceUrl = $sourceUrl;
   }
-  /**
-   * @return string
-   */
   public function getSourceUrl()
   {
     return $this->sourceUrl;

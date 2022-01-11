@@ -405,7 +405,7 @@ class QueryBuilder
      *         ->select('u')
      *         ->from('users', 'u')
      *         ->where('u.id = :user_id')
-     *         ->setParameter('user_id', 1);
+     *         ->setParameter(':user_id', 1);
      * </code>
      *
      * @param int|string           $key   Parameter position or name
@@ -434,8 +434,8 @@ class QueryBuilder
      *         ->from('users', 'u')
      *         ->where('u.id = :user_id1 OR u.id = :user_id2')
      *         ->setParameters(array(
-     *             'user_id1' => 1,
-     *             'user_id2' => 2
+     *             ':user_id1' => 1,
+     *             ':user_id2' => 2
      *         ));
      * </code>
      *
@@ -1315,9 +1315,11 @@ class QueryBuilder
     }
 
     /**
+     * @return string
+     *
      * @throws QueryException
      */
-    private function getSQLForSelect(): string
+    private function getSQLForSelect()
     {
         $query = 'SELECT ' . ($this->sqlParts['distinct'] ? 'DISTINCT ' : '') .
                   implode(', ', $this->sqlParts['select']);
@@ -1344,7 +1346,7 @@ class QueryBuilder
      *
      * @throws QueryException
      */
-    private function getFromClauses(): array
+    private function getFromClauses()
     {
         $fromClauses  = [];
         $knownAliases = [];
@@ -1383,15 +1385,20 @@ class QueryBuilder
         }
     }
 
-    private function isLimitQuery(): bool
+    /**
+     * @return bool
+     */
+    private function isLimitQuery()
     {
         return $this->maxResults !== null || $this->firstResult !== 0;
     }
 
     /**
      * Converts this instance into an INSERT string in SQL.
+     *
+     * @return string
      */
-    private function getSQLForInsert(): string
+    private function getSQLForInsert()
     {
         return 'INSERT INTO ' . $this->sqlParts['from']['table'] .
         ' (' . implode(', ', array_keys($this->sqlParts['values'])) . ')' .
@@ -1400,8 +1407,10 @@ class QueryBuilder
 
     /**
      * Converts this instance into an UPDATE string in SQL.
+     *
+     * @return string
      */
-    private function getSQLForUpdate(): string
+    private function getSQLForUpdate()
     {
         $table = $this->sqlParts['from']['table']
             . ($this->sqlParts['from']['alias'] ? ' ' . $this->sqlParts['from']['alias'] : '');
@@ -1413,8 +1422,10 @@ class QueryBuilder
 
     /**
      * Converts this instance into a DELETE string in SQL.
+     *
+     * @return string
      */
-    private function getSQLForDelete(): string
+    private function getSQLForDelete()
     {
         $table = $this->sqlParts['from']['table']
             . ($this->sqlParts['from']['alias'] ? ' ' . $this->sqlParts['from']['alias'] : '');
@@ -1506,9 +1517,11 @@ class QueryBuilder
      * @param string             $fromAlias
      * @param array<string,true> $knownAliases
      *
+     * @return string
+     *
      * @throws QueryException
      */
-    private function getSQLForJoins($fromAlias, array &$knownAliases): string
+    private function getSQLForJoins($fromAlias, array &$knownAliases)
     {
         $sql = '';
 

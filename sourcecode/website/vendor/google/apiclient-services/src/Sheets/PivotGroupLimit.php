@@ -19,39 +19,21 @@ namespace Google\Service\Sheets;
 
 class PivotGroupLimit extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $applyOrder;
-  /**
-   * @var int
-   */
   public $countLimit;
 
-  /**
-   * @param int
-   */
   public function setApplyOrder($applyOrder)
   {
     $this->applyOrder = $applyOrder;
   }
-  /**
-   * @return int
-   */
   public function getApplyOrder()
   {
     return $this->applyOrder;
   }
-  /**
-   * @param int
-   */
   public function setCountLimit($countLimit)
   {
     $this->countLimit = $countLimit;
   }
-  /**
-   * @return int
-   */
   public function getCountLimit()
   {
     return $this->countLimit;

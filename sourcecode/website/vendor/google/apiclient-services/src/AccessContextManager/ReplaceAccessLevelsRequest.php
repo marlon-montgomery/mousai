@@ -22,9 +22,6 @@ class ReplaceAccessLevelsRequest extends \Google\Collection
   protected $collection_key = 'accessLevels';
   protected $accessLevelsType = AccessLevel::class;
   protected $accessLevelsDataType = 'array';
-  /**
-   * @var string
-   */
   public $etag;
 
   /**
@@ -41,16 +38,10 @@ class ReplaceAccessLevelsRequest extends \Google\Collection
   {
     return $this->accessLevels;
   }
-  /**
-   * @param string
-   */
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-  /**
-   * @return string
-   */
   public function getEtag()
   {
     return $this->etag;

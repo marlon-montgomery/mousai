@@ -23,9 +23,6 @@ class GoogleDatastoreAdminV1ExportEntitiesMetadata extends \Google\Model
   protected $commonDataType = '';
   protected $entityFilterType = GoogleDatastoreAdminV1EntityFilter::class;
   protected $entityFilterDataType = '';
-  /**
-   * @var string
-   */
   public $outputUrlPrefix;
   protected $progressBytesType = GoogleDatastoreAdminV1Progress::class;
   protected $progressBytesDataType = '';
@@ -60,16 +57,10 @@ class GoogleDatastoreAdminV1ExportEntitiesMetadata extends \Google\Model
   {
     return $this->entityFilter;
   }
-  /**
-   * @param string
-   */
   public function setOutputUrlPrefix($outputUrlPrefix)
   {
     $this->outputUrlPrefix = $outputUrlPrefix;
   }
-  /**
-   * @return string
-   */
   public function getOutputUrlPrefix()
   {
     return $this->outputUrlPrefix;

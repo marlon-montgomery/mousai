@@ -19,39 +19,21 @@ namespace Google\Service\Sheets;
 
 class TextRotation extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $angle;
-  /**
-   * @var bool
-   */
   public $vertical;
 
-  /**
-   * @param int
-   */
   public function setAngle($angle)
   {
     $this->angle = $angle;
   }
-  /**
-   * @return int
-   */
   public function getAngle()
   {
     return $this->angle;
   }
-  /**
-   * @param bool
-   */
   public function setVertical($vertical)
   {
     $this->vertical = $vertical;
   }
-  /**
-   * @return bool
-   */
   public function getVertical()
   {
     return $this->vertical;

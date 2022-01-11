@@ -19,21 +19,12 @@ namespace Google\Service\Sheets;
 
 class BigQueryQuerySpec extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $rawQuery;
 
-  /**
-   * @param string
-   */
   public function setRawQuery($rawQuery)
   {
     $this->rawQuery = $rawQuery;
   }
-  /**
-   * @return string
-   */
   public function getRawQuery()
   {
     return $this->rawQuery;

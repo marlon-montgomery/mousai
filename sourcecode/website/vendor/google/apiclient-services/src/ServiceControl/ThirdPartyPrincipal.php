@@ -19,21 +19,12 @@ namespace Google\Service\ServiceControl;
 
 class ThirdPartyPrincipal extends \Google\Model
 {
-  /**
-   * @var array[]
-   */
   public $thirdPartyClaims;
 
-  /**
-   * @param array[]
-   */
   public function setThirdPartyClaims($thirdPartyClaims)
   {
     $this->thirdPartyClaims = $thirdPartyClaims;
   }
-  /**
-   * @return array[]
-   */
   public function getThirdPartyClaims()
   {
     return $this->thirdPartyClaims;

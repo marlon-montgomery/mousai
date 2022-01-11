@@ -22,9 +22,6 @@ class ListCourseWorkMaterialResponse extends \Google\Collection
   protected $collection_key = 'courseWorkMaterial';
   protected $courseWorkMaterialType = CourseWorkMaterial::class;
   protected $courseWorkMaterialDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListCourseWorkMaterialResponse extends \Google\Collection
   {
     return $this->courseWorkMaterial;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

@@ -29,7 +29,7 @@ class PhpExecutableFinder
     /**
      * Finds The PHP executable.
      *
-     * @return string|false
+     * @return string|false The PHP executable path or false if it cannot be found
      */
     public function find(bool $includeArgs = true)
     {
@@ -85,7 +85,7 @@ class PhpExecutableFinder
     /**
      * Finds the PHP executable arguments.
      *
-     * @return array
+     * @return array The PHP executable arguments
      */
     public function findArguments()
     {

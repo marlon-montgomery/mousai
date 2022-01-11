@@ -25,9 +25,6 @@ class AffineTransform extends \Google\Model
   public $shearY;
   public $translateX;
   public $translateY;
-  /**
-   * @var string
-   */
   public $unit;
 
   public function setScaleX($scaleX)
@@ -78,16 +75,10 @@ class AffineTransform extends \Google\Model
   {
     return $this->translateY;
   }
-  /**
-   * @param string
-   */
   public function setUnit($unit)
   {
     $this->unit = $unit;
   }
-  /**
-   * @return string
-   */
   public function getUnit()
   {
     return $this->unit;

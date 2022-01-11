@@ -23,9 +23,6 @@ class StandardSqlDataType extends \Google\Model
   protected $arrayElementTypeDataType = '';
   protected $structTypeType = StandardSqlStructType::class;
   protected $structTypeDataType = '';
-  /**
-   * @var string
-   */
   public $typeKind;
 
   /**
@@ -56,16 +53,10 @@ class StandardSqlDataType extends \Google\Model
   {
     return $this->structType;
   }
-  /**
-   * @param string
-   */
   public function setTypeKind($typeKind)
   {
     $this->typeKind = $typeKind;
   }
-  /**
-   * @return string
-   */
   public function getTypeKind()
   {
     return $this->typeKind;

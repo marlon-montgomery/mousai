@@ -19,41 +19,20 @@ namespace Google\Service\Script;
 
 class Project extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $createTime;
   protected $creatorType = GoogleAppsScriptTypeUser::class;
   protected $creatorDataType = '';
   protected $lastModifyUserType = GoogleAppsScriptTypeUser::class;
   protected $lastModifyUserDataType = '';
-  /**
-   * @var string
-   */
   public $parentId;
-  /**
-   * @var string
-   */
   public $scriptId;
-  /**
-   * @var string
-   */
   public $title;
-  /**
-   * @var string
-   */
   public $updateTime;
 
-  /**
-   * @param string
-   */
   public function setCreateTime($createTime)
   {
     $this->createTime = $createTime;
   }
-  /**
-   * @return string
-   */
   public function getCreateTime()
   {
     return $this->createTime;
@@ -86,58 +65,34 @@ class Project extends \Google\Model
   {
     return $this->lastModifyUser;
   }
-  /**
-   * @param string
-   */
   public function setParentId($parentId)
   {
     $this->parentId = $parentId;
   }
-  /**
-   * @return string
-   */
   public function getParentId()
   {
     return $this->parentId;
   }
-  /**
-   * @param string
-   */
   public function setScriptId($scriptId)
   {
     $this->scriptId = $scriptId;
   }
-  /**
-   * @return string
-   */
   public function getScriptId()
   {
     return $this->scriptId;
   }
-  /**
-   * @param string
-   */
   public function setTitle($title)
   {
     $this->title = $title;
   }
-  /**
-   * @return string
-   */
   public function getTitle()
   {
     return $this->title;
   }
-  /**
-   * @param string
-   */
   public function setUpdateTime($updateTime)
   {
     $this->updateTime = $updateTime;
   }
-  /**
-   * @return string
-   */
   public function getUpdateTime()
   {
     return $this->updateTime;

@@ -19,7 +19,7 @@ import {ALBUM_INDEX_FILTERS} from './album-index-filters';
     providers: [DatatableService],
 })
 export class AlbumIndexComponent implements OnInit {
-    albums$ = this.datatable.data$ as Observable<Album[]>;
+    public albums$ = this.datatable.data$ as Observable<Album[]>;
     filters = ALBUM_INDEX_FILTERS;
     constructor(
         public datatable: DatatableService<Album>,

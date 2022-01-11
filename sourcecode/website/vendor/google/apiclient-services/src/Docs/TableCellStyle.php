@@ -29,13 +29,7 @@ class TableCellStyle extends \Google\Model
   protected $borderRightDataType = '';
   protected $borderTopType = TableCellBorder::class;
   protected $borderTopDataType = '';
-  /**
-   * @var int
-   */
   public $columnSpan;
-  /**
-   * @var string
-   */
   public $contentAlignment;
   protected $paddingBottomType = Dimension::class;
   protected $paddingBottomDataType = '';
@@ -45,9 +39,6 @@ class TableCellStyle extends \Google\Model
   protected $paddingRightDataType = '';
   protected $paddingTopType = Dimension::class;
   protected $paddingTopDataType = '';
-  /**
-   * @var int
-   */
   public $rowSpan;
 
   /**
@@ -120,30 +111,18 @@ class TableCellStyle extends \Google\Model
   {
     return $this->borderTop;
   }
-  /**
-   * @param int
-   */
   public function setColumnSpan($columnSpan)
   {
     $this->columnSpan = $columnSpan;
   }
-  /**
-   * @return int
-   */
   public function getColumnSpan()
   {
     return $this->columnSpan;
   }
-  /**
-   * @param string
-   */
   public function setContentAlignment($contentAlignment)
   {
     $this->contentAlignment = $contentAlignment;
   }
-  /**
-   * @return string
-   */
   public function getContentAlignment()
   {
     return $this->contentAlignment;
@@ -204,16 +183,10 @@ class TableCellStyle extends \Google\Model
   {
     return $this->paddingTop;
   }
-  /**
-   * @param int
-   */
   public function setRowSpan($rowSpan)
   {
     $this->rowSpan = $rowSpan;
   }
-  /**
-   * @return int
-   */
   public function getRowSpan()
   {
     return $this->rowSpan;

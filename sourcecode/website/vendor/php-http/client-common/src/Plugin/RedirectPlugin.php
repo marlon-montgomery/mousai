@@ -102,12 +102,12 @@ final class RedirectPlugin implements Plugin
     private $circularDetection = [];
 
     /**
-     * @param array{'preserve_header'?: bool|string[], 'use_default_for_multiple'?: bool, 'strict'?: bool} $config
+     * @param array $config {
      *
-     * Configuration options:
-     *   - preserve_header: True keeps all headers, false remove all of them, an array is interpreted as a list of header names to keep
-     *   - use_default_for_multiple: Whether the location header must be directly used for a multiple redirection status code (300)
-     *   - strict: When true, redirect codes 300, 301, 302 will not modify request method and body.
+     *     @var bool|string[] $preserve_header True keeps all headers, false remove all of them, an array is interpreted as a list of header names to keep
+     *     @var bool $use_default_for_multiple Whether the location header must be directly used for a multiple redirection status code (300)
+     *     @var bool $strict When true, redirect codes 300, 301, 302 will not modify request method and body.
+     * }
      */
     public function __construct(array $config = [])
     {
@@ -182,7 +182,9 @@ final class RedirectPlugin implements Plugin
             }
 
             // Call redirect request synchronously
-            return $first($redirectRequest)->wait();
+            $redirectPromise = $first($redirectRequest);
+
+            return $redirectPromise->wait();
         });
     }
 

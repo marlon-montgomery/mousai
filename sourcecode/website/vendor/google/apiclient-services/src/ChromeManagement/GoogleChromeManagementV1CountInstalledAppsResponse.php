@@ -22,13 +22,7 @@ class GoogleChromeManagementV1CountInstalledAppsResponse extends \Google\Collect
   protected $collection_key = 'installedApps';
   protected $installedAppsType = GoogleChromeManagementV1InstalledApp::class;
   protected $installedAppsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
-  /**
-   * @var int
-   */
   public $totalSize;
 
   /**
@@ -45,30 +39,18 @@ class GoogleChromeManagementV1CountInstalledAppsResponse extends \Google\Collect
   {
     return $this->installedApps;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;
   }
-  /**
-   * @param int
-   */
   public function setTotalSize($totalSize)
   {
     $this->totalSize = $totalSize;
   }
-  /**
-   * @return int
-   */
   public function getTotalSize()
   {
     return $this->totalSize;

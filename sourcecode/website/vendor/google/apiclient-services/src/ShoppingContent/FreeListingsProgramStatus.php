@@ -22,9 +22,6 @@ class FreeListingsProgramStatus extends \Google\Collection
   protected $collection_key = 'regionStatuses';
   protected $regionStatusesType = FreeListingsProgramStatusRegionStatus::class;
   protected $regionStatusesDataType = 'array';
-  /**
-   * @var string
-   */
   public $state;
 
   /**
@@ -41,16 +38,10 @@ class FreeListingsProgramStatus extends \Google\Collection
   {
     return $this->regionStatuses;
   }
-  /**
-   * @param string
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return string
-   */
   public function getState()
   {
     return $this->state;

@@ -24,15 +24,9 @@ class GoogleSecuritySafebrowsingV4ThreatHit extends \Google\Collection
   protected $clientInfoDataType = '';
   protected $entryType = GoogleSecuritySafebrowsingV4ThreatEntry::class;
   protected $entryDataType = '';
-  /**
-   * @var string
-   */
   public $platformType;
   protected $resourcesType = GoogleSecuritySafebrowsingV4ThreatHitThreatSource::class;
   protected $resourcesDataType = 'array';
-  /**
-   * @var string
-   */
   public $threatType;
   protected $userInfoType = GoogleSecuritySafebrowsingV4ThreatHitUserInfo::class;
   protected $userInfoDataType = '';
@@ -65,16 +59,10 @@ class GoogleSecuritySafebrowsingV4ThreatHit extends \Google\Collection
   {
     return $this->entry;
   }
-  /**
-   * @param string
-   */
   public function setPlatformType($platformType)
   {
     $this->platformType = $platformType;
   }
-  /**
-   * @return string
-   */
   public function getPlatformType()
   {
     return $this->platformType;
@@ -93,16 +81,10 @@ class GoogleSecuritySafebrowsingV4ThreatHit extends \Google\Collection
   {
     return $this->resources;
   }
-  /**
-   * @param string
-   */
   public function setThreatType($threatType)
   {
     $this->threatType = $threatType;
   }
-  /**
-   * @return string
-   */
   public function getThreatType()
   {
     return $this->threatType;

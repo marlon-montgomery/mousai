@@ -22,9 +22,6 @@ class PrimaryStep extends \Google\Collection
   protected $collection_key = 'individualOutcome';
   protected $individualOutcomeType = IndividualOutcome::class;
   protected $individualOutcomeDataType = 'array';
-  /**
-   * @var string
-   */
   public $rollUp;
 
   /**
@@ -41,16 +38,10 @@ class PrimaryStep extends \Google\Collection
   {
     return $this->individualOutcome;
   }
-  /**
-   * @param string
-   */
   public function setRollUp($rollUp)
   {
     $this->rollUp = $rollUp;
   }
-  /**
-   * @return string
-   */
   public function getRollUp()
   {
     return $this->rollUp;

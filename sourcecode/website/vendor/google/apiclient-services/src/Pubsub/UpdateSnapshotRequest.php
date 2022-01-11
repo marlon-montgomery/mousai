@@ -21,9 +21,6 @@ class UpdateSnapshotRequest extends \Google\Model
 {
   protected $snapshotType = Snapshot::class;
   protected $snapshotDataType = '';
-  /**
-   * @var string
-   */
   public $updateMask;
 
   /**
@@ -40,16 +37,10 @@ class UpdateSnapshotRequest extends \Google\Model
   {
     return $this->snapshot;
   }
-  /**
-   * @param string
-   */
   public function setUpdateMask($updateMask)
   {
     $this->updateMask = $updateMask;
   }
-  /**
-   * @return string
-   */
   public function getUpdateMask()
   {
     return $this->updateMask;

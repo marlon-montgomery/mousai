@@ -21,9 +21,6 @@ class CustomerSessionStats extends \Google\Model
 {
   protected $dateType = Date::class;
   protected $dateDataType = '';
-  /**
-   * @var string
-   */
   public $searchSessionsCount;
 
   /**
@@ -40,16 +37,10 @@ class CustomerSessionStats extends \Google\Model
   {
     return $this->date;
   }
-  /**
-   * @param string
-   */
   public function setSearchSessionsCount($searchSessionsCount)
   {
     $this->searchSessionsCount = $searchSessionsCount;
   }
-  /**
-   * @return string
-   */
   public function getSearchSessionsCount()
   {
     return $this->searchSessionsCount;

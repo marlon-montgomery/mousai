@@ -20,7 +20,7 @@ namespace Google\Service;
 use Google\Client;
 
 /**
- * Service definition for ContainerAnalysis (v1).
+ * Service definition for ContainerAnalysis (v1beta1).
  *
  * <p>
  * An implementation of the Grafeas API, which stores, and enables querying and
@@ -42,6 +42,7 @@ class ContainerAnalysis extends \Google\Service
   public $projects_notes;
   public $projects_notes_occurrences;
   public $projects_occurrences;
+  public $projects_scanConfigs;
 
   /**
    * Constructs the internal representation of the ContainerAnalysis service.
@@ -56,7 +57,7 @@ class ContainerAnalysis extends \Google\Service
     $this->rootUrl = $rootUrl ?: 'https://containeranalysis.googleapis.com/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
-    $this->version = 'v1';
+    $this->version = 'v1beta1';
     $this->serviceName = 'containeranalysis';
 
     $this->projects_notes = new ContainerAnalysis\Resource\ProjectsNotes(
@@ -66,7 +67,7 @@ class ContainerAnalysis extends \Google\Service
         [
           'methods' => [
             'batchCreate' => [
-              'path' => 'v1/{+parent}/notes:batchCreate',
+              'path' => 'v1beta1/{+parent}/notes:batchCreate',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -76,7 +77,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'create' => [
-              'path' => 'v1/{+parent}/notes',
+              'path' => 'v1beta1/{+parent}/notes',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -90,7 +91,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta1/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -100,7 +101,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -110,7 +111,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'getIamPolicy' => [
-              'path' => 'v1/{+resource}:getIamPolicy',
+              'path' => 'v1beta1/{+resource}:getIamPolicy',
               'httpMethod' => 'POST',
               'parameters' => [
                 'resource' => [
@@ -120,7 +121,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+parent}/notes',
+              'path' => 'v1beta1/{+parent}/notes',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -142,7 +143,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta1/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [
@@ -156,7 +157,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'setIamPolicy' => [
-              'path' => 'v1/{+resource}:setIamPolicy',
+              'path' => 'v1beta1/{+resource}:setIamPolicy',
               'httpMethod' => 'POST',
               'parameters' => [
                 'resource' => [
@@ -166,7 +167,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'testIamPermissions' => [
-              'path' => 'v1/{+resource}:testIamPermissions',
+              'path' => 'v1beta1/{+resource}:testIamPermissions',
               'httpMethod' => 'POST',
               'parameters' => [
                 'resource' => [
@@ -186,7 +187,7 @@ class ContainerAnalysis extends \Google\Service
         [
           'methods' => [
             'list' => [
-              'path' => 'v1/{+name}/occurrences',
+              'path' => 'v1beta1/{+name}/occurrences',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -218,7 +219,7 @@ class ContainerAnalysis extends \Google\Service
         [
           'methods' => [
             'batchCreate' => [
-              'path' => 'v1/{+parent}/occurrences:batchCreate',
+              'path' => 'v1beta1/{+parent}/occurrences:batchCreate',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -228,7 +229,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'create' => [
-              'path' => 'v1/{+parent}/occurrences',
+              'path' => 'v1beta1/{+parent}/occurrences',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -238,7 +239,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta1/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -248,7 +249,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -258,7 +259,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'getIamPolicy' => [
-              'path' => 'v1/{+resource}:getIamPolicy',
+              'path' => 'v1beta1/{+resource}:getIamPolicy',
               'httpMethod' => 'POST',
               'parameters' => [
                 'resource' => [
@@ -268,7 +269,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'getNotes' => [
-              'path' => 'v1/{+name}/notes',
+              'path' => 'v1beta1/{+name}/notes',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -278,7 +279,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'getVulnerabilitySummary' => [
-              'path' => 'v1/{+parent}/occurrences:vulnerabilitySummary',
+              'path' => 'v1beta1/{+parent}/occurrences:vulnerabilitySummary',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -292,7 +293,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+parent}/occurrences',
+              'path' => 'v1beta1/{+parent}/occurrences',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -314,7 +315,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta1/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [
@@ -328,7 +329,7 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'setIamPolicy' => [
-              'path' => 'v1/{+resource}:setIamPolicy',
+              'path' => 'v1beta1/{+resource}:setIamPolicy',
               'httpMethod' => 'POST',
               'parameters' => [
                 'resource' => [
@@ -338,10 +339,62 @@ class ContainerAnalysis extends \Google\Service
                 ],
               ],
             ],'testIamPermissions' => [
-              'path' => 'v1/{+resource}:testIamPermissions',
+              'path' => 'v1beta1/{+resource}:testIamPermissions',
               'httpMethod' => 'POST',
               'parameters' => [
                 'resource' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_scanConfigs = new ContainerAnalysis\Resource\ProjectsScanConfigs(
+        $this,
+        $this->serviceName,
+        'scanConfigs',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v1beta1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1beta1/{+parent}/scanConfigs',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'update' => [
+              'path' => 'v1beta1/{+name}',
+              'httpMethod' => 'PUT',
+              'parameters' => [
+                'name' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,

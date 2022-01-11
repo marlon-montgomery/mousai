@@ -5,17 +5,20 @@ import {RequestExtraCredentialsModalComponent} from './request-extra-credentials
 import {CurrentUser} from './current-user';
 import {Settings} from '../core/config/settings.service';
 import {Toast} from '../core/ui/toast.service';
+import {Bootstrapper} from '../core/bootstrapper.service';
 import {AuthService} from './auth.service';
 import {Translations} from '../core/translations/translations.service';
 import {Modal} from '../core/ui/dialogs/modal.service';
 import {User} from '../core/types/models/User';
 import {AppHttpClient} from '../core/http/app-http-client.service';
 import {ExternalSocialProfile} from '@common/auth/external-social-profile';
+import {identityLogin} from './bitclout';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SocialAuthService {
+
     /**
      * Instance of extraCredentialsModal.
      */
@@ -34,7 +37,7 @@ export class SocialAuthService {
     /**
      * Resolve for latest social login or connect call.
      */
-    private resolve: Function;
+    private resolve: (value: any) => void;
 
     constructor(
         protected httpClient: AppHttpClient,
@@ -44,7 +47,8 @@ export class SocialAuthService {
         protected toast: Toast,
         protected auth: AuthService,
         protected i18n: Translations,
-        protected modal: Modal
+        protected modal: Modal,
+        private bootstrapper: Bootstrapper,
     ) {
         this.listenForMessageFromPopup();
     }
@@ -52,10 +56,27 @@ export class SocialAuthService {
     /**
      * Log user in with specified social account.
      */
-    loginWith(serviceName: string): Promise<User> {
+    public loginWith(serviceName: string): Promise<User> {
         return this.openNewSocialAuthWindow(
-            'secure/auth/social/' + serviceName + '/login'
+            `secure/auth/social/${serviceName}/login`
         );
+    }
+
+    public async loginWithBitclout() {
+        try {
+            const user = await identityLogin(4);
+
+            await this.httpClient.post('secure/auth/social/bitclout', {
+                publicKey: user.publicKey,
+                jwt: user.jwt,
+            })
+                .subscribe(({data}) => {
+                    this.bootstrapper.bootstrap(data);
+                    this.router.navigate([this.auth.getRedirectUri()]);
+                }, () => null);
+        } catch (err) {
+            this.toast.open('Try later', {duration: 6000});
+        }
     }
 
     /**

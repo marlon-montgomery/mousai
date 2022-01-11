@@ -19,9 +19,6 @@ namespace Google\Service\Sheets;
 
 class ChartData extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $aggregateType;
   protected $columnReferenceType = DataSourceColumnReference::class;
   protected $columnReferenceDataType = '';
@@ -30,16 +27,10 @@ class ChartData extends \Google\Model
   protected $sourceRangeType = ChartSourceRange::class;
   protected $sourceRangeDataType = '';
 
-  /**
-   * @param string
-   */
   public function setAggregateType($aggregateType)
   {
     $this->aggregateType = $aggregateType;
   }
-  /**
-   * @return string
-   */
   public function getAggregateType()
   {
     return $this->aggregateType;

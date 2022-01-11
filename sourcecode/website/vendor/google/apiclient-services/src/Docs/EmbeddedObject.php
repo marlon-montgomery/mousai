@@ -19,9 +19,6 @@ namespace Google\Service\Docs;
 
 class EmbeddedObject extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $description;
   protected $embeddedDrawingPropertiesType = EmbeddedDrawingProperties::class;
   protected $embeddedDrawingPropertiesDataType = '';
@@ -41,21 +38,12 @@ class EmbeddedObject extends \Google\Model
   protected $marginTopDataType = '';
   protected $sizeType = Size::class;
   protected $sizeDataType = '';
-  /**
-   * @var string
-   */
   public $title;
 
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;
@@ -186,16 +174,10 @@ class EmbeddedObject extends \Google\Model
   {
     return $this->size;
   }
-  /**
-   * @param string
-   */
   public function setTitle($title)
   {
     $this->title = $title;
   }
-  /**
-   * @return string
-   */
   public function getTitle()
   {
     return $this->title;

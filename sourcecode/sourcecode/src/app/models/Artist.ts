@@ -13,6 +13,7 @@ export interface Artist {
     model_type: 'artist';
     verified?: boolean;
     spotify_id?: string;
+    bitclout: string;
     followers_count?: number;
     spotify_popularity?: boolean;
     albums_count?: number;

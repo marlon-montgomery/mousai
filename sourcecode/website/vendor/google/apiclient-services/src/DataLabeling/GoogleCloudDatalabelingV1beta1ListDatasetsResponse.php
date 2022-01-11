@@ -22,9 +22,6 @@ class GoogleCloudDatalabelingV1beta1ListDatasetsResponse extends \Google\Collect
   protected $collection_key = 'datasets';
   protected $datasetsType = GoogleCloudDatalabelingV1beta1Dataset::class;
   protected $datasetsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudDatalabelingV1beta1ListDatasetsResponse extends \Google\Collect
   {
     return $this->datasets;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

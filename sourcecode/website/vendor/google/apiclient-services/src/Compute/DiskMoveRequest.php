@@ -19,39 +19,21 @@ namespace Google\Service\Compute;
 
 class DiskMoveRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $destinationZone;
-  /**
-   * @var string
-   */
   public $targetDisk;
 
-  /**
-   * @param string
-   */
   public function setDestinationZone($destinationZone)
   {
     $this->destinationZone = $destinationZone;
   }
-  /**
-   * @return string
-   */
   public function getDestinationZone()
   {
     return $this->destinationZone;
   }
-  /**
-   * @param string
-   */
   public function setTargetDisk($targetDisk)
   {
     $this->targetDisk = $targetDisk;
   }
-  /**
-   * @return string
-   */
   public function getTargetDisk()
   {
     return $this->targetDisk;

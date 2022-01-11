@@ -20,9 +20,6 @@ namespace Google\Service\Logging;
 class Exponential extends \Google\Model
 {
   public $growthFactor;
-  /**
-   * @var int
-   */
   public $numFiniteBuckets;
   public $scale;
 
@@ -34,16 +31,10 @@ class Exponential extends \Google\Model
   {
     return $this->growthFactor;
   }
-  /**
-   * @param int
-   */
   public function setNumFiniteBuckets($numFiniteBuckets)
   {
     $this->numFiniteBuckets = $numFiniteBuckets;
   }
-  /**
-   * @return int
-   */
   public function getNumFiniteBuckets()
   {
     return $this->numFiniteBuckets;

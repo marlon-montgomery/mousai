@@ -22,9 +22,6 @@ class GoogleAppsCloudidentityDevicesV1ListClientStatesResponse extends \Google\C
   protected $collection_key = 'clientStates';
   protected $clientStatesType = GoogleAppsCloudidentityDevicesV1ClientState::class;
   protected $clientStatesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleAppsCloudidentityDevicesV1ListClientStatesResponse extends \Google\C
   {
     return $this->clientStates;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

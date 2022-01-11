@@ -19,21 +19,12 @@ namespace Google\Service\Licensing;
 
 class LicenseAssignmentInsert extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $userId;
 
-  /**
-   * @param string
-   */
   public function setUserId($userId)
   {
     $this->userId = $userId;
   }
-  /**
-   * @return string
-   */
   public function getUserId()
   {
     return $this->userId;

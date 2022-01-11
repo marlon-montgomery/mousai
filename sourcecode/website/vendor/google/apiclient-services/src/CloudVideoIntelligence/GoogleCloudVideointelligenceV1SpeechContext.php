@@ -20,21 +20,12 @@ namespace Google\Service\CloudVideoIntelligence;
 class GoogleCloudVideointelligenceV1SpeechContext extends \Google\Collection
 {
   protected $collection_key = 'phrases';
-  /**
-   * @var string[]
-   */
   public $phrases;
 
-  /**
-   * @param string[]
-   */
   public function setPhrases($phrases)
   {
     $this->phrases = $phrases;
   }
-  /**
-   * @return string[]
-   */
   public function getPhrases()
   {
     return $this->phrases;

@@ -19,27 +19,15 @@ namespace Google\Service\PeopleService;
 
 class RelationshipInterest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $formattedValue;
   protected $metadataType = FieldMetadata::class;
   protected $metadataDataType = '';
-  /**
-   * @var string
-   */
   public $value;
 
-  /**
-   * @param string
-   */
   public function setFormattedValue($formattedValue)
   {
     $this->formattedValue = $formattedValue;
   }
-  /**
-   * @return string
-   */
   public function getFormattedValue()
   {
     return $this->formattedValue;
@@ -58,16 +46,10 @@ class RelationshipInterest extends \Google\Model
   {
     return $this->metadata;
   }
-  /**
-   * @param string
-   */
   public function setValue($value)
   {
     $this->value = $value;
   }
-  /**
-   * @return string
-   */
   public function getValue()
   {
     return $this->value;

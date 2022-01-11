@@ -89,8 +89,6 @@ use Aws\AwsClient;
  * @method \GuzzleHttp\Promise\Promise putGeofenceAsync(array $args = [])
  * @method \Aws\Result searchPlaceIndexForPosition(array $args = [])
  * @method \GuzzleHttp\Promise\Promise searchPlaceIndexForPositionAsync(array $args = [])
- * @method \Aws\Result searchPlaceIndexForSuggestions(array $args = [])
- * @method \GuzzleHttp\Promise\Promise searchPlaceIndexForSuggestionsAsync(array $args = [])
  * @method \Aws\Result searchPlaceIndexForText(array $args = [])
  * @method \GuzzleHttp\Promise\Promise searchPlaceIndexForTextAsync(array $args = [])
  * @method \Aws\Result tagResource(array $args = [])

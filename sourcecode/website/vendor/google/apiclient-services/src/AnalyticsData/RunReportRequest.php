@@ -22,9 +22,6 @@ class RunReportRequest extends \Google\Collection
   protected $collection_key = 'orderBys';
   protected $cohortSpecType = CohortSpec::class;
   protected $cohortSpecDataType = '';
-  /**
-   * @var string
-   */
   public $currencyCode;
   protected $dateRangesType = DateRange::class;
   protected $dateRangesDataType = 'array';
@@ -32,35 +29,17 @@ class RunReportRequest extends \Google\Collection
   protected $dimensionFilterDataType = '';
   protected $dimensionsType = Dimension::class;
   protected $dimensionsDataType = 'array';
-  /**
-   * @var bool
-   */
   public $keepEmptyRows;
-  /**
-   * @var string
-   */
   public $limit;
-  /**
-   * @var string[]
-   */
   public $metricAggregations;
   protected $metricFilterType = FilterExpression::class;
   protected $metricFilterDataType = '';
   protected $metricsType = Metric::class;
   protected $metricsDataType = 'array';
-  /**
-   * @var string
-   */
   public $offset;
   protected $orderBysType = OrderBy::class;
   protected $orderBysDataType = 'array';
-  /**
-   * @var string
-   */
   public $property;
-  /**
-   * @var bool
-   */
   public $returnPropertyQuota;
 
   /**
@@ -77,16 +56,10 @@ class RunReportRequest extends \Google\Collection
   {
     return $this->cohortSpec;
   }
-  /**
-   * @param string
-   */
   public function setCurrencyCode($currencyCode)
   {
     $this->currencyCode = $currencyCode;
   }
-  /**
-   * @return string
-   */
   public function getCurrencyCode()
   {
     return $this->currencyCode;
@@ -133,44 +106,26 @@ class RunReportRequest extends \Google\Collection
   {
     return $this->dimensions;
   }
-  /**
-   * @param bool
-   */
   public function setKeepEmptyRows($keepEmptyRows)
   {
     $this->keepEmptyRows = $keepEmptyRows;
   }
-  /**
-   * @return bool
-   */
   public function getKeepEmptyRows()
   {
     return $this->keepEmptyRows;
   }
-  /**
-   * @param string
-   */
   public function setLimit($limit)
   {
     $this->limit = $limit;
   }
-  /**
-   * @return string
-   */
   public function getLimit()
   {
     return $this->limit;
   }
-  /**
-   * @param string[]
-   */
   public function setMetricAggregations($metricAggregations)
   {
     $this->metricAggregations = $metricAggregations;
   }
-  /**
-   * @return string[]
-   */
   public function getMetricAggregations()
   {
     return $this->metricAggregations;
@@ -203,16 +158,10 @@ class RunReportRequest extends \Google\Collection
   {
     return $this->metrics;
   }
-  /**
-   * @param string
-   */
   public function setOffset($offset)
   {
     $this->offset = $offset;
   }
-  /**
-   * @return string
-   */
   public function getOffset()
   {
     return $this->offset;
@@ -231,30 +180,18 @@ class RunReportRequest extends \Google\Collection
   {
     return $this->orderBys;
   }
-  /**
-   * @param string
-   */
   public function setProperty($property)
   {
     $this->property = $property;
   }
-  /**
-   * @return string
-   */
   public function getProperty()
   {
     return $this->property;
   }
-  /**
-   * @param bool
-   */
   public function setReturnPropertyQuota($returnPropertyQuota)
   {
     $this->returnPropertyQuota = $returnPropertyQuota;
   }
-  /**
-   * @return bool
-   */
   public function getReturnPropertyQuota()
   {
     return $this->returnPropertyQuota;

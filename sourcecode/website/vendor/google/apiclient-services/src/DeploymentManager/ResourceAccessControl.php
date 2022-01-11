@@ -19,21 +19,12 @@ namespace Google\Service\DeploymentManager;
 
 class ResourceAccessControl extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $gcpIamPolicy;
 
-  /**
-   * @param string
-   */
   public function setGcpIamPolicy($gcpIamPolicy)
   {
     $this->gcpIamPolicy = $gcpIamPolicy;
   }
-  /**
-   * @return string
-   */
   public function getGcpIamPolicy()
   {
     return $this->gcpIamPolicy;

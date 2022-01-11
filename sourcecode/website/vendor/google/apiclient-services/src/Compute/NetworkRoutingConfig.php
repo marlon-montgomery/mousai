@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class NetworkRoutingConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $routingMode;
 
-  /**
-   * @param string
-   */
   public function setRoutingMode($routingMode)
   {
     $this->routingMode = $routingMode;
   }
-  /**
-   * @return string
-   */
   public function getRoutingMode()
   {
     return $this->routingMode;

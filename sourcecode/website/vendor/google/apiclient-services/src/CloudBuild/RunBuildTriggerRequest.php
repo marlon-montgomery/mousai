@@ -19,27 +19,15 @@ namespace Google\Service\CloudBuild;
 
 class RunBuildTriggerRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $projectId;
   protected $sourceType = RepoSource::class;
   protected $sourceDataType = '';
-  /**
-   * @var string
-   */
   public $triggerId;
 
-  /**
-   * @param string
-   */
   public function setProjectId($projectId)
   {
     $this->projectId = $projectId;
   }
-  /**
-   * @return string
-   */
   public function getProjectId()
   {
     return $this->projectId;
@@ -58,16 +46,10 @@ class RunBuildTriggerRequest extends \Google\Model
   {
     return $this->source;
   }
-  /**
-   * @param string
-   */
   public function setTriggerId($triggerId)
   {
     $this->triggerId = $triggerId;
   }
-  /**
-   * @return string
-   */
   public function getTriggerId()
   {
     return $this->triggerId;

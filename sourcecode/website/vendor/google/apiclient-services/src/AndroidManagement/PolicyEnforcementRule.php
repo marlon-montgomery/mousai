@@ -21,9 +21,6 @@ class PolicyEnforcementRule extends \Google\Model
 {
   protected $blockActionType = BlockAction::class;
   protected $blockActionDataType = '';
-  /**
-   * @var string
-   */
   public $settingName;
   protected $wipeActionType = WipeAction::class;
   protected $wipeActionDataType = '';
@@ -42,16 +39,10 @@ class PolicyEnforcementRule extends \Google\Model
   {
     return $this->blockAction;
   }
-  /**
-   * @param string
-   */
   public function setSettingName($settingName)
   {
     $this->settingName = $settingName;
   }
-  /**
-   * @return string
-   */
   public function getSettingName()
   {
     return $this->settingName;

@@ -22,6 +22,9 @@
         "lib": [
             "es2018",
             "dom"
+        ],
+        "types": [
+            "@types/google.analytics"
         ]
     },
     "angularCompilerOptions": {

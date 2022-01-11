@@ -21,9 +21,6 @@ class ContainerSpec extends \Google\Model
 {
   protected $defaultEnvironmentType = FlexTemplateRuntimeEnvironment::class;
   protected $defaultEnvironmentDataType = '';
-  /**
-   * @var string
-   */
   public $image;
   protected $metadataType = TemplateMetadata::class;
   protected $metadataDataType = '';
@@ -44,16 +41,10 @@ class ContainerSpec extends \Google\Model
   {
     return $this->defaultEnvironment;
   }
-  /**
-   * @param string
-   */
   public function setImage($image)
   {
     $this->image = $image;
   }
-  /**
-   * @return string
-   */
   public function getImage()
   {
     return $this->image;

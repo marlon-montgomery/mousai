@@ -19,21 +19,12 @@ namespace Google\Service\Firestore;
 
 class BeginTransactionResponse extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $transaction;
 
-  /**
-   * @param string
-   */
   public function setTransaction($transaction)
   {
     $this->transaction = $transaction;
   }
-  /**
-   * @return string
-   */
   public function getTransaction()
   {
     return $this->transaction;

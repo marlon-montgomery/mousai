@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class InstanceGroupManagersSetInstanceTemplateRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $instanceTemplate;
 
-  /**
-   * @param string
-   */
   public function setInstanceTemplate($instanceTemplate)
   {
     $this->instanceTemplate = $instanceTemplate;
   }
-  /**
-   * @return string
-   */
   public function getInstanceTemplate()
   {
     return $this->instanceTemplate;

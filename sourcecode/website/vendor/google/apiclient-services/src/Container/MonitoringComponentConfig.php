@@ -20,21 +20,12 @@ namespace Google\Service\Container;
 class MonitoringComponentConfig extends \Google\Collection
 {
   protected $collection_key = 'enableComponents';
-  /**
-   * @var string[]
-   */
   public $enableComponents;
 
-  /**
-   * @param string[]
-   */
   public function setEnableComponents($enableComponents)
   {
     $this->enableComponents = $enableComponents;
   }
-  /**
-   * @return string[]
-   */
   public function getEnableComponents()
   {
     return $this->enableComponents;

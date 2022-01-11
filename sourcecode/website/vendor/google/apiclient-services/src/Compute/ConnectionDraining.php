@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class ConnectionDraining extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $drainingTimeoutSec;
 
-  /**
-   * @param int
-   */
   public function setDrainingTimeoutSec($drainingTimeoutSec)
   {
     $this->drainingTimeoutSec = $drainingTimeoutSec;
   }
-  /**
-   * @return int
-   */
   public function getDrainingTimeoutSec()
   {
     return $this->drainingTimeoutSec;

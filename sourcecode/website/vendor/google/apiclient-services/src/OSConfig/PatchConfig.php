@@ -27,9 +27,6 @@ class PatchConfig extends \Google\Model
   protected $postStepDataType = '';
   protected $preStepType = ExecStep::class;
   protected $preStepDataType = '';
-  /**
-   * @var string
-   */
   public $rebootConfig;
   protected $windowsUpdateType = WindowsUpdateSettings::class;
   protected $windowsUpdateDataType = '';
@@ -94,16 +91,10 @@ class PatchConfig extends \Google\Model
   {
     return $this->preStep;
   }
-  /**
-   * @param string
-   */
   public function setRebootConfig($rebootConfig)
   {
     $this->rebootConfig = $rebootConfig;
   }
-  /**
-   * @return string
-   */
   public function getRebootConfig()
   {
     return $this->rebootConfig;

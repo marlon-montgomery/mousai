@@ -19,21 +19,12 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowV2beta1IntentMessageTelephonyTransferCall extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $phoneNumber;
 
-  /**
-   * @param string
-   */
   public function setPhoneNumber($phoneNumber)
   {
     $this->phoneNumber = $phoneNumber;
   }
-  /**
-   * @return string
-   */
   public function getPhoneNumber()
   {
     return $this->phoneNumber;

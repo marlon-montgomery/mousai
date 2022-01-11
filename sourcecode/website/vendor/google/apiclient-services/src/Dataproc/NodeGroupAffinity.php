@@ -19,21 +19,12 @@ namespace Google\Service\Dataproc;
 
 class NodeGroupAffinity extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $nodeGroupUri;
 
-  /**
-   * @param string
-   */
   public function setNodeGroupUri($nodeGroupUri)
   {
     $this->nodeGroupUri = $nodeGroupUri;
   }
-  /**
-   * @return string
-   */
   public function getNodeGroupUri()
   {
     return $this->nodeGroupUri;

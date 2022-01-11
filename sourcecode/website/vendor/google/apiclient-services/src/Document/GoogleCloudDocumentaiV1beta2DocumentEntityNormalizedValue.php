@@ -21,27 +21,15 @@ class GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue extends \Google\
 {
   protected $addressValueType = GoogleTypePostalAddress::class;
   protected $addressValueDataType = '';
-  /**
-   * @var bool
-   */
   public $booleanValue;
   protected $dateValueType = GoogleTypeDate::class;
   protected $dateValueDataType = '';
   protected $datetimeValueType = GoogleTypeDateTime::class;
   protected $datetimeValueDataType = '';
-  /**
-   * @var float
-   */
   public $floatValue;
-  /**
-   * @var int
-   */
   public $integerValue;
   protected $moneyValueType = GoogleTypeMoney::class;
   protected $moneyValueDataType = '';
-  /**
-   * @var string
-   */
   public $text;
 
   /**
@@ -58,16 +46,10 @@ class GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue extends \Google\
   {
     return $this->addressValue;
   }
-  /**
-   * @param bool
-   */
   public function setBooleanValue($booleanValue)
   {
     $this->booleanValue = $booleanValue;
   }
-  /**
-   * @return bool
-   */
   public function getBooleanValue()
   {
     return $this->booleanValue;
@@ -100,30 +82,18 @@ class GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue extends \Google\
   {
     return $this->datetimeValue;
   }
-  /**
-   * @param float
-   */
   public function setFloatValue($floatValue)
   {
     $this->floatValue = $floatValue;
   }
-  /**
-   * @return float
-   */
   public function getFloatValue()
   {
     return $this->floatValue;
   }
-  /**
-   * @param int
-   */
   public function setIntegerValue($integerValue)
   {
     $this->integerValue = $integerValue;
   }
-  /**
-   * @return int
-   */
   public function getIntegerValue()
   {
     return $this->integerValue;
@@ -142,16 +112,10 @@ class GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue extends \Google\
   {
     return $this->moneyValue;
   }
-  /**
-   * @param string
-   */
   public function setText($text)
   {
     $this->text = $text;
   }
-  /**
-   * @return string
-   */
   public function getText()
   {
     return $this->text;

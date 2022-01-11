@@ -19,39 +19,21 @@ namespace Google\Service\ServiceNetworking;
 
 class CustomErrorRule extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $isErrorType;
-  /**
-   * @var string
-   */
   public $selector;
 
-  /**
-   * @param bool
-   */
   public function setIsErrorType($isErrorType)
   {
     $this->isErrorType = $isErrorType;
   }
-  /**
-   * @return bool
-   */
   public function getIsErrorType()
   {
     return $this->isErrorType;
   }
-  /**
-   * @param string
-   */
   public function setSelector($selector)
   {
     $this->selector = $selector;
   }
-  /**
-   * @return string
-   */
   public function getSelector()
   {
     return $this->selector;

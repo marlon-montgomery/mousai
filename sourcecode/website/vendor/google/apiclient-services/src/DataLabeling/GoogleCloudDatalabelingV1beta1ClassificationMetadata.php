@@ -19,21 +19,12 @@ namespace Google\Service\DataLabeling;
 
 class GoogleCloudDatalabelingV1beta1ClassificationMetadata extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $isMultiLabel;
 
-  /**
-   * @param bool
-   */
   public function setIsMultiLabel($isMultiLabel)
   {
     $this->isMultiLabel = $isMultiLabel;
   }
-  /**
-   * @return bool
-   */
   public function getIsMultiLabel()
   {
     return $this->isMultiLabel;

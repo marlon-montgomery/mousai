@@ -105,8 +105,6 @@ class ForeignKeyConstraint extends AbstractAsset implements Constraint
      * Returns the name of the referencing table
      * the foreign key constraint is associated with.
      *
-     * @deprecated Use the table that contains the foreign key as part of its {@link Table::$_fkConstraints} instead.
-     *
      * @return string
      */
     public function getLocalTableName()
@@ -118,8 +116,6 @@ class ForeignKeyConstraint extends AbstractAsset implements Constraint
      * Sets the Table instance of the referencing table
      * the foreign key constraint is associated with.
      *
-     * @deprecated Use the table that contains the foreign key as part of its {@link Table::$_fkConstraints} instead.
-     *
      * @param Table $table Instance of the referencing table.
      *
      * @return void
@@ -130,8 +126,6 @@ class ForeignKeyConstraint extends AbstractAsset implements Constraint
     }
 
     /**
-     * @deprecated Use the table that contains the foreign key as part of its {@link Table::$_fkConstraints} instead.
-     *
      * @return Table
      */
     public function getLocalTable()
@@ -196,8 +190,6 @@ class ForeignKeyConstraint extends AbstractAsset implements Constraint
     /**
      * {@inheritdoc}
      *
-     * @deprecated Use {@link getLocalColumns()} instead.
-     *
      * @see getLocalColumns
      */
     public function getColumns()
@@ -212,8 +204,6 @@ class ForeignKeyConstraint extends AbstractAsset implements Constraint
      * But only if they were defined with one or the referencing table column name
      * is a keyword reserved by the platform.
      * Otherwise the plain unquoted value as inserted is returned.
-     *
-     * @deprecated Use {@link getQuotedLocalColumns()} instead.
      *
      * @see getQuotedLocalColumns
      *
@@ -367,8 +357,10 @@ class ForeignKeyConstraint extends AbstractAsset implements Constraint
      * on the referenced table the foreign key constraint is associated with.
      *
      * @param string $event Name of the database operation/event to return the referential action for.
+     *
+     * @return string|null
      */
-    private function onEvent($event): ?string
+    private function onEvent($event)
     {
         if (isset($this->_options[$event])) {
             $onEvent = strtoupper($this->_options[$event]);

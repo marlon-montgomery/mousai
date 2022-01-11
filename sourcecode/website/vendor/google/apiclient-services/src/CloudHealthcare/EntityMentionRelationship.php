@@ -20,13 +20,7 @@ namespace Google\Service\CloudHealthcare;
 class EntityMentionRelationship extends \Google\Model
 {
   public $confidence;
-  /**
-   * @var string
-   */
   public $objectId;
-  /**
-   * @var string
-   */
   public $subjectId;
 
   public function setConfidence($confidence)
@@ -37,30 +31,18 @@ class EntityMentionRelationship extends \Google\Model
   {
     return $this->confidence;
   }
-  /**
-   * @param string
-   */
   public function setObjectId($objectId)
   {
     $this->objectId = $objectId;
   }
-  /**
-   * @return string
-   */
   public function getObjectId()
   {
     return $this->objectId;
   }
-  /**
-   * @param string
-   */
   public function setSubjectId($subjectId)
   {
     $this->subjectId = $subjectId;
   }
-  /**
-   * @return string
-   */
   public function getSubjectId()
   {
     return $this->subjectId;

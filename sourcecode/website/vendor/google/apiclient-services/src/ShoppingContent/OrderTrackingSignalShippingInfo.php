@@ -21,39 +21,18 @@ class OrderTrackingSignalShippingInfo extends \Google\Model
 {
   protected $actualDeliveryTimeType = DateTime::class;
   protected $actualDeliveryTimeDataType = '';
-  /**
-   * @var string
-   */
   public $carrierName;
-  /**
-   * @var string
-   */
   public $carrierServiceName;
   protected $earliestDeliveryPromiseTimeType = DateTime::class;
   protected $earliestDeliveryPromiseTimeDataType = '';
   protected $latestDeliveryPromiseTimeType = DateTime::class;
   protected $latestDeliveryPromiseTimeDataType = '';
-  /**
-   * @var string
-   */
   public $originPostalCode;
-  /**
-   * @var string
-   */
   public $originRegionCode;
-  /**
-   * @var string
-   */
   public $shipmentId;
   protected $shippedTimeType = DateTime::class;
   protected $shippedTimeDataType = '';
-  /**
-   * @var string
-   */
   public $shippingStatus;
-  /**
-   * @var string
-   */
   public $trackingId;
 
   /**
@@ -70,30 +49,18 @@ class OrderTrackingSignalShippingInfo extends \Google\Model
   {
     return $this->actualDeliveryTime;
   }
-  /**
-   * @param string
-   */
   public function setCarrierName($carrierName)
   {
     $this->carrierName = $carrierName;
   }
-  /**
-   * @return string
-   */
   public function getCarrierName()
   {
     return $this->carrierName;
   }
-  /**
-   * @param string
-   */
   public function setCarrierServiceName($carrierServiceName)
   {
     $this->carrierServiceName = $carrierServiceName;
   }
-  /**
-   * @return string
-   */
   public function getCarrierServiceName()
   {
     return $this->carrierServiceName;
@@ -126,44 +93,26 @@ class OrderTrackingSignalShippingInfo extends \Google\Model
   {
     return $this->latestDeliveryPromiseTime;
   }
-  /**
-   * @param string
-   */
   public function setOriginPostalCode($originPostalCode)
   {
     $this->originPostalCode = $originPostalCode;
   }
-  /**
-   * @return string
-   */
   public function getOriginPostalCode()
   {
     return $this->originPostalCode;
   }
-  /**
-   * @param string
-   */
   public function setOriginRegionCode($originRegionCode)
   {
     $this->originRegionCode = $originRegionCode;
   }
-  /**
-   * @return string
-   */
   public function getOriginRegionCode()
   {
     return $this->originRegionCode;
   }
-  /**
-   * @param string
-   */
   public function setShipmentId($shipmentId)
   {
     $this->shipmentId = $shipmentId;
   }
-  /**
-   * @return string
-   */
   public function getShipmentId()
   {
     return $this->shipmentId;
@@ -182,30 +131,18 @@ class OrderTrackingSignalShippingInfo extends \Google\Model
   {
     return $this->shippedTime;
   }
-  /**
-   * @param string
-   */
   public function setShippingStatus($shippingStatus)
   {
     $this->shippingStatus = $shippingStatus;
   }
-  /**
-   * @return string
-   */
   public function getShippingStatus()
   {
     return $this->shippingStatus;
   }
-  /**
-   * @param string
-   */
   public function setTrackingId($trackingId)
   {
     $this->trackingId = $trackingId;
   }
-  /**
-   * @return string
-   */
   public function getTrackingId()
   {
     return $this->trackingId;

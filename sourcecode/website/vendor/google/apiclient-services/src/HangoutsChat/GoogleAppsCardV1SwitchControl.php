@@ -19,49 +19,25 @@ namespace Google\Service\HangoutsChat;
 
 class GoogleAppsCardV1SwitchControl extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $controlType;
-  /**
-   * @var string
-   */
   public $name;
   protected $onChangeActionType = GoogleAppsCardV1Action::class;
   protected $onChangeActionDataType = '';
-  /**
-   * @var bool
-   */
   public $selected;
-  /**
-   * @var string
-   */
   public $value;
 
-  /**
-   * @param string
-   */
   public function setControlType($controlType)
   {
     $this->controlType = $controlType;
   }
-  /**
-   * @return string
-   */
   public function getControlType()
   {
     return $this->controlType;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
@@ -80,30 +56,18 @@ class GoogleAppsCardV1SwitchControl extends \Google\Model
   {
     return $this->onChangeAction;
   }
-  /**
-   * @param bool
-   */
   public function setSelected($selected)
   {
     $this->selected = $selected;
   }
-  /**
-   * @return bool
-   */
   public function getSelected()
   {
     return $this->selected;
   }
-  /**
-   * @param string
-   */
   public function setValue($value)
   {
     $this->value = $value;
   }
-  /**
-   * @return string
-   */
   public function getValue()
   {
     return $this->value;

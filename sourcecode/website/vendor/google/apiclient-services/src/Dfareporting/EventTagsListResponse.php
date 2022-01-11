@@ -22,9 +22,6 @@ class EventTagsListResponse extends \Google\Collection
   protected $collection_key = 'eventTags';
   protected $eventTagsType = EventTag::class;
   protected $eventTagsDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -41,16 +38,10 @@ class EventTagsListResponse extends \Google\Collection
   {
     return $this->eventTags;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

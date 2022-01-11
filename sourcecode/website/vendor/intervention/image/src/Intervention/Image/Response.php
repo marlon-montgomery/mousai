@@ -62,7 +62,7 @@ class Response
 
         } elseif (class_exists('\Symfony\Component\HttpFoundation\Response')) {
 
-            $response = new SymfonyResponse($data);
+            $response = SymfonyResponse::create($data);
             $response->headers->set('Content-Type', $mime);
             $response->headers->set('Content-Length', $length);
 

@@ -19,21 +19,12 @@ namespace Google\Service\CloudResourceManager;
 
 class FolderOperationError extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $errorMessageId;
 
-  /**
-   * @param string
-   */
   public function setErrorMessageId($errorMessageId)
   {
     $this->errorMessageId = $errorMessageId;
   }
-  /**
-   * @return string
-   */
   public function getErrorMessageId()
   {
     return $this->errorMessageId;

@@ -21,38 +21,17 @@ class Value extends \Google\Model
 {
   protected $arrayValueType = ArrayValue::class;
   protected $arrayValueDataType = '';
-  /**
-   * @var bool
-   */
   public $booleanValue;
-  /**
-   * @var string
-   */
   public $bytesValue;
   public $doubleValue;
   protected $geoPointValueType = LatLng::class;
   protected $geoPointValueDataType = '';
-  /**
-   * @var string
-   */
   public $integerValue;
   protected $mapValueType = MapValue::class;
   protected $mapValueDataType = '';
-  /**
-   * @var string
-   */
   public $nullValue;
-  /**
-   * @var string
-   */
   public $referenceValue;
-  /**
-   * @var string
-   */
   public $stringValue;
-  /**
-   * @var string
-   */
   public $timestampValue;
 
   /**
@@ -69,30 +48,18 @@ class Value extends \Google\Model
   {
     return $this->arrayValue;
   }
-  /**
-   * @param bool
-   */
   public function setBooleanValue($booleanValue)
   {
     $this->booleanValue = $booleanValue;
   }
-  /**
-   * @return bool
-   */
   public function getBooleanValue()
   {
     return $this->booleanValue;
   }
-  /**
-   * @param string
-   */
   public function setBytesValue($bytesValue)
   {
     $this->bytesValue = $bytesValue;
   }
-  /**
-   * @return string
-   */
   public function getBytesValue()
   {
     return $this->bytesValue;
@@ -119,16 +86,10 @@ class Value extends \Google\Model
   {
     return $this->geoPointValue;
   }
-  /**
-   * @param string
-   */
   public function setIntegerValue($integerValue)
   {
     $this->integerValue = $integerValue;
   }
-  /**
-   * @return string
-   */
   public function getIntegerValue()
   {
     return $this->integerValue;
@@ -147,58 +108,34 @@ class Value extends \Google\Model
   {
     return $this->mapValue;
   }
-  /**
-   * @param string
-   */
   public function setNullValue($nullValue)
   {
     $this->nullValue = $nullValue;
   }
-  /**
-   * @return string
-   */
   public function getNullValue()
   {
     return $this->nullValue;
   }
-  /**
-   * @param string
-   */
   public function setReferenceValue($referenceValue)
   {
     $this->referenceValue = $referenceValue;
   }
-  /**
-   * @return string
-   */
   public function getReferenceValue()
   {
     return $this->referenceValue;
   }
-  /**
-   * @param string
-   */
   public function setStringValue($stringValue)
   {
     $this->stringValue = $stringValue;
   }
-  /**
-   * @return string
-   */
   public function getStringValue()
   {
     return $this->stringValue;
   }
-  /**
-   * @param string
-   */
   public function setTimestampValue($timestampValue)
   {
     $this->timestampValue = $timestampValue;
   }
-  /**
-   * @return string
-   */
   public function getTimestampValue()
   {
     return $this->timestampValue;

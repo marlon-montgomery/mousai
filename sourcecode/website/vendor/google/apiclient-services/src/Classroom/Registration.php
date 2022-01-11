@@ -21,15 +21,9 @@ class Registration extends \Google\Model
 {
   protected $cloudPubsubTopicType = CloudPubsubTopic::class;
   protected $cloudPubsubTopicDataType = '';
-  /**
-   * @var string
-   */
   public $expiryTime;
   protected $feedType = Feed::class;
   protected $feedDataType = '';
-  /**
-   * @var string
-   */
   public $registrationId;
 
   /**
@@ -46,16 +40,10 @@ class Registration extends \Google\Model
   {
     return $this->cloudPubsubTopic;
   }
-  /**
-   * @param string
-   */
   public function setExpiryTime($expiryTime)
   {
     $this->expiryTime = $expiryTime;
   }
-  /**
-   * @return string
-   */
   public function getExpiryTime()
   {
     return $this->expiryTime;
@@ -74,16 +62,10 @@ class Registration extends \Google\Model
   {
     return $this->feed;
   }
-  /**
-   * @param string
-   */
   public function setRegistrationId($registrationId)
   {
     $this->registrationId = $registrationId;
   }
-  /**
-   * @return string
-   */
   public function getRegistrationId()
   {
     return $this->registrationId;

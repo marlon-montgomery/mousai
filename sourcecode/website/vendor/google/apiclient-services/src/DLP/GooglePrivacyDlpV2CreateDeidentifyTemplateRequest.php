@@ -21,13 +21,7 @@ class GooglePrivacyDlpV2CreateDeidentifyTemplateRequest extends \Google\Model
 {
   protected $deidentifyTemplateType = GooglePrivacyDlpV2DeidentifyTemplate::class;
   protected $deidentifyTemplateDataType = '';
-  /**
-   * @var string
-   */
   public $locationId;
-  /**
-   * @var string
-   */
   public $templateId;
 
   /**
@@ -44,30 +38,18 @@ class GooglePrivacyDlpV2CreateDeidentifyTemplateRequest extends \Google\Model
   {
     return $this->deidentifyTemplate;
   }
-  /**
-   * @param string
-   */
   public function setLocationId($locationId)
   {
     $this->locationId = $locationId;
   }
-  /**
-   * @return string
-   */
   public function getLocationId()
   {
     return $this->locationId;
   }
-  /**
-   * @param string
-   */
   public function setTemplateId($templateId)
   {
     $this->templateId = $templateId;
   }
-  /**
-   * @return string
-   */
   public function getTemplateId()
   {
     return $this->templateId;

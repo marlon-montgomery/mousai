@@ -21,13 +21,7 @@ class GoogleCloudMlV1GetConfigResponse extends \Google\Model
 {
   protected $configType = GoogleCloudMlV1Config::class;
   protected $configDataType = '';
-  /**
-   * @var string
-   */
   public $serviceAccount;
-  /**
-   * @var string
-   */
   public $serviceAccountProject;
 
   /**
@@ -44,30 +38,18 @@ class GoogleCloudMlV1GetConfigResponse extends \Google\Model
   {
     return $this->config;
   }
-  /**
-   * @param string
-   */
   public function setServiceAccount($serviceAccount)
   {
     $this->serviceAccount = $serviceAccount;
   }
-  /**
-   * @return string
-   */
   public function getServiceAccount()
   {
     return $this->serviceAccount;
   }
-  /**
-   * @param string
-   */
   public function setServiceAccountProject($serviceAccountProject)
   {
     $this->serviceAccountProject = $serviceAccountProject;
   }
-  /**
-   * @return string
-   */
   public function getServiceAccountProject()
   {
     return $this->serviceAccountProject;

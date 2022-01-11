@@ -20,23 +20,14 @@ namespace Google\Service\Pubsub;
 class ListSubscriptionsResponse extends \Google\Collection
 {
   protected $collection_key = 'subscriptions';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $subscriptionsType = Subscription::class;
   protected $subscriptionsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

@@ -22,9 +22,6 @@ class ListIdentityAwareProxyClientsResponse extends \Google\Collection
   protected $collection_key = 'identityAwareProxyClients';
   protected $identityAwareProxyClientsType = IdentityAwareProxyClient::class;
   protected $identityAwareProxyClientsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListIdentityAwareProxyClientsResponse extends \Google\Collection
   {
     return $this->identityAwareProxyClients;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

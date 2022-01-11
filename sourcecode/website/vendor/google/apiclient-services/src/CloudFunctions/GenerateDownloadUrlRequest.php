@@ -19,21 +19,12 @@ namespace Google\Service\CloudFunctions;
 
 class GenerateDownloadUrlRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $versionId;
 
-  /**
-   * @param string
-   */
   public function setVersionId($versionId)
   {
     $this->versionId = $versionId;
   }
-  /**
-   * @return string
-   */
   public function getVersionId()
   {
     return $this->versionId;

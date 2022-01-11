@@ -20,21 +20,12 @@ namespace Google\Service\BigQueryDataTransfer;
 class EnrollDataSourcesRequest extends \Google\Collection
 {
   protected $collection_key = 'dataSourceIds';
-  /**
-   * @var string[]
-   */
   public $dataSourceIds;
 
-  /**
-   * @param string[]
-   */
   public function setDataSourceIds($dataSourceIds)
   {
     $this->dataSourceIds = $dataSourceIds;
   }
-  /**
-   * @return string[]
-   */
   public function getDataSourceIds()
   {
     return $this->dataSourceIds;

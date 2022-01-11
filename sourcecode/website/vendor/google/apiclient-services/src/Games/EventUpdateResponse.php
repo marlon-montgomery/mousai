@@ -24,9 +24,6 @@ class EventUpdateResponse extends \Google\Collection
   protected $batchFailuresDataType = 'array';
   protected $eventFailuresType = EventRecordFailure::class;
   protected $eventFailuresDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
   protected $playerEventsType = PlayerEvent::class;
   protected $playerEventsDataType = 'array';
@@ -59,16 +56,10 @@ class EventUpdateResponse extends \Google\Collection
   {
     return $this->eventFailures;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

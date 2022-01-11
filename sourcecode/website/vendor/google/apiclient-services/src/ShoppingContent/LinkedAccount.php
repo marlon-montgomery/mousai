@@ -20,23 +20,14 @@ namespace Google\Service\ShoppingContent;
 class LinkedAccount extends \Google\Collection
 {
   protected $collection_key = 'services';
-  /**
-   * @var string
-   */
   public $linkedAccountId;
   protected $servicesType = LinkService::class;
   protected $servicesDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setLinkedAccountId($linkedAccountId)
   {
     $this->linkedAccountId = $linkedAccountId;
   }
-  /**
-   * @return string
-   */
   public function getLinkedAccountId()
   {
     return $this->linkedAccountId;

@@ -20,23 +20,14 @@ namespace Google\Service\Dataflow;
 class LeaseWorkItemResponse extends \Google\Collection
 {
   protected $collection_key = 'workItems';
-  /**
-   * @var array[]
-   */
   public $unifiedWorkerResponse;
   protected $workItemsType = WorkItem::class;
   protected $workItemsDataType = 'array';
 
-  /**
-   * @param array[]
-   */
   public function setUnifiedWorkerResponse($unifiedWorkerResponse)
   {
     $this->unifiedWorkerResponse = $unifiedWorkerResponse;
   }
-  /**
-   * @return array[]
-   */
   public function getUnifiedWorkerResponse()
   {
     return $this->unifiedWorkerResponse;

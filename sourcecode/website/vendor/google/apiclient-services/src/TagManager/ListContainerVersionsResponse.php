@@ -22,9 +22,6 @@ class ListContainerVersionsResponse extends \Google\Collection
   protected $collection_key = 'containerVersionHeader';
   protected $containerVersionHeaderType = ContainerVersionHeader::class;
   protected $containerVersionHeaderDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListContainerVersionsResponse extends \Google\Collection
   {
     return $this->containerVersionHeader;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

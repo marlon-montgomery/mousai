@@ -22,24 +22,12 @@ class TrackRelease extends \Google\Collection
   protected $collection_key = 'versionCodes';
   protected $countryTargetingType = CountryTargeting::class;
   protected $countryTargetingDataType = '';
-  /**
-   * @var int
-   */
   public $inAppUpdatePriority;
-  /**
-   * @var string
-   */
   public $name;
   protected $releaseNotesType = LocalizedText::class;
   protected $releaseNotesDataType = 'array';
-  /**
-   * @var string
-   */
   public $status;
   public $userFraction;
-  /**
-   * @var string[]
-   */
   public $versionCodes;
 
   /**
@@ -56,30 +44,18 @@ class TrackRelease extends \Google\Collection
   {
     return $this->countryTargeting;
   }
-  /**
-   * @param int
-   */
   public function setInAppUpdatePriority($inAppUpdatePriority)
   {
     $this->inAppUpdatePriority = $inAppUpdatePriority;
   }
-  /**
-   * @return int
-   */
   public function getInAppUpdatePriority()
   {
     return $this->inAppUpdatePriority;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
@@ -98,16 +74,10 @@ class TrackRelease extends \Google\Collection
   {
     return $this->releaseNotes;
   }
-  /**
-   * @param string
-   */
   public function setStatus($status)
   {
     $this->status = $status;
   }
-  /**
-   * @return string
-   */
   public function getStatus()
   {
     return $this->status;
@@ -120,16 +90,10 @@ class TrackRelease extends \Google\Collection
   {
     return $this->userFraction;
   }
-  /**
-   * @param string[]
-   */
   public function setVersionCodes($versionCodes)
   {
     $this->versionCodes = $versionCodes;
   }
-  /**
-   * @return string[]
-   */
   public function getVersionCodes()
   {
     return $this->versionCodes;

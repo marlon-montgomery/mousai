@@ -19,13 +19,7 @@ namespace Google\Service\ResourceSettings;
 
 class GoogleCloudResourcesettingsV1Value extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $booleanValue;
-  /**
-   * @var string
-   */
   public $durationValue;
   protected $enumValueType = GoogleCloudResourcesettingsV1ValueEnumValue::class;
   protected $enumValueDataType = '';
@@ -33,35 +27,20 @@ class GoogleCloudResourcesettingsV1Value extends \Google\Model
   protected $stringMapValueDataType = '';
   protected $stringSetValueType = GoogleCloudResourcesettingsV1ValueStringSet::class;
   protected $stringSetValueDataType = '';
-  /**
-   * @var string
-   */
   public $stringValue;
 
-  /**
-   * @param bool
-   */
   public function setBooleanValue($booleanValue)
   {
     $this->booleanValue = $booleanValue;
   }
-  /**
-   * @return bool
-   */
   public function getBooleanValue()
   {
     return $this->booleanValue;
   }
-  /**
-   * @param string
-   */
   public function setDurationValue($durationValue)
   {
     $this->durationValue = $durationValue;
   }
-  /**
-   * @return string
-   */
   public function getDurationValue()
   {
     return $this->durationValue;
@@ -108,16 +87,10 @@ class GoogleCloudResourcesettingsV1Value extends \Google\Model
   {
     return $this->stringSetValue;
   }
-  /**
-   * @param string
-   */
   public function setStringValue($stringValue)
   {
     $this->stringValue = $stringValue;
   }
-  /**
-   * @return string
-   */
   public function getStringValue()
   {
     return $this->stringValue;

@@ -21,15 +21,9 @@ class SettlementTransactionAmount extends \Google\Model
 {
   protected $commissionType = SettlementTransactionAmountCommission::class;
   protected $commissionDataType = '';
-  /**
-   * @var string
-   */
   public $description;
   protected $transactionAmountType = Price::class;
   protected $transactionAmountDataType = '';
-  /**
-   * @var string
-   */
   public $type;
 
   /**
@@ -46,16 +40,10 @@ class SettlementTransactionAmount extends \Google\Model
   {
     return $this->commission;
   }
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;
@@ -74,16 +62,10 @@ class SettlementTransactionAmount extends \Google\Model
   {
     return $this->transactionAmount;
   }
-  /**
-   * @param string
-   */
   public function setType($type)
   {
     $this->type = $type;
   }
-  /**
-   * @return string
-   */
   public function getType()
   {
     return $this->type;

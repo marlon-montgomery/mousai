@@ -21,9 +21,6 @@ class GoogleCloudDatalabelingV1beta1DataItem extends \Google\Model
 {
   protected $imagePayloadType = GoogleCloudDatalabelingV1beta1ImagePayload::class;
   protected $imagePayloadDataType = '';
-  /**
-   * @var string
-   */
   public $name;
   protected $textPayloadType = GoogleCloudDatalabelingV1beta1TextPayload::class;
   protected $textPayloadDataType = '';
@@ -44,16 +41,10 @@ class GoogleCloudDatalabelingV1beta1DataItem extends \Google\Model
   {
     return $this->imagePayload;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

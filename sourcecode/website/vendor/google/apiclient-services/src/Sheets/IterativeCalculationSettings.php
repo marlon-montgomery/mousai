@@ -20,9 +20,6 @@ namespace Google\Service\Sheets;
 class IterativeCalculationSettings extends \Google\Model
 {
   public $convergenceThreshold;
-  /**
-   * @var int
-   */
   public $maxIterations;
 
   public function setConvergenceThreshold($convergenceThreshold)
@@ -33,16 +30,10 @@ class IterativeCalculationSettings extends \Google\Model
   {
     return $this->convergenceThreshold;
   }
-  /**
-   * @param int
-   */
   public function setMaxIterations($maxIterations)
   {
     $this->maxIterations = $maxIterations;
   }
-  /**
-   * @return int
-   */
   public function getMaxIterations()
   {
     return $this->maxIterations;

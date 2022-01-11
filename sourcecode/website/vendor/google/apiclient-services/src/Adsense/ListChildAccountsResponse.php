@@ -22,9 +22,6 @@ class ListChildAccountsResponse extends \Google\Collection
   protected $collection_key = 'accounts';
   protected $accountsType = Account::class;
   protected $accountsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListChildAccountsResponse extends \Google\Collection
   {
     return $this->accounts;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

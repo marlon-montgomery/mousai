@@ -21,9 +21,6 @@ class DataSourceFormula extends \Google\Model
 {
   protected $dataExecutionStatusType = DataExecutionStatus::class;
   protected $dataExecutionStatusDataType = '';
-  /**
-   * @var string
-   */
   public $dataSourceId;
 
   /**
@@ -40,16 +37,10 @@ class DataSourceFormula extends \Google\Model
   {
     return $this->dataExecutionStatus;
   }
-  /**
-   * @param string
-   */
   public function setDataSourceId($dataSourceId)
   {
     $this->dataSourceId = $dataSourceId;
   }
-  /**
-   * @return string
-   */
   public function getDataSourceId()
   {
     return $this->dataSourceId;

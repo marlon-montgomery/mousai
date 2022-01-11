@@ -63,7 +63,7 @@ class FragmentHandler
      *
      * @param string|ControllerReference $uri A URI as a string or a ControllerReference instance
      *
-     * @return string|null
+     * @return string|null The Response content or null when the Response is streamed
      *
      * @throws \InvalidArgumentException when the renderer does not exist
      * @throws \LogicException           when no main request is being handled

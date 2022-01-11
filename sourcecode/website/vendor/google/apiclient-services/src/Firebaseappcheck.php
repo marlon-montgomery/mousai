@@ -23,8 +23,18 @@ use Google\Client;
  * Service definition for Firebaseappcheck (v1beta).
  *
  * <p>
- * Firebase App Check works alongside other Firebase services to help protect
- * your backend resources from abuse, such as billing fraud or phishing.</p>
+ * App Check works alongside other Firebase services to help protect your
+ * backend resources from abuse, such as billing fraud or phishing. With App
+ * Check, devices running your app will use an app or device attestation
+ * provider that attests to one or both of the following: * Requests originate
+ * from your authentic app * Requests originate from an authentic, untampered
+ * device This attestation is attached to every request your app makes to your
+ * Firebase backend resources. The Firebase App Check REST API allows you to
+ * manage your App Check configurations programmatically. It also allows you to
+ * exchange attestation material for App Check tokens directly without using a
+ * Firebase SDK. Finally, it allows you to obtain the public key set necessary
+ * to validate an App Check token yourself. [Learn more about App
+ * Check](https://firebase.google.com/docs/app-check).</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -48,7 +58,6 @@ class Firebaseappcheck extends \Google\Service
   public $projects_apps_debugTokens;
   public $projects_apps_deviceCheckConfig;
   public $projects_apps_recaptchaConfig;
-  public $projects_apps_recaptchaEnterpriseConfig;
   public $projects_apps_safetyNetConfig;
   public $projects_services;
 
@@ -136,16 +145,6 @@ class Firebaseappcheck extends \Google\Service
               ],
             ],'exchangeDeviceCheckToken' => [
               'path' => 'v1beta/{+app}:exchangeDeviceCheckToken',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'app' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'exchangeRecaptchaEnterpriseToken' => [
-              'path' => 'v1beta/{+app}:exchangeRecaptchaEnterpriseToken',
               'httpMethod' => 'POST',
               'parameters' => [
                 'app' => [
@@ -366,55 +365,6 @@ class Firebaseappcheck extends \Google\Service
           'methods' => [
             'batchGet' => [
               'path' => 'v1beta/{+parent}/apps/-/recaptchaConfig:batchGet',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'names' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1beta/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1beta/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_apps_recaptchaEnterpriseConfig = new Firebaseappcheck\Resource\ProjectsAppsRecaptchaEnterpriseConfig(
-        $this,
-        $this->serviceName,
-        'recaptchaEnterpriseConfig',
-        [
-          'methods' => [
-            'batchGet' => [
-              'path' => 'v1beta/{+parent}/apps/-/recaptchaEnterpriseConfig:batchGet',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [

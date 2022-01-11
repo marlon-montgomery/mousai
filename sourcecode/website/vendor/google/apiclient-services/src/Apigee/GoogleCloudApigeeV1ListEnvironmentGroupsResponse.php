@@ -22,9 +22,6 @@ class GoogleCloudApigeeV1ListEnvironmentGroupsResponse extends \Google\Collectio
   protected $collection_key = 'environmentGroups';
   protected $environmentGroupsType = GoogleCloudApigeeV1EnvironmentGroup::class;
   protected $environmentGroupsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudApigeeV1ListEnvironmentGroupsResponse extends \Google\Collectio
   {
     return $this->environmentGroups;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

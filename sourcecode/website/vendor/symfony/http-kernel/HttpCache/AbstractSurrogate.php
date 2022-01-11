@@ -41,7 +41,7 @@ abstract class AbstractSurrogate implements SurrogateInterface
     /**
      * Returns a new cache strategy instance.
      *
-     * @return ResponseCacheStrategyInterface
+     * @return ResponseCacheStrategyInterface A ResponseCacheStrategyInterface instance
      */
     public function createCacheStrategy()
     {

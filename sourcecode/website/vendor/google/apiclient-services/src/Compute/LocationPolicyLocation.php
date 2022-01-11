@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class LocationPolicyLocation extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $preference;
 
-  /**
-   * @param string
-   */
   public function setPreference($preference)
   {
     $this->preference = $preference;
   }
-  /**
-   * @return string
-   */
   public function getPreference()
   {
     return $this->preference;

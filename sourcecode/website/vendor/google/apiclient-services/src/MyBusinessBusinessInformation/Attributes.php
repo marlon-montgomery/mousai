@@ -22,9 +22,6 @@ class Attributes extends \Google\Collection
   protected $collection_key = 'attributes';
   protected $attributesType = Attribute::class;
   protected $attributesDataType = 'array';
-  /**
-   * @var string
-   */
   public $name;
 
   /**
@@ -41,16 +38,10 @@ class Attributes extends \Google\Collection
   {
     return $this->attributes;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class NodeGroupsAddNodesRequest extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $additionalNodeCount;
 
-  /**
-   * @param int
-   */
   public function setAdditionalNodeCount($additionalNodeCount)
   {
     $this->additionalNodeCount = $additionalNodeCount;
   }
-  /**
-   * @return int
-   */
   public function getAdditionalNodeCount()
   {
     return $this->additionalNodeCount;

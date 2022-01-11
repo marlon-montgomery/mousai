@@ -22,9 +22,6 @@ class GoogleCloudApigeeV1ListNatAddressesResponse extends \Google\Collection
   protected $collection_key = 'natAddresses';
   protected $natAddressesType = GoogleCloudApigeeV1NatAddress::class;
   protected $natAddressesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudApigeeV1ListNatAddressesResponse extends \Google\Collection
   {
     return $this->natAddresses;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

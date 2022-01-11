@@ -19,21 +19,12 @@ namespace Google\Service\Container;
 
 class HorizontalPodAutoscaling extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $disabled;
 
-  /**
-   * @param bool
-   */
   public function setDisabled($disabled)
   {
     $this->disabled = $disabled;
   }
-  /**
-   * @return bool
-   */
   public function getDisabled()
   {
     return $this->disabled;

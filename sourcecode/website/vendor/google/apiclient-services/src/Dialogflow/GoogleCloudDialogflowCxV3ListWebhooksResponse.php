@@ -20,23 +20,14 @@ namespace Google\Service\Dialogflow;
 class GoogleCloudDialogflowCxV3ListWebhooksResponse extends \Google\Collection
 {
   protected $collection_key = 'webhooks';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $webhooksType = GoogleCloudDialogflowCxV3Webhook::class;
   protected $webhooksDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

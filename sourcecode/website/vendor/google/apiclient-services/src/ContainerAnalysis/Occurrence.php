@@ -19,304 +19,264 @@ namespace Google\Service\ContainerAnalysis;
 
 class Occurrence extends \Google\Model
 {
-  protected $attestationType = AttestationOccurrence::class;
+  protected $attestationType = Details::class;
   protected $attestationDataType = '';
-  protected $buildType = BuildOccurrence::class;
+  protected $buildType = GrafeasV1beta1BuildDetails::class;
   protected $buildDataType = '';
-  protected $complianceType = ComplianceOccurrence::class;
-  protected $complianceDataType = '';
-  /**
-   * @var string
-   */
   public $createTime;
-  protected $deploymentType = DeploymentOccurrence::class;
+  protected $deploymentType = GrafeasV1beta1DeploymentDetails::class;
   protected $deploymentDataType = '';
-  protected $discoveryType = DiscoveryOccurrence::class;
-  protected $discoveryDataType = '';
-  protected $dsseAttestationType = DSSEAttestationOccurrence::class;
-  protected $dsseAttestationDataType = '';
-  protected $envelopeType = Envelope::class;
-  protected $envelopeDataType = '';
-  protected $imageType = ImageOccurrence::class;
-  protected $imageDataType = '';
-  /**
-   * @var string
-   */
+  protected $derivedImageType = GrafeasV1beta1ImageDetails::class;
+  protected $derivedImageDataType = '';
+  protected $discoveredType = GrafeasV1beta1DiscoveryDetails::class;
+  protected $discoveredDataType = '';
+  protected $installationType = GrafeasV1beta1PackageDetails::class;
+  protected $installationDataType = '';
+  protected $intotoType = GrafeasV1beta1IntotoDetails::class;
+  protected $intotoDataType = '';
   public $kind;
-  /**
-   * @var string
-   */
   public $name;
-  /**
-   * @var string
-   */
   public $noteName;
-  protected $packageType = PackageOccurrence::class;
-  protected $packageDataType = '';
-  /**
-   * @var string
-   */
   public $remediation;
-  /**
-   * @var string
-   */
-  public $resourceUri;
-  /**
-   * @var string
-   */
+  protected $resourceType = ContaineranalysisResource::class;
+  protected $resourceDataType = '';
+  protected $sbomType = DocumentOccurrence::class;
+  protected $sbomDataType = '';
+  protected $spdxFileType = FileOccurrence::class;
+  protected $spdxFileDataType = '';
+  protected $spdxPackageType = PackageOccurrence::class;
+  protected $spdxPackageDataType = '';
+  protected $spdxRelationshipType = RelationshipOccurrence::class;
+  protected $spdxRelationshipDataType = '';
   public $updateTime;
-  protected $upgradeType = UpgradeOccurrence::class;
-  protected $upgradeDataType = '';
-  protected $vulnerabilityType = VulnerabilityOccurrence::class;
+  protected $vulnerabilityType = GrafeasV1beta1VulnerabilityDetails::class;
   protected $vulnerabilityDataType = '';
 
   /**
-   * @param AttestationOccurrence
+   * @param Details
    */
-  public function setAttestation(AttestationOccurrence $attestation)
+  public function setAttestation(Details $attestation)
   {
     $this->attestation = $attestation;
   }
   /**
-   * @return AttestationOccurrence
+   * @return Details
    */
   public function getAttestation()
   {
     return $this->attestation;
   }
   /**
-   * @param BuildOccurrence
+   * @param GrafeasV1beta1BuildDetails
    */
-  public function setBuild(BuildOccurrence $build)
+  public function setBuild(GrafeasV1beta1BuildDetails $build)
   {
     $this->build = $build;
   }
   /**
-   * @return BuildOccurrence
+   * @return GrafeasV1beta1BuildDetails
    */
   public function getBuild()
   {
     return $this->build;
   }
-  /**
-   * @param ComplianceOccurrence
-   */
-  public function setCompliance(ComplianceOccurrence $compliance)
-  {
-    $this->compliance = $compliance;
-  }
-  /**
-   * @return ComplianceOccurrence
-   */
-  public function getCompliance()
-  {
-    return $this->compliance;
-  }
-  /**
-   * @param string
-   */
   public function setCreateTime($createTime)
   {
     $this->createTime = $createTime;
   }
-  /**
-   * @return string
-   */
   public function getCreateTime()
   {
     return $this->createTime;
   }
   /**
-   * @param DeploymentOccurrence
+   * @param GrafeasV1beta1DeploymentDetails
    */
-  public function setDeployment(DeploymentOccurrence $deployment)
+  public function setDeployment(GrafeasV1beta1DeploymentDetails $deployment)
   {
     $this->deployment = $deployment;
   }
   /**
-   * @return DeploymentOccurrence
+   * @return GrafeasV1beta1DeploymentDetails
    */
   public function getDeployment()
   {
     return $this->deployment;
   }
   /**
-   * @param DiscoveryOccurrence
+   * @param GrafeasV1beta1ImageDetails
    */
-  public function setDiscovery(DiscoveryOccurrence $discovery)
+  public function setDerivedImage(GrafeasV1beta1ImageDetails $derivedImage)
   {
-    $this->discovery = $discovery;
+    $this->derivedImage = $derivedImage;
   }
   /**
-   * @return DiscoveryOccurrence
+   * @return GrafeasV1beta1ImageDetails
    */
-  public function getDiscovery()
+  public function getDerivedImage()
   {
-    return $this->discovery;
+    return $this->derivedImage;
   }
   /**
-   * @param DSSEAttestationOccurrence
+   * @param GrafeasV1beta1DiscoveryDetails
    */
-  public function setDsseAttestation(DSSEAttestationOccurrence $dsseAttestation)
+  public function setDiscovered(GrafeasV1beta1DiscoveryDetails $discovered)
   {
-    $this->dsseAttestation = $dsseAttestation;
+    $this->discovered = $discovered;
   }
   /**
-   * @return DSSEAttestationOccurrence
+   * @return GrafeasV1beta1DiscoveryDetails
    */
-  public function getDsseAttestation()
+  public function getDiscovered()
   {
-    return $this->dsseAttestation;
+    return $this->discovered;
   }
   /**
-   * @param Envelope
+   * @param GrafeasV1beta1PackageDetails
    */
-  public function setEnvelope(Envelope $envelope)
+  public function setInstallation(GrafeasV1beta1PackageDetails $installation)
   {
-    $this->envelope = $envelope;
+    $this->installation = $installation;
   }
   /**
-   * @return Envelope
+   * @return GrafeasV1beta1PackageDetails
    */
-  public function getEnvelope()
+  public function getInstallation()
   {
-    return $this->envelope;
+    return $this->installation;
   }
   /**
-   * @param ImageOccurrence
+   * @param GrafeasV1beta1IntotoDetails
    */
-  public function setImage(ImageOccurrence $image)
+  public function setIntoto(GrafeasV1beta1IntotoDetails $intoto)
   {
-    $this->image = $image;
+    $this->intoto = $intoto;
   }
   /**
-   * @return ImageOccurrence
+   * @return GrafeasV1beta1IntotoDetails
    */
-  public function getImage()
+  public function getIntoto()
   {
-    return $this->image;
+    return $this->intoto;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
   }
-  /**
-   * @param string
-   */
   public function setNoteName($noteName)
   {
     $this->noteName = $noteName;
   }
-  /**
-   * @return string
-   */
   public function getNoteName()
   {
     return $this->noteName;
   }
-  /**
-   * @param PackageOccurrence
-   */
-  public function setPackage(PackageOccurrence $package)
-  {
-    $this->package = $package;
-  }
-  /**
-   * @return PackageOccurrence
-   */
-  public function getPackage()
-  {
-    return $this->package;
-  }
-  /**
-   * @param string
-   */
   public function setRemediation($remediation)
   {
     $this->remediation = $remediation;
   }
-  /**
-   * @return string
-   */
   public function getRemediation()
   {
     return $this->remediation;
   }
   /**
-   * @param string
+   * @param ContaineranalysisResource
    */
-  public function setResourceUri($resourceUri)
+  public function setResource(ContaineranalysisResource $resource)
   {
-    $this->resourceUri = $resourceUri;
+    $this->resource = $resource;
   }
   /**
-   * @return string
+   * @return ContaineranalysisResource
    */
-  public function getResourceUri()
+  public function getResource()
   {
-    return $this->resourceUri;
+    return $this->resource;
   }
   /**
-   * @param string
+   * @param DocumentOccurrence
    */
+  public function setSbom(DocumentOccurrence $sbom)
+  {
+    $this->sbom = $sbom;
+  }
+  /**
+   * @return DocumentOccurrence
+   */
+  public function getSbom()
+  {
+    return $this->sbom;
+  }
+  /**
+   * @param FileOccurrence
+   */
+  public function setSpdxFile(FileOccurrence $spdxFile)
+  {
+    $this->spdxFile = $spdxFile;
+  }
+  /**
+   * @return FileOccurrence
+   */
+  public function getSpdxFile()
+  {
+    return $this->spdxFile;
+  }
+  /**
+   * @param PackageOccurrence
+   */
+  public function setSpdxPackage(PackageOccurrence $spdxPackage)
+  {
+    $this->spdxPackage = $spdxPackage;
+  }
+  /**
+   * @return PackageOccurrence
+   */
+  public function getSpdxPackage()
+  {
+    return $this->spdxPackage;
+  }
+  /**
+   * @param RelationshipOccurrence
+   */
+  public function setSpdxRelationship(RelationshipOccurrence $spdxRelationship)
+  {
+    $this->spdxRelationship = $spdxRelationship;
+  }
+  /**
+   * @return RelationshipOccurrence
+   */
+  public function getSpdxRelationship()
+  {
+    return $this->spdxRelationship;
+  }
   public function setUpdateTime($updateTime)
   {
     $this->updateTime = $updateTime;
   }
-  /**
-   * @return string
-   */
   public function getUpdateTime()
   {
     return $this->updateTime;
   }
   /**
-   * @param UpgradeOccurrence
+   * @param GrafeasV1beta1VulnerabilityDetails
    */
-  public function setUpgrade(UpgradeOccurrence $upgrade)
-  {
-    $this->upgrade = $upgrade;
-  }
-  /**
-   * @return UpgradeOccurrence
-   */
-  public function getUpgrade()
-  {
-    return $this->upgrade;
-  }
-  /**
-   * @param VulnerabilityOccurrence
-   */
-  public function setVulnerability(VulnerabilityOccurrence $vulnerability)
+  public function setVulnerability(GrafeasV1beta1VulnerabilityDetails $vulnerability)
   {
     $this->vulnerability = $vulnerability;
   }
   /**
-   * @return VulnerabilityOccurrence
+   * @return GrafeasV1beta1VulnerabilityDetails
    */
   public function getVulnerability()
   {

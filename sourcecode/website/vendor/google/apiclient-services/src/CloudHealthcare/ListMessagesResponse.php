@@ -22,9 +22,6 @@ class ListMessagesResponse extends \Google\Collection
   protected $collection_key = 'hl7V2Messages';
   protected $hl7V2MessagesType = Message::class;
   protected $hl7V2MessagesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListMessagesResponse extends \Google\Collection
   {
     return $this->hl7V2Messages;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

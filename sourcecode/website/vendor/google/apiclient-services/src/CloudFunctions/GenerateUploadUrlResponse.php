@@ -19,21 +19,12 @@ namespace Google\Service\CloudFunctions;
 
 class GenerateUploadUrlResponse extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $uploadUrl;
 
-  /**
-   * @param string
-   */
   public function setUploadUrl($uploadUrl)
   {
     $this->uploadUrl = $uploadUrl;
   }
-  /**
-   * @return string
-   */
   public function getUploadUrl()
   {
     return $this->uploadUrl;

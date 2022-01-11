@@ -1,6 +1,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    ElementRef,
     Input,
     OnChanges,
     SimpleChanges,
@@ -11,6 +12,8 @@ import {BehaviorSubject} from 'rxjs';
 import {Artist, ARTIST_MODEL} from '../../../models/Artist';
 import {User} from '@common/core/types/models/User';
 
+export type NormalizedArtist = { name: string, route: any[] | string, meta: { [key: string]: any } };
+
 @Component({
     selector: 'artists-links-list',
     templateUrl: './artists-links-list.component.html',
@@ -19,12 +22,16 @@ import {User} from '@common/core/types/models/User';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArtistsLinksListComponent implements OnChanges {
-    @Input() artists: (Artist|User)[] = [];
+    @Input() artists: (Artist | User)[] = [];
     @Input() linksInNewTab = false;
 
-    public artists$ = new BehaviorSubject<{name: string, route: any[] | string}[]>([]);
+    public artists$ = new BehaviorSubject<NormalizedArtist[]>([]);
 
-    constructor(public urls: WebPlayerUrls) {}
+    constructor(
+        protected host: ElementRef,
+        public urls: WebPlayerUrls
+    ) {
+    }
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.artists && changes.artists.currentValue) {
@@ -32,12 +39,22 @@ export class ArtistsLinksListComponent implements OnChanges {
         }
     }
 
-    private normalizeArtists(artists: (Artist|User)[]) {
+    private normalizeArtists(artists: (Artist | User)[]) {
         const normalizedArtists = (artists || []).filter(a => !!a).map(artist => {
             if (artist.model_type === ARTIST_MODEL) {
-                return {name: artist.name, route: this.urls.artist(artist)};
+                return {
+                    name: artist.name,
+                    route: this.urls.artist(artist),
+                    meta: {
+                        bitclout: artist.bitclout
+                    }
+                };
             } else {
-                return {name: artist.display_name, route: this.urls.user(artist)};
+                return {
+                    name: artist.display_name,
+                    route: this.urls.user(artist),
+                    meta: {}
+                };
             }
         });
         this.artists$.next(normalizedArtists);

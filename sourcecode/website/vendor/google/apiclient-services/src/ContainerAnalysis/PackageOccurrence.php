@@ -17,43 +17,62 @@
 
 namespace Google\Service\ContainerAnalysis;
 
-class PackageOccurrence extends \Google\Collection
+class PackageOccurrence extends \Google\Model
 {
-  protected $collection_key = 'location';
-  protected $locationType = Location::class;
-  protected $locationDataType = 'array';
-  /**
-   * @var string
-   */
-  public $name;
+  public $comment;
+  public $filename;
+  public $id;
+  public $licenseComments;
+  public $licenseConcluded;
+  public $sourceInfo;
 
-  /**
-   * @param Location[]
-   */
-  public function setLocation($location)
+  public function setComment($comment)
   {
-    $this->location = $location;
+    $this->comment = $comment;
   }
-  /**
-   * @return Location[]
-   */
-  public function getLocation()
+  public function getComment()
   {
-    return $this->location;
+    return $this->comment;
   }
-  /**
-   * @param string
-   */
-  public function setName($name)
+  public function setFilename($filename)
   {
-    $this->name = $name;
+    $this->filename = $filename;
   }
-  /**
-   * @return string
-   */
-  public function getName()
+  public function getFilename()
   {
-    return $this->name;
+    return $this->filename;
+  }
+  public function setId($id)
+  {
+    $this->id = $id;
+  }
+  public function getId()
+  {
+    return $this->id;
+  }
+  public function setLicenseComments($licenseComments)
+  {
+    $this->licenseComments = $licenseComments;
+  }
+  public function getLicenseComments()
+  {
+    return $this->licenseComments;
+  }
+  public function setLicenseConcluded($licenseConcluded)
+  {
+    $this->licenseConcluded = $licenseConcluded;
+  }
+  public function getLicenseConcluded()
+  {
+    return $this->licenseConcluded;
+  }
+  public function setSourceInfo($sourceInfo)
+  {
+    $this->sourceInfo = $sourceInfo;
+  }
+  public function getSourceInfo()
+  {
+    return $this->sourceInfo;
   }
 }
 

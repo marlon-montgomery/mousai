@@ -20,33 +20,18 @@ namespace Google\Service\ShoppingContent;
 class OrderinvoicesCreateChargeInvoiceRequest extends \Google\Collection
 {
   protected $collection_key = 'lineItemInvoices';
-  /**
-   * @var string
-   */
   public $invoiceId;
   protected $invoiceSummaryType = InvoiceSummary::class;
   protected $invoiceSummaryDataType = '';
   protected $lineItemInvoicesType = ShipmentInvoiceLineItemInvoice::class;
   protected $lineItemInvoicesDataType = 'array';
-  /**
-   * @var string
-   */
   public $operationId;
-  /**
-   * @var string
-   */
   public $shipmentGroupId;
 
-  /**
-   * @param string
-   */
   public function setInvoiceId($invoiceId)
   {
     $this->invoiceId = $invoiceId;
   }
-  /**
-   * @return string
-   */
   public function getInvoiceId()
   {
     return $this->invoiceId;
@@ -79,30 +64,18 @@ class OrderinvoicesCreateChargeInvoiceRequest extends \Google\Collection
   {
     return $this->lineItemInvoices;
   }
-  /**
-   * @param string
-   */
   public function setOperationId($operationId)
   {
     $this->operationId = $operationId;
   }
-  /**
-   * @return string
-   */
   public function getOperationId()
   {
     return $this->operationId;
   }
-  /**
-   * @param string
-   */
   public function setShipmentGroupId($shipmentGroupId)
   {
     $this->shipmentGroupId = $shipmentGroupId;
   }
-  /**
-   * @return string
-   */
   public function getShipmentGroupId()
   {
     return $this->shipmentGroupId;

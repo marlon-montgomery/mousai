@@ -8,15 +8,11 @@ version-resolver:
       - 'breaking-change'
   default: patch
 categories:
-  - title: '⚠️ Breaking changes'
+  - title: 'Breaking changes ⚠️'
     label: 'breaking-change'
-  - title: '🚀 Enhancements'
-    label: 'enhancement'
-  - title: '🐛 Bug Fixes'
-    label: 'bug'
-  - title: '🔒 Security'
-    label: 'security'
 template: |
+  ## Changes
+
   $CHANGES
 
   Thanks again to $CONTRIBUTORS! 🎉

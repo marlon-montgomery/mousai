@@ -19,21 +19,12 @@ namespace Google\Service\ShoppingContent;
 
 class AccountsUpdateLabelsResponse extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $kind;
 
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

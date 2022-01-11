@@ -30,7 +30,7 @@ export class TagsManagerComponent implements OnInit, ControlValueAccessor {
     @Input() public tagType: string;
     @Input() public pluralName = 'tags';
 
-    formControl = new FormControl();
+    public formControl = new FormControl();
     selectedTags$ = new BehaviorSubject<string[]>([]);
     existingTags$ = new BehaviorSubject<Tag[]>([]);
     suggestedTags$ = new BehaviorSubject<Tag[]>([]);
@@ -58,17 +58,17 @@ export class TagsManagerComponent implements OnInit, ControlValueAccessor {
             });
     }
 
-    writeValue(value: string[]) {
+    public writeValue(value: string[]) {
         this.selectTags(value, {skipPropagate: true, override: true});
     }
 
-    registerOnChange(fn: (tags: string[]) => void) {
+    public registerOnChange(fn: (tags: string[]) => void) {
         this.propagateChange = fn;
     }
 
-    registerOnTouched() {}
+    public registerOnTouched() {}
 
-    selectTags(
+    public selectTags(
         tags?: string[],
         options: {skipPropagate?: boolean; override?: boolean} = {}
     ) {
@@ -86,14 +86,14 @@ export class TagsManagerComponent implements OnInit, ControlValueAccessor {
         }
     }
 
-    deselectTag(tagName: string) {
+    public deselectTag(tagName: string) {
         const selectedTags = this.selectedTags$.value.slice();
         selectedTags.splice(selectedTags.indexOf(tagName), 1);
         this.selectedTags$.next(selectedTags);
         this.propagateChange(this.selectedTags$.value);
     }
 
-    selectTagsFromString(tagString: string) {
+    public selectTagsFromString(tagString: string) {
         const tags = tagString.split(',').map(t => slugifyString(t));
         this.selectTags(tags);
     }

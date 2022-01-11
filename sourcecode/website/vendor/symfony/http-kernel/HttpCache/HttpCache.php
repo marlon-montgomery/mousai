@@ -108,7 +108,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     /**
      * Gets the current store.
      *
-     * @return StoreInterface
+     * @return StoreInterface A StoreInterface instance
      */
     public function getStore()
     {
@@ -118,7 +118,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     /**
      * Returns an array of events that took place during processing of the last request.
      *
-     * @return array
+     * @return array An array of events
      */
     public function getTraces()
     {
@@ -145,7 +145,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     /**
      * Returns a log message for the events of the last request processing.
      *
-     * @return string
+     * @return string A log message
      */
     public function getLog()
     {
@@ -160,7 +160,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     /**
      * Gets the Request instance associated with the main request.
      *
-     * @return Request
+     * @return Request A Request instance
      */
     public function getRequest()
     {
@@ -170,7 +170,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     /**
      * Gets the Kernel instance.
      *
-     * @return HttpKernelInterface
+     * @return HttpKernelInterface An HttpKernelInterface instance
      */
     public function getKernel()
     {
@@ -180,7 +180,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     /**
      * Gets the Surrogate instance.
      *
-     * @return SurrogateInterface
+     * @return SurrogateInterface A Surrogate instance
      *
      * @throws \LogicException
      */
@@ -260,7 +260,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      *
      * @param bool $catch Whether to process exceptions
      *
-     * @return Response
+     * @return Response A Response instance
      */
     protected function pass(Request $request, bool $catch = false)
     {
@@ -274,7 +274,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      *
      * @param bool $catch Whether to process exceptions
      *
-     * @return Response
+     * @return Response A Response instance
      *
      * @throws \Exception
      *
@@ -322,7 +322,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      *
      * @param bool $catch Whether to process exceptions
      *
-     * @return Response
+     * @return Response A Response instance
      *
      * @throws \Exception
      */
@@ -371,7 +371,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      *
      * @param bool $catch Whether to process exceptions
      *
-     * @return Response
+     * @return Response A Response instance
      */
     protected function validate(Request $request, Response $entry, bool $catch = false)
     {
@@ -434,7 +434,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      *
      * @param bool $catch Whether to process exceptions
      *
-     * @return Response
+     * @return Response A Response instance
      */
     protected function fetch(Request $request, bool $catch = false)
     {
@@ -467,7 +467,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      * @param bool          $catch Whether to catch exceptions or not
      * @param Response|null $entry A Response instance (the stale entry if present, null otherwise)
      *
-     * @return Response
+     * @return Response A Response instance
      */
     protected function forward(Request $request, bool $catch = false, Response $entry = null)
     {
@@ -540,7 +540,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     /**
      * Checks whether the cache entry is "fresh enough" to satisfy the Request.
      *
-     * @return bool
+     * @return bool true if the cache entry if fresh enough, false otherwise
      */
     protected function isFreshEnough(Request $request, Response $entry)
     {

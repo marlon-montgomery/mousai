@@ -20,45 +20,24 @@ namespace Google\Service\HangoutsChat;
 class GoogleAppsCardV1Action extends \Google\Collection
 {
   protected $collection_key = 'parameters';
-  /**
-   * @var string
-   */
   public $function;
-  /**
-   * @var string
-   */
   public $loadIndicator;
   protected $parametersType = GoogleAppsCardV1ActionParameter::class;
   protected $parametersDataType = 'array';
-  /**
-   * @var bool
-   */
   public $persistValues;
 
-  /**
-   * @param string
-   */
   public function setFunction($function)
   {
     $this->function = $function;
   }
-  /**
-   * @return string
-   */
   public function getFunction()
   {
     return $this->function;
   }
-  /**
-   * @param string
-   */
   public function setLoadIndicator($loadIndicator)
   {
     $this->loadIndicator = $loadIndicator;
   }
-  /**
-   * @return string
-   */
   public function getLoadIndicator()
   {
     return $this->loadIndicator;
@@ -77,16 +56,10 @@ class GoogleAppsCardV1Action extends \Google\Collection
   {
     return $this->parameters;
   }
-  /**
-   * @param bool
-   */
   public function setPersistValues($persistValues)
   {
     $this->persistValues = $persistValues;
   }
-  /**
-   * @return bool
-   */
   public function getPersistValues()
   {
     return $this->persistValues;

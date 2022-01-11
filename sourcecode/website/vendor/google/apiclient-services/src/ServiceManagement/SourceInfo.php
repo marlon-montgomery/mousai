@@ -20,21 +20,12 @@ namespace Google\Service\ServiceManagement;
 class SourceInfo extends \Google\Collection
 {
   protected $collection_key = 'sourceFiles';
-  /**
-   * @var array[]
-   */
   public $sourceFiles;
 
-  /**
-   * @param array[]
-   */
   public function setSourceFiles($sourceFiles)
   {
     $this->sourceFiles = $sourceFiles;
   }
-  /**
-   * @return array[]
-   */
   public function getSourceFiles()
   {
     return $this->sourceFiles;

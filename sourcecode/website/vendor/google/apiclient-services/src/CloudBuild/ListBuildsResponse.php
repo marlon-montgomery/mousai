@@ -22,9 +22,6 @@ class ListBuildsResponse extends \Google\Collection
   protected $collection_key = 'builds';
   protected $buildsType = Build::class;
   protected $buildsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListBuildsResponse extends \Google\Collection
   {
     return $this->builds;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

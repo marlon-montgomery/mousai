@@ -107,7 +107,7 @@ trait Matching
      * Asserts that the property contains the expected values.
      *
      * @param  string  $key
-     * @param  mixed  $expected
+     * @param  array|string  $expected
      * @return $this
      */
     public function whereContains(string $key, $expected)
@@ -122,26 +122,16 @@ trait Matching
             }
 
             return $actual->containsStrict($search);
-        });
+        })->toArray();
 
-        if ($missing->whereInstanceOf('Closure')->isNotEmpty()) {
-            PHPUnit::assertEmpty(
-                $missing->toArray(),
-                sprintf(
-                    'Property [%s] does not contain a value that passes the truth test within the given closure.',
-                    $key,
-                )
-            );
-        } else {
-            PHPUnit::assertEmpty(
-                $missing->toArray(),
-                sprintf(
-                    'Property [%s] does not contain [%s].',
-                    $key,
-                    implode(', ', array_values($missing->toArray()))
-                )
-            );
-        }
+        PHPUnit::assertEmpty(
+            $missing,
+            sprintf(
+                'Property [%s] does not contain [%s].',
+                $key,
+                implode(', ', array_values($missing))
+            )
+        );
 
         return $this;
     }

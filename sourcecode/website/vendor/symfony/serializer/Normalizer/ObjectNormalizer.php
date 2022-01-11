@@ -107,9 +107,23 @@ class ObjectNormalizer extends AbstractObjectNormalizer
             }
         }
 
+        $checkPropertyInitialization = \PHP_VERSION_ID >= 70400;
+
         // properties
         foreach ($reflClass->getProperties() as $reflProperty) {
-            if (!$reflProperty->isPublic()) {
+            $isPublic = $reflProperty->isPublic();
+
+            if ($checkPropertyInitialization) {
+                if (!$isPublic) {
+                    $reflProperty->setAccessible(true);
+                }
+                if (!$reflProperty->isInitialized($object)) {
+                    unset($attributes[$reflProperty->name]);
+                    continue;
+                }
+            }
+
+            if (!$isPublic) {
                 continue;
             }
 
@@ -168,11 +182,9 @@ class ObjectNormalizer extends AbstractObjectNormalizer
             }
 
             if (null !== $discriminatorMapping = $this->classDiscriminatorResolver->getMappingForClass($class)) {
-                $attributes = [];
                 foreach ($discriminatorMapping->getTypesMapping() as $mappedClass) {
-                    $attributes[] = parent::getAllowedAttributes($mappedClass, $context, $attributesAsString);
+                    $allowedAttributes = array_merge($allowedAttributes, parent::getAllowedAttributes($mappedClass, $context, $attributesAsString));
                 }
-                $allowedAttributes = array_merge($allowedAttributes, ...$attributes);
             }
         }
 

@@ -23,9 +23,6 @@ class Geolayerdata extends \Google\Model
   protected $commonDataType = '';
   protected $geoType = GeolayerdataGeo::class;
   protected $geoDataType = '';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -56,16 +53,10 @@ class Geolayerdata extends \Google\Model
   {
     return $this->geo;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

@@ -19,21 +19,12 @@ namespace Google\Service\FirebaseManagement;
 
 class FinalizeDefaultLocationRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $locationId;
 
-  /**
-   * @param string
-   */
   public function setLocationId($locationId)
   {
     $this->locationId = $locationId;
   }
-  /**
-   * @return string
-   */
   public function getLocationId()
   {
     return $this->locationId;

@@ -19,27 +19,15 @@ namespace Google\Service\Vault;
 
 class AddMatterPermissionsRequest extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $ccMe;
   protected $matterPermissionType = MatterPermission::class;
   protected $matterPermissionDataType = '';
-  /**
-   * @var bool
-   */
   public $sendEmails;
 
-  /**
-   * @param bool
-   */
   public function setCcMe($ccMe)
   {
     $this->ccMe = $ccMe;
   }
-  /**
-   * @return bool
-   */
   public function getCcMe()
   {
     return $this->ccMe;
@@ -58,16 +46,10 @@ class AddMatterPermissionsRequest extends \Google\Model
   {
     return $this->matterPermission;
   }
-  /**
-   * @param bool
-   */
   public function setSendEmails($sendEmails)
   {
     $this->sendEmails = $sendEmails;
   }
-  /**
-   * @return bool
-   */
   public function getSendEmails()
   {
     return $this->sendEmails;

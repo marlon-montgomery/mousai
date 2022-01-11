@@ -19,21 +19,12 @@ namespace Google\Service\CloudIot;
 
 class MqttConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $mqttEnabledState;
 
-  /**
-   * @param string
-   */
   public function setMqttEnabledState($mqttEnabledState)
   {
     $this->mqttEnabledState = $mqttEnabledState;
   }
-  /**
-   * @return string
-   */
   public function getMqttEnabledState()
   {
     return $this->mqttEnabledState;

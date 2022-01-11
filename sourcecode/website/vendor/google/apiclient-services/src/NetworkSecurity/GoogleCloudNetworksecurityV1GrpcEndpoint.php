@@ -19,21 +19,12 @@ namespace Google\Service\NetworkSecurity;
 
 class GoogleCloudNetworksecurityV1GrpcEndpoint extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $targetUri;
 
-  /**
-   * @param string
-   */
   public function setTargetUri($targetUri)
   {
     $this->targetUri = $targetUri;
   }
-  /**
-   * @return string
-   */
   public function getTargetUri()
   {
     return $this->targetUri;

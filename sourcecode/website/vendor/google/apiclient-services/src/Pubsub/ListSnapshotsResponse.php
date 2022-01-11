@@ -20,23 +20,14 @@ namespace Google\Service\Pubsub;
 class ListSnapshotsResponse extends \Google\Collection
 {
   protected $collection_key = 'snapshots';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $snapshotsType = Snapshot::class;
   protected $snapshotsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

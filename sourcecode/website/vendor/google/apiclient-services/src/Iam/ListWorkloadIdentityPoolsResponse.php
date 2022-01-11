@@ -20,23 +20,14 @@ namespace Google\Service\Iam;
 class ListWorkloadIdentityPoolsResponse extends \Google\Collection
 {
   protected $collection_key = 'workloadIdentityPools';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $workloadIdentityPoolsType = WorkloadIdentityPool::class;
   protected $workloadIdentityPoolsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

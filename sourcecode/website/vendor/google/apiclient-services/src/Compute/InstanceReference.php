@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class InstanceReference extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $instance;
 
-  /**
-   * @param string
-   */
   public function setInstance($instance)
   {
     $this->instance = $instance;
   }
-  /**
-   * @return string
-   */
   public function getInstance()
   {
     return $this->instance;

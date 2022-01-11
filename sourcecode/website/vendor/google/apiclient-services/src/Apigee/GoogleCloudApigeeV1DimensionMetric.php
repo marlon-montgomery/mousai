@@ -22,9 +22,6 @@ class GoogleCloudApigeeV1DimensionMetric extends \Google\Collection
   protected $collection_key = 'metrics';
   protected $metricsType = GoogleCloudApigeeV1Metric::class;
   protected $metricsDataType = 'array';
-  /**
-   * @var string
-   */
   public $name;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudApigeeV1DimensionMetric extends \Google\Collection
   {
     return $this->metrics;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

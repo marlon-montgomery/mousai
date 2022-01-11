@@ -19,21 +19,12 @@ namespace Google\Service\PaymentsResellerSubscription;
 
 class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $reason;
 
-  /**
-   * @param string
-   */
   public function setReason($reason)
   {
     $this->reason = $reason;
   }
-  /**
-   * @return string
-   */
   public function getReason()
   {
     return $this->reason;

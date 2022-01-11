@@ -19,21 +19,12 @@ namespace Google\Service\CloudLifeSciences;
 
 class ContainerKilledEvent extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $actionId;
 
-  /**
-   * @param int
-   */
   public function setActionId($actionId)
   {
     $this->actionId = $actionId;
   }
-  /**
-   * @return int
-   */
   public function getActionId()
   {
     return $this->actionId;

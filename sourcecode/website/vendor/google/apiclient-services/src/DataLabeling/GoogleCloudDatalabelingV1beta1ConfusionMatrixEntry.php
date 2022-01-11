@@ -21,9 +21,6 @@ class GoogleCloudDatalabelingV1beta1ConfusionMatrixEntry extends \Google\Model
 {
   protected $annotationSpecType = GoogleCloudDatalabelingV1beta1AnnotationSpec::class;
   protected $annotationSpecDataType = '';
-  /**
-   * @var int
-   */
   public $itemCount;
 
   /**
@@ -40,16 +37,10 @@ class GoogleCloudDatalabelingV1beta1ConfusionMatrixEntry extends \Google\Model
   {
     return $this->annotationSpec;
   }
-  /**
-   * @param int
-   */
   public function setItemCount($itemCount)
   {
     $this->itemCount = $itemCount;
   }
-  /**
-   * @return int
-   */
   public function getItemCount()
   {
     return $this->itemCount;

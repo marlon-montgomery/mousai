@@ -21,9 +21,6 @@ class CutPasteRequest extends \Google\Model
 {
   protected $destinationType = GridCoordinate::class;
   protected $destinationDataType = '';
-  /**
-   * @var string
-   */
   public $pasteType;
   protected $sourceType = GridRange::class;
   protected $sourceDataType = '';
@@ -42,16 +39,10 @@ class CutPasteRequest extends \Google\Model
   {
     return $this->destination;
   }
-  /**
-   * @param string
-   */
   public function setPasteType($pasteType)
   {
     $this->pasteType = $pasteType;
   }
-  /**
-   * @return string
-   */
   public function getPasteType()
   {
     return $this->pasteType;

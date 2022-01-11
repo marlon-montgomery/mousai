@@ -19,29 +19,17 @@ namespace Google\Service\HangoutsChat;
 
 class GoogleAppsCardV1ImageComponent extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $altText;
   protected $borderStyleType = GoogleAppsCardV1BorderStyle::class;
   protected $borderStyleDataType = '';
   protected $cropStyleType = GoogleAppsCardV1ImageCropStyle::class;
   protected $cropStyleDataType = '';
-  /**
-   * @var string
-   */
   public $imageUri;
 
-  /**
-   * @param string
-   */
   public function setAltText($altText)
   {
     $this->altText = $altText;
   }
-  /**
-   * @return string
-   */
   public function getAltText()
   {
     return $this->altText;
@@ -74,16 +62,10 @@ class GoogleAppsCardV1ImageComponent extends \Google\Model
   {
     return $this->cropStyle;
   }
-  /**
-   * @param string
-   */
   public function setImageUri($imageUri)
   {
     $this->imageUri = $imageUri;
   }
-  /**
-   * @return string
-   */
   public function getImageUri()
   {
     return $this->imageUri;

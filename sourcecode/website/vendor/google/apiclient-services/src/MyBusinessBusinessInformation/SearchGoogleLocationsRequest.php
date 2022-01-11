@@ -21,13 +21,7 @@ class SearchGoogleLocationsRequest extends \Google\Model
 {
   protected $locationType = Location::class;
   protected $locationDataType = '';
-  /**
-   * @var int
-   */
   public $pageSize;
-  /**
-   * @var string
-   */
   public $query;
 
   /**
@@ -44,30 +38,18 @@ class SearchGoogleLocationsRequest extends \Google\Model
   {
     return $this->location;
   }
-  /**
-   * @param int
-   */
   public function setPageSize($pageSize)
   {
     $this->pageSize = $pageSize;
   }
-  /**
-   * @return int
-   */
   public function getPageSize()
   {
     return $this->pageSize;
   }
-  /**
-   * @param string
-   */
   public function setQuery($query)
   {
     $this->query = $query;
   }
-  /**
-   * @return string
-   */
   public function getQuery()
   {
     return $this->query;

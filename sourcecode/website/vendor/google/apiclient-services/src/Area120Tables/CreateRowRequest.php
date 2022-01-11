@@ -19,27 +19,15 @@ namespace Google\Service\Area120Tables;
 
 class CreateRowRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $parent;
   protected $rowType = Row::class;
   protected $rowDataType = '';
-  /**
-   * @var string
-   */
   public $view;
 
-  /**
-   * @param string
-   */
   public function setParent($parent)
   {
     $this->parent = $parent;
   }
-  /**
-   * @return string
-   */
   public function getParent()
   {
     return $this->parent;
@@ -58,16 +46,10 @@ class CreateRowRequest extends \Google\Model
   {
     return $this->row;
   }
-  /**
-   * @param string
-   */
   public function setView($view)
   {
     $this->view = $view;
   }
-  /**
-   * @return string
-   */
   public function getView()
   {
     return $this->view;

@@ -21,9 +21,6 @@ class ParagraphBorder extends \Google\Model
 {
   protected $colorType = OptionalColor::class;
   protected $colorDataType = '';
-  /**
-   * @var string
-   */
   public $dashStyle;
   protected $paddingType = Dimension::class;
   protected $paddingDataType = '';
@@ -44,16 +41,10 @@ class ParagraphBorder extends \Google\Model
   {
     return $this->color;
   }
-  /**
-   * @param string
-   */
   public function setDashStyle($dashStyle)
   {
     $this->dashStyle = $dashStyle;
   }
-  /**
-   * @return string
-   */
   public function getDashStyle()
   {
     return $this->dashStyle;

@@ -21,9 +21,6 @@ class GoogleCloudRetailV2CompleteQueryResponseCompletionResult extends \Google\M
 {
   protected $attributesType = GoogleCloudRetailV2CustomAttribute::class;
   protected $attributesDataType = 'map';
-  /**
-   * @var string
-   */
   public $suggestion;
 
   /**
@@ -40,16 +37,10 @@ class GoogleCloudRetailV2CompleteQueryResponseCompletionResult extends \Google\M
   {
     return $this->attributes;
   }
-  /**
-   * @param string
-   */
   public function setSuggestion($suggestion)
   {
     $this->suggestion = $suggestion;
   }
-  /**
-   * @return string
-   */
   public function getSuggestion()
   {
     return $this->suggestion;

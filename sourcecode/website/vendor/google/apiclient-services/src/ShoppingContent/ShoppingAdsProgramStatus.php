@@ -22,9 +22,6 @@ class ShoppingAdsProgramStatus extends \Google\Collection
   protected $collection_key = 'regionStatuses';
   protected $regionStatusesType = ShoppingAdsProgramStatusRegionStatus::class;
   protected $regionStatusesDataType = 'array';
-  /**
-   * @var string
-   */
   public $state;
 
   /**
@@ -41,16 +38,10 @@ class ShoppingAdsProgramStatus extends \Google\Collection
   {
     return $this->regionStatuses;
   }
-  /**
-   * @param string
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return string
-   */
   public function getState()
   {
     return $this->state;

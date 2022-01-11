@@ -40,7 +40,7 @@ class RedisMetricsRepository implements MetricsRepository
 
         return collect($classes)->map(function ($class) {
             return preg_match('/job:(.*)$/', $class, $matches) ? $matches[1] : $class;
-        })->sort()->values()->all();
+        })->all();
     }
 
     /**
@@ -54,7 +54,7 @@ class RedisMetricsRepository implements MetricsRepository
 
         return collect($queues)->map(function ($class) {
             return preg_match('/queue:(.*)$/', $class, $matches) ? $matches[1] : $class;
-        })->sort()->values()->all();
+        })->all();
     }
 
     /**

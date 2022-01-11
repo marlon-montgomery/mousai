@@ -21,13 +21,7 @@ class LineItemFlight extends \Google\Model
 {
   protected $dateRangeType = DateRange::class;
   protected $dateRangeDataType = '';
-  /**
-   * @var string
-   */
   public $flightDateType;
-  /**
-   * @var string
-   */
   public $triggerId;
 
   /**
@@ -44,30 +38,18 @@ class LineItemFlight extends \Google\Model
   {
     return $this->dateRange;
   }
-  /**
-   * @param string
-   */
   public function setFlightDateType($flightDateType)
   {
     $this->flightDateType = $flightDateType;
   }
-  /**
-   * @return string
-   */
   public function getFlightDateType()
   {
     return $this->flightDateType;
   }
-  /**
-   * @param string
-   */
   public function setTriggerId($triggerId)
   {
     $this->triggerId = $triggerId;
   }
-  /**
-   * @return string
-   */
   public function getTriggerId()
   {
     return $this->triggerId;

@@ -23,9 +23,6 @@ class GoogleCloudRecommendationengineV1beta1ImportUserEventsRequest extends \Goo
   protected $errorsConfigDataType = '';
   protected $inputConfigType = GoogleCloudRecommendationengineV1beta1InputConfig::class;
   protected $inputConfigDataType = '';
-  /**
-   * @var string
-   */
   public $requestId;
 
   /**
@@ -56,16 +53,10 @@ class GoogleCloudRecommendationengineV1beta1ImportUserEventsRequest extends \Goo
   {
     return $this->inputConfig;
   }
-  /**
-   * @param string
-   */
   public function setRequestId($requestId)
   {
     $this->requestId = $requestId;
   }
-  /**
-   * @return string
-   */
   public function getRequestId()
   {
     return $this->requestId;

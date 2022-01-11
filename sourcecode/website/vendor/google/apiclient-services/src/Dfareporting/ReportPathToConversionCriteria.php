@@ -32,9 +32,6 @@ class ReportPathToConversionCriteria extends \Google\Collection
   protected $dateRangeDataType = '';
   protected $floodlightConfigIdType = DimensionValue::class;
   protected $floodlightConfigIdDataType = '';
-  /**
-   * @var string[]
-   */
   public $metricNames;
   protected $perInteractionDimensionsType = SortedDimension::class;
   protected $perInteractionDimensionsDataType = 'array';
@@ -125,16 +122,10 @@ class ReportPathToConversionCriteria extends \Google\Collection
   {
     return $this->floodlightConfigId;
   }
-  /**
-   * @param string[]
-   */
   public function setMetricNames($metricNames)
   {
     $this->metricNames = $metricNames;
   }
-  /**
-   * @return string[]
-   */
   public function getMetricNames()
   {
     return $this->metricNames;

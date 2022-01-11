@@ -20,9 +20,6 @@ namespace Google\Service\ToolResults;
 class ToolExecution extends \Google\Collection
 {
   protected $collection_key = 'toolOutputs';
-  /**
-   * @var string[]
-   */
   public $commandLineArguments;
   protected $exitCodeType = ToolExitCode::class;
   protected $exitCodeDataType = '';
@@ -31,16 +28,10 @@ class ToolExecution extends \Google\Collection
   protected $toolOutputsType = ToolOutputReference::class;
   protected $toolOutputsDataType = 'array';
 
-  /**
-   * @param string[]
-   */
   public function setCommandLineArguments($commandLineArguments)
   {
     $this->commandLineArguments = $commandLineArguments;
   }
-  /**
-   * @return string[]
-   */
   public function getCommandLineArguments()
   {
     return $this->commandLineArguments;

@@ -22,15 +22,9 @@ class DoubleVerify extends \Google\Collection
   protected $collection_key = 'avoidedAgeRatings';
   protected $appStarRatingType = DoubleVerifyAppStarRating::class;
   protected $appStarRatingDataType = '';
-  /**
-   * @var string[]
-   */
   public $avoidedAgeRatings;
   protected $brandSafetyCategoriesType = DoubleVerifyBrandSafetyCategories::class;
   protected $brandSafetyCategoriesDataType = '';
-  /**
-   * @var string
-   */
   public $customSegmentId;
   protected $displayViewabilityType = DoubleVerifyDisplayViewability::class;
   protected $displayViewabilityDataType = '';
@@ -53,16 +47,10 @@ class DoubleVerify extends \Google\Collection
   {
     return $this->appStarRating;
   }
-  /**
-   * @param string[]
-   */
   public function setAvoidedAgeRatings($avoidedAgeRatings)
   {
     $this->avoidedAgeRatings = $avoidedAgeRatings;
   }
-  /**
-   * @return string[]
-   */
   public function getAvoidedAgeRatings()
   {
     return $this->avoidedAgeRatings;
@@ -81,16 +69,10 @@ class DoubleVerify extends \Google\Collection
   {
     return $this->brandSafetyCategories;
   }
-  /**
-   * @param string
-   */
   public function setCustomSegmentId($customSegmentId)
   {
     $this->customSegmentId = $customSegmentId;
   }
-  /**
-   * @return string
-   */
   public function getCustomSegmentId()
   {
     return $this->customSegmentId;

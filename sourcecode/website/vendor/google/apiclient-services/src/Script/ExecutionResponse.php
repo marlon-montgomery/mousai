@@ -19,21 +19,12 @@ namespace Google\Service\Script;
 
 class ExecutionResponse extends \Google\Model
 {
-  /**
-   * @var array
-   */
   public $result;
 
-  /**
-   * @param array
-   */
   public function setResult($result)
   {
     $this->result = $result;
   }
-  /**
-   * @return array
-   */
   public function getResult()
   {
     return $this->result;

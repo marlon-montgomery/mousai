@@ -19,27 +19,15 @@ namespace Google\Service\DriveActivity;
 
 class Drive extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $name;
   protected $rootType = DriveItem::class;
   protected $rootDataType = '';
-  /**
-   * @var string
-   */
   public $title;
 
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
@@ -58,16 +46,10 @@ class Drive extends \Google\Model
   {
     return $this->root;
   }
-  /**
-   * @param string
-   */
   public function setTitle($title)
   {
     $this->title = $title;
   }
-  /**
-   * @return string
-   */
   public function getTitle()
   {
     return $this->title;

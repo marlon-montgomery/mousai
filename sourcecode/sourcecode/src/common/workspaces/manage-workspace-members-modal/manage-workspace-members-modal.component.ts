@@ -19,6 +19,7 @@ import {CurrentUser} from '@common/auth/current-user';
 import {WorkspaceMessages} from '../workspace-messages';
 import {ConfirmModalComponent} from '@common/core/ui/confirm-modal/confirm-modal.component';
 import {Modal} from '@common/core/ui/dialogs/modal.service';
+import {animate, style, transition, trigger} from '@angular/animations';
 import {LEAVE_WORKSPACE_CONFIRMATION} from '../leave-workspace-confirmation';
 import {SKELETON_ANIMATIONS} from '@common/core/ui/skeleton/skeleton-animations';
 
@@ -162,40 +163,32 @@ export class ManageWorkspaceMembersModalComponent implements OnInit {
     }
 
     public maybeDeleteMember(member: MemberOrInvite) {
-        this.modal
-            .show(ConfirmModalComponent, {
-                title: `Delete Member`,
-                body: `Are you sure you want to delete this member?`,
-                bodyBold:
-                    'All workspace resources created by this member will be transferred to workspace owner.',
-                ok: 'Delete',
-            })
-            .afterClosed()
-            .subscribe(confirmed => {
-                if (confirmed) {
-                    this.deleteMember(member);
-                }
-            });
+        this.modal.show(ConfirmModalComponent, {
+            title: `Delete Member`,
+            body:  `Are you sure you want to delete this member?`,
+            bodyBold: 'All workspace resources created by this member will be transferred to workspace owner.',
+            ok:    'Delete'
+        }).afterClosed().subscribe(confirmed => {
+            if (confirmed) {
+                this.deleteMember(member);
+            }
+        });
     }
 
     public maybeResendInvite(invite: WorkspaceInvite) {
-        this.modal
-            .show(ConfirmModalComponent, {
-                title: `Resend Invite`,
-                body: `Are you sure you want to send this invite again?`,
-                ok: 'Resend',
-            })
-            .afterClosed()
-            .subscribe(confirmed => {
-                if (confirmed) {
-                    this.resendInvite(invite);
-                }
-            });
+        this.modal.show(ConfirmModalComponent, {
+            title: `Resend Invite`,
+            body:  `Are you sure you want to send this invite again?`,
+            ok:    'Resend'
+        }).afterClosed().subscribe(confirmed => {
+            if (confirmed) {
+                this.resendInvite(invite);
+            }
+        });
     }
 
     public maybeLeaveWorkspace(member: WorkspaceMember) {
-        this.modal
-            .show(ConfirmModalComponent, LEAVE_WORKSPACE_CONFIRMATION)
+        this.modal.show(ConfirmModalComponent, LEAVE_WORKSPACE_CONFIRMATION)
             .afterClosed()
             .subscribe(confirmed => {
                 if (confirmed) {

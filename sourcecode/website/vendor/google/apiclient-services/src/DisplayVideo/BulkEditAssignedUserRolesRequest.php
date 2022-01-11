@@ -22,9 +22,6 @@ class BulkEditAssignedUserRolesRequest extends \Google\Collection
   protected $collection_key = 'deletedAssignedUserRoles';
   protected $createdAssignedUserRolesType = AssignedUserRole::class;
   protected $createdAssignedUserRolesDataType = 'array';
-  /**
-   * @var string[]
-   */
   public $deletedAssignedUserRoles;
 
   /**
@@ -41,16 +38,10 @@ class BulkEditAssignedUserRolesRequest extends \Google\Collection
   {
     return $this->createdAssignedUserRoles;
   }
-  /**
-   * @param string[]
-   */
   public function setDeletedAssignedUserRoles($deletedAssignedUserRoles)
   {
     $this->deletedAssignedUserRoles = $deletedAssignedUserRoles;
   }
-  /**
-   * @return string[]
-   */
   public function getDeletedAssignedUserRoles()
   {
     return $this->deletedAssignedUserRoles;

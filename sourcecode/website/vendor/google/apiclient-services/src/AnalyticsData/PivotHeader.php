@@ -22,9 +22,6 @@ class PivotHeader extends \Google\Collection
   protected $collection_key = 'pivotDimensionHeaders';
   protected $pivotDimensionHeadersType = PivotDimensionHeader::class;
   protected $pivotDimensionHeadersDataType = 'array';
-  /**
-   * @var int
-   */
   public $rowCount;
 
   /**
@@ -41,16 +38,10 @@ class PivotHeader extends \Google\Collection
   {
     return $this->pivotDimensionHeaders;
   }
-  /**
-   * @param int
-   */
   public function setRowCount($rowCount)
   {
     $this->rowCount = $rowCount;
   }
-  /**
-   * @return int
-   */
   public function getRowCount()
   {
     return $this->rowCount;

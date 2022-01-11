@@ -24,9 +24,6 @@ class BlogList extends \Google\Collection
   protected $blogUserInfosDataType = 'array';
   protected $itemsType = Blog::class;
   protected $itemsDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -57,16 +54,10 @@ class BlogList extends \Google\Collection
   {
     return $this->items;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

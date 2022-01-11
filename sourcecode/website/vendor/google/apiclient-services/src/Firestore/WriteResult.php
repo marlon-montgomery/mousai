@@ -22,9 +22,6 @@ class WriteResult extends \Google\Collection
   protected $collection_key = 'transformResults';
   protected $transformResultsType = Value::class;
   protected $transformResultsDataType = 'array';
-  /**
-   * @var string
-   */
   public $updateTime;
 
   /**
@@ -41,16 +38,10 @@ class WriteResult extends \Google\Collection
   {
     return $this->transformResults;
   }
-  /**
-   * @param string
-   */
   public function setUpdateTime($updateTime)
   {
     $this->updateTime = $updateTime;
   }
-  /**
-   * @return string
-   */
   public function getUpdateTime()
   {
     return $this->updateTime;

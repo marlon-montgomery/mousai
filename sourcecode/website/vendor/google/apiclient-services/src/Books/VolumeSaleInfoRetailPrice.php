@@ -20,9 +20,6 @@ namespace Google\Service\Books;
 class VolumeSaleInfoRetailPrice extends \Google\Model
 {
   public $amount;
-  /**
-   * @var string
-   */
   public $currencyCode;
 
   public function setAmount($amount)
@@ -33,16 +30,10 @@ class VolumeSaleInfoRetailPrice extends \Google\Model
   {
     return $this->amount;
   }
-  /**
-   * @param string
-   */
   public function setCurrencyCode($currencyCode)
   {
     $this->currencyCode = $currencyCode;
   }
-  /**
-   * @return string
-   */
   public function getCurrencyCode()
   {
     return $this->currencyCode;

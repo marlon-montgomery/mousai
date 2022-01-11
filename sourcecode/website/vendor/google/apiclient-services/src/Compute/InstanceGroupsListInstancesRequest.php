@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class InstanceGroupsListInstancesRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $instanceState;
 
-  /**
-   * @param string
-   */
   public function setInstanceState($instanceState)
   {
     $this->instanceState = $instanceState;
   }
-  /**
-   * @return string
-   */
   public function getInstanceState()
   {
     return $this->instanceState;

@@ -22,9 +22,6 @@ class GoogleCloudRecommendationengineV1beta1ListCatalogsResponse extends \Google
   protected $collection_key = 'catalogs';
   protected $catalogsType = GoogleCloudRecommendationengineV1beta1Catalog::class;
   protected $catalogsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudRecommendationengineV1beta1ListCatalogsResponse extends \Google
   {
     return $this->catalogs;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

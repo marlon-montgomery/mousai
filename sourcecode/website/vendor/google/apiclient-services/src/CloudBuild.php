@@ -219,10 +219,6 @@ class CloudBuild extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
-                'gheConfigId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
                 'projectId' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -408,10 +404,6 @@ class CloudBuild extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ],
-                'gheConfigId' => [
-                  'location' => 'query',
-                  'type' => 'string',
                 ],
                 'projectId' => [
                   'location' => 'query',

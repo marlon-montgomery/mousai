@@ -19,136 +19,70 @@ namespace Google\Service\OSConfig;
 
 class PatchJob extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $createTime;
-  /**
-   * @var string
-   */
   public $description;
-  /**
-   * @var string
-   */
   public $displayName;
-  /**
-   * @var bool
-   */
   public $dryRun;
-  /**
-   * @var string
-   */
   public $duration;
-  /**
-   * @var string
-   */
   public $errorMessage;
   protected $instanceDetailsSummaryType = PatchJobInstanceDetailsSummary::class;
   protected $instanceDetailsSummaryDataType = '';
   protected $instanceFilterType = PatchInstanceFilter::class;
   protected $instanceFilterDataType = '';
-  /**
-   * @var string
-   */
   public $name;
   protected $patchConfigType = PatchConfig::class;
   protected $patchConfigDataType = '';
-  /**
-   * @var string
-   */
   public $patchDeployment;
   public $percentComplete;
   protected $rolloutType = PatchRollout::class;
   protected $rolloutDataType = '';
-  /**
-   * @var string
-   */
   public $state;
-  /**
-   * @var string
-   */
   public $updateTime;
 
-  /**
-   * @param string
-   */
   public function setCreateTime($createTime)
   {
     $this->createTime = $createTime;
   }
-  /**
-   * @return string
-   */
   public function getCreateTime()
   {
     return $this->createTime;
   }
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;
   }
-  /**
-   * @param string
-   */
   public function setDisplayName($displayName)
   {
     $this->displayName = $displayName;
   }
-  /**
-   * @return string
-   */
   public function getDisplayName()
   {
     return $this->displayName;
   }
-  /**
-   * @param bool
-   */
   public function setDryRun($dryRun)
   {
     $this->dryRun = $dryRun;
   }
-  /**
-   * @return bool
-   */
   public function getDryRun()
   {
     return $this->dryRun;
   }
-  /**
-   * @param string
-   */
   public function setDuration($duration)
   {
     $this->duration = $duration;
   }
-  /**
-   * @return string
-   */
   public function getDuration()
   {
     return $this->duration;
   }
-  /**
-   * @param string
-   */
   public function setErrorMessage($errorMessage)
   {
     $this->errorMessage = $errorMessage;
   }
-  /**
-   * @return string
-   */
   public function getErrorMessage()
   {
     return $this->errorMessage;
@@ -181,16 +115,10 @@ class PatchJob extends \Google\Model
   {
     return $this->instanceFilter;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
@@ -209,16 +137,10 @@ class PatchJob extends \Google\Model
   {
     return $this->patchConfig;
   }
-  /**
-   * @param string
-   */
   public function setPatchDeployment($patchDeployment)
   {
     $this->patchDeployment = $patchDeployment;
   }
-  /**
-   * @return string
-   */
   public function getPatchDeployment()
   {
     return $this->patchDeployment;
@@ -245,30 +167,18 @@ class PatchJob extends \Google\Model
   {
     return $this->rollout;
   }
-  /**
-   * @param string
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return string
-   */
   public function getState()
   {
     return $this->state;
   }
-  /**
-   * @param string
-   */
   public function setUpdateTime($updateTime)
   {
     $this->updateTime = $updateTime;
   }
-  /**
-   * @return string
-   */
   public function getUpdateTime()
   {
     return $this->updateTime;

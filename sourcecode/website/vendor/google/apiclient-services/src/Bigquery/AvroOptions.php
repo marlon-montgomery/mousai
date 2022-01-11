@@ -19,21 +19,12 @@ namespace Google\Service\Bigquery;
 
 class AvroOptions extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $useAvroLogicalTypes;
 
-  /**
-   * @param bool
-   */
   public function setUseAvroLogicalTypes($useAvroLogicalTypes)
   {
     $this->useAvroLogicalTypes = $useAvroLogicalTypes;
   }
-  /**
-   * @return bool
-   */
   public function getUseAvroLogicalTypes()
   {
     return $this->useAvroLogicalTypes;

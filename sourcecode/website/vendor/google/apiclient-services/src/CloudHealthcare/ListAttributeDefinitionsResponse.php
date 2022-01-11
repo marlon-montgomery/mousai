@@ -22,9 +22,6 @@ class ListAttributeDefinitionsResponse extends \Google\Collection
   protected $collection_key = 'attributeDefinitions';
   protected $attributeDefinitionsType = AttributeDefinition::class;
   protected $attributeDefinitionsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListAttributeDefinitionsResponse extends \Google\Collection
   {
     return $this->attributeDefinitions;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

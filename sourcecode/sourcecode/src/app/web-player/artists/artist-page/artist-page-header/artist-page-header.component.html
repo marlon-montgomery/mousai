@@ -33,6 +33,36 @@
                         <mat-icon svgIcon="arrow-drop-down"></mat-icon>
                     </button>
                 </div>
+                <div class="bitclout-wrap" *ngIf="artist.bitclout">
+                    <div class="bitclout-box">
+                        <span>Current Coin Price</span>
+                        <strong>{{artist.coin_price}}</strong>
+                    </div>
+                    <div class="bitclout-box">
+                        <span>Total Circulating</span>
+                        <strong>{{artist.coin_circulation}}</strong>
+                    </div>
+                    <div class="bitclout-box">
+                        <span>Total USD Locked</span>
+                        <strong>{{artist.total_usd_locked}}</strong>
+                    </div>
+                    <div class="bitclout-box">
+                        <span>USD Market Cap</span>
+                        <strong>{{artist.usd_market_cap}}</strong>
+                    </div>
+                    <div class="bitclout-box">
+                        <span>Founder Reward</span>
+                        <strong>{{artist.coin_basic_point}}</strong>
+                    </div>
+                    <div class="bitclout-box">
+                        <span>Current $Clout Price</span>
+                        <strong>{{artist.usd_per_coin}}</strong>
+                    </div>
+                    <div class="bitclout-box last">
+                        <a class="cust-btn-link" href="https://bitclout.com/u/{{artist.bitclout}}/buy" target="_blank">Buy Coin</a>
+                        <a class="cust-btn-link" href="https://bitclout.com/u/{{artist.bitclout}}?tab=creator-coin" target="_blank">Coin Holders</a>
+                    </div>
+                </div>
                 <profile-description *ngIf="settings.get('artistPage.showDescription')" [description]="artistPage.shortDescription$ | async" [country]="artist.profile?.country" [city]="artist.profile?.city"></profile-description>
             </div>
         </div>

@@ -21,13 +21,7 @@ class OrganizationInfo extends \Google\Model
 {
   protected $addressType = PostalAddress::class;
   protected $addressDataType = '';
-  /**
-   * @var string
-   */
   public $phoneNumber;
-  /**
-   * @var string
-   */
   public $registeredDomain;
 
   /**
@@ -44,30 +38,18 @@ class OrganizationInfo extends \Google\Model
   {
     return $this->address;
   }
-  /**
-   * @param string
-   */
   public function setPhoneNumber($phoneNumber)
   {
     $this->phoneNumber = $phoneNumber;
   }
-  /**
-   * @return string
-   */
   public function getPhoneNumber()
   {
     return $this->phoneNumber;
   }
-  /**
-   * @param string
-   */
   public function setRegisteredDomain($registeredDomain)
   {
     $this->registeredDomain = $registeredDomain;
   }
-  /**
-   * @return string
-   */
   public function getRegisteredDomain()
   {
     return $this->registeredDomain;

@@ -21,21 +21,9 @@ class CreateJobFromTemplateRequest extends \Google\Model
 {
   protected $environmentType = RuntimeEnvironment::class;
   protected $environmentDataType = '';
-  /**
-   * @var string
-   */
   public $gcsPath;
-  /**
-   * @var string
-   */
   public $jobName;
-  /**
-   * @var string
-   */
   public $location;
-  /**
-   * @var string[]
-   */
   public $parameters;
 
   /**
@@ -52,58 +40,34 @@ class CreateJobFromTemplateRequest extends \Google\Model
   {
     return $this->environment;
   }
-  /**
-   * @param string
-   */
   public function setGcsPath($gcsPath)
   {
     $this->gcsPath = $gcsPath;
   }
-  /**
-   * @return string
-   */
   public function getGcsPath()
   {
     return $this->gcsPath;
   }
-  /**
-   * @param string
-   */
   public function setJobName($jobName)
   {
     $this->jobName = $jobName;
   }
-  /**
-   * @return string
-   */
   public function getJobName()
   {
     return $this->jobName;
   }
-  /**
-   * @param string
-   */
   public function setLocation($location)
   {
     $this->location = $location;
   }
-  /**
-   * @return string
-   */
   public function getLocation()
   {
     return $this->location;
   }
-  /**
-   * @param string[]
-   */
   public function setParameters($parameters)
   {
     $this->parameters = $parameters;
   }
-  /**
-   * @return string[]
-   */
   public function getParameters()
   {
     return $this->parameters;

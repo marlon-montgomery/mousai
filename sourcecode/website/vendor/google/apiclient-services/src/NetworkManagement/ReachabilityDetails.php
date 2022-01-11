@@ -22,15 +22,9 @@ class ReachabilityDetails extends \Google\Collection
   protected $collection_key = 'traces';
   protected $errorType = Status::class;
   protected $errorDataType = '';
-  /**
-   * @var string
-   */
   public $result;
   protected $tracesType = Trace::class;
   protected $tracesDataType = 'array';
-  /**
-   * @var string
-   */
   public $verifyTime;
 
   /**
@@ -47,16 +41,10 @@ class ReachabilityDetails extends \Google\Collection
   {
     return $this->error;
   }
-  /**
-   * @param string
-   */
   public function setResult($result)
   {
     $this->result = $result;
   }
-  /**
-   * @return string
-   */
   public function getResult()
   {
     return $this->result;
@@ -75,16 +63,10 @@ class ReachabilityDetails extends \Google\Collection
   {
     return $this->traces;
   }
-  /**
-   * @param string
-   */
   public function setVerifyTime($verifyTime)
   {
     $this->verifyTime = $verifyTime;
   }
-  /**
-   * @return string
-   */
   public function getVerifyTime()
   {
     return $this->verifyTime;

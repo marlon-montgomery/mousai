@@ -19,21 +19,12 @@ namespace Google\Service\CloudSearch;
 
 class SpellResult extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $suggestedQuery;
 
-  /**
-   * @param string
-   */
   public function setSuggestedQuery($suggestedQuery)
   {
     $this->suggestedQuery = $suggestedQuery;
   }
-  /**
-   * @return string
-   */
   public function getSuggestedQuery()
   {
     return $this->suggestedQuery;

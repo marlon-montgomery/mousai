@@ -20,31 +20,16 @@ namespace Google\Service\Document;
 class GoogleCloudDocumentaiV1DocumentProvenance extends \Google\Collection
 {
   protected $collection_key = 'parents';
-  /**
-   * @var int
-   */
   public $id;
   protected $parentsType = GoogleCloudDocumentaiV1DocumentProvenanceParent::class;
   protected $parentsDataType = 'array';
-  /**
-   * @var int
-   */
   public $revision;
-  /**
-   * @var string
-   */
   public $type;
 
-  /**
-   * @param int
-   */
   public function setId($id)
   {
     $this->id = $id;
   }
-  /**
-   * @return int
-   */
   public function getId()
   {
     return $this->id;
@@ -63,30 +48,18 @@ class GoogleCloudDocumentaiV1DocumentProvenance extends \Google\Collection
   {
     return $this->parents;
   }
-  /**
-   * @param int
-   */
   public function setRevision($revision)
   {
     $this->revision = $revision;
   }
-  /**
-   * @return int
-   */
   public function getRevision()
   {
     return $this->revision;
   }
-  /**
-   * @param string
-   */
   public function setType($type)
   {
     $this->type = $type;
   }
-  /**
-   * @return string
-   */
   public function getType()
   {
     return $this->type;

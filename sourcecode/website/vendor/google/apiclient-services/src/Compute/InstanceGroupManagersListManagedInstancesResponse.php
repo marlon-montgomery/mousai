@@ -22,9 +22,6 @@ class InstanceGroupManagersListManagedInstancesResponse extends \Google\Collecti
   protected $collection_key = 'managedInstances';
   protected $managedInstancesType = ManagedInstance::class;
   protected $managedInstancesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class InstanceGroupManagersListManagedInstancesResponse extends \Google\Collecti
   {
     return $this->managedInstances;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

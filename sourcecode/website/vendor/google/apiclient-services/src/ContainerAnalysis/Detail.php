@@ -19,249 +19,132 @@ namespace Google\Service\ContainerAnalysis;
 
 class Detail extends \Google\Model
 {
-  /**
-   * @var string
-   */
-  public $affectedCpeUri;
-  /**
-   * @var string
-   */
-  public $affectedPackage;
-  protected $affectedVersionEndType = Version::class;
-  protected $affectedVersionEndDataType = '';
-  protected $affectedVersionStartType = Version::class;
-  protected $affectedVersionStartDataType = '';
-  /**
-   * @var string
-   */
+  public $cpeUri;
   public $description;
-  /**
-   * @var string
-   */
-  public $fixedCpeUri;
-  /**
-   * @var string
-   */
-  public $fixedPackage;
-  protected $fixedVersionType = Version::class;
-  protected $fixedVersionDataType = '';
-  /**
-   * @var bool
-   */
+  protected $fixedLocationType = VulnerabilityLocation::class;
+  protected $fixedLocationDataType = '';
   public $isObsolete;
-  /**
-   * @var string
-   */
+  protected $maxAffectedVersionType = Version::class;
+  protected $maxAffectedVersionDataType = '';
+  protected $minAffectedVersionType = Version::class;
+  protected $minAffectedVersionDataType = '';
+  public $package;
   public $packageType;
-  /**
-   * @var string
-   */
   public $severityName;
-  /**
-   * @var string
-   */
   public $source;
-  /**
-   * @var string
-   */
   public $sourceUpdateTime;
-  /**
-   * @var string
-   */
   public $vendor;
 
-  /**
-   * @param string
-   */
-  public function setAffectedCpeUri($affectedCpeUri)
+  public function setCpeUri($cpeUri)
   {
-    $this->affectedCpeUri = $affectedCpeUri;
+    $this->cpeUri = $cpeUri;
   }
-  /**
-   * @return string
-   */
-  public function getAffectedCpeUri()
+  public function getCpeUri()
   {
-    return $this->affectedCpeUri;
+    return $this->cpeUri;
   }
-  /**
-   * @param string
-   */
-  public function setAffectedPackage($affectedPackage)
-  {
-    $this->affectedPackage = $affectedPackage;
-  }
-  /**
-   * @return string
-   */
-  public function getAffectedPackage()
-  {
-    return $this->affectedPackage;
-  }
-  /**
-   * @param Version
-   */
-  public function setAffectedVersionEnd(Version $affectedVersionEnd)
-  {
-    $this->affectedVersionEnd = $affectedVersionEnd;
-  }
-  /**
-   * @return Version
-   */
-  public function getAffectedVersionEnd()
-  {
-    return $this->affectedVersionEnd;
-  }
-  /**
-   * @param Version
-   */
-  public function setAffectedVersionStart(Version $affectedVersionStart)
-  {
-    $this->affectedVersionStart = $affectedVersionStart;
-  }
-  /**
-   * @return Version
-   */
-  public function getAffectedVersionStart()
-  {
-    return $this->affectedVersionStart;
-  }
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;
   }
   /**
-   * @param string
+   * @param VulnerabilityLocation
    */
-  public function setFixedCpeUri($fixedCpeUri)
+  public function setFixedLocation(VulnerabilityLocation $fixedLocation)
   {
-    $this->fixedCpeUri = $fixedCpeUri;
+    $this->fixedLocation = $fixedLocation;
   }
   /**
-   * @return string
+   * @return VulnerabilityLocation
    */
-  public function getFixedCpeUri()
+  public function getFixedLocation()
   {
-    return $this->fixedCpeUri;
+    return $this->fixedLocation;
   }
-  /**
-   * @param string
-   */
-  public function setFixedPackage($fixedPackage)
-  {
-    $this->fixedPackage = $fixedPackage;
-  }
-  /**
-   * @return string
-   */
-  public function getFixedPackage()
-  {
-    return $this->fixedPackage;
-  }
-  /**
-   * @param Version
-   */
-  public function setFixedVersion(Version $fixedVersion)
-  {
-    $this->fixedVersion = $fixedVersion;
-  }
-  /**
-   * @return Version
-   */
-  public function getFixedVersion()
-  {
-    return $this->fixedVersion;
-  }
-  /**
-   * @param bool
-   */
   public function setIsObsolete($isObsolete)
   {
     $this->isObsolete = $isObsolete;
   }
-  /**
-   * @return bool
-   */
   public function getIsObsolete()
   {
     return $this->isObsolete;
   }
   /**
-   * @param string
+   * @param Version
    */
+  public function setMaxAffectedVersion(Version $maxAffectedVersion)
+  {
+    $this->maxAffectedVersion = $maxAffectedVersion;
+  }
+  /**
+   * @return Version
+   */
+  public function getMaxAffectedVersion()
+  {
+    return $this->maxAffectedVersion;
+  }
+  /**
+   * @param Version
+   */
+  public function setMinAffectedVersion(Version $minAffectedVersion)
+  {
+    $this->minAffectedVersion = $minAffectedVersion;
+  }
+  /**
+   * @return Version
+   */
+  public function getMinAffectedVersion()
+  {
+    return $this->minAffectedVersion;
+  }
+  public function setPackage($package)
+  {
+    $this->package = $package;
+  }
+  public function getPackage()
+  {
+    return $this->package;
+  }
   public function setPackageType($packageType)
   {
     $this->packageType = $packageType;
   }
-  /**
-   * @return string
-   */
   public function getPackageType()
   {
     return $this->packageType;
   }
-  /**
-   * @param string
-   */
   public function setSeverityName($severityName)
   {
     $this->severityName = $severityName;
   }
-  /**
-   * @return string
-   */
   public function getSeverityName()
   {
     return $this->severityName;
   }
-  /**
-   * @param string
-   */
   public function setSource($source)
   {
     $this->source = $source;
   }
-  /**
-   * @return string
-   */
   public function getSource()
   {
     return $this->source;
   }
-  /**
-   * @param string
-   */
   public function setSourceUpdateTime($sourceUpdateTime)
   {
     $this->sourceUpdateTime = $sourceUpdateTime;
   }
-  /**
-   * @return string
-   */
   public function getSourceUpdateTime()
   {
     return $this->sourceUpdateTime;
   }
-  /**
-   * @param string
-   */
   public function setVendor($vendor)
   {
     $this->vendor = $vendor;
   }
-  /**
-   * @return string
-   */
   public function getVendor()
   {
     return $this->vendor;

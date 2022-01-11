@@ -13,6 +13,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $user_id
  * @property string $service_name
  * @property string $user_service_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \App\User $user
+ * @method static Builder|SocialProfile whereId($value)
+ * @mixin \Eloquent
+ * @property string $username
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read ?User $user
@@ -26,8 +32,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|SocialProfile newQuery()
  * @method static Builder|SocialProfile query()
  */
-class SocialProfile extends Model
-{
+class SocialProfile extends Model {
+
     protected $guarded = ['id'];
 
     protected $dates = ['access_expires_at'];

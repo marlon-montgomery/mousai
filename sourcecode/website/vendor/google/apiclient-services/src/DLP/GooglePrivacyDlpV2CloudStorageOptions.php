@@ -20,53 +20,26 @@ namespace Google\Service\DLP;
 class GooglePrivacyDlpV2CloudStorageOptions extends \Google\Collection
 {
   protected $collection_key = 'fileTypes';
-  /**
-   * @var string
-   */
   public $bytesLimitPerFile;
-  /**
-   * @var int
-   */
   public $bytesLimitPerFilePercent;
   protected $fileSetType = GooglePrivacyDlpV2FileSet::class;
   protected $fileSetDataType = '';
-  /**
-   * @var string[]
-   */
   public $fileTypes;
-  /**
-   * @var int
-   */
   public $filesLimitPercent;
-  /**
-   * @var string
-   */
   public $sampleMethod;
 
-  /**
-   * @param string
-   */
   public function setBytesLimitPerFile($bytesLimitPerFile)
   {
     $this->bytesLimitPerFile = $bytesLimitPerFile;
   }
-  /**
-   * @return string
-   */
   public function getBytesLimitPerFile()
   {
     return $this->bytesLimitPerFile;
   }
-  /**
-   * @param int
-   */
   public function setBytesLimitPerFilePercent($bytesLimitPerFilePercent)
   {
     $this->bytesLimitPerFilePercent = $bytesLimitPerFilePercent;
   }
-  /**
-   * @return int
-   */
   public function getBytesLimitPerFilePercent()
   {
     return $this->bytesLimitPerFilePercent;
@@ -85,44 +58,26 @@ class GooglePrivacyDlpV2CloudStorageOptions extends \Google\Collection
   {
     return $this->fileSet;
   }
-  /**
-   * @param string[]
-   */
   public function setFileTypes($fileTypes)
   {
     $this->fileTypes = $fileTypes;
   }
-  /**
-   * @return string[]
-   */
   public function getFileTypes()
   {
     return $this->fileTypes;
   }
-  /**
-   * @param int
-   */
   public function setFilesLimitPercent($filesLimitPercent)
   {
     $this->filesLimitPercent = $filesLimitPercent;
   }
-  /**
-   * @return int
-   */
   public function getFilesLimitPercent()
   {
     return $this->filesLimitPercent;
   }
-  /**
-   * @param string
-   */
   public function setSampleMethod($sampleMethod)
   {
     $this->sampleMethod = $sampleMethod;
   }
-  /**
-   * @return string
-   */
   public function getSampleMethod()
   {
     return $this->sampleMethod;

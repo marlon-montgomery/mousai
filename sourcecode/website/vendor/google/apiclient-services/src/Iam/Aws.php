@@ -19,21 +19,12 @@ namespace Google\Service\Iam;
 
 class Aws extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $accountId;
 
-  /**
-   * @param string
-   */
   public function setAccountId($accountId)
   {
     $this->accountId = $accountId;
   }
-  /**
-   * @return string
-   */
   public function getAccountId()
   {
     return $this->accountId;

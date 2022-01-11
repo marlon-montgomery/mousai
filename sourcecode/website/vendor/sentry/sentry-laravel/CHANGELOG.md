@@ -2,18 +2,6 @@
 
 ## Unreleased
 
-## 2.10.2
-
-- Fix `sentry:test` command not having correct exit code on success
-
-## 2.10.1
-
-- Fix compatibility with Laravel <= 6 of the `sentry:test` and `sentry:publish` commands
-
-## 2.10.0
-
-- Improve output and DX for `sentry:test` and `sentry:publish` commands (#522)
-
 ## 2.9.0
 
 - Add support for Laravel Octane (#495)

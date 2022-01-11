@@ -19,21 +19,12 @@ namespace Google\Service\Vision;
 
 class WebDetectionParams extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $includeGeoResults;
 
-  /**
-   * @param bool
-   */
   public function setIncludeGeoResults($includeGeoResults)
   {
     $this->includeGeoResults = $includeGeoResults;
   }
-  /**
-   * @return bool
-   */
   public function getIncludeGeoResults()
   {
     return $this->includeGeoResults;

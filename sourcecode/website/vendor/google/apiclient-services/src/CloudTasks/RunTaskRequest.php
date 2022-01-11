@@ -19,21 +19,12 @@ namespace Google\Service\CloudTasks;
 
 class RunTaskRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $responseView;
 
-  /**
-   * @param string
-   */
   public function setResponseView($responseView)
   {
     $this->responseView = $responseView;
   }
-  /**
-   * @return string
-   */
   public function getResponseView()
   {
     return $this->responseView;

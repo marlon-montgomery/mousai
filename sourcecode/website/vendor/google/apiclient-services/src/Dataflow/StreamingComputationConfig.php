@@ -20,35 +20,17 @@ namespace Google\Service\Dataflow;
 class StreamingComputationConfig extends \Google\Collection
 {
   protected $collection_key = 'instructions';
-  /**
-   * @var string
-   */
   public $computationId;
   protected $instructionsType = ParallelInstruction::class;
   protected $instructionsDataType = 'array';
-  /**
-   * @var string
-   */
   public $stageName;
-  /**
-   * @var string
-   */
   public $systemName;
-  /**
-   * @var string[]
-   */
   public $transformUserNameToStateFamily;
 
-  /**
-   * @param string
-   */
   public function setComputationId($computationId)
   {
     $this->computationId = $computationId;
   }
-  /**
-   * @return string
-   */
   public function getComputationId()
   {
     return $this->computationId;
@@ -67,44 +49,26 @@ class StreamingComputationConfig extends \Google\Collection
   {
     return $this->instructions;
   }
-  /**
-   * @param string
-   */
   public function setStageName($stageName)
   {
     $this->stageName = $stageName;
   }
-  /**
-   * @return string
-   */
   public function getStageName()
   {
     return $this->stageName;
   }
-  /**
-   * @param string
-   */
   public function setSystemName($systemName)
   {
     $this->systemName = $systemName;
   }
-  /**
-   * @return string
-   */
   public function getSystemName()
   {
     return $this->systemName;
   }
-  /**
-   * @param string[]
-   */
   public function setTransformUserNameToStateFamily($transformUserNameToStateFamily)
   {
     $this->transformUserNameToStateFamily = $transformUserNameToStateFamily;
   }
-  /**
-   * @return string[]
-   */
   public function getTransformUserNameToStateFamily()
   {
     return $this->transformUserNameToStateFamily;

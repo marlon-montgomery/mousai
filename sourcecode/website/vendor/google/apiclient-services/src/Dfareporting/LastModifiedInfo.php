@@ -19,21 +19,12 @@ namespace Google\Service\Dfareporting;
 
 class LastModifiedInfo extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $time;
 
-  /**
-   * @param string
-   */
   public function setTime($time)
   {
     $this->time = $time;
   }
-  /**
-   * @return string
-   */
   public function getTime()
   {
     return $this->time;

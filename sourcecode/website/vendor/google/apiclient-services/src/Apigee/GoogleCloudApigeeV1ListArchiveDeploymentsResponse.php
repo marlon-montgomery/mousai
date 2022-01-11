@@ -22,9 +22,6 @@ class GoogleCloudApigeeV1ListArchiveDeploymentsResponse extends \Google\Collecti
   protected $collection_key = 'archiveDeployments';
   protected $archiveDeploymentsType = GoogleCloudApigeeV1ArchiveDeployment::class;
   protected $archiveDeploymentsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudApigeeV1ListArchiveDeploymentsResponse extends \Google\Collecti
   {
     return $this->archiveDeployments;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

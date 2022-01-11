@@ -19,26 +19,14 @@ namespace Google\Service\Appengine;
 
 class Volume extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $name;
   public $sizeGb;
-  /**
-   * @var string
-   */
   public $volumeType;
 
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
@@ -51,16 +39,10 @@ class Volume extends \Google\Model
   {
     return $this->sizeGb;
   }
-  /**
-   * @param string
-   */
   public function setVolumeType($volumeType)
   {
     $this->volumeType = $volumeType;
   }
-  /**
-   * @return string
-   */
   public function getVolumeType()
   {
     return $this->volumeType;

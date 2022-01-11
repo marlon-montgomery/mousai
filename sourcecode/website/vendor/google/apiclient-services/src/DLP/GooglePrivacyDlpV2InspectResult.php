@@ -22,9 +22,6 @@ class GooglePrivacyDlpV2InspectResult extends \Google\Collection
   protected $collection_key = 'findings';
   protected $findingsType = GooglePrivacyDlpV2Finding::class;
   protected $findingsDataType = 'array';
-  /**
-   * @var bool
-   */
   public $findingsTruncated;
 
   /**
@@ -41,16 +38,10 @@ class GooglePrivacyDlpV2InspectResult extends \Google\Collection
   {
     return $this->findings;
   }
-  /**
-   * @param bool
-   */
   public function setFindingsTruncated($findingsTruncated)
   {
     $this->findingsTruncated = $findingsTruncated;
   }
-  /**
-   * @return bool
-   */
   public function getFindingsTruncated()
   {
     return $this->findingsTruncated;

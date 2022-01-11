@@ -2221,21 +2221,6 @@ class ShoppingContent extends \Google\Service
                   'required' => true,
                 ],
               ],
-            ],'get' => [
-              'path' => '{merchantId}/promotions/{id}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'merchantId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'id' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
             ],
           ]
         ]

@@ -22,9 +22,6 @@ class ArtifactResult extends \Google\Collection
   protected $collection_key = 'fileHash';
   protected $fileHashType = FileHashes::class;
   protected $fileHashDataType = 'array';
-  /**
-   * @var string
-   */
   public $location;
 
   /**
@@ -41,16 +38,10 @@ class ArtifactResult extends \Google\Collection
   {
     return $this->fileHash;
   }
-  /**
-   * @param string
-   */
   public function setLocation($location)
   {
     $this->location = $location;
   }
-  /**
-   * @return string
-   */
   public function getLocation()
   {
     return $this->location;

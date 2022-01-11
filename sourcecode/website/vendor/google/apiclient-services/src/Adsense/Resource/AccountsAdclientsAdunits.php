@@ -36,7 +36,7 @@ class AccountsAdclientsAdunits extends \Google\Service\Resource
    * Gets an ad unit from a specified account and ad client. (adunits.get)
    *
    * @param string $name Required. AdUnit to get information about. Format:
-   * accounts/{account}/adclients/{adclient}/adunits/{adunit}
+   * accounts/{account_id}/adclient/{adclient_id}/adunit/{adunit_id}
    * @param array $optParams Optional parameters.
    * @return AdUnit
    */

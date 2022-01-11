@@ -19,9 +19,6 @@ namespace Google\Service\TagManager;
 
 class Entity extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $changeStatus;
   protected $clientType = Client::class;
   protected $clientDataType = '';
@@ -34,16 +31,10 @@ class Entity extends \Google\Model
   protected $variableType = Variable::class;
   protected $variableDataType = '';
 
-  /**
-   * @param string
-   */
   public function setChangeStatus($changeStatus)
   {
     $this->changeStatus = $changeStatus;
   }
-  /**
-   * @return string
-   */
   public function getChangeStatus()
   {
     return $this->changeStatus;

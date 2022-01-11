@@ -22,9 +22,6 @@ class FilterCriteria extends \Google\Collection
   protected $collection_key = 'hiddenValues';
   protected $conditionType = BooleanCondition::class;
   protected $conditionDataType = '';
-  /**
-   * @var string[]
-   */
   public $hiddenValues;
   protected $visibleBackgroundColorType = Color::class;
   protected $visibleBackgroundColorDataType = '';
@@ -49,16 +46,10 @@ class FilterCriteria extends \Google\Collection
   {
     return $this->condition;
   }
-  /**
-   * @param string[]
-   */
   public function setHiddenValues($hiddenValues)
   {
     $this->hiddenValues = $hiddenValues;
   }
-  /**
-   * @return string[]
-   */
   public function getHiddenValues()
   {
     return $this->hiddenValues;

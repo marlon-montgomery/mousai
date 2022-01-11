@@ -23,9 +23,6 @@ class GoogleCloudDatalabelingV1beta1LabelImageRequest extends \Google\Model
   protected $basicConfigDataType = '';
   protected $boundingPolyConfigType = GoogleCloudDatalabelingV1beta1BoundingPolyConfig::class;
   protected $boundingPolyConfigDataType = '';
-  /**
-   * @var string
-   */
   public $feature;
   protected $imageClassificationConfigType = GoogleCloudDatalabelingV1beta1ImageClassificationConfig::class;
   protected $imageClassificationConfigDataType = '';
@@ -62,16 +59,10 @@ class GoogleCloudDatalabelingV1beta1LabelImageRequest extends \Google\Model
   {
     return $this->boundingPolyConfig;
   }
-  /**
-   * @param string
-   */
   public function setFeature($feature)
   {
     $this->feature = $feature;
   }
-  /**
-   * @return string
-   */
   public function getFeature()
   {
     return $this->feature;

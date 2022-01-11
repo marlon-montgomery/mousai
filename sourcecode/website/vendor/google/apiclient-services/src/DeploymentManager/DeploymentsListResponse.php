@@ -22,9 +22,6 @@ class DeploymentsListResponse extends \Google\Collection
   protected $collection_key = 'deployments';
   protected $deploymentsType = Deployment::class;
   protected $deploymentsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class DeploymentsListResponse extends \Google\Collection
   {
     return $this->deployments;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

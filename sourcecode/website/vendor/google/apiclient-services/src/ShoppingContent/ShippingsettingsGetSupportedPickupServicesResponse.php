@@ -20,23 +20,14 @@ namespace Google\Service\ShoppingContent;
 class ShippingsettingsGetSupportedPickupServicesResponse extends \Google\Collection
 {
   protected $collection_key = 'pickupServices';
-  /**
-   * @var string
-   */
   public $kind;
   protected $pickupServicesType = PickupServicesPickupService::class;
   protected $pickupServicesDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

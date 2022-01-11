@@ -22,13 +22,7 @@ class GoogleIdentityStsV1betaAccessBoundaryRule extends \Google\Collection
   protected $collection_key = 'availablePermissions';
   protected $availabilityConditionType = GoogleTypeExpr::class;
   protected $availabilityConditionDataType = '';
-  /**
-   * @var string[]
-   */
   public $availablePermissions;
-  /**
-   * @var string
-   */
   public $availableResource;
 
   /**
@@ -45,30 +39,18 @@ class GoogleIdentityStsV1betaAccessBoundaryRule extends \Google\Collection
   {
     return $this->availabilityCondition;
   }
-  /**
-   * @param string[]
-   */
   public function setAvailablePermissions($availablePermissions)
   {
     $this->availablePermissions = $availablePermissions;
   }
-  /**
-   * @return string[]
-   */
   public function getAvailablePermissions()
   {
     return $this->availablePermissions;
   }
-  /**
-   * @param string
-   */
   public function setAvailableResource($availableResource)
   {
     $this->availableResource = $availableResource;
   }
-  /**
-   * @return string
-   */
   public function getAvailableResource()
   {
     return $this->availableResource;

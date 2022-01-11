@@ -22,9 +22,6 @@ class Track extends \Google\Collection
   protected $collection_key = 'releases';
   protected $releasesType = TrackRelease::class;
   protected $releasesDataType = 'array';
-  /**
-   * @var string
-   */
   public $track;
 
   /**
@@ -41,16 +38,10 @@ class Track extends \Google\Collection
   {
     return $this->releases;
   }
-  /**
-   * @param string
-   */
   public function setTrack($track)
   {
     $this->track = $track;
   }
-  /**
-   * @return string
-   */
   public function getTrack()
   {
     return $this->track;

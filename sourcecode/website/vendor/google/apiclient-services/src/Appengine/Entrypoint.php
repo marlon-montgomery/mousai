@@ -19,21 +19,12 @@ namespace Google\Service\Appengine;
 
 class Entrypoint extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $shell;
 
-  /**
-   * @param string
-   */
   public function setShell($shell)
   {
     $this->shell = $shell;
   }
-  /**
-   * @return string
-   */
   public function getShell()
   {
     return $this->shell;

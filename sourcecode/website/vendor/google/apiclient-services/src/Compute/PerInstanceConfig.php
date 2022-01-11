@@ -19,45 +19,24 @@ namespace Google\Service\Compute;
 
 class PerInstanceConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $fingerprint;
-  /**
-   * @var string
-   */
   public $name;
   protected $preservedStateType = PreservedState::class;
   protected $preservedStateDataType = '';
-  /**
-   * @var string
-   */
   public $status;
 
-  /**
-   * @param string
-   */
   public function setFingerprint($fingerprint)
   {
     $this->fingerprint = $fingerprint;
   }
-  /**
-   * @return string
-   */
   public function getFingerprint()
   {
     return $this->fingerprint;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
@@ -76,16 +55,10 @@ class PerInstanceConfig extends \Google\Model
   {
     return $this->preservedState;
   }
-  /**
-   * @param string
-   */
   public function setStatus($status)
   {
     $this->status = $status;
   }
-  /**
-   * @return string
-   */
   public function getStatus()
   {
     return $this->status;

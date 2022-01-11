@@ -22,9 +22,6 @@ class GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse extends \Google\Coll
   protected $collection_key = 'googleAdsLinks';
   protected $googleAdsLinksType = GoogleAnalyticsAdminV1alphaGoogleAdsLink::class;
   protected $googleAdsLinksDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse extends \Google\Coll
   {
     return $this->googleAdsLinks;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

@@ -19,29 +19,17 @@ namespace Google\Service\DisplayVideo;
 
 class RateDetails extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $inventorySourceRateType;
   protected $minimumSpendType = Money::class;
   protected $minimumSpendDataType = '';
   protected $rateType = Money::class;
   protected $rateDataType = '';
-  /**
-   * @var string
-   */
   public $unitsPurchased;
 
-  /**
-   * @param string
-   */
   public function setInventorySourceRateType($inventorySourceRateType)
   {
     $this->inventorySourceRateType = $inventorySourceRateType;
   }
-  /**
-   * @return string
-   */
   public function getInventorySourceRateType()
   {
     return $this->inventorySourceRateType;
@@ -74,16 +62,10 @@ class RateDetails extends \Google\Model
   {
     return $this->rate;
   }
-  /**
-   * @param string
-   */
   public function setUnitsPurchased($unitsPurchased)
   {
     $this->unitsPurchased = $unitsPurchased;
   }
-  /**
-   * @return string
-   */
   public function getUnitsPurchased()
   {
     return $this->unitsPurchased;

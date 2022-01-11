@@ -19,21 +19,12 @@ namespace Google\Service\DataLabeling;
 
 class GoogleCloudDatalabelingV1beta1TextMetadata extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $languageCode;
 
-  /**
-   * @param string
-   */
   public function setLanguageCode($languageCode)
   {
     $this->languageCode = $languageCode;
   }
-  /**
-   * @return string
-   */
   public function getLanguageCode()
   {
     return $this->languageCode;

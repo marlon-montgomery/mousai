@@ -64,15 +64,11 @@ class Pluralizer
      * Get the plural form of an English word.
      *
      * @param  string  $value
-     * @param  int|array|\Countable  $count
+     * @param  int  $count
      * @return string
      */
     public static function plural($value, $count = 2)
     {
-        if (is_countable($count)) {
-            $count = count($count);
-        }
-
         if ((int) abs($count) === 1 || static::uncountable($value) || preg_match('/^(.*)[A-Za-z0-9\x{0080}-\x{FFFF}]$/u', $value) == 0) {
             return $value;
         }

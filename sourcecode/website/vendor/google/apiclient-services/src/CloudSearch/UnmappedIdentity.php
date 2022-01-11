@@ -21,9 +21,6 @@ class UnmappedIdentity extends \Google\Model
 {
   protected $externalIdentityType = Principal::class;
   protected $externalIdentityDataType = '';
-  /**
-   * @var string
-   */
   public $resolutionStatusCode;
 
   /**
@@ -40,16 +37,10 @@ class UnmappedIdentity extends \Google\Model
   {
     return $this->externalIdentity;
   }
-  /**
-   * @param string
-   */
   public function setResolutionStatusCode($resolutionStatusCode)
   {
     $this->resolutionStatusCode = $resolutionStatusCode;
   }
-  /**
-   * @return string
-   */
   public function getResolutionStatusCode()
   {
     return $this->resolutionStatusCode;

@@ -257,7 +257,7 @@ class ParallelTesting
     /**
      * Gets a unique test token.
      *
-     * @return string|false
+     * @return int|false
      */
     public function token()
     {

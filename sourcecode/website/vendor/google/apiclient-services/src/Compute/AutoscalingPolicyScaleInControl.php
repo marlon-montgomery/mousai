@@ -21,9 +21,6 @@ class AutoscalingPolicyScaleInControl extends \Google\Model
 {
   protected $maxScaledInReplicasType = FixedOrPercent::class;
   protected $maxScaledInReplicasDataType = '';
-  /**
-   * @var int
-   */
   public $timeWindowSec;
 
   /**
@@ -40,16 +37,10 @@ class AutoscalingPolicyScaleInControl extends \Google\Model
   {
     return $this->maxScaledInReplicas;
   }
-  /**
-   * @param int
-   */
   public function setTimeWindowSec($timeWindowSec)
   {
     $this->timeWindowSec = $timeWindowSec;
   }
-  /**
-   * @return int
-   */
   public function getTimeWindowSec()
   {
     return $this->timeWindowSec;

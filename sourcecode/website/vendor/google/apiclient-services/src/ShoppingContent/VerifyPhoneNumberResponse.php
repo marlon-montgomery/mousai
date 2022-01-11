@@ -19,21 +19,12 @@ namespace Google\Service\ShoppingContent;
 
 class VerifyPhoneNumberResponse extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $verifiedPhoneNumber;
 
-  /**
-   * @param string
-   */
   public function setVerifiedPhoneNumber($verifiedPhoneNumber)
   {
     $this->verifiedPhoneNumber = $verifiedPhoneNumber;
   }
-  /**
-   * @return string
-   */
   public function getVerifiedPhoneNumber()
   {
     return $this->verifiedPhoneNumber;

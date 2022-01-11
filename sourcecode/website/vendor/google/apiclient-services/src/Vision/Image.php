@@ -19,23 +19,14 @@ namespace Google\Service\Vision;
 
 class Image extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $content;
   protected $sourceType = ImageSource::class;
   protected $sourceDataType = '';
 
-  /**
-   * @param string
-   */
   public function setContent($content)
   {
     $this->content = $content;
   }
-  /**
-   * @return string
-   */
   public function getContent()
   {
     return $this->content;

@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class NetworkEndpointGroupsListEndpointsRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $healthStatus;
 
-  /**
-   * @param string
-   */
   public function setHealthStatus($healthStatus)
   {
     $this->healthStatus = $healthStatus;
   }
-  /**
-   * @return string
-   */
   public function getHealthStatus()
   {
     return $this->healthStatus;

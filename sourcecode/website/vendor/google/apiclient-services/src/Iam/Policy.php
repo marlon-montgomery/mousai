@@ -24,13 +24,7 @@ class Policy extends \Google\Collection
   protected $auditConfigsDataType = 'array';
   protected $bindingsType = Binding::class;
   protected $bindingsDataType = 'array';
-  /**
-   * @var string
-   */
   public $etag;
-  /**
-   * @var int
-   */
   public $version;
 
   /**
@@ -61,30 +55,18 @@ class Policy extends \Google\Collection
   {
     return $this->bindings;
   }
-  /**
-   * @param string
-   */
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-  /**
-   * @return string
-   */
   public function getEtag()
   {
     return $this->etag;
   }
-  /**
-   * @param int
-   */
   public function setVersion($version)
   {
     $this->version = $version;
   }
-  /**
-   * @return int
-   */
   public function getVersion()
   {
     return $this->version;

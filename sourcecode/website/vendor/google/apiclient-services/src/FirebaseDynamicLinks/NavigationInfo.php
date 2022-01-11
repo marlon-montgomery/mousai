@@ -19,21 +19,12 @@ namespace Google\Service\FirebaseDynamicLinks;
 
 class NavigationInfo extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $enableForcedRedirect;
 
-  /**
-   * @param bool
-   */
   public function setEnableForcedRedirect($enableForcedRedirect)
   {
     $this->enableForcedRedirect = $enableForcedRedirect;
   }
-  /**
-   * @return bool
-   */
   public function getEnableForcedRedirect()
   {
     return $this->enableForcedRedirect;

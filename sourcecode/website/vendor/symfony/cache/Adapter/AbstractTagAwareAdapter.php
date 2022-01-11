@@ -79,7 +79,7 @@ abstract class AbstractTagAwareAdapter implements TagAwareAdapterInterface, TagA
                     $key = (string) $key;
                     if (null === $item->expiry) {
                         $ttl = 0 < $defaultLifetime ? $defaultLifetime : 0;
-                    } elseif (!$item->expiry) {
+                    } elseif (0 === $item->expiry) {
                         $ttl = 0;
                     } elseif (0 >= $ttl = (int) (0.1 + $item->expiry - $now)) {
                         $expiredIds[] = $getId($key);
@@ -136,7 +136,7 @@ abstract class AbstractTagAwareAdapter implements TagAwareAdapterInterface, TagA
      *
      * @param array $ids An array of identifiers that should be removed from the pool
      *
-     * @return bool
+     * @return bool True if the items were successfully removed, false otherwise
      */
     abstract protected function doDelete(array $ids);
 
@@ -151,6 +151,8 @@ abstract class AbstractTagAwareAdapter implements TagAwareAdapterInterface, TagA
      * Invalidates cached items using tags.
      *
      * @param string[] $tagIds An array of tags to invalidate, key is tag and value is tag id
+     *
+     * @return bool True on success
      */
     abstract protected function doInvalidate(array $tagIds): bool;
 

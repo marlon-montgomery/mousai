@@ -5,8 +5,6 @@ namespace Doctrine\DBAL\Types;
 use Doctrine\DBAL\Exception;
 use Throwable;
 
-use function func_get_arg;
-use function func_num_args;
 use function get_class;
 use function gettype;
 use function implode;
@@ -100,7 +98,7 @@ class ConversionException extends Exception
      *
      * @return ConversionException
      */
-    public static function conversionFailedSerialization($value, $format, $error /*, ?Throwable $previous = null */)
+    public static function conversionFailedSerialization($value, $format, $error)
     {
         $actualType = is_object($value) ? get_class($value) : gettype($value);
 
@@ -109,7 +107,7 @@ class ConversionException extends Exception
             $actualType,
             $format,
             $error
-        ), 0, func_num_args() >= 4 ? func_get_arg(3) : null);
+        ));
     }
 
     public static function conversionFailedUnserialization(string $format, string $error): self

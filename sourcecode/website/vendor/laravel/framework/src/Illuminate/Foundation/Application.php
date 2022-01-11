@@ -33,7 +33,7 @@ class Application extends Container implements ApplicationContract, CachesConfig
      *
      * @var string
      */
-    const VERSION = '8.77.1';
+    const VERSION = '8.63.0';
 
     /**
      * The base path for the Laravel installation.
@@ -248,7 +248,7 @@ class Application extends Container implements ApplicationContract, CachesConfig
      */
     public function afterLoadingEnvironment(Closure $callback)
     {
-        $this->afterBootstrapping(
+        return $this->afterBootstrapping(
             LoadEnvironmentVariables::class, $callback
         );
     }
@@ -628,17 +628,7 @@ class Application extends Container implements ApplicationContract, CachesConfig
      */
     public function runningUnitTests()
     {
-        return $this->bound('env') && $this['env'] === 'testing';
-    }
-
-    /**
-     * Determine if the application is running with debug mode enabled.
-     *
-     * @return bool
-     */
-    public function hasDebugModeEnabled()
-    {
-        return (bool) $this['config']->get('app.debug');
+        return $this['env'] === 'testing';
     }
 
     /**
@@ -949,7 +939,7 @@ class Application extends Container implements ApplicationContract, CachesConfig
         $this->bootedCallbacks[] = $callback;
 
         if ($this->isBooted()) {
-            $callback($this);
+            $this->fireAppCallbacks([$callback]);
         }
     }
 
@@ -959,14 +949,10 @@ class Application extends Container implements ApplicationContract, CachesConfig
      * @param  callable[]  $callbacks
      * @return void
      */
-    protected function fireAppCallbacks(array &$callbacks)
+    protected function fireAppCallbacks(array $callbacks)
     {
-        $index = 0;
-
-        while ($index < count($callbacks)) {
-            $callbacks[$index]($this);
-
-            $index++;
+        foreach ($callbacks as $callback) {
+            $callback($this);
         }
     }
 
@@ -1118,7 +1104,7 @@ class Application extends Container implements ApplicationContract, CachesConfig
      * @param  int  $code
      * @param  string  $message
      * @param  array  $headers
-     * @return never
+     * @return void
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
@@ -1152,12 +1138,8 @@ class Application extends Container implements ApplicationContract, CachesConfig
      */
     public function terminate()
     {
-        $index = 0;
-
-        while ($index < count($this->terminatingCallbacks)) {
-            $this->call($this->terminatingCallbacks[$index]);
-
-            $index++;
+        foreach ($this->terminatingCallbacks as $terminating) {
+            $this->call($terminating);
         }
     }
 

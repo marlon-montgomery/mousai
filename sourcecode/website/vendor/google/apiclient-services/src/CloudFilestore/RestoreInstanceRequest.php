@@ -19,39 +19,21 @@ namespace Google\Service\CloudFilestore;
 
 class RestoreInstanceRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $fileShare;
-  /**
-   * @var string
-   */
   public $sourceBackup;
 
-  /**
-   * @param string
-   */
   public function setFileShare($fileShare)
   {
     $this->fileShare = $fileShare;
   }
-  /**
-   * @return string
-   */
   public function getFileShare()
   {
     return $this->fileShare;
   }
-  /**
-   * @param string
-   */
   public function setSourceBackup($sourceBackup)
   {
     $this->sourceBackup = $sourceBackup;
   }
-  /**
-   * @return string
-   */
   public function getSourceBackup()
   {
     return $this->sourceBackup;

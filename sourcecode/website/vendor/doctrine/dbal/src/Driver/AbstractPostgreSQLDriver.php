@@ -12,7 +12,6 @@ use Doctrine\DBAL\Platforms\PostgreSQL94Platform;
 use Doctrine\DBAL\Schema\PostgreSQLSchemaManager;
 use Doctrine\DBAL\VersionAwarePlatformDriver;
 
-use function assert;
 use function preg_match;
 use function version_compare;
 
@@ -58,8 +57,6 @@ abstract class AbstractPostgreSQLDriver implements VersionAwarePlatformDriver
      */
     public function getSchemaManager(Connection $conn, AbstractPlatform $platform)
     {
-        assert($platform instanceof PostgreSQL94Platform);
-
         return new PostgreSQLSchemaManager($conn, $platform);
     }
 

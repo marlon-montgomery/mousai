@@ -21,15 +21,9 @@ class TemporalAsset extends \Google\Model
 {
   protected $assetType = Asset::class;
   protected $assetDataType = '';
-  /**
-   * @var bool
-   */
   public $deleted;
   protected $priorAssetType = Asset::class;
   protected $priorAssetDataType = '';
-  /**
-   * @var string
-   */
   public $priorAssetState;
   protected $windowType = TimeWindow::class;
   protected $windowDataType = '';
@@ -48,16 +42,10 @@ class TemporalAsset extends \Google\Model
   {
     return $this->asset;
   }
-  /**
-   * @param bool
-   */
   public function setDeleted($deleted)
   {
     $this->deleted = $deleted;
   }
-  /**
-   * @return bool
-   */
   public function getDeleted()
   {
     return $this->deleted;
@@ -76,16 +64,10 @@ class TemporalAsset extends \Google\Model
   {
     return $this->priorAsset;
   }
-  /**
-   * @param string
-   */
   public function setPriorAssetState($priorAssetState)
   {
     $this->priorAssetState = $priorAssetState;
   }
-  /**
-   * @return string
-   */
   public function getPriorAssetState()
   {
     return $this->priorAssetState;

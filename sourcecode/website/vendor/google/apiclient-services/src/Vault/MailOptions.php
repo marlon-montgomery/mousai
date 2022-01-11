@@ -19,21 +19,12 @@ namespace Google\Service\Vault;
 
 class MailOptions extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $excludeDrafts;
 
-  /**
-   * @param bool
-   */
   public function setExcludeDrafts($excludeDrafts)
   {
     $this->excludeDrafts = $excludeDrafts;
   }
-  /**
-   * @return bool
-   */
   public function getExcludeDrafts()
   {
     return $this->excludeDrafts;

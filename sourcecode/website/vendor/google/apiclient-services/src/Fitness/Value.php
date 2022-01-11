@@ -21,15 +21,9 @@ class Value extends \Google\Collection
 {
   protected $collection_key = 'mapVal';
   public $fpVal;
-  /**
-   * @var int
-   */
   public $intVal;
   protected $mapValType = ValueMapValEntry::class;
   protected $mapValDataType = 'array';
-  /**
-   * @var string
-   */
   public $stringVal;
 
   public function setFpVal($fpVal)
@@ -40,16 +34,10 @@ class Value extends \Google\Collection
   {
     return $this->fpVal;
   }
-  /**
-   * @param int
-   */
   public function setIntVal($intVal)
   {
     $this->intVal = $intVal;
   }
-  /**
-   * @return int
-   */
   public function getIntVal()
   {
     return $this->intVal;
@@ -68,16 +56,10 @@ class Value extends \Google\Collection
   {
     return $this->mapVal;
   }
-  /**
-   * @param string
-   */
   public function setStringVal($stringVal)
   {
     $this->stringVal = $stringVal;
   }
-  /**
-   * @return string
-   */
   public function getStringVal()
   {
     return $this->stringVal;

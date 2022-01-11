@@ -20,23 +20,14 @@ namespace Google\Service\Bigquery;
 class ListRoutinesResponse extends \Google\Collection
 {
   protected $collection_key = 'routines';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $routinesType = Routine::class;
   protected $routinesDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

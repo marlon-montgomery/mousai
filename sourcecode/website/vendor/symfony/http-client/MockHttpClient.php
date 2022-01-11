@@ -17,14 +17,13 @@ use Symfony\Component\HttpClient\Response\ResponseStream;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Symfony\Contracts\HttpClient\ResponseStreamInterface;
-use Symfony\Contracts\Service\ResetInterface;
 
 /**
  * A test-friendly HttpClient that doesn't make actual HTTP requests.
  *
  * @author Nicolas Grekas <p@tchwork.com>
  */
-class MockHttpClient implements HttpClientInterface, ResetInterface
+class MockHttpClient implements HttpClientInterface
 {
     use HttpClientTrait;
 
@@ -35,16 +34,7 @@ class MockHttpClient implements HttpClientInterface, ResetInterface
     /**
      * @param callable|callable[]|ResponseInterface|ResponseInterface[]|iterable|null $responseFactory
      */
-    public function __construct($responseFactory = null, ?string $baseUri = 'https://example.com')
-    {
-        $this->setResponseFactory($responseFactory);
-        $this->defaultOptions['base_uri'] = $baseUri;
-    }
-
-    /**
-     * @param callable|callable[]|ResponseInterface|ResponseInterface[]|iterable|null $responseFactory
-     */
-    public function setResponseFactory($responseFactory): void
+    public function __construct($responseFactory = null, string $baseUri = null)
     {
         if ($responseFactory instanceof ResponseInterface) {
             $responseFactory = [$responseFactory];
@@ -57,6 +47,7 @@ class MockHttpClient implements HttpClientInterface, ResetInterface
         }
 
         $this->responseFactory = $responseFactory;
+        $this->defaultOptions['base_uri'] = $baseUri;
     }
 
     /**
@@ -115,10 +106,5 @@ class MockHttpClient implements HttpClientInterface, ResetInterface
         $clone->defaultOptions = self::mergeDefaultOptions($options, $this->defaultOptions, true);
 
         return $clone;
-    }
-
-    public function reset()
-    {
-        $this->requestsCount = 0;
     }
 }

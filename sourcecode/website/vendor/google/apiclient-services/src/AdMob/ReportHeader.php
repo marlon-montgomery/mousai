@@ -23,9 +23,6 @@ class ReportHeader extends \Google\Model
   protected $dateRangeDataType = '';
   protected $localizationSettingsType = LocalizationSettings::class;
   protected $localizationSettingsDataType = '';
-  /**
-   * @var string
-   */
   public $reportingTimeZone;
 
   /**
@@ -56,16 +53,10 @@ class ReportHeader extends \Google\Model
   {
     return $this->localizationSettings;
   }
-  /**
-   * @param string
-   */
   public function setReportingTimeZone($reportingTimeZone)
   {
     $this->reportingTimeZone = $reportingTimeZone;
   }
-  /**
-   * @return string
-   */
   public function getReportingTimeZone()
   {
     return $this->reportingTimeZone;

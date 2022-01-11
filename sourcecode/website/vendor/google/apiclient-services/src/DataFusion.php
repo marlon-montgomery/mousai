@@ -40,7 +40,7 @@ use Google\Client;
  */
 class DataFusion extends \Google\Service
 {
-  /** See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.. */
+  /** See, edit, configure, and delete your Google Cloud Platform data. */
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
 

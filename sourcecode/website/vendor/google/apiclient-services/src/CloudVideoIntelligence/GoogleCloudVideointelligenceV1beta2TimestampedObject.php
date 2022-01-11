@@ -26,9 +26,6 @@ class GoogleCloudVideointelligenceV1beta2TimestampedObject extends \Google\Colle
   protected $landmarksDataType = 'array';
   protected $normalizedBoundingBoxType = GoogleCloudVideointelligenceV1beta2NormalizedBoundingBox::class;
   protected $normalizedBoundingBoxDataType = '';
-  /**
-   * @var string
-   */
   public $timeOffset;
 
   /**
@@ -73,16 +70,10 @@ class GoogleCloudVideointelligenceV1beta2TimestampedObject extends \Google\Colle
   {
     return $this->normalizedBoundingBox;
   }
-  /**
-   * @param string
-   */
   public function setTimeOffset($timeOffset)
   {
     $this->timeOffset = $timeOffset;
   }
-  /**
-   * @return string
-   */
   public function getTimeOffset()
   {
     return $this->timeOffset;

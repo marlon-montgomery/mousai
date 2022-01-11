@@ -19,23 +19,14 @@ namespace Google\Service\Sheets;
 
 class UpdateProtectedRangeRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $fields;
   protected $protectedRangeType = ProtectedRange::class;
   protected $protectedRangeDataType = '';
 
-  /**
-   * @param string
-   */
   public function setFields($fields)
   {
     $this->fields = $fields;
   }
-  /**
-   * @return string
-   */
   public function getFields()
   {
     return $this->fields;

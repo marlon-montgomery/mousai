@@ -19,21 +19,12 @@ namespace Google\Service\HomeGraphService;
 
 class QueryResponsePayload extends \Google\Model
 {
-  /**
-   * @var array[]
-   */
   public $devices;
 
-  /**
-   * @param array[]
-   */
   public function setDevices($devices)
   {
     $this->devices = $devices;
   }
-  /**
-   * @return array[]
-   */
   public function getDevices()
   {
     return $this->devices;

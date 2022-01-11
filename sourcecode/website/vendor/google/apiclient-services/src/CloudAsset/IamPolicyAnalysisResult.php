@@ -22,13 +22,7 @@ class IamPolicyAnalysisResult extends \Google\Collection
   protected $collection_key = 'accessControlLists';
   protected $accessControlListsType = GoogleCloudAssetV1AccessControlList::class;
   protected $accessControlListsDataType = 'array';
-  /**
-   * @var string
-   */
   public $attachedResourceFullName;
-  /**
-   * @var bool
-   */
   public $fullyExplored;
   protected $iamBindingType = Binding::class;
   protected $iamBindingDataType = '';
@@ -49,30 +43,18 @@ class IamPolicyAnalysisResult extends \Google\Collection
   {
     return $this->accessControlLists;
   }
-  /**
-   * @param string
-   */
   public function setAttachedResourceFullName($attachedResourceFullName)
   {
     $this->attachedResourceFullName = $attachedResourceFullName;
   }
-  /**
-   * @return string
-   */
   public function getAttachedResourceFullName()
   {
     return $this->attachedResourceFullName;
   }
-  /**
-   * @param bool
-   */
   public function setFullyExplored($fullyExplored)
   {
     $this->fullyExplored = $fullyExplored;
   }
-  /**
-   * @return bool
-   */
   public function getFullyExplored()
   {
     return $this->fullyExplored;

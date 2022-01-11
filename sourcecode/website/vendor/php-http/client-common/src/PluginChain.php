@@ -26,7 +26,10 @@ final class PluginChain
     /**
      * @param Plugin[]                            $plugins        A plugin chain
      * @param callable(RequestInterface): Promise $clientCallable Callable making the HTTP call
-     * @param array{'max_restarts'?: int}         $options
+     * @param array                               $options        {
+     *
+     *     @var int $max_restarts
+     * }
      */
     public function __construct(array $plugins, callable $clientCallable, array $options = [])
     {

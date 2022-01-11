@@ -19,21 +19,12 @@ namespace Google\Service\Spanner;
 
 class Partition extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $partitionToken;
 
-  /**
-   * @param string
-   */
   public function setPartitionToken($partitionToken)
   {
     $this->partitionToken = $partitionToken;
   }
-  /**
-   * @return string
-   */
   public function getPartitionToken()
   {
     return $this->partitionToken;

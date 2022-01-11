@@ -30,17 +30,8 @@ class AggregateRequest extends \Google\Collection
   protected $bucketBySessionDataType = '';
   protected $bucketByTimeType = BucketByTime::class;
   protected $bucketByTimeDataType = '';
-  /**
-   * @var string
-   */
   public $endTimeMillis;
-  /**
-   * @var string[]
-   */
   public $filteredDataQualityStandard;
-  /**
-   * @var string
-   */
   public $startTimeMillis;
 
   /**
@@ -113,44 +104,26 @@ class AggregateRequest extends \Google\Collection
   {
     return $this->bucketByTime;
   }
-  /**
-   * @param string
-   */
   public function setEndTimeMillis($endTimeMillis)
   {
     $this->endTimeMillis = $endTimeMillis;
   }
-  /**
-   * @return string
-   */
   public function getEndTimeMillis()
   {
     return $this->endTimeMillis;
   }
-  /**
-   * @param string[]
-   */
   public function setFilteredDataQualityStandard($filteredDataQualityStandard)
   {
     $this->filteredDataQualityStandard = $filteredDataQualityStandard;
   }
-  /**
-   * @return string[]
-   */
   public function getFilteredDataQualityStandard()
   {
     return $this->filteredDataQualityStandard;
   }
-  /**
-   * @param string
-   */
   public function setStartTimeMillis($startTimeMillis)
   {
     $this->startTimeMillis = $startTimeMillis;
   }
-  /**
-   * @return string
-   */
   public function getStartTimeMillis()
   {
     return $this->startTimeMillis;

@@ -5,13 +5,12 @@ namespace Illuminate\Support;
 use ArrayIterator;
 use Closure;
 use DateTimeInterface;
-use Illuminate\Contracts\Support\CanBeEscapedWhenCastToString;
 use Illuminate\Support\Traits\EnumeratesValues;
 use Illuminate\Support\Traits\Macroable;
 use IteratorAggregate;
 use stdClass;
 
-class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
+class LazyCollection implements Enumerable
 {
     use EnumeratesValues, Macroable;
 
@@ -203,19 +202,6 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
         }
 
         return $this->contains($this->operatorForWhere(...func_get_args()));
-    }
-
-    /**
-     * Determine if an item is not contained in the enumerable.
-     *
-     * @param  mixed  $key
-     * @param  mixed  $operator
-     * @param  mixed  $value
-     * @return bool
-     */
-    public function doesntContain($key, $operator = null, $value = null)
-    {
-        return ! $this->contains(...func_get_args());
     }
 
     /**
@@ -519,25 +505,6 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
 
         foreach ($this as $key => $value) {
             if (array_key_exists($key, $keys) && --$count == 0) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Determine if any of the keys exist in the collection.
-     *
-     * @param  mixed  $key
-     * @return bool
-     */
-    public function hasAny($key)
-    {
-        $keys = array_flip(is_array($key) ? $key : func_get_args());
-
-        foreach ($this as $key => $value) {
-            if (array_key_exists($key, $keys)) {
                 return true;
             }
         }
@@ -1383,16 +1350,6 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
                 yield $key => $value;
             }
         });
-    }
-
-    /**
-     * Convert a flatten "dot" notation array into an expanded array.
-     *
-     * @return static
-     */
-    public function undot()
-    {
-        return $this->passthru('undot', []);
     }
 
     /**

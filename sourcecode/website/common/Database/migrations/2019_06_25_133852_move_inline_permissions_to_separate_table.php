@@ -24,7 +24,7 @@ class MoveInlinePermissionsToSeparateTable extends Migration
     {
         $models = [Role::class, User::class, BillingPlan::class];
         $this->staticPermissions = collect(
-            app(GetStaticPermissions::class)->execute(),
+            app(GetStaticPermissions::class)->execute()
         )->toArray();
 
         foreach ($models as $model) {
@@ -40,17 +40,17 @@ class MoveInlinePermissionsToSeparateTable extends Migration
             app($model)
                 ->whereNotNull('legacy_permissions')
                 ->orderBy('id')
-                ->chunk(50, function (Collection $models) {
-                    $models->each(function ($model) {
+                ->chunk(50, function(Collection $models) {
+                    $models->each(function($model) {
                         try {
                             $permissions = array_keys(
-                                json_decode($model->legacy_permissions, true),
+                                json_decode($model->legacy_permissions, true)
                             );
                         } catch (Exception $e) {
-                            return;
+                           return;
                         }
                         $permissions = collect($permissions)
-                            ->map(function ($permissionName) {
+                            ->map(function($permissionName) {
                                 if (
                                     $existing = app(Permission::class)
                                         ->where('name', $permissionName)
@@ -59,11 +59,11 @@ class MoveInlinePermissionsToSeparateTable extends Migration
                                     return $existing;
                                 } else {
                                     $permissionConfig = $this->getPermissionConfig(
-                                        $permissionName,
+                                        $permissionName
                                     );
-                                    if (!$permissionConfig) {
+                                    if ( ! $permissionConfig) {
                                         $permissionConfig = [
-                                            'name' => $permissionName,
+                                            'name' => $permissionName
                                         ];
                                     }
                                     return app(Permission::class)->create(

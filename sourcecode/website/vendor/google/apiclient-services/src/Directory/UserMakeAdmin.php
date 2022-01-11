@@ -19,21 +19,12 @@ namespace Google\Service\Directory;
 
 class UserMakeAdmin extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $status;
 
-  /**
-   * @param bool
-   */
   public function setStatus($status)
   {
     $this->status = $status;
   }
-  /**
-   * @return bool
-   */
   public function getStatus()
   {
     return $this->status;

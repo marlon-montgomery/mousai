@@ -19,55 +19,28 @@ namespace Google\Service\Contactcenterinsights;
 
 class GoogleCloudContactcenterinsightsV1alpha1IssueModel extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $createTime;
-  /**
-   * @var string
-   */
   public $displayName;
   protected $inputDataConfigType = GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfig::class;
   protected $inputDataConfigDataType = '';
-  /**
-   * @var string
-   */
   public $name;
-  /**
-   * @var string
-   */
   public $state;
   protected $trainingStatsType = GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStats::class;
   protected $trainingStatsDataType = '';
-  /**
-   * @var string
-   */
   public $updateTime;
 
-  /**
-   * @param string
-   */
   public function setCreateTime($createTime)
   {
     $this->createTime = $createTime;
   }
-  /**
-   * @return string
-   */
   public function getCreateTime()
   {
     return $this->createTime;
   }
-  /**
-   * @param string
-   */
   public function setDisplayName($displayName)
   {
     $this->displayName = $displayName;
   }
-  /**
-   * @return string
-   */
   public function getDisplayName()
   {
     return $this->displayName;
@@ -86,30 +59,18 @@ class GoogleCloudContactcenterinsightsV1alpha1IssueModel extends \Google\Model
   {
     return $this->inputDataConfig;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
   }
-  /**
-   * @param string
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return string
-   */
   public function getState()
   {
     return $this->state;
@@ -128,16 +89,10 @@ class GoogleCloudContactcenterinsightsV1alpha1IssueModel extends \Google\Model
   {
     return $this->trainingStats;
   }
-  /**
-   * @param string
-   */
   public function setUpdateTime($updateTime)
   {
     $this->updateTime = $updateTime;
   }
-  /**
-   * @return string
-   */
   public function getUpdateTime()
   {
     return $this->updateTime;

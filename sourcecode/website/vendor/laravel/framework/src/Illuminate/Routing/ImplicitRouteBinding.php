@@ -4,7 +4,6 @@ namespace Illuminate\Routing;
 
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Reflector;
 use Illuminate\Support\Str;
 
@@ -38,11 +37,11 @@ class ImplicitRouteBinding
 
             $parent = $route->parentOfParameter($parameterName);
 
-            $routeBindingMethod = $route->allowsTrashedBindings() && in_array(SoftDeletes::class, class_uses_recursive($instance))
+            $routeBindingMethod = $route->allowsTrashedBindings()
                         ? 'resolveSoftDeletableRouteBinding'
                         : 'resolveRouteBinding';
 
-            if ($parent instanceof UrlRoutable && ($route->enforcesScopedBindings() || array_key_exists($parameterName, $route->bindingFields()))) {
+            if ($parent instanceof UrlRoutable && in_array($parameterName, array_keys($route->bindingFields()))) {
                 $childRouteBindingMethod = $route->allowsTrashedBindings()
                             ? 'resolveSoftDeletableChildRouteBinding'
                             : 'resolveChildRouteBinding';

@@ -19,39 +19,21 @@ namespace Google\Service\Games;
 
 class PlayerName extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $familyName;
-  /**
-   * @var string
-   */
   public $givenName;
 
-  /**
-   * @param string
-   */
   public function setFamilyName($familyName)
   {
     $this->familyName = $familyName;
   }
-  /**
-   * @return string
-   */
   public function getFamilyName()
   {
     return $this->familyName;
   }
-  /**
-   * @param string
-   */
   public function setGivenName($givenName)
   {
     $this->givenName = $givenName;
   }
-  /**
-   * @return string
-   */
   public function getGivenName()
   {
     return $this->givenName;

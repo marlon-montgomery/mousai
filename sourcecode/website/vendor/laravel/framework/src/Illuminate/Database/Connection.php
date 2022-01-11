@@ -54,7 +54,7 @@ class Connection implements ConnectionInterface
      *
      * @var string|null
      */
-    protected $readWriteType;
+    protected $type;
 
     /**
      * The table prefix for the connection.

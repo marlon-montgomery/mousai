@@ -22,15 +22,9 @@ class ManagedZonesListResponse extends \Google\Collection
   protected $collection_key = 'managedZones';
   protected $headerType = ResponseHeader::class;
   protected $headerDataType = '';
-  /**
-   * @var string
-   */
   public $kind;
   protected $managedZonesType = ManagedZone::class;
   protected $managedZonesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -47,16 +41,10 @@ class ManagedZonesListResponse extends \Google\Collection
   {
     return $this->header;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
@@ -75,16 +63,10 @@ class ManagedZonesListResponse extends \Google\Collection
   {
     return $this->managedZones;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

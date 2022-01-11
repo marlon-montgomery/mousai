@@ -21,9 +21,6 @@ class GoogleCloudPaymentsResellerSubscriptionV1Extension extends \Google\Model
 {
   protected $durationType = GoogleCloudPaymentsResellerSubscriptionV1Duration::class;
   protected $durationDataType = '';
-  /**
-   * @var string
-   */
   public $partnerUserToken;
 
   /**
@@ -40,16 +37,10 @@ class GoogleCloudPaymentsResellerSubscriptionV1Extension extends \Google\Model
   {
     return $this->duration;
   }
-  /**
-   * @param string
-   */
   public function setPartnerUserToken($partnerUserToken)
   {
     $this->partnerUserToken = $partnerUserToken;
   }
-  /**
-   * @return string
-   */
   public function getPartnerUserToken()
   {
     return $this->partnerUserToken;

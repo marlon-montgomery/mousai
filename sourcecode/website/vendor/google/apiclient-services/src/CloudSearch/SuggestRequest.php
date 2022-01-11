@@ -22,9 +22,6 @@ class SuggestRequest extends \Google\Collection
   protected $collection_key = 'dataSourceRestrictions';
   protected $dataSourceRestrictionsType = DataSourceRestriction::class;
   protected $dataSourceRestrictionsDataType = 'array';
-  /**
-   * @var string
-   */
   public $query;
   protected $requestOptionsType = RequestOptions::class;
   protected $requestOptionsDataType = '';
@@ -43,16 +40,10 @@ class SuggestRequest extends \Google\Collection
   {
     return $this->dataSourceRestrictions;
   }
-  /**
-   * @param string
-   */
   public function setQuery($query)
   {
     $this->query = $query;
   }
-  /**
-   * @return string
-   */
   public function getQuery()
   {
     return $this->query;

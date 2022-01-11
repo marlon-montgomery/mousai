@@ -19,21 +19,12 @@ namespace Google\Service\Monitoring;
 
 class LatencyCriteria extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $threshold;
 
-  /**
-   * @param string
-   */
   public function setThreshold($threshold)
   {
     $this->threshold = $threshold;
   }
-  /**
-   * @return string
-   */
   public function getThreshold()
   {
     return $this->threshold;

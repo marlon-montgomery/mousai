@@ -22,21 +22,9 @@ class RevisionStatus extends \Google\Collection
   protected $collection_key = 'conditions';
   protected $conditionsType = GoogleCloudRunV1Condition::class;
   protected $conditionsDataType = 'array';
-  /**
-   * @var string
-   */
   public $imageDigest;
-  /**
-   * @var string
-   */
   public $logUrl;
-  /**
-   * @var int
-   */
   public $observedGeneration;
-  /**
-   * @var string
-   */
   public $serviceName;
 
   /**
@@ -53,58 +41,34 @@ class RevisionStatus extends \Google\Collection
   {
     return $this->conditions;
   }
-  /**
-   * @param string
-   */
   public function setImageDigest($imageDigest)
   {
     $this->imageDigest = $imageDigest;
   }
-  /**
-   * @return string
-   */
   public function getImageDigest()
   {
     return $this->imageDigest;
   }
-  /**
-   * @param string
-   */
   public function setLogUrl($logUrl)
   {
     $this->logUrl = $logUrl;
   }
-  /**
-   * @return string
-   */
   public function getLogUrl()
   {
     return $this->logUrl;
   }
-  /**
-   * @param int
-   */
   public function setObservedGeneration($observedGeneration)
   {
     $this->observedGeneration = $observedGeneration;
   }
-  /**
-   * @return int
-   */
   public function getObservedGeneration()
   {
     return $this->observedGeneration;
   }
-  /**
-   * @param string
-   */
   public function setServiceName($serviceName)
   {
     $this->serviceName = $serviceName;
   }
-  /**
-   * @return string
-   */
   public function getServiceName()
   {
     return $this->serviceName;

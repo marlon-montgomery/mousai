@@ -1,6 +1,8 @@
+import {Model} from '../../core/types/models/model';
+
 export function filterDatatableData<T = object>(data: T[], filter: string): T[] {
     return data.filter(obj => filterPredicate(obj as any, filter));
-}
+
 /**
  * Checks if a data object matches the data source's filter string. By default, each data object
  * is converted to a string of its properties and returns true if the filter has

@@ -19,27 +19,15 @@ namespace Google\Service\SASPortalTesting;
 
 class SasPortalSetPolicyRequest extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $disableNotification;
   protected $policyType = SasPortalPolicy::class;
   protected $policyDataType = '';
-  /**
-   * @var string
-   */
   public $resource;
 
-  /**
-   * @param bool
-   */
   public function setDisableNotification($disableNotification)
   {
     $this->disableNotification = $disableNotification;
   }
-  /**
-   * @return bool
-   */
   public function getDisableNotification()
   {
     return $this->disableNotification;
@@ -58,16 +46,10 @@ class SasPortalSetPolicyRequest extends \Google\Model
   {
     return $this->policy;
   }
-  /**
-   * @param string
-   */
   public function setResource($resource)
   {
     $this->resource = $resource;
   }
-  /**
-   * @return string
-   */
   public function getResource()
   {
     return $this->resource;

@@ -28,6 +28,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "aot": true,
                         "preserveSymlinks": true,
                         "outputPath": "dist/client/browser",
                         "index": "src/index.html",
@@ -78,6 +79,7 @@
                             "outputHashing": "all",
                             "sourceMap": false,
                             "namedChunks": false,
+                            "aot": true,
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true

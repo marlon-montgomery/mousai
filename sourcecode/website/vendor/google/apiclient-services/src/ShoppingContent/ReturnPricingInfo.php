@@ -19,9 +19,6 @@ namespace Google\Service\ShoppingContent;
 
 class ReturnPricingInfo extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $chargeReturnShippingFee;
   protected $maxReturnShippingFeeType = MonetaryAmount::class;
   protected $maxReturnShippingFeeDataType = '';
@@ -32,16 +29,10 @@ class ReturnPricingInfo extends \Google\Model
   protected $totalRefundedAmountType = MonetaryAmount::class;
   protected $totalRefundedAmountDataType = '';
 
-  /**
-   * @param bool
-   */
   public function setChargeReturnShippingFee($chargeReturnShippingFee)
   {
     $this->chargeReturnShippingFee = $chargeReturnShippingFee;
   }
-  /**
-   * @return bool
-   */
   public function getChargeReturnShippingFee()
   {
     return $this->chargeReturnShippingFee;

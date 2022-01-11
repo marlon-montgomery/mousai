@@ -10,7 +10,7 @@ namespace Sentry;
  *
  * @author Stefano Arlandini <sarlandini@alice.it>
  */
-final class Dsn implements \Stringable
+final class Dsn
 {
     /**
      * @var string The protocol to be used to access the resource

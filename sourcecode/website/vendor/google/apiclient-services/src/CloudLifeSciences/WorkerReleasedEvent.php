@@ -19,39 +19,21 @@ namespace Google\Service\CloudLifeSciences;
 
 class WorkerReleasedEvent extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $instance;
-  /**
-   * @var string
-   */
   public $zone;
 
-  /**
-   * @param string
-   */
   public function setInstance($instance)
   {
     $this->instance = $instance;
   }
-  /**
-   * @return string
-   */
   public function getInstance()
   {
     return $this->instance;
   }
-  /**
-   * @param string
-   */
   public function setZone($zone)
   {
     $this->zone = $zone;
   }
-  /**
-   * @return string
-   */
   public function getZone()
   {
     return $this->zone;

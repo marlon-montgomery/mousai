@@ -19,45 +19,24 @@ namespace Google\Service\CloudSearch;
 
 class IntegerPropertyOptions extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $maximumValue;
-  /**
-   * @var string
-   */
   public $minimumValue;
   protected $operatorOptionsType = IntegerOperatorOptions::class;
   protected $operatorOptionsDataType = '';
-  /**
-   * @var string
-   */
   public $orderedRanking;
 
-  /**
-   * @param string
-   */
   public function setMaximumValue($maximumValue)
   {
     $this->maximumValue = $maximumValue;
   }
-  /**
-   * @return string
-   */
   public function getMaximumValue()
   {
     return $this->maximumValue;
   }
-  /**
-   * @param string
-   */
   public function setMinimumValue($minimumValue)
   {
     $this->minimumValue = $minimumValue;
   }
-  /**
-   * @return string
-   */
   public function getMinimumValue()
   {
     return $this->minimumValue;
@@ -76,16 +55,10 @@ class IntegerPropertyOptions extends \Google\Model
   {
     return $this->operatorOptions;
   }
-  /**
-   * @param string
-   */
   public function setOrderedRanking($orderedRanking)
   {
     $this->orderedRanking = $orderedRanking;
   }
-  /**
-   * @return string
-   */
   public function getOrderedRanking()
   {
     return $this->orderedRanking;

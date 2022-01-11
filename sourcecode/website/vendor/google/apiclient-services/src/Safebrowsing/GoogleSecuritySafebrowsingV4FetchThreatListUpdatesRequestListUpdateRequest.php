@@ -21,21 +21,9 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest
 {
   protected $constraintsType = GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraints::class;
   protected $constraintsDataType = '';
-  /**
-   * @var string
-   */
   public $platformType;
-  /**
-   * @var string
-   */
   public $state;
-  /**
-   * @var string
-   */
   public $threatEntryType;
-  /**
-   * @var string
-   */
   public $threatType;
 
   /**
@@ -52,58 +40,34 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest
   {
     return $this->constraints;
   }
-  /**
-   * @param string
-   */
   public function setPlatformType($platformType)
   {
     $this->platformType = $platformType;
   }
-  /**
-   * @return string
-   */
   public function getPlatformType()
   {
     return $this->platformType;
   }
-  /**
-   * @param string
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return string
-   */
   public function getState()
   {
     return $this->state;
   }
-  /**
-   * @param string
-   */
   public function setThreatEntryType($threatEntryType)
   {
     $this->threatEntryType = $threatEntryType;
   }
-  /**
-   * @return string
-   */
   public function getThreatEntryType()
   {
     return $this->threatEntryType;
   }
-  /**
-   * @param string
-   */
   public function setThreatType($threatType)
   {
     $this->threatType = $threatType;
   }
-  /**
-   * @return string
-   */
   public function getThreatType()
   {
     return $this->threatType;

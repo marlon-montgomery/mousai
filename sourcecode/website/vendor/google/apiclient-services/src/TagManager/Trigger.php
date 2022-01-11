@@ -20,17 +20,11 @@ namespace Google\Service\TagManager;
 class Trigger extends \Google\Collection
 {
   protected $collection_key = 'parameter';
-  /**
-   * @var string
-   */
   public $accountId;
   protected $autoEventFilterType = Condition::class;
   protected $autoEventFilterDataType = 'array';
   protected $checkValidationType = Parameter::class;
   protected $checkValidationDataType = '';
-  /**
-   * @var string
-   */
   public $containerId;
   protected $continuousTimeMinMillisecondsType = Parameter::class;
   protected $continuousTimeMinMillisecondsDataType = '';
@@ -40,9 +34,6 @@ class Trigger extends \Google\Collection
   protected $eventNameDataType = '';
   protected $filterType = Condition::class;
   protected $filterDataType = 'array';
-  /**
-   * @var string
-   */
   public $fingerprint;
   protected $horizontalScrollPercentageListType = Parameter::class;
   protected $horizontalScrollPercentageListDataType = '';
@@ -54,39 +45,18 @@ class Trigger extends \Google\Collection
   protected $limitDataType = '';
   protected $maxTimerLengthSecondsType = Parameter::class;
   protected $maxTimerLengthSecondsDataType = '';
-  /**
-   * @var string
-   */
   public $name;
-  /**
-   * @var string
-   */
   public $notes;
   protected $parameterType = Parameter::class;
   protected $parameterDataType = 'array';
-  /**
-   * @var string
-   */
   public $parentFolderId;
-  /**
-   * @var string
-   */
   public $path;
   protected $selectorType = Parameter::class;
   protected $selectorDataType = '';
-  /**
-   * @var string
-   */
   public $tagManagerUrl;
   protected $totalTimeMinMillisecondsType = Parameter::class;
   protected $totalTimeMinMillisecondsDataType = '';
-  /**
-   * @var string
-   */
   public $triggerId;
-  /**
-   * @var string
-   */
   public $type;
   protected $uniqueTriggerIdType = Parameter::class;
   protected $uniqueTriggerIdDataType = '';
@@ -102,21 +72,12 @@ class Trigger extends \Google\Collection
   protected $waitForTagsDataType = '';
   protected $waitForTagsTimeoutType = Parameter::class;
   protected $waitForTagsTimeoutDataType = '';
-  /**
-   * @var string
-   */
   public $workspaceId;
 
-  /**
-   * @param string
-   */
   public function setAccountId($accountId)
   {
     $this->accountId = $accountId;
   }
-  /**
-   * @return string
-   */
   public function getAccountId()
   {
     return $this->accountId;
@@ -149,16 +110,10 @@ class Trigger extends \Google\Collection
   {
     return $this->checkValidation;
   }
-  /**
-   * @param string
-   */
   public function setContainerId($containerId)
   {
     $this->containerId = $containerId;
   }
-  /**
-   * @return string
-   */
   public function getContainerId()
   {
     return $this->containerId;
@@ -219,16 +174,10 @@ class Trigger extends \Google\Collection
   {
     return $this->filter;
   }
-  /**
-   * @param string
-   */
   public function setFingerprint($fingerprint)
   {
     $this->fingerprint = $fingerprint;
   }
-  /**
-   * @return string
-   */
   public function getFingerprint()
   {
     return $this->fingerprint;
@@ -303,30 +252,18 @@ class Trigger extends \Google\Collection
   {
     return $this->maxTimerLengthSeconds;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
   }
-  /**
-   * @param string
-   */
   public function setNotes($notes)
   {
     $this->notes = $notes;
   }
-  /**
-   * @return string
-   */
   public function getNotes()
   {
     return $this->notes;
@@ -345,30 +282,18 @@ class Trigger extends \Google\Collection
   {
     return $this->parameter;
   }
-  /**
-   * @param string
-   */
   public function setParentFolderId($parentFolderId)
   {
     $this->parentFolderId = $parentFolderId;
   }
-  /**
-   * @return string
-   */
   public function getParentFolderId()
   {
     return $this->parentFolderId;
   }
-  /**
-   * @param string
-   */
   public function setPath($path)
   {
     $this->path = $path;
   }
-  /**
-   * @return string
-   */
   public function getPath()
   {
     return $this->path;
@@ -387,16 +312,10 @@ class Trigger extends \Google\Collection
   {
     return $this->selector;
   }
-  /**
-   * @param string
-   */
   public function setTagManagerUrl($tagManagerUrl)
   {
     $this->tagManagerUrl = $tagManagerUrl;
   }
-  /**
-   * @return string
-   */
   public function getTagManagerUrl()
   {
     return $this->tagManagerUrl;
@@ -415,30 +334,18 @@ class Trigger extends \Google\Collection
   {
     return $this->totalTimeMinMilliseconds;
   }
-  /**
-   * @param string
-   */
   public function setTriggerId($triggerId)
   {
     $this->triggerId = $triggerId;
   }
-  /**
-   * @return string
-   */
   public function getTriggerId()
   {
     return $this->triggerId;
   }
-  /**
-   * @param string
-   */
   public function setType($type)
   {
     $this->type = $type;
   }
-  /**
-   * @return string
-   */
   public function getType()
   {
     return $this->type;
@@ -541,16 +448,10 @@ class Trigger extends \Google\Collection
   {
     return $this->waitForTagsTimeout;
   }
-  /**
-   * @param string
-   */
   public function setWorkspaceId($workspaceId)
   {
     $this->workspaceId = $workspaceId;
   }
-  /**
-   * @return string
-   */
   public function getWorkspaceId()
   {
     return $this->workspaceId;

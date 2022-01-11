@@ -6,9 +6,6 @@ use Doctrine\DBAL\Types\Type;
 
 /**
  * Interface for SQL loggers.
- *
- * @deprecated Use {@link \Doctrine\DBAL\Logging\Middleware} or implement
- *            {@link \Doctrine\DBAL\Driver\Middleware} instead.
  */
 interface SQLLogger
 {

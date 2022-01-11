@@ -2,16 +2,6 @@
 
 ## Unreleased
 
-## 3.3.5 (2021-12-27)
-
-- Bump the minimum required version of the `jean85/pretty-package-versions` package (#1267)
-
-## 3.3.4 (2021-11-08)
-
-- Avoid overwriting the error level set by the user on the event when capturing an `ErrorException` exception (#1251)
-- Allow installing the project alongside Symfony `6.x` components (#1257)
-- Run the test suite against PHP `8.1` (#1245)
-
 ## 3.3.3 (2021-10-04)
 
 -  Fix fatal error in the `EnvironmentIntegration` integration if the `php_uname` function is disabled (#1243)

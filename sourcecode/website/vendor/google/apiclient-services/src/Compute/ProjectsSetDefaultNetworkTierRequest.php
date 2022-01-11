@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class ProjectsSetDefaultNetworkTierRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $networkTier;
 
-  /**
-   * @param string
-   */
   public function setNetworkTier($networkTier)
   {
     $this->networkTier = $networkTier;
   }
-  /**
-   * @return string
-   */
   public function getNetworkTier()
   {
     return $this->networkTier;

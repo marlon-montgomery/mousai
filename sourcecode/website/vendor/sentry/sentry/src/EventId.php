@@ -9,7 +9,7 @@ namespace Sentry;
  *
  * @author Stefano Arlandini <sarlandini@alice.it>
  */
-final class EventId implements \Stringable
+final class EventId
 {
     /**
      * @var string The ID

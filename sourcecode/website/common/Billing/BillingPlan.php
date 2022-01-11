@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @property-read Collection|Permission[] $permissions
  * @mixin Eloquent
  * @property string $currency_symbol
+ * @property string|null $legacy_permissions
  * @property bool $recommended
  * @property bool $show_permissions
  * @property int $position

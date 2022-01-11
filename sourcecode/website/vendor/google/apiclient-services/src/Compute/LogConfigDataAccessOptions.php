@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class LogConfigDataAccessOptions extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $logMode;
 
-  /**
-   * @param string
-   */
   public function setLogMode($logMode)
   {
     $this->logMode = $logMode;
   }
-  /**
-   * @return string
-   */
   public function getLogMode()
   {
     return $this->logMode;

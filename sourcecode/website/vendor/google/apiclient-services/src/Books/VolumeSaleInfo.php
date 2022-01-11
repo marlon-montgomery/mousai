@@ -20,71 +20,38 @@ namespace Google\Service\Books;
 class VolumeSaleInfo extends \Google\Collection
 {
   protected $collection_key = 'offers';
-  /**
-   * @var string
-   */
   public $buyLink;
-  /**
-   * @var string
-   */
   public $country;
-  /**
-   * @var bool
-   */
   public $isEbook;
   protected $listPriceType = VolumeSaleInfoListPrice::class;
   protected $listPriceDataType = '';
   protected $offersType = VolumeSaleInfoOffers::class;
   protected $offersDataType = 'array';
-  /**
-   * @var string
-   */
   public $onSaleDate;
   protected $retailPriceType = VolumeSaleInfoRetailPrice::class;
   protected $retailPriceDataType = '';
-  /**
-   * @var string
-   */
   public $saleability;
 
-  /**
-   * @param string
-   */
   public function setBuyLink($buyLink)
   {
     $this->buyLink = $buyLink;
   }
-  /**
-   * @return string
-   */
   public function getBuyLink()
   {
     return $this->buyLink;
   }
-  /**
-   * @param string
-   */
   public function setCountry($country)
   {
     $this->country = $country;
   }
-  /**
-   * @return string
-   */
   public function getCountry()
   {
     return $this->country;
   }
-  /**
-   * @param bool
-   */
   public function setIsEbook($isEbook)
   {
     $this->isEbook = $isEbook;
   }
-  /**
-   * @return bool
-   */
   public function getIsEbook()
   {
     return $this->isEbook;
@@ -117,16 +84,10 @@ class VolumeSaleInfo extends \Google\Collection
   {
     return $this->offers;
   }
-  /**
-   * @param string
-   */
   public function setOnSaleDate($onSaleDate)
   {
     $this->onSaleDate = $onSaleDate;
   }
-  /**
-   * @return string
-   */
   public function getOnSaleDate()
   {
     return $this->onSaleDate;
@@ -145,16 +106,10 @@ class VolumeSaleInfo extends \Google\Collection
   {
     return $this->retailPrice;
   }
-  /**
-   * @param string
-   */
   public function setSaleability($saleability)
   {
     $this->saleability = $saleability;
   }
-  /**
-   * @return string
-   */
   public function getSaleability()
   {
     return $this->saleability;

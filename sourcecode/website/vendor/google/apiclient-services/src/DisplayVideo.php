@@ -69,7 +69,6 @@ class DisplayVideo extends \Google\Service
   public $advertisers_targetingTypes_assignedTargetingOptions;
   public $combinedAudiences;
   public $customBiddingAlgorithms;
-  public $customBiddingAlgorithms_scripts;
   public $customLists;
   public $firstAndThirdPartyAudiences;
   public $floodlightGroups;
@@ -1899,11 +1898,7 @@ class DisplayVideo extends \Google\Service
         'customBiddingAlgorithms',
         [
           'methods' => [
-            'create' => [
-              'path' => 'v1/customBiddingAlgorithms',
-              'httpMethod' => 'POST',
-              'parameters' => [],
-            ],'get' => [
+            'get' => [
               'path' => 'v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}',
               'httpMethod' => 'GET',
               'parameters' => [
@@ -1930,119 +1925,6 @@ class DisplayVideo extends \Google\Service
                   'type' => 'string',
                 ],
                 'filter' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'orderBy' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'partnerId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'customBiddingAlgorithmId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'uploadScript' => [
-              'path' => 'v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}:uploadScript',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'customBiddingAlgorithmId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'advertiserId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'partnerId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->customBiddingAlgorithms_scripts = new DisplayVideo\Resource\CustomBiddingAlgorithmsScripts(
-        $this,
-        $this->serviceName,
-        'scripts',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'customBiddingAlgorithmId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'advertiserId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'partnerId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts/{+customBiddingScriptId}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'customBiddingAlgorithmId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'customBiddingScriptId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'advertiserId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'partnerId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'customBiddingAlgorithmId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'advertiserId' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -2539,16 +2421,6 @@ class DisplayVideo extends \Google\Service
             'download' => [
               'path' => 'download/{+resourceName}',
               'httpMethod' => 'GET',
-              'parameters' => [
-                'resourceName' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'upload' => [
-              'path' => 'media/{+resourceName}',
-              'httpMethod' => 'POST',
               'parameters' => [
                 'resourceName' => [
                   'location' => 'path',

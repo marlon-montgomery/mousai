@@ -21,9 +21,6 @@ class FetchVerificationOptionsRequest extends \Google\Model
 {
   protected $contextType = ServiceBusinessContext::class;
   protected $contextDataType = '';
-  /**
-   * @var string
-   */
   public $languageCode;
 
   /**
@@ -40,16 +37,10 @@ class FetchVerificationOptionsRequest extends \Google\Model
   {
     return $this->context;
   }
-  /**
-   * @param string
-   */
   public function setLanguageCode($languageCode)
   {
     $this->languageCode = $languageCode;
   }
-  /**
-   * @return string
-   */
   public function getLanguageCode()
   {
     return $this->languageCode;

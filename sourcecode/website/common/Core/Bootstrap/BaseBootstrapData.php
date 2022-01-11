@@ -180,8 +180,7 @@ class BaseBootstrapData implements BootstrapData
         // Priority: Query param > account settings > cookie > browser preferences > default
         $langCode =
             $this->request->get('lang') ??
-            $this->request->user()->language ??
-                Cookie::get(UserLocaleController::COOKIE_NAME);
+            $this->request->user()->language ?? Cookie::get(UserLocaleController::COOKIE_NAME);
         if (
             !$langCode &&
             ($header = $this->request->header('Accept-Language'))

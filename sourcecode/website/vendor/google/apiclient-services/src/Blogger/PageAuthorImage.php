@@ -19,21 +19,12 @@ namespace Google\Service\Blogger;
 
 class PageAuthorImage extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $url;
 
-  /**
-   * @param string
-   */
   public function setUrl($url)
   {
     $this->url = $url;
   }
-  /**
-   * @return string
-   */
   public function getUrl()
   {
     return $this->url;

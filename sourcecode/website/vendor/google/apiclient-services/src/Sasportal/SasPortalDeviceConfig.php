@@ -22,37 +22,16 @@ class SasPortalDeviceConfig extends \Google\Collection
   protected $collection_key = 'measurementCapabilities';
   protected $airInterfaceType = SasPortalDeviceAirInterface::class;
   protected $airInterfaceDataType = '';
-  /**
-   * @var string
-   */
   public $callSign;
-  /**
-   * @var string
-   */
   public $category;
   protected $installationParamsType = SasPortalInstallationParams::class;
   protected $installationParamsDataType = '';
-  /**
-   * @var bool
-   */
   public $isSigned;
-  /**
-   * @var string[]
-   */
   public $measurementCapabilities;
   protected $modelType = SasPortalDeviceModel::class;
   protected $modelDataType = '';
-  /**
-   * @var string
-   */
   public $state;
-  /**
-   * @var string
-   */
   public $updateTime;
-  /**
-   * @var string
-   */
   public $userId;
 
   /**
@@ -69,30 +48,18 @@ class SasPortalDeviceConfig extends \Google\Collection
   {
     return $this->airInterface;
   }
-  /**
-   * @param string
-   */
   public function setCallSign($callSign)
   {
     $this->callSign = $callSign;
   }
-  /**
-   * @return string
-   */
   public function getCallSign()
   {
     return $this->callSign;
   }
-  /**
-   * @param string
-   */
   public function setCategory($category)
   {
     $this->category = $category;
   }
-  /**
-   * @return string
-   */
   public function getCategory()
   {
     return $this->category;
@@ -111,30 +78,18 @@ class SasPortalDeviceConfig extends \Google\Collection
   {
     return $this->installationParams;
   }
-  /**
-   * @param bool
-   */
   public function setIsSigned($isSigned)
   {
     $this->isSigned = $isSigned;
   }
-  /**
-   * @return bool
-   */
   public function getIsSigned()
   {
     return $this->isSigned;
   }
-  /**
-   * @param string[]
-   */
   public function setMeasurementCapabilities($measurementCapabilities)
   {
     $this->measurementCapabilities = $measurementCapabilities;
   }
-  /**
-   * @return string[]
-   */
   public function getMeasurementCapabilities()
   {
     return $this->measurementCapabilities;
@@ -153,44 +108,26 @@ class SasPortalDeviceConfig extends \Google\Collection
   {
     return $this->model;
   }
-  /**
-   * @param string
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return string
-   */
   public function getState()
   {
     return $this->state;
   }
-  /**
-   * @param string
-   */
   public function setUpdateTime($updateTime)
   {
     $this->updateTime = $updateTime;
   }
-  /**
-   * @return string
-   */
   public function getUpdateTime()
   {
     return $this->updateTime;
   }
-  /**
-   * @param string
-   */
   public function setUserId($userId)
   {
     $this->userId = $userId;
   }
-  /**
-   * @return string
-   */
   public function getUserId()
   {
     return $this->userId;

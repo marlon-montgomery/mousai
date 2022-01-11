@@ -22,21 +22,12 @@ class UsersettingsNotificationMatchMyInterests extends \Google\Model
   protected $internal_gapi_mappings = [
         "optedState" => "opted_state",
   ];
-  /**
-   * @var string
-   */
   public $optedState;
 
-  /**
-   * @param string
-   */
   public function setOptedState($optedState)
   {
     $this->optedState = $optedState;
   }
-  /**
-   * @return string
-   */
   public function getOptedState()
   {
     return $this->optedState;

@@ -26,9 +26,6 @@ class AnnotateFileResponse extends \Google\Collection
   protected $inputConfigDataType = '';
   protected $responsesType = AnnotateImageResponse::class;
   protected $responsesDataType = 'array';
-  /**
-   * @var int
-   */
   public $totalPages;
 
   /**
@@ -73,16 +70,10 @@ class AnnotateFileResponse extends \Google\Collection
   {
     return $this->responses;
   }
-  /**
-   * @param int
-   */
   public function setTotalPages($totalPages)
   {
     $this->totalPages = $totalPages;
   }
-  /**
-   * @return int
-   */
   public function getTotalPages()
   {
     return $this->totalPages;

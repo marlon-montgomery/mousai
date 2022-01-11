@@ -19,45 +19,24 @@ namespace Google\Service\ToolResults;
 
 class IndividualOutcome extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $multistepNumber;
-  /**
-   * @var string
-   */
   public $outcomeSummary;
   protected $runDurationType = Duration::class;
   protected $runDurationDataType = '';
-  /**
-   * @var string
-   */
   public $stepId;
 
-  /**
-   * @param int
-   */
   public function setMultistepNumber($multistepNumber)
   {
     $this->multistepNumber = $multistepNumber;
   }
-  /**
-   * @return int
-   */
   public function getMultistepNumber()
   {
     return $this->multistepNumber;
   }
-  /**
-   * @param string
-   */
   public function setOutcomeSummary($outcomeSummary)
   {
     $this->outcomeSummary = $outcomeSummary;
   }
-  /**
-   * @return string
-   */
   public function getOutcomeSummary()
   {
     return $this->outcomeSummary;
@@ -76,16 +55,10 @@ class IndividualOutcome extends \Google\Model
   {
     return $this->runDuration;
   }
-  /**
-   * @param string
-   */
   public function setStepId($stepId)
   {
     $this->stepId = $stepId;
   }
-  /**
-   * @return string
-   */
   public function getStepId()
   {
     return $this->stepId;

@@ -21,9 +21,6 @@ class UpdateRepoRequest extends \Google\Model
 {
   protected $repoType = Repo::class;
   protected $repoDataType = '';
-  /**
-   * @var string
-   */
   public $updateMask;
 
   /**
@@ -40,16 +37,10 @@ class UpdateRepoRequest extends \Google\Model
   {
     return $this->repo;
   }
-  /**
-   * @param string
-   */
   public function setUpdateMask($updateMask)
   {
     $this->updateMask = $updateMask;
   }
-  /**
-   * @return string
-   */
   public function getUpdateMask()
   {
     return $this->updateMask;

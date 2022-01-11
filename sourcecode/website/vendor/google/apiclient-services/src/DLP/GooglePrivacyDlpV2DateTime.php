@@ -21,9 +21,6 @@ class GooglePrivacyDlpV2DateTime extends \Google\Model
 {
   protected $dateType = GoogleTypeDate::class;
   protected $dateDataType = '';
-  /**
-   * @var string
-   */
   public $dayOfWeek;
   protected $timeType = GoogleTypeTimeOfDay::class;
   protected $timeDataType = '';
@@ -44,16 +41,10 @@ class GooglePrivacyDlpV2DateTime extends \Google\Model
   {
     return $this->date;
   }
-  /**
-   * @param string
-   */
   public function setDayOfWeek($dayOfWeek)
   {
     $this->dayOfWeek = $dayOfWeek;
   }
-  /**
-   * @return string
-   */
   public function getDayOfWeek()
   {
     return $this->dayOfWeek;

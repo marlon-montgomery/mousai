@@ -19,29 +19,17 @@ namespace Google\Service\Classroom;
 
 class Student extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $courseId;
   protected $profileType = UserProfile::class;
   protected $profileDataType = '';
   protected $studentWorkFolderType = DriveFolder::class;
   protected $studentWorkFolderDataType = '';
-  /**
-   * @var string
-   */
   public $userId;
 
-  /**
-   * @param string
-   */
   public function setCourseId($courseId)
   {
     $this->courseId = $courseId;
   }
-  /**
-   * @return string
-   */
   public function getCourseId()
   {
     return $this->courseId;
@@ -74,16 +62,10 @@ class Student extends \Google\Model
   {
     return $this->studentWorkFolder;
   }
-  /**
-   * @param string
-   */
   public function setUserId($userId)
   {
     $this->userId = $userId;
   }
-  /**
-   * @return string
-   */
   public function getUserId()
   {
     return $this->userId;

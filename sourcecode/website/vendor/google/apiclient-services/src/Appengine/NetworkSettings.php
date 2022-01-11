@@ -19,21 +19,12 @@ namespace Google\Service\Appengine;
 
 class NetworkSettings extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $ingressTrafficAllowed;
 
-  /**
-   * @param string
-   */
   public function setIngressTrafficAllowed($ingressTrafficAllowed)
   {
     $this->ingressTrafficAllowed = $ingressTrafficAllowed;
   }
-  /**
-   * @return string
-   */
   public function getIngressTrafficAllowed()
   {
     return $this->ingressTrafficAllowed;

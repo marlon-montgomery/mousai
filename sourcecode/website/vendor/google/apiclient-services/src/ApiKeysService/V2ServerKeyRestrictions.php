@@ -20,21 +20,12 @@ namespace Google\Service\ApiKeysService;
 class V2ServerKeyRestrictions extends \Google\Collection
 {
   protected $collection_key = 'allowedIps';
-  /**
-   * @var string[]
-   */
   public $allowedIps;
 
-  /**
-   * @param string[]
-   */
   public function setAllowedIps($allowedIps)
   {
     $this->allowedIps = $allowedIps;
   }
-  /**
-   * @return string[]
-   */
   public function getAllowedIps()
   {
     return $this->allowedIps;

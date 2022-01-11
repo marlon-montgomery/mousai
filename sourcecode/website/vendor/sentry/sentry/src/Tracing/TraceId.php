@@ -7,7 +7,7 @@ namespace Sentry\Tracing;
 /**
  * This class represents an trace ID.
  */
-final class TraceId implements \Stringable
+final class TraceId
 {
     /**
      * @var string The ID

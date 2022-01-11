@@ -8,10 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
-use Carbon\CarbonInterface;
-
-$processHoursFunction = function (CarbonInterface $date, string $format) {
+$processHoursFunction = function (\Carbon\CarbonInterface $date, string $format) {
     return $format.'о'.($date->hour === 11 ? 'б' : '').'] LT';
 };
 
@@ -130,19 +127,19 @@ return [
         'LLLL' => 'dddd, D MMMM YYYY, HH:mm',
     ],
     'calendar' => [
-        'sameDay' => function (CarbonInterface $date) use ($processHoursFunction) {
+        'sameDay' => function (\Carbon\CarbonInterface $date) use ($processHoursFunction) {
             return $processHoursFunction($date, '[Сьогодні ');
         },
-        'nextDay' => function (CarbonInterface $date) use ($processHoursFunction) {
+        'nextDay' => function (\Carbon\CarbonInterface $date) use ($processHoursFunction) {
             return $processHoursFunction($date, '[Завтра ');
         },
-        'nextWeek' => function (CarbonInterface $date) use ($processHoursFunction) {
+        'nextWeek' => function (\Carbon\CarbonInterface $date) use ($processHoursFunction) {
             return $processHoursFunction($date, '[У] dddd [');
         },
-        'lastDay' => function (CarbonInterface $date) use ($processHoursFunction) {
+        'lastDay' => function (\Carbon\CarbonInterface $date) use ($processHoursFunction) {
             return $processHoursFunction($date, '[Вчора ');
         },
-        'lastWeek' => function (CarbonInterface $date) use ($processHoursFunction) {
+        'lastWeek' => function (\Carbon\CarbonInterface $date) use ($processHoursFunction) {
             switch ($date->dayOfWeek) {
                 case 0:
                 case 3:
@@ -186,7 +183,7 @@ return [
     'months_standalone' => ['січень', 'лютий', 'березень', 'квітень', 'травень', 'червень', 'липень', 'серпень', 'вересень', 'жовтень', 'листопад', 'грудень'],
     'months_short' => ['січ', 'лют', 'бер', 'кві', 'тра', 'чер', 'лип', 'сер', 'вер', 'жов', 'лис', 'гру'],
     'months_regexp' => '/(D[oD]?(\[[^\[\]]*\]|\s)+MMMM?|L{2,4}|l{2,4})/',
-    'weekdays' => function (CarbonInterface $date, $format, $index) {
+    'weekdays' => function (\Carbon\CarbonInterface $date, $format, $index) {
         static $words = [
             'nominative' => ['неділя', 'понеділок', 'вівторок', 'середа', 'четвер', 'п’ятниця', 'субота'],
             'accusative' => ['неділю', 'понеділок', 'вівторок', 'середу', 'четвер', 'п’ятницю', 'суботу'],

@@ -20,23 +20,14 @@ namespace Google\Service\CloudSearch;
 class ListSearchApplicationsResponse extends \Google\Collection
 {
   protected $collection_key = 'searchApplications';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $searchApplicationsType = SearchApplication::class;
   protected $searchApplicationsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

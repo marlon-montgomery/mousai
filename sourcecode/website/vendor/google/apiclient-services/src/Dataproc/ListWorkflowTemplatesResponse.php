@@ -20,23 +20,14 @@ namespace Google\Service\Dataproc;
 class ListWorkflowTemplatesResponse extends \Google\Collection
 {
   protected $collection_key = 'templates';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $templatesType = WorkflowTemplate::class;
   protected $templatesDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

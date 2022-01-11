@@ -21,9 +21,6 @@ class GoogleCloudDatalabelingV1beta1FeedbackThread extends \Google\Model
 {
   protected $feedbackThreadMetadataType = GoogleCloudDatalabelingV1beta1FeedbackThreadMetadata::class;
   protected $feedbackThreadMetadataDataType = '';
-  /**
-   * @var string
-   */
   public $name;
 
   /**
@@ -40,16 +37,10 @@ class GoogleCloudDatalabelingV1beta1FeedbackThread extends \Google\Model
   {
     return $this->feedbackThreadMetadata;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

@@ -21,9 +21,6 @@ class ThirdPartyLinkSnippet extends \Google\Model
 {
   protected $channelToStoreLinkType = ChannelToStoreLinkDetails::class;
   protected $channelToStoreLinkDataType = '';
-  /**
-   * @var string
-   */
   public $type;
 
   /**
@@ -40,16 +37,10 @@ class ThirdPartyLinkSnippet extends \Google\Model
   {
     return $this->channelToStoreLink;
   }
-  /**
-   * @param string
-   */
   public function setType($type)
   {
     $this->type = $type;
   }
-  /**
-   * @return string
-   */
   public function getType()
   {
     return $this->type;

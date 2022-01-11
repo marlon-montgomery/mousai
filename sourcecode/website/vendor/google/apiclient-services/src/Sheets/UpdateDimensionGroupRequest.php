@@ -21,9 +21,6 @@ class UpdateDimensionGroupRequest extends \Google\Model
 {
   protected $dimensionGroupType = DimensionGroup::class;
   protected $dimensionGroupDataType = '';
-  /**
-   * @var string
-   */
   public $fields;
 
   /**
@@ -40,16 +37,10 @@ class UpdateDimensionGroupRequest extends \Google\Model
   {
     return $this->dimensionGroup;
   }
-  /**
-   * @param string
-   */
   public function setFields($fields)
   {
     $this->fields = $fields;
   }
-  /**
-   * @return string
-   */
   public function getFields()
   {
     return $this->fields;

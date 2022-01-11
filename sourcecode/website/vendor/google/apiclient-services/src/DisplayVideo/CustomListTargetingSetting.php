@@ -19,21 +19,12 @@ namespace Google\Service\DisplayVideo;
 
 class CustomListTargetingSetting extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $customListId;
 
-  /**
-   * @param string
-   */
   public function setCustomListId($customListId)
   {
     $this->customListId = $customListId;
   }
-  /**
-   * @return string
-   */
   public function getCustomListId()
   {
     return $this->customListId;

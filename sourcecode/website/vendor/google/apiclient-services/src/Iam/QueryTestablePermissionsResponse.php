@@ -20,23 +20,14 @@ namespace Google\Service\Iam;
 class QueryTestablePermissionsResponse extends \Google\Collection
 {
   protected $collection_key = 'permissions';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $permissionsType = Permission::class;
   protected $permissionsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

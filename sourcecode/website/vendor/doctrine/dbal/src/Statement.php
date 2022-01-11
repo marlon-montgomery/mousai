@@ -2,6 +2,8 @@
 
 namespace Doctrine\DBAL;
 
+use Doctrine\DBAL\Driver\Exception;
+use Doctrine\DBAL\Driver\Statement as DriverStatement;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\Deprecations\Deprecation;
@@ -38,7 +40,7 @@ class Statement
     /**
      * The underlying driver statement.
      *
-     * @var Driver\Statement
+     * @var DriverStatement
      */
     protected $stmt;
 
@@ -61,17 +63,24 @@ class Statement
      *
      * @internal The statement can be only instantiated by {@link Connection}.
      *
-     * @param Connection       $conn      The connection for handling statement errors.
-     * @param Driver\Statement $statement The underlying driver-level statement.
-     * @param string           $sql       The SQL of the statement.
+     * @param string     $sql  The SQL of the statement.
+     * @param Connection $conn The connection on which the statement should be executed.
      *
      * @throws Exception
      */
-    public function __construct(Connection $conn, Driver\Statement $statement, string $sql)
+    public function __construct($sql, Connection $conn)
     {
-        $this->conn     = $conn;
-        $this->stmt     = $statement;
+        $driverConnection = $conn->getWrappedConnection();
+
+        try {
+            $stmt = $driverConnection->prepare($sql);
+        } catch (Exception $ex) {
+            throw $conn->convertExceptionDuringQuery($ex, $sql);
+        }
+
         $this->sql      = $sql;
+        $this->stmt     = $stmt;
+        $this->conn     = $conn;
         $this->platform = $conn->getDatabasePlatform();
     }
 
@@ -113,7 +122,7 @@ class Statement
 
         try {
             return $this->stmt->bindValue($param, $value, $bindingType);
-        } catch (Driver\Exception $e) {
+        } catch (Exception $e) {
             throw $this->conn->convertException($e);
         }
     }
@@ -144,7 +153,7 @@ class Statement
             }
 
             return $this->stmt->bindParam($param, $variable, $type);
-        } catch (Driver\Exception $e) {
+        } catch (Exception $e) {
             throw $this->conn->convertException($e);
         }
     }
@@ -180,7 +189,7 @@ class Statement
                 $this->stmt->execute($params),
                 $this->conn
             );
-        } catch (Driver\Exception $ex) {
+        } catch (Exception $ex) {
             throw $this->conn->convertExceptionDuringQuery($ex, $this->sql, $this->params, $this->types);
         } finally {
             if ($logger !== null) {
@@ -224,7 +233,7 @@ class Statement
     /**
      * Gets the wrapped driver statement.
      *
-     * @return Driver\Statement
+     * @return DriverStatement
      */
     public function getWrappedStatement()
     {

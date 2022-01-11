@@ -20,23 +20,14 @@ namespace Google\Service\ServiceManagement;
 class ListServiceConfigsResponse extends \Google\Collection
 {
   protected $collection_key = 'serviceConfigs';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $serviceConfigsType = Service::class;
   protected $serviceConfigsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

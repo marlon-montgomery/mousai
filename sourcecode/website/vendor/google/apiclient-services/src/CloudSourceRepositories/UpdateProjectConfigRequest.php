@@ -21,9 +21,6 @@ class UpdateProjectConfigRequest extends \Google\Model
 {
   protected $projectConfigType = ProjectConfig::class;
   protected $projectConfigDataType = '';
-  /**
-   * @var string
-   */
   public $updateMask;
 
   /**
@@ -40,16 +37,10 @@ class UpdateProjectConfigRequest extends \Google\Model
   {
     return $this->projectConfig;
   }
-  /**
-   * @param string
-   */
   public function setUpdateMask($updateMask)
   {
     $this->updateMask = $updateMask;
   }
-  /**
-   * @return string
-   */
   public function getUpdateMask()
   {
     return $this->updateMask;

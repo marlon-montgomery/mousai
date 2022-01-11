@@ -19,57 +19,30 @@ namespace Google\Service\AndroidEnterprise;
 
 class AutoInstallConstraint extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $chargingStateConstraint;
-  /**
-   * @var string
-   */
   public $deviceIdleStateConstraint;
-  /**
-   * @var string
-   */
   public $networkTypeConstraint;
 
-  /**
-   * @param string
-   */
   public function setChargingStateConstraint($chargingStateConstraint)
   {
     $this->chargingStateConstraint = $chargingStateConstraint;
   }
-  /**
-   * @return string
-   */
   public function getChargingStateConstraint()
   {
     return $this->chargingStateConstraint;
   }
-  /**
-   * @param string
-   */
   public function setDeviceIdleStateConstraint($deviceIdleStateConstraint)
   {
     $this->deviceIdleStateConstraint = $deviceIdleStateConstraint;
   }
-  /**
-   * @return string
-   */
   public function getDeviceIdleStateConstraint()
   {
     return $this->deviceIdleStateConstraint;
   }
-  /**
-   * @param string
-   */
   public function setNetworkTypeConstraint($networkTypeConstraint)
   {
     $this->networkTypeConstraint = $networkTypeConstraint;
   }
-  /**
-   * @return string
-   */
   public function getNetworkTypeConstraint()
   {
     return $this->networkTypeConstraint;

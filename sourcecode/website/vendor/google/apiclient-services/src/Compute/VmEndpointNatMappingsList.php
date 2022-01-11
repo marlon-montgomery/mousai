@@ -20,65 +20,35 @@ namespace Google\Service\Compute;
 class VmEndpointNatMappingsList extends \Google\Collection
 {
   protected $collection_key = 'result';
-  /**
-   * @var string
-   */
   public $id;
-  /**
-   * @var string
-   */
   public $kind;
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $resultType = VmEndpointNatMappings::class;
   protected $resultDataType = 'array';
-  /**
-   * @var string
-   */
   public $selfLink;
   protected $warningType = VmEndpointNatMappingsListWarning::class;
   protected $warningDataType = '';
 
-  /**
-   * @param string
-   */
   public function setId($id)
   {
     $this->id = $id;
   }
-  /**
-   * @return string
-   */
   public function getId()
   {
     return $this->id;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;
@@ -97,16 +67,10 @@ class VmEndpointNatMappingsList extends \Google\Collection
   {
     return $this->result;
   }
-  /**
-   * @param string
-   */
   public function setSelfLink($selfLink)
   {
     $this->selfLink = $selfLink;
   }
-  /**
-   * @return string
-   */
   public function getSelfLink()
   {
     return $this->selfLink;

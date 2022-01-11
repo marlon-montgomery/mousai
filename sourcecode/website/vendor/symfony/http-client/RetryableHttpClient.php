@@ -21,14 +21,13 @@ use Symfony\Contracts\HttpClient\ChunkInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
-use Symfony\Contracts\Service\ResetInterface;
 
 /**
  * Automatically retries failing HTTP requests.
  *
  * @author Jérémy Derussé <jeremy@derusse.com>
  */
-class RetryableHttpClient implements HttpClientInterface, ResetInterface
+class RetryableHttpClient implements HttpClientInterface
 {
     use AsyncDecoratorTrait;
 
@@ -60,7 +59,7 @@ class RetryableHttpClient implements HttpClientInterface, ResetInterface
         return new AsyncResponse($this->client, $method, $url, $options, function (ChunkInterface $chunk, AsyncContext $context) use ($method, $url, $options, &$retryCount, &$content, &$firstChunk) {
             $exception = null;
             try {
-                if ($chunk->isTimeout() || null !== $chunk->getInformationalStatus() || $context->getInfo('canceled')) {
+                if ($chunk->isTimeout() || null !== $chunk->getInformationalStatus()) {
                     yield $chunk;
 
                     return;
@@ -73,18 +72,27 @@ class RetryableHttpClient implements HttpClientInterface, ResetInterface
                 if ('' !== $context->getInfo('primary_ip')) {
                     $shouldRetry = $this->strategy->shouldRetry($context, null, $exception);
                     if (null === $shouldRetry) {
-                        throw new \LogicException(sprintf('The "%s::shouldRetry()" method must not return null when called with an exception.', \get_class($this->strategy)));
+                        throw new \LogicException(sprintf('The "%s::shouldRetry()" method must not return null when called with an exception.', \get_class($this->decider)));
                     }
 
                     if (false === $shouldRetry) {
-                        yield from $this->passthru($context, $firstChunk, $content, $chunk);
+                        $context->passthru();
+                        if (null !== $firstChunk) {
+                            yield $firstChunk;
+                            yield $context->createChunk($content);
+                            yield $chunk;
+                        } else {
+                            yield $chunk;
+                        }
+                        $content = '';
 
                         return;
                     }
                 }
             } elseif ($chunk->isFirst()) {
                 if (false === $shouldRetry = $this->strategy->shouldRetry($context, null, null)) {
-                    yield from $this->passthru($context, $firstChunk, $content, $chunk);
+                    $context->passthru();
+                    yield $chunk;
 
                     return;
                 }
@@ -97,9 +105,9 @@ class RetryableHttpClient implements HttpClientInterface, ResetInterface
                     return;
                 }
             } else {
-                if (!$chunk->isLast()) {
-                    $content .= $chunk->getContent();
+                $content .= $chunk->getContent();
 
+                if (!$chunk->isLast()) {
                     return;
                 }
 
@@ -108,7 +116,10 @@ class RetryableHttpClient implements HttpClientInterface, ResetInterface
                 }
 
                 if (false === $shouldRetry) {
-                    yield from $this->passthru($context, $firstChunk, $content, $chunk);
+                    $context->passthru();
+                    yield $firstChunk;
+                    yield $context->createChunk($content);
+                    $content = '';
 
                     return;
                 }
@@ -147,23 +158,5 @@ class RetryableHttpClient implements HttpClientInterface, ResetInterface
         }
 
         return null;
-    }
-
-    private function passthru(AsyncContext $context, ?ChunkInterface $firstChunk, string &$content, ChunkInterface $lastChunk): \Generator
-    {
-        $context->passthru();
-
-        if (null !== $firstChunk) {
-            yield $firstChunk;
-        }
-
-        if ('' !== $content) {
-            $chunk = $context->createChunk($content);
-            $content = '';
-
-            yield $chunk;
-        }
-
-        yield $lastChunk;
     }
 }

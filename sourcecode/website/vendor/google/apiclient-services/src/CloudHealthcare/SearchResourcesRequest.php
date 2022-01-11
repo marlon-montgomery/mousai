@@ -19,21 +19,12 @@ namespace Google\Service\CloudHealthcare;
 
 class SearchResourcesRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $resourceType;
 
-  /**
-   * @param string
-   */
   public function setResourceType($resourceType)
   {
     $this->resourceType = $resourceType;
   }
-  /**
-   * @return string
-   */
   public function getResourceType()
   {
     return $this->resourceType;

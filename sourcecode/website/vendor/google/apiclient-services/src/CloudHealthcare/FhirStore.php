@@ -20,121 +20,62 @@ namespace Google\Service\CloudHealthcare;
 class FhirStore extends \Google\Collection
 {
   protected $collection_key = 'streamConfigs';
-  /**
-   * @var bool
-   */
   public $defaultSearchHandlingStrict;
-  /**
-   * @var bool
-   */
   public $disableReferentialIntegrity;
-  /**
-   * @var bool
-   */
   public $disableResourceVersioning;
-  /**
-   * @var bool
-   */
   public $enableUpdateCreate;
-  /**
-   * @var string[]
-   */
   public $labels;
-  /**
-   * @var string
-   */
   public $name;
   protected $notificationConfigType = NotificationConfig::class;
   protected $notificationConfigDataType = '';
   protected $streamConfigsType = StreamConfig::class;
   protected $streamConfigsDataType = 'array';
-  protected $validationConfigType = ValidationConfig::class;
-  protected $validationConfigDataType = '';
-  /**
-   * @var string
-   */
   public $version;
 
-  /**
-   * @param bool
-   */
   public function setDefaultSearchHandlingStrict($defaultSearchHandlingStrict)
   {
     $this->defaultSearchHandlingStrict = $defaultSearchHandlingStrict;
   }
-  /**
-   * @return bool
-   */
   public function getDefaultSearchHandlingStrict()
   {
     return $this->defaultSearchHandlingStrict;
   }
-  /**
-   * @param bool
-   */
   public function setDisableReferentialIntegrity($disableReferentialIntegrity)
   {
     $this->disableReferentialIntegrity = $disableReferentialIntegrity;
   }
-  /**
-   * @return bool
-   */
   public function getDisableReferentialIntegrity()
   {
     return $this->disableReferentialIntegrity;
   }
-  /**
-   * @param bool
-   */
   public function setDisableResourceVersioning($disableResourceVersioning)
   {
     $this->disableResourceVersioning = $disableResourceVersioning;
   }
-  /**
-   * @return bool
-   */
   public function getDisableResourceVersioning()
   {
     return $this->disableResourceVersioning;
   }
-  /**
-   * @param bool
-   */
   public function setEnableUpdateCreate($enableUpdateCreate)
   {
     $this->enableUpdateCreate = $enableUpdateCreate;
   }
-  /**
-   * @return bool
-   */
   public function getEnableUpdateCreate()
   {
     return $this->enableUpdateCreate;
   }
-  /**
-   * @param string[]
-   */
   public function setLabels($labels)
   {
     $this->labels = $labels;
   }
-  /**
-   * @return string[]
-   */
   public function getLabels()
   {
     return $this->labels;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
@@ -167,30 +108,10 @@ class FhirStore extends \Google\Collection
   {
     return $this->streamConfigs;
   }
-  /**
-   * @param ValidationConfig
-   */
-  public function setValidationConfig(ValidationConfig $validationConfig)
-  {
-    $this->validationConfig = $validationConfig;
-  }
-  /**
-   * @return ValidationConfig
-   */
-  public function getValidationConfig()
-  {
-    return $this->validationConfig;
-  }
-  /**
-   * @param string
-   */
   public function setVersion($version)
   {
     $this->version = $version;
   }
-  /**
-   * @return string
-   */
   public function getVersion()
   {
     return $this->version;

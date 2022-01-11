@@ -20,23 +20,14 @@ namespace Google\Service\GoogleAnalyticsAdmin;
 class GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse extends \Google\Collection
 {
   protected $collection_key = 'webDataStreams';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $webDataStreamsType = GoogleAnalyticsAdminV1alphaWebDataStream::class;
   protected $webDataStreamsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

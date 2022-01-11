@@ -19,29 +19,17 @@ namespace Google\Service\CloudHealthcare;
 
 class DicomConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $filterProfile;
   protected $keepListType = TagFilterList::class;
   protected $keepListDataType = '';
   protected $removeListType = TagFilterList::class;
   protected $removeListDataType = '';
-  /**
-   * @var bool
-   */
   public $skipIdRedaction;
 
-  /**
-   * @param string
-   */
   public function setFilterProfile($filterProfile)
   {
     $this->filterProfile = $filterProfile;
   }
-  /**
-   * @return string
-   */
   public function getFilterProfile()
   {
     return $this->filterProfile;
@@ -74,16 +62,10 @@ class DicomConfig extends \Google\Model
   {
     return $this->removeList;
   }
-  /**
-   * @param bool
-   */
   public function setSkipIdRedaction($skipIdRedaction)
   {
     $this->skipIdRedaction = $skipIdRedaction;
   }
-  /**
-   * @return bool
-   */
   public function getSkipIdRedaction()
   {
     return $this->skipIdRedaction;

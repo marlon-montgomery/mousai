@@ -22,9 +22,6 @@ class FunctionMock extends \Google\Collection
   protected $collection_key = 'args';
   protected $argsType = Arg::class;
   protected $argsDataType = 'array';
-  /**
-   * @var string
-   */
   public $function;
   protected $resultType = Result::class;
   protected $resultDataType = '';
@@ -43,16 +40,10 @@ class FunctionMock extends \Google\Collection
   {
     return $this->args;
   }
-  /**
-   * @param string
-   */
   public function setFunction($function)
   {
     $this->function = $function;
   }
-  /**
-   * @return string
-   */
   public function getFunction()
   {
     return $this->function;

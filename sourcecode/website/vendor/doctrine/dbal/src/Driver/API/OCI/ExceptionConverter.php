@@ -7,8 +7,6 @@ namespace Doctrine\DBAL\Driver\API\OCI;
 use Doctrine\DBAL\Driver\API\ExceptionConverter as ExceptionConverterInterface;
 use Doctrine\DBAL\Driver\Exception;
 use Doctrine\DBAL\Exception\ConnectionException;
-use Doctrine\DBAL\Exception\DatabaseDoesNotExist;
-use Doctrine\DBAL\Exception\DatabaseObjectNotFoundException;
 use Doctrine\DBAL\Exception\DriverException;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\DBAL\Exception\InvalidFieldNameException;
@@ -58,14 +56,6 @@ final class ExceptionConverter implements ExceptionConverterInterface
 
             case 1400:
                 return new NotNullConstraintViolationException($exception, $query);
-
-            case 1918:
-                return new DatabaseDoesNotExist($exception, $query);
-
-            case 2289:
-            case 2443:
-            case 4080:
-                return new DatabaseObjectNotFoundException($exception, $query);
 
             case 2266:
             case 2291:

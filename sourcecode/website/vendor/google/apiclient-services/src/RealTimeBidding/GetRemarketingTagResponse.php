@@ -19,21 +19,12 @@ namespace Google\Service\RealTimeBidding;
 
 class GetRemarketingTagResponse extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $snippet;
 
-  /**
-   * @param string
-   */
   public function setSnippet($snippet)
   {
     $this->snippet = $snippet;
   }
-  /**
-   * @return string
-   */
   public function getSnippet()
   {
     return $this->snippet;

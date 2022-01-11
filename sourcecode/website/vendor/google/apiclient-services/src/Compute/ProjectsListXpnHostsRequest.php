@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class ProjectsListXpnHostsRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $organization;
 
-  /**
-   * @param string
-   */
   public function setOrganization($organization)
   {
     $this->organization = $organization;
   }
-  /**
-   * @return string
-   */
   public function getOrganization()
   {
     return $this->organization;

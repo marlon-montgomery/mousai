@@ -19,21 +19,12 @@ namespace Google\Service\Testing;
 
 class SystraceSetup extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $durationSeconds;
 
-  /**
-   * @param int
-   */
   public function setDurationSeconds($durationSeconds)
   {
     $this->durationSeconds = $durationSeconds;
   }
-  /**
-   * @return int
-   */
   public function getDurationSeconds()
   {
     return $this->durationSeconds;

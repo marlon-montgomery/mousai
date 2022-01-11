@@ -19,21 +19,12 @@ namespace Google\Service\CloudHealthcare;
 
 class CharacterMaskConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $maskingCharacter;
 
-  /**
-   * @param string
-   */
   public function setMaskingCharacter($maskingCharacter)
   {
     $this->maskingCharacter = $maskingCharacter;
   }
-  /**
-   * @return string
-   */
   public function getMaskingCharacter()
   {
     return $this->maskingCharacter;

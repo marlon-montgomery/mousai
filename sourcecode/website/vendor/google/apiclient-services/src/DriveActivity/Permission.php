@@ -19,9 +19,6 @@ namespace Google\Service\DriveActivity;
 
 class Permission extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $allowDiscovery;
   protected $anyoneType = Anyone::class;
   protected $anyoneDataType = '';
@@ -29,23 +26,14 @@ class Permission extends \Google\Model
   protected $domainDataType = '';
   protected $groupType = Group::class;
   protected $groupDataType = '';
-  /**
-   * @var string
-   */
   public $role;
   protected $userType = User::class;
   protected $userDataType = '';
 
-  /**
-   * @param bool
-   */
   public function setAllowDiscovery($allowDiscovery)
   {
     $this->allowDiscovery = $allowDiscovery;
   }
-  /**
-   * @return bool
-   */
   public function getAllowDiscovery()
   {
     return $this->allowDiscovery;
@@ -92,16 +80,10 @@ class Permission extends \Google\Model
   {
     return $this->group;
   }
-  /**
-   * @param string
-   */
   public function setRole($role)
   {
     $this->role = $role;
   }
-  /**
-   * @return string
-   */
   public function getRole()
   {
     return $this->role;

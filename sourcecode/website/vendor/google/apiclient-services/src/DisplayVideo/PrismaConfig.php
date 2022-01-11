@@ -21,13 +21,7 @@ class PrismaConfig extends \Google\Model
 {
   protected $prismaCpeCodeType = PrismaCpeCode::class;
   protected $prismaCpeCodeDataType = '';
-  /**
-   * @var string
-   */
   public $prismaType;
-  /**
-   * @var string
-   */
   public $supplier;
 
   /**
@@ -44,30 +38,18 @@ class PrismaConfig extends \Google\Model
   {
     return $this->prismaCpeCode;
   }
-  /**
-   * @param string
-   */
   public function setPrismaType($prismaType)
   {
     $this->prismaType = $prismaType;
   }
-  /**
-   * @return string
-   */
   public function getPrismaType()
   {
     return $this->prismaType;
   }
-  /**
-   * @param string
-   */
   public function setSupplier($supplier)
   {
     $this->supplier = $supplier;
   }
-  /**
-   * @return string
-   */
   public function getSupplier()
   {
     return $this->supplier;

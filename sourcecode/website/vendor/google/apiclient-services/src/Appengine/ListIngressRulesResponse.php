@@ -22,9 +22,6 @@ class ListIngressRulesResponse extends \Google\Collection
   protected $collection_key = 'ingressRules';
   protected $ingressRulesType = FirewallRule::class;
   protected $ingressRulesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListIngressRulesResponse extends \Google\Collection
   {
     return $this->ingressRules;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

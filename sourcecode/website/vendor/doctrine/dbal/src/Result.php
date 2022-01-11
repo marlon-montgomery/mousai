@@ -170,8 +170,12 @@ class Result
      */
     public function iterateNumeric(): Traversable
     {
-        while (($row = $this->fetchNumeric()) !== false) {
-            yield $row;
+        try {
+            while (($row = $this->result->fetchNumeric()) !== false) {
+                yield $row;
+            }
+        } catch (DriverException $e) {
+            throw $this->connection->convertException($e);
         }
     }
 
@@ -182,8 +186,12 @@ class Result
      */
     public function iterateAssociative(): Traversable
     {
-        while (($row = $this->fetchAssociative()) !== false) {
-            yield $row;
+        try {
+            while (($row = $this->result->fetchAssociative()) !== false) {
+                yield $row;
+            }
+        } catch (DriverException $e) {
+            throw $this->connection->convertException($e);
         }
     }
 
@@ -223,8 +231,12 @@ class Result
      */
     public function iterateColumn(): Traversable
     {
-        while (($value = $this->fetchOne()) !== false) {
-            yield $value;
+        try {
+            while (($value = $this->result->fetchOne()) !== false) {
+                yield $value;
+            }
+        } catch (DriverException $e) {
+            throw $this->connection->convertException($e);
         }
     }
 
@@ -275,8 +287,6 @@ class Result
      * @deprecated This API is deprecated and will be removed after 2022
      *
      * @return mixed
-     *
-     * @throws Exception
      */
     public function fetch(int $mode = FetchMode::ASSOCIATIVE)
     {
@@ -305,8 +315,6 @@ class Result
      * @deprecated This API is deprecated and will be removed after 2022
      *
      * @return list<mixed>
-     *
-     * @throws Exception
      */
     public function fetchAll(int $mode = FetchMode::ASSOCIATIVE): array
     {

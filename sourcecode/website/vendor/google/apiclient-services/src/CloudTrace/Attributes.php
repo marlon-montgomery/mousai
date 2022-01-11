@@ -21,9 +21,6 @@ class Attributes extends \Google\Model
 {
   protected $attributeMapType = AttributeValue::class;
   protected $attributeMapDataType = 'map';
-  /**
-   * @var int
-   */
   public $droppedAttributesCount;
 
   /**
@@ -40,16 +37,10 @@ class Attributes extends \Google\Model
   {
     return $this->attributeMap;
   }
-  /**
-   * @param int
-   */
   public function setDroppedAttributesCount($droppedAttributesCount)
   {
     $this->droppedAttributesCount = $droppedAttributesCount;
   }
-  /**
-   * @return int
-   */
   public function getDroppedAttributesCount()
   {
     return $this->droppedAttributesCount;

@@ -20,9 +20,6 @@ namespace Google\Service\Books;
 class VolumeSaleInfoOffersRetailPrice extends \Google\Model
 {
   public $amountInMicros;
-  /**
-   * @var string
-   */
   public $currencyCode;
 
   public function setAmountInMicros($amountInMicros)
@@ -33,16 +30,10 @@ class VolumeSaleInfoOffersRetailPrice extends \Google\Model
   {
     return $this->amountInMicros;
   }
-  /**
-   * @param string
-   */
   public function setCurrencyCode($currencyCode)
   {
     $this->currencyCode = $currencyCode;
   }
-  /**
-   * @return string
-   */
   public function getCurrencyCode()
   {
     return $this->currencyCode;

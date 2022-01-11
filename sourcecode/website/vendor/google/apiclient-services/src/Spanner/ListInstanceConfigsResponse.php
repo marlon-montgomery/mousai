@@ -22,9 +22,6 @@ class ListInstanceConfigsResponse extends \Google\Collection
   protected $collection_key = 'instanceConfigs';
   protected $instanceConfigsType = InstanceConfig::class;
   protected $instanceConfigsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListInstanceConfigsResponse extends \Google\Collection
   {
     return $this->instanceConfigs;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

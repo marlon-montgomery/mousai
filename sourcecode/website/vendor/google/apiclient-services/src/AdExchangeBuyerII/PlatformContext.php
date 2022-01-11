@@ -20,21 +20,12 @@ namespace Google\Service\AdExchangeBuyerII;
 class PlatformContext extends \Google\Collection
 {
   protected $collection_key = 'platforms';
-  /**
-   * @var string[]
-   */
   public $platforms;
 
-  /**
-   * @param string[]
-   */
   public function setPlatforms($platforms)
   {
     $this->platforms = $platforms;
   }
-  /**
-   * @return string[]
-   */
   public function getPlatforms()
   {
     return $this->platforms;

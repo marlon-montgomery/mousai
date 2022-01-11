@@ -20,23 +20,14 @@ namespace Google\Service\GamesManagement;
 class PlayerScoreResetAllResponse extends \Google\Collection
 {
   protected $collection_key = 'results';
-  /**
-   * @var string
-   */
   public $kind;
   protected $resultsType = PlayerScoreResetResponse::class;
   protected $resultsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

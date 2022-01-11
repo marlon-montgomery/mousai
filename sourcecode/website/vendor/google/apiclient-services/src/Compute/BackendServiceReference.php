@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class BackendServiceReference extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $backendService;
 
-  /**
-   * @param string
-   */
   public function setBackendService($backendService)
   {
     $this->backendService = $backendService;
   }
-  /**
-   * @return string
-   */
   public function getBackendService()
   {
     return $this->backendService;

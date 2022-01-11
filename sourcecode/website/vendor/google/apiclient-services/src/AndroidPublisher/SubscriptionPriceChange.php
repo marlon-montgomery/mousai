@@ -21,9 +21,6 @@ class SubscriptionPriceChange extends \Google\Model
 {
   protected $newPriceType = Price::class;
   protected $newPriceDataType = '';
-  /**
-   * @var int
-   */
   public $state;
 
   /**
@@ -40,16 +37,10 @@ class SubscriptionPriceChange extends \Google\Model
   {
     return $this->newPrice;
   }
-  /**
-   * @param int
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return int
-   */
   public function getState()
   {
     return $this->state;

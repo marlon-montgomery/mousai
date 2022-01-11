@@ -194,11 +194,10 @@ class MemcachedAdapter extends AbstractAdapter
                 if ('HASH' === $name || 'SERIALIZER' === $name || 'DISTRIBUTION' === $name) {
                     $value = \constant('Memcached::'.$name.'_'.strtoupper($value));
                 }
-                unset($options[$name]);
+                $opt = \constant('Memcached::OPT_'.$name);
 
-                if (\defined('Memcached::OPT_'.$name)) {
-                    $options[\constant('Memcached::OPT_'.$name)] = $value;
-                }
+                unset($options[$name]);
+                $options[$opt] = $value;
             }
             $client->setOptions($options);
 

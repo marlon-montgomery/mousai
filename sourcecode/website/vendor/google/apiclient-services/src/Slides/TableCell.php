@@ -19,31 +19,19 @@ namespace Google\Service\Slides;
 
 class TableCell extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $columnSpan;
   protected $locationType = TableCellLocation::class;
   protected $locationDataType = '';
-  /**
-   * @var int
-   */
   public $rowSpan;
   protected $tableCellPropertiesType = TableCellProperties::class;
   protected $tableCellPropertiesDataType = '';
   protected $textType = TextContent::class;
   protected $textDataType = '';
 
-  /**
-   * @param int
-   */
   public function setColumnSpan($columnSpan)
   {
     $this->columnSpan = $columnSpan;
   }
-  /**
-   * @return int
-   */
   public function getColumnSpan()
   {
     return $this->columnSpan;
@@ -62,16 +50,10 @@ class TableCell extends \Google\Model
   {
     return $this->location;
   }
-  /**
-   * @param int
-   */
   public function setRowSpan($rowSpan)
   {
     $this->rowSpan = $rowSpan;
   }
-  /**
-   * @return int
-   */
   public function getRowSpan()
   {
     return $this->rowSpan;

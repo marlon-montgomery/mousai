@@ -2,6 +2,7 @@
 
 namespace Sentry\Laravel;
 
+use Illuminate\Container\Container;
 use Illuminate\Contracts\Http\Kernel as HttpKernelInterface;
 use Illuminate\Foundation\Application as Laravel;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -11,8 +12,6 @@ use RuntimeException;
 use Sentry\ClientBuilder;
 use Sentry\ClientBuilderInterface;
 use Sentry\Integration as SdkIntegration;
-use Sentry\Laravel\Console\PublishCommand;
-use Sentry\Laravel\Console\TestCommand;
 use Sentry\Laravel\Http\LaravelRequestFetcher;
 use Sentry\Laravel\Http\SetRequestIpMiddleware;
 use Sentry\Laravel\Http\SetRequestMiddleware;
@@ -124,7 +123,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->commands([
             TestCommand::class,
-            PublishCommand::class,
+            PublishConfigCommand::class,
         ]);
     }
 

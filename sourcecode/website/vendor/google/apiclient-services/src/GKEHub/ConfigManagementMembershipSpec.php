@@ -25,9 +25,6 @@ class ConfigManagementMembershipSpec extends \Google\Model
   protected $hierarchyControllerDataType = '';
   protected $policyControllerType = ConfigManagementPolicyController::class;
   protected $policyControllerDataType = '';
-  /**
-   * @var string
-   */
   public $version;
 
   /**
@@ -72,16 +69,10 @@ class ConfigManagementMembershipSpec extends \Google\Model
   {
     return $this->policyController;
   }
-  /**
-   * @param string
-   */
   public function setVersion($version)
   {
     $this->version = $version;
   }
-  /**
-   * @return string
-   */
   public function getVersion()
   {
     return $this->version;

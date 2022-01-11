@@ -19,39 +19,21 @@ namespace Google\Service\CloudSearch;
 
 class EnumValuePair extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $integerValue;
-  /**
-   * @var string
-   */
   public $stringValue;
 
-  /**
-   * @param int
-   */
   public function setIntegerValue($integerValue)
   {
     $this->integerValue = $integerValue;
   }
-  /**
-   * @return int
-   */
   public function getIntegerValue()
   {
     return $this->integerValue;
   }
-  /**
-   * @param string
-   */
   public function setStringValue($stringValue)
   {
     $this->stringValue = $stringValue;
   }
-  /**
-   * @return string
-   */
   public function getStringValue()
   {
     return $this->stringValue;

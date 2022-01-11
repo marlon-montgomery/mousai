@@ -117,7 +117,7 @@ class XmlFileLoader extends FileLoader
     /**
      * Return the names of the classes mapped in this file.
      *
-     * @return string[]
+     * @return string[] The classes names
      */
     public function getMappedClasses()
     {

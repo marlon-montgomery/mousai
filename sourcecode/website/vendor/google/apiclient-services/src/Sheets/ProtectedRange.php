@@ -20,43 +20,22 @@ namespace Google\Service\Sheets;
 class ProtectedRange extends \Google\Collection
 {
   protected $collection_key = 'unprotectedRanges';
-  /**
-   * @var string
-   */
   public $description;
   protected $editorsType = Editors::class;
   protected $editorsDataType = '';
-  /**
-   * @var string
-   */
   public $namedRangeId;
-  /**
-   * @var int
-   */
   public $protectedRangeId;
   protected $rangeType = GridRange::class;
   protected $rangeDataType = '';
-  /**
-   * @var bool
-   */
   public $requestingUserCanEdit;
   protected $unprotectedRangesType = GridRange::class;
   protected $unprotectedRangesDataType = 'array';
-  /**
-   * @var bool
-   */
   public $warningOnly;
 
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;
@@ -75,30 +54,18 @@ class ProtectedRange extends \Google\Collection
   {
     return $this->editors;
   }
-  /**
-   * @param string
-   */
   public function setNamedRangeId($namedRangeId)
   {
     $this->namedRangeId = $namedRangeId;
   }
-  /**
-   * @return string
-   */
   public function getNamedRangeId()
   {
     return $this->namedRangeId;
   }
-  /**
-   * @param int
-   */
   public function setProtectedRangeId($protectedRangeId)
   {
     $this->protectedRangeId = $protectedRangeId;
   }
-  /**
-   * @return int
-   */
   public function getProtectedRangeId()
   {
     return $this->protectedRangeId;
@@ -117,16 +84,10 @@ class ProtectedRange extends \Google\Collection
   {
     return $this->range;
   }
-  /**
-   * @param bool
-   */
   public function setRequestingUserCanEdit($requestingUserCanEdit)
   {
     $this->requestingUserCanEdit = $requestingUserCanEdit;
   }
-  /**
-   * @return bool
-   */
   public function getRequestingUserCanEdit()
   {
     return $this->requestingUserCanEdit;
@@ -145,16 +106,10 @@ class ProtectedRange extends \Google\Collection
   {
     return $this->unprotectedRanges;
   }
-  /**
-   * @param bool
-   */
   public function setWarningOnly($warningOnly)
   {
     $this->warningOnly = $warningOnly;
   }
-  /**
-   * @return bool
-   */
   public function getWarningOnly()
   {
     return $this->warningOnly;

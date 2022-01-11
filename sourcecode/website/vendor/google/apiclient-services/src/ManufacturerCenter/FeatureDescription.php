@@ -19,27 +19,15 @@ namespace Google\Service\ManufacturerCenter;
 
 class FeatureDescription extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $headline;
   protected $imageType = Image::class;
   protected $imageDataType = '';
-  /**
-   * @var string
-   */
   public $text;
 
-  /**
-   * @param string
-   */
   public function setHeadline($headline)
   {
     $this->headline = $headline;
   }
-  /**
-   * @return string
-   */
   public function getHeadline()
   {
     return $this->headline;
@@ -58,16 +46,10 @@ class FeatureDescription extends \Google\Model
   {
     return $this->image;
   }
-  /**
-   * @param string
-   */
   public function setText($text)
   {
     $this->text = $text;
   }
-  /**
-   * @return string
-   */
   public function getText()
   {
     return $this->text;

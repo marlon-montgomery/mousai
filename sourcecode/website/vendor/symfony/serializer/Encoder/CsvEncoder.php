@@ -36,8 +36,7 @@ class CsvEncoder implements EncoderInterface, DecoderInterface
 
     private const UTF8_BOM = "\xEF\xBB\xBF";
 
-    private const FORMULAS_START_CHARACTERS = ['=', '-', '+', '@', "\t", "\r"];
-
+    private $formulasStartCharacters = ['=', '-', '+', '@'];
     private $defaultContext = [
         self::DELIMITER_KEY => ',',
         self::ENCLOSURE_KEY => '"',
@@ -228,8 +227,8 @@ class CsvEncoder implements EncoderInterface, DecoderInterface
             if (is_iterable($value)) {
                 $this->flatten($value, $result, $keySeparator, $parentKey.$key.$keySeparator, $escapeFormulas);
             } else {
-                if ($escapeFormulas && \in_array(substr((string) $value, 0, 1), self::FORMULAS_START_CHARACTERS, true)) {
-                    $result[$parentKey.$key] = "'".$value;
+                if ($escapeFormulas && \in_array(substr((string) $value, 0, 1), $this->formulasStartCharacters, true)) {
+                    $result[$parentKey.$key] = "\t".$value;
                 } else {
                     // Ensures an actual value is used when dealing with true and false
                     $result[$parentKey.$key] = false === $value ? 0 : (true === $value ? 1 : $value);

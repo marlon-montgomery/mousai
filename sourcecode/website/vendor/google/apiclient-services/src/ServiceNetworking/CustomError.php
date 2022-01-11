@@ -22,9 +22,6 @@ class CustomError extends \Google\Collection
   protected $collection_key = 'types';
   protected $rulesType = CustomErrorRule::class;
   protected $rulesDataType = 'array';
-  /**
-   * @var string[]
-   */
   public $types;
 
   /**
@@ -41,16 +38,10 @@ class CustomError extends \Google\Collection
   {
     return $this->rules;
   }
-  /**
-   * @param string[]
-   */
   public function setTypes($types)
   {
     $this->types = $types;
   }
-  /**
-   * @return string[]
-   */
   public function getTypes()
   {
     return $this->types;

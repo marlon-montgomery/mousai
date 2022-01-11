@@ -22,9 +22,6 @@ class ListExclusionsResponse extends \Google\Collection
   protected $collection_key = 'exclusions';
   protected $exclusionsType = LogExclusion::class;
   protected $exclusionsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListExclusionsResponse extends \Google\Collection
   {
     return $this->exclusions;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

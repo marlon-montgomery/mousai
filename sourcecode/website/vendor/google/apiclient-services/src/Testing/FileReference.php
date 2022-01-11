@@ -19,21 +19,12 @@ namespace Google\Service\Testing;
 
 class FileReference extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $gcsPath;
 
-  /**
-   * @param string
-   */
   public function setGcsPath($gcsPath)
   {
     $this->gcsPath = $gcsPath;
   }
-  /**
-   * @return string
-   */
   public function getGcsPath()
   {
     return $this->gcsPath;

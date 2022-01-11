@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Endpoints;
 
-use DateTimeInterface;
 use MeiliSearch\Endpoints\Indexes;
 use MeiliSearch\Exceptions\ApiException;
 use MeiliSearch\Exceptions\TimeOutException;
@@ -41,40 +40,6 @@ final class IndexTest extends TestCase
         $this->assertSame('indexB', $indexB->getUid());
     }
 
-    public function testGetCreatedAt(): void
-    {
-        $indexB = $this->client->index('indexB');
-
-        $this->assertNull($indexB->getCreatedAt());
-        $this->assertInstanceOf(DateTimeInterface::class, $this->index->getCreatedAt());
-    }
-
-    public function testGetUpdatedAt(): void
-    {
-        $indexB = $this->client->index('indexB');
-
-        $this->assertNull($indexB->getUpdatedAt());
-        $this->assertInstanceOf(DateTimeInterface::class, $this->index->getUpdatedAt());
-    }
-
-    public function testGetCreatedAtString(): void
-    {
-        $indexB = $this->client->index('indexB');
-        $rawInfo = $this->index->fetchRawInfo();
-
-        $this->assertNull($indexB->getCreatedAtString());
-        $this->assertSame($rawInfo['createdAt'], $this->index->getCreatedAtString());
-    }
-
-    public function testGetUpdatedAtString(): void
-    {
-        $indexB = $this->client->index('indexB');
-        $rawInfo = $this->index->fetchRawInfo();
-
-        $this->assertNull($indexB->getUpdatedAtString());
-        $this->assertSame($rawInfo['updatedAt'], $this->index->getUpdatedAtString());
-    }
-
     public function testfetchRawInfo(): void
     {
         $index = $this->client->createIndex(
@@ -105,6 +70,18 @@ final class IndexTest extends TestCase
         $this->assertSame($this->index->getUid(), 'index');
     }
 
+    public function testExceptionIsThrownWhenOverwritingPrimaryKey(): void
+    {
+        $index = $this->client->createIndex(
+            'indexB',
+            ['primaryKey' => 'objectId']
+        );
+
+        $this->expectException(ApiException::class);
+
+        $index->update(['primaryKey' => 'objectID']);
+    }
+
     public function testIndexStats(): void
     {
         $stats = $this->index->stats();
@@ -130,9 +107,6 @@ final class IndexTest extends TestCase
         $index = $index->fetchInfo();
         $this->assertInstanceOf(Indexes::class, $index);
         $this->assertSame('objectID', $index->getPrimaryKey());
-        $this->assertSame($uid, $index->getUid());
-        $this->assertInstanceOf(DateTimeInterface::class, $index->getCreatedAt());
-        $this->assertInstanceOf(DateTimeInterface::class, $index->getUpdatedAt());
     }
 
     public function testGetAndFetchPrimaryKey(): void
@@ -212,33 +186,6 @@ final class IndexTest extends TestCase
 
         $res = $indexB->delete();
         $this->assertEmpty($res);
-    }
-
-    public function testParseDate(): void
-    {
-        $date = '2021-01-01T01:23:45.123456Z';
-        $dateTime = Indexes::parseDate($date);
-        $formattedDate = '2021-01-01T01:23:45.123456+00:00';
-
-        $this->assertInstanceOf(DateTimeInterface::class, $dateTime);
-        $this->assertSame($formattedDate, $dateTime->format('Y-m-d\TH:i:s.uP'));
-    }
-
-    public function testParseDateWithExtraFractionalSeconds(): void
-    {
-        $date = '2021-01-01T01:23:45.123456789Z';
-        $dateTime = Indexes::parseDate($date);
-        $formattedDate = '2021-01-01T01:23:45.123456+00:00';
-
-        $this->assertInstanceOf(DateTimeInterface::class, $dateTime);
-        $this->assertSame($formattedDate, $dateTime->format('Y-m-d\TH:i:s.uP'));
-    }
-
-    public function testParseDateWhenNull(): void
-    {
-        $dateTime = Indexes::parseDate(null);
-
-        $this->assertNull($dateTime);
     }
 
     public function testExceptionIsThrownIfNoIndexWhenShowing(): void

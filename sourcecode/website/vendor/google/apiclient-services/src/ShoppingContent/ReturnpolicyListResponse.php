@@ -20,23 +20,14 @@ namespace Google\Service\ShoppingContent;
 class ReturnpolicyListResponse extends \Google\Collection
 {
   protected $collection_key = 'resources';
-  /**
-   * @var string
-   */
   public $kind;
   protected $resourcesType = ReturnPolicy::class;
   protected $resourcesDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

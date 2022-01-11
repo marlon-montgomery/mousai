@@ -20,29 +20,17 @@ namespace Google\Service\MyBusinessBusinessInformation;
 class Category extends \Google\Collection
 {
   protected $collection_key = 'serviceTypes';
-  /**
-   * @var string
-   */
   public $displayName;
   protected $moreHoursTypesType = MoreHoursType::class;
   protected $moreHoursTypesDataType = 'array';
-  /**
-   * @var string
-   */
   public $name;
   protected $serviceTypesType = ServiceType::class;
   protected $serviceTypesDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setDisplayName($displayName)
   {
     $this->displayName = $displayName;
   }
-  /**
-   * @return string
-   */
   public function getDisplayName()
   {
     return $this->displayName;
@@ -61,16 +49,10 @@ class Category extends \Google\Collection
   {
     return $this->moreHoursTypes;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

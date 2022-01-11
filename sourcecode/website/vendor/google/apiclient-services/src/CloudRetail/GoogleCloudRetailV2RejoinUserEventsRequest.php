@@ -19,21 +19,12 @@ namespace Google\Service\CloudRetail;
 
 class GoogleCloudRetailV2RejoinUserEventsRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $userEventRejoinScope;
 
-  /**
-   * @param string
-   */
   public function setUserEventRejoinScope($userEventRejoinScope)
   {
     $this->userEventRejoinScope = $userEventRejoinScope;
   }
-  /**
-   * @return string
-   */
   public function getUserEventRejoinScope()
   {
     return $this->userEventRejoinScope;

@@ -22,9 +22,6 @@ class RelationshipData extends \Google\Collection
   protected $collection_key = 'childrenLocations';
   protected $childrenLocationsType = RelevantLocation::class;
   protected $childrenLocationsDataType = 'array';
-  /**
-   * @var string
-   */
   public $parentChain;
   protected $parentLocationType = RelevantLocation::class;
   protected $parentLocationDataType = '';
@@ -43,16 +40,10 @@ class RelationshipData extends \Google\Collection
   {
     return $this->childrenLocations;
   }
-  /**
-   * @param string
-   */
   public function setParentChain($parentChain)
   {
     $this->parentChain = $parentChain;
   }
-  /**
-   * @return string
-   */
   public function getParentChain()
   {
     return $this->parentChain;

@@ -20,23 +20,14 @@ namespace Google\Service\Firestore;
 class CommitRequest extends \Google\Collection
 {
   protected $collection_key = 'writes';
-  /**
-   * @var string
-   */
   public $transaction;
   protected $writesType = Write::class;
   protected $writesDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setTransaction($transaction)
   {
     $this->transaction = $transaction;
   }
-  /**
-   * @return string
-   */
   public function getTransaction()
   {
     return $this->transaction;

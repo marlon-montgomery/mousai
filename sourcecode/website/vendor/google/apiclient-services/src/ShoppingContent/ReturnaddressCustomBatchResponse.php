@@ -22,9 +22,6 @@ class ReturnaddressCustomBatchResponse extends \Google\Collection
   protected $collection_key = 'entries';
   protected $entriesType = ReturnaddressCustomBatchResponseEntry::class;
   protected $entriesDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -41,16 +38,10 @@ class ReturnaddressCustomBatchResponse extends \Google\Collection
   {
     return $this->entries;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

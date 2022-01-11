@@ -48,6 +48,7 @@
       <tr>
         <th table-header-checkbox></th>
         <th trans>Artist</th>
+        <th trans>Bitclout Username</th>
         <th table-sort-header="albums_count" trans>Number of Albums</th>
         <th table-sort-header="plays" trans>Total Plays</th>
         <th table-sort-header="views" trans>Page Views</th>
@@ -86,6 +87,7 @@
             <a [routerLink]="urls.artist(artist)" class="link" target="_blank">{{ artist.name }}</a>
           </div>
         </td>
+        <td data-label="Bitclout Username">{{artist.bitclout}}</td>
         <td data-label="Number of Albums">{{ artist.albums_count }}</td>
         <td data-label="Popularity">{{ artist.plays | number }}</td>
         <td data-label="Page Views">{{ artist.views | number }}</td>

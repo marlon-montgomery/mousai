@@ -21,15 +21,9 @@ class GoogleCloudVisionV1p2beta1Symbol extends \Google\Model
 {
   protected $boundingBoxType = GoogleCloudVisionV1p2beta1BoundingPoly::class;
   protected $boundingBoxDataType = '';
-  /**
-   * @var float
-   */
   public $confidence;
   protected $propertyType = GoogleCloudVisionV1p2beta1TextAnnotationTextProperty::class;
   protected $propertyDataType = '';
-  /**
-   * @var string
-   */
   public $text;
 
   /**
@@ -46,16 +40,10 @@ class GoogleCloudVisionV1p2beta1Symbol extends \Google\Model
   {
     return $this->boundingBox;
   }
-  /**
-   * @param float
-   */
   public function setConfidence($confidence)
   {
     $this->confidence = $confidence;
   }
-  /**
-   * @return float
-   */
   public function getConfidence()
   {
     return $this->confidence;
@@ -74,16 +62,10 @@ class GoogleCloudVisionV1p2beta1Symbol extends \Google\Model
   {
     return $this->property;
   }
-  /**
-   * @param string
-   */
   public function setText($text)
   {
     $this->text = $text;
   }
-  /**
-   * @return string
-   */
   public function getText()
   {
     return $this->text;

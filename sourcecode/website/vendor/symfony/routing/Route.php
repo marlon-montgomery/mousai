@@ -112,7 +112,7 @@ class Route implements \Serializable
     }
 
     /**
-     * @return string
+     * @return string The path pattern
      */
     public function getPath()
     {
@@ -135,7 +135,7 @@ class Route implements \Serializable
     }
 
     /**
-     * @return string
+     * @return string The host pattern
      */
     public function getHost()
     {
@@ -157,7 +157,7 @@ class Route implements \Serializable
      * Returns the lowercased schemes this route is restricted to.
      * So an empty array means that any scheme is allowed.
      *
-     * @return string[]
+     * @return string[] The schemes
      */
     public function getSchemes()
     {
@@ -183,7 +183,7 @@ class Route implements \Serializable
     /**
      * Checks if a scheme requirement has been set.
      *
-     * @return bool
+     * @return bool true if the scheme requirement exists, otherwise false
      */
     public function hasScheme(string $scheme)
     {
@@ -194,7 +194,7 @@ class Route implements \Serializable
      * Returns the uppercased HTTP methods this route is restricted to.
      * So an empty array means that any method is allowed.
      *
-     * @return string[]
+     * @return string[] The methods
      */
     public function getMethods()
     {
@@ -218,7 +218,7 @@ class Route implements \Serializable
     }
 
     /**
-     * @return array
+     * @return array The options
      */
     public function getOptions()
     {
@@ -266,9 +266,7 @@ class Route implements \Serializable
     }
 
     /**
-     * Returns the option value or null when not found.
-     *
-     * @return mixed
+     * @return mixed The option value or null when not given
      */
     public function getOption(string $name)
     {
@@ -276,7 +274,7 @@ class Route implements \Serializable
     }
 
     /**
-     * @return bool
+     * @return bool true if the option is set, false otherwise
      */
     public function hasOption(string $name)
     {
@@ -284,7 +282,7 @@ class Route implements \Serializable
     }
 
     /**
-     * @return array
+     * @return array The defaults
      */
     public function getDefaults()
     {
@@ -319,7 +317,7 @@ class Route implements \Serializable
     }
 
     /**
-     * @return mixed
+     * @return mixed The default value or null when not given
      */
     public function getDefault(string $name)
     {
@@ -327,7 +325,7 @@ class Route implements \Serializable
     }
 
     /**
-     * @return bool
+     * @return bool true if the default value is set, false otherwise
      */
     public function hasDefault(string $name)
     {
@@ -354,7 +352,7 @@ class Route implements \Serializable
     }
 
     /**
-     * @return array
+     * @return array The requirements
      */
     public function getRequirements()
     {
@@ -389,7 +387,7 @@ class Route implements \Serializable
     }
 
     /**
-     * @return string|null
+     * @return string|null The regex or null when not given
      */
     public function getRequirement(string $key)
     {
@@ -397,7 +395,7 @@ class Route implements \Serializable
     }
 
     /**
-     * @return bool
+     * @return bool true if a requirement is specified, false otherwise
      */
     public function hasRequirement(string $key)
     {
@@ -420,7 +418,7 @@ class Route implements \Serializable
     }
 
     /**
-     * @return string
+     * @return string The condition
      */
     public function getCondition()
     {
@@ -441,7 +439,7 @@ class Route implements \Serializable
     /**
      * Compiles the route.
      *
-     * @return CompiledRoute
+     * @return CompiledRoute A CompiledRoute instance
      *
      * @throws \LogicException If the Route cannot be compiled because the
      *                         path or host pattern is invalid

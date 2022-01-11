@@ -22,9 +22,6 @@ class X509Parameters extends \Google\Collection
   protected $collection_key = 'policyIds';
   protected $additionalExtensionsType = X509Extension::class;
   protected $additionalExtensionsDataType = 'array';
-  /**
-   * @var string[]
-   */
   public $aiaOcspServers;
   protected $caOptionsType = CaOptions::class;
   protected $caOptionsDataType = '';
@@ -47,16 +44,10 @@ class X509Parameters extends \Google\Collection
   {
     return $this->additionalExtensions;
   }
-  /**
-   * @param string[]
-   */
   public function setAiaOcspServers($aiaOcspServers)
   {
     $this->aiaOcspServers = $aiaOcspServers;
   }
-  /**
-   * @return string[]
-   */
   public function getAiaOcspServers()
   {
     return $this->aiaOcspServers;

@@ -24,9 +24,6 @@ class Card extends \Google\Collection
   protected $cardActionsDataType = 'array';
   protected $headerType = CardHeader::class;
   protected $headerDataType = '';
-  /**
-   * @var string
-   */
   public $name;
   protected $sectionsType = Section::class;
   protected $sectionsDataType = 'array';
@@ -59,16 +56,10 @@ class Card extends \Google\Collection
   {
     return $this->header;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

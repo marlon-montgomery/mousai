@@ -21,31 +21,16 @@ class TestExecution extends \Google\Model
 {
   protected $environmentType = Environment::class;
   protected $environmentDataType = '';
-  /**
-   * @var string
-   */
   public $id;
-  /**
-   * @var string
-   */
   public $matrixId;
-  /**
-   * @var string
-   */
   public $projectId;
   protected $shardType = Shard::class;
   protected $shardDataType = '';
-  /**
-   * @var string
-   */
   public $state;
   protected $testDetailsType = TestDetails::class;
   protected $testDetailsDataType = '';
   protected $testSpecificationType = TestSpecification::class;
   protected $testSpecificationDataType = '';
-  /**
-   * @var string
-   */
   public $timestamp;
   protected $toolResultsStepType = ToolResultsStep::class;
   protected $toolResultsStepDataType = '';
@@ -64,44 +49,26 @@ class TestExecution extends \Google\Model
   {
     return $this->environment;
   }
-  /**
-   * @param string
-   */
   public function setId($id)
   {
     $this->id = $id;
   }
-  /**
-   * @return string
-   */
   public function getId()
   {
     return $this->id;
   }
-  /**
-   * @param string
-   */
   public function setMatrixId($matrixId)
   {
     $this->matrixId = $matrixId;
   }
-  /**
-   * @return string
-   */
   public function getMatrixId()
   {
     return $this->matrixId;
   }
-  /**
-   * @param string
-   */
   public function setProjectId($projectId)
   {
     $this->projectId = $projectId;
   }
-  /**
-   * @return string
-   */
   public function getProjectId()
   {
     return $this->projectId;
@@ -120,16 +87,10 @@ class TestExecution extends \Google\Model
   {
     return $this->shard;
   }
-  /**
-   * @param string
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return string
-   */
   public function getState()
   {
     return $this->state;
@@ -162,16 +123,10 @@ class TestExecution extends \Google\Model
   {
     return $this->testSpecification;
   }
-  /**
-   * @param string
-   */
   public function setTimestamp($timestamp)
   {
     $this->timestamp = $timestamp;
   }
-  /**
-   * @return string
-   */
   public function getTimestamp()
   {
     return $this->timestamp;

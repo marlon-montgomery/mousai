@@ -77,7 +77,7 @@ export class NotificationService {
             this.all$.next([notification, ...this.all$.value]);
         }
     }
-    
+
     public delete(notifications: DatabaseNotification[]): BackendResponse<unknown> {
         const unreadCount = notifications.filter(n => !n.read_at).length;
         const ids = notifications.map(n => n.id);

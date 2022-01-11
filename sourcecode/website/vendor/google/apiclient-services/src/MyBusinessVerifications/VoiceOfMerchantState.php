@@ -21,13 +21,7 @@ class VoiceOfMerchantState extends \Google\Model
 {
   protected $complyWithGuidelinesType = ComplyWithGuidelines::class;
   protected $complyWithGuidelinesDataType = '';
-  /**
-   * @var bool
-   */
   public $hasBusinessAuthority;
-  /**
-   * @var bool
-   */
   public $hasVoiceOfMerchant;
   protected $resolveOwnershipConflictType = ResolveOwnershipConflict::class;
   protected $resolveOwnershipConflictDataType = '';
@@ -50,30 +44,18 @@ class VoiceOfMerchantState extends \Google\Model
   {
     return $this->complyWithGuidelines;
   }
-  /**
-   * @param bool
-   */
   public function setHasBusinessAuthority($hasBusinessAuthority)
   {
     $this->hasBusinessAuthority = $hasBusinessAuthority;
   }
-  /**
-   * @return bool
-   */
   public function getHasBusinessAuthority()
   {
     return $this->hasBusinessAuthority;
   }
-  /**
-   * @param bool
-   */
   public function setHasVoiceOfMerchant($hasVoiceOfMerchant)
   {
     $this->hasVoiceOfMerchant = $hasVoiceOfMerchant;
   }
-  /**
-   * @return bool
-   */
   public function getHasVoiceOfMerchant()
   {
     return $this->hasVoiceOfMerchant;

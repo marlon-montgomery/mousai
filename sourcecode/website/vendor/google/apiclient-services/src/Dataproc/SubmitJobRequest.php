@@ -21,9 +21,6 @@ class SubmitJobRequest extends \Google\Model
 {
   protected $jobType = Job::class;
   protected $jobDataType = '';
-  /**
-   * @var string
-   */
   public $requestId;
 
   /**
@@ -40,16 +37,10 @@ class SubmitJobRequest extends \Google\Model
   {
     return $this->job;
   }
-  /**
-   * @param string
-   */
   public function setRequestId($requestId)
   {
     $this->requestId = $requestId;
   }
-  /**
-   * @return string
-   */
   public function getRequestId()
   {
     return $this->requestId;

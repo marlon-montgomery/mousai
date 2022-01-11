@@ -19,21 +19,12 @@ namespace Google\Service\Firestore;
 
 class ReadOnly extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $readTime;
 
-  /**
-   * @param string
-   */
   public function setReadTime($readTime)
   {
     $this->readTime = $readTime;
   }
-  /**
-   * @return string
-   */
   public function getReadTime()
   {
     return $this->readTime;

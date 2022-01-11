@@ -19,21 +19,12 @@ namespace Google\Service\HangoutsChat;
 
 class TextParagraph extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $text;
 
-  /**
-   * @param string
-   */
   public function setText($text)
   {
     $this->text = $text;
   }
-  /**
-   * @return string
-   */
   public function getText()
   {
     return $this->text;

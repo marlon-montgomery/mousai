@@ -22,9 +22,6 @@ class GoogleCloudApigeeV1ListInstancesResponse extends \Google\Collection
   protected $collection_key = 'instances';
   protected $instancesType = GoogleCloudApigeeV1Instance::class;
   protected $instancesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudApigeeV1ListInstancesResponse extends \Google\Collection
   {
     return $this->instances;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

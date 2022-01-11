@@ -4,10 +4,9 @@ namespace Illuminate\Database\DBAL;
 
 use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\PhpDateTimeMappingType;
 use Doctrine\DBAL\Types\Type;
 
-class TimestampType extends Type implements PhpDateTimeMappingType
+class TimestampType extends Type
 {
     /**
      * {@inheritdoc}

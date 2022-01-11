@@ -19,21 +19,12 @@ namespace Google\Service\Dataproc;
 
 class MetastoreConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $dataprocMetastoreService;
 
-  /**
-   * @param string
-   */
   public function setDataprocMetastoreService($dataprocMetastoreService)
   {
     $this->dataprocMetastoreService = $dataprocMetastoreService;
   }
-  /**
-   * @return string
-   */
   public function getDataprocMetastoreService()
   {
     return $this->dataprocMetastoreService;

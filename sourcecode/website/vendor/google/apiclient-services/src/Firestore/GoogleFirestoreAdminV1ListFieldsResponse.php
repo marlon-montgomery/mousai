@@ -22,9 +22,6 @@ class GoogleFirestoreAdminV1ListFieldsResponse extends \Google\Collection
   protected $collection_key = 'fields';
   protected $fieldsType = GoogleFirestoreAdminV1Field::class;
   protected $fieldsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleFirestoreAdminV1ListFieldsResponse extends \Google\Collection
   {
     return $this->fields;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

@@ -14,7 +14,6 @@ namespace Symfony\Component\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Symfony\Contracts\HttpClient\ResponseStreamInterface;
-use Symfony\Contracts\Service\ResetInterface;
 
 /**
  * Eases with writing decorators.
@@ -55,12 +54,5 @@ trait DecoratorTrait
         $clone->client = $this->client->withOptions($options);
 
         return $clone;
-    }
-
-    public function reset()
-    {
-        if ($this->client instanceof ResetInterface) {
-            $this->client->reset();
-        }
     }
 }

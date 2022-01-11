@@ -21,9 +21,6 @@ class GoogleCloudChannelV1UpdateChannelPartnerLinkRequest extends \Google\Model
 {
   protected $channelPartnerLinkType = GoogleCloudChannelV1ChannelPartnerLink::class;
   protected $channelPartnerLinkDataType = '';
-  /**
-   * @var string
-   */
   public $updateMask;
 
   /**
@@ -40,16 +37,10 @@ class GoogleCloudChannelV1UpdateChannelPartnerLinkRequest extends \Google\Model
   {
     return $this->channelPartnerLink;
   }
-  /**
-   * @param string
-   */
   public function setUpdateMask($updateMask)
   {
     $this->updateMask = $updateMask;
   }
-  /**
-   * @return string
-   */
   public function getUpdateMask()
   {
     return $this->updateMask;

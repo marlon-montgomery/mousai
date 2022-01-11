@@ -726,7 +726,7 @@ class Worker
      * Kill the process.
      *
      * @param  int  $status
-     * @return never
+     * @return void
      */
     public function kill($status = 0)
     {

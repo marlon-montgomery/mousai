@@ -19,29 +19,17 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowV2beta1IntentMessageCarouselSelectItem extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $description;
   protected $imageType = GoogleCloudDialogflowV2beta1IntentMessageImage::class;
   protected $imageDataType = '';
   protected $infoType = GoogleCloudDialogflowV2beta1IntentMessageSelectItemInfo::class;
   protected $infoDataType = '';
-  /**
-   * @var string
-   */
   public $title;
 
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;
@@ -74,16 +62,10 @@ class GoogleCloudDialogflowV2beta1IntentMessageCarouselSelectItem extends \Googl
   {
     return $this->info;
   }
-  /**
-   * @param string
-   */
   public function setTitle($title)
   {
     $this->title = $title;
   }
-  /**
-   * @return string
-   */
   public function getTitle()
   {
     return $this->title;

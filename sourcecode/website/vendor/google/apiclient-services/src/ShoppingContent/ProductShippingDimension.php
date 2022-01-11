@@ -19,22 +19,13 @@ namespace Google\Service\ShoppingContent;
 
 class ProductShippingDimension extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $unit;
   public $value;
 
-  /**
-   * @param string
-   */
   public function setUnit($unit)
   {
     $this->unit = $unit;
   }
-  /**
-   * @return string
-   */
   public function getUnit()
   {
     return $this->unit;

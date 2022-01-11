@@ -20,21 +20,12 @@ namespace Google\Service\BigtableAdmin;
 class MultiClusterRoutingUseAny extends \Google\Collection
 {
   protected $collection_key = 'clusterIds';
-  /**
-   * @var string[]
-   */
   public $clusterIds;
 
-  /**
-   * @param string[]
-   */
   public function setClusterIds($clusterIds)
   {
     $this->clusterIds = $clusterIds;
   }
-  /**
-   * @return string[]
-   */
   public function getClusterIds()
   {
     return $this->clusterIds;

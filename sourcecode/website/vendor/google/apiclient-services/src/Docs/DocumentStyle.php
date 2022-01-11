@@ -21,29 +21,11 @@ class DocumentStyle extends \Google\Model
 {
   protected $backgroundType = Background::class;
   protected $backgroundDataType = '';
-  /**
-   * @var string
-   */
   public $defaultFooterId;
-  /**
-   * @var string
-   */
   public $defaultHeaderId;
-  /**
-   * @var string
-   */
   public $evenPageFooterId;
-  /**
-   * @var string
-   */
   public $evenPageHeaderId;
-  /**
-   * @var string
-   */
   public $firstPageFooterId;
-  /**
-   * @var string
-   */
   public $firstPageHeaderId;
   protected $marginBottomType = Dimension::class;
   protected $marginBottomDataType = '';
@@ -57,23 +39,11 @@ class DocumentStyle extends \Google\Model
   protected $marginRightDataType = '';
   protected $marginTopType = Dimension::class;
   protected $marginTopDataType = '';
-  /**
-   * @var int
-   */
   public $pageNumberStart;
   protected $pageSizeType = Size::class;
   protected $pageSizeDataType = '';
-  /**
-   * @var bool
-   */
   public $useCustomHeaderFooterMargins;
-  /**
-   * @var bool
-   */
   public $useEvenPageHeaderFooter;
-  /**
-   * @var bool
-   */
   public $useFirstPageHeaderFooter;
 
   /**
@@ -90,86 +60,50 @@ class DocumentStyle extends \Google\Model
   {
     return $this->background;
   }
-  /**
-   * @param string
-   */
   public function setDefaultFooterId($defaultFooterId)
   {
     $this->defaultFooterId = $defaultFooterId;
   }
-  /**
-   * @return string
-   */
   public function getDefaultFooterId()
   {
     return $this->defaultFooterId;
   }
-  /**
-   * @param string
-   */
   public function setDefaultHeaderId($defaultHeaderId)
   {
     $this->defaultHeaderId = $defaultHeaderId;
   }
-  /**
-   * @return string
-   */
   public function getDefaultHeaderId()
   {
     return $this->defaultHeaderId;
   }
-  /**
-   * @param string
-   */
   public function setEvenPageFooterId($evenPageFooterId)
   {
     $this->evenPageFooterId = $evenPageFooterId;
   }
-  /**
-   * @return string
-   */
   public function getEvenPageFooterId()
   {
     return $this->evenPageFooterId;
   }
-  /**
-   * @param string
-   */
   public function setEvenPageHeaderId($evenPageHeaderId)
   {
     $this->evenPageHeaderId = $evenPageHeaderId;
   }
-  /**
-   * @return string
-   */
   public function getEvenPageHeaderId()
   {
     return $this->evenPageHeaderId;
   }
-  /**
-   * @param string
-   */
   public function setFirstPageFooterId($firstPageFooterId)
   {
     $this->firstPageFooterId = $firstPageFooterId;
   }
-  /**
-   * @return string
-   */
   public function getFirstPageFooterId()
   {
     return $this->firstPageFooterId;
   }
-  /**
-   * @param string
-   */
   public function setFirstPageHeaderId($firstPageHeaderId)
   {
     $this->firstPageHeaderId = $firstPageHeaderId;
   }
-  /**
-   * @return string
-   */
   public function getFirstPageHeaderId()
   {
     return $this->firstPageHeaderId;
@@ -258,16 +192,10 @@ class DocumentStyle extends \Google\Model
   {
     return $this->marginTop;
   }
-  /**
-   * @param int
-   */
   public function setPageNumberStart($pageNumberStart)
   {
     $this->pageNumberStart = $pageNumberStart;
   }
-  /**
-   * @return int
-   */
   public function getPageNumberStart()
   {
     return $this->pageNumberStart;
@@ -286,44 +214,26 @@ class DocumentStyle extends \Google\Model
   {
     return $this->pageSize;
   }
-  /**
-   * @param bool
-   */
   public function setUseCustomHeaderFooterMargins($useCustomHeaderFooterMargins)
   {
     $this->useCustomHeaderFooterMargins = $useCustomHeaderFooterMargins;
   }
-  /**
-   * @return bool
-   */
   public function getUseCustomHeaderFooterMargins()
   {
     return $this->useCustomHeaderFooterMargins;
   }
-  /**
-   * @param bool
-   */
   public function setUseEvenPageHeaderFooter($useEvenPageHeaderFooter)
   {
     $this->useEvenPageHeaderFooter = $useEvenPageHeaderFooter;
   }
-  /**
-   * @return bool
-   */
   public function getUseEvenPageHeaderFooter()
   {
     return $this->useEvenPageHeaderFooter;
   }
-  /**
-   * @param bool
-   */
   public function setUseFirstPageHeaderFooter($useFirstPageHeaderFooter)
   {
     $this->useFirstPageHeaderFooter = $useFirstPageHeaderFooter;
   }
-  /**
-   * @return bool
-   */
   public function getUseFirstPageHeaderFooter()
   {
     return $this->useFirstPageHeaderFooter;

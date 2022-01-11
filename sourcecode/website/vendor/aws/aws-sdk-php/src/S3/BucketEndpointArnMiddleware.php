@@ -104,9 +104,6 @@ class BucketEndpointArnMiddleware
                         $len = strlen($encoded) + 1;
                         if (trim(substr($path, 0, $len), '/') === "{$encoded}") {
                             $path = substr($path, $len);
-                            if (substr($path, 0, 1) !== "/") {
-                                $path = '/' . $path;
-                            }
                         }
                         if (empty($path)) {
                             $path = '';
@@ -114,12 +111,12 @@ class BucketEndpointArnMiddleware
 
                         // Set modified request
                         $req = $req->withUri(
-                            $req->getUri()->withPath($path)->withHost($host)
+                            $req->getUri()->withHost($host)->withPath($path)
                         );
 
                         // Update signing region based on ARN data if configured to do so
                         if ($this->config['use_arn_region']->isUseArnRegion()
-                            && !$this->config['use_fips_endpoint']->isUseFipsEndpoint()
+                            && !$this->isFipsPseudoRegion($this->region)
                         ) {
                             $region = $arn->getRegion();
                         } else {
@@ -174,9 +171,7 @@ class BucketEndpointArnMiddleware
         }
 
         $host = "{$accesspointName}-" . $arn->getAccountId();
-        
-        $useFips = $this->config['use_fips_endpoint']->isUseFipsEndpoint();
-        $fipsString = $useFips ? "-fips" : "";
+        $fips = $this->isFipsPseudoRegion($this->region) ? "-fips" : "";
 
         if ($arn instanceof OutpostsAccessPointArn) {
             $host .= '.' . $arn->getOutpostId() . '.s3-outposts';
@@ -184,10 +179,10 @@ class BucketEndpointArnMiddleware
             if (!empty($this->config['endpoint'])) {
                return $host . '.' . $this->config['endpoint'];
             } else {
-                $host .= ".s3-object-lambda{$fipsString}";
+                $host .= ".s3-object-lambda{$fips}";
             }
         } else {
-            $host .= ".s3-accesspoint{$fipsString}";
+            $host .= ".s3-accesspoint{$fips}";
             if (!empty($this->config['dual_stack'])) {
                 $host .= '.dualstack';
             }
@@ -198,7 +193,7 @@ class BucketEndpointArnMiddleware
         } else {
             $region = $this->region;
         }
-        $region = \Aws\strip_fips_pseudo_regions($region);
+        $region = $this->stripPseudoRegions($region);
         $host .= '.' . $region . '.' . $this->getPartitionSuffix($arn, $this->partitionProvider);
         return $host;
     }
@@ -297,7 +292,7 @@ class BucketEndpointArnMiddleware
             // If client partition not found, try removing pseudo-region qualifiers
             if (!($clientPart->isRegionMatch($this->region, 's3'))) {
                 $clientPart = $this->partitionProvider->getPartition(
-                    \Aws\strip_fips_pseudo_regions($this->region),
+                    $this->stripPseudoRegions($this->region),
                     's3'
                 );
             }

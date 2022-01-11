@@ -19,21 +19,12 @@ namespace Google\Service\FirebaseDynamicLinks;
 
 class DesktopInfo extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $desktopFallbackLink;
 
-  /**
-   * @param string
-   */
   public function setDesktopFallbackLink($desktopFallbackLink)
   {
     $this->desktopFallbackLink = $desktopFallbackLink;
   }
-  /**
-   * @return string
-   */
   public function getDesktopFallbackLink()
   {
     return $this->desktopFallbackLink;

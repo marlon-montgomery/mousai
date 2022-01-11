@@ -21,27 +21,12 @@ class Item extends \Google\Model
 {
   protected $availablePackageType = SoftwarePackage::class;
   protected $availablePackageDataType = '';
-  /**
-   * @var string
-   */
   public $createTime;
-  /**
-   * @var string
-   */
   public $id;
   protected $installedPackageType = SoftwarePackage::class;
   protected $installedPackageDataType = '';
-  /**
-   * @var string
-   */
   public $originType;
-  /**
-   * @var string
-   */
   public $type;
-  /**
-   * @var string
-   */
   public $updateTime;
 
   /**
@@ -58,30 +43,18 @@ class Item extends \Google\Model
   {
     return $this->availablePackage;
   }
-  /**
-   * @param string
-   */
   public function setCreateTime($createTime)
   {
     $this->createTime = $createTime;
   }
-  /**
-   * @return string
-   */
   public function getCreateTime()
   {
     return $this->createTime;
   }
-  /**
-   * @param string
-   */
   public function setId($id)
   {
     $this->id = $id;
   }
-  /**
-   * @return string
-   */
   public function getId()
   {
     return $this->id;
@@ -100,44 +73,26 @@ class Item extends \Google\Model
   {
     return $this->installedPackage;
   }
-  /**
-   * @param string
-   */
   public function setOriginType($originType)
   {
     $this->originType = $originType;
   }
-  /**
-   * @return string
-   */
   public function getOriginType()
   {
     return $this->originType;
   }
-  /**
-   * @param string
-   */
   public function setType($type)
   {
     $this->type = $type;
   }
-  /**
-   * @return string
-   */
   public function getType()
   {
     return $this->type;
   }
-  /**
-   * @param string
-   */
   public function setUpdateTime($updateTime)
   {
     $this->updateTime = $updateTime;
   }
-  /**
-   * @return string
-   */
   public function getUpdateTime()
   {
     return $this->updateTime;

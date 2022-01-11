@@ -21,9 +21,6 @@ class ApplicationSettings extends \Google\Model
 {
   protected $accessDeniedPageSettingsType = AccessDeniedPageSettings::class;
   protected $accessDeniedPageSettingsDataType = '';
-  /**
-   * @var string
-   */
   public $cookieDomain;
   protected $csmSettingsType = CsmSettings::class;
   protected $csmSettingsDataType = '';
@@ -42,16 +39,10 @@ class ApplicationSettings extends \Google\Model
   {
     return $this->accessDeniedPageSettings;
   }
-  /**
-   * @param string
-   */
   public function setCookieDomain($cookieDomain)
   {
     $this->cookieDomain = $cookieDomain;
   }
-  /**
-   * @return string
-   */
   public function getCookieDomain()
   {
     return $this->cookieDomain;

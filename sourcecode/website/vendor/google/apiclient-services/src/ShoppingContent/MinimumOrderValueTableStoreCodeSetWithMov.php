@@ -20,23 +20,14 @@ namespace Google\Service\ShoppingContent;
 class MinimumOrderValueTableStoreCodeSetWithMov extends \Google\Collection
 {
   protected $collection_key = 'storeCodes';
-  /**
-   * @var string[]
-   */
   public $storeCodes;
   protected $valueType = Price::class;
   protected $valueDataType = '';
 
-  /**
-   * @param string[]
-   */
   public function setStoreCodes($storeCodes)
   {
     $this->storeCodes = $storeCodes;
   }
-  /**
-   * @return string[]
-   */
   public function getStoreCodes()
   {
     return $this->storeCodes;

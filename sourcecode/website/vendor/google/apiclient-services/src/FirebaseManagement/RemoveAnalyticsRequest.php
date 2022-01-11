@@ -19,21 +19,12 @@ namespace Google\Service\FirebaseManagement;
 
 class RemoveAnalyticsRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $analyticsPropertyId;
 
-  /**
-   * @param string
-   */
   public function setAnalyticsPropertyId($analyticsPropertyId)
   {
     $this->analyticsPropertyId = $analyticsPropertyId;
   }
-  /**
-   * @return string
-   */
   public function getAnalyticsPropertyId()
   {
     return $this->analyticsPropertyId;

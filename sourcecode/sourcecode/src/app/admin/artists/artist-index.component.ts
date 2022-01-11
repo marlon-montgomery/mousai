@@ -17,7 +17,7 @@ import {ARTIST_INDEX_FILTERS} from './artist-index-filters';
     providers: [DatatableService],
 })
 export class ArtistIndexComponent implements OnInit {
-    artists$ = this.datatable.data$ as Observable<Artist[]>;
+    public artists$ = this.datatable.data$ as Observable<Artist[]>;
     filters = ARTIST_INDEX_FILTERS;
     constructor(
         public datatable: DatatableService<Artist>,

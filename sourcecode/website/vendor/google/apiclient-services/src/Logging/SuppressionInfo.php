@@ -19,39 +19,21 @@ namespace Google\Service\Logging;
 
 class SuppressionInfo extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $reason;
-  /**
-   * @var int
-   */
   public $suppressedCount;
 
-  /**
-   * @param string
-   */
   public function setReason($reason)
   {
     $this->reason = $reason;
   }
-  /**
-   * @return string
-   */
   public function getReason()
   {
     return $this->reason;
   }
-  /**
-   * @param int
-   */
   public function setSuppressedCount($suppressedCount)
   {
     $this->suppressedCount = $suppressedCount;
   }
-  /**
-   * @return int
-   */
   public function getSuppressedCount()
   {
     return $this->suppressedCount;

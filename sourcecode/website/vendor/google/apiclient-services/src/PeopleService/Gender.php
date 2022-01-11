@@ -19,45 +19,24 @@ namespace Google\Service\PeopleService;
 
 class Gender extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $addressMeAs;
-  /**
-   * @var string
-   */
   public $formattedValue;
   protected $metadataType = FieldMetadata::class;
   protected $metadataDataType = '';
-  /**
-   * @var string
-   */
   public $value;
 
-  /**
-   * @param string
-   */
   public function setAddressMeAs($addressMeAs)
   {
     $this->addressMeAs = $addressMeAs;
   }
-  /**
-   * @return string
-   */
   public function getAddressMeAs()
   {
     return $this->addressMeAs;
   }
-  /**
-   * @param string
-   */
   public function setFormattedValue($formattedValue)
   {
     $this->formattedValue = $formattedValue;
   }
-  /**
-   * @return string
-   */
   public function getFormattedValue()
   {
     return $this->formattedValue;
@@ -76,16 +55,10 @@ class Gender extends \Google\Model
   {
     return $this->metadata;
   }
-  /**
-   * @param string
-   */
   public function setValue($value)
   {
     $this->value = $value;
   }
-  /**
-   * @return string
-   */
   public function getValue()
   {
     return $this->value;

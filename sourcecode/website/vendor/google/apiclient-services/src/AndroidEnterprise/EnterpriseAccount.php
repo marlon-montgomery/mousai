@@ -19,21 +19,12 @@ namespace Google\Service\AndroidEnterprise;
 
 class EnterpriseAccount extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $accountEmail;
 
-  /**
-   * @param string
-   */
   public function setAccountEmail($accountEmail)
   {
     $this->accountEmail = $accountEmail;
   }
-  /**
-   * @return string
-   */
   public function getAccountEmail()
   {
     return $this->accountEmail;

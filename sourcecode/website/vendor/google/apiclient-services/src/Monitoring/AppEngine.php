@@ -19,21 +19,12 @@ namespace Google\Service\Monitoring;
 
 class AppEngine extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $moduleId;
 
-  /**
-   * @param string
-   */
   public function setModuleId($moduleId)
   {
     $this->moduleId = $moduleId;
   }
-  /**
-   * @return string
-   */
   public function getModuleId()
   {
     return $this->moduleId;

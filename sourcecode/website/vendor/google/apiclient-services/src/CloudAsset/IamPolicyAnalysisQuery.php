@@ -29,9 +29,6 @@ class IamPolicyAnalysisQuery extends \Google\Model
   protected $optionsDataType = '';
   protected $resourceSelectorType = ResourceSelector::class;
   protected $resourceSelectorDataType = '';
-  /**
-   * @var string
-   */
   public $scope;
 
   /**
@@ -104,16 +101,10 @@ class IamPolicyAnalysisQuery extends \Google\Model
   {
     return $this->resourceSelector;
   }
-  /**
-   * @param string
-   */
   public function setScope($scope)
   {
     $this->scope = $scope;
   }
-  /**
-   * @return string
-   */
   public function getScope()
   {
     return $this->scope;

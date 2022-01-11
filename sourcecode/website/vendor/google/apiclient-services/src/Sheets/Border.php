@@ -23,13 +23,7 @@ class Border extends \Google\Model
   protected $colorDataType = '';
   protected $colorStyleType = ColorStyle::class;
   protected $colorStyleDataType = '';
-  /**
-   * @var string
-   */
   public $style;
-  /**
-   * @var int
-   */
   public $width;
 
   /**
@@ -60,30 +54,18 @@ class Border extends \Google\Model
   {
     return $this->colorStyle;
   }
-  /**
-   * @param string
-   */
   public function setStyle($style)
   {
     $this->style = $style;
   }
-  /**
-   * @return string
-   */
   public function getStyle()
   {
     return $this->style;
   }
-  /**
-   * @param int
-   */
   public function setWidth($width)
   {
     $this->width = $width;
   }
-  /**
-   * @return int
-   */
   public function getWidth()
   {
     return $this->width;

@@ -21,9 +21,6 @@ class FieldTransform extends \Google\Model
 {
   protected $appendMissingElementsType = ArrayValue::class;
   protected $appendMissingElementsDataType = '';
-  /**
-   * @var string
-   */
   public $fieldPath;
   protected $incrementType = Value::class;
   protected $incrementDataType = '';
@@ -33,9 +30,6 @@ class FieldTransform extends \Google\Model
   protected $minimumDataType = '';
   protected $removeAllFromArrayType = ArrayValue::class;
   protected $removeAllFromArrayDataType = '';
-  /**
-   * @var string
-   */
   public $setToServerValue;
 
   /**
@@ -52,16 +46,10 @@ class FieldTransform extends \Google\Model
   {
     return $this->appendMissingElements;
   }
-  /**
-   * @param string
-   */
   public function setFieldPath($fieldPath)
   {
     $this->fieldPath = $fieldPath;
   }
-  /**
-   * @return string
-   */
   public function getFieldPath()
   {
     return $this->fieldPath;
@@ -122,16 +110,10 @@ class FieldTransform extends \Google\Model
   {
     return $this->removeAllFromArray;
   }
-  /**
-   * @param string
-   */
   public function setSetToServerValue($setToServerValue)
   {
     $this->setToServerValue = $setToServerValue;
   }
-  /**
-   * @return string
-   */
   public function getSetToServerValue()
   {
     return $this->setToServerValue;

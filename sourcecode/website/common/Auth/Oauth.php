@@ -222,7 +222,7 @@ class Oauth
                 $this->transformSocialProfileData(
                     $service,
                     $profile,
-                    $user->id,
+                    $user->id
                 ),
             );
 
@@ -268,6 +268,7 @@ class Oauth
         //if this social account is already attached to some user
         //we will re-attach it to specified user
         if ($existing = $this->getExistingProfile($profile)) {
+            $existing->forceFill($payload)->save();
             $this->updateSocialProfileData($existing, $service, $profile);
 
             //if social account is not attached to any user, we will
@@ -301,7 +302,7 @@ class Oauth
     ): array {
         return [
             'service_name' => $service,
-            'user_service_id' => $this->getUsersIdentifierOnService($data),
+            'user_service_id' => $this->getUsersIdentifierOnService($profile),
             'user_id' => $userId,
             'username' => $data->name,
             'access_token' => $data->token ?? null,

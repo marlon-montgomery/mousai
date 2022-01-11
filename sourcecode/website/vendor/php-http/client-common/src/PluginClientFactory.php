@@ -39,11 +39,11 @@ final class PluginClientFactory
     /**
      * @param ClientInterface|HttpAsyncClient $client
      * @param Plugin[]                        $plugins
-     * @param array{'client_name'?: string}    $options
+     * @param array                           $options {
      *
-     * Configuration options:
-     *   - client_name: to give client a name which may be used when displaying client information
-     *     like in the HTTPlugBundle profiler.
+     *     @var string $client_name to give client a name which may be used when displaying client information  like in
+     *         the HTTPlugBundle profiler.
+     * }
      *
      * @see PluginClient constructor for PluginClient specific $options.
      */

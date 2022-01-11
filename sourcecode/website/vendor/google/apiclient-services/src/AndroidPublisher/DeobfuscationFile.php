@@ -19,21 +19,12 @@ namespace Google\Service\AndroidPublisher;
 
 class DeobfuscationFile extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $symbolType;
 
-  /**
-   * @param string
-   */
   public function setSymbolType($symbolType)
   {
     $this->symbolType = $symbolType;
   }
-  /**
-   * @return string
-   */
   public function getSymbolType()
   {
     return $this->symbolType;

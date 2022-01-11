@@ -22,9 +22,6 @@ class ListGlossariesResponse extends \Google\Collection
   protected $collection_key = 'glossaries';
   protected $glossariesType = Glossary::class;
   protected $glossariesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListGlossariesResponse extends \Google\Collection
   {
     return $this->glossaries;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

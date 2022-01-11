@@ -23,10 +23,6 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Model
   protected $analysisQueryDataType = '';
   protected $outputConfigType = IamPolicyAnalysisOutputConfig::class;
   protected $outputConfigDataType = '';
-  /**
-   * @var string
-   */
-  public $savedAnalysisQuery;
 
   /**
    * @param IamPolicyAnalysisQuery
@@ -55,20 +51,6 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Model
   public function getOutputConfig()
   {
     return $this->outputConfig;
-  }
-  /**
-   * @param string
-   */
-  public function setSavedAnalysisQuery($savedAnalysisQuery)
-  {
-    $this->savedAnalysisQuery = $savedAnalysisQuery;
-  }
-  /**
-   * @return string
-   */
-  public function getSavedAnalysisQuery()
-  {
-    return $this->savedAnalysisQuery;
   }
 }
 

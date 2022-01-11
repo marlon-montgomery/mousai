@@ -21,9 +21,6 @@ class RestoreInfo extends \Google\Model
 {
   protected $backupInfoType = BackupInfo::class;
   protected $backupInfoDataType = '';
-  /**
-   * @var string
-   */
   public $sourceType;
 
   /**
@@ -40,16 +37,10 @@ class RestoreInfo extends \Google\Model
   {
     return $this->backupInfo;
   }
-  /**
-   * @param string
-   */
   public function setSourceType($sourceType)
   {
     $this->sourceType = $sourceType;
   }
-  /**
-   * @return string
-   */
   public function getSourceType()
   {
     return $this->sourceType;

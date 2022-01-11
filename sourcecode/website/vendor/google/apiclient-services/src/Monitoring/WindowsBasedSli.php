@@ -19,9 +19,6 @@ namespace Google\Service\Monitoring;
 
 class WindowsBasedSli extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $goodBadMetricFilter;
   protected $goodTotalRatioThresholdType = PerformanceThreshold::class;
   protected $goodTotalRatioThresholdDataType = '';
@@ -29,21 +26,12 @@ class WindowsBasedSli extends \Google\Model
   protected $metricMeanInRangeDataType = '';
   protected $metricSumInRangeType = MetricRange::class;
   protected $metricSumInRangeDataType = '';
-  /**
-   * @var string
-   */
   public $windowPeriod;
 
-  /**
-   * @param string
-   */
   public function setGoodBadMetricFilter($goodBadMetricFilter)
   {
     $this->goodBadMetricFilter = $goodBadMetricFilter;
   }
-  /**
-   * @return string
-   */
   public function getGoodBadMetricFilter()
   {
     return $this->goodBadMetricFilter;
@@ -90,16 +78,10 @@ class WindowsBasedSli extends \Google\Model
   {
     return $this->metricSumInRange;
   }
-  /**
-   * @param string
-   */
   public function setWindowPeriod($windowPeriod)
   {
     $this->windowPeriod = $windowPeriod;
   }
-  /**
-   * @return string
-   */
   public function getWindowPeriod()
   {
     return $this->windowPeriod;

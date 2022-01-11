@@ -23,7 +23,7 @@ use Google\Client;
  * Service definition for Ideahub (v1beta).
  *
  * <p>
- * This is an invitation-only API.</p>
+</p>
  *
  * <p>
  * For more information about this service, see the API

@@ -19,21 +19,12 @@ namespace Google\Service\AndroidPublisher;
 
 class SubscriptionPurchasesAcknowledgeRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $developerPayload;
 
-  /**
-   * @param string
-   */
   public function setDeveloperPayload($developerPayload)
   {
     $this->developerPayload = $developerPayload;
   }
-  /**
-   * @return string
-   */
   public function getDeveloperPayload()
   {
     return $this->developerPayload;

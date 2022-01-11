@@ -203,33 +203,20 @@ export class CrupdateChannelPageComponent implements OnInit {
                 distinctUntilChanged(),
                 filter(query => typeof query === 'string' && !!query),
                 switchMap(query => this.searchForContent(query)),
-                catchError(() => of({results: []}))
-            )
-            .subscribe(response => {
-                this.searchResults$.next(
-                    response.results as ChannelContentItem[]
-                );
+                catchError(() => of({results: []})),
+            ).subscribe(response => {
+                this.searchResults$.next(response.results as ChannelContentItem[]);
             });
     }
 
     private searchForContent(query: string) {
         const modelType = this.form.get('config.contentModel').value;
         const types = modelType ? [modelType] : Object.values(this.modelTypes);
-        return this.search.media(query, {
-            types,
-            flatten: true,
-            limit: 8,
-            localOnly: true,
-        });
+        return this.search.media(query, {types, flatten: true, limit: 8, localOnly: true});
     }
 
-    public submit(
-        params = {updateContent: false},
-        successFn?: (
-            channel: GenericBackendResponse<{channel: Channel}>
-        ) => void
-    ) {
-        if (!successFn) {
+    public submit(params = {updateContent: false}, successFn?: (channel: GenericBackendResponse<{channel: Channel}>) => void) {
+        if ( ! successFn) {
             successFn = () => {
                 this.router.navigate(['/admin/channels']);
                 this.toast.open('Channel saved.');
@@ -302,16 +289,13 @@ export class CrupdateChannelPageComponent implements OnInit {
                     () => {
                         this.channelContent$.next([
                             ...this.channelContent$.value,
-                            item,
-                        ]);
-                        this.toast.open('Item attached.');
-                    },
-                    (errResponse: BackendErrorResponse) => {
-                        if (errResponse.message) {
-                            this.toast.open(errResponse.message);
-                        }
+                            item]);
+                    this.toast.open('Item attached.');
+                }, (errResponse: BackendErrorResponse) => {
+                    if (errResponse.message) {
+                        this.toast.open(errResponse.message);
                     }
-                );
+                });
         } else {
             this.channelContent$.next([...this.channelContent$.value, item]);
         }
@@ -398,16 +382,10 @@ export class CrupdateChannelPageComponent implements OnInit {
         const sourceElement = drag.dropContainer.element.nativeElement;
         const dropElement = drop.element.nativeElement;
 
-        const dragIndex = __indexOf(
-            dropElement.parentElement.children,
-            this.source ? phElement : sourceElement
-        );
-        const dropIndex = __indexOf(
-            dropElement.parentElement.children,
-            dropElement
-        );
+        const dragIndex = __indexOf(dropElement.parentElement.children, (this.source ? phElement : sourceElement));
+        const dropIndex = __indexOf(dropElement.parentElement.children, dropElement);
 
-        if (!this.source) {
+        if ( ! this.source) {
             this.sourceIndex = dragIndex;
             this.source = drag.dropContainer;
 
@@ -459,12 +437,7 @@ function __isTouchEvent(event: MouseEvent | TouchEvent): event is TouchEvent {
     return event.type.startsWith('touch');
 }
 
-function __isInsideDropListClientRect(
-    dropList: CdkDropList,
-    x: number,
-    y: number
-) {
-    const {top, bottom, left, right} =
-        dropList.element.nativeElement.getBoundingClientRect();
+function __isInsideDropListClientRect(dropList: CdkDropList, x: number, y: number) {
+    const {top, bottom, left, right} = dropList.element.nativeElement.getBoundingClientRect();
     return y >= top && y <= bottom && x >= left && x <= right;
 }

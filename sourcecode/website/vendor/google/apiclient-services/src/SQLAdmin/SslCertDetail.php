@@ -21,9 +21,6 @@ class SslCertDetail extends \Google\Model
 {
   protected $certInfoType = SslCert::class;
   protected $certInfoDataType = '';
-  /**
-   * @var string
-   */
   public $certPrivateKey;
 
   /**
@@ -40,16 +37,10 @@ class SslCertDetail extends \Google\Model
   {
     return $this->certInfo;
   }
-  /**
-   * @param string
-   */
   public function setCertPrivateKey($certPrivateKey)
   {
     $this->certPrivateKey = $certPrivateKey;
   }
-  /**
-   * @return string
-   */
   public function getCertPrivateKey()
   {
     return $this->certPrivateKey;

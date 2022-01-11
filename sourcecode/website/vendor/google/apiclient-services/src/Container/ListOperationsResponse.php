@@ -20,23 +20,14 @@ namespace Google\Service\Container;
 class ListOperationsResponse extends \Google\Collection
 {
   protected $collection_key = 'operations';
-  /**
-   * @var string[]
-   */
   public $missingZones;
   protected $operationsType = Operation::class;
   protected $operationsDataType = 'array';
 
-  /**
-   * @param string[]
-   */
   public function setMissingZones($missingZones)
   {
     $this->missingZones = $missingZones;
   }
-  /**
-   * @return string[]
-   */
   public function getMissingZones()
   {
     return $this->missingZones;

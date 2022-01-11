@@ -24,13 +24,7 @@ class BinaryClassificationMetrics extends \Google\Collection
   protected $aggregateClassificationMetricsDataType = '';
   protected $binaryConfusionMatrixListType = BinaryConfusionMatrix::class;
   protected $binaryConfusionMatrixListDataType = 'array';
-  /**
-   * @var string
-   */
   public $negativeLabel;
-  /**
-   * @var string
-   */
   public $positiveLabel;
 
   /**
@@ -61,30 +55,18 @@ class BinaryClassificationMetrics extends \Google\Collection
   {
     return $this->binaryConfusionMatrixList;
   }
-  /**
-   * @param string
-   */
   public function setNegativeLabel($negativeLabel)
   {
     $this->negativeLabel = $negativeLabel;
   }
-  /**
-   * @return string
-   */
   public function getNegativeLabel()
   {
     return $this->negativeLabel;
   }
-  /**
-   * @param string
-   */
   public function setPositiveLabel($positiveLabel)
   {
     $this->positiveLabel = $positiveLabel;
   }
-  /**
-   * @return string
-   */
   public function getPositiveLabel()
   {
     return $this->positiveLabel;

@@ -19,39 +19,21 @@ namespace Google\Service\ShoppingContent;
 
 class TransitTableTransitTimeRowTransitTimeValue extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $maxTransitTimeInDays;
-  /**
-   * @var string
-   */
   public $minTransitTimeInDays;
 
-  /**
-   * @param string
-   */
   public function setMaxTransitTimeInDays($maxTransitTimeInDays)
   {
     $this->maxTransitTimeInDays = $maxTransitTimeInDays;
   }
-  /**
-   * @return string
-   */
   public function getMaxTransitTimeInDays()
   {
     return $this->maxTransitTimeInDays;
   }
-  /**
-   * @param string
-   */
   public function setMinTransitTimeInDays($minTransitTimeInDays)
   {
     $this->minTransitTimeInDays = $minTransitTimeInDays;
   }
-  /**
-   * @return string
-   */
   public function getMinTransitTimeInDays()
   {
     return $this->minTransitTimeInDays;

@@ -19,27 +19,15 @@ namespace Google\Service\CloudSearch;
 
 class Interaction extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $interactionTime;
   protected $principalType = Principal::class;
   protected $principalDataType = '';
-  /**
-   * @var string
-   */
   public $type;
 
-  /**
-   * @param string
-   */
   public function setInteractionTime($interactionTime)
   {
     $this->interactionTime = $interactionTime;
   }
-  /**
-   * @return string
-   */
   public function getInteractionTime()
   {
     return $this->interactionTime;
@@ -58,16 +46,10 @@ class Interaction extends \Google\Model
   {
     return $this->principal;
   }
-  /**
-   * @param string
-   */
   public function setType($type)
   {
     $this->type = $type;
   }
-  /**
-   * @return string
-   */
   public function getType()
   {
     return $this->type;

@@ -3,13 +3,10 @@
 namespace Doctrine\DBAL\Driver\Mysqli;
 
 use Doctrine\DBAL\Driver\AbstractMySQLDriver;
-use Doctrine\DBAL\Driver\Mysqli\Exception\ConnectionFailed;
 use Doctrine\DBAL\Driver\Mysqli\Exception\HostRequired;
 use Doctrine\DBAL\Driver\Mysqli\Initializer\Charset;
 use Doctrine\DBAL\Driver\Mysqli\Initializer\Options;
 use Doctrine\DBAL\Driver\Mysqli\Initializer\Secure;
-use mysqli;
-use mysqli_sql_exception;
 
 use function count;
 
@@ -32,7 +29,7 @@ final class Driver extends AbstractMySQLDriver
             $host = $params['host'] ?? null;
         }
 
-        $flags = 0;
+        $flags = null;
 
         $preInitializers = $postInitializers = [];
 
@@ -50,35 +47,17 @@ final class Driver extends AbstractMySQLDriver
         $preInitializers  = $this->withSecure($preInitializers, $params);
         $postInitializers = $this->withCharset($postInitializers, $params);
 
-        $connection = new mysqli();
-
-        foreach ($preInitializers as $initializer) {
-            $initializer->initialize($connection);
-        }
-
-        try {
-            $success = @$connection->real_connect(
-                $host,
-                $params['user'] ?? null,
-                $params['password'] ?? null,
-                $params['dbname'] ?? null,
-                $params['port'] ?? null,
-                $params['unix_socket'] ?? null,
-                $flags
-            );
-        } catch (mysqli_sql_exception $e) {
-            throw ConnectionFailed::upcast($e);
-        }
-
-        if (! $success) {
-            throw ConnectionFailed::new($connection);
-        }
-
-        foreach ($postInitializers as $initializer) {
-            $initializer->initialize($connection);
-        }
-
-        return new Connection($connection);
+        return new Connection(
+            $host,
+            $params['user'] ?? null,
+            $params['password'] ?? null,
+            $params['dbname'] ?? null,
+            $params['port'] ?? null,
+            $params['unix_socket'] ?? null,
+            $flags,
+            $preInitializers,
+            $postInitializers
+        );
     }
 
     /**

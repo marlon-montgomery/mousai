@@ -15,6 +15,8 @@ import {GENRE_MODEL} from '../../../models/Genre';
 import {map} from 'rxjs/operators';
 import {Search} from '../../../web-player/search/search.service';
 import {BackendErrorResponse} from '@common/core/types/backend-error-response';
+import {insideAdmin} from '@common/core/utils/inside-admin';
+import {PaginationResponse} from '@common/core/types/pagination/pagination-response';
 import {Album} from '../../../models/Album';
 import {ComponentCanDeactivate} from '@common/guards/pending-changes/component-can-deactivate';
 import {WebPlayerUrls} from '../../../web-player/web-player-urls.service';
@@ -37,6 +39,7 @@ export class CrupdateArtistPageComponent implements OnInit, ComponentCanDeactiva
         verified: [''],
         image_small: [''],
         spotify_id: [''],
+        bitclout: [''],
         genres: [[]],
         description: [''],
         country: [''],
@@ -105,6 +108,7 @@ export class CrupdateArtistPageComponent implements OnInit, ComponentCanDeactiva
                     verified: data.api.artist.verified,
                     image_small: data.api.artist.image_small,
                     spotify_id: data.api.artist.spotify_id,
+                    bitclout: data.api.artist.bitclout,
                     genres: (data.api.artist.genres || []).map(g => g.name),
                     description: data.api.artist.profile?.description,
                     country: data.api.artist.profile?.country,

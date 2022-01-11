@@ -19,45 +19,24 @@ namespace Google\Service\Logging;
 
 class LogLine extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $logMessage;
-  /**
-   * @var string
-   */
   public $severity;
   protected $sourceLocationType = SourceLocation::class;
   protected $sourceLocationDataType = '';
-  /**
-   * @var string
-   */
   public $time;
 
-  /**
-   * @param string
-   */
   public function setLogMessage($logMessage)
   {
     $this->logMessage = $logMessage;
   }
-  /**
-   * @return string
-   */
   public function getLogMessage()
   {
     return $this->logMessage;
   }
-  /**
-   * @param string
-   */
   public function setSeverity($severity)
   {
     $this->severity = $severity;
   }
-  /**
-   * @return string
-   */
   public function getSeverity()
   {
     return $this->severity;
@@ -76,16 +55,10 @@ class LogLine extends \Google\Model
   {
     return $this->sourceLocation;
   }
-  /**
-   * @param string
-   */
   public function setTime($time)
   {
     $this->time = $time;
   }
-  /**
-   * @return string
-   */
   public function getTime()
   {
     return $this->time;

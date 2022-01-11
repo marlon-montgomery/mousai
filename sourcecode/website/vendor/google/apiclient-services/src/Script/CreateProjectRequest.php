@@ -19,39 +19,21 @@ namespace Google\Service\Script;
 
 class CreateProjectRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $parentId;
-  /**
-   * @var string
-   */
   public $title;
 
-  /**
-   * @param string
-   */
   public function setParentId($parentId)
   {
     $this->parentId = $parentId;
   }
-  /**
-   * @return string
-   */
   public function getParentId()
   {
     return $this->parentId;
   }
-  /**
-   * @param string
-   */
   public function setTitle($title)
   {
     $this->title = $title;
   }
-  /**
-   * @return string
-   */
   public function getTitle()
   {
     return $this->title;

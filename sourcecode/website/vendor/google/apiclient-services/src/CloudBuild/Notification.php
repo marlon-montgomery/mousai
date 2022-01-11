@@ -19,9 +19,6 @@ namespace Google\Service\CloudBuild;
 
 class Notification extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $filter;
   protected $httpDeliveryType = HTTPDelivery::class;
   protected $httpDeliveryDataType = '';
@@ -29,21 +26,12 @@ class Notification extends \Google\Model
   protected $slackDeliveryDataType = '';
   protected $smtpDeliveryType = SMTPDelivery::class;
   protected $smtpDeliveryDataType = '';
-  /**
-   * @var array[]
-   */
   public $structDelivery;
 
-  /**
-   * @param string
-   */
   public function setFilter($filter)
   {
     $this->filter = $filter;
   }
-  /**
-   * @return string
-   */
   public function getFilter()
   {
     return $this->filter;
@@ -90,16 +78,10 @@ class Notification extends \Google\Model
   {
     return $this->smtpDelivery;
   }
-  /**
-   * @param array[]
-   */
   public function setStructDelivery($structDelivery)
   {
     $this->structDelivery = $structDelivery;
   }
-  /**
-   * @return array[]
-   */
   public function getStructDelivery()
   {
     return $this->structDelivery;

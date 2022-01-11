@@ -70,14 +70,14 @@ class Liasettings extends \Google\Service\Resource
     return $this->call('get', [$params], LiaSettingsModel::class);
   }
   /**
-   * Retrieves the list of accessible Business Profiles.
+   * Retrieves the list of accessible Google My Business accounts.
    * (liasettings.getaccessiblegmbaccounts)
    *
    * @param string $merchantId The ID of the managing account. If this parameter
    * is not the same as accountId, then this account must be a multi-client
    * account and `accountId` must be the ID of a sub-account of this account.
    * @param string $accountId The ID of the account for which to retrieve
-   * accessible Business Profiles.
+   * accessible Google My Business accounts.
    * @param array $optParams Optional parameters.
    * @return LiasettingsGetAccessibleGmbAccountsResponse
    */
@@ -120,15 +120,15 @@ class Liasettings extends \Google\Service\Resource
     return $this->call('listposdataproviders', [$params], LiasettingsListPosDataProvidersResponse::class);
   }
   /**
-   * Requests access to a specified Business Profile.
+   * Requests access to a specified Google My Business account.
    * (liasettings.requestgmbaccess)
    *
    * @param string $merchantId The ID of the managing account. If this parameter
    * is not the same as accountId, then this account must be a multi-client
    * account and `accountId` must be the ID of a sub-account of this account.
-   * @param string $accountId The ID of the account for which Business Profile
-   * access is requested.
-   * @param string $gmbEmail The email of the Business Profile.
+   * @param string $accountId The ID of the account for which GMB access is
+   * requested.
+   * @param string $gmbEmail The email of the Google My Business account.
    * @param array $optParams Optional parameters.
    * @return LiasettingsRequestGmbAccessResponse
    */
@@ -190,7 +190,7 @@ class Liasettings extends \Google\Service\Resource
    * is not the same as accountId, then this account must be a multi-client
    * account and `accountId` must be the ID of a sub-account of this account.
    * @param string $accountId The ID of the account for which to retrieve
-   * accessible Business Profiles.
+   * accessible Google My Business accounts.
    * @param string $country The country for which the POS data provider is
    * selected.
    * @param array $optParams Optional parameters.

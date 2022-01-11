@@ -19,9 +19,6 @@ use Symfony\Contracts\EventDispatcher\Event;
  * Encapsulates events thus decoupling the observer from the subject they encapsulate.
  *
  * @author Drak <drak@zikula.org>
- *
- * @implements \ArrayAccess<string, mixed>
- * @implements \IteratorAggregate<string, mixed>
  */
 class GenericEvent extends Event implements \ArrayAccess, \IteratorAggregate
 {
@@ -43,7 +40,7 @@ class GenericEvent extends Event implements \ArrayAccess, \IteratorAggregate
     /**
      * Getter for subject property.
      *
-     * @return mixed
+     * @return mixed The observer subject
      */
     public function getSubject()
     {
@@ -53,7 +50,7 @@ class GenericEvent extends Event implements \ArrayAccess, \IteratorAggregate
     /**
      * Get argument by key.
      *
-     * @return mixed
+     * @return mixed Contents of array key
      *
      * @throws \InvalidArgumentException if key is not found
      */
@@ -172,7 +169,7 @@ class GenericEvent extends Event implements \ArrayAccess, \IteratorAggregate
     /**
      * IteratorAggregate for iterating over the object like an array.
      *
-     * @return \ArrayIterator<string, mixed>
+     * @return \ArrayIterator
      */
     #[\ReturnTypeWillChange]
     public function getIterator()

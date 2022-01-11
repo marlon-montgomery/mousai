@@ -19,21 +19,12 @@ namespace Google\Service\Storagetransfer;
 
 class HttpData extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $listUrl;
 
-  /**
-   * @param string
-   */
   public function setListUrl($listUrl)
   {
     $this->listUrl = $listUrl;
   }
-  /**
-   * @return string
-   */
   public function getListUrl()
   {
     return $this->listUrl;

@@ -111,7 +111,7 @@ class ErrorHandler
     public static function register(self $handler = null, bool $replace = true): self
     {
         if (null === self::$reservedMemory) {
-            self::$reservedMemory = str_repeat('x', 32768);
+            self::$reservedMemory = str_repeat('x', 10240);
             register_shutdown_function(__CLASS__.'::handleFatalError');
         }
 
@@ -348,7 +348,7 @@ class ErrorHandler
     public function traceAt(int $levels, bool $replace = false): int
     {
         $prev = $this->tracedErrors;
-        $this->tracedErrors = $levels;
+        $this->tracedErrors = (int) $levels;
         if (!$replace) {
             $this->tracedErrors |= $prev;
         }
@@ -615,9 +615,7 @@ class ErrorHandler
         }
 
         $loggedErrors = $this->loggedErrors;
-        if ($exception === $handlerException) {
-            $this->loggedErrors &= ~$type;
-        }
+        $this->loggedErrors = $exception === $handlerException ? 0 : $this->loggedErrors;
 
         try {
             $this->handleException($handlerException);

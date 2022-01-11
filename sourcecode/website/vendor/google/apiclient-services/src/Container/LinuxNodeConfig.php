@@ -19,21 +19,12 @@ namespace Google\Service\Container;
 
 class LinuxNodeConfig extends \Google\Model
 {
-  /**
-   * @var string[]
-   */
   public $sysctls;
 
-  /**
-   * @param string[]
-   */
   public function setSysctls($sysctls)
   {
     $this->sysctls = $sysctls;
   }
-  /**
-   * @return string[]
-   */
   public function getSysctls()
   {
     return $this->sysctls;

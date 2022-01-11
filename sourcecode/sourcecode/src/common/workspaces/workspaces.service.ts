@@ -1,23 +1,20 @@
-import {Injectable} from '@angular/core';
-import {Workspace} from './types/workspace';
-import {PaginationParams} from '@common/core/types/pagination/pagination-params';
-import {PaginatedBackendResponse} from '@common/core/types/pagination/paginated-backend-response';
-import {BackendResponse} from '@common/core/types/backend-response';
-import {AppHttpClient} from '@common/core/http/app-http-client.service';
-import {WorkspaceMember} from './types/workspace-member';
-import {WorkspaceInvite} from './types/workspace-invite';
-import {filter, tap} from 'rxjs/operators';
-import {CurrentUser} from '@common/auth/current-user';
-import {BehaviorSubject, Subscription} from 'rxjs';
-import {PaginationResponse} from '@common/core/types/pagination/pagination-response';
-import {hasKey} from '@common/core/utils/has-key';
-import {CookieService} from '../core/services/cookie.service';
-import {NotificationService} from '../notifications/notification-list/notification.service';
-import {
-    WORKSPACE_INVITE_NOTIF_TYPE,
-    WorkspaceInviteNotif,
-} from './types/workspace-invite-notif';
-import {Toast} from '../core/ui/toast.service';
+import { Injectable } from '@angular/core';
+import { Workspace } from './types/workspace';
+import { PaginationParams } from '@common/core/types/pagination/pagination-params';
+import { PaginatedBackendResponse } from '@common/core/types/pagination/paginated-backend-response';
+import { BackendResponse } from '@common/core/types/backend-response';
+import { AppHttpClient } from '@common/core/http/app-http-client.service';
+import { WorkspaceMember } from './types/workspace-member';
+import { WorkspaceInvite } from './types/workspace-invite';
+import { filter, tap } from 'rxjs/operators';
+import { CurrentUser } from '@common/auth/current-user';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { PaginationResponse } from '@common/core/types/pagination/pagination-response';
+import { hasKey } from '@common/core/utils/has-key';
+import { CookieService } from '../core/services/cookie.service';
+import { NotificationService } from '../notifications/notification-list/notification.service';
+import { WORKSPACE_INVITE_NOTIF_TYPE, WorkspaceInviteNotif } from './types/workspace-invite-notif';
+import { Toast } from '../core/ui/toast.service';
 import {BackendErrorResponse} from '../core/types/backend-error-response';
 import {DatabaseNotification} from '../notifications/database-notification';
 import {HttpErrors} from '../core/http/errors/http-errors.enum';
@@ -29,9 +26,9 @@ const PERSONAL_WORKSPACE = {name: 'Default', default: true, id: null};
 })
 export class WorkspacesService {
     static BASE_URI = 'workspace';
-    available$ = new BehaviorSubject<Workspace[]>([PERSONAL_WORKSPACE]);
-    activeId$ = new BehaviorSubject<number>(this.getIdFromCookie());
-    activeWorkspace$ = new BehaviorSubject<Workspace>(this.getIdFromCookie() ? null : PERSONAL_WORKSPACE);
+    public available$ = new BehaviorSubject<Workspace[]>([PERSONAL_WORKSPACE]);
+    public activeId$ = new BehaviorSubject<number>(this.getIdFromCookie());
+    public activeWorkspace$ = new BehaviorSubject<Workspace>(this.getIdFromCookie() ? null : PERSONAL_WORKSPACE);
 
     constructor(
         private http: AppHttpClient,

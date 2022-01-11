@@ -23,7 +23,7 @@ use Google\Client;
  * Service definition for OrgPolicyAPI (v2).
  *
  * <p>
- * The Org Policy API allows users to configure governance rules on their GCP
+ * The Org Policy API allows users to configure governance ruleson their GCP
  * resources across the Cloud Resource Hierarchy.</p>
  *
  * <p>
@@ -42,7 +42,6 @@ class OrgPolicyAPI extends \Google\Service
   public $folders_constraints;
   public $folders_policies;
   public $organizations_constraints;
-  public $organizations_customConstraints;
   public $organizations_policies;
   public $projects_constraints;
   public $projects_policies;
@@ -191,26 +190,6 @@ class OrgPolicyAPI extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->organizations_customConstraints = new OrgPolicyAPI\Resource\OrganizationsCustomConstraints(
-        $this,
-        $this->serviceName,
-        'customConstraints',
-        [
-          'methods' => [
-            'patch' => [
-              'path' => 'v2/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
                 ],
               ],
             ],

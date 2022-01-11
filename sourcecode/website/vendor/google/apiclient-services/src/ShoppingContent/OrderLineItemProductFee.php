@@ -21,9 +21,6 @@ class OrderLineItemProductFee extends \Google\Model
 {
   protected $amountType = Price::class;
   protected $amountDataType = '';
-  /**
-   * @var string
-   */
   public $name;
 
   /**
@@ -40,16 +37,10 @@ class OrderLineItemProductFee extends \Google\Model
   {
     return $this->amount;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

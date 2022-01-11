@@ -19,39 +19,21 @@ namespace Google\Service\Compute;
 
 class BulkInsertInstanceResource extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $count;
   protected $instancePropertiesType = InstanceProperties::class;
   protected $instancePropertiesDataType = '';
   protected $locationPolicyType = LocationPolicy::class;
   protected $locationPolicyDataType = '';
-  /**
-   * @var string
-   */
   public $minCount;
-  /**
-   * @var string
-   */
   public $namePattern;
   protected $perInstancePropertiesType = BulkInsertInstanceResourcePerInstanceProperties::class;
   protected $perInstancePropertiesDataType = 'map';
-  /**
-   * @var string
-   */
   public $sourceInstanceTemplate;
 
-  /**
-   * @param string
-   */
   public function setCount($count)
   {
     $this->count = $count;
   }
-  /**
-   * @return string
-   */
   public function getCount()
   {
     return $this->count;
@@ -84,30 +66,18 @@ class BulkInsertInstanceResource extends \Google\Model
   {
     return $this->locationPolicy;
   }
-  /**
-   * @param string
-   */
   public function setMinCount($minCount)
   {
     $this->minCount = $minCount;
   }
-  /**
-   * @return string
-   */
   public function getMinCount()
   {
     return $this->minCount;
   }
-  /**
-   * @param string
-   */
   public function setNamePattern($namePattern)
   {
     $this->namePattern = $namePattern;
   }
-  /**
-   * @return string
-   */
   public function getNamePattern()
   {
     return $this->namePattern;
@@ -126,16 +96,10 @@ class BulkInsertInstanceResource extends \Google\Model
   {
     return $this->perInstanceProperties;
   }
-  /**
-   * @param string
-   */
   public function setSourceInstanceTemplate($sourceInstanceTemplate)
   {
     $this->sourceInstanceTemplate = $sourceInstanceTemplate;
   }
-  /**
-   * @return string
-   */
   public function getSourceInstanceTemplate()
   {
     return $this->sourceInstanceTemplate;

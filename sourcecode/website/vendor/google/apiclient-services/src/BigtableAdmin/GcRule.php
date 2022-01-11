@@ -21,13 +21,7 @@ class GcRule extends \Google\Model
 {
   protected $intersectionType = Intersection::class;
   protected $intersectionDataType = '';
-  /**
-   * @var string
-   */
   public $maxAge;
-  /**
-   * @var int
-   */
   public $maxNumVersions;
   protected $unionType = Union::class;
   protected $unionDataType = '';
@@ -46,30 +40,18 @@ class GcRule extends \Google\Model
   {
     return $this->intersection;
   }
-  /**
-   * @param string
-   */
   public function setMaxAge($maxAge)
   {
     $this->maxAge = $maxAge;
   }
-  /**
-   * @return string
-   */
   public function getMaxAge()
   {
     return $this->maxAge;
   }
-  /**
-   * @param int
-   */
   public function setMaxNumVersions($maxNumVersions)
   {
     $this->maxNumVersions = $maxNumVersions;
   }
-  /**
-   * @return int
-   */
   public function getMaxNumVersions()
   {
     return $this->maxNumVersions;

@@ -19,21 +19,12 @@ namespace Google\Service\Directory;
 
 class FeatureRename extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $newName;
 
-  /**
-   * @param string
-   */
   public function setNewName($newName)
   {
     $this->newName = $newName;
   }
-  /**
-   * @return string
-   */
   public function getNewName()
   {
     return $this->newName;

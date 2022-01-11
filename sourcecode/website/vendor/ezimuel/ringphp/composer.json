@@ -16,10 +16,7 @@
     },
     "require-dev": {
         "ext-curl": "*",
-        "phpunit/phpunit": "~9.0"
-    },
-    "replace": {
-        "guzzlehttp/ringphp": "self.version"
+        "phpunit/phpunit": "~4.0"
     },
     "suggest": {
         "ext-curl": "Guzzle will use specific adapters if cURL is present"

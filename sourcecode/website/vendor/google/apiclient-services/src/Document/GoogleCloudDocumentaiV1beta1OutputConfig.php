@@ -21,9 +21,6 @@ class GoogleCloudDocumentaiV1beta1OutputConfig extends \Google\Model
 {
   protected $gcsDestinationType = GoogleCloudDocumentaiV1beta1GcsDestination::class;
   protected $gcsDestinationDataType = '';
-  /**
-   * @var int
-   */
   public $pagesPerShard;
 
   /**
@@ -40,16 +37,10 @@ class GoogleCloudDocumentaiV1beta1OutputConfig extends \Google\Model
   {
     return $this->gcsDestination;
   }
-  /**
-   * @param int
-   */
   public function setPagesPerShard($pagesPerShard)
   {
     $this->pagesPerShard = $pagesPerShard;
   }
-  /**
-   * @return int
-   */
   public function getPagesPerShard()
   {
     return $this->pagesPerShard;

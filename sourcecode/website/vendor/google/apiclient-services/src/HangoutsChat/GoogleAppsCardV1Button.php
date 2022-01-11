@@ -19,35 +19,20 @@ namespace Google\Service\HangoutsChat;
 
 class GoogleAppsCardV1Button extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $altText;
   protected $colorType = Color::class;
   protected $colorDataType = '';
-  /**
-   * @var bool
-   */
   public $disabled;
   protected $iconType = GoogleAppsCardV1Icon::class;
   protected $iconDataType = '';
   protected $onClickType = GoogleAppsCardV1OnClick::class;
   protected $onClickDataType = '';
-  /**
-   * @var string
-   */
   public $text;
 
-  /**
-   * @param string
-   */
   public function setAltText($altText)
   {
     $this->altText = $altText;
   }
-  /**
-   * @return string
-   */
   public function getAltText()
   {
     return $this->altText;
@@ -66,16 +51,10 @@ class GoogleAppsCardV1Button extends \Google\Model
   {
     return $this->color;
   }
-  /**
-   * @param bool
-   */
   public function setDisabled($disabled)
   {
     $this->disabled = $disabled;
   }
-  /**
-   * @return bool
-   */
   public function getDisabled()
   {
     return $this->disabled;
@@ -108,16 +87,10 @@ class GoogleAppsCardV1Button extends \Google\Model
   {
     return $this->onClick;
   }
-  /**
-   * @param string
-   */
   public function setText($text)
   {
     $this->text = $text;
   }
-  /**
-   * @return string
-   */
   public function getText()
   {
     return $this->text;

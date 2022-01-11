@@ -21,9 +21,6 @@ class Document extends \Google\Model
 {
   protected $bodyType = Body::class;
   protected $bodyDataType = '';
-  /**
-   * @var string
-   */
   public $documentId;
   protected $documentStyleType = DocumentStyle::class;
   protected $documentStyleDataType = '';
@@ -43,21 +40,12 @@ class Document extends \Google\Model
   protected $namedStylesDataType = '';
   protected $positionedObjectsType = PositionedObject::class;
   protected $positionedObjectsDataType = 'map';
-  /**
-   * @var string
-   */
   public $revisionId;
   protected $suggestedDocumentStyleChangesType = SuggestedDocumentStyle::class;
   protected $suggestedDocumentStyleChangesDataType = 'map';
   protected $suggestedNamedStylesChangesType = SuggestedNamedStyles::class;
   protected $suggestedNamedStylesChangesDataType = 'map';
-  /**
-   * @var string
-   */
   public $suggestionsViewMode;
-  /**
-   * @var string
-   */
   public $title;
 
   /**
@@ -74,16 +62,10 @@ class Document extends \Google\Model
   {
     return $this->body;
   }
-  /**
-   * @param string
-   */
   public function setDocumentId($documentId)
   {
     $this->documentId = $documentId;
   }
-  /**
-   * @return string
-   */
   public function getDocumentId()
   {
     return $this->documentId;
@@ -214,16 +196,10 @@ class Document extends \Google\Model
   {
     return $this->positionedObjects;
   }
-  /**
-   * @param string
-   */
   public function setRevisionId($revisionId)
   {
     $this->revisionId = $revisionId;
   }
-  /**
-   * @return string
-   */
   public function getRevisionId()
   {
     return $this->revisionId;
@@ -256,30 +232,18 @@ class Document extends \Google\Model
   {
     return $this->suggestedNamedStylesChanges;
   }
-  /**
-   * @param string
-   */
   public function setSuggestionsViewMode($suggestionsViewMode)
   {
     $this->suggestionsViewMode = $suggestionsViewMode;
   }
-  /**
-   * @return string
-   */
   public function getSuggestionsViewMode()
   {
     return $this->suggestionsViewMode;
   }
-  /**
-   * @param string
-   */
   public function setTitle($title)
   {
     $this->title = $title;
   }
-  /**
-   * @return string
-   */
   public function getTitle()
   {
     return $this->title;

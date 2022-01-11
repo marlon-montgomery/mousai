@@ -1,17 +1,6 @@
-<form
-  class="input-container"
-  *ngIf="!readonly"
-  ngNativeValidate
-  (ngSubmit)="selectTagsFromString(formControl.value)"
->
+<form class="input-container" *ngIf="!readonly" ngNativeValidate (ngSubmit)="selectTagsFromString(formControl.value)">
   <div class="input-with-action">
-    <input
-      type="text"
-      class="tags-string-input"
-      [matAutocomplete]="auto"
-      [formControl]="formControl"
-      required
-    />
+    <input type="text" class="tags-string-input" [matAutocomplete]="auto" [formControl]="formControl" required/>
     <button type="submit" class="add-tags-button" mat-flat-button color="accent" trans>Add</button>
   </div>
 </form>

@@ -52,7 +52,7 @@ trait AbstractAdapterTrait
      *
      * @param array $ids The cache identifiers to fetch
      *
-     * @return array|\Traversable
+     * @return array|\Traversable The corresponding values found in the cache
      */
     abstract protected function doFetch(array $ids);
 
@@ -61,7 +61,7 @@ trait AbstractAdapterTrait
      *
      * @param string $id The identifier for which to check existence
      *
-     * @return bool
+     * @return bool True if item exists in the cache, false otherwise
      */
     abstract protected function doHave(string $id);
 
@@ -70,7 +70,7 @@ trait AbstractAdapterTrait
      *
      * @param string $namespace The prefix used for all identifiers managed by this pool
      *
-     * @return bool
+     * @return bool True if the pool was successfully cleared, false otherwise
      */
     abstract protected function doClear(string $namespace);
 
@@ -79,7 +79,7 @@ trait AbstractAdapterTrait
      *
      * @param array $ids An array of identifiers that should be removed from the pool
      *
-     * @return bool
+     * @return bool True if the items were successfully removed, false otherwise
      */
     abstract protected function doDelete(array $ids);
 
@@ -208,11 +208,10 @@ trait AbstractAdapterTrait
      */
     public function getItem($key)
     {
-        $id = $this->getId($key);
-
-        if (isset($this->deferred[$key])) {
+        if ($this->deferred) {
             $this->commit();
         }
+        $id = $this->getId($key);
 
         $isHit = false;
         $value = null;
@@ -235,18 +234,14 @@ trait AbstractAdapterTrait
      */
     public function getItems(array $keys = [])
     {
+        if ($this->deferred) {
+            $this->commit();
+        }
         $ids = [];
-        $commit = false;
 
         foreach ($keys as $key) {
             $ids[] = $this->getId($key);
-            $commit = $commit || isset($this->deferred[$key]);
         }
-
-        if ($commit) {
-            $this->commit();
-        }
-
         try {
             $items = $this->doFetch($ids);
         } catch (\Exception $e) {
@@ -384,10 +379,6 @@ trait AbstractAdapterTrait
         }
         \assert('' !== CacheItem::validateKey($key));
         $this->ids[$key] = $key;
-
-        if (\count($this->ids) > 1000) {
-            array_splice($this->ids, 0, 500); // stop memory leak if there are many keys
-        }
 
         if (null === $this->maxIdLength) {
             return $this->namespace.$this->namespaceVersion.$key;

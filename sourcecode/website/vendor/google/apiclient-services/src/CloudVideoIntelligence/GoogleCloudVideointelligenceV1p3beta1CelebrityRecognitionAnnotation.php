@@ -22,9 +22,6 @@ class GoogleCloudVideointelligenceV1p3beta1CelebrityRecognitionAnnotation extend
   protected $collection_key = 'celebrityTracks';
   protected $celebrityTracksType = GoogleCloudVideointelligenceV1p3beta1CelebrityTrack::class;
   protected $celebrityTracksDataType = 'array';
-  /**
-   * @var string
-   */
   public $version;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudVideointelligenceV1p3beta1CelebrityRecognitionAnnotation extend
   {
     return $this->celebrityTracks;
   }
-  /**
-   * @param string
-   */
   public function setVersion($version)
   {
     $this->version = $version;
   }
-  /**
-   * @return string
-   */
   public function getVersion()
   {
     return $this->version;

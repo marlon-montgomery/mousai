@@ -19,39 +19,21 @@ namespace Google\Service\Compute;
 
 class AliasIpRange extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $ipCidrRange;
-  /**
-   * @var string
-   */
   public $subnetworkRangeName;
 
-  /**
-   * @param string
-   */
   public function setIpCidrRange($ipCidrRange)
   {
     $this->ipCidrRange = $ipCidrRange;
   }
-  /**
-   * @return string
-   */
   public function getIpCidrRange()
   {
     return $this->ipCidrRange;
   }
-  /**
-   * @param string
-   */
   public function setSubnetworkRangeName($subnetworkRangeName)
   {
     $this->subnetworkRangeName = $subnetworkRangeName;
   }
-  /**
-   * @return string
-   */
   public function getSubnetworkRangeName()
   {
     return $this->subnetworkRangeName;

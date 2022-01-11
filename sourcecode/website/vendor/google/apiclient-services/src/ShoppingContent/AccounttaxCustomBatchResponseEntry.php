@@ -21,15 +21,9 @@ class AccounttaxCustomBatchResponseEntry extends \Google\Model
 {
   protected $accountTaxType = AccountTax::class;
   protected $accountTaxDataType = '';
-  /**
-   * @var string
-   */
   public $batchId;
   protected $errorsType = Errors::class;
   protected $errorsDataType = '';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -46,16 +40,10 @@ class AccounttaxCustomBatchResponseEntry extends \Google\Model
   {
     return $this->accountTax;
   }
-  /**
-   * @param string
-   */
   public function setBatchId($batchId)
   {
     $this->batchId = $batchId;
   }
-  /**
-   * @return string
-   */
   public function getBatchId()
   {
     return $this->batchId;
@@ -74,16 +62,10 @@ class AccounttaxCustomBatchResponseEntry extends \Google\Model
   {
     return $this->errors;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

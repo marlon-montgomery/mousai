@@ -8,13 +8,15 @@ use Doctrine\DBAL\Driver\Exception;
 use Doctrine\DBAL\Driver\FetchUtils;
 use Doctrine\DBAL\Driver\Mysqli\Exception\StatementError;
 use Doctrine\DBAL\Driver\Result as ResultInterface;
-use mysqli_sql_exception;
 use mysqli_stmt;
+use stdClass;
 
-use function array_column;
 use function array_combine;
 use function array_fill;
+use function array_map;
+use function assert;
 use function count;
+use function is_array;
 
 final class Result implements ResultInterface
 {
@@ -57,7 +59,12 @@ final class Result implements ResultInterface
 
         $this->hasColumns = true;
 
-        $this->columnNames = array_column($meta->fetch_fields(), 'name');
+        $fields = $meta->fetch_fields();
+        assert(is_array($fields));
+
+        $this->columnNames = array_map(static function (stdClass $field): string {
+            return $field->name;
+        }, $fields);
 
         $meta->free();
 
@@ -79,8 +86,10 @@ final class Result implements ResultInterface
         // to the length of the ones fetched during the previous execution.
         $this->boundValues = array_fill(0, count($this->columnNames), null);
 
-        // The following is necessary as PHP cannot handle references to properties properly
-        $refs = &$this->boundValues;
+        $refs = [];
+        foreach ($this->boundValues as &$value) {
+            $refs[] =& $value;
+        }
 
         if (! $this->statement->bind_result(...$refs)) {
             throw StatementError::new($this->statement);
@@ -92,11 +101,7 @@ final class Result implements ResultInterface
      */
     public function fetchNumeric()
     {
-        try {
-            $ret = $this->statement->fetch();
-        } catch (mysqli_sql_exception $e) {
-            throw StatementError::upcast($e);
-        }
+        $ret = $this->statement->fetch();
 
         if ($ret === false) {
             throw StatementError::new($this->statement);

@@ -19,39 +19,21 @@ namespace Google\Service\Apigee;
 
 class GoogleCloudApigeeV1CustomReportMetric extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $function;
-  /**
-   * @var string
-   */
   public $name;
 
-  /**
-   * @param string
-   */
   public function setFunction($function)
   {
     $this->function = $function;
   }
-  /**
-   * @return string
-   */
   public function getFunction()
   {
     return $this->function;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

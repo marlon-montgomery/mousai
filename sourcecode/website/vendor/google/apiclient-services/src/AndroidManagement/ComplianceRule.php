@@ -22,15 +22,9 @@ class ComplianceRule extends \Google\Collection
   protected $collection_key = 'packageNamesToDisable';
   protected $apiLevelConditionType = ApiLevelCondition::class;
   protected $apiLevelConditionDataType = '';
-  /**
-   * @var bool
-   */
   public $disableApps;
   protected $nonComplianceDetailConditionType = NonComplianceDetailCondition::class;
   protected $nonComplianceDetailConditionDataType = '';
-  /**
-   * @var string[]
-   */
   public $packageNamesToDisable;
 
   /**
@@ -47,16 +41,10 @@ class ComplianceRule extends \Google\Collection
   {
     return $this->apiLevelCondition;
   }
-  /**
-   * @param bool
-   */
   public function setDisableApps($disableApps)
   {
     $this->disableApps = $disableApps;
   }
-  /**
-   * @return bool
-   */
   public function getDisableApps()
   {
     return $this->disableApps;
@@ -75,16 +63,10 @@ class ComplianceRule extends \Google\Collection
   {
     return $this->nonComplianceDetailCondition;
   }
-  /**
-   * @param string[]
-   */
   public function setPackageNamesToDisable($packageNamesToDisable)
   {
     $this->packageNamesToDisable = $packageNamesToDisable;
   }
-  /**
-   * @return string[]
-   */
   public function getPackageNamesToDisable()
   {
     return $this->packageNamesToDisable;

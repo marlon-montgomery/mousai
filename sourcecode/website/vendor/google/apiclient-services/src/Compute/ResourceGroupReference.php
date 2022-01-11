@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class ResourceGroupReference extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $group;
 
-  /**
-   * @param string
-   */
   public function setGroup($group)
   {
     $this->group = $group;
   }
-  /**
-   * @return string
-   */
   public function getGroup()
   {
     return $this->group;

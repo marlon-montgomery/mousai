@@ -19,23 +19,14 @@ namespace Google\Service\Firestore;
 
 class QueryTarget extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $parent;
   protected $structuredQueryType = StructuredQuery::class;
   protected $structuredQueryDataType = '';
 
-  /**
-   * @param string
-   */
   public function setParent($parent)
   {
     $this->parent = $parent;
   }
-  /**
-   * @return string
-   */
   public function getParent()
   {
     return $this->parent;

@@ -21,9 +21,6 @@ class UpdateFeedRequest extends \Google\Model
 {
   protected $feedType = Feed::class;
   protected $feedDataType = '';
-  /**
-   * @var string
-   */
   public $updateMask;
 
   /**
@@ -40,16 +37,10 @@ class UpdateFeedRequest extends \Google\Model
   {
     return $this->feed;
   }
-  /**
-   * @param string
-   */
   public function setUpdateMask($updateMask)
   {
     $this->updateMask = $updateMask;
   }
-  /**
-   * @return string
-   */
   public function getUpdateMask()
   {
     return $this->updateMask;

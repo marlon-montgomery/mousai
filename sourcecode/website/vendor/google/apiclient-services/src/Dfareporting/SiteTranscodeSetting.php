@@ -20,39 +20,21 @@ namespace Google\Service\Dfareporting;
 class SiteTranscodeSetting extends \Google\Collection
 {
   protected $collection_key = 'enabledVideoFormats';
-  /**
-   * @var int[]
-   */
   public $enabledVideoFormats;
-  /**
-   * @var string
-   */
   public $kind;
 
-  /**
-   * @param int[]
-   */
   public function setEnabledVideoFormats($enabledVideoFormats)
   {
     $this->enabledVideoFormats = $enabledVideoFormats;
   }
-  /**
-   * @return int[]
-   */
   public function getEnabledVideoFormats()
   {
     return $this->enabledVideoFormats;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

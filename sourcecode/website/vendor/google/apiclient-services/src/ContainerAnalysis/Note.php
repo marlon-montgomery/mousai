@@ -20,253 +20,183 @@ namespace Google\Service\ContainerAnalysis;
 class Note extends \Google\Collection
 {
   protected $collection_key = 'relatedUrl';
-  protected $attestationType = AttestationNote::class;
-  protected $attestationDataType = '';
-  protected $buildType = BuildNote::class;
+  protected $attestationAuthorityType = Authority::class;
+  protected $attestationAuthorityDataType = '';
+  protected $baseImageType = Basis::class;
+  protected $baseImageDataType = '';
+  protected $buildType = Build::class;
   protected $buildDataType = '';
-  protected $complianceType = ComplianceNote::class;
-  protected $complianceDataType = '';
-  /**
-   * @var string
-   */
   public $createTime;
-  protected $deploymentType = DeploymentNote::class;
-  protected $deploymentDataType = '';
-  protected $discoveryType = DiscoveryNote::class;
+  protected $deployableType = Deployable::class;
+  protected $deployableDataType = '';
+  protected $discoveryType = Discovery::class;
   protected $discoveryDataType = '';
-  protected $dsseAttestationType = DSSEAttestationNote::class;
-  protected $dsseAttestationDataType = '';
-  /**
-   * @var string
-   */
   public $expirationTime;
-  protected $imageType = ImageNote::class;
-  protected $imageDataType = '';
-  /**
-   * @var string
-   */
+  protected $intotoType = InToto::class;
+  protected $intotoDataType = '';
   public $kind;
-  /**
-   * @var string
-   */
   public $longDescription;
-  /**
-   * @var string
-   */
   public $name;
-  protected $packageType = PackageNote::class;
+  protected $packageType = Package::class;
   protected $packageDataType = '';
-  /**
-   * @var string[]
-   */
   public $relatedNoteNames;
   protected $relatedUrlType = RelatedUrl::class;
   protected $relatedUrlDataType = 'array';
-  /**
-   * @var string
-   */
+  protected $sbomType = DocumentNote::class;
+  protected $sbomDataType = '';
   public $shortDescription;
-  /**
-   * @var string
-   */
+  protected $spdxFileType = FileNote::class;
+  protected $spdxFileDataType = '';
+  protected $spdxPackageType = PackageNote::class;
+  protected $spdxPackageDataType = '';
+  protected $spdxRelationshipType = RelationshipNote::class;
+  protected $spdxRelationshipDataType = '';
   public $updateTime;
-  protected $upgradeType = UpgradeNote::class;
-  protected $upgradeDataType = '';
-  protected $vulnerabilityType = VulnerabilityNote::class;
+  protected $vulnerabilityType = Vulnerability::class;
   protected $vulnerabilityDataType = '';
 
   /**
-   * @param AttestationNote
+   * @param Authority
    */
-  public function setAttestation(AttestationNote $attestation)
+  public function setAttestationAuthority(Authority $attestationAuthority)
   {
-    $this->attestation = $attestation;
+    $this->attestationAuthority = $attestationAuthority;
   }
   /**
-   * @return AttestationNote
+   * @return Authority
    */
-  public function getAttestation()
+  public function getAttestationAuthority()
   {
-    return $this->attestation;
+    return $this->attestationAuthority;
   }
   /**
-   * @param BuildNote
+   * @param Basis
    */
-  public function setBuild(BuildNote $build)
+  public function setBaseImage(Basis $baseImage)
+  {
+    $this->baseImage = $baseImage;
+  }
+  /**
+   * @return Basis
+   */
+  public function getBaseImage()
+  {
+    return $this->baseImage;
+  }
+  /**
+   * @param Build
+   */
+  public function setBuild(Build $build)
   {
     $this->build = $build;
   }
   /**
-   * @return BuildNote
+   * @return Build
    */
   public function getBuild()
   {
     return $this->build;
   }
-  /**
-   * @param ComplianceNote
-   */
-  public function setCompliance(ComplianceNote $compliance)
-  {
-    $this->compliance = $compliance;
-  }
-  /**
-   * @return ComplianceNote
-   */
-  public function getCompliance()
-  {
-    return $this->compliance;
-  }
-  /**
-   * @param string
-   */
   public function setCreateTime($createTime)
   {
     $this->createTime = $createTime;
   }
-  /**
-   * @return string
-   */
   public function getCreateTime()
   {
     return $this->createTime;
   }
   /**
-   * @param DeploymentNote
+   * @param Deployable
    */
-  public function setDeployment(DeploymentNote $deployment)
+  public function setDeployable(Deployable $deployable)
   {
-    $this->deployment = $deployment;
+    $this->deployable = $deployable;
   }
   /**
-   * @return DeploymentNote
+   * @return Deployable
    */
-  public function getDeployment()
+  public function getDeployable()
   {
-    return $this->deployment;
+    return $this->deployable;
   }
   /**
-   * @param DiscoveryNote
+   * @param Discovery
    */
-  public function setDiscovery(DiscoveryNote $discovery)
+  public function setDiscovery(Discovery $discovery)
   {
     $this->discovery = $discovery;
   }
   /**
-   * @return DiscoveryNote
+   * @return Discovery
    */
   public function getDiscovery()
   {
     return $this->discovery;
   }
-  /**
-   * @param DSSEAttestationNote
-   */
-  public function setDsseAttestation(DSSEAttestationNote $dsseAttestation)
-  {
-    $this->dsseAttestation = $dsseAttestation;
-  }
-  /**
-   * @return DSSEAttestationNote
-   */
-  public function getDsseAttestation()
-  {
-    return $this->dsseAttestation;
-  }
-  /**
-   * @param string
-   */
   public function setExpirationTime($expirationTime)
   {
     $this->expirationTime = $expirationTime;
   }
-  /**
-   * @return string
-   */
   public function getExpirationTime()
   {
     return $this->expirationTime;
   }
   /**
-   * @param ImageNote
+   * @param InToto
    */
-  public function setImage(ImageNote $image)
+  public function setIntoto(InToto $intoto)
   {
-    $this->image = $image;
+    $this->intoto = $intoto;
   }
   /**
-   * @return ImageNote
+   * @return InToto
    */
-  public function getImage()
+  public function getIntoto()
   {
-    return $this->image;
+    return $this->intoto;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
   }
-  /**
-   * @param string
-   */
   public function setLongDescription($longDescription)
   {
     $this->longDescription = $longDescription;
   }
-  /**
-   * @return string
-   */
   public function getLongDescription()
   {
     return $this->longDescription;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
   }
   /**
-   * @param PackageNote
+   * @param Package
    */
-  public function setPackage(PackageNote $package)
+  public function setPackage(Package $package)
   {
     $this->package = $package;
   }
   /**
-   * @return PackageNote
+   * @return Package
    */
   public function getPackage()
   {
     return $this->package;
   }
-  /**
-   * @param string[]
-   */
   public function setRelatedNoteNames($relatedNoteNames)
   {
     $this->relatedNoteNames = $relatedNoteNames;
   }
-  /**
-   * @return string[]
-   */
   public function getRelatedNoteNames()
   {
     return $this->relatedNoteNames;
@@ -286,56 +216,86 @@ class Note extends \Google\Collection
     return $this->relatedUrl;
   }
   /**
-   * @param string
+   * @param DocumentNote
    */
+  public function setSbom(DocumentNote $sbom)
+  {
+    $this->sbom = $sbom;
+  }
+  /**
+   * @return DocumentNote
+   */
+  public function getSbom()
+  {
+    return $this->sbom;
+  }
   public function setShortDescription($shortDescription)
   {
     $this->shortDescription = $shortDescription;
   }
-  /**
-   * @return string
-   */
   public function getShortDescription()
   {
     return $this->shortDescription;
   }
   /**
-   * @param string
+   * @param FileNote
    */
+  public function setSpdxFile(FileNote $spdxFile)
+  {
+    $this->spdxFile = $spdxFile;
+  }
+  /**
+   * @return FileNote
+   */
+  public function getSpdxFile()
+  {
+    return $this->spdxFile;
+  }
+  /**
+   * @param PackageNote
+   */
+  public function setSpdxPackage(PackageNote $spdxPackage)
+  {
+    $this->spdxPackage = $spdxPackage;
+  }
+  /**
+   * @return PackageNote
+   */
+  public function getSpdxPackage()
+  {
+    return $this->spdxPackage;
+  }
+  /**
+   * @param RelationshipNote
+   */
+  public function setSpdxRelationship(RelationshipNote $spdxRelationship)
+  {
+    $this->spdxRelationship = $spdxRelationship;
+  }
+  /**
+   * @return RelationshipNote
+   */
+  public function getSpdxRelationship()
+  {
+    return $this->spdxRelationship;
+  }
   public function setUpdateTime($updateTime)
   {
     $this->updateTime = $updateTime;
   }
-  /**
-   * @return string
-   */
   public function getUpdateTime()
   {
     return $this->updateTime;
   }
   /**
-   * @param UpgradeNote
+   * @param Vulnerability
    */
-  public function setUpgrade(UpgradeNote $upgrade)
-  {
-    $this->upgrade = $upgrade;
-  }
-  /**
-   * @return UpgradeNote
-   */
-  public function getUpgrade()
-  {
-    return $this->upgrade;
-  }
-  /**
-   * @param VulnerabilityNote
-   */
-  public function setVulnerability(VulnerabilityNote $vulnerability)
+  public function setVulnerability(Vulnerability $vulnerability)
   {
     $this->vulnerability = $vulnerability;
   }
   /**
-   * @return VulnerabilityNote
+   * @return Vulnerability
    */
   public function getVulnerability()
   {

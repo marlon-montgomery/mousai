@@ -22,9 +22,6 @@ class OperationErrors extends \Google\Collection
   protected $collection_key = 'errors';
   protected $errorsType = OperationError::class;
   protected $errorsDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -41,16 +38,10 @@ class OperationErrors extends \Google\Collection
   {
     return $this->errors;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

@@ -19,39 +19,21 @@ namespace Google\Service\DisplayVideo;
 
 class GeoRegionTargetingOptionDetails extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $displayName;
-  /**
-   * @var string
-   */
   public $geoRegionType;
 
-  /**
-   * @param string
-   */
   public function setDisplayName($displayName)
   {
     $this->displayName = $displayName;
   }
-  /**
-   * @return string
-   */
   public function getDisplayName()
   {
     return $this->displayName;
   }
-  /**
-   * @param string
-   */
   public function setGeoRegionType($geoRegionType)
   {
     $this->geoRegionType = $geoRegionType;
   }
-  /**
-   * @return string
-   */
   public function getGeoRegionType()
   {
     return $this->geoRegionType;

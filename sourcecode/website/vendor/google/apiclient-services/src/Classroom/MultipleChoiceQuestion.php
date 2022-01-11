@@ -20,21 +20,12 @@ namespace Google\Service\Classroom;
 class MultipleChoiceQuestion extends \Google\Collection
 {
   protected $collection_key = 'choices';
-  /**
-   * @var string[]
-   */
   public $choices;
 
-  /**
-   * @param string[]
-   */
   public function setChoices($choices)
   {
     $this->choices = $choices;
   }
-  /**
-   * @return string[]
-   */
   public function getChoices()
   {
     return $this->choices;

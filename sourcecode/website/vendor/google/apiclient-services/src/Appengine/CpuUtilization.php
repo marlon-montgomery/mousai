@@ -19,22 +19,13 @@ namespace Google\Service\Appengine;
 
 class CpuUtilization extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $aggregationWindowLength;
   public $targetUtilization;
 
-  /**
-   * @param string
-   */
   public function setAggregationWindowLength($aggregationWindowLength)
   {
     $this->aggregationWindowLength = $aggregationWindowLength;
   }
-  /**
-   * @return string
-   */
   public function getAggregationWindowLength()
   {
     return $this->aggregationWindowLength;

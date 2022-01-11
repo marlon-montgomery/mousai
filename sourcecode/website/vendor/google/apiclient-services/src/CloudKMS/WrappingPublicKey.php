@@ -19,21 +19,12 @@ namespace Google\Service\CloudKMS;
 
 class WrappingPublicKey extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $pem;
 
-  /**
-   * @param string
-   */
   public function setPem($pem)
   {
     $this->pem = $pem;
   }
-  /**
-   * @return string
-   */
   public function getPem()
   {
     return $this->pem;

@@ -19,21 +19,12 @@ namespace Google\Service\CloudSearch;
 
 class EmailAddress extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $emailAddress;
 
-  /**
-   * @param string
-   */
   public function setEmailAddress($emailAddress)
   {
     $this->emailAddress = $emailAddress;
   }
-  /**
-   * @return string
-   */
   public function getEmailAddress()
   {
     return $this->emailAddress;

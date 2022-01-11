@@ -19,39 +19,21 @@ namespace Google\Service\Compute;
 
 class MachineTypeAccelerators extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $guestAcceleratorCount;
-  /**
-   * @var string
-   */
   public $guestAcceleratorType;
 
-  /**
-   * @param int
-   */
   public function setGuestAcceleratorCount($guestAcceleratorCount)
   {
     $this->guestAcceleratorCount = $guestAcceleratorCount;
   }
-  /**
-   * @return int
-   */
   public function getGuestAcceleratorCount()
   {
     return $this->guestAcceleratorCount;
   }
-  /**
-   * @param string
-   */
   public function setGuestAcceleratorType($guestAcceleratorType)
   {
     $this->guestAcceleratorType = $guestAcceleratorType;
   }
-  /**
-   * @return string
-   */
   public function getGuestAcceleratorType()
   {
     return $this->guestAcceleratorType;

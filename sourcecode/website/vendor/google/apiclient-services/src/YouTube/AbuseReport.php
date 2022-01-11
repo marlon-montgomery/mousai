@@ -22,9 +22,6 @@ class AbuseReport extends \Google\Collection
   protected $collection_key = 'relatedEntities';
   protected $abuseTypesType = AbuseType::class;
   protected $abuseTypesDataType = 'array';
-  /**
-   * @var string
-   */
   public $description;
   protected $relatedEntitiesType = RelatedEntity::class;
   protected $relatedEntitiesDataType = 'array';
@@ -45,16 +42,10 @@ class AbuseReport extends \Google\Collection
   {
     return $this->abuseTypes;
   }
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;

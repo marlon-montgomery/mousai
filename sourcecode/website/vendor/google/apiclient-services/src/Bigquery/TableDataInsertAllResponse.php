@@ -22,9 +22,6 @@ class TableDataInsertAllResponse extends \Google\Collection
   protected $collection_key = 'insertErrors';
   protected $insertErrorsType = TableDataInsertAllResponseInsertErrors::class;
   protected $insertErrorsDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -41,16 +38,10 @@ class TableDataInsertAllResponse extends \Google\Collection
   {
     return $this->insertErrors;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

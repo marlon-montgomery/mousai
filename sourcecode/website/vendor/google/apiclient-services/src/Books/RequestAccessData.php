@@ -23,9 +23,6 @@ class RequestAccessData extends \Google\Model
   protected $concurrentAccessDataType = '';
   protected $downloadAccessType = DownloadAccessRestriction::class;
   protected $downloadAccessDataType = '';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -56,16 +53,10 @@ class RequestAccessData extends \Google\Model
   {
     return $this->downloadAccess;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

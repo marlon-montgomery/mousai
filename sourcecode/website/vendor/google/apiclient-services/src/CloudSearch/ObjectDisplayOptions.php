@@ -22,9 +22,6 @@ class ObjectDisplayOptions extends \Google\Collection
   protected $collection_key = 'metalines';
   protected $metalinesType = Metaline::class;
   protected $metalinesDataType = 'array';
-  /**
-   * @var string
-   */
   public $objectDisplayLabel;
 
   /**
@@ -41,16 +38,10 @@ class ObjectDisplayOptions extends \Google\Collection
   {
     return $this->metalines;
   }
-  /**
-   * @param string
-   */
   public function setObjectDisplayLabel($objectDisplayLabel)
   {
     $this->objectDisplayLabel = $objectDisplayLabel;
   }
-  /**
-   * @return string
-   */
   public function getObjectDisplayLabel()
   {
     return $this->objectDisplayLabel;

@@ -22,9 +22,6 @@ class CollectdPayloadError extends \Google\Collection
   protected $collection_key = 'valueErrors';
   protected $errorType = Status::class;
   protected $errorDataType = '';
-  /**
-   * @var int
-   */
   public $index;
   protected $valueErrorsType = CollectdValueError::class;
   protected $valueErrorsDataType = 'array';
@@ -43,16 +40,10 @@ class CollectdPayloadError extends \Google\Collection
   {
     return $this->error;
   }
-  /**
-   * @param int
-   */
   public function setIndex($index)
   {
     $this->index = $index;
   }
-  /**
-   * @return int
-   */
   public function getIndex()
   {
     return $this->index;

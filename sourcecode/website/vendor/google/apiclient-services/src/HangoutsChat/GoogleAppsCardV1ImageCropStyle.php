@@ -20,9 +20,6 @@ namespace Google\Service\HangoutsChat;
 class GoogleAppsCardV1ImageCropStyle extends \Google\Model
 {
   public $aspectRatio;
-  /**
-   * @var string
-   */
   public $type;
 
   public function setAspectRatio($aspectRatio)
@@ -33,16 +30,10 @@ class GoogleAppsCardV1ImageCropStyle extends \Google\Model
   {
     return $this->aspectRatio;
   }
-  /**
-   * @param string
-   */
   public function setType($type)
   {
     $this->type = $type;
   }
-  /**
-   * @return string
-   */
   public function getType()
   {
     return $this->type;

@@ -1,8 +1,16 @@
 artists-links-list {
-  display: block;
+  app-marquee {
+    margin-left: -8px;
+  }
 
-  .artist-link {
-    text-transform: capitalize;
-    color: inherit;
+  .artist-link-wrap {
+    display: flex;
+    margin-left: 8px;
+    align-items: center;
+
+    .artist-link {
+      text-transform: capitalize;
+      color: inherit;
+    }
   }
 }

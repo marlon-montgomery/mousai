@@ -35,7 +35,7 @@ trait InteractsWithContentTypes
     {
         $acceptable = $this->getAcceptableContentTypes();
 
-        return isset($acceptable[0]) && Str::contains(strtolower($acceptable[0]), ['/json', '+json']);
+        return isset($acceptable[0]) && Str::contains($acceptable[0], ['/json', '+json']);
     }
 
     /**
@@ -60,10 +60,6 @@ trait InteractsWithContentTypes
             }
 
             foreach ($types as $type) {
-                $accept = strtolower($accept);
-
-                $type = strtolower($type);
-
                 if ($this->matchesType($accept, $type) || $accept === strtok($type, '/').'/*') {
                     return true;
                 }
@@ -96,10 +92,6 @@ trait InteractsWithContentTypes
                 if (! is_null($mimeType = $this->getMimeType($contentType))) {
                     $type = $mimeType;
                 }
-
-                $accept = strtolower($accept);
-
-                $type = strtolower($type);
 
                 if ($this->matchesType($type, $accept) || $accept === strtok($type, '/').'/*') {
                     return $contentType;

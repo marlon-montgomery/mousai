@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Carbon\Traits;
 
 use Carbon\Carbon;
@@ -112,8 +111,7 @@ trait Difference
 
     /**
      * Get the difference as a DateInterval instance.
-     * Return relative interval (negative if $absolute flag is not set to true and the given date is before
-     * current one).
+     * Return relative interval (negative if
      *
      * @param \Carbon\CarbonInterface|\DateTimeInterface|string|null $date
      * @param bool                                                   $absolute Get the absolute of the difference
@@ -125,10 +123,10 @@ trait Difference
     {
         $other = $this->resolveCarbon($date);
 
-        // Work-around for https://bugs.php.net/bug.php?id=81458
-        // It was initially introduced for https://bugs.php.net/bug.php?id=80998
-        // The very specific case of 80998 was fixed in PHP 8.1beta3, but it introduced 81458
-        // So we still need to keep this for now
+        // Can be removed if https://github.com/derickr/timelib/pull/110
+        // is merged
+        // https://bugs.php.net/bug.php?id=80998 was announced fixed in PHP 8.1.0beta3
+        // but created a reverse-regression when using UTC, so we still need this hack
         // @codeCoverageIgnoreStart
         if (version_compare(PHP_VERSION, '8.1.0-dev', '>=') && $other->tz !== $this->tz) {
             $other = $other->avoidMutation()->tz($this->tz);
@@ -140,8 +138,7 @@ trait Difference
 
     /**
      * Get the difference as a CarbonInterval instance.
-     * Return relative interval (negative if $absolute flag is not set to true and the given date is before
-     * current one).
+     * Return absolute interval (always positive) unless you pass false to the second argument.
      *
      * @param \Carbon\CarbonInterface|\DateTimeInterface|string|null $date
      * @param bool                                                   $absolute Get the absolute of the difference
@@ -786,10 +783,6 @@ trait Difference
      *                                                             - 'short' entry (see below)
      *                                                             - 'parts' entry (see below)
      *                                                             - 'options' entry (see below)
-     *                                                             - 'skip' entry, list of units to skip (array of strings or a single string,
-     *                                                             ` it can be the unit name (singular or plural) or its shortcut
-     *                                                             ` (y, m, w, d, h, min, s, ms, µs).
-     *                                                             - 'aUnit' entry, prefer "an hour" over "1 hour" if true
      *                                                             - 'join' entry determines how to join multiple parts of the string
      *                                                             `  - if $join is a string, it's used as a joiner glue
      *                                                             `  - if $join is a callable/closure, it get the list of string and should return a string
@@ -798,8 +791,6 @@ trait Difference
      *                                                             `  - if $join is true, it will be guessed from the locale ('list' translation file entry)
      *                                                             `  - if $join is missing, a space will be used as glue
      *                                                             - 'other' entry (see above)
-     *                                                             - 'minimumUnit' entry determines the smallest unit of time to display can be long or
-     *                                                             `  short form of the units, e.g. 'hour' or 'h' (default value: s)
      *                                                             if int passed, it add modifiers:
      *                                                             Possible values:
      *                                                             - CarbonInterface::DIFF_ABSOLUTE          no modifiers

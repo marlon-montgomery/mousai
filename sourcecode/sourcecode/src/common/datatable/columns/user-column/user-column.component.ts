@@ -7,7 +7,7 @@ import {UrlGeneratorService} from '@common/core/services/url-generator.service';
     templateUrl: './user-column.component.html',
     styleUrls: ['./user-column.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    host: {class: 'column-with-image'},
+    host: {'class': 'column-with-image'},
 })
 export class UserColumnComponent {
     @Input() user: User;

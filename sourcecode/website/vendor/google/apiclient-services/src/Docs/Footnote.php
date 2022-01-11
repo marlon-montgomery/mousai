@@ -22,9 +22,6 @@ class Footnote extends \Google\Collection
   protected $collection_key = 'content';
   protected $contentType = StructuralElement::class;
   protected $contentDataType = 'array';
-  /**
-   * @var string
-   */
   public $footnoteId;
 
   /**
@@ -41,16 +38,10 @@ class Footnote extends \Google\Collection
   {
     return $this->content;
   }
-  /**
-   * @param string
-   */
   public function setFootnoteId($footnoteId)
   {
     $this->footnoteId = $footnoteId;
   }
-  /**
-   * @return string
-   */
   public function getFootnoteId()
   {
     return $this->footnoteId;

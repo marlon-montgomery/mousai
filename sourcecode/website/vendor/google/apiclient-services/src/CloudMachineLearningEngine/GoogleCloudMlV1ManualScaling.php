@@ -19,21 +19,12 @@ namespace Google\Service\CloudMachineLearningEngine;
 
 class GoogleCloudMlV1ManualScaling extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $nodes;
 
-  /**
-   * @param int
-   */
   public function setNodes($nodes)
   {
     $this->nodes = $nodes;
   }
-  /**
-   * @return int
-   */
   public function getNodes()
   {
     return $this->nodes;

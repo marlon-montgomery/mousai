@@ -19,21 +19,12 @@ namespace Google\Service\Dataflow;
 
 class StreamingStageLocation extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $streamId;
 
-  /**
-   * @param string
-   */
   public function setStreamId($streamId)
   {
     $this->streamId = $streamId;
   }
-  /**
-   * @return string
-   */
   public function getStreamId()
   {
     return $this->streamId;

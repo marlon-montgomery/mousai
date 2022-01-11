@@ -26,9 +26,6 @@ class ErrorContext extends \Google\Collection
   protected $reportLocationDataType = '';
   protected $sourceReferencesType = SourceReference::class;
   protected $sourceReferencesDataType = 'array';
-  /**
-   * @var string
-   */
   public $user;
 
   /**
@@ -73,16 +70,10 @@ class ErrorContext extends \Google\Collection
   {
     return $this->sourceReferences;
   }
-  /**
-   * @param string
-   */
   public function setUser($user)
   {
     $this->user = $user;
   }
-  /**
-   * @return string
-   */
   public function getUser()
   {
     return $this->user;

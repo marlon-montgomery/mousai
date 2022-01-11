@@ -22,9 +22,6 @@ class GoogleCloudDialogflowV2IntentMessageMediaContent extends \Google\Collectio
   protected $collection_key = 'mediaObjects';
   protected $mediaObjectsType = GoogleCloudDialogflowV2IntentMessageMediaContentResponseMediaObject::class;
   protected $mediaObjectsDataType = 'array';
-  /**
-   * @var string
-   */
   public $mediaType;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudDialogflowV2IntentMessageMediaContent extends \Google\Collectio
   {
     return $this->mediaObjects;
   }
-  /**
-   * @param string
-   */
   public function setMediaType($mediaType)
   {
     $this->mediaType = $mediaType;
   }
-  /**
-   * @return string
-   */
   public function getMediaType()
   {
     return $this->mediaType;

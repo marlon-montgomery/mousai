@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class ResourcePolicyInstanceSchedulePolicySchedule extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $schedule;
 
-  /**
-   * @param string
-   */
   public function setSchedule($schedule)
   {
     $this->schedule = $schedule;
   }
-  /**
-   * @return string
-   */
   public function getSchedule()
   {
     return $this->schedule;

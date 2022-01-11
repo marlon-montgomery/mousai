@@ -3,10 +3,10 @@
 namespace Doctrine\DBAL\Schema;
 
 use Doctrine\DBAL\Exception;
-use Doctrine\DBAL\Platforms\SQLServer;
-use Doctrine\DBAL\Platforms\SQLServerPlatform;
+use Doctrine\DBAL\Platforms\SQLServer2012Platform;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\Deprecations\Deprecation;
+use PDOException;
 
 use function assert;
 use function count;
@@ -19,14 +19,9 @@ use function strtok;
 
 /**
  * SQL Server Schema Manager.
- *
- * @extends AbstractSchemaManager<SQLServerPlatform>
  */
 class SQLServerSchemaManager extends AbstractSchemaManager
 {
-    /** @var string|null */
-    private $databaseCollation;
-
     /**
      * {@inheritDoc}
      */
@@ -247,7 +242,7 @@ SQL
     protected function _getPortableViewDefinition($view)
     {
         // @todo
-        return new View($view['name'], $view['definition']);
+        return new View($view['name'], '');
     }
 
     /**
@@ -259,6 +254,12 @@ SQL
 
         try {
             $tableIndexes = $this->_conn->fetchAllAssociative($sql);
+        } catch (PDOException $e) {
+            if ($e->getCode() === 'IMSSP') {
+                return [];
+            }
+
+            throw $e;
         } catch (Exception $e) {
             if (strpos($e->getMessage(), 'SQLSTATE [01000, 15472]') === 0) {
                 return [];
@@ -277,12 +278,13 @@ SQL
     {
         if (count($tableDiff->removedColumns) > 0) {
             foreach ($tableDiff->removedColumns as $col) {
-                foreach ($this->getColumnConstraints($tableDiff->name, $col->getName()) as $constraint) {
+                $columnConstraintSql = $this->getColumnConstraintSQL($tableDiff->name, $col->getName());
+                foreach ($this->_conn->fetchAllAssociative($columnConstraintSql) as $constraint) {
                     $this->_conn->executeStatement(
                         sprintf(
                             'ALTER TABLE %s DROP CONSTRAINT %s',
                             $tableDiff->name,
-                            $constraint
+                            $constraint['Name']
                         )
                     );
                 }
@@ -293,32 +295,22 @@ SQL
     }
 
     /**
-     * Returns the names of the constraints for a given column.
+     * Returns the SQL to retrieve the constraints for a given column.
      *
-     * @return iterable<string>
+     * @param string $table
+     * @param string $column
      *
-     * @throws Exception
+     * @return string
      */
-    private function getColumnConstraints(string $table, string $column): iterable
+    private function getColumnConstraintSQL($table, $column)
     {
-        return $this->_conn->iterateColumn(
-            <<<'SQL'
-SELECT o.name
-FROM sys.objects o
-         INNER JOIN sys.objects t
-                    ON t.object_id = o.parent_object_id
-                        AND t.type = 'U'
-         INNER JOIN sys.default_constraints dc
-                    ON dc.object_id = o.object_id
-         INNER JOIN sys.columns c
-                    ON c.column_id = dc.parent_column_id
-                        AND c.object_id = t.object_id
-WHERE t.name = ?
-  AND c.name = ?
-SQL
-            ,
-            [$table, $column]
-        );
+        return "SELECT sysobjects.[Name]
+            FROM sysobjects INNER JOIN (SELECT [Name],[ID] FROM sysobjects WHERE XType = 'U') AS Tab
+            ON Tab.[ID] = sysobjects.[Parent_Obj]
+            INNER JOIN sys.default_constraints DefCons ON DefCons.[object_id] = sysobjects.[ID]
+            INNER JOIN syscolumns Col ON Col.[ColID] = DefCons.[parent_column_id] AND Col.[ID] = Tab.[ID]
+            WHERE Col.[Name] = " . $this->_conn->quote($column) . ' AND Tab.[Name] = ' . $this->_conn->quote($table) . '
+            ORDER BY Col.[Name]';
     }
 
     /**
@@ -330,7 +322,9 @@ SQL
     {
         $table = parent::listTableDetails($name);
 
-        $sql = $this->_platform->getListTableMetadataSQL($name);
+        $platform = $this->_platform;
+        assert($platform instanceof SQLServer2012Platform);
+        $sql = $platform->getListTableMetadataSQL($name);
 
         $tableOptions = $this->_conn->fetchAssociative($sql);
 
@@ -339,33 +333,5 @@ SQL
         }
 
         return $table;
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function createComparator(): Comparator
-    {
-        return new SQLServer\Comparator($this->getDatabasePlatform(), $this->getDatabaseCollation());
-    }
-
-    /**
-     * @throws Exception
-     */
-    private function getDatabaseCollation(): string
-    {
-        if ($this->databaseCollation === null) {
-            $databaseCollation = $this->_conn->fetchOne(
-                'SELECT collation_name FROM sys.databases WHERE name = '
-                . $this->_platform->getCurrentDatabaseExpression(),
-            );
-
-            // a database is always selected, even if omitted in the connection parameters
-            assert(is_string($databaseCollation));
-
-            $this->databaseCollation = $databaseCollation;
-        }
-
-        return $this->databaseCollation;
     }
 }

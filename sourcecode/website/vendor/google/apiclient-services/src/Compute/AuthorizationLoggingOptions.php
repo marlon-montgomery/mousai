@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class AuthorizationLoggingOptions extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $permissionType;
 
-  /**
-   * @param string
-   */
   public function setPermissionType($permissionType)
   {
     $this->permissionType = $permissionType;
   }
-  /**
-   * @return string
-   */
   public function getPermissionType()
   {
     return $this->permissionType;

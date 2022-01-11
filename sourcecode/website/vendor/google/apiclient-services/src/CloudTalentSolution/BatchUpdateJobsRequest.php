@@ -22,9 +22,6 @@ class BatchUpdateJobsRequest extends \Google\Collection
   protected $collection_key = 'jobs';
   protected $jobsType = Job::class;
   protected $jobsDataType = 'array';
-  /**
-   * @var string
-   */
   public $updateMask;
 
   /**
@@ -41,16 +38,10 @@ class BatchUpdateJobsRequest extends \Google\Collection
   {
     return $this->jobs;
   }
-  /**
-   * @param string
-   */
   public function setUpdateMask($updateMask)
   {
     $this->updateMask = $updateMask;
   }
-  /**
-   * @return string
-   */
   public function getUpdateMask()
   {
     return $this->updateMask;

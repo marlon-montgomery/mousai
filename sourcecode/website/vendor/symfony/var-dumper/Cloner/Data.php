@@ -36,7 +36,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * @return string|null
+     * @return string|null The type of the value
      */
     public function getType()
     {
@@ -65,11 +65,9 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Returns a native representation of the original value.
-     *
      * @param array|bool $recursive Whether values should be resolved recursively or not
      *
-     * @return string|int|float|bool|array|Data[]|null
+     * @return string|int|float|bool|array|Data[]|null A native representation of the original value
      */
     public function getValue($recursive = false)
     {
@@ -209,7 +207,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
     public function withMaxDepth(int $maxDepth)
     {
         $data = clone $this;
-        $data->maxDepth = $maxDepth;
+        $data->maxDepth = (int) $maxDepth;
 
         return $data;
     }
@@ -222,7 +220,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
     public function withMaxItemsPerDepth(int $maxItemsPerDepth)
     {
         $data = clone $this;
-        $data->maxItemsPerDepth = $maxItemsPerDepth;
+        $data->maxItemsPerDepth = (int) $maxItemsPerDepth;
 
         return $data;
     }
@@ -258,7 +256,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
      *
      * @param string|int $key The key to seek to
      *
-     * @return static|null
+     * @return static|null Null if the key is not set
      */
     public function seek($key)
     {

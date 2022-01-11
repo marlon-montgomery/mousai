@@ -22,9 +22,6 @@ class MasterAuthorizedNetworksConfig extends \Google\Collection
   protected $collection_key = 'cidrBlocks';
   protected $cidrBlocksType = CidrBlock::class;
   protected $cidrBlocksDataType = 'array';
-  /**
-   * @var bool
-   */
   public $enabled;
 
   /**
@@ -41,16 +38,10 @@ class MasterAuthorizedNetworksConfig extends \Google\Collection
   {
     return $this->cidrBlocks;
   }
-  /**
-   * @param bool
-   */
   public function setEnabled($enabled)
   {
     $this->enabled = $enabled;
   }
-  /**
-   * @return bool
-   */
   public function getEnabled()
   {
     return $this->enabled;

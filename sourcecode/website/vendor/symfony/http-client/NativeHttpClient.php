@@ -21,7 +21,6 @@ use Symfony\Component\HttpClient\Response\ResponseStream;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Symfony\Contracts\HttpClient\ResponseStreamInterface;
-use Symfony\Contracts\Service\ResetInterface;
 
 /**
  * A portable implementation of the HttpClientInterface contracts based on PHP stream wrappers.
@@ -31,7 +30,7 @@ use Symfony\Contracts\Service\ResetInterface;
  *
  * @author Nicolas Grekas <p@tchwork.com>
  */
-final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterface, ResetInterface
+final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterface
 {
     use HttpClientTrait;
     use LoggerAwareTrait;
@@ -260,11 +259,6 @@ final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterfac
         }
 
         return new ResponseStream(NativeResponse::stream($responses, $timeout));
-    }
-
-    public function reset()
-    {
-        $this->multi->reset();
     }
 
     private static function getBodyAsString($body): string

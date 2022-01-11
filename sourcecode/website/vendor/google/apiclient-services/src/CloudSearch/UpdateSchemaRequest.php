@@ -23,9 +23,6 @@ class UpdateSchemaRequest extends \Google\Model
   protected $debugOptionsDataType = '';
   protected $schemaType = Schema::class;
   protected $schemaDataType = '';
-  /**
-   * @var bool
-   */
   public $validateOnly;
 
   /**
@@ -56,16 +53,10 @@ class UpdateSchemaRequest extends \Google\Model
   {
     return $this->schema;
   }
-  /**
-   * @param bool
-   */
   public function setValidateOnly($validateOnly)
   {
     $this->validateOnly = $validateOnly;
   }
-  /**
-   * @return bool
-   */
   public function getValidateOnly()
   {
     return $this->validateOnly;

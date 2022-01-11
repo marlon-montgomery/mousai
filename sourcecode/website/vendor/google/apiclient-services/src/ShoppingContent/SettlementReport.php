@@ -20,59 +20,29 @@ namespace Google\Service\ShoppingContent;
 class SettlementReport extends \Google\Collection
 {
   protected $collection_key = 'transferIds';
-  /**
-   * @var string
-   */
   public $endDate;
-  /**
-   * @var string
-   */
   public $kind;
   protected $previousBalanceType = Price::class;
   protected $previousBalanceDataType = '';
-  /**
-   * @var string
-   */
   public $settlementId;
-  /**
-   * @var string
-   */
   public $startDate;
   protected $transferAmountType = Price::class;
   protected $transferAmountDataType = '';
-  /**
-   * @var string
-   */
   public $transferDate;
-  /**
-   * @var string[]
-   */
   public $transferIds;
 
-  /**
-   * @param string
-   */
   public function setEndDate($endDate)
   {
     $this->endDate = $endDate;
   }
-  /**
-   * @return string
-   */
   public function getEndDate()
   {
     return $this->endDate;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
@@ -91,30 +61,18 @@ class SettlementReport extends \Google\Collection
   {
     return $this->previousBalance;
   }
-  /**
-   * @param string
-   */
   public function setSettlementId($settlementId)
   {
     $this->settlementId = $settlementId;
   }
-  /**
-   * @return string
-   */
   public function getSettlementId()
   {
     return $this->settlementId;
   }
-  /**
-   * @param string
-   */
   public function setStartDate($startDate)
   {
     $this->startDate = $startDate;
   }
-  /**
-   * @return string
-   */
   public function getStartDate()
   {
     return $this->startDate;
@@ -133,30 +91,18 @@ class SettlementReport extends \Google\Collection
   {
     return $this->transferAmount;
   }
-  /**
-   * @param string
-   */
   public function setTransferDate($transferDate)
   {
     $this->transferDate = $transferDate;
   }
-  /**
-   * @return string
-   */
   public function getTransferDate()
   {
     return $this->transferDate;
   }
-  /**
-   * @param string[]
-   */
   public function setTransferIds($transferIds)
   {
     $this->transferIds = $transferIds;
   }
-  /**
-   * @return string[]
-   */
   public function getTransferIds()
   {
     return $this->transferIds;

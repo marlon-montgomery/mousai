@@ -19,21 +19,12 @@ namespace Google\Service\CloudFunctions;
 
 class GenerateDownloadUrlResponse extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $downloadUrl;
 
-  /**
-   * @param string
-   */
   public function setDownloadUrl($downloadUrl)
   {
     $this->downloadUrl = $downloadUrl;
   }
-  /**
-   * @return string
-   */
   public function getDownloadUrl()
   {
     return $this->downloadUrl;

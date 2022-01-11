@@ -22,13 +22,7 @@ class GooglePrivacyDlpV2FindingLimits extends \Google\Collection
   protected $collection_key = 'maxFindingsPerInfoType';
   protected $maxFindingsPerInfoTypeType = GooglePrivacyDlpV2InfoTypeLimit::class;
   protected $maxFindingsPerInfoTypeDataType = 'array';
-  /**
-   * @var int
-   */
   public $maxFindingsPerItem;
-  /**
-   * @var int
-   */
   public $maxFindingsPerRequest;
 
   /**
@@ -45,30 +39,18 @@ class GooglePrivacyDlpV2FindingLimits extends \Google\Collection
   {
     return $this->maxFindingsPerInfoType;
   }
-  /**
-   * @param int
-   */
   public function setMaxFindingsPerItem($maxFindingsPerItem)
   {
     $this->maxFindingsPerItem = $maxFindingsPerItem;
   }
-  /**
-   * @return int
-   */
   public function getMaxFindingsPerItem()
   {
     return $this->maxFindingsPerItem;
   }
-  /**
-   * @param int
-   */
   public function setMaxFindingsPerRequest($maxFindingsPerRequest)
   {
     $this->maxFindingsPerRequest = $maxFindingsPerRequest;
   }
-  /**
-   * @return int
-   */
   public function getMaxFindingsPerRequest()
   {
     return $this->maxFindingsPerRequest;

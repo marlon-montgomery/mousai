@@ -23,9 +23,6 @@ class GoogleCloudDocumentaiV1ProcessRequest extends \Google\Model
   protected $inlineDocumentDataType = '';
   protected $rawDocumentType = GoogleCloudDocumentaiV1RawDocument::class;
   protected $rawDocumentDataType = '';
-  /**
-   * @var bool
-   */
   public $skipHumanReview;
 
   /**
@@ -56,16 +53,10 @@ class GoogleCloudDocumentaiV1ProcessRequest extends \Google\Model
   {
     return $this->rawDocument;
   }
-  /**
-   * @param bool
-   */
   public function setSkipHumanReview($skipHumanReview)
   {
     $this->skipHumanReview = $skipHumanReview;
   }
-  /**
-   * @return bool
-   */
   public function getSkipHumanReview()
   {
     return $this->skipHumanReview;

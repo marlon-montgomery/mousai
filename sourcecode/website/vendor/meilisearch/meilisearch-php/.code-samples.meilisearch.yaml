@@ -134,11 +134,11 @@ update_ranking_rules_1: |-
 reset_ranking_rules_1: |-
   $client->index('movies')->resetRankingRules();
 get_distinct_attribute_1: |-
-  $client->index('shoes')->getDistinctAttribute();
+  $client->index('movies')->getDistinctAttribute();
 update_distinct_attribute_1: |-
-  $client->index('shoes')->updateDistinctAttribute('skuid');
+  $client->index('movies')->updateDistinctAttribute('movie_id');
 reset_distinct_attribute_1: |-
-  $client->index('shoes')->resetDistinctAttribute();
+  $client->index('movies')->resetDistinctAttribute();
 get_filterable_attributes_1: |-
   $client->index('movies')->getFilterableAttributes();
 update_filterable_attributes_1: |-
@@ -224,7 +224,7 @@ search_parameter_guide_highlight_1: |-
 search_parameter_guide_filter_1: |-
   $client->index('movies')->search('n', ['filter' => 'title = Nightshift']);
 search_parameter_guide_filter_2: |-
-  $client->index('movies')->search('shifu', ['filter' => 'title = "Kung Fu Panda"']);
+  $client->index('movies')->search('shifu', ['filter' => 'title="Kung Fu Panda"']);
 search_parameter_guide_matches_1: |-
   $client->index('movies')->search('winter feast', ['attributesToHighlight' => ['overview'], 'matches' => true]);
 settings_guide_synonyms_1: |-
@@ -302,7 +302,7 @@ getting_started_search_md: |-
 faceted_search_update_settings_1: |-
   $client->index('movies')->updateFilterableAttributes(['director', 'genres']);
 faceted_search_filter_1: |-
-  $client->index('movies')->search('thriller', ['filter' => [['genres = Horror', 'genres = Mystery'], 'director = "Jordan Peele"']]);
+  $client->index('movies')->search('thriller', ['filter' => [['genres:Horror', 'genres:Mystery']], 'director' => "Jordan Peele"']);
 faceted_search_facets_distribution_1: |-
   $client->index('movies')->search('Batman', ['facetsDistribution' => ['genres']]);
 faceted_search_walkthrough_filterable_attributes_1: |-
@@ -313,7 +313,7 @@ faceted_search_walkthrough_filterable_attributes_1: |-
     'production_companies'
   ]);
 faceted_search_walkthrough_filter_1: |-
-  $client->index('movies')->search('thriller', ['filter' => [['genres = Horror', 'genres = Mystery'], 'director = "Jordan Peele"']]);
+  $client->index('movies')->search('thriller', ['filter' => [['genres:Horror', 'genres:Mystery']], 'director' => "Jordan Peele"]);
 faceted_search_walkthrough_facets_distribution_1: |-
   $client->index('movies')->search('Batman', ['facetsDistribution' => ['genres']);
 post_dump_1: |-
@@ -342,19 +342,3 @@ sorting_guide_sort_parameter_2: |-
   $client->index('books')->search('butler', ['sort' => ['author:desc']]);
 search_parameter_guide_sort_1: |-
   $client->index('books')->search('science fiction', ['sort' => ['price:asc']]);
-geosearch_guide_filter_settings_1: |-
-  $client->index('restaurants')->updateFilterableAttributes([
-    '_geo'
-  ]);
-geosearch_guide_filter_usage_1: |-
-  $client->index('restaurants')->search('', ['filter' => '_geoRadius(45.4628328, 9.1076931, 2000)']);
-geosearch_guide_filter_usage_2: |-
-  $client->index('restaurants')->search('', ['filter' => '_geoRadius(45.4628328, 9.1076931, 2000) AND type = pizza']);
-geosearch_guide_sort_settings_1: |-
-  $client->index('restaurants')->updateSortableAttributes([
-    '_geo'
-  ]);
-geosearch_guide_sort_usage_1: |-
-  $client->index('restaurants')->search('', ['sort' => ['_geoPoint(48.8583701,2.2922926):asc']]);
-geosearch_guide_sort_usage_2: |-
-  $client->index('restaurants')->search('', ['sort' => ['_geoPoint(48.8583701,2.2922926):asc', 'rating:desc']]);

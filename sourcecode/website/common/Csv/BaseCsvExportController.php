@@ -27,7 +27,7 @@ class BaseCsvExportController extends BaseController
     {
         if (
             !Auth::user()->hasPermission('admin') &&
-            !$csvExport->user_id !== Auth::id()
+            $csvExport->user_id !== Auth::id()
         ) {
             abort(403);
         }

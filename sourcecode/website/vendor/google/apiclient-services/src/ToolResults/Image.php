@@ -23,9 +23,6 @@ class Image extends \Google\Model
   protected $errorDataType = '';
   protected $sourceImageType = ToolOutputReference::class;
   protected $sourceImageDataType = '';
-  /**
-   * @var string
-   */
   public $stepId;
   protected $thumbnailType = Thumbnail::class;
   protected $thumbnailDataType = '';
@@ -58,16 +55,10 @@ class Image extends \Google\Model
   {
     return $this->sourceImage;
   }
-  /**
-   * @param string
-   */
   public function setStepId($stepId)
   {
     $this->stepId = $stepId;
   }
-  /**
-   * @return string
-   */
   public function getStepId()
   {
     return $this->stepId;

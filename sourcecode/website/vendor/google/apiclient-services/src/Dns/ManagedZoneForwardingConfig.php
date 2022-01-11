@@ -20,23 +20,14 @@ namespace Google\Service\Dns;
 class ManagedZoneForwardingConfig extends \Google\Collection
 {
   protected $collection_key = 'targetNameServers';
-  /**
-   * @var string
-   */
   public $kind;
   protected $targetNameServersType = ManagedZoneForwardingConfigNameServerTarget::class;
   protected $targetNameServersDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

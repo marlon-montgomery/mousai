@@ -22,9 +22,6 @@ class DayPartTargeting extends \Google\Collection
   protected $collection_key = 'dayParts';
   protected $dayPartsType = DayPart::class;
   protected $dayPartsDataType = 'array';
-  /**
-   * @var string
-   */
   public $timeZoneType;
 
   /**
@@ -41,16 +38,10 @@ class DayPartTargeting extends \Google\Collection
   {
     return $this->dayParts;
   }
-  /**
-   * @param string
-   */
   public function setTimeZoneType($timeZoneType)
   {
     $this->timeZoneType = $timeZoneType;
   }
-  /**
-   * @return string
-   */
   public function getTimeZoneType()
   {
     return $this->timeZoneType;

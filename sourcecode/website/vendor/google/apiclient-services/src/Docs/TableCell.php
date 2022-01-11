@@ -22,21 +22,9 @@ class TableCell extends \Google\Collection
   protected $collection_key = 'suggestedInsertionIds';
   protected $contentType = StructuralElement::class;
   protected $contentDataType = 'array';
-  /**
-   * @var int
-   */
   public $endIndex;
-  /**
-   * @var int
-   */
   public $startIndex;
-  /**
-   * @var string[]
-   */
   public $suggestedDeletionIds;
-  /**
-   * @var string[]
-   */
   public $suggestedInsertionIds;
   protected $suggestedTableCellStyleChangesType = SuggestedTableCellStyle::class;
   protected $suggestedTableCellStyleChangesDataType = 'map';
@@ -57,58 +45,34 @@ class TableCell extends \Google\Collection
   {
     return $this->content;
   }
-  /**
-   * @param int
-   */
   public function setEndIndex($endIndex)
   {
     $this->endIndex = $endIndex;
   }
-  /**
-   * @return int
-   */
   public function getEndIndex()
   {
     return $this->endIndex;
   }
-  /**
-   * @param int
-   */
   public function setStartIndex($startIndex)
   {
     $this->startIndex = $startIndex;
   }
-  /**
-   * @return int
-   */
   public function getStartIndex()
   {
     return $this->startIndex;
   }
-  /**
-   * @param string[]
-   */
   public function setSuggestedDeletionIds($suggestedDeletionIds)
   {
     $this->suggestedDeletionIds = $suggestedDeletionIds;
   }
-  /**
-   * @return string[]
-   */
   public function getSuggestedDeletionIds()
   {
     return $this->suggestedDeletionIds;
   }
-  /**
-   * @param string[]
-   */
   public function setSuggestedInsertionIds($suggestedInsertionIds)
   {
     $this->suggestedInsertionIds = $suggestedInsertionIds;
   }
-  /**
-   * @return string[]
-   */
   public function getSuggestedInsertionIds()
   {
     return $this->suggestedInsertionIds;

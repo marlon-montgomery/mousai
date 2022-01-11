@@ -19,39 +19,21 @@ namespace Google\Service\PolyService;
 
 class FormatComplexity extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $lodHint;
-  /**
-   * @var string
-   */
   public $triangleCount;
 
-  /**
-   * @param int
-   */
   public function setLodHint($lodHint)
   {
     $this->lodHint = $lodHint;
   }
-  /**
-   * @return int
-   */
   public function getLodHint()
   {
     return $this->lodHint;
   }
-  /**
-   * @param string
-   */
   public function setTriangleCount($triangleCount)
   {
     $this->triangleCount = $triangleCount;
   }
-  /**
-   * @return string
-   */
   public function getTriangleCount()
   {
     return $this->triangleCount;

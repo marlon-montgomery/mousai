@@ -106,16 +106,12 @@ class ProjectsLocationsConnectionProfiles extends \Google\Service\Resource
    * field.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int options.requestedPolicyVersion Optional. The maximum policy
-   * version that will be used to format the policy. Valid values are 0, 1, and 3.
-   * Requests specifying an invalid value will be rejected. Requests for policies
-   * with any conditional role bindings must specify version 3. Policies with no
-   * conditional role bindings may specify any valid value or leave the field
-   * unset. The policy in the response might use the policy version that you
-   * specified, or it might use a lower policy version. For example, if you
-   * specify version 3, but the policy has no conditional role bindings, the
-   * response uses version 1. To learn which resources support conditions in their
-   * IAM policies, see the [IAM
+   * @opt_param int options.requestedPolicyVersion Optional. The policy format
+   * version to be returned. Valid values are 0, 1, and 3. Requests specifying an
+   * invalid value will be rejected. Requests for policies with any conditional
+   * bindings must specify version 3. Policies without any conditional bindings
+   * may specify any valid value or leave the field unset. To learn which
+   * resources support conditions in their IAM policies, see the [IAM
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return Policy
@@ -165,8 +161,7 @@ class ProjectsLocationsConnectionProfiles extends \Google\Service\Resource
    * (connectionProfiles.patch)
    *
    * @param string $name The name of this connection profile resource in the form
-   * of projects/{project}/locations/{location}/connectionProfiles/{connectionProf
-   * ile}.
+   * of projects/{project}/locations/{location}/connectionProfiles/{instance}.
    * @param ConnectionProfile $postBody
    * @param array $optParams Optional parameters.
    *

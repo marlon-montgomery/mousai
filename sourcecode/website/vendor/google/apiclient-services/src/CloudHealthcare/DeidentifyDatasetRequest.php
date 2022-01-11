@@ -21,9 +21,6 @@ class DeidentifyDatasetRequest extends \Google\Model
 {
   protected $configType = DeidentifyConfig::class;
   protected $configDataType = '';
-  /**
-   * @var string
-   */
   public $destinationDataset;
 
   /**
@@ -40,16 +37,10 @@ class DeidentifyDatasetRequest extends \Google\Model
   {
     return $this->config;
   }
-  /**
-   * @param string
-   */
   public function setDestinationDataset($destinationDataset)
   {
     $this->destinationDataset = $destinationDataset;
   }
-  /**
-   * @return string
-   */
   public function getDestinationDataset()
   {
     return $this->destinationDataset;

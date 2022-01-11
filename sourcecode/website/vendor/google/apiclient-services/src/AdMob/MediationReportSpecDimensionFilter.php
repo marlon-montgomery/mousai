@@ -19,23 +19,14 @@ namespace Google\Service\AdMob;
 
 class MediationReportSpecDimensionFilter extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $dimension;
   protected $matchesAnyType = StringList::class;
   protected $matchesAnyDataType = '';
 
-  /**
-   * @param string
-   */
   public function setDimension($dimension)
   {
     $this->dimension = $dimension;
   }
-  /**
-   * @return string
-   */
   public function getDimension()
   {
     return $this->dimension;

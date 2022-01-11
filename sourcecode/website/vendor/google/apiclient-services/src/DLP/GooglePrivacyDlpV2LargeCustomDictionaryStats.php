@@ -19,21 +19,12 @@ namespace Google\Service\DLP;
 
 class GooglePrivacyDlpV2LargeCustomDictionaryStats extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $approxNumPhrases;
 
-  /**
-   * @param string
-   */
   public function setApproxNumPhrases($approxNumPhrases)
   {
     $this->approxNumPhrases = $approxNumPhrases;
   }
-  /**
-   * @return string
-   */
   public function getApproxNumPhrases()
   {
     return $this->approxNumPhrases;

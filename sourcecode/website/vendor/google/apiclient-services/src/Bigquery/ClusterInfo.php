@@ -19,26 +19,14 @@ namespace Google\Service\Bigquery;
 
 class ClusterInfo extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $centroidId;
   public $clusterRadius;
-  /**
-   * @var string
-   */
   public $clusterSize;
 
-  /**
-   * @param string
-   */
   public function setCentroidId($centroidId)
   {
     $this->centroidId = $centroidId;
   }
-  /**
-   * @return string
-   */
   public function getCentroidId()
   {
     return $this->centroidId;
@@ -51,16 +39,10 @@ class ClusterInfo extends \Google\Model
   {
     return $this->clusterRadius;
   }
-  /**
-   * @param string
-   */
   public function setClusterSize($clusterSize)
   {
     $this->clusterSize = $clusterSize;
   }
-  /**
-   * @return string
-   */
   public function getClusterSize()
   {
     return $this->clusterSize;

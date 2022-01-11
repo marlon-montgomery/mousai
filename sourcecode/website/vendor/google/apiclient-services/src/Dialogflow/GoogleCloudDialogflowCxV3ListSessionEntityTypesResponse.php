@@ -20,23 +20,14 @@ namespace Google\Service\Dialogflow;
 class GoogleCloudDialogflowCxV3ListSessionEntityTypesResponse extends \Google\Collection
 {
   protected $collection_key = 'sessionEntityTypes';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $sessionEntityTypesType = GoogleCloudDialogflowCxV3SessionEntityType::class;
   protected $sessionEntityTypesDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

@@ -27,9 +27,6 @@ interface Connection
     /**
      * Quotes a string for use in a query.
      *
-     * The usage of this method is discouraged. Use prepared statements
-     * or {@link AbstractPlatform::quoteStringLiteral()} instead.
-     *
      * @param mixed $value
      * @param int   $type
      *
@@ -49,7 +46,7 @@ interface Connection
      *
      * @param string|null $name
      *
-     * @return string|int|false
+     * @return string
      *
      * @throws Exception
      */

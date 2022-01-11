@@ -19,39 +19,21 @@ namespace Google\Service\Reseller;
 
 class SubscriptionTrialSettings extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $isInTrial;
-  /**
-   * @var string
-   */
   public $trialEndTime;
 
-  /**
-   * @param bool
-   */
   public function setIsInTrial($isInTrial)
   {
     $this->isInTrial = $isInTrial;
   }
-  /**
-   * @return bool
-   */
   public function getIsInTrial()
   {
     return $this->isInTrial;
   }
-  /**
-   * @param string
-   */
   public function setTrialEndTime($trialEndTime)
   {
     $this->trialEndTime = $trialEndTime;
   }
-  /**
-   * @return string
-   */
   public function getTrialEndTime()
   {
     return $this->trialEndTime;

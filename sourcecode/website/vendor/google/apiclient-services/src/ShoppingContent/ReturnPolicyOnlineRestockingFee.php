@@ -21,9 +21,6 @@ class ReturnPolicyOnlineRestockingFee extends \Google\Model
 {
   protected $fixedFeeType = PriceAmount::class;
   protected $fixedFeeDataType = '';
-  /**
-   * @var int
-   */
   public $microPercent;
 
   /**
@@ -40,16 +37,10 @@ class ReturnPolicyOnlineRestockingFee extends \Google\Model
   {
     return $this->fixedFee;
   }
-  /**
-   * @param int
-   */
   public function setMicroPercent($microPercent)
   {
     $this->microPercent = $microPercent;
   }
-  /**
-   * @return int
-   */
   public function getMicroPercent()
   {
     return $this->microPercent;

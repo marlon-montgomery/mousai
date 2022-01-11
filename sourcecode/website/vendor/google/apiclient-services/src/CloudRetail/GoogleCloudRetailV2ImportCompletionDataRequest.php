@@ -21,9 +21,6 @@ class GoogleCloudRetailV2ImportCompletionDataRequest extends \Google\Model
 {
   protected $inputConfigType = GoogleCloudRetailV2CompletionDataInputConfig::class;
   protected $inputConfigDataType = '';
-  /**
-   * @var string
-   */
   public $notificationPubsubTopic;
 
   /**
@@ -40,16 +37,10 @@ class GoogleCloudRetailV2ImportCompletionDataRequest extends \Google\Model
   {
     return $this->inputConfig;
   }
-  /**
-   * @param string
-   */
   public function setNotificationPubsubTopic($notificationPubsubTopic)
   {
     $this->notificationPubsubTopic = $notificationPubsubTopic;
   }
-  /**
-   * @return string
-   */
   public function getNotificationPubsubTopic()
   {
     return $this->notificationPubsubTopic;

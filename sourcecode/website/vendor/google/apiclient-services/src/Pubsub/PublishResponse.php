@@ -20,21 +20,12 @@ namespace Google\Service\Pubsub;
 class PublishResponse extends \Google\Collection
 {
   protected $collection_key = 'messageIds';
-  /**
-   * @var string[]
-   */
   public $messageIds;
 
-  /**
-   * @param string[]
-   */
   public function setMessageIds($messageIds)
   {
     $this->messageIds = $messageIds;
   }
-  /**
-   * @return string[]
-   */
   public function getMessageIds()
   {
     return $this->messageIds;

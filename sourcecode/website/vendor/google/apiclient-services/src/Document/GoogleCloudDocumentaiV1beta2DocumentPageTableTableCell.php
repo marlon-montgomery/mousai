@@ -20,29 +20,17 @@ namespace Google\Service\Document;
 class GoogleCloudDocumentaiV1beta2DocumentPageTableTableCell extends \Google\Collection
 {
   protected $collection_key = 'detectedLanguages';
-  /**
-   * @var int
-   */
   public $colSpan;
   protected $detectedLanguagesType = GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage::class;
   protected $detectedLanguagesDataType = 'array';
   protected $layoutType = GoogleCloudDocumentaiV1beta2DocumentPageLayout::class;
   protected $layoutDataType = '';
-  /**
-   * @var int
-   */
   public $rowSpan;
 
-  /**
-   * @param int
-   */
   public function setColSpan($colSpan)
   {
     $this->colSpan = $colSpan;
   }
-  /**
-   * @return int
-   */
   public function getColSpan()
   {
     return $this->colSpan;
@@ -75,16 +63,10 @@ class GoogleCloudDocumentaiV1beta2DocumentPageTableTableCell extends \Google\Col
   {
     return $this->layout;
   }
-  /**
-   * @param int
-   */
   public function setRowSpan($rowSpan)
   {
     $this->rowSpan = $rowSpan;
   }
-  /**
-   * @return int
-   */
   public function getRowSpan()
   {
     return $this->rowSpan;

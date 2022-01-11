@@ -20,23 +20,14 @@ namespace Google\Service\CloudTasks;
 class ListQueuesResponse extends \Google\Collection
 {
   protected $collection_key = 'queues';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $queuesType = Queue::class;
   protected $queuesDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

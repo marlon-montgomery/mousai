@@ -19,25 +19,16 @@ namespace Google\Service\Docs;
 
 class NamedStyle extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $namedStyleType;
   protected $paragraphStyleType = ParagraphStyle::class;
   protected $paragraphStyleDataType = '';
   protected $textStyleType = TextStyle::class;
   protected $textStyleDataType = '';
 
-  /**
-   * @param string
-   */
   public function setNamedStyleType($namedStyleType)
   {
     $this->namedStyleType = $namedStyleType;
   }
-  /**
-   * @return string
-   */
   public function getNamedStyleType()
   {
     return $this->namedStyleType;

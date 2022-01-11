@@ -19,25 +19,16 @@ namespace Google\Service\Bigquery;
 
 class QueryParameter extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $name;
   protected $parameterTypeType = QueryParameterType::class;
   protected $parameterTypeDataType = '';
   protected $parameterValueType = QueryParameterValue::class;
   protected $parameterValueDataType = '';
 
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

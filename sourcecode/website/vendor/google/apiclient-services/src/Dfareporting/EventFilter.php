@@ -21,9 +21,6 @@ class EventFilter extends \Google\Model
 {
   protected $dimensionFilterType = PathReportDimensionValue::class;
   protected $dimensionFilterDataType = '';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -40,16 +37,10 @@ class EventFilter extends \Google\Model
   {
     return $this->dimensionFilter;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

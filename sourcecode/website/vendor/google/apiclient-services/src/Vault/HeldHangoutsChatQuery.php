@@ -19,21 +19,12 @@ namespace Google\Service\Vault;
 
 class HeldHangoutsChatQuery extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $includeRooms;
 
-  /**
-   * @param bool
-   */
   public function setIncludeRooms($includeRooms)
   {
     $this->includeRooms = $includeRooms;
   }
-  /**
-   * @return bool
-   */
   public function getIncludeRooms()
   {
     return $this->includeRooms;

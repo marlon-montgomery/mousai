@@ -22,9 +22,6 @@ class CitiesListResponse extends \Google\Collection
   protected $collection_key = 'cities';
   protected $citiesType = City::class;
   protected $citiesDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -41,16 +38,10 @@ class CitiesListResponse extends \Google\Collection
   {
     return $this->cities;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

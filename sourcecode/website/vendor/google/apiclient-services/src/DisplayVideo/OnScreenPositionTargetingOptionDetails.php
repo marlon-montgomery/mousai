@@ -19,21 +19,12 @@ namespace Google\Service\DisplayVideo;
 
 class OnScreenPositionTargetingOptionDetails extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $onScreenPosition;
 
-  /**
-   * @param string
-   */
   public function setOnScreenPosition($onScreenPosition)
   {
     $this->onScreenPosition = $onScreenPosition;
   }
-  /**
-   * @return string
-   */
   public function getOnScreenPosition()
   {
     return $this->onScreenPosition;

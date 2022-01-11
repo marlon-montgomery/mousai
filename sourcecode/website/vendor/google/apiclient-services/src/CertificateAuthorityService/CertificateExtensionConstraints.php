@@ -22,9 +22,6 @@ class CertificateExtensionConstraints extends \Google\Collection
   protected $collection_key = 'knownExtensions';
   protected $additionalExtensionsType = ObjectId::class;
   protected $additionalExtensionsDataType = 'array';
-  /**
-   * @var string[]
-   */
   public $knownExtensions;
 
   /**
@@ -41,16 +38,10 @@ class CertificateExtensionConstraints extends \Google\Collection
   {
     return $this->additionalExtensions;
   }
-  /**
-   * @param string[]
-   */
   public function setKnownExtensions($knownExtensions)
   {
     $this->knownExtensions = $knownExtensions;
   }
-  /**
-   * @return string[]
-   */
   public function getKnownExtensions()
   {
     return $this->knownExtensions;

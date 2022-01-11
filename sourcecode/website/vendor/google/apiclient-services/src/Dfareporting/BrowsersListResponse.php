@@ -22,9 +22,6 @@ class BrowsersListResponse extends \Google\Collection
   protected $collection_key = 'browsers';
   protected $browsersType = Browser::class;
   protected $browsersDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -41,16 +38,10 @@ class BrowsersListResponse extends \Google\Collection
   {
     return $this->browsers;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

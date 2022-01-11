@@ -19,27 +19,15 @@ namespace Google\Service\ShoppingContent;
 
 class LocalinventoryCustomBatchResponseEntry extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $batchId;
   protected $errorsType = Errors::class;
   protected $errorsDataType = '';
-  /**
-   * @var string
-   */
   public $kind;
 
-  /**
-   * @param string
-   */
   public function setBatchId($batchId)
   {
     $this->batchId = $batchId;
   }
-  /**
-   * @return string
-   */
   public function getBatchId()
   {
     return $this->batchId;
@@ -58,16 +46,10 @@ class LocalinventoryCustomBatchResponseEntry extends \Google\Model
   {
     return $this->errors;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

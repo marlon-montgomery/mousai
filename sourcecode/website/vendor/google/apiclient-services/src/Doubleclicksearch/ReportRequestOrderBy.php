@@ -21,9 +21,6 @@ class ReportRequestOrderBy extends \Google\Model
 {
   protected $columnType = ReportApiColumnSpec::class;
   protected $columnDataType = '';
-  /**
-   * @var string
-   */
   public $sortOrder;
 
   /**
@@ -40,16 +37,10 @@ class ReportRequestOrderBy extends \Google\Model
   {
     return $this->column;
   }
-  /**
-   * @param string
-   */
   public function setSortOrder($sortOrder)
   {
     $this->sortOrder = $sortOrder;
   }
-  /**
-   * @return string
-   */
   public function getSortOrder()
   {
     return $this->sortOrder;

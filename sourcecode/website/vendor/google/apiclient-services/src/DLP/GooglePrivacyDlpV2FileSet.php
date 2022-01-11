@@ -21,9 +21,6 @@ class GooglePrivacyDlpV2FileSet extends \Google\Model
 {
   protected $regexFileSetType = GooglePrivacyDlpV2CloudStorageRegexFileSet::class;
   protected $regexFileSetDataType = '';
-  /**
-   * @var string
-   */
   public $url;
 
   /**
@@ -40,16 +37,10 @@ class GooglePrivacyDlpV2FileSet extends \Google\Model
   {
     return $this->regexFileSet;
   }
-  /**
-   * @param string
-   */
   public function setUrl($url)
   {
     $this->url = $url;
   }
-  /**
-   * @return string
-   */
   public function getUrl()
   {
     return $this->url;

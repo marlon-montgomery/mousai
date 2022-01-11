@@ -21,13 +21,7 @@ class PostLocation extends \Google\Model
 {
   public $lat;
   public $lng;
-  /**
-   * @var string
-   */
   public $name;
-  /**
-   * @var string
-   */
   public $span;
 
   public function setLat($lat)
@@ -46,30 +40,18 @@ class PostLocation extends \Google\Model
   {
     return $this->lng;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
   }
-  /**
-   * @param string
-   */
   public function setSpan($span)
   {
     $this->span = $span;
   }
-  /**
-   * @return string
-   */
   public function getSpan()
   {
     return $this->span;

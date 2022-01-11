@@ -22,13 +22,7 @@ class ListVendorCustomersResponse extends \Google\Collection
   protected $collection_key = 'customers';
   protected $customersType = Company::class;
   protected $customersDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
-  /**
-   * @var int
-   */
   public $totalSize;
 
   /**
@@ -45,30 +39,18 @@ class ListVendorCustomersResponse extends \Google\Collection
   {
     return $this->customers;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;
   }
-  /**
-   * @param int
-   */
   public function setTotalSize($totalSize)
   {
     $this->totalSize = $totalSize;
   }
-  /**
-   * @return int
-   */
   public function getTotalSize()
   {
     return $this->totalSize;

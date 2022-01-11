@@ -21,17 +21,8 @@ class Link extends \Google\Model
 {
   protected $attributesType = Attributes::class;
   protected $attributesDataType = '';
-  /**
-   * @var string
-   */
   public $spanId;
-  /**
-   * @var string
-   */
   public $traceId;
-  /**
-   * @var string
-   */
   public $type;
 
   /**
@@ -48,44 +39,26 @@ class Link extends \Google\Model
   {
     return $this->attributes;
   }
-  /**
-   * @param string
-   */
   public function setSpanId($spanId)
   {
     $this->spanId = $spanId;
   }
-  /**
-   * @return string
-   */
   public function getSpanId()
   {
     return $this->spanId;
   }
-  /**
-   * @param string
-   */
   public function setTraceId($traceId)
   {
     $this->traceId = $traceId;
   }
-  /**
-   * @return string
-   */
   public function getTraceId()
   {
     return $this->traceId;
   }
-  /**
-   * @param string
-   */
   public function setType($type)
   {
     $this->type = $type;
   }
-  /**
-   * @return string
-   */
   public function getType()
   {
     return $this->type;

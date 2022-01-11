@@ -19,21 +19,12 @@ namespace Google\Service\DataprocMetastore;
 
 class Secret extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $cloudSecret;
 
-  /**
-   * @param string
-   */
   public function setCloudSecret($cloudSecret)
   {
     $this->cloudSecret = $cloudSecret;
   }
-  /**
-   * @return string
-   */
   public function getCloudSecret()
   {
     return $this->cloudSecret;

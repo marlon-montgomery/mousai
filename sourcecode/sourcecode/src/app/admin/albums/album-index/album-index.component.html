@@ -49,71 +49,42 @@
   ></mat-progress-bar>
   <table class="material-table">
     <thead>
-      <tr>
-        <th table-header-checkbox></th>
-        <th trans>Album</th>
-        <th trans>Artist</th>
-        <th table-sort-header trans>Release Date</th>
-        <th trans>Number Of Tracks</th>
-        <th table-sort-header="plays" trans>Plays</th>
-        <th table-sort-header="updated_at" trans>Last Updated</th>
-        <th></th>
-      </tr>
-      <tr *ngIf="datatable.selectedRows$.value.length as selectedCount">
-        <th colspan="8">
-          <div
-            class="bulk-actions-title"
-            [transValues]="{count: selectedCount, resource: 'album(s)'}"
-            trans
-          >
-            :count :resource selected:
-          </div>
-          <div class="bulk-actions">
-            <button
-              mat-raised-button
-              color="warn"
-              (click)="maybeDeleteSelectedAlbums()"
-              *ngIf="currentUser.hasPermission('albums.delete')"
-              trans
-            >
-              Delete
-            </button>
-          </div>
-        </th>
-      </tr>
+    <tr>
+      <th table-header-checkbox></th>
+      <th trans>Album</th>
+      <th trans>Artist</th>
+      <th table-sort-header trans>Release Date</th>
+      <th trans>Number Of Tracks</th>
+      <th table-sort-header="plays" trans>Plays</th>
+      <th table-sort-header="updated_at" trans>Last Updated</th>
+      <th></th>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let album of albums$ | async">
-        <td [table-body-checkbox]="album.id"></td>
-        <td>
-          <div class="column-with-image">
-            <media-image [media]="album" default="album"></media-image>
-            <a [routerLink]="urls.album(album)" class="link">{{ album.name }}</a>
-          </div>
-        </td>
-        <td data-label="Artist">
-          <div class="column-with-image" *ngIf="album.artists[0] as artist">
-            <media-image [media]="artist" default="artist"></media-image>
-            <a [routerLink]="urls.artist(artist)" class="link">{{ artist.name }}</a>
-          </div>
-        </td>
-        <td data-label="Release Date">{{ album.release_date ? album.release_date : '&ndash;' }}</td>
-        <td data-label="Number of Tracks">
-          {{ album.tracks_count ? album.tracks_count : '&ndash;' }}
-        </td>
-        <td data-label="Views">{{ album.plays ? (album.plays | number) : '&ndash;' }}</td>
-        <td data-label="Last Updated">{{ album.updated_at | formattedDate }}</td>
-        <td class="edit-column">
-          <a
-            mat-icon-button
-            [routerLink]="urls.editAlbum(album, true)"
-            *ngIf="currentUser.hasPermission('albums.update')"
-            [matTooltip]="'Edit album' | trans"
-          >
-            <mat-icon svgIcon="edit"></mat-icon>
-          </a>
-        </td>
-      </tr>
+    <tr *ngFor="let album of albums$ | async">
+      <td [table-body-checkbox]="album.id"></td>
+      <td>
+        <div class="column-with-image">
+          <media-image [media]="album" default="album"></media-image>
+          <a [routerLink]="urls.album(album)" class="link">{{album.name}}</a>
+        </div>
+      </td>
+      <td data-label="Artist">
+        <div class="column-with-image" *ngIf="album.artists[0] as artist">
+          <media-image [media]="artist" default="artist"></media-image>
+          <a [routerLink]="urls.artist(artist)" class="link">{{artist.name}}</a>
+        </div>
+      </td>
+      <td data-label="Release Date">{{album.release_date ? album.release_date: '&ndash;'}}</td>
+      <td data-label="Number of Tracks">{{album.tracks_count ? album.tracks_count: '&ndash;'}}</td>
+      <td data-label="Views">{{album.plays ? (album.plays | number) : '&ndash;'}}</td>
+      <td data-label="Last Updated">{{album.updated_at | formattedDate}}</td>
+      <td class="edit-column">
+        <a mat-icon-button [routerLink]="urls.editAlbum(album, true)" *ngIf="currentUser.hasPermission('albums.update')" [matTooltip]="'Edit album' | trans">
+          <mat-icon svgIcon="edit"></mat-icon>
+        </a>
+      </td>
+    </tr>
     </tbody>
   </table>
   <no-results-message svgImage="music.svg" *ngIf="datatable.paginator.noResults$ | async">

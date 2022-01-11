@@ -14,7 +14,6 @@ use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\DBAL\Schema\MySQLSchemaManager;
 use Doctrine\DBAL\VersionAwarePlatformDriver;
 
-use function assert;
 use function preg_match;
 use function stripos;
 use function version_compare;
@@ -127,8 +126,6 @@ abstract class AbstractMySQLDriver implements VersionAwarePlatformDriver
      */
     public function getSchemaManager(Connection $conn, AbstractPlatform $platform)
     {
-        assert($platform instanceof MySQLPlatform);
-
         return new MySQLSchemaManager($conn, $platform);
     }
 

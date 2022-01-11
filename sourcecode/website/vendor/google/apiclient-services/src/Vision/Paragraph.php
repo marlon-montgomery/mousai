@@ -22,9 +22,6 @@ class Paragraph extends \Google\Collection
   protected $collection_key = 'words';
   protected $boundingBoxType = BoundingPoly::class;
   protected $boundingBoxDataType = '';
-  /**
-   * @var float
-   */
   public $confidence;
   protected $propertyType = TextProperty::class;
   protected $propertyDataType = '';
@@ -45,16 +42,10 @@ class Paragraph extends \Google\Collection
   {
     return $this->boundingBox;
   }
-  /**
-   * @param float
-   */
   public function setConfidence($confidence)
   {
     $this->confidence = $confidence;
   }
-  /**
-   * @return float
-   */
   public function getConfidence()
   {
     return $this->confidence;

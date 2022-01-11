@@ -21,9 +21,6 @@ class CreateFeedRequest extends \Google\Model
 {
   protected $feedType = Feed::class;
   protected $feedDataType = '';
-  /**
-   * @var string
-   */
   public $feedId;
 
   /**
@@ -40,16 +37,10 @@ class CreateFeedRequest extends \Google\Model
   {
     return $this->feed;
   }
-  /**
-   * @param string
-   */
   public function setFeedId($feedId)
   {
     $this->feedId = $feedId;
   }
-  /**
-   * @return string
-   */
   public function getFeedId()
   {
     return $this->feedId;

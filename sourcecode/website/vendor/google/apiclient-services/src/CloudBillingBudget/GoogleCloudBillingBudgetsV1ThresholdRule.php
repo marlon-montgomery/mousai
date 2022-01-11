@@ -19,22 +19,13 @@ namespace Google\Service\CloudBillingBudget;
 
 class GoogleCloudBillingBudgetsV1ThresholdRule extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $spendBasis;
   public $thresholdPercent;
 
-  /**
-   * @param string
-   */
   public function setSpendBasis($spendBasis)
   {
     $this->spendBasis = $spendBasis;
   }
-  /**
-   * @return string
-   */
   public function getSpendBasis()
   {
     return $this->spendBasis;

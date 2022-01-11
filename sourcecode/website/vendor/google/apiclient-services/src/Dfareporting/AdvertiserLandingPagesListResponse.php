@@ -20,27 +20,15 @@ namespace Google\Service\Dfareporting;
 class AdvertiserLandingPagesListResponse extends \Google\Collection
 {
   protected $collection_key = 'landingPages';
-  /**
-   * @var string
-   */
   public $kind;
   protected $landingPagesType = LandingPage::class;
   protected $landingPagesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
@@ -59,16 +47,10 @@ class AdvertiserLandingPagesListResponse extends \Google\Collection
   {
     return $this->landingPages;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

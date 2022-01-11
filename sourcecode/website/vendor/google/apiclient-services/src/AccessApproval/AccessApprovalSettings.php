@@ -20,31 +20,16 @@ namespace Google\Service\AccessApproval;
 class AccessApprovalSettings extends \Google\Collection
 {
   protected $collection_key = 'notificationEmails';
-  /**
-   * @var bool
-   */
   public $enrolledAncestor;
   protected $enrolledServicesType = EnrolledService::class;
   protected $enrolledServicesDataType = 'array';
-  /**
-   * @var string
-   */
   public $name;
-  /**
-   * @var string[]
-   */
   public $notificationEmails;
 
-  /**
-   * @param bool
-   */
   public function setEnrolledAncestor($enrolledAncestor)
   {
     $this->enrolledAncestor = $enrolledAncestor;
   }
-  /**
-   * @return bool
-   */
   public function getEnrolledAncestor()
   {
     return $this->enrolledAncestor;
@@ -63,30 +48,18 @@ class AccessApprovalSettings extends \Google\Collection
   {
     return $this->enrolledServices;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
   }
-  /**
-   * @param string[]
-   */
   public function setNotificationEmails($notificationEmails)
   {
     $this->notificationEmails = $notificationEmails;
   }
-  /**
-   * @return string[]
-   */
   public function getNotificationEmails()
   {
     return $this->notificationEmails;

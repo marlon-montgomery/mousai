@@ -1393,17 +1393,7 @@ class Apigee extends \Google\Service
         'balance',
         [
           'methods' => [
-            'adjust' => [
-              'path' => 'v1/{+name}:adjust',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'credit' => [
+            'credit' => [
               'path' => 'v1/{+name}:credit',
               'httpMethod' => 'POST',
               'parameters' => [

@@ -19,74 +19,38 @@ namespace Google\Service\Script;
 
 class Value extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $boolValue;
-  /**
-   * @var string
-   */
   public $bytesValue;
-  /**
-   * @var string
-   */
   public $dateValue;
   protected $listValueType = ListValue::class;
   protected $listValueDataType = '';
-  /**
-   * @var string
-   */
   public $nullValue;
   public $numberValue;
-  /**
-   * @var array[]
-   */
   public $protoValue;
-  /**
-   * @var string
-   */
   public $stringValue;
   protected $structValueType = Struct::class;
   protected $structValueDataType = '';
 
-  /**
-   * @param bool
-   */
   public function setBoolValue($boolValue)
   {
     $this->boolValue = $boolValue;
   }
-  /**
-   * @return bool
-   */
   public function getBoolValue()
   {
     return $this->boolValue;
   }
-  /**
-   * @param string
-   */
   public function setBytesValue($bytesValue)
   {
     $this->bytesValue = $bytesValue;
   }
-  /**
-   * @return string
-   */
   public function getBytesValue()
   {
     return $this->bytesValue;
   }
-  /**
-   * @param string
-   */
   public function setDateValue($dateValue)
   {
     $this->dateValue = $dateValue;
   }
-  /**
-   * @return string
-   */
   public function getDateValue()
   {
     return $this->dateValue;
@@ -105,16 +69,10 @@ class Value extends \Google\Model
   {
     return $this->listValue;
   }
-  /**
-   * @param string
-   */
   public function setNullValue($nullValue)
   {
     $this->nullValue = $nullValue;
   }
-  /**
-   * @return string
-   */
   public function getNullValue()
   {
     return $this->nullValue;
@@ -127,30 +85,18 @@ class Value extends \Google\Model
   {
     return $this->numberValue;
   }
-  /**
-   * @param array[]
-   */
   public function setProtoValue($protoValue)
   {
     $this->protoValue = $protoValue;
   }
-  /**
-   * @return array[]
-   */
   public function getProtoValue()
   {
     return $this->protoValue;
   }
-  /**
-   * @param string
-   */
   public function setStringValue($stringValue)
   {
     $this->stringValue = $stringValue;
   }
-  /**
-   * @return string
-   */
   public function getStringValue()
   {
     return $this->stringValue;

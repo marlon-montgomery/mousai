@@ -19,39 +19,21 @@ namespace Google\Service\Compute;
 
 class Uint128 extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $high;
-  /**
-   * @var string
-   */
   public $low;
 
-  /**
-   * @param string
-   */
   public function setHigh($high)
   {
     $this->high = $high;
   }
-  /**
-   * @return string
-   */
   public function getHigh()
   {
     return $this->high;
   }
-  /**
-   * @param string
-   */
   public function setLow($low)
   {
     $this->low = $low;
   }
-  /**
-   * @return string
-   */
   public function getLow()
   {
     return $this->low;

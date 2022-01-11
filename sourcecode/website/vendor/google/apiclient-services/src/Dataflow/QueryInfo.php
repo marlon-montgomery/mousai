@@ -20,21 +20,12 @@ namespace Google\Service\Dataflow;
 class QueryInfo extends \Google\Collection
 {
   protected $collection_key = 'queryProperty';
-  /**
-   * @var string[]
-   */
   public $queryProperty;
 
-  /**
-   * @param string[]
-   */
   public function setQueryProperty($queryProperty)
   {
     $this->queryProperty = $queryProperty;
   }
-  /**
-   * @return string[]
-   */
   public function getQueryProperty()
   {
     return $this->queryProperty;

@@ -19,21 +19,12 @@ namespace Google\Service\Container;
 
 class WorkloadMetadataConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $mode;
 
-  /**
-   * @param string
-   */
   public function setMode($mode)
   {
     $this->mode = $mode;
   }
-  /**
-   * @return string
-   */
   public function getMode()
   {
     return $this->mode;

@@ -28,9 +28,6 @@ class RouterStatus extends \Google\Collection
   protected $bgpPeerStatusDataType = 'array';
   protected $natStatusType = RouterStatusNatStatus::class;
   protected $natStatusDataType = 'array';
-  /**
-   * @var string
-   */
   public $network;
 
   /**
@@ -89,16 +86,10 @@ class RouterStatus extends \Google\Collection
   {
     return $this->natStatus;
   }
-  /**
-   * @param string
-   */
   public function setNetwork($network)
   {
     $this->network = $network;
   }
-  /**
-   * @return string
-   */
   public function getNetwork()
   {
     return $this->network;

@@ -21,13 +21,7 @@ class QueryAccessibleDataRequest extends \Google\Model
 {
   protected $gcsDestinationType = GoogleCloudHealthcareV1ConsentGcsDestination::class;
   protected $gcsDestinationDataType = '';
-  /**
-   * @var string[]
-   */
   public $requestAttributes;
-  /**
-   * @var string[]
-   */
   public $resourceAttributes;
 
   /**
@@ -44,30 +38,18 @@ class QueryAccessibleDataRequest extends \Google\Model
   {
     return $this->gcsDestination;
   }
-  /**
-   * @param string[]
-   */
   public function setRequestAttributes($requestAttributes)
   {
     $this->requestAttributes = $requestAttributes;
   }
-  /**
-   * @return string[]
-   */
   public function getRequestAttributes()
   {
     return $this->requestAttributes;
   }
-  /**
-   * @param string[]
-   */
   public function setResourceAttributes($resourceAttributes)
   {
     $this->resourceAttributes = $resourceAttributes;
   }
-  /**
-   * @return string[]
-   */
   public function getResourceAttributes()
   {
     return $this->resourceAttributes;

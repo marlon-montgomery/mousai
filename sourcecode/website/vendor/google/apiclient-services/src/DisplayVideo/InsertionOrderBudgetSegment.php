@@ -19,45 +19,24 @@ namespace Google\Service\DisplayVideo;
 
 class InsertionOrderBudgetSegment extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $budgetAmountMicros;
-  /**
-   * @var string
-   */
   public $campaignBudgetId;
   protected $dateRangeType = DateRange::class;
   protected $dateRangeDataType = '';
-  /**
-   * @var string
-   */
   public $description;
 
-  /**
-   * @param string
-   */
   public function setBudgetAmountMicros($budgetAmountMicros)
   {
     $this->budgetAmountMicros = $budgetAmountMicros;
   }
-  /**
-   * @return string
-   */
   public function getBudgetAmountMicros()
   {
     return $this->budgetAmountMicros;
   }
-  /**
-   * @param string
-   */
   public function setCampaignBudgetId($campaignBudgetId)
   {
     $this->campaignBudgetId = $campaignBudgetId;
   }
-  /**
-   * @return string
-   */
   public function getCampaignBudgetId()
   {
     return $this->campaignBudgetId;
@@ -76,16 +55,10 @@ class InsertionOrderBudgetSegment extends \Google\Model
   {
     return $this->dateRange;
   }
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;

@@ -19,21 +19,12 @@ namespace Google\Service\Vault;
 
 class DriveExportOptions extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $includeAccessInfo;
 
-  /**
-   * @param bool
-   */
   public function setIncludeAccessInfo($includeAccessInfo)
   {
     $this->includeAccessInfo = $includeAccessInfo;
   }
-  /**
-   * @return bool
-   */
   public function getIncludeAccessInfo()
   {
     return $this->includeAccessInfo;

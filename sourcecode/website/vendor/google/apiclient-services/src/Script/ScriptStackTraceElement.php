@@ -19,39 +19,21 @@ namespace Google\Service\Script;
 
 class ScriptStackTraceElement extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $function;
-  /**
-   * @var int
-   */
   public $lineNumber;
 
-  /**
-   * @param string
-   */
   public function setFunction($function)
   {
     $this->function = $function;
   }
-  /**
-   * @return string
-   */
   public function getFunction()
   {
     return $this->function;
   }
-  /**
-   * @param int
-   */
   public function setLineNumber($lineNumber)
   {
     $this->lineNumber = $lineNumber;
   }
-  /**
-   * @return int
-   */
   public function getLineNumber()
   {
     return $this->lineNumber;

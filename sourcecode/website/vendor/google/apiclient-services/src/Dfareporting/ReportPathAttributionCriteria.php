@@ -30,9 +30,6 @@ class ReportPathAttributionCriteria extends \Google\Collection
   protected $dimensionsDataType = 'array';
   protected $floodlightConfigIdType = DimensionValue::class;
   protected $floodlightConfigIdDataType = '';
-  /**
-   * @var string[]
-   */
   public $metricNames;
   protected $pathFiltersType = PathFilter::class;
   protected $pathFiltersDataType = 'array';
@@ -107,16 +104,10 @@ class ReportPathAttributionCriteria extends \Google\Collection
   {
     return $this->floodlightConfigId;
   }
-  /**
-   * @param string[]
-   */
   public function setMetricNames($metricNames)
   {
     $this->metricNames = $metricNames;
   }
-  /**
-   * @return string[]
-   */
   public function getMetricNames()
   {
     return $this->metricNames;

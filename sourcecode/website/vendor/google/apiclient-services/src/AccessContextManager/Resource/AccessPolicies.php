@@ -18,13 +18,8 @@
 namespace Google\Service\AccessContextManager\Resource;
 
 use Google\Service\AccessContextManager\AccessPolicy;
-use Google\Service\AccessContextManager\GetIamPolicyRequest;
 use Google\Service\AccessContextManager\ListAccessPoliciesResponse;
 use Google\Service\AccessContextManager\Operation;
-use Google\Service\AccessContextManager\Policy;
-use Google\Service\AccessContextManager\SetIamPolicyRequest;
-use Google\Service\AccessContextManager\TestIamPermissionsRequest;
-use Google\Service\AccessContextManager\TestIamPermissionsResponse;
 
 /**
  * The "accessPolicies" collection of methods.
@@ -37,10 +32,10 @@ use Google\Service\AccessContextManager\TestIamPermissionsResponse;
 class AccessPolicies extends \Google\Service\Resource
 {
   /**
-   * Creates an access policy. This method fails if the organization already has
-   * an access policy. The long-running operation has a successful status after
-   * the access policy propagates to long-lasting storage. Syntactic and basic
-   * semantic errors are returned in `metadata` as a BadRequest proto.
+   * Create an `AccessPolicy`. Fails if this organization already has a
+   * `AccessPolicy`. The longrunning Operation will have a successful status once
+   * the `AccessPolicy` has propagated to long-lasting storage. Syntactic and
+   * basic semantic errors will be returned in `metadata` as a BadRequest proto.
    * (accessPolicies.create)
    *
    * @param AccessPolicy $postBody
@@ -54,9 +49,9 @@ class AccessPolicies extends \Google\Service\Resource
     return $this->call('create', [$params], Operation::class);
   }
   /**
-   * Deletes an access policy based on the resource name. The long-running
-   * operation has a successful status after the access policy is removed from
-   * long-lasting storage. (accessPolicies.delete)
+   * Delete an AccessPolicy by resource name. The longrunning Operation will have
+   * a successful status once the AccessPolicy has been removed from long-lasting
+   * storage. (accessPolicies.delete)
    *
    * @param string $name Required. Resource name for the access policy to delete.
    * Format `accessPolicies/{policy_id}`
@@ -70,7 +65,7 @@ class AccessPolicies extends \Google\Service\Resource
     return $this->call('delete', [$params], Operation::class);
   }
   /**
-   * Returns an access policy based on the name. (accessPolicies.get)
+   * Get an AccessPolicy by name. (accessPolicies.get)
    *
    * @param string $name Required. Resource name for the access policy to get.
    * Format `accessPolicies/{policy_id}`
@@ -84,24 +79,7 @@ class AccessPolicies extends \Google\Service\Resource
     return $this->call('get', [$params], AccessPolicy::class);
   }
   /**
-   * Gets the IAM policy for the specified Access Context Manager access policy.
-   * (accessPolicies.getIamPolicy)
-   *
-   * @param string $resource REQUIRED: The resource for which the policy is being
-   * requested. See the operation documentation for the appropriate value for this
-   * field.
-   * @param GetIamPolicyRequest $postBody
-   * @param array $optParams Optional parameters.
-   * @return Policy
-   */
-  public function getIamPolicy($resource, GetIamPolicyRequest $postBody, $optParams = [])
-  {
-    $params = ['resource' => $resource, 'postBody' => $postBody];
-    $params = array_merge($params, $optParams);
-    return $this->call('getIamPolicy', [$params], Policy::class);
-  }
-  /**
-   * Lists all access policies in an organization.
+   * List all AccessPolicies under a container.
    * (accessPolicies.listAccessPolicies)
    *
    * @param array $optParams Optional parameters.
@@ -121,9 +99,10 @@ class AccessPolicies extends \Google\Service\Resource
     return $this->call('list', [$params], ListAccessPoliciesResponse::class);
   }
   /**
-   * Updates an access policy. The long-running operation from this RPC has a
-   * successful status after the changes to the access policy propagate to long-
-   * lasting storage. (accessPolicies.patch)
+   * Update an AccessPolicy. The longrunning Operation from this RPC will have a
+   * successful status once the changes to the AccessPolicy have propagated to
+   * long-lasting storage. Syntactic and basic semantic errors will be returned in
+   * `metadata` as a BadRequest proto. (accessPolicies.patch)
    *
    * @param string $name Output only. Resource name of the `AccessPolicy`. Format:
    * `accessPolicies/{access_policy}`
@@ -139,44 +118,6 @@ class AccessPolicies extends \Google\Service\Resource
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('patch', [$params], Operation::class);
-  }
-  /**
-   * Sets the IAM policy for the specified Access Context Manager access policy.
-   * This method replaces the existing IAM policy on the access policy. The IAM
-   * policy controls the set of users who can perform specific operations on the
-   * Access Context Manager access policy. (accessPolicies.setIamPolicy)
-   *
-   * @param string $resource REQUIRED: The resource for which the policy is being
-   * specified. See the operation documentation for the appropriate value for this
-   * field.
-   * @param SetIamPolicyRequest $postBody
-   * @param array $optParams Optional parameters.
-   * @return Policy
-   */
-  public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
-  {
-    $params = ['resource' => $resource, 'postBody' => $postBody];
-    $params = array_merge($params, $optParams);
-    return $this->call('setIamPolicy', [$params], Policy::class);
-  }
-  /**
-   * Returns the IAM permissions that the caller has on the specified Access
-   * Context Manager resource. The resource can be an AccessPolicy, AccessLevel,
-   * or ServicePerimeter. This method does not support other resources.
-   * (accessPolicies.testIamPermissions)
-   *
-   * @param string $resource REQUIRED: The resource for which the policy detail is
-   * being requested. See the operation documentation for the appropriate value
-   * for this field.
-   * @param TestIamPermissionsRequest $postBody
-   * @param array $optParams Optional parameters.
-   * @return TestIamPermissionsResponse
-   */
-  public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
-  {
-    $params = ['resource' => $resource, 'postBody' => $postBody];
-    $params = array_merge($params, $optParams);
-    return $this->call('testIamPermissions', [$params], TestIamPermissionsResponse::class);
   }
 }
 

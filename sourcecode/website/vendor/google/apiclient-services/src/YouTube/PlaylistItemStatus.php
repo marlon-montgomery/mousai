@@ -19,21 +19,12 @@ namespace Google\Service\YouTube;
 
 class PlaylistItemStatus extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $privacyStatus;
 
-  /**
-   * @param string
-   */
   public function setPrivacyStatus($privacyStatus)
   {
     $this->privacyStatus = $privacyStatus;
   }
-  /**
-   * @return string
-   */
   public function getPrivacyStatus()
   {
     return $this->privacyStatus;

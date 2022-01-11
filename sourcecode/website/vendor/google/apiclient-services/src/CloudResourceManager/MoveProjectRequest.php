@@ -19,21 +19,12 @@ namespace Google\Service\CloudResourceManager;
 
 class MoveProjectRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $destinationParent;
 
-  /**
-   * @param string
-   */
   public function setDestinationParent($destinationParent)
   {
     $this->destinationParent = $destinationParent;
   }
-  /**
-   * @return string
-   */
   public function getDestinationParent()
   {
     return $this->destinationParent;

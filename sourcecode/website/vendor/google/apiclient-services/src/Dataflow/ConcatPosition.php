@@ -19,23 +19,14 @@ namespace Google\Service\Dataflow;
 
 class ConcatPosition extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $index;
   protected $positionType = Position::class;
   protected $positionDataType = '';
 
-  /**
-   * @param int
-   */
   public function setIndex($index)
   {
     $this->index = $index;
   }
-  /**
-   * @return int
-   */
   public function getIndex()
   {
     return $this->index;

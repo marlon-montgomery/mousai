@@ -22,9 +22,6 @@ class AnalyzeSentimentResponse extends \Google\Collection
   protected $collection_key = 'sentences';
   protected $documentSentimentType = Sentiment::class;
   protected $documentSentimentDataType = '';
-  /**
-   * @var string
-   */
   public $language;
   protected $sentencesType = Sentence::class;
   protected $sentencesDataType = 'array';
@@ -43,16 +40,10 @@ class AnalyzeSentimentResponse extends \Google\Collection
   {
     return $this->documentSentiment;
   }
-  /**
-   * @param string
-   */
   public function setLanguage($language)
   {
     $this->language = $language;
   }
-  /**
-   * @return string
-   */
   public function getLanguage()
   {
     return $this->language;

@@ -24,13 +24,7 @@ class OrderPickupDetails extends \Google\Collection
   protected $addressDataType = '';
   protected $collectorsType = OrderPickupDetailsCollector::class;
   protected $collectorsDataType = 'array';
-  /**
-   * @var string
-   */
   public $locationId;
-  /**
-   * @var string
-   */
   public $pickupType;
 
   /**
@@ -61,30 +55,18 @@ class OrderPickupDetails extends \Google\Collection
   {
     return $this->collectors;
   }
-  /**
-   * @param string
-   */
   public function setLocationId($locationId)
   {
     $this->locationId = $locationId;
   }
-  /**
-   * @return string
-   */
   public function getLocationId()
   {
     return $this->locationId;
   }
-  /**
-   * @param string
-   */
   public function setPickupType($pickupType)
   {
     $this->pickupType = $pickupType;
   }
-  /**
-   * @return string
-   */
   public function getPickupType()
   {
     return $this->pickupType;

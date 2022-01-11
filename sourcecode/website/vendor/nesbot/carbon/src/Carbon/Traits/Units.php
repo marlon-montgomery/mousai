@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Carbon\Traits;
 
 use Carbon\CarbonConverterInterface;
@@ -307,13 +306,11 @@ trait Units
         $date = $date->modify("$value $unit");
 
         if (isset($timeString)) {
-            $date = $date->setTimeFromTimeString($timeString);
-        } elseif (isset($canOverflow, $day) && $canOverflow && $day !== $date->day) {
-            $date = $date->modify('last day of previous month');
+            return $date->setTimeFromTimeString($timeString);
         }
 
-        if (!$date) {
-            throw new UnitException('Unable to add unit '.var_export(\func_get_args(), true));
+        if (isset($canOverflow, $day) && $canOverflow && $day !== $date->day) {
+            $date = $date->modify('last day of previous month');
         }
 
         return $date;

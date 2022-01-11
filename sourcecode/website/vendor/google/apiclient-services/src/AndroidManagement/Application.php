@@ -24,15 +24,9 @@ class Application extends \Google\Collection
   protected $appTracksDataType = 'array';
   protected $managedPropertiesType = ManagedProperty::class;
   protected $managedPropertiesDataType = 'array';
-  /**
-   * @var string
-   */
   public $name;
   protected $permissionsType = ApplicationPermission::class;
   protected $permissionsDataType = 'array';
-  /**
-   * @var string
-   */
   public $title;
 
   /**
@@ -63,16 +57,10 @@ class Application extends \Google\Collection
   {
     return $this->managedProperties;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
@@ -91,16 +79,10 @@ class Application extends \Google\Collection
   {
     return $this->permissions;
   }
-  /**
-   * @param string
-   */
   public function setTitle($title)
   {
     $this->title = $title;
   }
-  /**
-   * @return string
-   */
   public function getTitle()
   {
     return $this->title;

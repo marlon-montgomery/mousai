@@ -14,7 +14,6 @@ namespace Symfony\Component\Serializer\Mapping\Factory;
 use Symfony\Component\Serializer\Mapping\AttributeMetadata;
 use Symfony\Component\Serializer\Mapping\ClassDiscriminatorMapping;
 use Symfony\Component\Serializer\Mapping\ClassMetadata;
-use Symfony\Component\Serializer\Mapping\ClassMetadataInterface;
 
 /**
  * @author Fabien Bourigault <bourigaultfabien@gmail.com>
@@ -45,7 +44,7 @@ final class CompiledClassMetadataFactory implements ClassMetadataFactoryInterfac
     /**
      * {@inheritdoc}
      */
-    public function getMetadataFor($value): ClassMetadataInterface
+    public function getMetadataFor($value)
     {
         $className = \is_object($value) ? \get_class($value) : $value;
 
@@ -73,7 +72,7 @@ final class CompiledClassMetadataFactory implements ClassMetadataFactoryInterfac
     /**
      * {@inheritdoc}
      */
-    public function hasMetadataFor($value): bool
+    public function hasMetadataFor($value)
     {
         $className = \is_object($value) ? \get_class($value) : $value;
 

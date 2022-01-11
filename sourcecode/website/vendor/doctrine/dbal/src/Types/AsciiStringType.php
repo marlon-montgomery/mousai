@@ -12,12 +12,15 @@ final class AsciiStringType extends StringType
     /**
      * {@inheritdoc}
      */
-    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform)
     {
         return $platform->getAsciiStringTypeDeclarationSQL($column);
     }
 
-    public function getBindingType(): int
+    /**
+     * {@inheritdoc}
+     */
+    public function getBindingType()
     {
         return ParameterType::ASCII;
     }

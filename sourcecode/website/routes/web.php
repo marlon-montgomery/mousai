@@ -17,6 +17,7 @@ use App\Http\Controllers\Artist\ArtistTracksController;
 use App\Http\Controllers\ArtistAlbumsController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\BackstageRequestController;
+use App\Http\Controllers\BitCloutController;
 use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\ImportMediaController;
 use App\Http\Controllers\PlaylistController;
@@ -38,6 +39,9 @@ use App\Http\Controllers\UserProfile\UserPlaylistsController;
 use App\Http\Controllers\UserProfileController;
 
 Route::group(['prefix' => 'secure'], function () {
+    // ON DONATION
+    Route::post('bitclout/on-tip', [BitCloutController::class, 'onTip']);
+
     // SEARCH
     Route::get('search/audio/{trackId}/{artistName}/{trackName}', [SearchController::class, 'searchAudio']);
     Route::get('search', [SearchController::class, 'index']);

@@ -21,9 +21,6 @@ class Assignment extends \Google\Model
 {
   protected $assignedUserType = User::class;
   protected $assignedUserDataType = '';
-  /**
-   * @var string
-   */
   public $subtype;
 
   /**
@@ -40,16 +37,10 @@ class Assignment extends \Google\Model
   {
     return $this->assignedUser;
   }
-  /**
-   * @param string
-   */
   public function setSubtype($subtype)
   {
     $this->subtype = $subtype;
   }
-  /**
-   * @return string
-   */
   public function getSubtype()
   {
     return $this->subtype;

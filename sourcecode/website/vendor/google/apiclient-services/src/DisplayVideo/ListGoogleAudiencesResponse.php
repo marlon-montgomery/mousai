@@ -22,9 +22,6 @@ class ListGoogleAudiencesResponse extends \Google\Collection
   protected $collection_key = 'googleAudiences';
   protected $googleAudiencesType = GoogleAudience::class;
   protected $googleAudiencesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListGoogleAudiencesResponse extends \Google\Collection
   {
     return $this->googleAudiences;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

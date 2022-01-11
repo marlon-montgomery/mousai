@@ -219,37 +219,6 @@ trait BuildsQueries
      */
     public function lazyById($chunkSize = 1000, $column = null, $alias = null)
     {
-        return $this->orderedLazyById($chunkSize, $column, $alias);
-    }
-
-    /**
-     * Query lazily, by chunking the results of a query by comparing IDs in descending order.
-     *
-     * @param  int  $count
-     * @param  string|null  $column
-     * @param  string|null  $alias
-     * @return \Illuminate\Support\LazyCollection
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function lazyByIdDesc($chunkSize = 1000, $column = null, $alias = null)
-    {
-        return $this->orderedLazyById($chunkSize, $column, $alias, true);
-    }
-
-    /**
-     * Query lazily, by chunking the results of a query by comparing IDs in a given order.
-     *
-     * @param  int  $count
-     * @param  string|null  $column
-     * @param  string|null  $alias
-     * @param  bool  $descending
-     * @return \Illuminate\Support\LazyCollection
-     *
-     * @throws \InvalidArgumentException
-     */
-    protected function orderedLazyById($chunkSize = 1000, $column = null, $alias = null, $descending = false)
-    {
         if ($chunkSize < 1) {
             throw new InvalidArgumentException('The chunk size should be at least 1');
         }
@@ -258,17 +227,13 @@ trait BuildsQueries
 
         $alias = $alias ?? $column;
 
-        return LazyCollection::make(function () use ($chunkSize, $column, $alias, $descending) {
+        return LazyCollection::make(function () use ($chunkSize, $column, $alias) {
             $lastId = null;
 
             while (true) {
                 $clone = clone $this;
 
-                if ($descending) {
-                    $results = $clone->forPageBeforeId($chunkSize, $lastId, $column)->get();
-                } else {
-                    $results = $clone->forPageAfterId($chunkSize, $lastId, $column)->get();
-                }
+                $results = $clone->forPageAfterId($chunkSize, $lastId, $column)->get();
 
                 foreach ($results as $result) {
                     yield $result;

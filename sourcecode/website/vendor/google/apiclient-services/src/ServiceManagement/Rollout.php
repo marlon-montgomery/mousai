@@ -19,55 +19,28 @@ namespace Google\Service\ServiceManagement;
 
 class Rollout extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $createTime;
-  /**
-   * @var string
-   */
   public $createdBy;
   protected $deleteServiceStrategyType = DeleteServiceStrategy::class;
   protected $deleteServiceStrategyDataType = '';
-  /**
-   * @var string
-   */
   public $rolloutId;
-  /**
-   * @var string
-   */
   public $serviceName;
-  /**
-   * @var string
-   */
   public $status;
   protected $trafficPercentStrategyType = TrafficPercentStrategy::class;
   protected $trafficPercentStrategyDataType = '';
 
-  /**
-   * @param string
-   */
   public function setCreateTime($createTime)
   {
     $this->createTime = $createTime;
   }
-  /**
-   * @return string
-   */
   public function getCreateTime()
   {
     return $this->createTime;
   }
-  /**
-   * @param string
-   */
   public function setCreatedBy($createdBy)
   {
     $this->createdBy = $createdBy;
   }
-  /**
-   * @return string
-   */
   public function getCreatedBy()
   {
     return $this->createdBy;
@@ -86,44 +59,26 @@ class Rollout extends \Google\Model
   {
     return $this->deleteServiceStrategy;
   }
-  /**
-   * @param string
-   */
   public function setRolloutId($rolloutId)
   {
     $this->rolloutId = $rolloutId;
   }
-  /**
-   * @return string
-   */
   public function getRolloutId()
   {
     return $this->rolloutId;
   }
-  /**
-   * @param string
-   */
   public function setServiceName($serviceName)
   {
     $this->serviceName = $serviceName;
   }
-  /**
-   * @return string
-   */
   public function getServiceName()
   {
     return $this->serviceName;
   }
-  /**
-   * @param string
-   */
   public function setStatus($status)
   {
     $this->status = $status;
   }
-  /**
-   * @return string
-   */
   public function getStatus()
   {
     return $this->status;

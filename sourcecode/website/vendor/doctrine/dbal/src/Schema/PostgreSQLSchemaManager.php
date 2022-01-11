@@ -3,7 +3,7 @@
 namespace Doctrine\DBAL\Schema;
 
 use Doctrine\DBAL\Exception;
-use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
+use Doctrine\DBAL\Platforms\PostgreSQL94Platform;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\Deprecations\Deprecation;
@@ -21,6 +21,7 @@ use function preg_match;
 use function preg_replace;
 use function sprintf;
 use function str_replace;
+use function strlen;
 use function strpos;
 use function strtolower;
 use function trim;
@@ -29,8 +30,6 @@ use const CASE_LOWER;
 
 /**
  * PostgreSQL Schema Manager.
- *
- * @extends AbstractSchemaManager<PostgreSQLPlatform>
  */
 class PostgreSQLSchemaManager extends AbstractSchemaManager
 {
@@ -75,17 +74,9 @@ SQL
 
     /**
      * {@inheritDoc}
-     *
-     * @deprecated
      */
     public function getSchemaSearchPaths()
     {
-        Deprecation::triggerIfCalledFromOutside(
-            'doctrine/dbal',
-            'https://github.com/doctrine/dbal/pull/4821',
-            'PostgreSQLSchemaManager::getSchemaSearchPaths() is deprecated.'
-        );
-
         $params = $this->_conn->getParams();
 
         $searchPaths = $this->_conn->fetchOne('SHOW search_path');
@@ -108,8 +99,6 @@ SQL
      * @internal The method should be only used from within the PostgreSQLSchemaManager class hierarchy.
      *
      * @return string[]
-     *
-     * @throws Exception
      */
     public function getExistingSchemaSearchPaths()
     {
@@ -117,23 +106,7 @@ SQL
             $this->determineExistingSchemaSearchPaths();
         }
 
-        assert($this->existingSchemaPaths !== null);
-
         return $this->existingSchemaPaths;
-    }
-
-    /**
-     * Returns the name of the current schema.
-     *
-     * @return string|null
-     *
-     * @throws Exception
-     */
-    protected function getCurrentSchema()
-    {
-        $schemas = $this->getExistingSchemaSearchPaths();
-
-        return array_shift($schemas);
     }
 
     /**
@@ -144,8 +117,6 @@ SQL
      * @internal The method should be only used from within the PostgreSQLSchemaManager class hierarchy.
      *
      * @return void
-     *
-     * @throws Exception
      */
     public function determineExistingSchemaSearchPaths()
     {
@@ -206,6 +177,14 @@ SQL
     /**
      * {@inheritdoc}
      */
+    protected function _getPortableTriggerDefinition($trigger)
+    {
+        return $trigger['trigger_name'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function _getPortableViewDefinition($view)
     {
         return new View($view['schemaname'] . '.' . $view['viewname'], $view['definition']);
@@ -227,9 +206,10 @@ SQL
      */
     protected function _getPortableTableDefinition($table)
     {
-        $currentSchema = $this->getCurrentSchema();
+        $schemas     = $this->getExistingSchemaSearchPaths();
+        $firstSchema = array_shift($schemas);
 
-        if ($table['schema_name'] === $currentSchema) {
+        if ($table['schema_name'] === $firstSchema) {
             return $table['table_name'];
         }
 
@@ -365,22 +345,16 @@ SQL
         $matches = [];
 
         $autoincrement = false;
-
-        if (
-            $tableColumn['default'] !== null
-            && preg_match("/^nextval\('(.*)'(::.*)?\)$/", $tableColumn['default'], $matches) === 1
-        ) {
+        if (preg_match("/^nextval\('(.*)'(::.*)?\)$/", $tableColumn['default'], $matches) === 1) {
             $tableColumn['sequence'] = $matches[1];
             $tableColumn['default']  = null;
             $autoincrement           = true;
         }
 
-        if ($tableColumn['default'] !== null) {
-            if (preg_match("/^['(](.*)[')]::/", $tableColumn['default'], $matches) === 1) {
-                $tableColumn['default'] = $matches[1];
-            } elseif (preg_match('/^NULL::/', $tableColumn['default']) === 1) {
-                $tableColumn['default'] = null;
-            }
+        if (preg_match("/^['(](.*)[')]::/", $tableColumn['default'], $matches) === 1) {
+            $tableColumn['default'] = $matches[1];
+        } elseif (preg_match('/^NULL::/', $tableColumn['default']) === 1) {
+            $tableColumn['default'] = null;
         }
 
         $length = $tableColumn['length'] ?? null;
@@ -404,8 +378,7 @@ SQL
 
         $dbType = strtolower($tableColumn['type']);
         if (
-            $tableColumn['domain_type'] !== null
-            && $tableColumn['domain_type'] !== ''
+            strlen($tableColumn['domain_type']) > 0
             && ! $this->_platform->hasDoctrineTypeMappingFor($tableColumn['type'])
         ) {
             $dbType                       = strtolower($tableColumn['domain_type']);
@@ -477,7 +450,7 @@ SQL
 
                 if (
                     preg_match(
-                        '([A-Za-z]+\(([0-9]+),([0-9]+)\))',
+                        '([A-Za-z]+\(([0-9]+)\,([0-9]+)\))',
                         $tableColumn['complete_type'],
                         $match
                     ) === 1
@@ -545,7 +518,7 @@ SQL
      */
     private function fixVersion94NegativeNumericDefaultValue($defaultValue)
     {
-        if ($defaultValue !== null && strpos($defaultValue, '(') === 0) {
+        if (strpos($defaultValue, '(') === 0) {
             return trim($defaultValue, '()');
         }
 
@@ -571,7 +544,9 @@ SQL
     {
         $table = parent::listTableDetails($name);
 
-        $sql = $this->_platform->getListTableMetadataSQL($name);
+        $platform = $this->_platform;
+        assert($platform instanceof PostgreSQL94Platform);
+        $sql = $platform->getListTableMetadataSQL($name);
 
         $tableOptions = $this->_conn->fetchAssociative($sql);
 

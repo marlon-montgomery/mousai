@@ -24,9 +24,6 @@ class CrossDimensionReachReportCompatibleFields extends \Google\Collection
   protected $breakdownDataType = 'array';
   protected $dimensionFiltersType = Dimension::class;
   protected $dimensionFiltersDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
   protected $metricsType = Metric::class;
   protected $metricsDataType = 'array';
@@ -61,16 +58,10 @@ class CrossDimensionReachReportCompatibleFields extends \Google\Collection
   {
     return $this->dimensionFilters;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

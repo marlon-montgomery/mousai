@@ -308,10 +308,7 @@ class ExpressionBuilder
     }
 
     /**
-     * Builds an SQL literal from a given input parameter.
-     *
-     * The usage of this method is discouraged. Use prepared statements
-     * or {@link AbstractPlatform::quoteStringLiteral()} instead.
+     * Quotes a given input parameter.
      *
      * @param mixed    $input The parameter to be quoted.
      * @param int|null $type  The type of the parameter.

@@ -32,15 +32,9 @@ class GoogleApiServiceusageV1ServiceConfig extends \Google\Collection
   protected $monitoredResourcesDataType = 'array';
   protected $monitoringType = Monitoring::class;
   protected $monitoringDataType = '';
-  /**
-   * @var string
-   */
   public $name;
   protected $quotaType = Quota::class;
   protected $quotaDataType = '';
-  /**
-   * @var string
-   */
   public $title;
   protected $usageType = Usage::class;
   protected $usageDataType = '';
@@ -129,16 +123,10 @@ class GoogleApiServiceusageV1ServiceConfig extends \Google\Collection
   {
     return $this->monitoring;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
@@ -157,16 +145,10 @@ class GoogleApiServiceusageV1ServiceConfig extends \Google\Collection
   {
     return $this->quota;
   }
-  /**
-   * @param string
-   */
   public function setTitle($title)
   {
     $this->title = $title;
   }
-  /**
-   * @return string
-   */
   public function getTitle()
   {
     return $this->title;

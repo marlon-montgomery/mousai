@@ -22,9 +22,6 @@ class Source extends \Google\Collection
   protected $collection_key = 'additionalContexts';
   protected $additionalContextsType = SourceContext::class;
   protected $additionalContextsDataType = 'array';
-  /**
-   * @var string
-   */
   public $artifactStorageSourceUri;
   protected $contextType = SourceContext::class;
   protected $contextDataType = '';
@@ -45,16 +42,10 @@ class Source extends \Google\Collection
   {
     return $this->additionalContexts;
   }
-  /**
-   * @param string
-   */
   public function setArtifactStorageSourceUri($artifactStorageSourceUri)
   {
     $this->artifactStorageSourceUri = $artifactStorageSourceUri;
   }
-  /**
-   * @return string
-   */
   public function getArtifactStorageSourceUri()
   {
     return $this->artifactStorageSourceUri;

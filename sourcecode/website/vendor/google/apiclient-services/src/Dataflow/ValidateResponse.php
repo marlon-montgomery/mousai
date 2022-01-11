@@ -19,23 +19,14 @@ namespace Google\Service\Dataflow;
 
 class ValidateResponse extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $errorMessage;
   protected $queryInfoType = QueryInfo::class;
   protected $queryInfoDataType = '';
 
-  /**
-   * @param string
-   */
   public function setErrorMessage($errorMessage)
   {
     $this->errorMessage = $errorMessage;
   }
-  /**
-   * @return string
-   */
   public function getErrorMessage()
   {
     return $this->errorMessage;

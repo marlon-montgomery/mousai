@@ -21,9 +21,6 @@ class Installment extends \Google\Model
 {
   protected $amountType = Price::class;
   protected $amountDataType = '';
-  /**
-   * @var string
-   */
   public $months;
 
   /**
@@ -40,16 +37,10 @@ class Installment extends \Google\Model
   {
     return $this->amount;
   }
-  /**
-   * @param string
-   */
   public function setMonths($months)
   {
     $this->months = $months;
   }
-  /**
-   * @return string
-   */
   public function getMonths()
   {
     return $this->months;

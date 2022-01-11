@@ -21,9 +21,6 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Model
 {
   protected $diskEncryptionKeyType = CustomerEncryptionKey::class;
   protected $diskEncryptionKeyDataType = '';
-  /**
-   * @var string
-   */
   public $source;
 
   /**
@@ -40,16 +37,10 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Model
   {
     return $this->diskEncryptionKey;
   }
-  /**
-   * @param string
-   */
   public function setSource($source)
   {
     $this->source = $source;
   }
-  /**
-   * @return string
-   */
   public function getSource()
   {
     return $this->source;

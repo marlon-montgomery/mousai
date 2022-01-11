@@ -19,21 +19,12 @@ namespace Google\Service\Docs;
 
 class EndOfSegmentLocation extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $segmentId;
 
-  /**
-   * @param string
-   */
   public function setSegmentId($segmentId)
   {
     $this->segmentId = $segmentId;
   }
-  /**
-   * @return string
-   */
   public function getSegmentId()
   {
     return $this->segmentId;

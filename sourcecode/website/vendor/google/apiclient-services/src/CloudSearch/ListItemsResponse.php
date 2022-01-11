@@ -22,9 +22,6 @@ class ListItemsResponse extends \Google\Collection
   protected $collection_key = 'items';
   protected $itemsType = Item::class;
   protected $itemsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListItemsResponse extends \Google\Collection
   {
     return $this->items;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

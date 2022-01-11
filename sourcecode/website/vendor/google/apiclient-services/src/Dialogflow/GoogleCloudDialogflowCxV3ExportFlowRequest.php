@@ -19,39 +19,21 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3ExportFlowRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $flowUri;
-  /**
-   * @var bool
-   */
   public $includeReferencedFlows;
 
-  /**
-   * @param string
-   */
   public function setFlowUri($flowUri)
   {
     $this->flowUri = $flowUri;
   }
-  /**
-   * @return string
-   */
   public function getFlowUri()
   {
     return $this->flowUri;
   }
-  /**
-   * @param bool
-   */
   public function setIncludeReferencedFlows($includeReferencedFlows)
   {
     $this->includeReferencedFlows = $includeReferencedFlows;
   }
-  /**
-   * @return bool
-   */
   public function getIncludeReferencedFlows()
   {
     return $this->includeReferencedFlows;

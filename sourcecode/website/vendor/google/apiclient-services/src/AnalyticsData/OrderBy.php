@@ -19,9 +19,6 @@ namespace Google\Service\AnalyticsData;
 
 class OrderBy extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $desc;
   protected $dimensionType = DimensionOrderBy::class;
   protected $dimensionDataType = '';
@@ -30,16 +27,10 @@ class OrderBy extends \Google\Model
   protected $pivotType = PivotOrderBy::class;
   protected $pivotDataType = '';
 
-  /**
-   * @param bool
-   */
   public function setDesc($desc)
   {
     $this->desc = $desc;
   }
-  /**
-   * @return bool
-   */
   public function getDesc()
   {
     return $this->desc;

@@ -19,39 +19,21 @@ namespace Google\Service\ShoppingContent;
 
 class OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceReturnOption extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $description;
-  /**
-   * @var string
-   */
   public $reason;
 
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;
   }
-  /**
-   * @param string
-   */
   public function setReason($reason)
   {
     $this->reason = $reason;
   }
-  /**
-   * @return string
-   */
   public function getReason()
   {
     return $this->reason;

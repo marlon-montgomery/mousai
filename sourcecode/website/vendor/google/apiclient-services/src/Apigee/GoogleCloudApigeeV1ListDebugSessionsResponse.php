@@ -20,23 +20,14 @@ namespace Google\Service\Apigee;
 class GoogleCloudApigeeV1ListDebugSessionsResponse extends \Google\Collection
 {
   protected $collection_key = 'sessions';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $sessionsType = GoogleCloudApigeeV1Session::class;
   protected $sessionsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

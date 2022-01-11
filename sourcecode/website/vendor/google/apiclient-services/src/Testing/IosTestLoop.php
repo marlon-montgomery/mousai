@@ -20,27 +20,15 @@ namespace Google\Service\Testing;
 class IosTestLoop extends \Google\Collection
 {
   protected $collection_key = 'scenarios';
-  /**
-   * @var string
-   */
   public $appBundleId;
   protected $appIpaType = FileReference::class;
   protected $appIpaDataType = '';
-  /**
-   * @var int[]
-   */
   public $scenarios;
 
-  /**
-   * @param string
-   */
   public function setAppBundleId($appBundleId)
   {
     $this->appBundleId = $appBundleId;
   }
-  /**
-   * @return string
-   */
   public function getAppBundleId()
   {
     return $this->appBundleId;
@@ -59,16 +47,10 @@ class IosTestLoop extends \Google\Collection
   {
     return $this->appIpa;
   }
-  /**
-   * @param int[]
-   */
   public function setScenarios($scenarios)
   {
     $this->scenarios = $scenarios;
   }
-  /**
-   * @return int[]
-   */
   public function getScenarios()
   {
     return $this->scenarios;

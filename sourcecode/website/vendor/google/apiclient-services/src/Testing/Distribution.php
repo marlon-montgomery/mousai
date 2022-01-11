@@ -20,9 +20,6 @@ namespace Google\Service\Testing;
 class Distribution extends \Google\Model
 {
   public $marketShare;
-  /**
-   * @var string
-   */
   public $measurementTime;
 
   public function setMarketShare($marketShare)
@@ -33,16 +30,10 @@ class Distribution extends \Google\Model
   {
     return $this->marketShare;
   }
-  /**
-   * @param string
-   */
   public function setMeasurementTime($measurementTime)
   {
     $this->measurementTime = $measurementTime;
   }
-  /**
-   * @return string
-   */
   public function getMeasurementTime()
   {
     return $this->measurementTime;

@@ -19,21 +19,12 @@ namespace Google\Service\MyBusinessVerifications;
 
 class Verify extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $hasPendingVerification;
 
-  /**
-   * @param bool
-   */
   public function setHasPendingVerification($hasPendingVerification)
   {
     $this->hasPendingVerification = $hasPendingVerification;
   }
-  /**
-   * @return bool
-   */
   public function getHasPendingVerification()
   {
     return $this->hasPendingVerification;

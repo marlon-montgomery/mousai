@@ -19,21 +19,12 @@ namespace Google\Service\Container;
 
 class MaxPodsConstraint extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $maxPodsPerNode;
 
-  /**
-   * @param string
-   */
   public function setMaxPodsPerNode($maxPodsPerNode)
   {
     $this->maxPodsPerNode = $maxPodsPerNode;
   }
-  /**
-   * @return string
-   */
   public function getMaxPodsPerNode()
   {
     return $this->maxPodsPerNode;

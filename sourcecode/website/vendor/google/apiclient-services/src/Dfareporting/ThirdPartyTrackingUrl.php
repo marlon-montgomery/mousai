@@ -19,39 +19,21 @@ namespace Google\Service\Dfareporting;
 
 class ThirdPartyTrackingUrl extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $thirdPartyUrlType;
-  /**
-   * @var string
-   */
   public $url;
 
-  /**
-   * @param string
-   */
   public function setThirdPartyUrlType($thirdPartyUrlType)
   {
     $this->thirdPartyUrlType = $thirdPartyUrlType;
   }
-  /**
-   * @return string
-   */
   public function getThirdPartyUrlType()
   {
     return $this->thirdPartyUrlType;
   }
-  /**
-   * @param string
-   */
   public function setUrl($url)
   {
     $this->url = $url;
   }
-  /**
-   * @return string
-   */
   public function getUrl()
   {
     return $this->url;

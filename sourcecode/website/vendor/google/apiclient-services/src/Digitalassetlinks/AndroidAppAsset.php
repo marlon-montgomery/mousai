@@ -21,9 +21,6 @@ class AndroidAppAsset extends \Google\Model
 {
   protected $certificateType = CertificateInfo::class;
   protected $certificateDataType = '';
-  /**
-   * @var string
-   */
   public $packageName;
 
   /**
@@ -40,16 +37,10 @@ class AndroidAppAsset extends \Google\Model
   {
     return $this->certificate;
   }
-  /**
-   * @param string
-   */
   public function setPackageName($packageName)
   {
     $this->packageName = $packageName;
   }
-  /**
-   * @return string
-   */
   public function getPackageName()
   {
     return $this->packageName;

@@ -19,21 +19,12 @@ namespace Google\Service\Sheets;
 
 class DateTimeRule extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $type;
 
-  /**
-   * @param string
-   */
   public function setType($type)
   {
     $this->type = $type;
   }
-  /**
-   * @return string
-   */
   public function getType()
   {
     return $this->type;

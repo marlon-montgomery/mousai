@@ -20,23 +20,14 @@ namespace Google\Service\Contactcenterinsights;
 class GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse extends \Google\Collection
 {
   protected $collection_key = 'phraseMatchers';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $phraseMatchersType = GoogleCloudContactcenterinsightsV1PhraseMatcher::class;
   protected $phraseMatchersDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

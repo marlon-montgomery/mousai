@@ -20,23 +20,14 @@ namespace Google\Service\CloudBuild;
 class Artifacts extends \Google\Collection
 {
   protected $collection_key = 'images';
-  /**
-   * @var string[]
-   */
   public $images;
   protected $objectsType = ArtifactObjects::class;
   protected $objectsDataType = '';
 
-  /**
-   * @param string[]
-   */
   public function setImages($images)
   {
     $this->images = $images;
   }
-  /**
-   * @return string[]
-   */
   public function getImages()
   {
     return $this->images;

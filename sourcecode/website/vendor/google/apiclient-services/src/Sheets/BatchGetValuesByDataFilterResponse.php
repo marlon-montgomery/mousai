@@ -20,23 +20,14 @@ namespace Google\Service\Sheets;
 class BatchGetValuesByDataFilterResponse extends \Google\Collection
 {
   protected $collection_key = 'valueRanges';
-  /**
-   * @var string
-   */
   public $spreadsheetId;
   protected $valueRangesType = MatchedValueRange::class;
   protected $valueRangesDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setSpreadsheetId($spreadsheetId)
   {
     $this->spreadsheetId = $spreadsheetId;
   }
-  /**
-   * @return string
-   */
   public function getSpreadsheetId()
   {
     return $this->spreadsheetId;

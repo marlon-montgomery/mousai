@@ -21,9 +21,6 @@ class BucketIamConfiguration extends \Google\Model
 {
   protected $bucketPolicyOnlyType = BucketIamConfigurationBucketPolicyOnly::class;
   protected $bucketPolicyOnlyDataType = '';
-  /**
-   * @var string
-   */
   public $publicAccessPrevention;
   protected $uniformBucketLevelAccessType = BucketIamConfigurationUniformBucketLevelAccess::class;
   protected $uniformBucketLevelAccessDataType = '';
@@ -42,16 +39,10 @@ class BucketIamConfiguration extends \Google\Model
   {
     return $this->bucketPolicyOnly;
   }
-  /**
-   * @param string
-   */
   public function setPublicAccessPrevention($publicAccessPrevention)
   {
     $this->publicAccessPrevention = $publicAccessPrevention;
   }
-  /**
-   * @return string
-   */
   public function getPublicAccessPrevention()
   {
     return $this->publicAccessPrevention;

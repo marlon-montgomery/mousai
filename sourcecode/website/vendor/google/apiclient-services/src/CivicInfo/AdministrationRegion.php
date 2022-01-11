@@ -27,9 +27,6 @@ class AdministrationRegion extends \Google\Collection
   protected $electionAdministrationBodyDataType = '';
   protected $localJurisdictionType = AdministrationRegion::class;
   protected $localJurisdictionDataType = '';
-  /**
-   * @var string
-   */
   public $name;
   protected $sourcesType = Source::class;
   protected $sourcesDataType = 'array';
@@ -62,16 +59,10 @@ class AdministrationRegion extends \Google\Collection
   {
     return $this->localJurisdiction;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

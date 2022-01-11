@@ -22,9 +22,6 @@ class GoogleFirebaseAppcheckV1betaBatchUpdateServicesRequest extends \Google\Col
   protected $collection_key = 'requests';
   protected $requestsType = GoogleFirebaseAppcheckV1betaUpdateServiceRequest::class;
   protected $requestsDataType = 'array';
-  /**
-   * @var string
-   */
   public $updateMask;
 
   /**
@@ -41,16 +38,10 @@ class GoogleFirebaseAppcheckV1betaBatchUpdateServicesRequest extends \Google\Col
   {
     return $this->requests;
   }
-  /**
-   * @param string
-   */
   public function setUpdateMask($updateMask)
   {
     $this->updateMask = $updateMask;
   }
-  /**
-   * @return string
-   */
   public function getUpdateMask()
   {
     return $this->updateMask;

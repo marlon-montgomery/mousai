@@ -6,8 +6,7 @@
     "authors": [
         {
             "name": "Graham Campbell",
-            "email": "hello@gjcampbell.co.uk",
-            "homepage": "https://github.com/GrahamCampbell"
+            "email": "hello@gjcampbell.co.uk"
         }
     ],
     "require": {

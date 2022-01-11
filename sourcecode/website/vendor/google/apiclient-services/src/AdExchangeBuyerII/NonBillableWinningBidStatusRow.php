@@ -23,9 +23,6 @@ class NonBillableWinningBidStatusRow extends \Google\Model
   protected $bidCountDataType = '';
   protected $rowDimensionsType = RowDimensions::class;
   protected $rowDimensionsDataType = '';
-  /**
-   * @var string
-   */
   public $status;
 
   /**
@@ -56,16 +53,10 @@ class NonBillableWinningBidStatusRow extends \Google\Model
   {
     return $this->rowDimensions;
   }
-  /**
-   * @param string
-   */
   public function setStatus($status)
   {
     $this->status = $status;
   }
-  /**
-   * @return string
-   */
   public function getStatus()
   {
     return $this->status;

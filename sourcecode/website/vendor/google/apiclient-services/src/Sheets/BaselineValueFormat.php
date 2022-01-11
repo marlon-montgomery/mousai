@@ -19,13 +19,7 @@ namespace Google\Service\Sheets;
 
 class BaselineValueFormat extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $comparisonType;
-  /**
-   * @var string
-   */
   public $description;
   protected $negativeColorType = Color::class;
   protected $negativeColorDataType = '';
@@ -40,30 +34,18 @@ class BaselineValueFormat extends \Google\Model
   protected $textFormatType = TextFormat::class;
   protected $textFormatDataType = '';
 
-  /**
-   * @param string
-   */
   public function setComparisonType($comparisonType)
   {
     $this->comparisonType = $comparisonType;
   }
-  /**
-   * @return string
-   */
   public function getComparisonType()
   {
     return $this->comparisonType;
   }
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;

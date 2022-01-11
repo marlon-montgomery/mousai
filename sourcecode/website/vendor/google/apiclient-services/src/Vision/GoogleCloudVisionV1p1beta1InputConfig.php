@@ -19,27 +19,15 @@ namespace Google\Service\Vision;
 
 class GoogleCloudVisionV1p1beta1InputConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $content;
   protected $gcsSourceType = GoogleCloudVisionV1p1beta1GcsSource::class;
   protected $gcsSourceDataType = '';
-  /**
-   * @var string
-   */
   public $mimeType;
 
-  /**
-   * @param string
-   */
   public function setContent($content)
   {
     $this->content = $content;
   }
-  /**
-   * @return string
-   */
   public function getContent()
   {
     return $this->content;
@@ -58,16 +46,10 @@ class GoogleCloudVisionV1p1beta1InputConfig extends \Google\Model
   {
     return $this->gcsSource;
   }
-  /**
-   * @param string
-   */
   public function setMimeType($mimeType)
   {
     $this->mimeType = $mimeType;
   }
-  /**
-   * @return string
-   */
   public function getMimeType()
   {
     return $this->mimeType;

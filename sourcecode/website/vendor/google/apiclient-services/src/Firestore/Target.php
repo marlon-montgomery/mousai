@@ -21,23 +21,11 @@ class Target extends \Google\Model
 {
   protected $documentsType = DocumentsTarget::class;
   protected $documentsDataType = '';
-  /**
-   * @var bool
-   */
   public $once;
   protected $queryType = QueryTarget::class;
   protected $queryDataType = '';
-  /**
-   * @var string
-   */
   public $readTime;
-  /**
-   * @var string
-   */
   public $resumeToken;
-  /**
-   * @var int
-   */
   public $targetId;
 
   /**
@@ -54,16 +42,10 @@ class Target extends \Google\Model
   {
     return $this->documents;
   }
-  /**
-   * @param bool
-   */
   public function setOnce($once)
   {
     $this->once = $once;
   }
-  /**
-   * @return bool
-   */
   public function getOnce()
   {
     return $this->once;
@@ -82,44 +64,26 @@ class Target extends \Google\Model
   {
     return $this->query;
   }
-  /**
-   * @param string
-   */
   public function setReadTime($readTime)
   {
     $this->readTime = $readTime;
   }
-  /**
-   * @return string
-   */
   public function getReadTime()
   {
     return $this->readTime;
   }
-  /**
-   * @param string
-   */
   public function setResumeToken($resumeToken)
   {
     $this->resumeToken = $resumeToken;
   }
-  /**
-   * @return string
-   */
   public function getResumeToken()
   {
     return $this->resumeToken;
   }
-  /**
-   * @param int
-   */
   public function setTargetId($targetId)
   {
     $this->targetId = $targetId;
   }
-  /**
-   * @return int
-   */
   public function getTargetId()
   {
     return $this->targetId;

@@ -19,21 +19,12 @@ namespace Google\Service\CloudMachineLearningEngine;
 
 class GoogleCloudMlV1SampledShapleyAttribution extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $numPaths;
 
-  /**
-   * @param int
-   */
   public function setNumPaths($numPaths)
   {
     $this->numPaths = $numPaths;
   }
-  /**
-   * @return int
-   */
   public function getNumPaths()
   {
     return $this->numPaths;

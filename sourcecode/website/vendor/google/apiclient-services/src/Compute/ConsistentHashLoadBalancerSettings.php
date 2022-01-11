@@ -21,13 +21,7 @@ class ConsistentHashLoadBalancerSettings extends \Google\Model
 {
   protected $httpCookieType = ConsistentHashLoadBalancerSettingsHttpCookie::class;
   protected $httpCookieDataType = '';
-  /**
-   * @var string
-   */
   public $httpHeaderName;
-  /**
-   * @var string
-   */
   public $minimumRingSize;
 
   /**
@@ -44,30 +38,18 @@ class ConsistentHashLoadBalancerSettings extends \Google\Model
   {
     return $this->httpCookie;
   }
-  /**
-   * @param string
-   */
   public function setHttpHeaderName($httpHeaderName)
   {
     $this->httpHeaderName = $httpHeaderName;
   }
-  /**
-   * @return string
-   */
   public function getHttpHeaderName()
   {
     return $this->httpHeaderName;
   }
-  /**
-   * @param string
-   */
   public function setMinimumRingSize($minimumRingSize)
   {
     $this->minimumRingSize = $minimumRingSize;
   }
-  /**
-   * @return string
-   */
   public function getMinimumRingSize()
   {
     return $this->minimumRingSize;

@@ -20,23 +20,14 @@ namespace Google\Service\DisplayVideo;
 class ListUsersResponse extends \Google\Collection
 {
   protected $collection_key = 'users';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $usersType = User::class;
   protected $usersDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

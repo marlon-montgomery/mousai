@@ -21,17 +21,8 @@ class RouterNatRule extends \Google\Model
 {
   protected $actionType = RouterNatRuleAction::class;
   protected $actionDataType = '';
-  /**
-   * @var string
-   */
   public $description;
-  /**
-   * @var string
-   */
   public $match;
-  /**
-   * @var string
-   */
   public $ruleNumber;
 
   /**
@@ -48,44 +39,26 @@ class RouterNatRule extends \Google\Model
   {
     return $this->action;
   }
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;
   }
-  /**
-   * @param string
-   */
   public function setMatch($match)
   {
     $this->match = $match;
   }
-  /**
-   * @return string
-   */
   public function getMatch()
   {
     return $this->match;
   }
-  /**
-   * @param string
-   */
   public function setRuleNumber($ruleNumber)
   {
     $this->ruleNumber = $ruleNumber;
   }
-  /**
-   * @return string
-   */
   public function getRuleNumber()
   {
     return $this->ruleNumber;

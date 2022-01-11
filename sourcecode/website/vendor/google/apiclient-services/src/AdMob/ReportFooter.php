@@ -20,23 +20,14 @@ namespace Google\Service\AdMob;
 class ReportFooter extends \Google\Collection
 {
   protected $collection_key = 'warnings';
-  /**
-   * @var string
-   */
   public $matchingRowCount;
   protected $warningsType = ReportWarning::class;
   protected $warningsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setMatchingRowCount($matchingRowCount)
   {
     $this->matchingRowCount = $matchingRowCount;
   }
-  /**
-   * @return string
-   */
   public function getMatchingRowCount()
   {
     return $this->matchingRowCount;

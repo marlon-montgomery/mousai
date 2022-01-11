@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class Subsetting extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $policy;
 
-  /**
-   * @param string
-   */
   public function setPolicy($policy)
   {
     $this->policy = $policy;
   }
-  /**
-   * @return string
-   */
   public function getPolicy()
   {
     return $this->policy;

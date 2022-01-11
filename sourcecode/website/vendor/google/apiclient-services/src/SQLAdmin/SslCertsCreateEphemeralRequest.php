@@ -23,39 +23,21 @@ class SslCertsCreateEphemeralRequest extends \Google\Model
         "accessToken" => "access_token",
         "publicKey" => "public_key",
   ];
-  /**
-   * @var string
-   */
   public $accessToken;
-  /**
-   * @var string
-   */
   public $publicKey;
 
-  /**
-   * @param string
-   */
   public function setAccessToken($accessToken)
   {
     $this->accessToken = $accessToken;
   }
-  /**
-   * @return string
-   */
   public function getAccessToken()
   {
     return $this->accessToken;
   }
-  /**
-   * @param string
-   */
   public function setPublicKey($publicKey)
   {
     $this->publicKey = $publicKey;
   }
-  /**
-   * @return string
-   */
   public function getPublicKey()
   {
     return $this->publicKey;

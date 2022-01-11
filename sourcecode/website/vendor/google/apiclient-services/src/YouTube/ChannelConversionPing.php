@@ -19,39 +19,21 @@ namespace Google\Service\YouTube;
 
 class ChannelConversionPing extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $context;
-  /**
-   * @var string
-   */
   public $conversionUrl;
 
-  /**
-   * @param string
-   */
   public function setContext($context)
   {
     $this->context = $context;
   }
-  /**
-   * @return string
-   */
   public function getContext()
   {
     return $this->context;
   }
-  /**
-   * @param string
-   */
   public function setConversionUrl($conversionUrl)
   {
     $this->conversionUrl = $conversionUrl;
   }
-  /**
-   * @return string
-   */
   public function getConversionUrl()
   {
     return $this->conversionUrl;

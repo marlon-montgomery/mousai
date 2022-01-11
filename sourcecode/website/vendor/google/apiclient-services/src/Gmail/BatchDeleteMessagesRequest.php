@@ -20,21 +20,12 @@ namespace Google\Service\Gmail;
 class BatchDeleteMessagesRequest extends \Google\Collection
 {
   protected $collection_key = 'ids';
-  /**
-   * @var string[]
-   */
   public $ids;
 
-  /**
-   * @param string[]
-   */
   public function setIds($ids)
   {
     $this->ids = $ids;
   }
-  /**
-   * @return string[]
-   */
   public function getIds()
   {
     return $this->ids;

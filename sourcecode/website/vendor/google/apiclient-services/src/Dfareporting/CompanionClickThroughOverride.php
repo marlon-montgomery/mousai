@@ -21,9 +21,6 @@ class CompanionClickThroughOverride extends \Google\Model
 {
   protected $clickThroughUrlType = ClickThroughUrl::class;
   protected $clickThroughUrlDataType = '';
-  /**
-   * @var string
-   */
   public $creativeId;
 
   /**
@@ -40,16 +37,10 @@ class CompanionClickThroughOverride extends \Google\Model
   {
     return $this->clickThroughUrl;
   }
-  /**
-   * @param string
-   */
   public function setCreativeId($creativeId)
   {
     $this->creativeId = $creativeId;
   }
-  /**
-   * @return string
-   */
   public function getCreativeId()
   {
     return $this->creativeId;

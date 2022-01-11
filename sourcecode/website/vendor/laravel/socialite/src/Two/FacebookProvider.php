@@ -92,20 +92,18 @@ class FacebookProvider extends AbstractProvider implements ProviderInterface
     {
         $this->lastToken = $token;
 
-        $params = [
-            'access_token' => $token,
-            'fields' => implode(',', $this->fields),
-        ];
+        $meUrl = $this->graphUrl.'/'.$this->version.'/me?access_token='.$token.'&fields='.implode(',', $this->fields);
 
         if (! empty($this->clientSecret)) {
-            $params['appsecret_proof'] = hash_hmac('sha256', $token, $this->clientSecret);
+            $appSecretProof = hash_hmac('sha256', $token, $this->clientSecret);
+
+            $meUrl .= '&appsecret_proof='.$appSecretProof;
         }
 
-        $response = $this->getHttpClient()->get($this->graphUrl.'/'.$this->version.'/me', [
+        $response = $this->getHttpClient()->get($meUrl, [
             'headers' => [
                 'Accept' => 'application/json',
             ],
-            'query' => $params,
         ]);
 
         return json_decode($response->getBody(), true);

@@ -22,27 +22,12 @@ class ExportContext extends \Google\Collection
   protected $collection_key = 'databases';
   protected $csvExportOptionsType = ExportContextCsvExportOptions::class;
   protected $csvExportOptionsDataType = '';
-  /**
-   * @var string[]
-   */
   public $databases;
-  /**
-   * @var string
-   */
   public $fileType;
-  /**
-   * @var string
-   */
   public $kind;
-  /**
-   * @var bool
-   */
   public $offload;
   protected $sqlExportOptionsType = ExportContextSqlExportOptions::class;
   protected $sqlExportOptionsDataType = '';
-  /**
-   * @var string
-   */
   public $uri;
 
   /**
@@ -59,58 +44,34 @@ class ExportContext extends \Google\Collection
   {
     return $this->csvExportOptions;
   }
-  /**
-   * @param string[]
-   */
   public function setDatabases($databases)
   {
     $this->databases = $databases;
   }
-  /**
-   * @return string[]
-   */
   public function getDatabases()
   {
     return $this->databases;
   }
-  /**
-   * @param string
-   */
   public function setFileType($fileType)
   {
     $this->fileType = $fileType;
   }
-  /**
-   * @return string
-   */
   public function getFileType()
   {
     return $this->fileType;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
   }
-  /**
-   * @param bool
-   */
   public function setOffload($offload)
   {
     $this->offload = $offload;
   }
-  /**
-   * @return bool
-   */
   public function getOffload()
   {
     return $this->offload;
@@ -129,16 +90,10 @@ class ExportContext extends \Google\Collection
   {
     return $this->sqlExportOptions;
   }
-  /**
-   * @param string
-   */
   public function setUri($uri)
   {
     $this->uri = $uri;
   }
-  /**
-   * @return string
-   */
   public function getUri()
   {
     return $this->uri;

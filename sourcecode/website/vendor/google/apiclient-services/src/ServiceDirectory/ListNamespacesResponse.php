@@ -22,9 +22,6 @@ class ListNamespacesResponse extends \Google\Collection
   protected $collection_key = 'namespaces';
   protected $namespacesType = ServicedirectoryNamespace::class;
   protected $namespacesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListNamespacesResponse extends \Google\Collection
   {
     return $this->namespaces;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

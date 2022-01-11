@@ -22,19 +22,10 @@ class DomainMappingStatus extends \Google\Collection
   protected $collection_key = 'resourceRecords';
   protected $conditionsType = GoogleCloudRunV1Condition::class;
   protected $conditionsDataType = 'array';
-  /**
-   * @var string
-   */
   public $mappedRouteName;
-  /**
-   * @var int
-   */
   public $observedGeneration;
   protected $resourceRecordsType = ResourceRecord::class;
   protected $resourceRecordsDataType = 'array';
-  /**
-   * @var string
-   */
   public $url;
 
   /**
@@ -51,30 +42,18 @@ class DomainMappingStatus extends \Google\Collection
   {
     return $this->conditions;
   }
-  /**
-   * @param string
-   */
   public function setMappedRouteName($mappedRouteName)
   {
     $this->mappedRouteName = $mappedRouteName;
   }
-  /**
-   * @return string
-   */
   public function getMappedRouteName()
   {
     return $this->mappedRouteName;
   }
-  /**
-   * @param int
-   */
   public function setObservedGeneration($observedGeneration)
   {
     $this->observedGeneration = $observedGeneration;
   }
-  /**
-   * @return int
-   */
   public function getObservedGeneration()
   {
     return $this->observedGeneration;
@@ -93,16 +72,10 @@ class DomainMappingStatus extends \Google\Collection
   {
     return $this->resourceRecords;
   }
-  /**
-   * @param string
-   */
   public function setUrl($url)
   {
     $this->url = $url;
   }
-  /**
-   * @return string
-   */
   public function getUrl()
   {
     return $this->url;

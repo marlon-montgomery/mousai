@@ -19,21 +19,12 @@ namespace Google\Service\AIPlatformNotebooks;
 
 class RollbackInstanceRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $targetSnapshot;
 
-  /**
-   * @param string
-   */
   public function setTargetSnapshot($targetSnapshot)
   {
     $this->targetSnapshot = $targetSnapshot;
   }
-  /**
-   * @return string
-   */
   public function getTargetSnapshot()
   {
     return $this->targetSnapshot;

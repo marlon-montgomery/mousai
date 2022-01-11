@@ -1,13 +1,25 @@
 <?php namespace Common\Auth\Controllers;
 
+use App\User;
 use Auth;
 use Common\Auth\Oauth;
+use Common\Auth\Requests\SocialAuthBitclout;
+use Common\Auth\Roles\Role;
+use Common\Auth\SocialProfile;
 use Common\Core\BaseController;
+use Common\Core\Bootstrap\BootstrapData;
 use Common\Settings\Settings;
+use Elliptic\EC;
 use Exception;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Log;
+use Muvon\KISS\Base58Codec;
 use Session;
 
 class SocialAuthController extends BaseController
@@ -27,14 +39,21 @@ class SocialAuthController extends BaseController
      */
     private $settings;
 
+    /**
+     * @var BootstrapData
+     */
+    private $bootstrapData;
+
     public function __construct(
         Request $request,
         Oauth $oauth,
-        Settings $settings
+        Settings $settings,
+        BootstrapData $bootstrapData
     ) {
         $this->oauth = $oauth;
         $this->request = $request;
         $this->settings = $settings;
+        $this->bootstrapData = $bootstrapData;
 
         $this->middleware('auth', ['only' => ['connect', 'disconnect']]);
         $this->middleware('guest', ['only' => ['login']]);
@@ -75,7 +94,7 @@ class SocialAuthController extends BaseController
     /**
      * Login with specified social provider.
      *
-     * @param  string $provider
+     * @param string $provider
      * @return mixed
      */
     public function login($provider)
@@ -191,5 +210,75 @@ class SocialAuthController extends BaseController
         return $this->success([
             'data' => $this->oauth->createUserFromOAuthData($data),
         ]);
+    }
+
+    public function bitclout(SocialAuthBitclout $request)
+    {
+        ['publicKey' => $publicKey, 'jwt' => $jwt] = $request->validated();
+
+        $pkHex = Base58Codec::checkDecode($publicKey);
+        if (!$pkHex) {
+            return $this->error('Invalid public key');
+        }
+
+        try {
+            $ec = new EC('secp256k1');
+            $pkFull = $ec->keyFromPublic(substr($pkHex, 6), 'hex')->getPublic(false, 'hex');
+            $pkBase64 = base64_encode(hex2bin('3056301006072a8648ce3d020106052b8104000a034200' . $pkFull));
+            $keyMaterial = sprintf('-----BEGIN PUBLIC KEY-----%s-----END PUBLIC KEY-----', PHP_EOL . $pkBase64 . PHP_EOL);
+            JWT::decode($jwt, new Key($keyMaterial, 'ES256'));
+        } catch (Exception $e) {
+            return $this->error('Invalid verify public key');
+        }
+
+        try {
+            $profile = Http::withHeaders(['Content-Type' => 'application/json'])
+                ->post('https://api.bitclout.com/api/v0/get-single-profile', [
+                    'PublicKeyBase58Check' => $publicKey,
+                ])
+                ->throw()
+                ->json('Profile');
+        } catch (Exception $e) {
+            return $this->error('Error fetch profile');
+        }
+
+        if (empty($profile['Username'])) {
+            return $this->error('Profile not verify');
+        }
+
+        $socialProfile = SocialProfile::where('user_service_id', $publicKey)
+            ->where('service_name', 'bitclout')
+            ->with('user')
+            ->first();
+
+        if (!$socialProfile) {
+            $user = User::create([
+                'username' => $profile['Username'],
+                'email' => $profile['Username'] . '@bitclout.com',
+                'password' => Hash::make(Str::random())
+            ]);
+
+            $user->roles()->attach(Role::where('default', 1)->first() ?? 1);
+
+            SocialProfile::create([
+                'user_id' => $user->id,
+                'service_name' => 'bitclout',
+                'user_service_id' => $publicKey,
+                'username' => $profile['Username'],
+            ]);
+
+            $socialProfile = SocialProfile::where('user_service_id', $publicKey)
+                ->where('service_name', 'bitclout')
+                ->with('user')
+                ->first();
+        } else {
+            $user = $socialProfile->user;
+        }
+
+        Auth::login($user, true);
+
+        $data = $this->bootstrapData->init()->getEncoded();
+
+        return $this->success(['data' => $data]);
     }
 }

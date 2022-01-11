@@ -19,39 +19,21 @@ namespace Google\Service\AndroidEnterprise;
 
 class TokenPagination extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $nextPageToken;
-  /**
-   * @var string
-   */
   public $previousPageToken;
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;
   }
-  /**
-   * @param string
-   */
   public function setPreviousPageToken($previousPageToken)
   {
     $this->previousPageToken = $previousPageToken;
   }
-  /**
-   * @return string
-   */
   public function getPreviousPageToken()
   {
     return $this->previousPageToken;

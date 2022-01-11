@@ -2,11 +2,11 @@
 
 namespace Doctrine\DBAL\Driver\PDO;
 
+use Doctrine\DBAL\Driver\Exception as ExceptionInterface;
 use Doctrine\DBAL\Driver\Result as ResultInterface;
 use Doctrine\DBAL\Driver\ServerInfoAwareConnection;
 use Doctrine\DBAL\Driver\Statement as StatementInterface;
 use Doctrine\DBAL\ParameterType;
-use Doctrine\Deprecations\Deprecation;
 use PDO;
 use PDOException;
 use PDOStatement;
@@ -20,12 +20,22 @@ final class Connection implements ServerInfoAwareConnection
 
     /**
      * @internal The connection can be only instantiated by its driver.
+     *
+     * @param string       $dsn
+     * @param string|null  $user
+     * @param string|null  $password
+     * @param mixed[]|null $options
+     *
+     * @throws ExceptionInterface
      */
-    public function __construct(PDO $connection)
+    public function __construct($dsn, $user = null, $password = null, ?array $options = null)
     {
-        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $this->connection = $connection;
+        try {
+            $this->connection = new PDO($dsn, (string) $user, (string) $password, (array) $options);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $exception) {
+            throw Exception::new($exception);
+        }
     }
 
     public function exec(string $sql): int
@@ -60,7 +70,7 @@ final class Connection implements ServerInfoAwareConnection
             $stmt = $this->connection->prepare($sql);
             assert($stmt instanceof PDOStatement);
 
-            return new Statement($stmt);
+            return $this->createStatement($stmt);
         } catch (PDOException $exception) {
             throw Exception::new($exception);
         }
@@ -96,29 +106,40 @@ final class Connection implements ServerInfoAwareConnection
                 return $this->connection->lastInsertId();
             }
 
-            Deprecation::triggerIfCalledFromOutside(
-                'doctrine/dbal',
-                'https://github.com/doctrine/dbal/issues/4687',
-                'The usage of Connection::lastInsertId() with a sequence name is deprecated.'
-            );
-
             return $this->connection->lastInsertId($name);
         } catch (PDOException $exception) {
             throw Exception::new($exception);
         }
     }
 
-    public function beginTransaction(): bool
+    /**
+     * Creates a wrapped statement
+     */
+    protected function createStatement(PDOStatement $stmt): Statement
+    {
+        return new Statement($stmt);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function beginTransaction()
     {
         return $this->connection->beginTransaction();
     }
 
-    public function commit(): bool
+    /**
+     * {@inheritDoc}
+     */
+    public function commit()
     {
         return $this->connection->commit();
     }
 
-    public function rollBack(): bool
+    /**
+     * {@inheritDoc}
+     */
+    public function rollBack()
     {
         return $this->connection->rollBack();
     }

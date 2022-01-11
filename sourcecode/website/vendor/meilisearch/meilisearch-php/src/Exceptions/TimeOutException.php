@@ -4,26 +4,26 @@ declare(strict_types=1);
 
 namespace MeiliSearch\Exceptions;
 
-use Exception;
-use Throwable;
-
-class TimeOutException extends Exception
+class TimeOutException extends \Exception
 {
-    public $code = null;
-    public $message = null;
+    public $code = 408;
+    public $message = 'Request timed out';
 
-    public function __construct(?string $message = null, ?int $code = null, ?Throwable $previous = null)
+    public function __construct($message = null, $code = null, $previous = null)
     {
-        $this->message = $message ?? 'Request timed out';
-        $this->code = $code ?? 408;
-
+        if (isset($message)) {
+            $this->message = $message;
+        }
+        if (isset($code)) {
+            $this->code = $code;
+        }
         parent::__construct($this->message, $this->code, $previous);
     }
 
     public function __toString()
     {
         $base = 'MeiliSearch TimeOutException: Code: '.$this->code;
-        if ($this->message) {
+        if (isset($this->message)) {
             return $base.' - Message: '.$this->message;
         } else {
             return $base;

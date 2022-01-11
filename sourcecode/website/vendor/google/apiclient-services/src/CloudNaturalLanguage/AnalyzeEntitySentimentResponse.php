@@ -22,9 +22,6 @@ class AnalyzeEntitySentimentResponse extends \Google\Collection
   protected $collection_key = 'entities';
   protected $entitiesType = Entity::class;
   protected $entitiesDataType = 'array';
-  /**
-   * @var string
-   */
   public $language;
 
   /**
@@ -41,16 +38,10 @@ class AnalyzeEntitySentimentResponse extends \Google\Collection
   {
     return $this->entities;
   }
-  /**
-   * @param string
-   */
   public function setLanguage($language)
   {
     $this->language = $language;
   }
-  /**
-   * @return string
-   */
   public function getLanguage()
   {
     return $this->language;

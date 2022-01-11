@@ -19,21 +19,12 @@ namespace Google\Service\Sheets;
 
 class ClearBasicFilterRequest extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $sheetId;
 
-  /**
-   * @param int
-   */
   public function setSheetId($sheetId)
   {
     $this->sheetId = $sheetId;
   }
-  /**
-   * @return int
-   */
   public function getSheetId()
   {
     return $this->sheetId;

@@ -31,7 +31,6 @@ use Symfony\Component\HttpClient\Response\StreamableInterface;
 use Symfony\Component\HttpClient\Response\StreamWrapper;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Contracts\Service\ResetInterface;
 
 if (!interface_exists(RequestFactoryInterface::class)) {
     throw new \LogicException('You cannot use the "Symfony\Component\HttpClient\Psr18Client" as the "psr/http-factory" package is not installed. Try running "composer require nyholm/psr7".');
@@ -50,7 +49,7 @@ if (!interface_exists(ClientInterface::class)) {
  *
  * @author Nicolas Grekas <p@tchwork.com>
  */
-final class Psr18Client implements ClientInterface, RequestFactoryInterface, StreamFactoryInterface, UriFactoryInterface, ResetInterface
+final class Psr18Client implements ClientInterface, RequestFactoryInterface, StreamFactoryInterface, UriFactoryInterface
 {
     private $client;
     private $responseFactory;
@@ -190,13 +189,6 @@ final class Psr18Client implements ClientInterface, RequestFactoryInterface, Str
         }
 
         throw new \LogicException(sprintf('You cannot use "%s()" as the "nyholm/psr7" package is not installed. Try running "composer require nyholm/psr7".', __METHOD__));
-    }
-
-    public function reset()
-    {
-        if ($this->client instanceof ResetInterface) {
-            $this->client->reset();
-        }
     }
 }
 

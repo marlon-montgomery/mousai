@@ -10,8 +10,6 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Platforms\SQLServer2012Platform;
 use Doctrine\DBAL\Schema\SQLServerSchemaManager;
 
-use function assert;
-
 /**
  * Abstract base implementation of the {@link Driver} interface for Microsoft SQL Server based drivers.
  */
@@ -30,8 +28,6 @@ abstract class AbstractSQLServerDriver implements Driver
      */
     public function getSchemaManager(Connection $conn, AbstractPlatform $platform)
     {
-        assert($platform instanceof SQLServer2012Platform);
-
         return new SQLServerSchemaManager($conn, $platform);
     }
 

@@ -19,41 +19,23 @@ namespace Google\Service\Docs;
 
 class TableCellLocation extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $columnIndex;
-  /**
-   * @var int
-   */
   public $rowIndex;
   protected $tableStartLocationType = Location::class;
   protected $tableStartLocationDataType = '';
 
-  /**
-   * @param int
-   */
   public function setColumnIndex($columnIndex)
   {
     $this->columnIndex = $columnIndex;
   }
-  /**
-   * @return int
-   */
   public function getColumnIndex()
   {
     return $this->columnIndex;
   }
-  /**
-   * @param int
-   */
   public function setRowIndex($rowIndex)
   {
     $this->rowIndex = $rowIndex;
   }
-  /**
-   * @return int
-   */
   public function getRowIndex()
   {
     return $this->rowIndex;

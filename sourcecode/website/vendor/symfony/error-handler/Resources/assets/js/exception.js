@@ -30,15 +30,6 @@ if (typeof Sfjs === 'undefined') {
             };
         }
 
-        if (navigator.clipboard) {
-            document.querySelectorAll('[data-clipboard-text]').forEach(function(element) {
-                removeClass(element, 'hidden');
-                element.addEventListener('click', function() {
-                    navigator.clipboard.writeText(element.getAttribute('data-clipboard-text'));
-                })
-            });
-        }
-
         return {
             addEventListener: addEventListener,
 
@@ -171,14 +162,6 @@ if (typeof Sfjs === 'undefined') {
                     var toggleLinks = toggles[i].querySelectorAll('a');
                     for (var j = 0; j < toggleLinks.length; j++) {
                         addEventListener(toggleLinks[j], 'click', function(e) {
-                            e.stopPropagation();
-                        });
-                    }
-
-                    /* Prevents from disallowing clicks on "copy to clipboard" elements inside toggles */
-                    var copyToClipboardElements = toggles[i].querySelectorAll('span[data-clipboard-text]');
-                    for (var k = 0; k < copyToClipboardElements.length; k++) {
-                        addEventListener(copyToClipboardElements[k], 'click', function(e) {
                             e.stopPropagation();
                         });
                     }

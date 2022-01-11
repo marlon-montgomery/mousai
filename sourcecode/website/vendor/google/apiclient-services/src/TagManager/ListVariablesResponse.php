@@ -20,23 +20,14 @@ namespace Google\Service\TagManager;
 class ListVariablesResponse extends \Google\Collection
 {
   protected $collection_key = 'variable';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $variableType = Variable::class;
   protected $variableDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

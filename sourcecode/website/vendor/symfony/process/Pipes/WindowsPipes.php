@@ -88,7 +88,10 @@ class WindowsPipes extends AbstractPipes
         parent::__construct($input);
     }
 
-    public function __sleep(): array
+    /**
+     * @return array
+     */
+    public function __sleep()
     {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }

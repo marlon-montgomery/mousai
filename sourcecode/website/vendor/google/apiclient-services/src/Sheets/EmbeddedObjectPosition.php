@@ -19,27 +19,15 @@ namespace Google\Service\Sheets;
 
 class EmbeddedObjectPosition extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $newSheet;
   protected $overlayPositionType = OverlayPosition::class;
   protected $overlayPositionDataType = '';
-  /**
-   * @var int
-   */
   public $sheetId;
 
-  /**
-   * @param bool
-   */
   public function setNewSheet($newSheet)
   {
     $this->newSheet = $newSheet;
   }
-  /**
-   * @return bool
-   */
   public function getNewSheet()
   {
     return $this->newSheet;
@@ -58,16 +46,10 @@ class EmbeddedObjectPosition extends \Google\Model
   {
     return $this->overlayPosition;
   }
-  /**
-   * @param int
-   */
   public function setSheetId($sheetId)
   {
     $this->sheetId = $sheetId;
   }
-  /**
-   * @return int
-   */
   public function getSheetId()
   {
     return $this->sheetId;

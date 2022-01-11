@@ -19,22 +19,13 @@ namespace Google\Service\Dataflow;
 
 class Point extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $time;
   public $value;
 
-  /**
-   * @param string
-   */
   public function setTime($time)
   {
     $this->time = $time;
   }
-  /**
-   * @return string
-   */
   public function getTime()
   {
     return $this->time;

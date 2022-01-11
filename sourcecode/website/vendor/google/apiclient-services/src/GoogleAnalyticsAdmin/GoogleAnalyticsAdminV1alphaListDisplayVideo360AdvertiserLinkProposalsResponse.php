@@ -22,9 +22,6 @@ class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsRespo
   protected $collection_key = 'displayVideo360AdvertiserLinkProposals';
   protected $displayVideo360AdvertiserLinkProposalsType = GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal::class;
   protected $displayVideo360AdvertiserLinkProposalsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsRespo
   {
     return $this->displayVideo360AdvertiserLinkProposals;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

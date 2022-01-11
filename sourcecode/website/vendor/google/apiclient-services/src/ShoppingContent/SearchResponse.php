@@ -20,23 +20,14 @@ namespace Google\Service\ShoppingContent;
 class SearchResponse extends \Google\Collection
 {
   protected $collection_key = 'results';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $resultsType = ReportRow::class;
   protected $resultsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

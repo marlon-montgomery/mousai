@@ -25,9 +25,6 @@ class EntityMention extends \Google\Collection
   public $confidence;
   protected $linkedEntitiesType = LinkedEntity::class;
   protected $linkedEntitiesDataType = 'array';
-  /**
-   * @var string
-   */
   public $mentionId;
   protected $subjectType = Feature::class;
   protected $subjectDataType = '';
@@ -35,9 +32,6 @@ class EntityMention extends \Google\Collection
   protected $temporalAssessmentDataType = '';
   protected $textType = TextSpan::class;
   protected $textDataType = '';
-  /**
-   * @var string
-   */
   public $type;
 
   /**
@@ -76,16 +70,10 @@ class EntityMention extends \Google\Collection
   {
     return $this->linkedEntities;
   }
-  /**
-   * @param string
-   */
   public function setMentionId($mentionId)
   {
     $this->mentionId = $mentionId;
   }
-  /**
-   * @return string
-   */
   public function getMentionId()
   {
     return $this->mentionId;
@@ -132,16 +120,10 @@ class EntityMention extends \Google\Collection
   {
     return $this->text;
   }
-  /**
-   * @param string
-   */
   public function setType($type)
   {
     $this->type = $type;
   }
-  /**
-   * @return string
-   */
   public function getType()
   {
     return $this->type;

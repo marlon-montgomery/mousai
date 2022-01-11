@@ -2,10 +2,7 @@
 
 namespace Doctrine\DBAL\Schema;
 
-use Doctrine\DBAL\Exception;
-use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types;
-use Doctrine\Deprecations\Deprecation;
 
 use function array_intersect_key;
 use function array_key_exists;
@@ -23,41 +20,31 @@ use function strtolower;
  */
 class Comparator
 {
-    /** @var AbstractPlatform|null */
-    private $platform;
-
     /**
-     * @internal The comparator can be only instantiated by a schema manager.
+     * @return SchemaDiff
+     *
+     * @throws SchemaException
      */
-    public function __construct(?AbstractPlatform $platform = null)
+    public static function compareSchemas(Schema $fromSchema, Schema $toSchema)
     {
-        if ($platform === null) {
-            Deprecation::triggerIfCalledFromOutside(
-                'doctrine/dbal',
-                'https://github.com/doctrine/dbal/pull/4659',
-                'Not passing a $platform to %s is deprecated.'
-                    . ' Use AbstractSchemaManager::createComparator() to instantiate the comparator.',
-                __METHOD__
-            );
-        }
+        $c = new self();
 
-        $this->platform = $platform;
+        return $c->compare($fromSchema, $toSchema);
     }
 
     /**
      * Returns a SchemaDiff object containing the differences between the schemas $fromSchema and $toSchema.
      *
-     * This method should be called non-statically since it will be declared as non-static in the next major release.
+     * The returned differences are returned in such a way that they contain the
+     * operations to change the schema stored in $fromSchema to the schema that is
+     * stored in $toSchema.
      *
      * @return SchemaDiff
      *
      * @throws SchemaException
      */
-    public static function compareSchemas(
-        Schema $fromSchema,
-        Schema $toSchema
-    ) {
-        $comparator       = new self();
+    public function compare(Schema $fromSchema, Schema $toSchema)
+    {
         $diff             = new SchemaDiff();
         $diff->fromSchema = $fromSchema;
 
@@ -84,7 +71,7 @@ class Comparator
             if (! $fromSchema->hasTable($tableName)) {
                 $diff->newTables[$tableName] = $toSchema->getTable($tableName);
             } else {
-                $tableDifferences = $comparator->diffTable(
+                $tableDifferences = $this->diffTable(
                     $fromSchema->getTable($tableName),
                     $toSchema->getTable($tableName)
                 );
@@ -147,18 +134,18 @@ class Comparator
         foreach ($toSchema->getSequences() as $sequence) {
             $sequenceName = $sequence->getShortestName($toSchema->getName());
             if (! $fromSchema->hasSequence($sequenceName)) {
-                if (! $comparator->isAutoIncrementSequenceInSchema($fromSchema, $sequence)) {
+                if (! $this->isAutoIncrementSequenceInSchema($fromSchema, $sequence)) {
                     $diff->newSequences[] = $sequence;
                 }
             } else {
-                if ($comparator->diffSequence($sequence, $fromSchema->getSequence($sequenceName))) {
+                if ($this->diffSequence($sequence, $fromSchema->getSequence($sequenceName))) {
                     $diff->changedSequences[] = $toSchema->getSequence($sequenceName);
                 }
             }
         }
 
         foreach ($fromSchema->getSequences() as $sequence) {
-            if ($comparator->isAutoIncrementSequenceInSchema($toSchema, $sequence)) {
+            if ($this->isAutoIncrementSequenceInSchema($toSchema, $sequence)) {
                 continue;
             }
 
@@ -175,28 +162,12 @@ class Comparator
     }
 
     /**
-     * @deprecated Use non-static call to {@link compareSchemas()} instead.
-     *
-     * @return SchemaDiff
-     *
-     * @throws SchemaException
-     */
-    public function compare(Schema $fromSchema, Schema $toSchema)
-    {
-        Deprecation::trigger(
-            'doctrine/dbal',
-            'https://github.com/doctrine/dbal/pull/4707',
-            'Method compare() is deprecated. Use a non-static call to compareSchemas() instead.'
-        );
-
-        return $this->compareSchemas($fromSchema, $toSchema);
-    }
-
-    /**
      * @param Schema   $schema
      * @param Sequence $sequence
+     *
+     * @return bool
      */
-    private function isAutoIncrementSequenceInSchema($schema, $sequence): bool
+    private function isAutoIncrementSequenceInSchema($schema, $sequence)
     {
         foreach ($schema->getTables() as $table) {
             if ($sequence->isAutoIncrementsFor($table)) {
@@ -226,7 +197,7 @@ class Comparator
      *
      * @return TableDiff|false
      *
-     * @throws Exception
+     * @throws SchemaException
      */
     public function diffTable(Table $fromTable, Table $toTable)
     {
@@ -256,26 +227,17 @@ class Comparator
                 continue;
             }
 
-            $toColumn = $toTable->getColumn($columnName);
-
             // See if column has changed properties in "to" table.
-            $changedProperties = $this->diffColumn($column, $toColumn);
+            $changedProperties = $this->diffColumn($column, $toTable->getColumn($columnName));
 
-            if ($this->platform !== null) {
-                if ($this->columnsEqual($column, $toColumn)) {
-                    continue;
-                }
-            } elseif (count($changedProperties) === 0) {
+            if (count($changedProperties) === 0) {
                 continue;
             }
 
-            $tableDifferences->changedColumns[$column->getName()] = new ColumnDiff(
-                $column->getName(),
-                $toColumn,
-                $changedProperties,
-                $column
-            );
+            $columnDiff = new ColumnDiff($column->getName(), $toTable->getColumn($columnName), $changedProperties);
 
+            $columnDiff->fromColumn                               = $column;
+            $tableDifferences->changedColumns[$column->getName()] = $columnDiff;
             $changes++;
         }
 
@@ -353,13 +315,15 @@ class Comparator
     /**
      * Try to find columns that only changed their name, rename operations maybe cheaper than add/drop
      * however ambiguities between different possibilities should not lead to renaming at all.
+     *
+     * @return void
      */
-    private function detectColumnRenamings(TableDiff $tableDifferences): void
+    private function detectColumnRenamings(TableDiff $tableDifferences)
     {
         $renameCandidates = [];
         foreach ($tableDifferences->addedColumns as $addedColumnName => $addedColumn) {
             foreach ($tableDifferences->removedColumns as $removedColumn) {
-                if (! $this->columnsEqual($addedColumn, $removedColumn)) {
+                if (count($this->diffColumn($addedColumn, $removedColumn)) !== 0) {
                     continue;
                 }
 
@@ -391,8 +355,10 @@ class Comparator
     /**
      * Try to find indexes that only changed their name, rename operations maybe cheaper than add/drop
      * however ambiguities between different possibilities should not lead to renaming at all.
+     *
+     * @return void
      */
-    private function detectIndexRenamings(TableDiff $tableDifferences): void
+    private function detectIndexRenamings(TableDiff $tableDifferences)
     {
         $renameCandidates = [];
 
@@ -464,24 +430,10 @@ class Comparator
     }
 
     /**
-     * Compares the definitions of the given columns
-     *
-     * @throws Exception
-     */
-    public function columnsEqual(Column $column1, Column $column2): bool
-    {
-        if ($this->platform === null) {
-            return $this->diffColumn($column1, $column2) === [];
-        }
-
-        return $this->platform->columnsEqual($column1, $column2);
-    }
-
-    /**
      * Returns the difference between the columns
      *
-     * If there are differences this method returns the changed properties as a
-     * string array, otherwise an empty array gets returned.
+     * If there are differences this method returns $field2, otherwise the
+     * boolean false.
      *
      * @return string[]
      */

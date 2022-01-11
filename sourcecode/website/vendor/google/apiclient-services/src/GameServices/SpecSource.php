@@ -19,39 +19,21 @@ namespace Google\Service\GameServices;
 
 class SpecSource extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $gameServerConfigName;
-  /**
-   * @var string
-   */
   public $name;
 
-  /**
-   * @param string
-   */
   public function setGameServerConfigName($gameServerConfigName)
   {
     $this->gameServerConfigName = $gameServerConfigName;
   }
-  /**
-   * @return string
-   */
   public function getGameServerConfigName()
   {
     return $this->gameServerConfigName;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

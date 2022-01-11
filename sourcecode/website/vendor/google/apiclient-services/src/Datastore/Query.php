@@ -22,29 +22,17 @@ class Query extends \Google\Collection
   protected $collection_key = 'projection';
   protected $distinctOnType = PropertyReference::class;
   protected $distinctOnDataType = 'array';
-  /**
-   * @var string
-   */
   public $endCursor;
   protected $filterType = Filter::class;
   protected $filterDataType = '';
   protected $kindType = KindExpression::class;
   protected $kindDataType = 'array';
-  /**
-   * @var int
-   */
   public $limit;
-  /**
-   * @var int
-   */
   public $offset;
   protected $orderType = PropertyOrder::class;
   protected $orderDataType = 'array';
   protected $projectionType = Projection::class;
   protected $projectionDataType = 'array';
-  /**
-   * @var string
-   */
   public $startCursor;
 
   /**
@@ -61,16 +49,10 @@ class Query extends \Google\Collection
   {
     return $this->distinctOn;
   }
-  /**
-   * @param string
-   */
   public function setEndCursor($endCursor)
   {
     $this->endCursor = $endCursor;
   }
-  /**
-   * @return string
-   */
   public function getEndCursor()
   {
     return $this->endCursor;
@@ -103,30 +85,18 @@ class Query extends \Google\Collection
   {
     return $this->kind;
   }
-  /**
-   * @param int
-   */
   public function setLimit($limit)
   {
     $this->limit = $limit;
   }
-  /**
-   * @return int
-   */
   public function getLimit()
   {
     return $this->limit;
   }
-  /**
-   * @param int
-   */
   public function setOffset($offset)
   {
     $this->offset = $offset;
   }
-  /**
-   * @return int
-   */
   public function getOffset()
   {
     return $this->offset;
@@ -159,16 +129,10 @@ class Query extends \Google\Collection
   {
     return $this->projection;
   }
-  /**
-   * @param string
-   */
   public function setStartCursor($startCursor)
   {
     $this->startCursor = $startCursor;
   }
-  /**
-   * @return string
-   */
   public function getStartCursor()
   {
     return $this->startCursor;

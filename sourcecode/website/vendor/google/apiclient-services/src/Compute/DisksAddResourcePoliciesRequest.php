@@ -20,21 +20,12 @@ namespace Google\Service\Compute;
 class DisksAddResourcePoliciesRequest extends \Google\Collection
 {
   protected $collection_key = 'resourcePolicies';
-  /**
-   * @var string[]
-   */
   public $resourcePolicies;
 
-  /**
-   * @param string[]
-   */
   public function setResourcePolicies($resourcePolicies)
   {
     $this->resourcePolicies = $resourcePolicies;
   }
-  /**
-   * @return string[]
-   */
   public function getResourcePolicies()
   {
     return $this->resourcePolicies;

@@ -19,27 +19,15 @@ namespace Google\Service\Document;
 
 class GoogleCloudDocumentaiV1ReviewDocumentRequest extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $enableSchemaValidation;
   protected $inlineDocumentType = GoogleCloudDocumentaiV1Document::class;
   protected $inlineDocumentDataType = '';
-  /**
-   * @var string
-   */
   public $priority;
 
-  /**
-   * @param bool
-   */
   public function setEnableSchemaValidation($enableSchemaValidation)
   {
     $this->enableSchemaValidation = $enableSchemaValidation;
   }
-  /**
-   * @return bool
-   */
   public function getEnableSchemaValidation()
   {
     return $this->enableSchemaValidation;
@@ -58,16 +46,10 @@ class GoogleCloudDocumentaiV1ReviewDocumentRequest extends \Google\Model
   {
     return $this->inlineDocument;
   }
-  /**
-   * @param string
-   */
   public function setPriority($priority)
   {
     $this->priority = $priority;
   }
-  /**
-   * @return string
-   */
   public function getPriority()
   {
     return $this->priority;

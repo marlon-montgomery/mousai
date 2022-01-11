@@ -19,28 +19,17 @@ namespace Google\Service\ShoppingContent;
 
 class ShippingSettings extends \Google\Collection
 {
-  protected $collection_key = 'warehouses';
-  /**
-   * @var string
-   */
+  protected $collection_key = 'services';
   public $accountId;
   protected $postalCodeGroupsType = PostalCodeGroup::class;
   protected $postalCodeGroupsDataType = 'array';
   protected $servicesType = Service::class;
   protected $servicesDataType = 'array';
-  protected $warehousesType = Warehouse::class;
-  protected $warehousesDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setAccountId($accountId)
   {
     $this->accountId = $accountId;
   }
-  /**
-   * @return string
-   */
   public function getAccountId()
   {
     return $this->accountId;
@@ -72,20 +61,6 @@ class ShippingSettings extends \Google\Collection
   public function getServices()
   {
     return $this->services;
-  }
-  /**
-   * @param Warehouse[]
-   */
-  public function setWarehouses($warehouses)
-  {
-    $this->warehouses = $warehouses;
-  }
-  /**
-   * @return Warehouse[]
-   */
-  public function getWarehouses()
-  {
-    return $this->warehouses;
   }
 }
 

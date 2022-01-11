@@ -8,13 +8,12 @@ use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
-use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use IteratorAggregate;
 
 class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
 {
-    use Conditionable, Macroable;
+    use Macroable;
 
     /**
      * The raw array of attributes.
@@ -120,38 +119,38 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
     /**
      * Return a bag of attributes that have keys starting with the given value / pattern.
      *
-     * @param  string|string[]  $needles
+     * @param  string  $string
      * @return static
      */
-    public function whereStartsWith($needles)
+    public function whereStartsWith($string)
     {
-        return $this->filter(function ($value, $key) use ($needles) {
-            return Str::startsWith($key, $needles);
+        return $this->filter(function ($value, $key) use ($string) {
+            return Str::startsWith($key, $string);
         });
     }
 
     /**
      * Return a bag of attributes with keys that do not start with the given value / pattern.
      *
-     * @param  string|string[]  $needles
+     * @param  string  $string
      * @return static
      */
-    public function whereDoesntStartWith($needles)
+    public function whereDoesntStartWith($string)
     {
-        return $this->filter(function ($value, $key) use ($needles) {
-            return ! Str::startsWith($key, $needles);
+        return $this->filter(function ($value, $key) use ($string) {
+            return ! Str::startsWith($key, $string);
         });
     }
 
     /**
      * Return a bag of attributes that have keys starting with the given value / pattern.
      *
-     * @param  string|string[]  $needles
+     * @param  string  $string
      * @return static
      */
-    public function thatStartWith($needles)
+    public function thatStartWith($string)
     {
-        return $this->whereStartsWith($needles);
+        return $this->whereStartsWith($string);
     }
 
     /**

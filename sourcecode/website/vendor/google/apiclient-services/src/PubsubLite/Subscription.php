@@ -21,13 +21,7 @@ class Subscription extends \Google\Model
 {
   protected $deliveryConfigType = DeliveryConfig::class;
   protected $deliveryConfigDataType = '';
-  /**
-   * @var string
-   */
   public $name;
-  /**
-   * @var string
-   */
   public $topic;
 
   /**
@@ -44,30 +38,18 @@ class Subscription extends \Google\Model
   {
     return $this->deliveryConfig;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
   }
-  /**
-   * @param string
-   */
   public function setTopic($topic)
   {
     $this->topic = $topic;
   }
-  /**
-   * @return string
-   */
   public function getTopic()
   {
     return $this->topic;

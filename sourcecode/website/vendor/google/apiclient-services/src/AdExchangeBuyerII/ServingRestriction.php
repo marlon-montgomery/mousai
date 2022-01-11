@@ -26,9 +26,6 @@ class ServingRestriction extends \Google\Collection
   protected $disapprovalDataType = '';
   protected $disapprovalReasonsType = Disapproval::class;
   protected $disapprovalReasonsDataType = 'array';
-  /**
-   * @var string
-   */
   public $status;
 
   /**
@@ -73,16 +70,10 @@ class ServingRestriction extends \Google\Collection
   {
     return $this->disapprovalReasons;
   }
-  /**
-   * @param string
-   */
   public function setStatus($status)
   {
     $this->status = $status;
   }
-  /**
-   * @return string
-   */
   public function getStatus()
   {
     return $this->status;

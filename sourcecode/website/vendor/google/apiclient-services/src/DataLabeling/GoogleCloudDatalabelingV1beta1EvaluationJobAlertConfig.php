@@ -19,22 +19,13 @@ namespace Google\Service\DataLabeling;
 
 class GoogleCloudDatalabelingV1beta1EvaluationJobAlertConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $email;
   public $minAcceptableMeanAveragePrecision;
 
-  /**
-   * @param string
-   */
   public function setEmail($email)
   {
     $this->email = $email;
   }
-  /**
-   * @return string
-   */
   public function getEmail()
   {
     return $this->email;

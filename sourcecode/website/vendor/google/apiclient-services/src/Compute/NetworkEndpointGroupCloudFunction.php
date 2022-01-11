@@ -19,39 +19,21 @@ namespace Google\Service\Compute;
 
 class NetworkEndpointGroupCloudFunction extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $function;
-  /**
-   * @var string
-   */
   public $urlMask;
 
-  /**
-   * @param string
-   */
   public function setFunction($function)
   {
     $this->function = $function;
   }
-  /**
-   * @return string
-   */
   public function getFunction()
   {
     return $this->function;
   }
-  /**
-   * @param string
-   */
   public function setUrlMask($urlMask)
   {
     $this->urlMask = $urlMask;
   }
-  /**
-   * @return string
-   */
   public function getUrlMask()
   {
     return $this->urlMask;

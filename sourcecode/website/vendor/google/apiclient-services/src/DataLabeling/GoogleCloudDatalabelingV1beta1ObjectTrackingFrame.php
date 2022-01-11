@@ -23,9 +23,6 @@ class GoogleCloudDatalabelingV1beta1ObjectTrackingFrame extends \Google\Model
   protected $boundingPolyDataType = '';
   protected $normalizedBoundingPolyType = GoogleCloudDatalabelingV1beta1NormalizedBoundingPoly::class;
   protected $normalizedBoundingPolyDataType = '';
-  /**
-   * @var string
-   */
   public $timeOffset;
 
   /**
@@ -56,16 +53,10 @@ class GoogleCloudDatalabelingV1beta1ObjectTrackingFrame extends \Google\Model
   {
     return $this->normalizedBoundingPoly;
   }
-  /**
-   * @param string
-   */
   public function setTimeOffset($timeOffset)
   {
     $this->timeOffset = $timeOffset;
   }
-  /**
-   * @return string
-   */
   public function getTimeOffset()
   {
     return $this->timeOffset;

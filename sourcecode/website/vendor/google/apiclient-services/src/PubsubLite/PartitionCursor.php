@@ -21,9 +21,6 @@ class PartitionCursor extends \Google\Model
 {
   protected $cursorType = Cursor::class;
   protected $cursorDataType = '';
-  /**
-   * @var string
-   */
   public $partition;
 
   /**
@@ -40,16 +37,10 @@ class PartitionCursor extends \Google\Model
   {
     return $this->cursor;
   }
-  /**
-   * @param string
-   */
   public function setPartition($partition)
   {
     $this->partition = $partition;
   }
-  /**
-   * @return string
-   */
   public function getPartition()
   {
     return $this->partition;

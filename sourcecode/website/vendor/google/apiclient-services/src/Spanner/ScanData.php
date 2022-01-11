@@ -21,13 +21,7 @@ class ScanData extends \Google\Model
 {
   protected $dataType = VisualizationData::class;
   protected $dataDataType = '';
-  /**
-   * @var string
-   */
   public $endTime;
-  /**
-   * @var string
-   */
   public $startTime;
 
   /**
@@ -44,30 +38,18 @@ class ScanData extends \Google\Model
   {
     return $this->data;
   }
-  /**
-   * @param string
-   */
   public function setEndTime($endTime)
   {
     $this->endTime = $endTime;
   }
-  /**
-   * @return string
-   */
   public function getEndTime()
   {
     return $this->endTime;
   }
-  /**
-   * @param string
-   */
   public function setStartTime($startTime)
   {
     $this->startTime = $startTime;
   }
-  /**
-   * @return string
-   */
   public function getStartTime()
   {
     return $this->startTime;

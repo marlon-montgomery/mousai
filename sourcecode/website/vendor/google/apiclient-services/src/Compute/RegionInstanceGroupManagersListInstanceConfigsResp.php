@@ -22,9 +22,6 @@ class RegionInstanceGroupManagersListInstanceConfigsResp extends \Google\Collect
   protected $collection_key = 'items';
   protected $itemsType = PerInstanceConfig::class;
   protected $itemsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $warningType = RegionInstanceGroupManagersListInstanceConfigsRespWarning::class;
   protected $warningDataType = '';
@@ -43,16 +40,10 @@ class RegionInstanceGroupManagersListInstanceConfigsResp extends \Google\Collect
   {
     return $this->items;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

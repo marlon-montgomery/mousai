@@ -19,23 +19,14 @@ namespace Google\Service\Slides;
 
 class UnmergeTableCellsRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $objectId;
   protected $tableRangeType = TableRange::class;
   protected $tableRangeDataType = '';
 
-  /**
-   * @param string
-   */
   public function setObjectId($objectId)
   {
     $this->objectId = $objectId;
   }
-  /**
-   * @return string
-   */
   public function getObjectId()
   {
     return $this->objectId;

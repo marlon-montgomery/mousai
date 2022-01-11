@@ -22,9 +22,6 @@ class CustomerListDevicesResponse extends \Google\Collection
   protected $collection_key = 'devices';
   protected $devicesType = Device::class;
   protected $devicesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class CustomerListDevicesResponse extends \Google\Collection
   {
     return $this->devices;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

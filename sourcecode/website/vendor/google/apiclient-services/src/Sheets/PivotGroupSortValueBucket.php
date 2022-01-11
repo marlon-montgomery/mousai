@@ -22,9 +22,6 @@ class PivotGroupSortValueBucket extends \Google\Collection
   protected $collection_key = 'buckets';
   protected $bucketsType = ExtendedValue::class;
   protected $bucketsDataType = 'array';
-  /**
-   * @var int
-   */
   public $valuesIndex;
 
   /**
@@ -41,16 +38,10 @@ class PivotGroupSortValueBucket extends \Google\Collection
   {
     return $this->buckets;
   }
-  /**
-   * @param int
-   */
   public function setValuesIndex($valuesIndex)
   {
     $this->valuesIndex = $valuesIndex;
   }
-  /**
-   * @return int
-   */
   public function getValuesIndex()
   {
     return $this->valuesIndex;

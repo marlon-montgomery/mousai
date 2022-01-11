@@ -20,23 +20,14 @@ namespace Google\Service\Classroom;
 class ListTopicResponse extends \Google\Collection
 {
   protected $collection_key = 'topic';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $topicType = Topic::class;
   protected $topicDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

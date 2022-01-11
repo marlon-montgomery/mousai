@@ -45,7 +45,7 @@ class ArgonHasher extends AbstractHasher implements HasherContract
     {
         $this->time = $options['time'] ?? $this->time;
         $this->memory = $options['memory'] ?? $this->memory;
-        $this->threads = $this->threads($options);
+        $this->threads = $options['threads'] ?? $this->threads;
         $this->verifyAlgorithm = $options['verify'] ?? $this->verifyAlgorithm;
     }
 
@@ -187,10 +187,6 @@ class ArgonHasher extends AbstractHasher implements HasherContract
      */
     protected function threads(array $options)
     {
-        if (defined('PASSWORD_ARGON2_PROVIDER') && PASSWORD_ARGON2_PROVIDER === 'sodium') {
-            return 1;
-        }
-
         return $options['threads'] ?? $this->threads;
     }
 }

@@ -20,23 +20,14 @@ namespace Google\Service\CloudTasks;
 class ListTasksResponse extends \Google\Collection
 {
   protected $collection_key = 'tasks';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $tasksType = Task::class;
   protected $tasksDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

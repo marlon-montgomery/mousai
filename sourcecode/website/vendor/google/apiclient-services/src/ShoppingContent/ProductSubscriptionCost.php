@@ -21,13 +21,7 @@ class ProductSubscriptionCost extends \Google\Model
 {
   protected $amountType = Price::class;
   protected $amountDataType = '';
-  /**
-   * @var string
-   */
   public $period;
-  /**
-   * @var string
-   */
   public $periodLength;
 
   /**
@@ -44,30 +38,18 @@ class ProductSubscriptionCost extends \Google\Model
   {
     return $this->amount;
   }
-  /**
-   * @param string
-   */
   public function setPeriod($period)
   {
     $this->period = $period;
   }
-  /**
-   * @return string
-   */
   public function getPeriod()
   {
     return $this->period;
   }
-  /**
-   * @param string
-   */
   public function setPeriodLength($periodLength)
   {
     $this->periodLength = $periodLength;
   }
-  /**
-   * @return string
-   */
   public function getPeriodLength()
   {
     return $this->periodLength;

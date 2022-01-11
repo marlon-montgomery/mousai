@@ -1,11 +1,6 @@
 CHANGELOG
 =========
 
-5.4
----
-
- * Add `Crawler::innerText` method.
-
 5.3
 ---
 

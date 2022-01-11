@@ -22,9 +22,6 @@ class BulkListInsertionOrderAssignedTargetingOptionsResponse extends \Google\Col
   protected $collection_key = 'assignedTargetingOptions';
   protected $assignedTargetingOptionsType = AssignedTargetingOption::class;
   protected $assignedTargetingOptionsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class BulkListInsertionOrderAssignedTargetingOptionsResponse extends \Google\Col
   {
     return $this->assignedTargetingOptions;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

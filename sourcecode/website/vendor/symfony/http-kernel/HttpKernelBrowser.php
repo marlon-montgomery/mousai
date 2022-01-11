@@ -25,8 +25,8 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  *
- * @method Request  getRequest()
- * @method Response getResponse()
+ * @method Request  getRequest()  A Request instance
+ * @method Response getResponse() A Response instance
  */
 class HttpKernelBrowser extends AbstractBrowser
 {
@@ -58,9 +58,9 @@ class HttpKernelBrowser extends AbstractBrowser
      *
      * @param Request $request
      *
-     * @return Response
+     * @return Response A Response instance
      */
-    protected function doRequest(object $request)
+    protected function doRequest($request)
     {
         $response = $this->kernel->handle($request, HttpKernelInterface::MAIN_REQUEST, $this->catchExceptions);
 
@@ -78,7 +78,7 @@ class HttpKernelBrowser extends AbstractBrowser
      *
      * @return string
      */
-    protected function getScript(object $request)
+    protected function getScript($request)
     {
         $kernel = var_export(serialize($this->kernel), true);
         $request = var_export(serialize($request), true);
@@ -130,7 +130,7 @@ EOF;
     /**
      * {@inheritdoc}
      *
-     * @return Request
+     * @return Request A Request instance
      */
     protected function filterRequest(DomRequest $request)
     {
@@ -157,7 +157,7 @@ EOF;
      *
      * @see UploadedFile
      *
-     * @return array
+     * @return array An array with all uploaded files marked as already moved
      */
     protected function filterFiles(array $files)
     {
@@ -192,11 +192,11 @@ EOF;
     /**
      * {@inheritdoc}
      *
-     * @param Response $response
+     * @param Request $request
      *
-     * @return DomResponse
+     * @return DomResponse A DomResponse instance
      */
-    protected function filterResponse(object $response)
+    protected function filterResponse($response)
     {
         // this is needed to support StreamedResponse
         ob_start();

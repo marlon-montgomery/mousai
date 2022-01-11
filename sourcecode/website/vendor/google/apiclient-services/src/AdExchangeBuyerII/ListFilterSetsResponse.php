@@ -22,9 +22,6 @@ class ListFilterSetsResponse extends \Google\Collection
   protected $collection_key = 'filterSets';
   protected $filterSetsType = FilterSet::class;
   protected $filterSetsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListFilterSetsResponse extends \Google\Collection
   {
     return $this->filterSets;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

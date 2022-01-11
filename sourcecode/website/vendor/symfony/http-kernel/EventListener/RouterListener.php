@@ -50,8 +50,9 @@ class RouterListener implements EventSubscriberInterface
     private $debug;
 
     /**
-     * @param UrlMatcherInterface|RequestMatcherInterface $matcher The Url or Request matcher
-     * @param RequestContext|null                         $context The RequestContext (can be null when $matcher implements RequestContextAwareInterface)
+     * @param UrlMatcherInterface|RequestMatcherInterface $matcher    The Url or Request matcher
+     * @param RequestContext|null                         $context    The RequestContext (can be null when $matcher implements RequestContextAwareInterface)
+     * @param string                                      $projectDir
      *
      * @throws \InvalidArgumentException
      */
@@ -66,7 +67,7 @@ class RouterListener implements EventSubscriberInterface
         }
 
         $this->matcher = $matcher;
-        $this->context = $context ?? $matcher->getContext();
+        $this->context = $context ?: $matcher->getContext();
         $this->requestStack = $requestStack;
         $this->logger = $logger;
         $this->projectDir = $projectDir;

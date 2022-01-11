@@ -19,21 +19,12 @@ namespace Google\Service\ServiceNetworking;
 
 class OAuthRequirements extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $canonicalScopes;
 
-  /**
-   * @param string
-   */
   public function setCanonicalScopes($canonicalScopes)
   {
     $this->canonicalScopes = $canonicalScopes;
   }
-  /**
-   * @return string
-   */
   public function getCanonicalScopes()
   {
     return $this->canonicalScopes;

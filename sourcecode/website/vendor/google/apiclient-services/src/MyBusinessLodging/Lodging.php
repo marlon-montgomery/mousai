@@ -44,9 +44,6 @@ class Lodging extends \Google\Collection
   protected $housekeepingDataType = '';
   protected $metadataType = LodgingMetadata::class;
   protected $metadataDataType = '';
-  /**
-   * @var string
-   */
   public $name;
   protected $parkingType = Parking::class;
   protected $parkingDataType = '';
@@ -237,16 +234,10 @@ class Lodging extends \Google\Collection
   {
     return $this->metadata;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

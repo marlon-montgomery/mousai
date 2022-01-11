@@ -22,9 +22,6 @@ class GoogleCloudApigeeV1KeystoreConfig extends \Google\Collection
   protected $collection_key = 'aliases';
   protected $aliasesType = GoogleCloudApigeeV1AliasRevisionConfig::class;
   protected $aliasesDataType = 'array';
-  /**
-   * @var string
-   */
   public $name;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudApigeeV1KeystoreConfig extends \Google\Collection
   {
     return $this->aliases;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

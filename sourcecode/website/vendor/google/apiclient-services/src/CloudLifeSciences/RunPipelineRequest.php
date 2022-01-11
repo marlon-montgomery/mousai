@@ -19,27 +19,15 @@ namespace Google\Service\CloudLifeSciences;
 
 class RunPipelineRequest extends \Google\Model
 {
-  /**
-   * @var string[]
-   */
   public $labels;
   protected $pipelineType = Pipeline::class;
   protected $pipelineDataType = '';
-  /**
-   * @var string
-   */
   public $pubSubTopic;
 
-  /**
-   * @param string[]
-   */
   public function setLabels($labels)
   {
     $this->labels = $labels;
   }
-  /**
-   * @return string[]
-   */
   public function getLabels()
   {
     return $this->labels;
@@ -58,16 +46,10 @@ class RunPipelineRequest extends \Google\Model
   {
     return $this->pipeline;
   }
-  /**
-   * @param string
-   */
   public function setPubSubTopic($pubSubTopic)
   {
     $this->pubSubTopic = $pubSubTopic;
   }
-  /**
-   * @return string
-   */
   public function getPubSubTopic()
   {
     return $this->pubSubTopic;

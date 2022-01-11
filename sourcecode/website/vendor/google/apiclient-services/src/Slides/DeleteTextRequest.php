@@ -21,9 +21,6 @@ class DeleteTextRequest extends \Google\Model
 {
   protected $cellLocationType = TableCellLocation::class;
   protected $cellLocationDataType = '';
-  /**
-   * @var string
-   */
   public $objectId;
   protected $textRangeType = Range::class;
   protected $textRangeDataType = '';
@@ -42,16 +39,10 @@ class DeleteTextRequest extends \Google\Model
   {
     return $this->cellLocation;
   }
-  /**
-   * @param string
-   */
   public function setObjectId($objectId)
   {
     $this->objectId = $objectId;
   }
-  /**
-   * @return string
-   */
   public function getObjectId()
   {
     return $this->objectId;

@@ -22,9 +22,6 @@ class ListConsentsResponse extends \Google\Collection
   protected $collection_key = 'consents';
   protected $consentsType = Consent::class;
   protected $consentsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListConsentsResponse extends \Google\Collection
   {
     return $this->consents;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

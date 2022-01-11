@@ -20,73 +20,30 @@ namespace Google\Service\Area120Tables;
 class ColumnDescription extends \Google\Collection
 {
   protected $collection_key = 'labels';
-  /**
-   * @var string
-   */
   public $dataType;
-  protected $dateDetailsType = DateDetails::class;
-  protected $dateDetailsDataType = '';
-  /**
-   * @var string
-   */
   public $id;
   protected $labelsType = LabeledItem::class;
   protected $labelsDataType = 'array';
   protected $lookupDetailsType = LookupDetails::class;
   protected $lookupDetailsDataType = '';
-  /**
-   * @var bool
-   */
   public $multipleValuesDisallowed;
-  /**
-   * @var string
-   */
   public $name;
-  /**
-   * @var bool
-   */
   public $readonly;
   protected $relationshipDetailsType = RelationshipDetails::class;
   protected $relationshipDetailsDataType = '';
 
-  /**
-   * @param string
-   */
   public function setDataType($dataType)
   {
     $this->dataType = $dataType;
   }
-  /**
-   * @return string
-   */
   public function getDataType()
   {
     return $this->dataType;
   }
-  /**
-   * @param DateDetails
-   */
-  public function setDateDetails(DateDetails $dateDetails)
-  {
-    $this->dateDetails = $dateDetails;
-  }
-  /**
-   * @return DateDetails
-   */
-  public function getDateDetails()
-  {
-    return $this->dateDetails;
-  }
-  /**
-   * @param string
-   */
   public function setId($id)
   {
     $this->id = $id;
   }
-  /**
-   * @return string
-   */
   public function getId()
   {
     return $this->id;
@@ -119,44 +76,26 @@ class ColumnDescription extends \Google\Collection
   {
     return $this->lookupDetails;
   }
-  /**
-   * @param bool
-   */
   public function setMultipleValuesDisallowed($multipleValuesDisallowed)
   {
     $this->multipleValuesDisallowed = $multipleValuesDisallowed;
   }
-  /**
-   * @return bool
-   */
   public function getMultipleValuesDisallowed()
   {
     return $this->multipleValuesDisallowed;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
   }
-  /**
-   * @param bool
-   */
   public function setReadonly($readonly)
   {
     $this->readonly = $readonly;
   }
-  /**
-   * @return bool
-   */
   public function getReadonly()
   {
     return $this->readonly;

@@ -22,31 +22,13 @@ class AppRestrictionsSchemaRestriction extends \Google\Collection
   protected $collection_key = 'nestedRestriction';
   protected $defaultValueType = AppRestrictionsSchemaRestrictionRestrictionValue::class;
   protected $defaultValueDataType = '';
-  /**
-   * @var string
-   */
   public $description;
-  /**
-   * @var string[]
-   */
   public $entry;
-  /**
-   * @var string[]
-   */
   public $entryValue;
-  /**
-   * @var string
-   */
   public $key;
   protected $nestedRestrictionType = AppRestrictionsSchemaRestriction::class;
   protected $nestedRestrictionDataType = 'array';
-  /**
-   * @var string
-   */
   public $restrictionType;
-  /**
-   * @var string
-   */
   public $title;
 
   /**
@@ -63,58 +45,34 @@ class AppRestrictionsSchemaRestriction extends \Google\Collection
   {
     return $this->defaultValue;
   }
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;
   }
-  /**
-   * @param string[]
-   */
   public function setEntry($entry)
   {
     $this->entry = $entry;
   }
-  /**
-   * @return string[]
-   */
   public function getEntry()
   {
     return $this->entry;
   }
-  /**
-   * @param string[]
-   */
   public function setEntryValue($entryValue)
   {
     $this->entryValue = $entryValue;
   }
-  /**
-   * @return string[]
-   */
   public function getEntryValue()
   {
     return $this->entryValue;
   }
-  /**
-   * @param string
-   */
   public function setKey($key)
   {
     $this->key = $key;
   }
-  /**
-   * @return string
-   */
   public function getKey()
   {
     return $this->key;
@@ -133,30 +91,18 @@ class AppRestrictionsSchemaRestriction extends \Google\Collection
   {
     return $this->nestedRestriction;
   }
-  /**
-   * @param string
-   */
   public function setRestrictionType($restrictionType)
   {
     $this->restrictionType = $restrictionType;
   }
-  /**
-   * @return string
-   */
   public function getRestrictionType()
   {
     return $this->restrictionType;
   }
-  /**
-   * @param string
-   */
   public function setTitle($title)
   {
     $this->title = $title;
   }
-  /**
-   * @return string
-   */
   public function getTitle()
   {
     return $this->title;

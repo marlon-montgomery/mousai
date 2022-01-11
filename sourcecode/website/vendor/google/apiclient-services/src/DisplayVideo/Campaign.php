@@ -20,9 +20,6 @@ namespace Google\Service\DisplayVideo;
 class Campaign extends \Google\Collection
 {
   protected $collection_key = 'campaignBudgets';
-  /**
-   * @var string
-   */
   public $advertiserId;
   protected $campaignBudgetsType = CampaignBudget::class;
   protected $campaignBudgetsDataType = 'array';
@@ -30,39 +27,18 @@ class Campaign extends \Google\Collection
   protected $campaignFlightDataType = '';
   protected $campaignGoalType = CampaignGoal::class;
   protected $campaignGoalDataType = '';
-  /**
-   * @var string
-   */
   public $campaignId;
-  /**
-   * @var string
-   */
   public $displayName;
-  /**
-   * @var string
-   */
   public $entityStatus;
   protected $frequencyCapType = FrequencyCap::class;
   protected $frequencyCapDataType = '';
-  /**
-   * @var string
-   */
   public $name;
-  /**
-   * @var string
-   */
   public $updateTime;
 
-  /**
-   * @param string
-   */
   public function setAdvertiserId($advertiserId)
   {
     $this->advertiserId = $advertiserId;
   }
-  /**
-   * @return string
-   */
   public function getAdvertiserId()
   {
     return $this->advertiserId;
@@ -109,44 +85,26 @@ class Campaign extends \Google\Collection
   {
     return $this->campaignGoal;
   }
-  /**
-   * @param string
-   */
   public function setCampaignId($campaignId)
   {
     $this->campaignId = $campaignId;
   }
-  /**
-   * @return string
-   */
   public function getCampaignId()
   {
     return $this->campaignId;
   }
-  /**
-   * @param string
-   */
   public function setDisplayName($displayName)
   {
     $this->displayName = $displayName;
   }
-  /**
-   * @return string
-   */
   public function getDisplayName()
   {
     return $this->displayName;
   }
-  /**
-   * @param string
-   */
   public function setEntityStatus($entityStatus)
   {
     $this->entityStatus = $entityStatus;
   }
-  /**
-   * @return string
-   */
   public function getEntityStatus()
   {
     return $this->entityStatus;
@@ -165,30 +123,18 @@ class Campaign extends \Google\Collection
   {
     return $this->frequencyCap;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
   }
-  /**
-   * @param string
-   */
   public function setUpdateTime($updateTime)
   {
     $this->updateTime = $updateTime;
   }
-  /**
-   * @return string
-   */
   public function getUpdateTime()
   {
     return $this->updateTime;

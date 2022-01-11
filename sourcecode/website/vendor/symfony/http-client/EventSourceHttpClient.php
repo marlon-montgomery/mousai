@@ -19,13 +19,12 @@ use Symfony\Contracts\HttpClient\ChunkInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
-use Symfony\Contracts\Service\ResetInterface;
 
 /**
  * @author Antoine Bluchet <soyuka@gmail.com>
  * @author Nicolas Grekas <p@tchwork.com>
  */
-final class EventSourceHttpClient implements HttpClientInterface, ResetInterface
+final class EventSourceHttpClient implements HttpClientInterface
 {
     use AsyncDecoratorTrait, HttpClientTrait {
         AsyncDecoratorTrait::withOptions insteadof HttpClientTrait;
@@ -79,7 +78,7 @@ final class EventSourceHttpClient implements HttpClientInterface, ResetInterface
             try {
                 $isTimeout = $chunk->isTimeout();
 
-                if (null !== $chunk->getInformationalStatus() || $context->getInfo('canceled')) {
+                if (null !== $chunk->getInformationalStatus()) {
                     yield $chunk;
 
                     return;

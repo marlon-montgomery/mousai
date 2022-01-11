@@ -19,21 +19,12 @@ namespace Google\Service\CertificateAuthorityService;
 
 class EcKeyType extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $signatureAlgorithm;
 
-  /**
-   * @param string
-   */
   public function setSignatureAlgorithm($signatureAlgorithm)
   {
     $this->signatureAlgorithm = $signatureAlgorithm;
   }
-  /**
-   * @return string
-   */
   public function getSignatureAlgorithm()
   {
     return $this->signatureAlgorithm;

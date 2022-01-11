@@ -21,13 +21,7 @@ class ListenRequest extends \Google\Model
 {
   protected $addTargetType = Target::class;
   protected $addTargetDataType = '';
-  /**
-   * @var string[]
-   */
   public $labels;
-  /**
-   * @var int
-   */
   public $removeTarget;
 
   /**
@@ -44,30 +38,18 @@ class ListenRequest extends \Google\Model
   {
     return $this->addTarget;
   }
-  /**
-   * @param string[]
-   */
   public function setLabels($labels)
   {
     $this->labels = $labels;
   }
-  /**
-   * @return string[]
-   */
   public function getLabels()
   {
     return $this->labels;
   }
-  /**
-   * @param int
-   */
   public function setRemoveTarget($removeTarget)
   {
     $this->removeTarget = $removeTarget;
   }
-  /**
-   * @return int
-   */
   public function getRemoveTarget()
   {
     return $this->removeTarget;

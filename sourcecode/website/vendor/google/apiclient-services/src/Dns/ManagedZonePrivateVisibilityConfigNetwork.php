@@ -19,39 +19,21 @@ namespace Google\Service\Dns;
 
 class ManagedZonePrivateVisibilityConfigNetwork extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $kind;
-  /**
-   * @var string
-   */
   public $networkUrl;
 
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
   }
-  /**
-   * @param string
-   */
   public function setNetworkUrl($networkUrl)
   {
     $this->networkUrl = $networkUrl;
   }
-  /**
-   * @return string
-   */
   public function getNetworkUrl()
   {
     return $this->networkUrl;

@@ -21,9 +21,6 @@ class CreateContactGroupRequest extends \Google\Model
 {
   protected $contactGroupType = ContactGroup::class;
   protected $contactGroupDataType = '';
-  /**
-   * @var string
-   */
   public $readGroupFields;
 
   /**
@@ -40,16 +37,10 @@ class CreateContactGroupRequest extends \Google\Model
   {
     return $this->contactGroup;
   }
-  /**
-   * @param string
-   */
   public function setReadGroupFields($readGroupFields)
   {
     $this->readGroupFields = $readGroupFields;
   }
-  /**
-   * @return string
-   */
   public function getReadGroupFields()
   {
     return $this->readGroupFields;

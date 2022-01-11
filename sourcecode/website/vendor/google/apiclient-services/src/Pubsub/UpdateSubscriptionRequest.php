@@ -21,9 +21,6 @@ class UpdateSubscriptionRequest extends \Google\Model
 {
   protected $subscriptionType = Subscription::class;
   protected $subscriptionDataType = '';
-  /**
-   * @var string
-   */
   public $updateMask;
 
   /**
@@ -40,16 +37,10 @@ class UpdateSubscriptionRequest extends \Google\Model
   {
     return $this->subscription;
   }
-  /**
-   * @param string
-   */
   public function setUpdateMask($updateMask)
   {
     $this->updateMask = $updateMask;
   }
-  /**
-   * @return string
-   */
   public function getUpdateMask()
   {
     return $this->updateMask;

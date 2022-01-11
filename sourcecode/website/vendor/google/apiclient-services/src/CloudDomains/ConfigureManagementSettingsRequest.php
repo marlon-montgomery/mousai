@@ -21,9 +21,6 @@ class ConfigureManagementSettingsRequest extends \Google\Model
 {
   protected $managementSettingsType = ManagementSettings::class;
   protected $managementSettingsDataType = '';
-  /**
-   * @var string
-   */
   public $updateMask;
 
   /**
@@ -40,16 +37,10 @@ class ConfigureManagementSettingsRequest extends \Google\Model
   {
     return $this->managementSettings;
   }
-  /**
-   * @param string
-   */
   public function setUpdateMask($updateMask)
   {
     $this->updateMask = $updateMask;
   }
-  /**
-   * @return string
-   */
   public function getUpdateMask()
   {
     return $this->updateMask;

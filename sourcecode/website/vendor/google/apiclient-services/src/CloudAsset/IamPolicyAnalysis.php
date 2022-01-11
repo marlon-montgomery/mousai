@@ -24,9 +24,6 @@ class IamPolicyAnalysis extends \Google\Collection
   protected $analysisQueryDataType = '';
   protected $analysisResultsType = IamPolicyAnalysisResult::class;
   protected $analysisResultsDataType = 'array';
-  /**
-   * @var bool
-   */
   public $fullyExplored;
   protected $nonCriticalErrorsType = IamPolicyAnalysisState::class;
   protected $nonCriticalErrorsDataType = 'array';
@@ -59,16 +56,10 @@ class IamPolicyAnalysis extends \Google\Collection
   {
     return $this->analysisResults;
   }
-  /**
-   * @param bool
-   */
   public function setFullyExplored($fullyExplored)
   {
     $this->fullyExplored = $fullyExplored;
   }
-  /**
-   * @return bool
-   */
   public function getFullyExplored()
   {
     return $this->fullyExplored;

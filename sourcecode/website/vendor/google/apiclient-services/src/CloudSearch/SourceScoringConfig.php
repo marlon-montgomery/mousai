@@ -19,21 +19,12 @@ namespace Google\Service\CloudSearch;
 
 class SourceScoringConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $sourceImportance;
 
-  /**
-   * @param string
-   */
   public function setSourceImportance($sourceImportance)
   {
     $this->sourceImportance = $sourceImportance;
   }
-  /**
-   * @return string
-   */
   public function getSourceImportance()
   {
     return $this->sourceImportance;

@@ -22,23 +22,11 @@ class LeaderboardScores extends \Google\Collection
   protected $collection_key = 'items';
   protected $itemsType = LeaderboardEntry::class;
   protected $itemsDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
-  /**
-   * @var string
-   */
   public $nextPageToken;
-  /**
-   * @var string
-   */
   public $numScores;
   protected $playerScoreType = LeaderboardEntry::class;
   protected $playerScoreDataType = '';
-  /**
-   * @var string
-   */
   public $prevPageToken;
 
   /**
@@ -55,44 +43,26 @@ class LeaderboardScores extends \Google\Collection
   {
     return $this->items;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;
   }
-  /**
-   * @param string
-   */
   public function setNumScores($numScores)
   {
     $this->numScores = $numScores;
   }
-  /**
-   * @return string
-   */
   public function getNumScores()
   {
     return $this->numScores;
@@ -111,16 +81,10 @@ class LeaderboardScores extends \Google\Collection
   {
     return $this->playerScore;
   }
-  /**
-   * @param string
-   */
   public function setPrevPageToken($prevPageToken)
   {
     $this->prevPageToken = $prevPageToken;
   }
-  /**
-   * @return string
-   */
   public function getPrevPageToken()
   {
     return $this->prevPageToken;

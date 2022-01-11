@@ -22,9 +22,6 @@ class GoogleCloudVideointelligenceV1SpeechTranscription extends \Google\Collecti
   protected $collection_key = 'alternatives';
   protected $alternativesType = GoogleCloudVideointelligenceV1SpeechRecognitionAlternative::class;
   protected $alternativesDataType = 'array';
-  /**
-   * @var string
-   */
   public $languageCode;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudVideointelligenceV1SpeechTranscription extends \Google\Collecti
   {
     return $this->alternatives;
   }
-  /**
-   * @param string
-   */
   public function setLanguageCode($languageCode)
   {
     $this->languageCode = $languageCode;
   }
-  /**
-   * @return string
-   */
   public function getLanguageCode()
   {
     return $this->languageCode;

@@ -21,9 +21,6 @@ class GooglePrivacyDlpV2InfoTypeLimit extends \Google\Model
 {
   protected $infoTypeType = GooglePrivacyDlpV2InfoType::class;
   protected $infoTypeDataType = '';
-  /**
-   * @var int
-   */
   public $maxFindings;
 
   /**
@@ -40,16 +37,10 @@ class GooglePrivacyDlpV2InfoTypeLimit extends \Google\Model
   {
     return $this->infoType;
   }
-  /**
-   * @param int
-   */
   public function setMaxFindings($maxFindings)
   {
     $this->maxFindings = $maxFindings;
   }
-  /**
-   * @return int
-   */
   public function getMaxFindings()
   {
     return $this->maxFindings;

@@ -20,23 +20,14 @@ namespace Google\Service\CloudResourceManager;
 class SearchOrganizationsResponse extends \Google\Collection
 {
   protected $collection_key = 'organizations';
-  /**
-   * @var string
-   */
   public $nextPageToken;
   protected $organizationsType = Organization::class;
   protected $organizationsDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

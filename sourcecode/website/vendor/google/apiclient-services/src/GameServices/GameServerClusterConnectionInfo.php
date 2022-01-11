@@ -21,9 +21,6 @@ class GameServerClusterConnectionInfo extends \Google\Model
 {
   protected $gkeClusterReferenceType = GkeClusterReference::class;
   protected $gkeClusterReferenceDataType = '';
-  /**
-   * @var string
-   */
   public $namespace;
 
   /**
@@ -40,16 +37,10 @@ class GameServerClusterConnectionInfo extends \Google\Model
   {
     return $this->gkeClusterReference;
   }
-  /**
-   * @param string
-   */
   public function setNamespace($namespace)
   {
     $this->namespace = $namespace;
   }
-  /**
-   * @return string
-   */
   public function getNamespace()
   {
     return $this->namespace;

@@ -20,23 +20,14 @@ namespace Google\Service\ServiceNetworking;
 class AddRolesRequest extends \Google\Collection
 {
   protected $collection_key = 'policyBinding';
-  /**
-   * @var string
-   */
   public $consumerNetwork;
   protected $policyBindingType = PolicyBinding::class;
   protected $policyBindingDataType = 'array';
 
-  /**
-   * @param string
-   */
   public function setConsumerNetwork($consumerNetwork)
   {
     $this->consumerNetwork = $consumerNetwork;
   }
-  /**
-   * @return string
-   */
   public function getConsumerNetwork()
   {
     return $this->consumerNetwork;

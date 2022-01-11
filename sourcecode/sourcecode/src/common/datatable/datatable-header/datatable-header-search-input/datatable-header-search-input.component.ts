@@ -1,6 +1,12 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {DatatableService} from '../../datatable.service';
 import {Model} from '@common/core/types/models/model';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {DatatableService} from '../../datatable.service';
+import {Model} from '@common/core/types/models/model';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'datatable-header-search-input',
@@ -9,10 +15,21 @@ import {Model} from '@common/core/types/models/model';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DatatableHeaderSearchInputComponent {
+    public searchControl = new FormControl(this.route.snapshot.queryParams.query);
     @Input() placeholder: string;
     @Input() hideIcon = false;
 
     constructor(
         public datatable: DatatableService<Model>,
-    ) {}
+        private route: ActivatedRoute,
+    ) {
+    }
+
+    ngOnInit() {
+        this.searchControl.valueChanges
+            .pipe(debounceTime(400), distinctUntilChanged())
+            .subscribe(query => {
+                this.datatable.addFilter('query', query);
+            });
+    }
 }

@@ -22,17 +22,8 @@ class AutoInstallPolicy extends \Google\Collection
   protected $collection_key = 'autoInstallConstraint';
   protected $autoInstallConstraintType = AutoInstallConstraint::class;
   protected $autoInstallConstraintDataType = 'array';
-  /**
-   * @var string
-   */
   public $autoInstallMode;
-  /**
-   * @var int
-   */
   public $autoInstallPriority;
-  /**
-   * @var int
-   */
   public $minimumVersionCode;
 
   /**
@@ -49,44 +40,26 @@ class AutoInstallPolicy extends \Google\Collection
   {
     return $this->autoInstallConstraint;
   }
-  /**
-   * @param string
-   */
   public function setAutoInstallMode($autoInstallMode)
   {
     $this->autoInstallMode = $autoInstallMode;
   }
-  /**
-   * @return string
-   */
   public function getAutoInstallMode()
   {
     return $this->autoInstallMode;
   }
-  /**
-   * @param int
-   */
   public function setAutoInstallPriority($autoInstallPriority)
   {
     $this->autoInstallPriority = $autoInstallPriority;
   }
-  /**
-   * @return int
-   */
   public function getAutoInstallPriority()
   {
     return $this->autoInstallPriority;
   }
-  /**
-   * @param int
-   */
   public function setMinimumVersionCode($minimumVersionCode)
   {
     $this->minimumVersionCode = $minimumVersionCode;
   }
-  /**
-   * @return int
-   */
   public function getMinimumVersionCode()
   {
     return $this->minimumVersionCode;

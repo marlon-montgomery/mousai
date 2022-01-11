@@ -8,7 +8,6 @@ use Illuminate\Contracts\Queue\QueueableCollection;
 use Illuminate\Contracts\Queue\QueueableEntity;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\CanBeEscapedWhenCastToString;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Database\ConnectionResolverInterface as Resolver;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
@@ -23,7 +22,7 @@ use Illuminate\Support\Traits\ForwardsCalls;
 use JsonSerializable;
 use LogicException;
 
-abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToString, HasBroadcastChannel, Jsonable, JsonSerializable, QueueableEntity, UrlRoutable
+abstract class Model implements Arrayable, ArrayAccess, HasBroadcastChannel, Jsonable, JsonSerializable, QueueableEntity, UrlRoutable
 {
     use Concerns\HasAttributes,
         Concerns\HasEvents,
@@ -110,13 +109,6 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      * @var bool
      */
     public $wasRecentlyCreated = false;
-
-    /**
-     * Indicates that the object's string representation should be escaped when __toString is invoked.
-     *
-     * @var bool
-     */
-    protected $escapeWhenCastingToString = false;
 
     /**
      * The connection resolver instance.
@@ -968,7 +960,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      */
     public function save(array $options = [])
     {
-        $this->mergeAttributesFromCachedCasts();
+        $this->mergeAttributesFromClassCasts();
 
         $query = $this->newModelQuery();
 
@@ -1237,7 +1229,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      */
     public function delete()
     {
-        $this->mergeAttributesFromCachedCasts();
+        $this->mergeAttributesFromClassCasts();
 
         if (is_null($this->getKeyName())) {
             throw new LogicException('No primary key defined on model.');
@@ -1877,7 +1869,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      */
     public function resolveRouteBinding($value, $field = null)
     {
-        return $this->resolveRouteBindingQuery($this, $value, $field)->first();
+        return $this->where($field ?? $this->getRouteKeyName(), $value)->first();
     }
 
     /**
@@ -1889,7 +1881,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      */
     public function resolveSoftDeletableRouteBinding($value, $field = null)
     {
-        return $this->resolveRouteBindingQuery($this, $value, $field)->withTrashed()->first();
+        return $this->where($field ?? $this->getRouteKeyName(), $value)->withTrashed()->first();
     }
 
     /**
@@ -1924,7 +1916,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      * @param  string  $childType
      * @param  mixed  $value
      * @param  string|null  $field
-     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
     protected function resolveChildRouteBindingQuery($childType, $value, $field)
     {
@@ -1934,25 +1926,10 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
 
         if ($relationship instanceof HasManyThrough ||
             $relationship instanceof BelongsToMany) {
-            $field = $relationship->getRelated()->getTable().'.'.$field;
+            return $relationship->where($relationship->getRelated()->getTable().'.'.$field, $value);
+        } else {
+            return $relationship->where($field, $value);
         }
-
-        return $relationship instanceof Model
-                ? $relationship->resolveRouteBindingQuery($relationship, $value, $field)
-                : $relationship->getRelated()->resolveRouteBindingQuery($relationship, $value, $field);
-    }
-
-    /**
-     * Retrieve the model for a bound value.
-     *
-     * @param  \Illuminate\Database\Eloquent\Model|Illuminate\Database\Eloquent\Relations\Relation  $query
-     * @param  mixed  $value
-     * @param  string|null  $field
-     * @return \Illuminate\Database\Eloquent\Relations\Relation
-     */
-    public function resolveRouteBindingQuery($query, $value, $field = null)
-    {
-        return $query->where($field ?? $this->getRouteKeyName(), $value);
     }
 
     /**
@@ -2151,22 +2128,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      */
     public function __toString()
     {
-        return $this->escapeWhenCastingToString
-                    ? e($this->toJson())
-                    : $this->toJson();
-    }
-
-    /**
-     * Indicate that the object's string representation should be escaped when __toString is invoked.
-     *
-     * @param  bool  $escape
-     * @return $this
-     */
-    public function escapeWhenCastingToString($escape = true)
-    {
-        $this->escapeWhenCastingToString = $escape;
-
-        return $this;
+        return $this->toJson();
     }
 
     /**
@@ -2176,10 +2138,9 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      */
     public function __sleep()
     {
-        $this->mergeAttributesFromCachedCasts();
+        $this->mergeAttributesFromClassCasts();
 
         $this->classCastCache = [];
-        $this->attributeCastCache = [];
 
         return array_keys(get_object_vars($this));
     }

@@ -21,9 +21,6 @@ class CampaignFlight extends \Google\Model
 {
   protected $plannedDatesType = DateRange::class;
   protected $plannedDatesDataType = '';
-  /**
-   * @var string
-   */
   public $plannedSpendAmountMicros;
 
   /**
@@ -40,16 +37,10 @@ class CampaignFlight extends \Google\Model
   {
     return $this->plannedDates;
   }
-  /**
-   * @param string
-   */
   public function setPlannedSpendAmountMicros($plannedSpendAmountMicros)
   {
     $this->plannedSpendAmountMicros = $plannedSpendAmountMicros;
   }
-  /**
-   * @return string
-   */
   public function getPlannedSpendAmountMicros()
   {
     return $this->plannedSpendAmountMicros;

@@ -19,23 +19,14 @@ namespace Google\Service\Contactcenterinsights;
 
 class GoogleCloudContactcenterinsightsV1ConversationLevelSentiment extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $channelTag;
   protected $sentimentDataType = GoogleCloudContactcenterinsightsV1SentimentData::class;
   protected $sentimentDataDataType = '';
 
-  /**
-   * @param int
-   */
   public function setChannelTag($channelTag)
   {
     $this->channelTag = $channelTag;
   }
-  /**
-   * @return int
-   */
   public function getChannelTag()
   {
     return $this->channelTag;

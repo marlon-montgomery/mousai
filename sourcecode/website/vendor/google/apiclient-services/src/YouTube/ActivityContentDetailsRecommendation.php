@@ -19,25 +19,16 @@ namespace Google\Service\YouTube;
 
 class ActivityContentDetailsRecommendation extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $reason;
   protected $resourceIdType = ResourceId::class;
   protected $resourceIdDataType = '';
   protected $seedResourceIdType = ResourceId::class;
   protected $seedResourceIdDataType = '';
 
-  /**
-   * @param string
-   */
   public function setReason($reason)
   {
     $this->reason = $reason;
   }
-  /**
-   * @return string
-   */
   public function getReason()
   {
     return $this->reason;

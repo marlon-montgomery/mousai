@@ -19,39 +19,21 @@ namespace Google\Service\DisplayVideo;
 
 class SdfConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $adminEmail;
-  /**
-   * @var string
-   */
   public $version;
 
-  /**
-   * @param string
-   */
   public function setAdminEmail($adminEmail)
   {
     $this->adminEmail = $adminEmail;
   }
-  /**
-   * @return string
-   */
   public function getAdminEmail()
   {
     return $this->adminEmail;
   }
-  /**
-   * @param string
-   */
   public function setVersion($version)
   {
     $this->version = $version;
   }
-  /**
-   * @return string
-   */
   public function getVersion()
   {
     return $this->version;

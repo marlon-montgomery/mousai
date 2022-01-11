@@ -19,21 +19,12 @@ namespace Google\Service\Vision;
 
 class ProductSetPurgeConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $productSetId;
 
-  /**
-   * @param string
-   */
   public function setProductSetId($productSetId)
   {
     $this->productSetId = $productSetId;
   }
-  /**
-   * @return string
-   */
   public function getProductSetId()
   {
     return $this->productSetId;

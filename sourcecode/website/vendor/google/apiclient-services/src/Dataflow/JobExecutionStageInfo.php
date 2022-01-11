@@ -20,21 +20,12 @@ namespace Google\Service\Dataflow;
 class JobExecutionStageInfo extends \Google\Collection
 {
   protected $collection_key = 'stepName';
-  /**
-   * @var string[]
-   */
   public $stepName;
 
-  /**
-   * @param string[]
-   */
   public function setStepName($stepName)
   {
     $this->stepName = $stepName;
   }
-  /**
-   * @return string[]
-   */
   public function getStepName()
   {
     return $this->stepName;

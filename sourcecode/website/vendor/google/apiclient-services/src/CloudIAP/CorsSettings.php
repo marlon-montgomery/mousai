@@ -19,21 +19,12 @@ namespace Google\Service\CloudIAP;
 
 class CorsSettings extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $allowHttpOptions;
 
-  /**
-   * @param bool
-   */
   public function setAllowHttpOptions($allowHttpOptions)
   {
     $this->allowHttpOptions = $allowHttpOptions;
   }
-  /**
-   * @return bool
-   */
   public function getAllowHttpOptions()
   {
     return $this->allowHttpOptions;

@@ -22,9 +22,6 @@ class InTotoProvenance extends \Google\Collection
   protected $collection_key = 'materials';
   protected $builderConfigType = BuilderConfig::class;
   protected $builderConfigDataType = '';
-  /**
-   * @var string[]
-   */
   public $materials;
   protected $metadataType = Metadata::class;
   protected $metadataDataType = '';
@@ -45,16 +42,10 @@ class InTotoProvenance extends \Google\Collection
   {
     return $this->builderConfig;
   }
-  /**
-   * @param string[]
-   */
   public function setMaterials($materials)
   {
     $this->materials = $materials;
   }
-  /**
-   * @return string[]
-   */
   public function getMaterials()
   {
     return $this->materials;

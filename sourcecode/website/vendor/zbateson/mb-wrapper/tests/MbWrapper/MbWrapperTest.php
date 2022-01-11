@@ -1,7 +1,7 @@
 <?php
 namespace ZBateson\MbWrapper;
 
-use LegacyPHPUnit\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Description of MbWrapperTest
@@ -11,14 +11,11 @@ use LegacyPHPUnit\TestCase;
  */
 class MbWrapperTest extends TestCase
 {
-    // CP1258 failing on some platforms (returns -1 chars for strlen for some reason)
-    private $iconvSkip = [ 'CP1258' ];
-
     public function testMbCharsetConversion()
     {
         $arr = array_unique(MbWrapper::$mbAliases);
         $converter = new MbWrapper();
-        $first = 'UTF-32';
+        $first = reset($arr);
         $test = $converter->convert('This is my string', 'UTF-8', $first);
         foreach ($arr as $dest) {
             $this->assertEquals(
@@ -32,12 +29,10 @@ class MbWrapperTest extends TestCase
     {
         $arr = array_unique(MbWrapper::$iconvAliases);
         $converter = new MbWrapper();
-        $first = 'CP1258';
-        $test = $converter->convert('This is my string', 'UTF-8', 'CP1258');
+        $first = reset($arr);
+        $test = $converter->convert('This is my string', 'UTF-8', $first);
         foreach ($arr as $dest) {
-            if (!in_array($dest, $this->iconvSkip)) {
-                $this->assertEquals($test, $converter->convert($converter->convert($test, $first, $dest), $dest, $first));
-            }
+            $this->assertEquals($test, $converter->convert($converter->convert($test, $first, $dest), $dest, $first));
         }
     }
 
@@ -100,9 +95,9 @@ class MbWrapperTest extends TestCase
     {
         $arr = array_unique(MbWrapper::$mbAliases);
         $converter = new MbWrapper();
-        $str = 'Needs to be simple, supported in all encodings';
+        $str = 'هلا والله بالغالي';
         $len = mb_strlen($str, 'UTF-8');
-        $first = 'UTF-32';
+        $first = reset($arr);
         $test = $converter->convert($str, 'UTF-8', $first);
         foreach ($arr as $dest) {
             $this->assertEquals($len, $converter->getLength($converter->convert($test, $first, $dest), $dest));
@@ -113,19 +108,12 @@ class MbWrapperTest extends TestCase
     {
         $arr = array_unique(MbWrapper::$iconvAliases);
         $converter = new MbWrapper();
-        $str = 'Needs to be simple, supported in all encodings';
+        $str = 'هلا والله بالغالي';
         $len = mb_strlen($str, 'UTF-8');
-        $first = 'CP1258';
+        $first = reset($arr);
         $test = $converter->convert($str, 'UTF-8', $first);
         foreach ($arr as $dest) {
-            if (!in_array($dest, $this->iconvSkip)) {
-                $this->assertEquals(
-                    $len,
-                    $converter->getLength($converter->convert($test, $first, $dest), $dest),
-                    'Failing on charset: ' . $dest . ', converted string: '
-                        . $converter->convert($test, $first, $dest)
-                );
-            }
+            $this->assertEquals($len, $converter->getLength($converter->convert($test, $first, $dest), $dest));
         }
     }
 
@@ -135,7 +123,7 @@ class MbWrapperTest extends TestCase
         $converter = new MbWrapper();
         $str = 'Needs to be simple';
         $len = mb_strlen($str, 'UTF-8');
-        $first = 'UTF-32';
+        $first = reset($arr);
         $test = $converter->convert($str, 'UTF-8', $first);
         foreach ($arr as $dest) {
             $testConv = $converter->convert($test, $first, $dest);
@@ -162,16 +150,13 @@ class MbWrapperTest extends TestCase
         $converter = new MbWrapper();
         $str = 'Needs to be simple';
         $len = mb_strlen($str, 'UTF-8');
-        $first = 'UTF-32';
+        $first = reset($arr);
         $test = $converter->convert($str, 'UTF-8', $first);
 
         // seems to fail only on CP1258, returns incorrect number of characters with iconv_substr
         // $arr = array_diff($arr);
 
         foreach ($arr as $dest) {
-            if (in_array($dest, $this->iconvSkip)) {
-                continue;
-            }
             $testConv = $converter->convert($test, $first, $dest);
             for ($i = 0; $i < $len; ++$i) {
                 for ($j = $i + 1; $j <= $len; ++$j) {

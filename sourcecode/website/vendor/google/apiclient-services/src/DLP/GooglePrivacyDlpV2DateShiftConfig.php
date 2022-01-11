@@ -23,13 +23,7 @@ class GooglePrivacyDlpV2DateShiftConfig extends \Google\Model
   protected $contextDataType = '';
   protected $cryptoKeyType = GooglePrivacyDlpV2CryptoKey::class;
   protected $cryptoKeyDataType = '';
-  /**
-   * @var int
-   */
   public $lowerBoundDays;
-  /**
-   * @var int
-   */
   public $upperBoundDays;
 
   /**
@@ -60,30 +54,18 @@ class GooglePrivacyDlpV2DateShiftConfig extends \Google\Model
   {
     return $this->cryptoKey;
   }
-  /**
-   * @param int
-   */
   public function setLowerBoundDays($lowerBoundDays)
   {
     $this->lowerBoundDays = $lowerBoundDays;
   }
-  /**
-   * @return int
-   */
   public function getLowerBoundDays()
   {
     return $this->lowerBoundDays;
   }
-  /**
-   * @param int
-   */
   public function setUpperBoundDays($upperBoundDays)
   {
     $this->upperBoundDays = $upperBoundDays;
   }
-  /**
-   * @return int
-   */
   public function getUpperBoundDays()
   {
     return $this->upperBoundDays;

@@ -19,21 +19,12 @@ namespace Google\Service\Container;
 
 class ReleaseChannel extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $channel;
 
-  /**
-   * @param string
-   */
   public function setChannel($channel)
   {
     $this->channel = $channel;
   }
-  /**
-   * @return string
-   */
   public function getChannel()
   {
     return $this->channel;

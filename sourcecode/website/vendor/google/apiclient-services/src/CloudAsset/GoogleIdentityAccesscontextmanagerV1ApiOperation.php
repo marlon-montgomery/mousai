@@ -22,9 +22,6 @@ class GoogleIdentityAccesscontextmanagerV1ApiOperation extends \Google\Collectio
   protected $collection_key = 'methodSelectors';
   protected $methodSelectorsType = GoogleIdentityAccesscontextmanagerV1MethodSelector::class;
   protected $methodSelectorsDataType = 'array';
-  /**
-   * @var string
-   */
   public $serviceName;
 
   /**
@@ -41,16 +38,10 @@ class GoogleIdentityAccesscontextmanagerV1ApiOperation extends \Google\Collectio
   {
     return $this->methodSelectors;
   }
-  /**
-   * @param string
-   */
   public function setServiceName($serviceName)
   {
     $this->serviceName = $serviceName;
   }
-  /**
-   * @return string
-   */
   public function getServiceName()
   {
     return $this->serviceName;

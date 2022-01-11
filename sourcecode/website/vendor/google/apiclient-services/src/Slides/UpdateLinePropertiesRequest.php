@@ -19,27 +19,15 @@ namespace Google\Service\Slides;
 
 class UpdateLinePropertiesRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $fields;
   protected $linePropertiesType = LineProperties::class;
   protected $linePropertiesDataType = '';
-  /**
-   * @var string
-   */
   public $objectId;
 
-  /**
-   * @param string
-   */
   public function setFields($fields)
   {
     $this->fields = $fields;
   }
-  /**
-   * @return string
-   */
   public function getFields()
   {
     return $this->fields;
@@ -58,16 +46,10 @@ class UpdateLinePropertiesRequest extends \Google\Model
   {
     return $this->lineProperties;
   }
-  /**
-   * @param string
-   */
   public function setObjectId($objectId)
   {
     $this->objectId = $objectId;
   }
-  /**
-   * @return string
-   */
   public function getObjectId()
   {
     return $this->objectId;

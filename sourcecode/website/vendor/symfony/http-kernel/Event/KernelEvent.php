@@ -79,7 +79,7 @@ class KernelEvent extends Event
     /**
      * Checks if this is a master request.
      *
-     * @return bool
+     * @return bool True if the request is a master request
      *
      * @deprecated since symfony/http-kernel 5.3, use isMainRequest() instead
      */

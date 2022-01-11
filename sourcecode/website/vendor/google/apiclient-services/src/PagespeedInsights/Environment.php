@@ -20,13 +20,7 @@ namespace Google\Service\PagespeedInsights;
 class Environment extends \Google\Model
 {
   public $benchmarkIndex;
-  /**
-   * @var string
-   */
   public $hostUserAgent;
-  /**
-   * @var string
-   */
   public $networkUserAgent;
 
   public function setBenchmarkIndex($benchmarkIndex)
@@ -37,30 +31,18 @@ class Environment extends \Google\Model
   {
     return $this->benchmarkIndex;
   }
-  /**
-   * @param string
-   */
   public function setHostUserAgent($hostUserAgent)
   {
     $this->hostUserAgent = $hostUserAgent;
   }
-  /**
-   * @return string
-   */
   public function getHostUserAgent()
   {
     return $this->hostUserAgent;
   }
-  /**
-   * @param string
-   */
   public function setNetworkUserAgent($networkUserAgent)
   {
     $this->networkUserAgent = $networkUserAgent;
   }
-  /**
-   * @return string
-   */
   public function getNetworkUserAgent()
   {
     return $this->networkUserAgent;

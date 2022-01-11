@@ -30,9 +30,6 @@ class ReportCriteria extends \Google\Collection
   protected $dimensionFiltersDataType = 'array';
   protected $dimensionsType = SortedDimension::class;
   protected $dimensionsDataType = 'array';
-  /**
-   * @var string[]
-   */
   public $metricNames;
 
   /**
@@ -105,16 +102,10 @@ class ReportCriteria extends \Google\Collection
   {
     return $this->dimensions;
   }
-  /**
-   * @param string[]
-   */
   public function setMetricNames($metricNames)
   {
     $this->metricNames = $metricNames;
   }
-  /**
-   * @return string[]
-   */
   public function getMetricNames()
   {
     return $this->metricNames;

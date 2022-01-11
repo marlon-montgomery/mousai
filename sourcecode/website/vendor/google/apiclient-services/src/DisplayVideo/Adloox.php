@@ -20,21 +20,12 @@ namespace Google\Service\DisplayVideo;
 class Adloox extends \Google\Collection
 {
   protected $collection_key = 'excludedAdlooxCategories';
-  /**
-   * @var string[]
-   */
   public $excludedAdlooxCategories;
 
-  /**
-   * @param string[]
-   */
   public function setExcludedAdlooxCategories($excludedAdlooxCategories)
   {
     $this->excludedAdlooxCategories = $excludedAdlooxCategories;
   }
-  /**
-   * @return string[]
-   */
   public function getExcludedAdlooxCategories()
   {
     return $this->excludedAdlooxCategories;

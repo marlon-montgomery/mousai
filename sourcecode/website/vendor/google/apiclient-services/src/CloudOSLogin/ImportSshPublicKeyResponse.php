@@ -19,23 +19,14 @@ namespace Google\Service\CloudOSLogin;
 
 class ImportSshPublicKeyResponse extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $details;
   protected $loginProfileType = LoginProfile::class;
   protected $loginProfileDataType = '';
 
-  /**
-   * @param string
-   */
   public function setDetails($details)
   {
     $this->details = $details;
   }
-  /**
-   * @return string
-   */
   public function getDetails()
   {
     return $this->details;

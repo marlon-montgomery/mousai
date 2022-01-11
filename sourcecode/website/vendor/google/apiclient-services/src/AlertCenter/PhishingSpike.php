@@ -22,9 +22,6 @@ class PhishingSpike extends \Google\Collection
   protected $collection_key = 'messages';
   protected $domainIdType = DomainId::class;
   protected $domainIdDataType = '';
-  /**
-   * @var bool
-   */
   public $isInternal;
   protected $maliciousEntityType = MaliciousEntity::class;
   protected $maliciousEntityDataType = '';
@@ -45,16 +42,10 @@ class PhishingSpike extends \Google\Collection
   {
     return $this->domainId;
   }
-  /**
-   * @param bool
-   */
   public function setIsInternal($isInternal)
   {
     $this->isInternal = $isInternal;
   }
-  /**
-   * @return bool
-   */
   public function getIsInternal()
   {
     return $this->isInternal;

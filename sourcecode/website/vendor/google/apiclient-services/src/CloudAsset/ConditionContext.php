@@ -19,21 +19,12 @@ namespace Google\Service\CloudAsset;
 
 class ConditionContext extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $accessTime;
 
-  /**
-   * @param string
-   */
   public function setAccessTime($accessTime)
   {
     $this->accessTime = $accessTime;
   }
-  /**
-   * @return string
-   */
   public function getAccessTime()
   {
     return $this->accessTime;

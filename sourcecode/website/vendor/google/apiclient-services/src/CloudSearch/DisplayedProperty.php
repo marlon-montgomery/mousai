@@ -19,21 +19,12 @@ namespace Google\Service\CloudSearch;
 
 class DisplayedProperty extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $propertyName;
 
-  /**
-   * @param string
-   */
   public function setPropertyName($propertyName)
   {
     $this->propertyName = $propertyName;
   }
-  /**
-   * @return string
-   */
   public function getPropertyName()
   {
     return $this->propertyName;

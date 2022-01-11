@@ -21,9 +21,6 @@ class GoogleCloudDialogflowV2IntentMessageBasicCardButton extends \Google\Model
 {
   protected $openUriActionType = GoogleCloudDialogflowV2IntentMessageBasicCardButtonOpenUriAction::class;
   protected $openUriActionDataType = '';
-  /**
-   * @var string
-   */
   public $title;
 
   /**
@@ -40,16 +37,10 @@ class GoogleCloudDialogflowV2IntentMessageBasicCardButton extends \Google\Model
   {
     return $this->openUriAction;
   }
-  /**
-   * @param string
-   */
   public function setTitle($title)
   {
     $this->title = $title;
   }
-  /**
-   * @return string
-   */
   public function getTitle()
   {
     return $this->title;

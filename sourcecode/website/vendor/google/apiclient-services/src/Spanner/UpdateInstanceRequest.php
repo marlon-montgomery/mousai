@@ -19,23 +19,14 @@ namespace Google\Service\Spanner;
 
 class UpdateInstanceRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $fieldMask;
   protected $instanceType = Instance::class;
   protected $instanceDataType = '';
 
-  /**
-   * @param string
-   */
   public function setFieldMask($fieldMask)
   {
     $this->fieldMask = $fieldMask;
   }
-  /**
-   * @return string
-   */
   public function getFieldMask()
   {
     return $this->fieldMask;

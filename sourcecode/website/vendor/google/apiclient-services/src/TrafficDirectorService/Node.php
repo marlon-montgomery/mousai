@@ -20,81 +20,42 @@ namespace Google\Service\TrafficDirectorService;
 class Node extends \Google\Collection
 {
   protected $collection_key = 'listeningAddresses';
-  /**
-   * @var string
-   */
   public $buildVersion;
-  /**
-   * @var string[]
-   */
   public $clientFeatures;
-  /**
-   * @var string
-   */
   public $cluster;
   protected $extensionsType = Extension::class;
   protected $extensionsDataType = 'array';
-  /**
-   * @var string
-   */
   public $id;
   protected $listeningAddressesType = Address::class;
   protected $listeningAddressesDataType = 'array';
   protected $localityType = Locality::class;
   protected $localityDataType = '';
-  /**
-   * @var array[]
-   */
   public $metadata;
   protected $userAgentBuildVersionType = BuildVersion::class;
   protected $userAgentBuildVersionDataType = '';
-  /**
-   * @var string
-   */
   public $userAgentName;
-  /**
-   * @var string
-   */
   public $userAgentVersion;
 
-  /**
-   * @param string
-   */
   public function setBuildVersion($buildVersion)
   {
     $this->buildVersion = $buildVersion;
   }
-  /**
-   * @return string
-   */
   public function getBuildVersion()
   {
     return $this->buildVersion;
   }
-  /**
-   * @param string[]
-   */
   public function setClientFeatures($clientFeatures)
   {
     $this->clientFeatures = $clientFeatures;
   }
-  /**
-   * @return string[]
-   */
   public function getClientFeatures()
   {
     return $this->clientFeatures;
   }
-  /**
-   * @param string
-   */
   public function setCluster($cluster)
   {
     $this->cluster = $cluster;
   }
-  /**
-   * @return string
-   */
   public function getCluster()
   {
     return $this->cluster;
@@ -113,16 +74,10 @@ class Node extends \Google\Collection
   {
     return $this->extensions;
   }
-  /**
-   * @param string
-   */
   public function setId($id)
   {
     $this->id = $id;
   }
-  /**
-   * @return string
-   */
   public function getId()
   {
     return $this->id;
@@ -155,16 +110,10 @@ class Node extends \Google\Collection
   {
     return $this->locality;
   }
-  /**
-   * @param array[]
-   */
   public function setMetadata($metadata)
   {
     $this->metadata = $metadata;
   }
-  /**
-   * @return array[]
-   */
   public function getMetadata()
   {
     return $this->metadata;
@@ -183,30 +132,18 @@ class Node extends \Google\Collection
   {
     return $this->userAgentBuildVersion;
   }
-  /**
-   * @param string
-   */
   public function setUserAgentName($userAgentName)
   {
     $this->userAgentName = $userAgentName;
   }
-  /**
-   * @return string
-   */
   public function getUserAgentName()
   {
     return $this->userAgentName;
   }
-  /**
-   * @param string
-   */
   public function setUserAgentVersion($userAgentVersion)
   {
     $this->userAgentVersion = $userAgentVersion;
   }
-  /**
-   * @return string
-   */
   public function getUserAgentVersion()
   {
     return $this->userAgentVersion;

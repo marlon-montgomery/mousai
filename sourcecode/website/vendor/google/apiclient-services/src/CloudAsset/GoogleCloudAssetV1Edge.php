@@ -19,39 +19,21 @@ namespace Google\Service\CloudAsset;
 
 class GoogleCloudAssetV1Edge extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $sourceNode;
-  /**
-   * @var string
-   */
   public $targetNode;
 
-  /**
-   * @param string
-   */
   public function setSourceNode($sourceNode)
   {
     $this->sourceNode = $sourceNode;
   }
-  /**
-   * @return string
-   */
   public function getSourceNode()
   {
     return $this->sourceNode;
   }
-  /**
-   * @param string
-   */
   public function setTargetNode($targetNode)
   {
     $this->targetNode = $targetNode;
   }
-  /**
-   * @return string
-   */
   public function getTargetNode()
   {
     return $this->targetNode;

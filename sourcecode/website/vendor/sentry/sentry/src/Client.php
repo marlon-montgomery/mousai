@@ -312,7 +312,7 @@ final class Client implements ClientInterface
      */
     private function addThrowableToEvent(Event $event, \Throwable $exception): void
     {
-        if ($exception instanceof \ErrorException && null === $event->getLevel()) {
+        if ($exception instanceof \ErrorException) {
             $event->setLevel(Severity::fromError($exception->getSeverity()));
         }
 

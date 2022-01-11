@@ -22,9 +22,6 @@ class GoogleAnalyticsAdminV1alphaListAccountSummariesResponse extends \Google\Co
   protected $collection_key = 'accountSummaries';
   protected $accountSummariesType = GoogleAnalyticsAdminV1alphaAccountSummary::class;
   protected $accountSummariesDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class GoogleAnalyticsAdminV1alphaListAccountSummariesResponse extends \Google\Co
   {
     return $this->accountSummaries;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

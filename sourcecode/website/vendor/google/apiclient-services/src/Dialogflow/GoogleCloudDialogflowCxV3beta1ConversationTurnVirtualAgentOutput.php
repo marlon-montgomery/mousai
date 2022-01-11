@@ -22,15 +22,9 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput extends \
   protected $collection_key = 'textResponses';
   protected $currentPageType = GoogleCloudDialogflowCxV3beta1Page::class;
   protected $currentPageDataType = '';
-  /**
-   * @var array[]
-   */
   public $diagnosticInfo;
   protected $differencesType = GoogleCloudDialogflowCxV3beta1TestRunDifference::class;
   protected $differencesDataType = 'array';
-  /**
-   * @var array[]
-   */
   public $sessionParameters;
   protected $statusType = GoogleRpcStatus::class;
   protected $statusDataType = '';
@@ -53,16 +47,10 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput extends \
   {
     return $this->currentPage;
   }
-  /**
-   * @param array[]
-   */
   public function setDiagnosticInfo($diagnosticInfo)
   {
     $this->diagnosticInfo = $diagnosticInfo;
   }
-  /**
-   * @return array[]
-   */
   public function getDiagnosticInfo()
   {
     return $this->diagnosticInfo;
@@ -81,16 +69,10 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput extends \
   {
     return $this->differences;
   }
-  /**
-   * @param array[]
-   */
   public function setSessionParameters($sessionParameters)
   {
     $this->sessionParameters = $sessionParameters;
   }
-  /**
-   * @return array[]
-   */
   public function getSessionParameters()
   {
     return $this->sessionParameters;

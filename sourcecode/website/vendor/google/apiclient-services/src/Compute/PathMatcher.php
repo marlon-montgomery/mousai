@@ -22,21 +22,12 @@ class PathMatcher extends \Google\Collection
   protected $collection_key = 'routeRules';
   protected $defaultRouteActionType = HttpRouteAction::class;
   protected $defaultRouteActionDataType = '';
-  /**
-   * @var string
-   */
   public $defaultService;
   protected $defaultUrlRedirectType = HttpRedirectAction::class;
   protected $defaultUrlRedirectDataType = '';
-  /**
-   * @var string
-   */
   public $description;
   protected $headerActionType = HttpHeaderAction::class;
   protected $headerActionDataType = '';
-  /**
-   * @var string
-   */
   public $name;
   protected $pathRulesType = PathRule::class;
   protected $pathRulesDataType = 'array';
@@ -57,16 +48,10 @@ class PathMatcher extends \Google\Collection
   {
     return $this->defaultRouteAction;
   }
-  /**
-   * @param string
-   */
   public function setDefaultService($defaultService)
   {
     $this->defaultService = $defaultService;
   }
-  /**
-   * @return string
-   */
   public function getDefaultService()
   {
     return $this->defaultService;
@@ -85,16 +70,10 @@ class PathMatcher extends \Google\Collection
   {
     return $this->defaultUrlRedirect;
   }
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;
@@ -113,16 +92,10 @@ class PathMatcher extends \Google\Collection
   {
     return $this->headerAction;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

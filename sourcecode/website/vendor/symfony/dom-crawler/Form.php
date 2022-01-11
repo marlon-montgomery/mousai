@@ -55,7 +55,7 @@ class Form extends Link implements \ArrayAccess
     /**
      * Gets the form node associated with this form.
      *
-     * @return \DOMElement
+     * @return \DOMElement A \DOMElement instance
      */
     public function getFormNode()
     {
@@ -83,7 +83,7 @@ class Form extends Link implements \ArrayAccess
      *
      * The returned array does not include file fields (@see getFiles).
      *
-     * @return array
+     * @return array An array of field values
      */
     public function getValues()
     {
@@ -104,7 +104,7 @@ class Form extends Link implements \ArrayAccess
     /**
      * Gets the file field values.
      *
-     * @return array
+     * @return array An array of file field values
      */
     public function getFiles()
     {
@@ -133,7 +133,7 @@ class Form extends Link implements \ArrayAccess
      * This method converts fields with the array notation
      * (like foo[bar] to arrays) like PHP does.
      *
-     * @return array
+     * @return array An array of field values
      */
     public function getPhpValues()
     {
@@ -143,11 +143,11 @@ class Form extends Link implements \ArrayAccess
             if (!empty($qs)) {
                 parse_str($qs, $expandedValue);
                 $varName = substr($name, 0, \strlen(key($expandedValue)));
-                $values[] = [$varName => current($expandedValue)];
+                $values = array_replace_recursive($values, [$varName => current($expandedValue)]);
             }
         }
 
-        return array_replace_recursive([], ...$values);
+        return $values;
     }
 
     /**
@@ -160,7 +160,7 @@ class Form extends Link implements \ArrayAccess
      * For a compound file field foo[bar] it will create foo[bar][name],
      * instead of foo[name][bar] which would be found in $_FILES.
      *
-     * @return array
+     * @return array An array of file field values
      */
     public function getPhpFiles()
     {
@@ -182,11 +182,11 @@ class Form extends Link implements \ArrayAccess
 
                 reset($expandedValue);
 
-                $values[] = [$varName => current($expandedValue)];
+                $values = array_replace_recursive($values, [$varName => current($expandedValue)]);
             }
         }
 
-        return array_replace_recursive([], ...$values);
+        return $values;
     }
 
     /**
@@ -196,7 +196,7 @@ class Form extends Link implements \ArrayAccess
      * This method merges the value if the method is GET to mimics
      * browser behavior.
      *
-     * @return string
+     * @return string The URI
      */
     public function getUri()
     {
@@ -234,7 +234,7 @@ class Form extends Link implements \ArrayAccess
      *
      * If no method is defined in the form, GET is returned.
      *
-     * @return string
+     * @return string The method
      */
     public function getMethod()
     {
@@ -263,7 +263,7 @@ class Form extends Link implements \ArrayAccess
     /**
      * Returns true if the named field exists.
      *
-     * @return bool
+     * @return bool true if the field exists, false otherwise
      */
     public function has(string $name)
     {
@@ -281,7 +281,7 @@ class Form extends Link implements \ArrayAccess
     /**
      * Gets a named field.
      *
-     * @return FormField|FormField[]|FormField[][]
+     * @return FormField|FormField[]|FormField[][] The value of the field
      *
      * @throws \InvalidArgumentException When field is not present in this form
      */
@@ -313,7 +313,7 @@ class Form extends Link implements \ArrayAccess
      *
      * @param string $name The field name
      *
-     * @return bool
+     * @return bool true if the field exists, false otherwise
      */
     #[\ReturnTypeWillChange]
     public function offsetExists($name)
@@ -326,7 +326,7 @@ class Form extends Link implements \ArrayAccess
      *
      * @param string $name The field name
      *
-     * @return FormField|FormField[]|FormField[][]
+     * @return FormField|FormField[]|FormField[][] The value of the field
      *
      * @throws \InvalidArgumentException if the field does not exist
      */
@@ -368,7 +368,7 @@ class Form extends Link implements \ArrayAccess
     /**
      * Disables validation.
      *
-     * @return $this
+     * @return self
      */
     public function disableValidation()
     {

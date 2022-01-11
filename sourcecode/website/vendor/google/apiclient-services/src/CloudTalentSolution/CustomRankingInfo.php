@@ -19,39 +19,21 @@ namespace Google\Service\CloudTalentSolution;
 
 class CustomRankingInfo extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $importanceLevel;
-  /**
-   * @var string
-   */
   public $rankingExpression;
 
-  /**
-   * @param string
-   */
   public function setImportanceLevel($importanceLevel)
   {
     $this->importanceLevel = $importanceLevel;
   }
-  /**
-   * @return string
-   */
   public function getImportanceLevel()
   {
     return $this->importanceLevel;
   }
-  /**
-   * @param string
-   */
   public function setRankingExpression($rankingExpression)
   {
     $this->rankingExpression = $rankingExpression;
   }
-  /**
-   * @return string
-   */
   public function getRankingExpression()
   {
     return $this->rankingExpression;

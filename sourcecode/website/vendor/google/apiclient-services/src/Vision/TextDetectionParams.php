@@ -19,21 +19,12 @@ namespace Google\Service\Vision;
 
 class TextDetectionParams extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $enableTextDetectionConfidenceScore;
 
-  /**
-   * @param bool
-   */
   public function setEnableTextDetectionConfidenceScore($enableTextDetectionConfidenceScore)
   {
     $this->enableTextDetectionConfidenceScore = $enableTextDetectionConfidenceScore;
   }
-  /**
-   * @return bool
-   */
   public function getEnableTextDetectionConfidenceScore()
   {
     return $this->enableTextDetectionConfidenceScore;

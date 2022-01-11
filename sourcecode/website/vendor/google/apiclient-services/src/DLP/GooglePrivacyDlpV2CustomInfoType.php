@@ -24,15 +24,9 @@ class GooglePrivacyDlpV2CustomInfoType extends \Google\Collection
   protected $detectionRulesDataType = 'array';
   protected $dictionaryType = GooglePrivacyDlpV2Dictionary::class;
   protected $dictionaryDataType = '';
-  /**
-   * @var string
-   */
   public $exclusionType;
   protected $infoTypeType = GooglePrivacyDlpV2InfoType::class;
   protected $infoTypeDataType = '';
-  /**
-   * @var string
-   */
   public $likelihood;
   protected $regexType = GooglePrivacyDlpV2Regex::class;
   protected $regexDataType = '';
@@ -69,16 +63,10 @@ class GooglePrivacyDlpV2CustomInfoType extends \Google\Collection
   {
     return $this->dictionary;
   }
-  /**
-   * @param string
-   */
   public function setExclusionType($exclusionType)
   {
     $this->exclusionType = $exclusionType;
   }
-  /**
-   * @return string
-   */
   public function getExclusionType()
   {
     return $this->exclusionType;
@@ -97,16 +85,10 @@ class GooglePrivacyDlpV2CustomInfoType extends \Google\Collection
   {
     return $this->infoType;
   }
-  /**
-   * @param string
-   */
   public function setLikelihood($likelihood)
   {
     $this->likelihood = $likelihood;
   }
-  /**
-   * @return string
-   */
   public function getLikelihood()
   {
     return $this->likelihood;

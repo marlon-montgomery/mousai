@@ -19,23 +19,11 @@ namespace Google\Service\YouTube;
 
 class LiveChatMessageSnippet extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $authorChannelId;
-  /**
-   * @var string
-   */
   public $displayMessage;
   protected $fanFundingEventDetailsType = LiveChatFanFundingEventDetails::class;
   protected $fanFundingEventDetailsDataType = '';
-  /**
-   * @var bool
-   */
   public $hasDisplayContent;
-  /**
-   * @var string
-   */
   public $liveChatId;
   protected $memberMilestoneChatDetailsType = LiveChatMemberMilestoneChatDetails::class;
   protected $memberMilestoneChatDetailsDataType = '';
@@ -45,9 +33,6 @@ class LiveChatMessageSnippet extends \Google\Model
   protected $messageRetractedDetailsDataType = '';
   protected $newSponsorDetailsType = LiveChatNewSponsorDetails::class;
   protected $newSponsorDetailsDataType = '';
-  /**
-   * @var string
-   */
   public $publishedAt;
   protected $superChatDetailsType = LiveChatSuperChatDetails::class;
   protected $superChatDetailsDataType = '';
@@ -55,37 +40,22 @@ class LiveChatMessageSnippet extends \Google\Model
   protected $superStickerDetailsDataType = '';
   protected $textMessageDetailsType = LiveChatTextMessageDetails::class;
   protected $textMessageDetailsDataType = '';
-  /**
-   * @var string
-   */
   public $type;
   protected $userBannedDetailsType = LiveChatUserBannedMessageDetails::class;
   protected $userBannedDetailsDataType = '';
 
-  /**
-   * @param string
-   */
   public function setAuthorChannelId($authorChannelId)
   {
     $this->authorChannelId = $authorChannelId;
   }
-  /**
-   * @return string
-   */
   public function getAuthorChannelId()
   {
     return $this->authorChannelId;
   }
-  /**
-   * @param string
-   */
   public function setDisplayMessage($displayMessage)
   {
     $this->displayMessage = $displayMessage;
   }
-  /**
-   * @return string
-   */
   public function getDisplayMessage()
   {
     return $this->displayMessage;
@@ -104,30 +74,18 @@ class LiveChatMessageSnippet extends \Google\Model
   {
     return $this->fanFundingEventDetails;
   }
-  /**
-   * @param bool
-   */
   public function setHasDisplayContent($hasDisplayContent)
   {
     $this->hasDisplayContent = $hasDisplayContent;
   }
-  /**
-   * @return bool
-   */
   public function getHasDisplayContent()
   {
     return $this->hasDisplayContent;
   }
-  /**
-   * @param string
-   */
   public function setLiveChatId($liveChatId)
   {
     $this->liveChatId = $liveChatId;
   }
-  /**
-   * @return string
-   */
   public function getLiveChatId()
   {
     return $this->liveChatId;
@@ -188,16 +146,10 @@ class LiveChatMessageSnippet extends \Google\Model
   {
     return $this->newSponsorDetails;
   }
-  /**
-   * @param string
-   */
   public function setPublishedAt($publishedAt)
   {
     $this->publishedAt = $publishedAt;
   }
-  /**
-   * @return string
-   */
   public function getPublishedAt()
   {
     return $this->publishedAt;
@@ -244,16 +196,10 @@ class LiveChatMessageSnippet extends \Google\Model
   {
     return $this->textMessageDetails;
   }
-  /**
-   * @param string
-   */
   public function setType($type)
   {
     $this->type = $type;
   }
-  /**
-   * @return string
-   */
   public function getType()
   {
     return $this->type;

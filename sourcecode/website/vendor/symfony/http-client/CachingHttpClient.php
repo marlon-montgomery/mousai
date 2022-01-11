@@ -20,7 +20,6 @@ use Symfony\Component\HttpKernel\HttpClientKernel;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Symfony\Contracts\HttpClient\ResponseStreamInterface;
-use Symfony\Contracts\Service\ResetInterface;
 
 /**
  * Adds caching on top of an HTTP client.
@@ -31,7 +30,7 @@ use Symfony\Contracts\Service\ResetInterface;
  *
  * @author Nicolas Grekas <p@tchwork.com>
  */
-class CachingHttpClient implements HttpClientInterface, ResetInterface
+class CachingHttpClient implements HttpClientInterface
 {
     use HttpClientTrait;
 
@@ -42,7 +41,7 @@ class CachingHttpClient implements HttpClientInterface, ResetInterface
     public function __construct(HttpClientInterface $client, StoreInterface $store, array $defaultOptions = [])
     {
         if (!class_exists(HttpClientKernel::class)) {
-            throw new \LogicException(sprintf('Using "%s" requires that the HttpKernel component version 4.3 or higher is installed, try running "composer require symfony/http-kernel:^5.4".', __CLASS__));
+            throw new \LogicException(sprintf('Using "%s" requires that the HttpKernel component version 4.3 or higher is installed, try running "composer require symfony/http-kernel:^4.3".', __CLASS__));
         }
 
         $this->client = $client;
@@ -141,12 +140,5 @@ class CachingHttpClient implements HttpClientInterface, ResetInterface
             yield from MockResponse::stream($mockResponses, $timeout);
             yield $this->client->stream($clientResponses, $timeout);
         })());
-    }
-
-    public function reset()
-    {
-        if ($this->client instanceof ResetInterface) {
-            $this->client->reset();
-        }
     }
 }

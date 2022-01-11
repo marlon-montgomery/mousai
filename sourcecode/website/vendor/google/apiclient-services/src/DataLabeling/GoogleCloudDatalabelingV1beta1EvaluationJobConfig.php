@@ -19,9 +19,6 @@ namespace Google\Service\DataLabeling;
 
 class GoogleCloudDatalabelingV1beta1EvaluationJobConfig extends \Google\Model
 {
-  /**
-   * @var string[]
-   */
   public $bigqueryImportKeys;
   protected $boundingPolyConfigType = GoogleCloudDatalabelingV1beta1BoundingPolyConfig::class;
   protected $boundingPolyConfigDataType = '';
@@ -29,9 +26,6 @@ class GoogleCloudDatalabelingV1beta1EvaluationJobConfig extends \Google\Model
   protected $evaluationConfigDataType = '';
   protected $evaluationJobAlertConfigType = GoogleCloudDatalabelingV1beta1EvaluationJobAlertConfig::class;
   protected $evaluationJobAlertConfigDataType = '';
-  /**
-   * @var int
-   */
   public $exampleCount;
   public $exampleSamplePercentage;
   protected $humanAnnotationConfigType = GoogleCloudDatalabelingV1beta1HumanAnnotationConfig::class;
@@ -43,16 +37,10 @@ class GoogleCloudDatalabelingV1beta1EvaluationJobConfig extends \Google\Model
   protected $textClassificationConfigType = GoogleCloudDatalabelingV1beta1TextClassificationConfig::class;
   protected $textClassificationConfigDataType = '';
 
-  /**
-   * @param string[]
-   */
   public function setBigqueryImportKeys($bigqueryImportKeys)
   {
     $this->bigqueryImportKeys = $bigqueryImportKeys;
   }
-  /**
-   * @return string[]
-   */
   public function getBigqueryImportKeys()
   {
     return $this->bigqueryImportKeys;
@@ -99,16 +87,10 @@ class GoogleCloudDatalabelingV1beta1EvaluationJobConfig extends \Google\Model
   {
     return $this->evaluationJobAlertConfig;
   }
-  /**
-   * @param int
-   */
   public function setExampleCount($exampleCount)
   {
     $this->exampleCount = $exampleCount;
   }
-  /**
-   * @return int
-   */
   public function getExampleCount()
   {
     return $this->exampleCount;

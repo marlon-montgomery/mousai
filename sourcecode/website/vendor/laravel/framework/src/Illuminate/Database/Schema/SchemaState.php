@@ -58,7 +58,7 @@ abstract class SchemaState
         $this->files = $files ?: new Filesystem;
 
         $this->processFactory = $processFactory ?: function (...$arguments) {
-            return Process::fromShellCommandline(...$arguments)->setTimeout(null);
+            return Process::fromShellCommandline(...$arguments);
         };
 
         $this->handleOutputUsing(function () {

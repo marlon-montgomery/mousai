@@ -62,11 +62,7 @@ class MeiliSearchEngine extends Engine
                 return;
             }
 
-            return array_merge(
-                [$model->getKeyName() => $model->getScoutKey()],
-                $searchableData,
-                $model->scoutMetadata()
-            );
+            return array_merge($searchableData, $model->scoutMetadata());
         })->filter()->values()->all();
 
         if (! empty($objects)) {
@@ -188,8 +184,6 @@ class MeiliSearchEngine extends Engine
     /**
      * Pluck and return the primary keys of the given results.
      *
-     * This expects the first item of each search item array to be the primary key.
-     *
      * @param  mixed  $results
      * @return \Illuminate\Support\Collection
      */
@@ -200,24 +194,9 @@ class MeiliSearchEngine extends Engine
         }
 
         $hits = collect($results['hits']);
-
         $key = key($hits->first());
 
         return $hits->pluck($key)->values();
-    }
-
-    /**
-     * Pluck and the given results with the given primary key name.
-     *
-     * @param  mixed  $results
-     * @param  string  $key
-     * @return \Illuminate\Support\Collection
-     */
-    public function mapIdsFrom($results, $key)
-    {
-        return count($results['hits']) === 0
-                ? collect()
-                : collect($results['hits'])->pluck($key)->values();
     }
 
     /**

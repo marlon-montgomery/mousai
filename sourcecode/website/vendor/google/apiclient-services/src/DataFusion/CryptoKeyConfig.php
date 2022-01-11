@@ -19,21 +19,12 @@ namespace Google\Service\DataFusion;
 
 class CryptoKeyConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $keyReference;
 
-  /**
-   * @param string
-   */
   public function setKeyReference($keyReference)
   {
     $this->keyReference = $keyReference;
   }
-  /**
-   * @return string
-   */
   public function getKeyReference()
   {
     return $this->keyReference;

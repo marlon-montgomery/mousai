@@ -19,27 +19,15 @@ namespace Google\Service\Dfareporting;
 
 class ReportsConfiguration extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $exposureToConversionEnabled;
   protected $lookbackConfigurationType = LookbackConfiguration::class;
   protected $lookbackConfigurationDataType = '';
-  /**
-   * @var string
-   */
   public $reportGenerationTimeZoneId;
 
-  /**
-   * @param bool
-   */
   public function setExposureToConversionEnabled($exposureToConversionEnabled)
   {
     $this->exposureToConversionEnabled = $exposureToConversionEnabled;
   }
-  /**
-   * @return bool
-   */
   public function getExposureToConversionEnabled()
   {
     return $this->exposureToConversionEnabled;
@@ -58,16 +46,10 @@ class ReportsConfiguration extends \Google\Model
   {
     return $this->lookbackConfiguration;
   }
-  /**
-   * @param string
-   */
   public function setReportGenerationTimeZoneId($reportGenerationTimeZoneId)
   {
     $this->reportGenerationTimeZoneId = $reportGenerationTimeZoneId;
   }
-  /**
-   * @return string
-   */
   public function getReportGenerationTimeZoneId()
   {
     return $this->reportGenerationTimeZoneId;

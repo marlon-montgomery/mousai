@@ -59,7 +59,7 @@ final class Statement implements StatementInterface
     /**
      * {@inheritdoc}
      */
-    public function bindValue($param, $value, $type = ParameterType::STRING): bool
+    public function bindValue($param, $value, $type = ParameterType::STRING)
     {
         assert(is_int($param));
 
@@ -69,7 +69,7 @@ final class Statement implements StatementInterface
     /**
      * {@inheritdoc}
      */
-    public function bindParam($param, &$variable, $type = ParameterType::STRING, $length = null): bool
+    public function bindParam($param, &$variable, $type = ParameterType::STRING, $length = null)
     {
         assert(is_int($param));
 
@@ -140,7 +140,7 @@ final class Statement implements StatementInterface
             $this->writeStringToStream($source, $target);
         }
 
-        $result = @db2_execute($this->stmt, $params);
+        $result = db2_execute($this->stmt, $params);
 
         foreach ($this->lobs as [, $handle]) {
             fclose($handle);

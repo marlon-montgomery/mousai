@@ -20,35 +20,17 @@ namespace Google\Service\Document;
 class GoogleCloudDocumentaiV1BatchProcessMetadata extends \Google\Collection
 {
   protected $collection_key = 'individualProcessStatuses';
-  /**
-   * @var string
-   */
   public $createTime;
   protected $individualProcessStatusesType = GoogleCloudDocumentaiV1BatchProcessMetadataIndividualProcessStatus::class;
   protected $individualProcessStatusesDataType = 'array';
-  /**
-   * @var string
-   */
   public $state;
-  /**
-   * @var string
-   */
   public $stateMessage;
-  /**
-   * @var string
-   */
   public $updateTime;
 
-  /**
-   * @param string
-   */
   public function setCreateTime($createTime)
   {
     $this->createTime = $createTime;
   }
-  /**
-   * @return string
-   */
   public function getCreateTime()
   {
     return $this->createTime;
@@ -67,44 +49,26 @@ class GoogleCloudDocumentaiV1BatchProcessMetadata extends \Google\Collection
   {
     return $this->individualProcessStatuses;
   }
-  /**
-   * @param string
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return string
-   */
   public function getState()
   {
     return $this->state;
   }
-  /**
-   * @param string
-   */
   public function setStateMessage($stateMessage)
   {
     $this->stateMessage = $stateMessage;
   }
-  /**
-   * @return string
-   */
   public function getStateMessage()
   {
     return $this->stateMessage;
   }
-  /**
-   * @param string
-   */
   public function setUpdateTime($updateTime)
   {
     $this->updateTime = $updateTime;
   }
-  /**
-   * @return string
-   */
   public function getUpdateTime()
   {
     return $this->updateTime;

@@ -27,9 +27,6 @@ class GoogleCloudDialogflowCxV3QueryInput extends \Google\Model
   protected $eventDataType = '';
   protected $intentType = GoogleCloudDialogflowCxV3IntentInput::class;
   protected $intentDataType = '';
-  /**
-   * @var string
-   */
   public $languageCode;
   protected $textType = GoogleCloudDialogflowCxV3TextInput::class;
   protected $textDataType = '';
@@ -90,16 +87,10 @@ class GoogleCloudDialogflowCxV3QueryInput extends \Google\Model
   {
     return $this->intent;
   }
-  /**
-   * @param string
-   */
   public function setLanguageCode($languageCode)
   {
     $this->languageCode = $languageCode;
   }
-  /**
-   * @return string
-   */
   public function getLanguageCode()
   {
     return $this->languageCode;

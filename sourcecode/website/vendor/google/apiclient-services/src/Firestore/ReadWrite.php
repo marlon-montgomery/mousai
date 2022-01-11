@@ -19,21 +19,12 @@ namespace Google\Service\Firestore;
 
 class ReadWrite extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $retryTransaction;
 
-  /**
-   * @param string
-   */
   public function setRetryTransaction($retryTransaction)
   {
     $this->retryTransaction = $retryTransaction;
   }
-  /**
-   * @return string
-   */
   public function getRetryTransaction()
   {
     return $this->retryTransaction;

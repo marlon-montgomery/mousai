@@ -50,14 +50,11 @@ class ArrayDenormalizer implements ContextAwareDenormalizerInterface, Denormaliz
 
         $builtinType = isset($context['key_type']) ? $context['key_type']->getBuiltinType() : null;
         foreach ($data as $key => $value) {
-            $subContext = $context;
-            $subContext['deserialization_path'] = ($context['deserialization_path'] ?? false) ? sprintf('%s[%s]', $context['deserialization_path'], $key) : "[$key]";
-
             if (null !== $builtinType && !('is_'.$builtinType)($key)) {
-                throw NotNormalizableValueException::createForUnexpectedDataType(sprintf('The type of the key "%s" must be "%s" ("%s" given).', $key, $builtinType, get_debug_type($key)), $key, [$builtinType], $subContext['deserialization_path'] ?? null, true);
+                throw new NotNormalizableValueException(sprintf('The type of the key "%s" must be "%s" ("%s" given).', $key, $builtinType, get_debug_type($key)));
             }
 
-            $data[$key] = $this->denormalizer->denormalize($value, $type, $format, $subContext);
+            $data[$key] = $this->denormalizer->denormalize($value, $type, $format, $context);
         }
 
         return $data;

@@ -22,9 +22,6 @@ class CustomRichMediaEvents extends \Google\Collection
   protected $collection_key = 'filteredEventIds';
   protected $filteredEventIdsType = DimensionValue::class;
   protected $filteredEventIdsDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -41,16 +38,10 @@ class CustomRichMediaEvents extends \Google\Collection
   {
     return $this->filteredEventIds;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class InstanceGroupManagerStatusVersionTarget extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $isReached;
 
-  /**
-   * @param bool
-   */
   public function setIsReached($isReached)
   {
     $this->isReached = $isReached;
   }
-  /**
-   * @return bool
-   */
   public function getIsReached()
   {
     return $this->isReached;

@@ -19,21 +19,12 @@ namespace Google\Service\Gmail;
 
 class LanguageSettings extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $displayLanguage;
 
-  /**
-   * @param string
-   */
   public function setDisplayLanguage($displayLanguage)
   {
     $this->displayLanguage = $displayLanguage;
   }
-  /**
-   * @return string
-   */
   public function getDisplayLanguage()
   {
     return $this->displayLanguage;

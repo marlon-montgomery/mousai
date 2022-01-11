@@ -19,21 +19,12 @@ namespace Google\Service\Firebaseappcheck;
 
 class GoogleFirebaseAppcheckV1betaExchangeDebugTokenRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $debugToken;
 
-  /**
-   * @param string
-   */
   public function setDebugToken($debugToken)
   {
     $this->debugToken = $debugToken;
   }
-  /**
-   * @return string
-   */
   public function getDebugToken()
   {
     return $this->debugToken;

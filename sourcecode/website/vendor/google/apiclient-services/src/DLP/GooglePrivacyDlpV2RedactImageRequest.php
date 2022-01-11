@@ -24,15 +24,9 @@ class GooglePrivacyDlpV2RedactImageRequest extends \Google\Collection
   protected $byteItemDataType = '';
   protected $imageRedactionConfigsType = GooglePrivacyDlpV2ImageRedactionConfig::class;
   protected $imageRedactionConfigsDataType = 'array';
-  /**
-   * @var bool
-   */
   public $includeFindings;
   protected $inspectConfigType = GooglePrivacyDlpV2InspectConfig::class;
   protected $inspectConfigDataType = '';
-  /**
-   * @var string
-   */
   public $locationId;
 
   /**
@@ -63,16 +57,10 @@ class GooglePrivacyDlpV2RedactImageRequest extends \Google\Collection
   {
     return $this->imageRedactionConfigs;
   }
-  /**
-   * @param bool
-   */
   public function setIncludeFindings($includeFindings)
   {
     $this->includeFindings = $includeFindings;
   }
-  /**
-   * @return bool
-   */
   public function getIncludeFindings()
   {
     return $this->includeFindings;
@@ -91,16 +79,10 @@ class GooglePrivacyDlpV2RedactImageRequest extends \Google\Collection
   {
     return $this->inspectConfig;
   }
-  /**
-   * @param string
-   */
   public function setLocationId($locationId)
   {
     $this->locationId = $locationId;
   }
-  /**
-   * @return string
-   */
   public function getLocationId()
   {
     return $this->locationId;

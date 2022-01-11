@@ -22,9 +22,6 @@ class WorkerDetails extends \Google\Collection
   protected $collection_key = 'workItems';
   protected $workItemsType = WorkItemDetails::class;
   protected $workItemsDataType = 'array';
-  /**
-   * @var string
-   */
   public $workerName;
 
   /**
@@ -41,16 +38,10 @@ class WorkerDetails extends \Google\Collection
   {
     return $this->workItems;
   }
-  /**
-   * @param string
-   */
   public function setWorkerName($workerName)
   {
     $this->workerName = $workerName;
   }
-  /**
-   * @return string
-   */
   public function getWorkerName()
   {
     return $this->workerName;

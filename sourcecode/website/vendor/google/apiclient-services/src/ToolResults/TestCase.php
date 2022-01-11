@@ -24,21 +24,12 @@ class TestCase extends \Google\Collection
   protected $elapsedTimeDataType = '';
   protected $endTimeType = Timestamp::class;
   protected $endTimeDataType = '';
-  /**
-   * @var string
-   */
   public $skippedMessage;
   protected $stackTracesType = StackTrace::class;
   protected $stackTracesDataType = 'array';
   protected $startTimeType = Timestamp::class;
   protected $startTimeDataType = '';
-  /**
-   * @var string
-   */
   public $status;
-  /**
-   * @var string
-   */
   public $testCaseId;
   protected $testCaseReferenceType = TestCaseReference::class;
   protected $testCaseReferenceDataType = '';
@@ -73,16 +64,10 @@ class TestCase extends \Google\Collection
   {
     return $this->endTime;
   }
-  /**
-   * @param string
-   */
   public function setSkippedMessage($skippedMessage)
   {
     $this->skippedMessage = $skippedMessage;
   }
-  /**
-   * @return string
-   */
   public function getSkippedMessage()
   {
     return $this->skippedMessage;
@@ -115,30 +100,18 @@ class TestCase extends \Google\Collection
   {
     return $this->startTime;
   }
-  /**
-   * @param string
-   */
   public function setStatus($status)
   {
     $this->status = $status;
   }
-  /**
-   * @return string
-   */
   public function getStatus()
   {
     return $this->status;
   }
-  /**
-   * @param string
-   */
   public function setTestCaseId($testCaseId)
   {
     $this->testCaseId = $testCaseId;
   }
-  /**
-   * @return string
-   */
   public function getTestCaseId()
   {
     return $this->testCaseId;

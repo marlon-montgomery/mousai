@@ -19,21 +19,12 @@ namespace Google\Service\Classroom;
 
 class CloudPubsubTopic extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $topicName;
 
-  /**
-   * @param string
-   */
   public function setTopicName($topicName)
   {
     $this->topicName = $topicName;
   }
-  /**
-   * @return string
-   */
   public function getTopicName()
   {
     return $this->topicName;

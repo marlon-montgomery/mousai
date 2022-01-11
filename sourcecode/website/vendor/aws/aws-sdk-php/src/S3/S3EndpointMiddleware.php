@@ -3,7 +3,6 @@ namespace Aws\S3;
 
 use Aws\Arn\ArnParser;
 use Aws\Arn\ObjectLambdaAccessPointArn;
-use Aws\ClientResolver;
 use Aws\CommandInterface;
 use Aws\Endpoint\EndpointProvider;
 use Aws\Endpoint\PartitionEndpointProvider;
@@ -215,8 +214,8 @@ class S3EndpointMiddleware
             $dnsSuffix = $this->endpointProvider
                 ->getPartition($this->region, 's3')
                 ->getDnsSuffix();
-            $fips = \Aws\is_fips_pseudo_region($this->region) ? "-fips" : "";
-            $region = \Aws\strip_fips_pseudo_regions($this->region);
+            $fips = $this->isFipsPseudoRegion($this->region) ? "-fips" : "";
+            $region = $this->stripPseudoRegions($this->region);
             $host =
                 "{$command['RequestRoute']}.s3-object-lambda{$fips}.{$region}.{$dnsSuffix}";
 
@@ -285,11 +284,7 @@ class S3EndpointMiddleware
     private function getBucketlessPath($path, CommandInterface $command)
     {
         $pattern = '/^\\/' . preg_quote($command['Bucket'], '/') . '/';
-        $path = preg_replace($pattern, '', $path) ?: '/';
-        if (substr($path, 0 , 1) !== '/') {
-            $path = '/' . $path;
-        }
-        return $path;
+        return preg_replace($pattern, '', $path) ?: '/';
     }
 
     private function applyEndpoint(
@@ -340,4 +335,16 @@ class S3EndpointMiddleware
 
         return $request;
     }
+
+    private function isFipsPseudoRegion($region)
+    {
+        return strpos($region, 'fips-') !== false || strpos($region, '-fips') !== false;
+    }
+
+    private function stripPseudoRegions($region)
+    {
+        return str_replace(['fips-', '-fips'], ['', ''], $region);
+    }
+
+
 }

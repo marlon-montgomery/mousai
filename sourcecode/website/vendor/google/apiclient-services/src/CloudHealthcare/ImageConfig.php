@@ -19,21 +19,12 @@ namespace Google\Service\CloudHealthcare;
 
 class ImageConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $textRedactionMode;
 
-  /**
-   * @param string
-   */
   public function setTextRedactionMode($textRedactionMode)
   {
     $this->textRedactionMode = $textRedactionMode;
   }
-  /**
-   * @return string
-   */
   public function getTextRedactionMode()
   {
     return $this->textRedactionMode;

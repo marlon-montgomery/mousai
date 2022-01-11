@@ -22,9 +22,6 @@ class GoogleCloudDatalabelingV1beta1VideoClassificationConfig extends \Google\Co
   protected $collection_key = 'annotationSpecSetConfigs';
   protected $annotationSpecSetConfigsType = GoogleCloudDatalabelingV1beta1AnnotationSpecSetConfig::class;
   protected $annotationSpecSetConfigsDataType = 'array';
-  /**
-   * @var bool
-   */
   public $applyShotDetection;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudDatalabelingV1beta1VideoClassificationConfig extends \Google\Co
   {
     return $this->annotationSpecSetConfigs;
   }
-  /**
-   * @param bool
-   */
   public function setApplyShotDetection($applyShotDetection)
   {
     $this->applyShotDetection = $applyShotDetection;
   }
-  /**
-   * @return bool
-   */
   public function getApplyShotDetection()
   {
     return $this->applyShotDetection;

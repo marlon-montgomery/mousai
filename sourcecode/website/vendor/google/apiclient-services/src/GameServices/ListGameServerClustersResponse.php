@@ -22,13 +22,7 @@ class ListGameServerClustersResponse extends \Google\Collection
   protected $collection_key = 'unreachable';
   protected $gameServerClustersType = GameServerCluster::class;
   protected $gameServerClustersDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
-  /**
-   * @var string[]
-   */
   public $unreachable;
 
   /**
@@ -45,30 +39,18 @@ class ListGameServerClustersResponse extends \Google\Collection
   {
     return $this->gameServerClusters;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;
   }
-  /**
-   * @param string[]
-   */
   public function setUnreachable($unreachable)
   {
     $this->unreachable = $unreachable;
   }
-  /**
-   * @return string[]
-   */
   public function getUnreachable()
   {
     return $this->unreachable;

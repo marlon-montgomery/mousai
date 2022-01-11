@@ -19,21 +19,12 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3beta1EventInput extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $event;
 
-  /**
-   * @param string
-   */
   public function setEvent($event)
   {
     $this->event = $event;
   }
-  /**
-   * @return string
-   */
   public function getEvent()
   {
     return $this->event;

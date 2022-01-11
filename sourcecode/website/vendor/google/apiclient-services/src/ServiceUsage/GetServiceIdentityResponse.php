@@ -21,9 +21,6 @@ class GetServiceIdentityResponse extends \Google\Model
 {
   protected $identityType = ServiceIdentity::class;
   protected $identityDataType = '';
-  /**
-   * @var string
-   */
   public $state;
 
   /**
@@ -40,16 +37,10 @@ class GetServiceIdentityResponse extends \Google\Model
   {
     return $this->identity;
   }
-  /**
-   * @param string
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return string
-   */
   public function getState()
   {
     return $this->state;

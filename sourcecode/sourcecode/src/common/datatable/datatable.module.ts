@@ -32,7 +32,6 @@ import {RouterModule} from '@angular/router';
         TableHeaderCheckboxComponent,
         DatatableFooterComponent,
         DatatableHeaderComponent,
-        DatatableHeaderSearchInputComponent,
         DatatableFiltersPanelComponent,
         DatatableHeaderSearchInputComponent,
         DatatableFiltersComponent,

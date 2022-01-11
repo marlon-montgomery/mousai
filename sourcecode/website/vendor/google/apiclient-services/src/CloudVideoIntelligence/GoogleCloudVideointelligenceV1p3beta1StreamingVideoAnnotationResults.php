@@ -22,9 +22,6 @@ class GoogleCloudVideointelligenceV1p3beta1StreamingVideoAnnotationResults exten
   protected $collection_key = 'shotAnnotations';
   protected $explicitAnnotationType = GoogleCloudVideointelligenceV1p3beta1ExplicitContentAnnotation::class;
   protected $explicitAnnotationDataType = '';
-  /**
-   * @var string
-   */
   public $frameTimestamp;
   protected $labelAnnotationsType = GoogleCloudVideointelligenceV1p3beta1LabelAnnotation::class;
   protected $labelAnnotationsDataType = 'array';
@@ -47,16 +44,10 @@ class GoogleCloudVideointelligenceV1p3beta1StreamingVideoAnnotationResults exten
   {
     return $this->explicitAnnotation;
   }
-  /**
-   * @param string
-   */
   public function setFrameTimestamp($frameTimestamp)
   {
     $this->frameTimestamp = $frameTimestamp;
   }
-  /**
-   * @return string
-   */
   public function getFrameTimestamp()
   {
     return $this->frameTimestamp;

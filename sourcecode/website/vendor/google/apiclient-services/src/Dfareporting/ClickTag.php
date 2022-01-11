@@ -21,13 +21,7 @@ class ClickTag extends \Google\Model
 {
   protected $clickThroughUrlType = CreativeClickThroughUrl::class;
   protected $clickThroughUrlDataType = '';
-  /**
-   * @var string
-   */
   public $eventName;
-  /**
-   * @var string
-   */
   public $name;
 
   /**
@@ -44,30 +38,18 @@ class ClickTag extends \Google\Model
   {
     return $this->clickThroughUrl;
   }
-  /**
-   * @param string
-   */
   public function setEventName($eventName)
   {
     $this->eventName = $eventName;
   }
-  /**
-   * @return string
-   */
   public function getEventName()
   {
     return $this->eventName;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

@@ -21,9 +21,6 @@ class GoogleIamV1SetIamPolicyRequest extends \Google\Model
 {
   protected $policyType = GoogleIamV1Policy::class;
   protected $policyDataType = '';
-  /**
-   * @var string
-   */
   public $updateMask;
 
   /**
@@ -40,16 +37,10 @@ class GoogleIamV1SetIamPolicyRequest extends \Google\Model
   {
     return $this->policy;
   }
-  /**
-   * @param string
-   */
   public function setUpdateMask($updateMask)
   {
     $this->updateMask = $updateMask;
   }
-  /**
-   * @return string
-   */
   public function getUpdateMask()
   {
     return $this->updateMask;

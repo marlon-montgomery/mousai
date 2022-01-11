@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class DisplayDevice extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $enableDisplay;
 
-  /**
-   * @param bool
-   */
   public function setEnableDisplay($enableDisplay)
   {
     $this->enableDisplay = $enableDisplay;
   }
-  /**
-   * @return bool
-   */
   public function getEnableDisplay()
   {
     return $this->enableDisplay;

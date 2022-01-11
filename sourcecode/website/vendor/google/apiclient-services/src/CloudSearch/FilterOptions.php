@@ -21,9 +21,6 @@ class FilterOptions extends \Google\Model
 {
   protected $filterType = Filter::class;
   protected $filterDataType = '';
-  /**
-   * @var string
-   */
   public $objectType;
 
   /**
@@ -40,16 +37,10 @@ class FilterOptions extends \Google\Model
   {
     return $this->filter;
   }
-  /**
-   * @param string
-   */
   public function setObjectType($objectType)
   {
     $this->objectType = $objectType;
   }
-  /**
-   * @return string
-   */
   public function getObjectType()
   {
     return $this->objectType;

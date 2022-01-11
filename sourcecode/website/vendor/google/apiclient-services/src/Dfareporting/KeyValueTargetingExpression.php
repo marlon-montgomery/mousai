@@ -19,21 +19,12 @@ namespace Google\Service\Dfareporting;
 
 class KeyValueTargetingExpression extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $expression;
 
-  /**
-   * @param string
-   */
   public function setExpression($expression)
   {
     $this->expression = $expression;
   }
-  /**
-   * @return string
-   */
   public function getExpression()
   {
     return $this->expression;

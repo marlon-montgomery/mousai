@@ -19,27 +19,15 @@ namespace Google\Service\DLP;
 
 class GooglePrivacyDlpV2RedactImageResponse extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $extractedText;
   protected $inspectResultType = GooglePrivacyDlpV2InspectResult::class;
   protected $inspectResultDataType = '';
-  /**
-   * @var string
-   */
   public $redactedImage;
 
-  /**
-   * @param string
-   */
   public function setExtractedText($extractedText)
   {
     $this->extractedText = $extractedText;
   }
-  /**
-   * @return string
-   */
   public function getExtractedText()
   {
     return $this->extractedText;
@@ -58,16 +46,10 @@ class GooglePrivacyDlpV2RedactImageResponse extends \Google\Model
   {
     return $this->inspectResult;
   }
-  /**
-   * @param string
-   */
   public function setRedactedImage($redactedImage)
   {
     $this->redactedImage = $redactedImage;
   }
-  /**
-   * @return string
-   */
   public function getRedactedImage()
   {
     return $this->redactedImage;

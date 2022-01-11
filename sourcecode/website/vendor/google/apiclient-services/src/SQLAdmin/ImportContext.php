@@ -23,25 +23,10 @@ class ImportContext extends \Google\Model
   protected $bakImportOptionsDataType = '';
   protected $csvImportOptionsType = ImportContextCsvImportOptions::class;
   protected $csvImportOptionsDataType = '';
-  /**
-   * @var string
-   */
   public $database;
-  /**
-   * @var string
-   */
   public $fileType;
-  /**
-   * @var string
-   */
   public $importUser;
-  /**
-   * @var string
-   */
   public $kind;
-  /**
-   * @var string
-   */
   public $uri;
 
   /**
@@ -72,72 +57,42 @@ class ImportContext extends \Google\Model
   {
     return $this->csvImportOptions;
   }
-  /**
-   * @param string
-   */
   public function setDatabase($database)
   {
     $this->database = $database;
   }
-  /**
-   * @return string
-   */
   public function getDatabase()
   {
     return $this->database;
   }
-  /**
-   * @param string
-   */
   public function setFileType($fileType)
   {
     $this->fileType = $fileType;
   }
-  /**
-   * @return string
-   */
   public function getFileType()
   {
     return $this->fileType;
   }
-  /**
-   * @param string
-   */
   public function setImportUser($importUser)
   {
     $this->importUser = $importUser;
   }
-  /**
-   * @return string
-   */
   public function getImportUser()
   {
     return $this->importUser;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
   }
-  /**
-   * @param string
-   */
   public function setUri($uri)
   {
     $this->uri = $uri;
   }
-  /**
-   * @return string
-   */
   public function getUri()
   {
     return $this->uri;

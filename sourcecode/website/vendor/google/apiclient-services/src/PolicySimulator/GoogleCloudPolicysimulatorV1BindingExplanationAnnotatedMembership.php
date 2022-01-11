@@ -19,39 +19,21 @@ namespace Google\Service\PolicySimulator;
 
 class GoogleCloudPolicysimulatorV1BindingExplanationAnnotatedMembership extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $membership;
-  /**
-   * @var string
-   */
   public $relevance;
 
-  /**
-   * @param string
-   */
   public function setMembership($membership)
   {
     $this->membership = $membership;
   }
-  /**
-   * @return string
-   */
   public function getMembership()
   {
     return $this->membership;
   }
-  /**
-   * @param string
-   */
   public function setRelevance($relevance)
   {
     $this->relevance = $relevance;
   }
-  /**
-   * @return string
-   */
   public function getRelevance()
   {
     return $this->relevance;

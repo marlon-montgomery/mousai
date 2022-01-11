@@ -466,7 +466,7 @@ trait QueriesRelationships
      * @param  string  $boolean
      * @return $this
      *
-     * @throws \RuntimeException
+     * @throws \Exception
      */
     public function whereBelongsTo($related, $relationshipName = null, $boolean = 'and')
     {
@@ -501,7 +501,7 @@ trait QueriesRelationships
      * @param  string  $relationship
      * @return $this
      *
-     * @throws \RuntimeException
+     * @throws \Exception
      */
     public function orWhereBelongsTo($related, $relationshipName = null)
     {

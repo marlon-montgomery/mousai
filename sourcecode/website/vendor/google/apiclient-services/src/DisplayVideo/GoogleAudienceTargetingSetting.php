@@ -19,21 +19,12 @@ namespace Google\Service\DisplayVideo;
 
 class GoogleAudienceTargetingSetting extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $googleAudienceId;
 
-  /**
-   * @param string
-   */
   public function setGoogleAudienceId($googleAudienceId)
   {
     $this->googleAudienceId = $googleAudienceId;
   }
-  /**
-   * @return string
-   */
   public function getGoogleAudienceId()
   {
     return $this->googleAudienceId;

@@ -20,27 +20,15 @@ namespace Google\Service\AdSenseHost;
 class Accounts extends \Google\Collection
 {
   protected $collection_key = 'items';
-  /**
-   * @var string
-   */
   public $etag;
   protected $itemsType = Account::class;
   protected $itemsDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
 
-  /**
-   * @param string
-   */
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-  /**
-   * @return string
-   */
   public function getEtag()
   {
     return $this->etag;
@@ -59,16 +47,10 @@ class Accounts extends \Google\Collection
   {
     return $this->items;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

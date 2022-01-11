@@ -19,21 +19,12 @@ namespace Google\Service\Datastore;
 
 class GoogleDatastoreAdminV1ExportEntitiesResponse extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $outputUrl;
 
-  /**
-   * @param string
-   */
   public function setOutputUrl($outputUrl)
   {
     $this->outputUrl = $outputUrl;
   }
-  /**
-   * @return string
-   */
   public function getOutputUrl()
   {
     return $this->outputUrl;

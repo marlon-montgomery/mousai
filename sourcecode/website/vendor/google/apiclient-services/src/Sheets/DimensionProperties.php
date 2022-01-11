@@ -24,17 +24,8 @@ class DimensionProperties extends \Google\Collection
   protected $dataSourceColumnReferenceDataType = '';
   protected $developerMetadataType = DeveloperMetadata::class;
   protected $developerMetadataDataType = 'array';
-  /**
-   * @var bool
-   */
   public $hiddenByFilter;
-  /**
-   * @var bool
-   */
   public $hiddenByUser;
-  /**
-   * @var int
-   */
   public $pixelSize;
 
   /**
@@ -65,44 +56,26 @@ class DimensionProperties extends \Google\Collection
   {
     return $this->developerMetadata;
   }
-  /**
-   * @param bool
-   */
   public function setHiddenByFilter($hiddenByFilter)
   {
     $this->hiddenByFilter = $hiddenByFilter;
   }
-  /**
-   * @return bool
-   */
   public function getHiddenByFilter()
   {
     return $this->hiddenByFilter;
   }
-  /**
-   * @param bool
-   */
   public function setHiddenByUser($hiddenByUser)
   {
     $this->hiddenByUser = $hiddenByUser;
   }
-  /**
-   * @return bool
-   */
   public function getHiddenByUser()
   {
     return $this->hiddenByUser;
   }
-  /**
-   * @param int
-   */
   public function setPixelSize($pixelSize)
   {
     $this->pixelSize = $pixelSize;
   }
-  /**
-   * @return int
-   */
   public function getPixelSize()
   {
     return $this->pixelSize;

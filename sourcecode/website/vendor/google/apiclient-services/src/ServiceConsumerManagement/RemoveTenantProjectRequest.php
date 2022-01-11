@@ -19,21 +19,12 @@ namespace Google\Service\ServiceConsumerManagement;
 
 class RemoveTenantProjectRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $tag;
 
-  /**
-   * @param string
-   */
   public function setTag($tag)
   {
     $this->tag = $tag;
   }
-  /**
-   * @return string
-   */
   public function getTag()
   {
     return $this->tag;

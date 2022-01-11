@@ -21,15 +21,9 @@ class DataLabel extends \Google\Model
 {
   protected $customLabelDataType = ChartData::class;
   protected $customLabelDataDataType = '';
-  /**
-   * @var string
-   */
   public $placement;
   protected $textFormatType = TextFormat::class;
   protected $textFormatDataType = '';
-  /**
-   * @var string
-   */
   public $type;
 
   /**
@@ -46,16 +40,10 @@ class DataLabel extends \Google\Model
   {
     return $this->customLabelData;
   }
-  /**
-   * @param string
-   */
   public function setPlacement($placement)
   {
     $this->placement = $placement;
   }
-  /**
-   * @return string
-   */
   public function getPlacement()
   {
     return $this->placement;
@@ -74,16 +62,10 @@ class DataLabel extends \Google\Model
   {
     return $this->textFormat;
   }
-  /**
-   * @param string
-   */
   public function setType($type)
   {
     $this->type = $type;
   }
-  /**
-   * @return string
-   */
   public function getType()
   {
     return $this->type;

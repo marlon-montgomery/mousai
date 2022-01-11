@@ -27,8 +27,6 @@ class AccessSettings extends \Google\Model
   protected $oauthSettingsDataType = '';
   protected $policyDelegationSettingsType = PolicyDelegationSettings::class;
   protected $policyDelegationSettingsDataType = '';
-  protected $reauthSettingsType = ReauthSettings::class;
-  protected $reauthSettingsDataType = '';
 
   /**
    * @param CorsSettings
@@ -85,20 +83,6 @@ class AccessSettings extends \Google\Model
   public function getPolicyDelegationSettings()
   {
     return $this->policyDelegationSettings;
-  }
-  /**
-   * @param ReauthSettings
-   */
-  public function setReauthSettings(ReauthSettings $reauthSettings)
-  {
-    $this->reauthSettings = $reauthSettings;
-  }
-  /**
-   * @return ReauthSettings
-   */
-  public function getReauthSettings()
-  {
-    return $this->reauthSettings;
   }
 }
 

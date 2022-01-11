@@ -22,9 +22,6 @@ class ListMetricDescriptorsResponse extends \Google\Collection
   protected $collection_key = 'metricDescriptors';
   protected $metricDescriptorsType = MetricDescriptor::class;
   protected $metricDescriptorsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListMetricDescriptorsResponse extends \Google\Collection
   {
     return $this->metricDescriptors;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

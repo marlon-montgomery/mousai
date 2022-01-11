@@ -20,21 +20,12 @@ namespace Google\Service\StreetViewPublish;
 class BatchDeletePhotosRequest extends \Google\Collection
 {
   protected $collection_key = 'photoIds';
-  /**
-   * @var string[]
-   */
   public $photoIds;
 
-  /**
-   * @param string[]
-   */
   public function setPhotoIds($photoIds)
   {
     $this->photoIds = $photoIds;
   }
-  /**
-   * @return string[]
-   */
   public function getPhotoIds()
   {
     return $this->photoIds;

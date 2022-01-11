@@ -22,15 +22,9 @@ class GoogleCloudDatalabelingV1beta1PrCurve extends \Google\Collection
   protected $collection_key = 'confidenceMetricsEntries';
   protected $annotationSpecType = GoogleCloudDatalabelingV1beta1AnnotationSpec::class;
   protected $annotationSpecDataType = '';
-  /**
-   * @var float
-   */
   public $areaUnderCurve;
   protected $confidenceMetricsEntriesType = GoogleCloudDatalabelingV1beta1ConfidenceMetricsEntry::class;
   protected $confidenceMetricsEntriesDataType = 'array';
-  /**
-   * @var float
-   */
   public $meanAveragePrecision;
 
   /**
@@ -47,16 +41,10 @@ class GoogleCloudDatalabelingV1beta1PrCurve extends \Google\Collection
   {
     return $this->annotationSpec;
   }
-  /**
-   * @param float
-   */
   public function setAreaUnderCurve($areaUnderCurve)
   {
     $this->areaUnderCurve = $areaUnderCurve;
   }
-  /**
-   * @return float
-   */
   public function getAreaUnderCurve()
   {
     return $this->areaUnderCurve;
@@ -75,16 +63,10 @@ class GoogleCloudDatalabelingV1beta1PrCurve extends \Google\Collection
   {
     return $this->confidenceMetricsEntries;
   }
-  /**
-   * @param float
-   */
   public function setMeanAveragePrecision($meanAveragePrecision)
   {
     $this->meanAveragePrecision = $meanAveragePrecision;
   }
-  /**
-   * @return float
-   */
   public function getMeanAveragePrecision()
   {
     return $this->meanAveragePrecision;

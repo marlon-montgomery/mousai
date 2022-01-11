@@ -19,21 +19,12 @@ namespace Google\Service\AlertCenter;
 
 class PredefinedDetectorInfo extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $detectorName;
 
-  /**
-   * @param string
-   */
   public function setDetectorName($detectorName)
   {
     $this->detectorName = $detectorName;
   }
-  /**
-   * @return string
-   */
   public function getDetectorName()
   {
     return $this->detectorName;

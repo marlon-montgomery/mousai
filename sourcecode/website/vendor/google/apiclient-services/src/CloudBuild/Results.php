@@ -20,37 +20,19 @@ namespace Google\Service\CloudBuild;
 class Results extends \Google\Collection
 {
   protected $collection_key = 'images';
-  /**
-   * @var string
-   */
   public $artifactManifest;
   protected $artifactTimingType = TimeSpan::class;
   protected $artifactTimingDataType = '';
-  /**
-   * @var string[]
-   */
   public $buildStepImages;
-  /**
-   * @var string[]
-   */
   public $buildStepOutputs;
   protected $imagesType = BuiltImage::class;
   protected $imagesDataType = 'array';
-  /**
-   * @var string
-   */
   public $numArtifacts;
 
-  /**
-   * @param string
-   */
   public function setArtifactManifest($artifactManifest)
   {
     $this->artifactManifest = $artifactManifest;
   }
-  /**
-   * @return string
-   */
   public function getArtifactManifest()
   {
     return $this->artifactManifest;
@@ -69,30 +51,18 @@ class Results extends \Google\Collection
   {
     return $this->artifactTiming;
   }
-  /**
-   * @param string[]
-   */
   public function setBuildStepImages($buildStepImages)
   {
     $this->buildStepImages = $buildStepImages;
   }
-  /**
-   * @return string[]
-   */
   public function getBuildStepImages()
   {
     return $this->buildStepImages;
   }
-  /**
-   * @param string[]
-   */
   public function setBuildStepOutputs($buildStepOutputs)
   {
     $this->buildStepOutputs = $buildStepOutputs;
   }
-  /**
-   * @return string[]
-   */
   public function getBuildStepOutputs()
   {
     return $this->buildStepOutputs;
@@ -111,16 +81,10 @@ class Results extends \Google\Collection
   {
     return $this->images;
   }
-  /**
-   * @param string
-   */
   public function setNumArtifacts($numArtifacts)
   {
     $this->numArtifacts = $numArtifacts;
   }
-  /**
-   * @return string
-   */
   public function getNumArtifacts()
   {
     return $this->numArtifacts;

@@ -193,6 +193,11 @@ code[class*=language-], pre[class*=language-] {font-size: inherit;} .mce-preview
             },
         };
 
+        // need to show toolbar on mobile, otherwise tinymce will error out
+        if (!this.breakpoints.isMobile$.value) {
+            config.toolbar = false;
+        }
+
         if (this.config['showAdvancedControls']) {
             config.plugins = config.plugins.concat([
                 'media',
@@ -231,10 +236,7 @@ code[class*=language-], pre[class*=language-] {font-size: inherit;} .mce-preview
         }
 
         if (this.config['minHeight'] === 'auto') {
-            const height =
-                this.config.editorEl.nativeElement.parentElement.offsetHeight -
-                EDITOR_TOOLBAR_HEIGHT -
-                4;
+            const height = this.config.editorEl.nativeElement.parentElement.offsetHeight - EDITOR_TOOLBAR_HEIGHT - 4;
             config.min_height = height;
             config.max_height = height;
         }
@@ -261,8 +263,6 @@ code[class*=language-], pre[class*=language-] {font-size: inherit;} .mce-preview
      * Create a tinymce bootstrap promise.
      */
     private makeBootstrapPromise() {
-        this.bootstrapPromise = new Promise(
-            resolve => (this.bootstrapPromiseResolve = resolve)
-        );
+        this.bootstrapPromise = new Promise(resolve => this.bootstrapPromiseResolve = resolve);
     }
 }

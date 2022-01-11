@@ -19,21 +19,12 @@ namespace Google\Service\ToolResults;
 
 class PerformedMonkeyActions extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $totalActions;
 
-  /**
-   * @param int
-   */
   public function setTotalActions($totalActions)
   {
     $this->totalActions = $totalActions;
   }
-  /**
-   * @return int
-   */
   public function getTotalActions()
   {
     return $this->totalActions;

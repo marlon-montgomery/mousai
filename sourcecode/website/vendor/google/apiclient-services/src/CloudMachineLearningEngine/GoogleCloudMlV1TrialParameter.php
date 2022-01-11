@@ -20,17 +20,8 @@ namespace Google\Service\CloudMachineLearningEngine;
 class GoogleCloudMlV1TrialParameter extends \Google\Model
 {
   public $floatValue;
-  /**
-   * @var string
-   */
   public $intValue;
-  /**
-   * @var string
-   */
   public $parameter;
-  /**
-   * @var string
-   */
   public $stringValue;
 
   public function setFloatValue($floatValue)
@@ -41,44 +32,26 @@ class GoogleCloudMlV1TrialParameter extends \Google\Model
   {
     return $this->floatValue;
   }
-  /**
-   * @param string
-   */
   public function setIntValue($intValue)
   {
     $this->intValue = $intValue;
   }
-  /**
-   * @return string
-   */
   public function getIntValue()
   {
     return $this->intValue;
   }
-  /**
-   * @param string
-   */
   public function setParameter($parameter)
   {
     $this->parameter = $parameter;
   }
-  /**
-   * @return string
-   */
   public function getParameter()
   {
     return $this->parameter;
   }
-  /**
-   * @param string
-   */
   public function setStringValue($stringValue)
   {
     $this->stringValue = $stringValue;
   }
-  /**
-   * @return string
-   */
   public function getStringValue()
   {
     return $this->stringValue;

@@ -19,21 +19,12 @@ namespace Google\Service\ShoppingContent;
 
 class RequestPhoneVerificationResponse extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $verificationId;
 
-  /**
-   * @param string
-   */
   public function setVerificationId($verificationId)
   {
     $this->verificationId = $verificationId;
   }
-  /**
-   * @return string
-   */
   public function getVerificationId()
   {
     return $this->verificationId;

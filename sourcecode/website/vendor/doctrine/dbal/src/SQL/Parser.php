@@ -2,8 +2,6 @@
 
 namespace Doctrine\DBAL\SQL;
 
-use Doctrine\DBAL\SQL\Parser\Exception;
-use Doctrine\DBAL\SQL\Parser\Exception\RegularExpressionError;
 use Doctrine\DBAL\SQL\Parser\Visitor;
 
 use function array_merge;
@@ -12,13 +10,10 @@ use function current;
 use function implode;
 use function key;
 use function next;
-use function preg_last_error;
 use function preg_match;
 use function reset;
 use function sprintf;
 use function strlen;
-
-use const PREG_NO_ERROR;
 
 /**
  * The SQL parser that focuses on identifying prepared statement parameters. It implements parsing other tokens like
@@ -32,17 +27,17 @@ use const PREG_NO_ERROR;
  */
 final class Parser
 {
-    private const SPECIAL_CHARS = ':\?\'"`\\[\\-\\/';
+    private const ANY     = '.';
+    private const SPECIAL = '[:\?\'"`\\[\\-\\/]';
 
     private const BACKTICK_IDENTIFIER  = '`[^`]*`';
     private const BRACKET_IDENTIFIER   = '(?<!\b(?i:ARRAY))\[(?:[^\]])*\]';
     private const MULTICHAR            = ':{2,}';
     private const NAMED_PARAMETER      = ':[a-zA-Z0-9_]+';
-    private const POSITIONAL_PARAMETER = '(?<!\\?)\\?(?!\\?)';
+    private const POSITIONAL_PARAMETER = '\\?';
     private const ONE_LINE_COMMENT     = '--[^\r\n]*';
     private const MULTI_LINE_COMMENT   = '/\*([^*]+|\*+[^/*])*\**\*/';
-    private const SPECIAL              = '[' . self::SPECIAL_CHARS . ']';
-    private const OTHER                = '[^' . self::SPECIAL_CHARS . ']+';
+    private const OTHER                = '((?!' . self::SPECIAL . ')' . self::ANY . ')+';
 
     /** @var string */
     private $sqlPattern;
@@ -75,8 +70,6 @@ final class Parser
 
     /**
      * Parses the given SQL statement
-     *
-     * @throws Exception
      */
     public function parse(string $sql, Visitor $visitor): void
     {
@@ -104,10 +97,6 @@ final class Parser
                 reset($patterns);
 
                 $offset += strlen($matches[0]);
-            } elseif (preg_last_error() !== PREG_NO_ERROR) {
-                // @codeCoverageIgnoreStart
-                throw RegularExpressionError::new();
-                // @codeCoverageIgnoreEnd
             } else {
                 next($patterns);
             }
@@ -118,7 +107,7 @@ final class Parser
 
     private function getMySQLStringLiteralPattern(string $delimiter): string
     {
-        return $delimiter . '((\\\\.)|(?![' . $delimiter . '\\\\]).)*' . $delimiter;
+        return $delimiter . '((\\\\' . self::ANY . ')|(?![' . $delimiter . '\\\\])' . self::ANY . ')*' . $delimiter;
     }
 
     private function getAnsiSQLStringLiteralPattern(string $delimiter): string

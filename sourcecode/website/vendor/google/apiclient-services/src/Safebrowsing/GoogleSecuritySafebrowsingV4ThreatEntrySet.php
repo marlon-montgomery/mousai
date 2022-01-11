@@ -19,9 +19,6 @@ namespace Google\Service\Safebrowsing;
 
 class GoogleSecuritySafebrowsingV4ThreatEntrySet extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $compressionType;
   protected $rawHashesType = GoogleSecuritySafebrowsingV4RawHashes::class;
   protected $rawHashesDataType = '';
@@ -32,16 +29,10 @@ class GoogleSecuritySafebrowsingV4ThreatEntrySet extends \Google\Model
   protected $riceIndicesType = GoogleSecuritySafebrowsingV4RiceDeltaEncoding::class;
   protected $riceIndicesDataType = '';
 
-  /**
-   * @param string
-   */
   public function setCompressionType($compressionType)
   {
     $this->compressionType = $compressionType;
   }
-  /**
-   * @return string
-   */
   public function getCompressionType()
   {
     return $this->compressionType;

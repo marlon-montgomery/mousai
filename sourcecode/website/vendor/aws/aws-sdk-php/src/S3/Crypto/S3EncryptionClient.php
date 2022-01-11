@@ -115,7 +115,7 @@ class S3EncryptionClient extends AbstractCryptoClient
 
         $envelope = new MetadataEnvelope();
 
-        return Promise\Create::promiseFor($this->encrypt(
+        return Promise\promise_for($this->encrypt(
             Psr7\Utils::streamFor($args['Body']),
             $args['@CipherOptions'] ?: [],
             $provider,

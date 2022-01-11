@@ -247,7 +247,7 @@ final class AsyncResponse implements ResponseInterface, StreamableInterface
                 }
             }
 
-            if (!$client || !$wrappedResponses) {
+            if (!$client) {
                 return;
             }
 
@@ -311,9 +311,6 @@ final class AsyncResponse implements ResponseInterface, StreamableInterface
         }
     }
 
-    /**
-     * @param \SplObjectStorage<ResponseInterface, AsyncResponse>|null $asyncMap
-     */
     private static function passthru(HttpClientInterface $client, self $r, ChunkInterface $chunk, \SplObjectStorage $asyncMap = null): \Generator
     {
         $r->stream = null;
@@ -335,9 +332,6 @@ final class AsyncResponse implements ResponseInterface, StreamableInterface
         yield from self::passthruStream($response, $r, null, $asyncMap);
     }
 
-    /**
-     * @param \SplObjectStorage<ResponseInterface, AsyncResponse>|null $asyncMap
-     */
     private static function passthruStream(ResponseInterface $response, self $r, ?ChunkInterface $chunk, ?\SplObjectStorage $asyncMap): \Generator
     {
         while (true) {

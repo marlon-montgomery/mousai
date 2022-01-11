@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of Guzzle Factory.
  *
- * (c) Graham Campbell <hello@gjcampbell.co.uk>
+ * (c) Graham Campbell <graham@alt-three.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -26,7 +26,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * This is the guzzle factory class.
  *
- * @author Graham Campbell <hello@gjcampbell.co.uk>
+ * @author Graham Campbell <graham@alt-three.com>
  */
 final class GuzzleFactory
 {

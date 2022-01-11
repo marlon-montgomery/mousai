@@ -41,7 +41,7 @@ trait ThrottlesLogins
      * Redirect the user after determining they are locked out.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return void
      *
      * @throws \Illuminate\Validation\ValidationException
      */

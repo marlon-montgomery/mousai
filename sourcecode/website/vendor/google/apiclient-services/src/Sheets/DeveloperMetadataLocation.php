@@ -21,17 +21,8 @@ class DeveloperMetadataLocation extends \Google\Model
 {
   protected $dimensionRangeType = DimensionRange::class;
   protected $dimensionRangeDataType = '';
-  /**
-   * @var string
-   */
   public $locationType;
-  /**
-   * @var int
-   */
   public $sheetId;
-  /**
-   * @var bool
-   */
   public $spreadsheet;
 
   /**
@@ -48,44 +39,26 @@ class DeveloperMetadataLocation extends \Google\Model
   {
     return $this->dimensionRange;
   }
-  /**
-   * @param string
-   */
   public function setLocationType($locationType)
   {
     $this->locationType = $locationType;
   }
-  /**
-   * @return string
-   */
   public function getLocationType()
   {
     return $this->locationType;
   }
-  /**
-   * @param int
-   */
   public function setSheetId($sheetId)
   {
     $this->sheetId = $sheetId;
   }
-  /**
-   * @return int
-   */
   public function getSheetId()
   {
     return $this->sheetId;
   }
-  /**
-   * @param bool
-   */
   public function setSpreadsheet($spreadsheet)
   {
     $this->spreadsheet = $spreadsheet;
   }
-  /**
-   * @return bool
-   */
   public function getSpreadsheet()
   {
     return $this->spreadsheet;

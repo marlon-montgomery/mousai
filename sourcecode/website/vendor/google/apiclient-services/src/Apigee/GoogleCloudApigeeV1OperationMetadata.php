@@ -19,31 +19,16 @@ namespace Google\Service\Apigee;
 
 class GoogleCloudApigeeV1OperationMetadata extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $operationType;
   protected $progressType = GoogleCloudApigeeV1OperationMetadataProgress::class;
   protected $progressDataType = '';
-  /**
-   * @var string
-   */
   public $state;
-  /**
-   * @var string
-   */
   public $targetResourceName;
 
-  /**
-   * @param string
-   */
   public function setOperationType($operationType)
   {
     $this->operationType = $operationType;
   }
-  /**
-   * @return string
-   */
   public function getOperationType()
   {
     return $this->operationType;
@@ -62,30 +47,18 @@ class GoogleCloudApigeeV1OperationMetadata extends \Google\Model
   {
     return $this->progress;
   }
-  /**
-   * @param string
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return string
-   */
   public function getState()
   {
     return $this->state;
   }
-  /**
-   * @param string
-   */
   public function setTargetResourceName($targetResourceName)
   {
     $this->targetResourceName = $targetResourceName;
   }
-  /**
-   * @return string
-   */
   public function getTargetResourceName()
   {
     return $this->targetResourceName;

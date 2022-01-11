@@ -19,21 +19,12 @@ namespace Google\Service\Compute;
 
 class TargetHttpsProxiesSetQuicOverrideRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $quicOverride;
 
-  /**
-   * @param string
-   */
   public function setQuicOverride($quicOverride)
   {
     $this->quicOverride = $quicOverride;
   }
-  /**
-   * @return string
-   */
   public function getQuicOverride()
   {
     return $this->quicOverride;

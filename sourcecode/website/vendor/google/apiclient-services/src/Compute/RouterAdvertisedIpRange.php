@@ -19,39 +19,21 @@ namespace Google\Service\Compute;
 
 class RouterAdvertisedIpRange extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $description;
-  /**
-   * @var string
-   */
   public $range;
 
-  /**
-   * @param string
-   */
   public function setDescription($description)
   {
     $this->description = $description;
   }
-  /**
-   * @return string
-   */
   public function getDescription()
   {
     return $this->description;
   }
-  /**
-   * @param string
-   */
   public function setRange($range)
   {
     $this->range = $range;
   }
-  /**
-   * @return string
-   */
   public function getRange()
   {
     return $this->range;

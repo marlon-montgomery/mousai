@@ -22,9 +22,6 @@ class MetadataFilter extends \Google\Collection
   protected $collection_key = 'filterLabels';
   protected $filterLabelsType = MetadataFilterLabelMatch::class;
   protected $filterLabelsDataType = 'array';
-  /**
-   * @var string
-   */
   public $filterMatchCriteria;
 
   /**
@@ -41,16 +38,10 @@ class MetadataFilter extends \Google\Collection
   {
     return $this->filterLabels;
   }
-  /**
-   * @param string
-   */
   public function setFilterMatchCriteria($filterMatchCriteria)
   {
     $this->filterMatchCriteria = $filterMatchCriteria;
   }
-  /**
-   * @return string
-   */
   public function getFilterMatchCriteria()
   {
     return $this->filterMatchCriteria;

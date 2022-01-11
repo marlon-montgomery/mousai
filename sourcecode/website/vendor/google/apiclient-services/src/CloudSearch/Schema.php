@@ -22,9 +22,6 @@ class Schema extends \Google\Collection
   protected $collection_key = 'operationIds';
   protected $objectDefinitionsType = ObjectDefinition::class;
   protected $objectDefinitionsDataType = 'array';
-  /**
-   * @var string[]
-   */
   public $operationIds;
 
   /**
@@ -41,16 +38,10 @@ class Schema extends \Google\Collection
   {
     return $this->objectDefinitions;
   }
-  /**
-   * @param string[]
-   */
   public function setOperationIds($operationIds)
   {
     $this->operationIds = $operationIds;
   }
-  /**
-   * @return string[]
-   */
   public function getOperationIds()
   {
     return $this->operationIds;

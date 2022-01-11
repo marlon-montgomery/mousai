@@ -21,13 +21,7 @@ class AddressVerificationData extends \Google\Model
 {
   protected $addressType = PostalAddress::class;
   protected $addressDataType = '';
-  /**
-   * @var string
-   */
   public $business;
-  /**
-   * @var int
-   */
   public $expectedDeliveryDaysRegion;
 
   /**
@@ -44,30 +38,18 @@ class AddressVerificationData extends \Google\Model
   {
     return $this->address;
   }
-  /**
-   * @param string
-   */
   public function setBusiness($business)
   {
     $this->business = $business;
   }
-  /**
-   * @return string
-   */
   public function getBusiness()
   {
     return $this->business;
   }
-  /**
-   * @param int
-   */
   public function setExpectedDeliveryDaysRegion($expectedDeliveryDaysRegion)
   {
     $this->expectedDeliveryDaysRegion = $expectedDeliveryDaysRegion;
   }
-  /**
-   * @return int
-   */
   public function getExpectedDeliveryDaysRegion()
   {
     return $this->expectedDeliveryDaysRegion;

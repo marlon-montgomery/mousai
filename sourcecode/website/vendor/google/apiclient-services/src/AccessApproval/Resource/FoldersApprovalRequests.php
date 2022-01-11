@@ -70,8 +70,7 @@ class FoldersApprovalRequests extends \Google\Service\Resource
    * Gets an approval request. Returns NOT_FOUND if the request does not exist.
    * (approvalRequests.get)
    *
-   * @param string $name The name of the approval request to retrieve. Format:
-   * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}"
+   * @param string $name Name of the approval request to retrieve.
    * @param array $optParams Optional parameters.
    * @return ApprovalRequest
    */

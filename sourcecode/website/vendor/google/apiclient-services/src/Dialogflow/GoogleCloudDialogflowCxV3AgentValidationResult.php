@@ -22,9 +22,6 @@ class GoogleCloudDialogflowCxV3AgentValidationResult extends \Google\Collection
   protected $collection_key = 'flowValidationResults';
   protected $flowValidationResultsType = GoogleCloudDialogflowCxV3FlowValidationResult::class;
   protected $flowValidationResultsDataType = 'array';
-  /**
-   * @var string
-   */
   public $name;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudDialogflowCxV3AgentValidationResult extends \Google\Collection
   {
     return $this->flowValidationResults;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

@@ -22,9 +22,6 @@ class RecognizeResponse extends \Google\Collection
   protected $collection_key = 'results';
   protected $resultsType = SpeechRecognitionResult::class;
   protected $resultsDataType = 'array';
-  /**
-   * @var string
-   */
   public $totalBilledTime;
 
   /**
@@ -41,16 +38,10 @@ class RecognizeResponse extends \Google\Collection
   {
     return $this->results;
   }
-  /**
-   * @param string
-   */
   public function setTotalBilledTime($totalBilledTime)
   {
     $this->totalBilledTime = $totalBilledTime;
   }
-  /**
-   * @return string
-   */
   public function getTotalBilledTime()
   {
     return $this->totalBilledTime;

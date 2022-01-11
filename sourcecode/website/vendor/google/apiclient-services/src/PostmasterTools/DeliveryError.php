@@ -19,26 +19,14 @@ namespace Google\Service\PostmasterTools;
 
 class DeliveryError extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $errorClass;
   public $errorRatio;
-  /**
-   * @var string
-   */
   public $errorType;
 
-  /**
-   * @param string
-   */
   public function setErrorClass($errorClass)
   {
     $this->errorClass = $errorClass;
   }
-  /**
-   * @return string
-   */
   public function getErrorClass()
   {
     return $this->errorClass;
@@ -51,16 +39,10 @@ class DeliveryError extends \Google\Model
   {
     return $this->errorRatio;
   }
-  /**
-   * @param string
-   */
   public function setErrorType($errorType)
   {
     $this->errorType = $errorType;
   }
-  /**
-   * @return string
-   */
   public function getErrorType()
   {
     return $this->errorType;

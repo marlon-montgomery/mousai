@@ -19,39 +19,21 @@ namespace Google\Service\IdentityToolkit;
 
 class UploadAccountResponseError extends \Google\Model
 {
-  /**
-   * @var int
-   */
   public $index;
-  /**
-   * @var string
-   */
   public $message;
 
-  /**
-   * @param int
-   */
   public function setIndex($index)
   {
     $this->index = $index;
   }
-  /**
-   * @return int
-   */
   public function getIndex()
   {
     return $this->index;
   }
-  /**
-   * @param string
-   */
   public function setMessage($message)
   {
     $this->message = $message;
   }
-  /**
-   * @return string
-   */
   public function getMessage()
   {
     return $this->message;

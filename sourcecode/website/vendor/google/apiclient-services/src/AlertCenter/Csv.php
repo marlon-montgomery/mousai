@@ -22,9 +22,6 @@ class Csv extends \Google\Collection
   protected $collection_key = 'headers';
   protected $dataRowsType = CsvRow::class;
   protected $dataRowsDataType = 'array';
-  /**
-   * @var string[]
-   */
   public $headers;
 
   /**
@@ -41,16 +38,10 @@ class Csv extends \Google\Collection
   {
     return $this->dataRows;
   }
-  /**
-   * @param string[]
-   */
   public function setHeaders($headers)
   {
     $this->headers = $headers;
   }
-  /**
-   * @return string[]
-   */
   public function getHeaders()
   {
     return $this->headers;

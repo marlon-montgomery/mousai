@@ -853,10 +853,6 @@ class Bigquery extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
-                'autodetect_schema' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ],
               ],
             ],'setIamPolicy' => [
               'path' => '{+resource}:setIamPolicy',
@@ -896,10 +892,6 @@ class Bigquery extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ],
-                'autodetect_schema' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
                 ],
               ],
             ],

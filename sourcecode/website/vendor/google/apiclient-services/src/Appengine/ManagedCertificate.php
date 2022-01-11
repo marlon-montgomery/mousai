@@ -19,39 +19,21 @@ namespace Google\Service\Appengine;
 
 class ManagedCertificate extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $lastRenewalTime;
-  /**
-   * @var string
-   */
   public $status;
 
-  /**
-   * @param string
-   */
   public function setLastRenewalTime($lastRenewalTime)
   {
     $this->lastRenewalTime = $lastRenewalTime;
   }
-  /**
-   * @return string
-   */
   public function getLastRenewalTime()
   {
     return $this->lastRenewalTime;
   }
-  /**
-   * @param string
-   */
   public function setStatus($status)
   {
     $this->status = $status;
   }
-  /**
-   * @return string
-   */
   public function getStatus()
   {
     return $this->status;

@@ -19,39 +19,21 @@ namespace Google\Service\DisplayVideo;
 
 class AudioVideoOffset extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $percentage;
-  /**
-   * @var string
-   */
   public $seconds;
 
-  /**
-   * @param string
-   */
   public function setPercentage($percentage)
   {
     $this->percentage = $percentage;
   }
-  /**
-   * @return string
-   */
   public function getPercentage()
   {
     return $this->percentage;
   }
-  /**
-   * @param string
-   */
   public function setSeconds($seconds)
   {
     $this->seconds = $seconds;
   }
-  /**
-   * @return string
-   */
   public function getSeconds()
   {
     return $this->seconds;

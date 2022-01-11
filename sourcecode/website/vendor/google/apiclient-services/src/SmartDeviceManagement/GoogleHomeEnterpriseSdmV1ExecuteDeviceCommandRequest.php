@@ -19,39 +19,21 @@ namespace Google\Service\SmartDeviceManagement;
 
 class GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $command;
-  /**
-   * @var array[]
-   */
   public $params;
 
-  /**
-   * @param string
-   */
   public function setCommand($command)
   {
     $this->command = $command;
   }
-  /**
-   * @return string
-   */
   public function getCommand()
   {
     return $this->command;
   }
-  /**
-   * @param array[]
-   */
   public function setParams($params)
   {
     $this->params = $params;
   }
-  /**
-   * @return array[]
-   */
   public function getParams()
   {
     return $this->params;

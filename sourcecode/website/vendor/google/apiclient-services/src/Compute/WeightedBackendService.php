@@ -19,27 +19,15 @@ namespace Google\Service\Compute;
 
 class WeightedBackendService extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $backendService;
   protected $headerActionType = HttpHeaderAction::class;
   protected $headerActionDataType = '';
-  /**
-   * @var string
-   */
   public $weight;
 
-  /**
-   * @param string
-   */
   public function setBackendService($backendService)
   {
     $this->backendService = $backendService;
   }
-  /**
-   * @return string
-   */
   public function getBackendService()
   {
     return $this->backendService;
@@ -58,16 +46,10 @@ class WeightedBackendService extends \Google\Model
   {
     return $this->headerAction;
   }
-  /**
-   * @param string
-   */
   public function setWeight($weight)
   {
     $this->weight = $weight;
   }
-  /**
-   * @return string
-   */
   public function getWeight()
   {
     return $this->weight;

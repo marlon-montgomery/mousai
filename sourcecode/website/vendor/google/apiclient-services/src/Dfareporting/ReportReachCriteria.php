@@ -30,17 +30,8 @@ class ReportReachCriteria extends \Google\Collection
   protected $dimensionFiltersDataType = 'array';
   protected $dimensionsType = SortedDimension::class;
   protected $dimensionsDataType = 'array';
-  /**
-   * @var bool
-   */
   public $enableAllDimensionCombinations;
-  /**
-   * @var string[]
-   */
   public $metricNames;
-  /**
-   * @var string[]
-   */
   public $reachByFrequencyMetricNames;
 
   /**
@@ -113,44 +104,26 @@ class ReportReachCriteria extends \Google\Collection
   {
     return $this->dimensions;
   }
-  /**
-   * @param bool
-   */
   public function setEnableAllDimensionCombinations($enableAllDimensionCombinations)
   {
     $this->enableAllDimensionCombinations = $enableAllDimensionCombinations;
   }
-  /**
-   * @return bool
-   */
   public function getEnableAllDimensionCombinations()
   {
     return $this->enableAllDimensionCombinations;
   }
-  /**
-   * @param string[]
-   */
   public function setMetricNames($metricNames)
   {
     $this->metricNames = $metricNames;
   }
-  /**
-   * @return string[]
-   */
   public function getMetricNames()
   {
     return $this->metricNames;
   }
-  /**
-   * @param string[]
-   */
   public function setReachByFrequencyMetricNames($reachByFrequencyMetricNames)
   {
     $this->reachByFrequencyMetricNames = $reachByFrequencyMetricNames;
   }
-  /**
-   * @return string[]
-   */
   public function getReachByFrequencyMetricNames()
   {
     return $this->reachByFrequencyMetricNames;

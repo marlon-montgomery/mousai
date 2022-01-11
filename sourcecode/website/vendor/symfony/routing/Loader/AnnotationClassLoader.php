@@ -104,7 +104,7 @@ abstract class AnnotationClassLoader implements LoaderInterface
      *
      * @param string $class A class name
      *
-     * @return RouteCollection
+     * @return RouteCollection A RouteCollection instance
      *
      * @throws \InvalidArgumentException When route can't be parsed
      */
@@ -367,7 +367,7 @@ abstract class AnnotationClassLoader implements LoaderInterface
     /**
      * @param \ReflectionClass|\ReflectionMethod $reflection
      *
-     * @return iterable<int, RouteAnnotation>
+     * @return iterable|RouteAnnotation[]
      */
     private function getAnnotations(object $reflection): iterable
     {

@@ -21,9 +21,6 @@ class WaterfallChartDomain extends \Google\Model
 {
   protected $dataType = ChartData::class;
   protected $dataDataType = '';
-  /**
-   * @var bool
-   */
   public $reversed;
 
   /**
@@ -40,16 +37,10 @@ class WaterfallChartDomain extends \Google\Model
   {
     return $this->data;
   }
-  /**
-   * @param bool
-   */
   public function setReversed($reversed)
   {
     $this->reversed = $reversed;
   }
-  /**
-   * @return bool
-   */
   public function getReversed()
   {
     return $this->reversed;

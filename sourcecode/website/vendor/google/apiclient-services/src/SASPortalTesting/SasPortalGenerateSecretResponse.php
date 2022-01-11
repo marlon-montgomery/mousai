@@ -19,21 +19,12 @@ namespace Google\Service\SASPortalTesting;
 
 class SasPortalGenerateSecretResponse extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $secret;
 
-  /**
-   * @param string
-   */
   public function setSecret($secret)
   {
     $this->secret = $secret;
   }
-  /**
-   * @return string
-   */
   public function getSecret()
   {
     return $this->secret;

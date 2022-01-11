@@ -21,9 +21,6 @@ class DeveloperComment extends \Google\Model
 {
   protected $lastModifiedType = Timestamp::class;
   protected $lastModifiedDataType = '';
-  /**
-   * @var string
-   */
   public $text;
 
   /**
@@ -40,16 +37,10 @@ class DeveloperComment extends \Google\Model
   {
     return $this->lastModified;
   }
-  /**
-   * @param string
-   */
   public function setText($text)
   {
     $this->text = $text;
   }
-  /**
-   * @return string
-   */
   public function getText()
   {
     return $this->text;

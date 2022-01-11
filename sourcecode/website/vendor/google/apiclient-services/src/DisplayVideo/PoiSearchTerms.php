@@ -19,21 +19,12 @@ namespace Google\Service\DisplayVideo;
 
 class PoiSearchTerms extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $poiQuery;
 
-  /**
-   * @param string
-   */
   public function setPoiQuery($poiQuery)
   {
     $this->poiQuery = $poiQuery;
   }
-  /**
-   * @return string
-   */
   public function getPoiQuery()
   {
     return $this->poiQuery;

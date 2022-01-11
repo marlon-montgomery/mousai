@@ -21,9 +21,6 @@ class CreateConferenceRequest extends \Google\Model
 {
   protected $conferenceSolutionKeyType = ConferenceSolutionKey::class;
   protected $conferenceSolutionKeyDataType = '';
-  /**
-   * @var string
-   */
   public $requestId;
   protected $statusType = ConferenceRequestStatus::class;
   protected $statusDataType = '';
@@ -42,16 +39,10 @@ class CreateConferenceRequest extends \Google\Model
   {
     return $this->conferenceSolutionKey;
   }
-  /**
-   * @param string
-   */
   public function setRequestId($requestId)
   {
     $this->requestId = $requestId;
   }
-  /**
-   * @return string
-   */
   public function getRequestId()
   {
     return $this->requestId;

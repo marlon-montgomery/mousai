@@ -58,9 +58,6 @@ final class EnglishInflector implements InflectorInterface
         // selfies (selfie)
         ['seifles', 7, true, true, 'selfie'],
 
-        // zombies (zombie)
-        ['seibmoz', 7, true, true, 'zombie'],
-
         // movies (movie)
         ['seivom', 6, true, true, 'movie'],
 

@@ -19,21 +19,12 @@ namespace Google\Service\CloudAsset;
 
 class IdentitySelector extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $identity;
 
-  /**
-   * @param string
-   */
   public function setIdentity($identity)
   {
     $this->identity = $identity;
   }
-  /**
-   * @return string
-   */
   public function getIdentity()
   {
     return $this->identity;

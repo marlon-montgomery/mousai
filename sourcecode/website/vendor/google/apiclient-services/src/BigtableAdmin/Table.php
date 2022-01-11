@@ -23,13 +23,7 @@ class Table extends \Google\Model
   protected $clusterStatesDataType = 'map';
   protected $columnFamiliesType = ColumnFamily::class;
   protected $columnFamiliesDataType = 'map';
-  /**
-   * @var string
-   */
   public $granularity;
-  /**
-   * @var string
-   */
   public $name;
   protected $restoreInfoType = RestoreInfo::class;
   protected $restoreInfoDataType = '';
@@ -62,30 +56,18 @@ class Table extends \Google\Model
   {
     return $this->columnFamilies;
   }
-  /**
-   * @param string
-   */
   public function setGranularity($granularity)
   {
     $this->granularity = $granularity;
   }
-  /**
-   * @return string
-   */
   public function getGranularity()
   {
     return $this->granularity;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

@@ -21,15 +21,9 @@ class GoogleCloudPolicysimulatorV1Replay extends \Google\Model
 {
   protected $configType = GoogleCloudPolicysimulatorV1ReplayConfig::class;
   protected $configDataType = '';
-  /**
-   * @var string
-   */
   public $name;
   protected $resultsSummaryType = GoogleCloudPolicysimulatorV1ReplayResultsSummary::class;
   protected $resultsSummaryDataType = '';
-  /**
-   * @var string
-   */
   public $state;
 
   /**
@@ -46,16 +40,10 @@ class GoogleCloudPolicysimulatorV1Replay extends \Google\Model
   {
     return $this->config;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;
@@ -74,16 +62,10 @@ class GoogleCloudPolicysimulatorV1Replay extends \Google\Model
   {
     return $this->resultsSummary;
   }
-  /**
-   * @param string
-   */
   public function setState($state)
   {
     $this->state = $state;
   }
-  /**
-   * @return string
-   */
   public function getState()
   {
     return $this->state;

@@ -6,13 +6,11 @@
     "authors": [
         {
             "name": "Graham Campbell",
-            "email": "hello@gjcampbell.co.uk",
-            "homepage": "https://github.com/GrahamCampbell"
+            "email": "hello@gjcampbell.co.uk"
         },
         {
             "name": "Vance Lucas",
-            "email": "vance@vancelucas.com",
-            "homepage": "https://github.com/vlucas"
+            "email": "vance@vancelucas.com"
         }
     ],
     "require": {
@@ -47,7 +45,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "5.4-dev"
+            "dev-master": "5.3-dev"
         }
     }
 }

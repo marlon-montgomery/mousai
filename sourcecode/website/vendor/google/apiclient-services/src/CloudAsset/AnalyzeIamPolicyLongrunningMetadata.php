@@ -19,21 +19,12 @@ namespace Google\Service\CloudAsset;
 
 class AnalyzeIamPolicyLongrunningMetadata extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $createTime;
 
-  /**
-   * @param string
-   */
   public function setCreateTime($createTime)
   {
     $this->createTime = $createTime;
   }
-  /**
-   * @return string
-   */
   public function getCreateTime()
   {
     return $this->createTime;

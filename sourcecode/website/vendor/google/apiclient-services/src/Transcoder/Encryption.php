@@ -21,13 +21,7 @@ class Encryption extends \Google\Model
 {
   protected $aes128Type = Aes128Encryption::class;
   protected $aes128DataType = '';
-  /**
-   * @var string
-   */
   public $iv;
-  /**
-   * @var string
-   */
   public $key;
   protected $mpegCencType = MpegCommonEncryption::class;
   protected $mpegCencDataType = '';
@@ -48,30 +42,18 @@ class Encryption extends \Google\Model
   {
     return $this->aes128;
   }
-  /**
-   * @param string
-   */
   public function setIv($iv)
   {
     $this->iv = $iv;
   }
-  /**
-   * @return string
-   */
   public function getIv()
   {
     return $this->iv;
   }
-  /**
-   * @param string
-   */
   public function setKey($key)
   {
     $this->key = $key;
   }
-  /**
-   * @return string
-   */
   public function getKey()
   {
     return $this->key;

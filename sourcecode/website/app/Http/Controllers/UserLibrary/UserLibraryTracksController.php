@@ -20,13 +20,13 @@ class UserLibraryTracksController extends BaseController {
 
     public function __construct(Request $request)
     {
+        $this->middleware('auth');
+
         $this->request = $request;
     }
 
     public function addToLibrary()
     {
-        $this->middleware('auth');
-
         $likeables = collect($this->request->get('likeables'))
             ->map(function($likeable) {
                 $likeable['user_id'] = Auth::user()->id;
@@ -41,8 +41,6 @@ class UserLibraryTracksController extends BaseController {
 
     public function removeFromLibrary()
     {
-        $this->middleware('auth');
-
         $this->validate($this->request, [
             'likeables.*.likeable_id' => 'required|int',
             'likeables.*.likeable_type' => 'required|in:track,album,artist',
@@ -57,6 +55,7 @@ class UserLibraryTracksController extends BaseController {
         DB::table('likes')->whereRaw("(user_id, likeable_id, likeable_type) in ($values)")->delete();
         return $this->success();
     }
+
 
     public function index(User $user = null)
     {

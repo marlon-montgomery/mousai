@@ -1,0 +1,25 @@
+diamond {
+  display: flex;
+
+  button {
+    padding: 0;
+    border: none;
+    display: flex;
+    color: inherit;
+    cursor: pointer;
+    background: none;
+    margin-left: 4px;
+    align-items: center;
+
+    mat-icon {
+      margin-top: -2px;
+      width: 16px !important;
+      height: 16px !important;
+
+      & > svg {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+  }
+}

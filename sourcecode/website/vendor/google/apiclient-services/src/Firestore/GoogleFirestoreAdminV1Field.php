@@ -21,9 +21,6 @@ class GoogleFirestoreAdminV1Field extends \Google\Model
 {
   protected $indexConfigType = GoogleFirestoreAdminV1IndexConfig::class;
   protected $indexConfigDataType = '';
-  /**
-   * @var string
-   */
   public $name;
 
   /**
@@ -40,16 +37,10 @@ class GoogleFirestoreAdminV1Field extends \Google\Model
   {
     return $this->indexConfig;
   }
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

@@ -28,13 +28,7 @@ class VoterInfoResponse extends \Google\Collection
   protected $earlyVoteSitesDataType = 'array';
   protected $electionType = Election::class;
   protected $electionDataType = '';
-  /**
-   * @var string
-   */
   public $kind;
-  /**
-   * @var bool
-   */
   public $mailOnly;
   protected $normalizedInputType = SimpleAddressType::class;
   protected $normalizedInputDataType = '';
@@ -42,9 +36,6 @@ class VoterInfoResponse extends \Google\Collection
   protected $otherElectionsDataType = 'array';
   protected $pollingLocationsType = PollingLocation::class;
   protected $pollingLocationsDataType = 'array';
-  /**
-   * @var string
-   */
   public $precinctId;
   protected $stateType = AdministrationRegion::class;
   protected $stateDataType = 'array';
@@ -105,30 +96,18 @@ class VoterInfoResponse extends \Google\Collection
   {
     return $this->election;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
   }
-  /**
-   * @param bool
-   */
   public function setMailOnly($mailOnly)
   {
     $this->mailOnly = $mailOnly;
   }
-  /**
-   * @return bool
-   */
   public function getMailOnly()
   {
     return $this->mailOnly;
@@ -175,16 +154,10 @@ class VoterInfoResponse extends \Google\Collection
   {
     return $this->pollingLocations;
   }
-  /**
-   * @param string
-   */
   public function setPrecinctId($precinctId)
   {
     $this->precinctId = $precinctId;
   }
-  /**
-   * @return string
-   */
   public function getPrecinctId()
   {
     return $this->precinctId;

@@ -23,9 +23,6 @@ class GooglePrivacyDlpV2ContentItem extends \Google\Model
   protected $byteItemDataType = '';
   protected $tableType = GooglePrivacyDlpV2Table::class;
   protected $tableDataType = '';
-  /**
-   * @var string
-   */
   public $value;
 
   /**
@@ -56,16 +53,10 @@ class GooglePrivacyDlpV2ContentItem extends \Google\Model
   {
     return $this->table;
   }
-  /**
-   * @param string
-   */
   public function setValue($value)
   {
     $this->value = $value;
   }
-  /**
-   * @return string
-   */
   public function getValue()
   {
     return $this->value;

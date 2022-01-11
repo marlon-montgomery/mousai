@@ -17,30 +17,51 @@
 
 namespace Google\Service\Bigquery;
 
-class IterationResult extends \Google\Model
+class IterationResult extends \Google\Collection
 {
-  /**
-   * @var string
-   */
+  protected $collection_key = 'clusterInfos';
+  protected $arimaResultType = ArimaResult::class;
+  protected $arimaResultDataType = '';
+  protected $clusterInfosType = ClusterInfo::class;
+  protected $clusterInfosDataType = 'array';
   public $durationMs;
   public $evalLoss;
-  /**
-   * @var int
-   */
   public $index;
   public $learnRate;
   public $trainingLoss;
 
   /**
-   * @param string
+   * @param ArimaResult
    */
+  public function setArimaResult(ArimaResult $arimaResult)
+  {
+    $this->arimaResult = $arimaResult;
+  }
+  /**
+   * @return ArimaResult
+   */
+  public function getArimaResult()
+  {
+    return $this->arimaResult;
+  }
+  /**
+   * @param ClusterInfo[]
+   */
+  public function setClusterInfos($clusterInfos)
+  {
+    $this->clusterInfos = $clusterInfos;
+  }
+  /**
+   * @return ClusterInfo[]
+   */
+  public function getClusterInfos()
+  {
+    return $this->clusterInfos;
+  }
   public function setDurationMs($durationMs)
   {
     $this->durationMs = $durationMs;
   }
-  /**
-   * @return string
-   */
   public function getDurationMs()
   {
     return $this->durationMs;
@@ -53,16 +74,10 @@ class IterationResult extends \Google\Model
   {
     return $this->evalLoss;
   }
-  /**
-   * @param int
-   */
   public function setIndex($index)
   {
     $this->index = $index;
   }
-  /**
-   * @return int
-   */
   public function getIndex()
   {
     return $this->index;

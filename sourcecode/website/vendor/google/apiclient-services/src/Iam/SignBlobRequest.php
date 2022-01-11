@@ -19,21 +19,12 @@ namespace Google\Service\Iam;
 
 class SignBlobRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $bytesToSign;
 
-  /**
-   * @param string
-   */
   public function setBytesToSign($bytesToSign)
   {
     $this->bytesToSign = $bytesToSign;
   }
-  /**
-   * @return string
-   */
   public function getBytesToSign()
   {
     return $this->bytesToSign;

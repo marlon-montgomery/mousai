@@ -19,21 +19,12 @@ namespace Google\Service\GKEHub;
 
 class ConfigManagementPolicyControllerVersion extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $version;
 
-  /**
-   * @param string
-   */
   public function setVersion($version)
   {
     $this->version = $version;
   }
-  /**
-   * @return string
-   */
   public function getVersion()
   {
     return $this->version;

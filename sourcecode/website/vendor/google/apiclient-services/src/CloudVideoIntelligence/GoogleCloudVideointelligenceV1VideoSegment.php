@@ -19,39 +19,21 @@ namespace Google\Service\CloudVideoIntelligence;
 
 class GoogleCloudVideointelligenceV1VideoSegment extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $endTimeOffset;
-  /**
-   * @var string
-   */
   public $startTimeOffset;
 
-  /**
-   * @param string
-   */
   public function setEndTimeOffset($endTimeOffset)
   {
     $this->endTimeOffset = $endTimeOffset;
   }
-  /**
-   * @return string
-   */
   public function getEndTimeOffset()
   {
     return $this->endTimeOffset;
   }
-  /**
-   * @param string
-   */
   public function setStartTimeOffset($startTimeOffset)
   {
     $this->startTimeOffset = $startTimeOffset;
   }
-  /**
-   * @return string
-   */
   public function getStartTimeOffset()
   {
     return $this->startTimeOffset;

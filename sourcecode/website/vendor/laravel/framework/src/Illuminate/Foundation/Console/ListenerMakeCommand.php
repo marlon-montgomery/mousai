@@ -2,15 +2,12 @@
 
 namespace Illuminate\Foundation\Console;
 
-use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
 class ListenerMakeCommand extends GeneratorCommand
 {
-    use CreatesMatchingTest;
-
     /**
      * The console command name.
      *
@@ -51,11 +48,11 @@ class ListenerMakeCommand extends GeneratorCommand
         }
 
         $stub = str_replace(
-            ['DummyEvent', '{{ event }}'], class_basename($event), parent::buildClass($name)
+            'DummyEvent', class_basename($event), parent::buildClass($name)
         );
 
         return str_replace(
-            ['DummyFullEvent', '{{ eventNamespace }}'], trim($event, '\\'), $stub
+            'DummyFullEvent', trim($event, '\\'), $stub
         );
     }
 

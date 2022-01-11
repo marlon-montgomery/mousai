@@ -24,9 +24,6 @@ class InterconnectDiagnostics extends \Google\Collection
   protected $arpCachesDataType = 'array';
   protected $linksType = InterconnectDiagnosticsLinkStatus::class;
   protected $linksDataType = 'array';
-  /**
-   * @var string
-   */
   public $macAddress;
 
   /**
@@ -57,16 +54,10 @@ class InterconnectDiagnostics extends \Google\Collection
   {
     return $this->links;
   }
-  /**
-   * @param string
-   */
   public function setMacAddress($macAddress)
   {
     $this->macAddress = $macAddress;
   }
-  /**
-   * @return string
-   */
   public function getMacAddress()
   {
     return $this->macAddress;

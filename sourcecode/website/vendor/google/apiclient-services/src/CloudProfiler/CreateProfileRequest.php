@@ -22,9 +22,6 @@ class CreateProfileRequest extends \Google\Collection
   protected $collection_key = 'profileType';
   protected $deploymentType = Deployment::class;
   protected $deploymentDataType = '';
-  /**
-   * @var string[]
-   */
   public $profileType;
 
   /**
@@ -41,16 +38,10 @@ class CreateProfileRequest extends \Google\Collection
   {
     return $this->deployment;
   }
-  /**
-   * @param string[]
-   */
   public function setProfileType($profileType)
   {
     $this->profileType = $profileType;
   }
-  /**
-   * @return string[]
-   */
   public function getProfileType()
   {
     return $this->profileType;

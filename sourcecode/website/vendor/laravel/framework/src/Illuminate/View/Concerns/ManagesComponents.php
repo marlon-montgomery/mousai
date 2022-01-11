@@ -25,13 +25,6 @@ trait ManagesComponents
     protected $componentData = [];
 
     /**
-     * The component data for the component that is currently being rendered.
-     *
-     * @var array
-     */
-    protected $currentComponentData = [];
-
-    /**
      * The slot contents for the component.
      *
      * @var array
@@ -88,23 +81,16 @@ trait ManagesComponents
     {
         $view = array_pop($this->componentStack);
 
-        $this->currentComponentData = array_merge(
-            $previousComponentData = $this->currentComponentData,
-            $data = $this->componentData()
-        );
+        $data = $this->componentData();
 
-        try {
-            $view = value($view, $data);
+        $view = value($view, $data);
 
-            if ($view instanceof View) {
-                return $view->with($data)->render();
-            } elseif ($view instanceof Htmlable) {
-                return $view->toHtml();
-            } else {
-                return $this->make($view, $data)->render();
-            }
-        } finally {
-            $this->currentComponentData = $previousComponentData;
+        if ($view instanceof View) {
+            return $view->with($data)->render();
+        } elseif ($view instanceof Htmlable) {
+            return $view->toHtml();
+        } else {
+            return $this->make($view, $data)->render();
         }
     }
 
@@ -127,36 +113,6 @@ trait ManagesComponents
             $this->slots[count($this->componentStack)],
             ['__laravel_slots' => $slots]
         );
-    }
-
-    /**
-     * Get an item from the component data that exists above the current component.
-     *
-     * @param  string  $key
-     * @param  mixed  $default
-     * @return mixed|null
-     */
-    public function getConsumableComponentData($key, $default = null)
-    {
-        if (array_key_exists($key, $this->currentComponentData)) {
-            return $this->currentComponentData[$key];
-        }
-
-        $currentComponent = count($this->componentStack);
-
-        if ($currentComponent === 0) {
-            return value($default);
-        }
-
-        for ($i = $currentComponent - 1; $i >= 0; $i--) {
-            $data = $this->componentData[$i] ?? [];
-
-            if (array_key_exists($key, $data)) {
-                return $data[$key];
-            }
-        }
-
-        return value($default);
     }
 
     /**
@@ -206,17 +162,5 @@ trait ManagesComponents
     protected function currentComponent()
     {
         return count($this->componentStack) - 1;
-    }
-
-    /**
-     * Flush all of the component state.
-     *
-     * @return void
-     */
-    protected function flushComponents()
-    {
-        $this->componentStack = [];
-        $this->componentData = [];
-        $this->currentComponentData = [];
     }
 }

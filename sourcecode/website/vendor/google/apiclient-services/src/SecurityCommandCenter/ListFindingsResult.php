@@ -23,9 +23,6 @@ class ListFindingsResult extends \Google\Model
   protected $findingDataType = '';
   protected $resourceType = SecuritycenterResource::class;
   protected $resourceDataType = '';
-  /**
-   * @var string
-   */
   public $stateChange;
 
   /**
@@ -56,16 +53,10 @@ class ListFindingsResult extends \Google\Model
   {
     return $this->resource;
   }
-  /**
-   * @param string
-   */
   public function setStateChange($stateChange)
   {
     $this->stateChange = $stateChange;
   }
-  /**
-   * @return string
-   */
   public function getStateChange()
   {
     return $this->stateChange;

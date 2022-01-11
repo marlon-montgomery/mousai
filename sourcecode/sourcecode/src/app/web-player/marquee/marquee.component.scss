@@ -1,0 +1,20 @@
+app-marquee {
+  @keyframes marquee {
+    0%, 20% {
+      transform: translateX(0);
+    }
+    80%, 100% {
+      transform: translateX(calc(-1 * var(--max-translate)));
+    }
+  }
+
+  display: flex;
+  animation-play-state: running;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  &[pausable]:hover {
+    animation-play-state: paused;
+  }
+}

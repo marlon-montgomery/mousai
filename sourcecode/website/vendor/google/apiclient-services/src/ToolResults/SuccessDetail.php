@@ -19,21 +19,12 @@ namespace Google\Service\ToolResults;
 
 class SuccessDetail extends \Google\Model
 {
-  /**
-   * @var bool
-   */
   public $otherNativeCrash;
 
-  /**
-   * @param bool
-   */
   public function setOtherNativeCrash($otherNativeCrash)
   {
     $this->otherNativeCrash = $otherNativeCrash;
   }
-  /**
-   * @return bool
-   */
   public function getOtherNativeCrash()
   {
     return $this->otherNativeCrash;

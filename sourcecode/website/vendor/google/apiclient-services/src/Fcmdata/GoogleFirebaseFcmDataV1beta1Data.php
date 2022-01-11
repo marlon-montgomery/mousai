@@ -19,9 +19,6 @@ namespace Google\Service\Fcmdata;
 
 class GoogleFirebaseFcmDataV1beta1Data extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $countMessagesAccepted;
   protected $deliveryPerformancePercentsType = GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercents::class;
   protected $deliveryPerformancePercentsDataType = '';
@@ -30,16 +27,10 @@ class GoogleFirebaseFcmDataV1beta1Data extends \Google\Model
   protected $messageOutcomePercentsType = GoogleFirebaseFcmDataV1beta1MessageOutcomePercents::class;
   protected $messageOutcomePercentsDataType = '';
 
-  /**
-   * @param string
-   */
   public function setCountMessagesAccepted($countMessagesAccepted)
   {
     $this->countMessagesAccepted = $countMessagesAccepted;
   }
-  /**
-   * @return string
-   */
   public function getCountMessagesAccepted()
   {
     return $this->countMessagesAccepted;

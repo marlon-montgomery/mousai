@@ -22,9 +22,6 @@ class ListExportsResponse extends \Google\Collection
   protected $collection_key = 'exports';
   protected $exportsType = Export::class;
   protected $exportsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListExportsResponse extends \Google\Collection
   {
     return $this->exports;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

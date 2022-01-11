@@ -20,33 +20,18 @@ namespace Google\Service\CloudHealthcare;
 class SchemaPackage extends \Google\Collection
 {
   protected $collection_key = 'types';
-  /**
-   * @var bool
-   */
   public $ignoreMinOccurs;
   protected $schemasType = Hl7SchemaConfig::class;
   protected $schemasDataType = 'array';
-  /**
-   * @var string
-   */
   public $schematizedParsingType;
   protected $typesType = Hl7TypesConfig::class;
   protected $typesDataType = 'array';
-  /**
-   * @var string
-   */
   public $unexpectedSegmentHandling;
 
-  /**
-   * @param bool
-   */
   public function setIgnoreMinOccurs($ignoreMinOccurs)
   {
     $this->ignoreMinOccurs = $ignoreMinOccurs;
   }
-  /**
-   * @return bool
-   */
   public function getIgnoreMinOccurs()
   {
     return $this->ignoreMinOccurs;
@@ -65,16 +50,10 @@ class SchemaPackage extends \Google\Collection
   {
     return $this->schemas;
   }
-  /**
-   * @param string
-   */
   public function setSchematizedParsingType($schematizedParsingType)
   {
     $this->schematizedParsingType = $schematizedParsingType;
   }
-  /**
-   * @return string
-   */
   public function getSchematizedParsingType()
   {
     return $this->schematizedParsingType;
@@ -93,16 +72,10 @@ class SchemaPackage extends \Google\Collection
   {
     return $this->types;
   }
-  /**
-   * @param string
-   */
   public function setUnexpectedSegmentHandling($unexpectedSegmentHandling)
   {
     $this->unexpectedSegmentHandling = $unexpectedSegmentHandling;
   }
-  /**
-   * @return string
-   */
   public function getUnexpectedSegmentHandling()
   {
     return $this->unexpectedSegmentHandling;

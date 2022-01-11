@@ -19,39 +19,21 @@ namespace Google\Service\CloudIot;
 
 class SendCommandToDeviceRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $binaryData;
-  /**
-   * @var string
-   */
   public $subfolder;
 
-  /**
-   * @param string
-   */
   public function setBinaryData($binaryData)
   {
     $this->binaryData = $binaryData;
   }
-  /**
-   * @return string
-   */
   public function getBinaryData()
   {
     return $this->binaryData;
   }
-  /**
-   * @param string
-   */
   public function setSubfolder($subfolder)
   {
     $this->subfolder = $subfolder;
   }
-  /**
-   * @return string
-   */
   public function getSubfolder()
   {
     return $this->subfolder;

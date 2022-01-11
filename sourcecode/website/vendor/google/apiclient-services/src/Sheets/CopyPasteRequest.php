@@ -21,13 +21,7 @@ class CopyPasteRequest extends \Google\Model
 {
   protected $destinationType = GridRange::class;
   protected $destinationDataType = '';
-  /**
-   * @var string
-   */
   public $pasteOrientation;
-  /**
-   * @var string
-   */
   public $pasteType;
   protected $sourceType = GridRange::class;
   protected $sourceDataType = '';
@@ -46,30 +40,18 @@ class CopyPasteRequest extends \Google\Model
   {
     return $this->destination;
   }
-  /**
-   * @param string
-   */
   public function setPasteOrientation($pasteOrientation)
   {
     $this->pasteOrientation = $pasteOrientation;
   }
-  /**
-   * @return string
-   */
   public function getPasteOrientation()
   {
     return $this->pasteOrientation;
   }
-  /**
-   * @param string
-   */
   public function setPasteType($pasteType)
   {
     $this->pasteType = $pasteType;
   }
-  /**
-   * @return string
-   */
   public function getPasteType()
   {
     return $this->pasteType;

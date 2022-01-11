@@ -19,22 +19,6 @@ final class ClientTest extends TestCase
         $this->assertEmpty($response);
     }
 
-    public function testGetAllRawIndexesWhenEmpty(): void
-    {
-        $response = $this->client->getAllRawIndexes();
-
-        $this->assertIsArray($response);
-        $this->assertEmpty($response);
-    }
-
-    public function testExceptionIsThrownOnGetRawIndexWhenIndexDoesNotExist(): void
-    {
-        $this->expectException(ApiException::class);
-        $this->expectExceptionCode(404);
-
-        $this->client->getRawIndex('index');
-    }
-
     public function testCreateIndexWithOnlyUid(): void
     {
         $index = $this->client->createIndex('index');
@@ -91,30 +75,6 @@ final class ClientTest extends TestCase
         $this->assertContains($indexB, $uids);
     }
 
-    public function testGetAllRawIndexes(): void
-    {
-        $indexA = 'indexA';
-        $indexB = 'indexB';
-        $this->client->createIndex($indexA);
-        $this->client->createIndex($indexB);
-
-        $res = $this->client->getAllRawIndexes();
-
-        $this->assertIsArray($res);
-        $this->assertNotInstanceOf(Indexes::class, $res[0]);
-    }
-
-    public function testGetRawIndex(): void
-    {
-        $indexA = 'indexA';
-        $this->client->createIndex($indexA);
-
-        $res = $this->client->getRawIndex('indexA');
-
-        $this->assertIsArray($res);
-        $this->assertArrayHasKey('uid', $res);
-    }
-
     public function testUpdateIndex(): void
     {
         $this->client->createIndex('indexA');
@@ -139,43 +99,6 @@ final class ClientTest extends TestCase
         $response = $this->client->getAllIndexes();
 
         $this->assertCount(0, $response);
-    }
-
-    public function testDeleteIndexIfExistsDeletesExistingIndex(): void
-    {
-        $this->client->createIndex('index');
-
-        $response = $this->client->getAllIndexes();
-        $this->assertCount(1, $response);
-
-        $response = $this->client->deleteIndexIfExists('index');
-        $this->assertTrue($response);
-
-        $response = $this->client->getAllIndexes();
-        $this->assertCount(0, $response);
-    }
-
-    public function testDeleteIndexIfExistsReturnsFalseIfNotExists(): void
-    {
-        $this->client->createIndex('index');
-
-        $response = $this->client->getAllIndexes();
-        $this->assertCount(1, $response);
-
-        $response = $this->client->deleteIndexIfExists('foo');
-        $this->assertFalse($response);
-
-        $response = $this->client->getAllIndexes();
-        $this->assertCount(1, $response);
-    }
-
-    public function testApiExceptionOtherThanIndexNotFoundIsThrownFromDeleteIndexIfExists(): void
-    {
-        $client = new Client(self::HOST);
-
-        $this->expectException(ApiException::class);
-
-        $client->deleteIndexIfExists('index');
     }
 
     public function testDeleteAllIndexes(): void
@@ -277,13 +200,16 @@ final class ClientTest extends TestCase
         $index2->delete();
     }
 
-    public function testApiExceptionOtherThanIndexNotFoundIsThrownFromGetOrCreateIndex(): void
+    public function testExceptionIsThrownWhenOverwritingPrimaryKeyUsingUpdateIndex(): void
     {
-        $client = new Client(self::HOST);
+        $this->client->createIndex(
+            'indexB',
+            ['primaryKey' => 'objectId']
+        );
 
         $this->expectException(ApiException::class);
 
-        $client->getOrCreateIndex('index');
+        $this->client->updateIndex('indexB', ['primaryKey' => 'objectID']);
     }
 
     public function testExceptionIsThrownWhenUpdateIndexUseANoneExistingIndex(): void

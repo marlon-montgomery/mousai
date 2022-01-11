@@ -22,9 +22,6 @@ class GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCasesCase extends \Goo
   protected $collection_key = 'caseContent';
   protected $caseContentType = GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCasesCaseCaseContent::class;
   protected $caseContentDataType = 'array';
-  /**
-   * @var string
-   */
   public $condition;
 
   /**
@@ -41,16 +38,10 @@ class GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCasesCase extends \Goo
   {
     return $this->caseContent;
   }
-  /**
-   * @param string
-   */
   public function setCondition($condition)
   {
     $this->condition = $condition;
   }
-  /**
-   * @return string
-   */
   public function getCondition()
   {
     return $this->condition;

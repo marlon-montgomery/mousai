@@ -20,21 +20,12 @@ namespace Google\Service\Compute;
 class InstanceGroupManagersAbandonInstancesRequest extends \Google\Collection
 {
   protected $collection_key = 'instances';
-  /**
-   * @var string[]
-   */
   public $instances;
 
-  /**
-   * @param string[]
-   */
   public function setInstances($instances)
   {
     $this->instances = $instances;
   }
-  /**
-   * @return string[]
-   */
   public function getInstances()
   {
     return $this->instances;

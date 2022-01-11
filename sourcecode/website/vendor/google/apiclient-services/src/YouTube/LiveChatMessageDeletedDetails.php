@@ -19,21 +19,12 @@ namespace Google\Service\YouTube;
 
 class LiveChatMessageDeletedDetails extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $deletedMessageId;
 
-  /**
-   * @param string
-   */
   public function setDeletedMessageId($deletedMessageId)
   {
     $this->deletedMessageId = $deletedMessageId;
   }
-  /**
-   * @return string
-   */
   public function getDeletedMessageId()
   {
     return $this->deletedMessageId;

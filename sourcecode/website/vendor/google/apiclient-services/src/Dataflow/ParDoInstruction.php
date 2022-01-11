@@ -24,15 +24,9 @@ class ParDoInstruction extends \Google\Collection
   protected $inputDataType = '';
   protected $multiOutputInfosType = MultiOutputInfo::class;
   protected $multiOutputInfosDataType = 'array';
-  /**
-   * @var int
-   */
   public $numOutputs;
   protected $sideInputsType = SideInputInfo::class;
   protected $sideInputsDataType = 'array';
-  /**
-   * @var array[]
-   */
   public $userFn;
 
   /**
@@ -63,16 +57,10 @@ class ParDoInstruction extends \Google\Collection
   {
     return $this->multiOutputInfos;
   }
-  /**
-   * @param int
-   */
   public function setNumOutputs($numOutputs)
   {
     $this->numOutputs = $numOutputs;
   }
-  /**
-   * @return int
-   */
   public function getNumOutputs()
   {
     return $this->numOutputs;
@@ -91,16 +79,10 @@ class ParDoInstruction extends \Google\Collection
   {
     return $this->sideInputs;
   }
-  /**
-   * @param array[]
-   */
   public function setUserFn($userFn)
   {
     $this->userFn = $userFn;
   }
-  /**
-   * @return array[]
-   */
   public function getUserFn()
   {
     return $this->userFn;

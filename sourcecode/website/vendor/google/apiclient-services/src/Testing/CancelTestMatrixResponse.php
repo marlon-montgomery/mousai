@@ -19,21 +19,12 @@ namespace Google\Service\Testing;
 
 class CancelTestMatrixResponse extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $testState;
 
-  /**
-   * @param string
-   */
   public function setTestState($testState)
   {
     $this->testState = $testState;
   }
-  /**
-   * @return string
-   */
   public function getTestState()
   {
     return $this->testState;

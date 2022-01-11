@@ -22,9 +22,6 @@ class SystemParameterRule extends \Google\Collection
   protected $collection_key = 'parameters';
   protected $parametersType = SystemParameter::class;
   protected $parametersDataType = 'array';
-  /**
-   * @var string
-   */
   public $selector;
 
   /**
@@ -41,16 +38,10 @@ class SystemParameterRule extends \Google\Collection
   {
     return $this->parameters;
   }
-  /**
-   * @param string
-   */
   public function setSelector($selector)
   {
     $this->selector = $selector;
   }
-  /**
-   * @return string
-   */
   public function getSelector()
   {
     return $this->selector;

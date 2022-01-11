@@ -19,21 +19,12 @@ namespace Google\Service\OSConfig;
 
 class OneTimeSchedule extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $executeTime;
 
-  /**
-   * @param string
-   */
   public function setExecuteTime($executeTime)
   {
     $this->executeTime = $executeTime;
   }
-  /**
-   * @return string
-   */
   public function getExecuteTime()
   {
     return $this->executeTime;

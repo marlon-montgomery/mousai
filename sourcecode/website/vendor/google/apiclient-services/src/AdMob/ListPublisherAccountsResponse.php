@@ -22,9 +22,6 @@ class ListPublisherAccountsResponse extends \Google\Collection
   protected $collection_key = 'account';
   protected $accountType = PublisherAccount::class;
   protected $accountDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListPublisherAccountsResponse extends \Google\Collection
   {
     return $this->account;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

@@ -19,9 +19,6 @@ namespace Google\Service\PubsubLite;
 
 class Topic extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $name;
   protected $partitionConfigType = PartitionConfig::class;
   protected $partitionConfigDataType = '';
@@ -30,16 +27,10 @@ class Topic extends \Google\Model
   protected $retentionConfigType = RetentionConfig::class;
   protected $retentionConfigDataType = '';
 
-  /**
-   * @param string
-   */
   public function setName($name)
   {
     $this->name = $name;
   }
-  /**
-   * @return string
-   */
   public function getName()
   {
     return $this->name;

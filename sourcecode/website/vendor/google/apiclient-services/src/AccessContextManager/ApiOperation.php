@@ -22,9 +22,6 @@ class ApiOperation extends \Google\Collection
   protected $collection_key = 'methodSelectors';
   protected $methodSelectorsType = MethodSelector::class;
   protected $methodSelectorsDataType = 'array';
-  /**
-   * @var string
-   */
   public $serviceName;
 
   /**
@@ -41,16 +38,10 @@ class ApiOperation extends \Google\Collection
   {
     return $this->methodSelectors;
   }
-  /**
-   * @param string
-   */
   public function setServiceName($serviceName)
   {
     $this->serviceName = $serviceName;
   }
-  /**
-   * @return string
-   */
   public function getServiceName()
   {
     return $this->serviceName;

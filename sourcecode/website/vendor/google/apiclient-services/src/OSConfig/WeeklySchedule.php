@@ -19,21 +19,12 @@ namespace Google\Service\OSConfig;
 
 class WeeklySchedule extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $dayOfWeek;
 
-  /**
-   * @param string
-   */
   public function setDayOfWeek($dayOfWeek)
   {
     $this->dayOfWeek = $dayOfWeek;
   }
-  /**
-   * @return string
-   */
   public function getDayOfWeek()
   {
     return $this->dayOfWeek;

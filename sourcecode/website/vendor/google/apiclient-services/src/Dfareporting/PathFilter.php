@@ -22,13 +22,7 @@ class PathFilter extends \Google\Collection
   protected $collection_key = 'eventFilters';
   protected $eventFiltersType = EventFilter::class;
   protected $eventFiltersDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
-  /**
-   * @var string
-   */
   public $pathMatchPosition;
 
   /**
@@ -45,30 +39,18 @@ class PathFilter extends \Google\Collection
   {
     return $this->eventFilters;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;
   }
-  /**
-   * @param string
-   */
   public function setPathMatchPosition($pathMatchPosition)
   {
     $this->pathMatchPosition = $pathMatchPosition;
   }
-  /**
-   * @return string
-   */
   public function getPathMatchPosition()
   {
     return $this->pathMatchPosition;

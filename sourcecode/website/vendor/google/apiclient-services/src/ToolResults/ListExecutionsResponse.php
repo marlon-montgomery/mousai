@@ -22,9 +22,6 @@ class ListExecutionsResponse extends \Google\Collection
   protected $collection_key = 'executions';
   protected $executionsType = Execution::class;
   protected $executionsDataType = 'array';
-  /**
-   * @var string
-   */
   public $nextPageToken;
 
   /**
@@ -41,16 +38,10 @@ class ListExecutionsResponse extends \Google\Collection
   {
     return $this->executions;
   }
-  /**
-   * @param string
-   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-  /**
-   * @return string
-   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;

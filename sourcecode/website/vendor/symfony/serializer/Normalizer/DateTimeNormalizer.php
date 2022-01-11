@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\Serializer\Normalizer;
 
-use Symfony\Component\PropertyInfo\Type;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
 
@@ -38,11 +37,6 @@ class DateTimeNormalizer implements NormalizerInterface, DenormalizerInterface, 
     ];
 
     public function __construct(array $defaultContext = [])
-    {
-        $this->setDefaultContext($defaultContext);
-    }
-
-    public function setDefaultContext(array $defaultContext): void
     {
         $this->defaultContext = array_merge($this->defaultContext, $defaultContext);
     }
@@ -92,7 +86,7 @@ class DateTimeNormalizer implements NormalizerInterface, DenormalizerInterface, 
         $timezone = $this->getTimezone($context);
 
         if (null === $data || (\is_string($data) && '' === trim($data))) {
-            throw NotNormalizableValueException::createForUnexpectedDataType('The data is either an empty string or null, you should pass a string that can be parsed with the passed format or a valid DateTime string.', $data, [Type::BUILTIN_TYPE_STRING], $context['deserialization_path'] ?? null, true);
+            throw new NotNormalizableValueException('The data is either an empty string or null, you should pass a string that can be parsed with the passed format or a valid DateTime string.');
         }
 
         if (null !== $dateTimeFormat) {
@@ -104,13 +98,13 @@ class DateTimeNormalizer implements NormalizerInterface, DenormalizerInterface, 
 
             $dateTimeErrors = \DateTime::class === $type ? \DateTime::getLastErrors() : \DateTimeImmutable::getLastErrors();
 
-            throw NotNormalizableValueException::createForUnexpectedDataType(sprintf('Parsing datetime string "%s" using format "%s" resulted in %d errors: ', $data, $dateTimeFormat, $dateTimeErrors['error_count'])."\n".implode("\n", $this->formatDateTimeErrors($dateTimeErrors['errors'])), $data, [Type::BUILTIN_TYPE_STRING], $context['deserialization_path'] ?? null, true);
+            throw new NotNormalizableValueException(sprintf('Parsing datetime string "%s" using format "%s" resulted in %d errors: ', $data, $dateTimeFormat, $dateTimeErrors['error_count'])."\n".implode("\n", $this->formatDateTimeErrors($dateTimeErrors['errors'])));
         }
 
         try {
             return \DateTime::class === $type ? new \DateTime($data, $timezone) : new \DateTimeImmutable($data, $timezone);
         } catch (\Exception $e) {
-            throw NotNormalizableValueException::createForUnexpectedDataType($e->getMessage(), $data, [Type::BUILTIN_TYPE_STRING], $context['deserialization_path'] ?? null, false, $e->getCode(), $e);
+            throw new NotNormalizableValueException($e->getMessage(), $e->getCode(), $e);
         }
     }
 

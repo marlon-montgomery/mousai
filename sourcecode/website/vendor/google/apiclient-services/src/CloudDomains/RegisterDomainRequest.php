@@ -20,47 +20,26 @@ namespace Google\Service\CloudDomains;
 class RegisterDomainRequest extends \Google\Collection
 {
   protected $collection_key = 'domainNotices';
-  /**
-   * @var string[]
-   */
   public $contactNotices;
-  /**
-   * @var string[]
-   */
   public $domainNotices;
   protected $registrationType = Registration::class;
   protected $registrationDataType = '';
-  /**
-   * @var bool
-   */
   public $validateOnly;
   protected $yearlyPriceType = Money::class;
   protected $yearlyPriceDataType = '';
 
-  /**
-   * @param string[]
-   */
   public function setContactNotices($contactNotices)
   {
     $this->contactNotices = $contactNotices;
   }
-  /**
-   * @return string[]
-   */
   public function getContactNotices()
   {
     return $this->contactNotices;
   }
-  /**
-   * @param string[]
-   */
   public function setDomainNotices($domainNotices)
   {
     $this->domainNotices = $domainNotices;
   }
-  /**
-   * @return string[]
-   */
   public function getDomainNotices()
   {
     return $this->domainNotices;
@@ -79,16 +58,10 @@ class RegisterDomainRequest extends \Google\Collection
   {
     return $this->registration;
   }
-  /**
-   * @param bool
-   */
   public function setValidateOnly($validateOnly)
   {
     $this->validateOnly = $validateOnly;
   }
-  /**
-   * @return bool
-   */
   public function getValidateOnly()
   {
     return $this->validateOnly;

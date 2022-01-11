@@ -19,21 +19,12 @@ namespace Google\Service\CloudHealthcare;
 
 class DicomFilterConfig extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $resourcePathsGcsUri;
 
-  /**
-   * @param string
-   */
   public function setResourcePathsGcsUri($resourcePathsGcsUri)
   {
     $this->resourcePathsGcsUri = $resourcePathsGcsUri;
   }
-  /**
-   * @return string
-   */
   public function getResourcePathsGcsUri()
   {
     return $this->resourcePathsGcsUri;

@@ -20,13 +20,7 @@ namespace Google\Service\AdMob;
 class ReportRowMetricValue extends \Google\Model
 {
   public $doubleValue;
-  /**
-   * @var string
-   */
   public $integerValue;
-  /**
-   * @var string
-   */
   public $microsValue;
 
   public function setDoubleValue($doubleValue)
@@ -37,30 +31,18 @@ class ReportRowMetricValue extends \Google\Model
   {
     return $this->doubleValue;
   }
-  /**
-   * @param string
-   */
   public function setIntegerValue($integerValue)
   {
     $this->integerValue = $integerValue;
   }
-  /**
-   * @return string
-   */
   public function getIntegerValue()
   {
     return $this->integerValue;
   }
-  /**
-   * @param string
-   */
   public function setMicrosValue($microsValue)
   {
     $this->microsValue = $microsValue;
   }
-  /**
-   * @return string
-   */
   public function getMicrosValue()
   {
     return $this->microsValue;

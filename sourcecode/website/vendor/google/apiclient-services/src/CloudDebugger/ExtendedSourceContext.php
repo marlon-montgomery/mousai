@@ -21,9 +21,6 @@ class ExtendedSourceContext extends \Google\Model
 {
   protected $contextType = SourceContext::class;
   protected $contextDataType = '';
-  /**
-   * @var string[]
-   */
   public $labels;
 
   /**
@@ -40,16 +37,10 @@ class ExtendedSourceContext extends \Google\Model
   {
     return $this->context;
   }
-  /**
-   * @param string[]
-   */
   public function setLabels($labels)
   {
     $this->labels = $labels;
   }
-  /**
-   * @return string[]
-   */
   public function getLabels()
   {
     return $this->labels;

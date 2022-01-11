@@ -19,21 +19,12 @@ namespace Google\Service\Bigquery;
 
 class LocationMetadata extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $legacyLocationId;
 
-  /**
-   * @param string
-   */
   public function setLegacyLocationId($legacyLocationId)
   {
     $this->legacyLocationId = $legacyLocationId;
   }
-  /**
-   * @return string
-   */
   public function getLegacyLocationId()
   {
     return $this->legacyLocationId;

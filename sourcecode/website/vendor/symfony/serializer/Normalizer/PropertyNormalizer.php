@@ -11,8 +11,6 @@
 
 namespace Symfony\Component\Serializer\Normalizer;
 
-use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
-
 /**
  * Converts between objects and arrays by mapping properties.
  *
@@ -103,9 +101,20 @@ class PropertyNormalizer extends AbstractObjectNormalizer
     {
         $reflectionObject = new \ReflectionObject($object);
         $attributes = [];
+        $checkPropertyInitialization = \PHP_VERSION_ID >= 70400;
 
         do {
             foreach ($reflectionObject->getProperties() as $property) {
+                if ($checkPropertyInitialization) {
+                    if (!$property->isPublic()) {
+                        $property->setAccessible(true);
+                    }
+
+                    if (!$property->isInitialized($object)) {
+                        continue;
+                    }
+                }
+
                 if (!$this->isAllowedAttribute($reflectionObject->getName(), $property->name, $format, $context)) {
                     continue;
                 }
@@ -114,7 +123,7 @@ class PropertyNormalizer extends AbstractObjectNormalizer
             }
         } while ($reflectionObject = $reflectionObject->getParentClass());
 
-        return array_unique($attributes);
+        return $attributes;
     }
 
     /**
@@ -131,21 +140,6 @@ class PropertyNormalizer extends AbstractObjectNormalizer
         // Override visibility
         if (!$reflectionProperty->isPublic()) {
             $reflectionProperty->setAccessible(true);
-        }
-
-        if (\PHP_VERSION_ID >= 70400 && $reflectionProperty->hasType()) {
-            return $reflectionProperty->getValue($object);
-        }
-
-        if (!method_exists($object, '__get') && !isset($object->$attribute)) {
-            $propertyValues = (array) $object;
-
-            if (($reflectionProperty->isPublic() && !\array_key_exists($reflectionProperty->name, $propertyValues))
-                || ($reflectionProperty->isProtected() && !\array_key_exists("\0*\0{$reflectionProperty->name}", $propertyValues))
-                || ($reflectionProperty->isPrivate() && !\array_key_exists("\0{$reflectionProperty->class}\0{$reflectionProperty->name}", $propertyValues))
-            ) {
-                throw new UninitializedPropertyException(sprintf('The property "%s::$%s" is not initialized.', \get_class($object), $reflectionProperty->name));
-            }
         }
 
         return $reflectionProperty->getValue($object);

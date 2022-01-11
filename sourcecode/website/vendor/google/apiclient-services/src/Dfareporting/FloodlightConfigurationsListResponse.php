@@ -22,9 +22,6 @@ class FloodlightConfigurationsListResponse extends \Google\Collection
   protected $collection_key = 'floodlightConfigurations';
   protected $floodlightConfigurationsType = FloodlightConfiguration::class;
   protected $floodlightConfigurationsDataType = 'array';
-  /**
-   * @var string
-   */
   public $kind;
 
   /**
@@ -41,16 +38,10 @@ class FloodlightConfigurationsListResponse extends \Google\Collection
   {
     return $this->floodlightConfigurations;
   }
-  /**
-   * @param string
-   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-  /**
-   * @return string
-   */
   public function getKind()
   {
     return $this->kind;

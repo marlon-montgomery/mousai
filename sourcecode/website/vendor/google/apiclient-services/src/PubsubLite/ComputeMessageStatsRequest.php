@@ -21,9 +21,6 @@ class ComputeMessageStatsRequest extends \Google\Model
 {
   protected $endCursorType = Cursor::class;
   protected $endCursorDataType = '';
-  /**
-   * @var string
-   */
   public $partition;
   protected $startCursorType = Cursor::class;
   protected $startCursorDataType = '';
@@ -42,16 +39,10 @@ class ComputeMessageStatsRequest extends \Google\Model
   {
     return $this->endCursor;
   }
-  /**
-   * @param string
-   */
   public function setPartition($partition)
   {
     $this->partition = $partition;
   }
-  /**
-   * @return string
-   */
   public function getPartition()
   {
     return $this->partition;

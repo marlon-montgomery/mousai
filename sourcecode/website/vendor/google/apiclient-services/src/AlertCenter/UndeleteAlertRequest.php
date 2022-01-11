@@ -19,21 +19,12 @@ namespace Google\Service\AlertCenter;
 
 class UndeleteAlertRequest extends \Google\Model
 {
-  /**
-   * @var string
-   */
   public $customerId;
 
-  /**
-   * @param string
-   */
   public function setCustomerId($customerId)
   {
     $this->customerId = $customerId;
   }
-  /**
-   * @return string
-   */
   public function getCustomerId()
   {
     return $this->customerId;
