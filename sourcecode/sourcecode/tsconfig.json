@@ -3,7 +3,9 @@
     "compilerOptions": {
         "baseUrl": "./",
         "paths": {
-            "@common/*": ["src/common/*"]
+            "@common/*": [
+                "src/common/*"
+            ]
         },
         "outDir": "./dist/out-tsc",
         "forceConsistentCasingInFileNames": true,
@@ -26,7 +28,8 @@
         "types": [
             "@types/wicg-mediasession",
             "@types/google.analytics"
-        ]
+        ],
+        "skipLibCheck": true
     },
     "angularCompilerOptions": {
         "fullTemplateTypeCheck": true,
