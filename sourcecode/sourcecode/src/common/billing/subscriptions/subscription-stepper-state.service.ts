@@ -37,7 +37,7 @@ export class SubscriptionStepperState {
     constructor(private currentUser: CurrentUser) {
         // if user was subscribed by admin from admin area, they will not have
         // any payment methods attached so we'll need to show payment panel as well
-        this.mode = this.currentUser.isSubscribed() && this.currentUser.getSubscription().gateway !== 'none'  ? 'changePlan' : 'subscribe';
+        this.mode = this.currentUser.isSubscribed() && this.currentUser.getSubscription().gateway_name !== 'none'  ? 'changePlan' : 'subscribe';
     }
 
     /**

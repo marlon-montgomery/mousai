@@ -40,7 +40,7 @@ export class PlayerControlsComponent implements OnInit {
     ngOnInit() {
         this.shouldHideLyricsButton = this.settings.get('player.hide_lyrics') || !this.currentUser.hasPermission('lyrics.view');
         this.shouldHideVideoButton = this.settings.get('player.hide_video_button');
-        this.shouldHideDownloadButton = !this.settings.get('player.enable_download') || !this.currentUser.hasPermission('tracks.download');
+        this.shouldHideDownloadButton = !this.settings.get('player.enable_download') || !this.currentUser.hasPermission('music.download');
     }
 
     /**

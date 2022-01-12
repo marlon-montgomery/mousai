@@ -86,7 +86,7 @@ class BillingPlanSeeder extends Seeder
         $newPermissions = [$permissions['files.create']];
 
         $minutes = Arr::get($params, 'minutes');
-        $newPermissions[$permissions['tracks.create']] = [
+        $newPermissions[$permissions['music.create']] = [
             'restrictions' => json_encode([['name' => 'minutes', 'value' => $minutes]])
         ];
 

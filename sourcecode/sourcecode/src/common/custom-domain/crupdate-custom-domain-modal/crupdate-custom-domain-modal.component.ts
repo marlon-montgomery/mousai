@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Toast} from '@common/core/ui/toast.service';
@@ -9,37 +9,43 @@ import {finalize} from 'rxjs/operators';
 import {Settings} from '@common/core/config/settings.service';
 import {Router} from '@angular/router';
 import {BackendErrorResponse} from '@common/core/types/backend-error-response';
+import { CurrentUser } from '@common/auth/current-user';
 
 interface CrupdateCustomDomainModalData {
     domain: CustomDomain;
     resourceName: string;
 }
 
+type FailReason = 'serverNotConfigured' | 'dnsNotSetup';
+
 enum Steps {
     Host = 1,
     Info = 2,
     Validate = 3,
-    Finalize = 4
+    Finalize = 4,
 }
 
 @Component({
     selector: 'crupdate-custom-domain-modal',
     templateUrl: './crupdate-custom-domain-modal.component.html',
     styleUrls: ['./crupdate-custom-domain-modal.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CrupdateCustomDomainModalComponent {
-    public Steps = Steps;
-    public serverIp: string;
-    public currentStep$ = new BehaviorSubject<number>(1);
-    public loading$ = new BehaviorSubject(false);
-    public disabled$ = new BehaviorSubject(false);
-    public updating$ = new BehaviorSubject(false);
-    public errors$ = new BehaviorSubject<{host?: string}>({});
-    public form = new FormGroup({
+export class CrupdateCustomDomainModalComponent implements OnInit {
+    Steps = Steps;
+    serverIp: string;
+    currentStep$ = new BehaviorSubject<number>(1);
+    loading$ = new BehaviorSubject(false);
+    disabled$ = new BehaviorSubject(false);
+    updating$ = new BehaviorSubject(false);
+    errors$ = new BehaviorSubject<{host?: string}>({});
+    validationFailReason$ = new BehaviorSubject<FailReason>(null);
+    isSubdomain$ = new BehaviorSubject<boolean>(false);
+    form = new FormGroup({
         host: new FormControl(),
         global: new FormControl(false),
     });
+    currentUserIsAdmin: boolean;
 
     constructor(
         private dialogRef: MatDialogRef<CrupdateCustomDomainModalComponent>,
@@ -48,36 +54,58 @@ export class CrupdateCustomDomainModalComponent {
         private toast: Toast,
         private settings: Settings,
         private router: Router,
+        private currentUser: CurrentUser
     ) {
         this.updating$.next(!!data.domain);
+        this.currentUserIsAdmin = this.currentUser.isAdmin();
         if (data.domain) {
             this.form.patchValue(data.domain);
         }
     }
 
-    private connectDomain() {
-        this.loading$.next(true);
-        const request = this.updating$.value ?
-            this.customDomains.update(this.data.domain.id, this.form.value) :
-            this.customDomains.create(this.form.value);
-
-        request.pipe(finalize(() => this.loading$.next(false)))
-            .subscribe(response => {
-                this.toast.open('Domain connected');
-                this.close(response.domain);
-            }, (errResponse: BackendErrorResponse) => this.errors$.next(errResponse.errors));
+    ngOnInit() {
+        this.form.get('host').valueChanges.subscribe(value => {
+            this.isSubdomain$.next((value.replace('www.', '').match(/\./g) || []).length > 1);
+        });
     }
 
-    public validateCname() {
+    private connectDomain() {
+        this.loading$.next(true);
+        const request = this.updating$.value
+            ? this.customDomains.update(this.data.domain.id, this.form.value)
+            : this.customDomains.create(this.form.value);
+
+        request.pipe(finalize(() => this.loading$.next(false))).subscribe(
+            response => {
+                this.toast.open('Domain connected');
+                this.close(response.domain);
+            },
+            (errResponse: BackendErrorResponse) => {
+                this.errors$.next(errResponse.errors);
+            }
+        );
+    }
+
+    public validateDnsForDomain() {
         this.disabled$.next(true);
         this.loading$.next(true);
-        this.customDomains.validate(this.form.value.host)
+        this.customDomains
+            .validate(this.form.value.host)
             .pipe(finalize(() => this.loading$.next(false)))
-            .subscribe(response => {
-                if (response && response.result === 'connected') {
-                   this.nextStep();
+            .subscribe(
+                response => {
+                    if (response && response.result === 'connected') {
+                        this.nextStep();
+                    }
+                },
+                (
+                    errResponse: BackendErrorResponse & {
+                        failReason?: FailReason;
+                    }
+                ) => {
+                    this.validationFailReason$.next(errResponse.failReason);
                 }
-            }, () => {});
+            );
     }
 
     private authorizeCrupdate() {
@@ -86,12 +114,17 @@ export class CrupdateCustomDomainModalComponent {
         if (this.data.domain) {
             payload.domainId = this.data.domain.id;
         }
-        this.customDomains.authorizeCrupdate(payload)
+        this.customDomains
+            .authorizeCrupdate(payload)
             .pipe(finalize(() => this.loading$.next(false)))
-            .subscribe(response => {
-                this.serverIp = response.serverIp;
-                this.nextStep(true);
-            }, (errResponse: BackendErrorResponse) => this.errors$.next(errResponse.errors));
+            .subscribe(
+                response => {
+                    this.serverIp = response.serverIp;
+                    this.nextStep(true);
+                },
+                (errResponse: BackendErrorResponse) =>
+                    this.errors$.next(errResponse.errors)
+            );
     }
 
     public close(domain?: CustomDomain) {
@@ -114,10 +147,13 @@ export class CrupdateCustomDomainModalComponent {
         this.currentStep$.next(this.currentStep$.value + 1);
         if (this.currentStep$.value === Steps.Validate) {
             // host did not change, no need to re-validate
-            if (this.data.domain && this.form.value.host === this.data.domain.host) {
+            if (
+                this.data.domain &&
+                this.form.value.host === this.data.domain.host
+            ) {
                 this.connectDomain();
             } else {
-                this.validateCname();
+                this.validateDnsForDomain();
             }
         } else if (this.currentStep$.value === Steps.Finalize) {
             this.connectDomain();
@@ -128,10 +164,6 @@ export class CrupdateCustomDomainModalComponent {
 
     public baseUrl(): string {
         return this.settings.getBaseUrl().replace(/\/$/, '');
-    }
-
-    public isSubdomain() {
-        return (this.form.controls.host.value.match(/\./g) || []).length > 1;
     }
 
     public insideAdmin(): boolean {

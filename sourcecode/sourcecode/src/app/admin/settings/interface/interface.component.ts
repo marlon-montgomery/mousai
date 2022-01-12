@@ -18,8 +18,7 @@ export class InterfaceComponent extends SettingsPanelComponent implements OnInit
     public selectedIndex: number;
 
     ngOnInit() {
-        this.artistTabs = this.settings.getJson('artistPage.tabs', {});
-        console.log(this.artistTabs);
+        this.artistTabs = this.settings.getJson('artistPage.tabs', []);
         this.selectedIndex = this.tabs.findIndex(t => {
             return t === (this.route.snapshot.queryParams.tab || 'general');
         });

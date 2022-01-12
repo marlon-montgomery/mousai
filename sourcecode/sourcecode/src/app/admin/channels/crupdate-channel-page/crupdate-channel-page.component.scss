@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "variables";
 
 .header {
@@ -25,10 +26,28 @@
 
 .channel-content {
   margin-top: 40px;
+}
+
+.content-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 
   h2 {
     font-weight: 400;
-    margin: 0 0 10px;
+    margin: 0 10px 0 0;
+  }
+
+  .mat-icon {
+    margin-right: 5px;
+    flex-shrink: 0;
+  }
+
+  .header-info {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    color: mat-color($app-foreground, secondary-text);
   }
 }
 
@@ -98,15 +117,15 @@
   overflow: hidden;
 
   @media only screen and (min-width: $medium) {
-    flex: 0 0 (100% / 3);
+    flex: 0 0 math.div(100%, 3);
   }
 
   @media only screen and (min-width: $large) {
-    flex: 0 0 (100% / 4);
+    flex: 0 0 math.div(100%, 4);
   }
 
   @media only screen and (min-width: $xlarge) {
-    flex: 0 0 (100% / 5);
+    flex: 0 0 math.div(100%, 5);
   }
 }
 

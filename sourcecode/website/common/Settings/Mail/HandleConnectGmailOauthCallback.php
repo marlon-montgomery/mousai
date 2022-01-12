@@ -3,6 +3,7 @@
 namespace Common\Settings\Mail;
 
 use Common\Auth\Oauth;
+use Common\Settings\Settings;
 use File;
 use Socialite;
 use Illuminate\Contracts\View\View as ViewContract;
@@ -24,6 +25,10 @@ class HandleConnectGmailOauthCallback
                 'email' => $profile->email,
             ]),
         );
+
+        if (app(Settings::class)->get('mail.handler') === 'gmailApi') {
+            app(GmailClient::class)->watch();
+        }
 
         return app(Oauth::class)->getPopupResponse(self::class, [
             'profile' => $profile,

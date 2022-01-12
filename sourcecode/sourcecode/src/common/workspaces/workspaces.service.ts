@@ -38,12 +38,12 @@ export class WorkspacesService {
         private toast: Toast,
     ) {}
 
-    public currentUserCan(permission: string): boolean {
+    currentUserCan(permission: string): boolean {
         const member = this.activeWorkspace$.value?.currentUser;
         return member && (member.is_owner || member.permissions.findIndex(p => p.name === permission) > -1);
     }
 
-    public select(workspaceId: number) {
+    select(workspaceId: number) {
         if (workspaceId !== this.activeId$.value) {
             this.cookie.set(this.cookieName(), workspaceId);
             this.activeId$.next(workspaceId);
@@ -52,12 +52,12 @@ export class WorkspacesService {
         this.activeWorkspace$.next(workspace || this.available$.value[0]);
     }
 
-    public pushAndSelect(workspace: Workspace) {
+    pushAndSelect(workspace: Workspace) {
         this.available$.next([...this.available$.value, workspace]);
         this.select(workspace.id);
     }
 
-    public replace(workspace: Workspace) {
+    replace(workspace: Workspace) {
         const workspaces = [...this.available$.value];
         const i = workspaces.findIndex(w => w.id === workspace.id);
         if (i) {
@@ -66,7 +66,7 @@ export class WorkspacesService {
         this.available$.next(workspaces);
     }
 
-    public remove(ids: number[]) {
+    remove(ids: number[]) {
         const workspaces = [...this.available$.value];
         ids.forEach(id => {
             const i = workspaces.findIndex(w => w.id === id);
@@ -80,44 +80,44 @@ export class WorkspacesService {
         }
     }
 
-    public index(params: {userId?: number} & PaginationParams): PaginatedBackendResponse<Workspace> {
-        return this.http.get<{pagination: PaginationResponse<Workspace>}>(`${WorkspacesService.BASE_URI}`, params)
+    indexUserWorkspaces(): BackendResponse<{workspaces: Workspace[]}> {
+        return this.http.get<{workspaces: Workspace[]}>(`me/${WorkspacesService.BASE_URI}s`)
             .pipe(tap(response => {
-                this.available$.next([...this.available$.value, ...response.pagination.data]);
+                this.available$.next([...this.available$.value, ...response.workspaces]);
                 this.select(this.activeId$.value);
             }));
     }
 
-    public get(workspaceId: number): BackendResponse<{workspace: Workspace}> {
+    get(workspaceId: number): BackendResponse<{workspace: Workspace}> {
         return this.http.get(`${WorkspacesService.BASE_URI}/${workspaceId}`);
     }
 
-    public delete(ids: number[]): BackendResponse<unknown> {
+    delete(ids: number[]): BackendResponse<unknown> {
         return this.http.delete(`${WorkspacesService.BASE_URI}/${ids}`)
             .pipe(tap(() => {
                 this.remove(ids);
             }));
     }
 
-    public create(payload: Partial<Workspace>): BackendResponse<{workspace: Workspace}> {
+    create(payload: Partial<Workspace>): BackendResponse<{workspace: Workspace}> {
         return this.http.post<{workspace: Workspace}>(`${WorkspacesService.BASE_URI}`, payload)
             .pipe(tap(response => this.pushAndSelect(response.workspace)));
     }
 
-    public update(id: number, payload: Partial<Workspace>): BackendResponse<{workspace: Workspace}> {
+    update(id: number, payload: Partial<Workspace>): BackendResponse<{workspace: Workspace}> {
         return this.http.put<{workspace: Workspace}>(`${WorkspacesService.BASE_URI}/${id}`, payload)
             .pipe(tap(response => this.replace(response.workspace)));
     }
 
-    public invitePeople(workspaceId: number, params: {emails: string[], roleId: number}): BackendResponse<{invites: WorkspaceInvite[]}> {
+    invitePeople(workspaceId: number, params: {emails: string[], roleId: number}): BackendResponse<{invites: WorkspaceInvite[]}> {
         return this.http.post(`${WorkspacesService.BASE_URI}/${workspaceId}/invite`, params);
     }
 
-    public resendInvite(workspaceId: number, inviteId: string): BackendResponse<{invite: WorkspaceInvite}> {
+    resendInvite(workspaceId: number, inviteId: string): BackendResponse<{invite: WorkspaceInvite}> {
         return this.http.post(`${WorkspacesService.BASE_URI}/${workspaceId}/${inviteId}/resend`);
     }
 
-    public deleteMember(workspaceId: number, userId: number): BackendResponse<unknown> {
+    deleteMember(workspaceId: number, userId: number): BackendResponse<unknown> {
         return this.http.delete(`${WorkspacesService.BASE_URI}/${workspaceId}/member/${userId}`)
             .pipe(tap(() => {
                 if (userId === this.currentUser.get('id')) {
@@ -126,20 +126,20 @@ export class WorkspacesService {
             }));
     }
 
-    public deleteInvite(inviteId: string): BackendResponse<void> {
+    deleteInvite(inviteId: string): BackendResponse<void> {
         return this.http.delete(`${WorkspacesService.BASE_URI}/invite/${inviteId}`);
     }
 
-    public changeRole(workspaceId: number, member: WorkspaceMember|WorkspaceInvite, roleId: number): BackendResponse<void> {
+    changeRole(workspaceId: number, member: WorkspaceMember|WorkspaceInvite, roleId: number): BackendResponse<void> {
         const memberId = hasKey('member_id', member) ? member.member_id : member.id;
         return this.http.post(`${WorkspacesService.BASE_URI}/${workspaceId}/${member.model_type}/${memberId}/change-role`, {roleId});
     }
 
-    public join(inviteId: string): BackendResponse<{workspace: Workspace}> {
+    join(inviteId: string): BackendResponse<{workspace: Workspace}> {
         return this.http.get(`workspace/join/${inviteId}`);
     }
 
-    public bindToNotificationClick(): Subscription {
+    bindToNotificationClick(): Subscription {
         return this.notifications.clickedOnNotification$
             .pipe(filter(data => data.notification.type === WORKSPACE_INVITE_NOTIF_TYPE))
             .subscribe(data => {
@@ -172,9 +172,10 @@ export class WorkspacesService {
         }
     }
 
-    private getIdFromCookie() {
-        const workspaceId = this.cookie.get(this.cookieName());
-        return typeof workspaceId === 'string' ? parseInt(workspaceId) : workspaceId;
+    getIdFromCookie() {
+        let workspaceId = this.cookie.get(this.cookieName());
+        workspaceId = typeof workspaceId === 'string' ? parseInt(workspaceId) : workspaceId;
+        return isNaN(workspaceId) ? null : workspaceId;
     }
 
     private cookieName() {

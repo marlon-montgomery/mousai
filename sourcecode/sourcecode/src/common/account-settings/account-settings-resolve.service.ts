@@ -28,7 +28,8 @@ export class AccountSettingsResolve implements Resolve<AccountSettingsResolverDa
 
     resolve(route: ActivatedRouteSnapshot): Observable<AccountSettingsResolverData> {
         return forkJoin([
-            this.users.get(this.currentUser.get('id')).pipe(map(response => response.user)),
+            this.users.get(this.currentUser.get('id'), {with: ['roles', 'social_profiles']})
+                .pipe(map(response => response.user)),
             this.values.get(['timezones', 'countries', 'localizations']),
         ]).pipe(
             catchError(() => {

@@ -101,13 +101,14 @@ export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterVi
     }
 
     public writeValue(value: ChipValue[] = []) {
-        if (value && value.length) {
-            value.forEach(item => this.add(item, false));
-        } else if (this.items$.value.length) {
-            while (this.items$.value.length !== 0) {
-                this.remove(0);
-            }
-        }
+        this.items$.next(value || []);
+        // if (value && value.length) {
+        //     value.forEach(item => this.add(item, false));
+        // } else if (this.items$.value.length) {
+        //     while (this.items$.value.length !== 0) {
+        //         this.remove(0);
+        //     }
+        // }
     }
 
     public registerOnChange(fn: (items: ChipValue[]) => void) {

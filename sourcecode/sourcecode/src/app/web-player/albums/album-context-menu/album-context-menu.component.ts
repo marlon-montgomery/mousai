@@ -49,10 +49,10 @@ export class AlbumContextMenuComponent extends ContextMenuComponent<Album> imple
     private maybeLoadTracks() {
         // load album tracks if not loaded already
         if (typeof this.data.item.tracks === 'undefined') {
-            return this.albums.get(this.data.item.id, {simplified: true})
+            return this.albums.get(this.data.item.id, {simplified: true, with: ['tracks']})
                 .pipe(tap((response) => {
                     this.data.item.tracks = response.album.tracks;
-                    if ( ! this.data.item.tracks.length) {
+                    if ( ! this.data.item.tracks?.length) {
                         this.toast.open('This album has no tracks yet.');
                     }
                 }))

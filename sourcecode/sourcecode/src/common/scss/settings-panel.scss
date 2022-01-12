@@ -64,6 +64,15 @@ $spacing: 30px;
     font-size: 1.3rem;
   }
 
+  .docs-link {
+    display: flex;
+    align-items: center;
+
+    .mat-icon {
+      margin-right: 5px;
+    }
+  }
+
   .margin-top {
     margin-top: 35px;
   }

@@ -8,7 +8,7 @@
     <ng-container *ngIf="getPlan().features.length">
         <li *ngFor="let feature of getPlan().features">
             <mat-icon class="check-icon" svgIcon="check" *ngIf="showCheckIcons"></mat-icon>
-            <span>{{feature}}</span>
+            <span trans>{{feature}}</span>
         </li>
     </ng-container>
 </ul>

@@ -9,6 +9,7 @@ import {Observable} from 'rxjs';
 import {CommentsService} from '@common/shared/comments/comments.service';
 import {DatatableService} from '@common/datatable/datatable.service';
 import {Comment} from '@common/shared/comments/comment';
+import {COMMENT_INDEX_FILTERS} from './comment-index-filters';
 
 @Component({
     selector: 'user-index',
@@ -18,7 +19,8 @@ import {Comment} from '@common/shared/comments/comment';
     providers: [DatatableService],
 })
 export class CommentIndexComponent implements OnInit, OnDestroy {
-    public comments$ = this.datatable.data$ as Observable<Comment[]>;
+    comments$ = this.datatable.data$ as Observable<Comment[]>;
+    filters = COMMENT_INDEX_FILTERS;
 
     constructor(
         private comments: CommentsService,

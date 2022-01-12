@@ -27,24 +27,45 @@ class Installer
         $this->logPost();
 
         if (!is_null($handler = $this->post('handler'))) {
-            if (!strlen($handler)) exit;
+            if (!strlen($handler)) {
+                exit();
+            }
 
             try {
-                if (!preg_match('/^on[A-Z]{1}[\w+]*$/', $handler)) throw new Exception(sprintf('Invalid handler: %s', $this->e($handler)));
+                if (!preg_match('/^on[A-Z]{1}[\w+]*$/', $handler)) {
+                    throw new Exception(
+                        sprintf('Invalid handler: %s', $this->e($handler)),
+                    );
+                }
 
-                if (method_exists($this, $handler) && ($result = $this->$handler()) !== null) {
-                    $this->log('Execute handler (%s): %s', $handler, print_r($result, true));
+                if (
+                    method_exists($this, $handler) &&
+                    ($result = $this->$handler()) !== null
+                ) {
+                    $this->log(
+                        'Execute handler (%s): %s',
+                        $handler,
+                        print_r($result, true),
+                    );
                     header('Content-Type: application/json');
                     die(json_encode($result));
                 }
             } catch (Exception $ex) {
-                header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
-                $this->log('Handler error (%s): %s', $handler, $ex->getMessage());
+                header(
+                    $_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error',
+                    true,
+                    500,
+                );
+                $this->log(
+                    'Handler error (%s): %s',
+                    $handler,
+                    $ex->getMessage(),
+                );
                 $this->log(['Trace log:', '%s'], $ex->getTraceAsString());
                 die($ex->getMessage());
             }
 
-            exit;
+            exit();
         }
     }
 
@@ -55,23 +76,58 @@ class Installer
         $this->createHtaccessFiles();
 
         $result = [
-            'PHP Version' => ['result' => version_compare(PHP_VERSION, MINIMUM_VERSION, '>'), 'errorMessage' => 'You need at least ' . MINIMUM_VERSION . ' PHP Version to install.'],
-            'PDO' => ['result' => defined('PDO::ATTR_DRIVER_NAME'), 'errorMessage' => 'PHP PDO extension is required.',],
-            'XML' => ['result' => extension_loaded('xml'), 'errorMessage' => 'PHP XML extension is required.',],
-            'Mbstring' => ['result' => extension_loaded('mbstring'), 'errorMessage' => 'PHP mbstring extension is required.',],
-            'Fileinfo' => ['result' => extension_loaded('fileinfo'), 'errorMessage' => 'PHP fileinfo extension is required.'],
-            'OpenSSL' => ['result' => extension_loaded('openssl'), 'errorMessage' => 'PHP openssl extension is required.'],
-            'GD' => ['result' => extension_loaded('gd'), 'errorMessage' => 'PHP GD extension is required.'],
-            'fpassthru' => ['result' => function_exists('fpassthru'), 'errorMessage' => '"fpassthru" PHP function needs to be enabled.'],
-            'Curl' => ['result' => extension_loaded('curl'), 'errorMessage' => 'PHP curl functionality needs to be enabled.'],
-            'Zip' => ['result' => class_exists('ZipArchive'), 'errorMessage' => 'PHP ZipArchive extension needs to be installed.'],
+            'PHP Version' => [
+                'result' => version_compare(PHP_VERSION, MINIMUM_VERSION, '>'),
+                'errorMessage' =>
+                    'You need at least ' .
+                    MINIMUM_VERSION .
+                    ' PHP Version to install.',
+            ],
+            'PDO' => [
+                'result' => defined('PDO::ATTR_DRIVER_NAME'),
+                'errorMessage' => 'PHP PDO extension is required.',
+            ],
+            'XML' => [
+                'result' => extension_loaded('xml'),
+                'errorMessage' => 'PHP XML extension is required.',
+            ],
+            'Mbstring' => [
+                'result' => extension_loaded('mbstring'),
+                'errorMessage' => 'PHP mbstring extension is required.',
+            ],
+            'Fileinfo' => [
+                'result' => extension_loaded('fileinfo'),
+                'errorMessage' => 'PHP fileinfo extension is required.',
+            ],
+            'OpenSSL' => [
+                'result' => extension_loaded('openssl'),
+                'errorMessage' => 'PHP openssl extension is required.',
+            ],
+            'GD' => [
+                'result' => extension_loaded('gd'),
+                'errorMessage' => 'PHP GD extension is required.',
+            ],
+            'fpassthru' => [
+                'result' => function_exists('fpassthru'),
+                'errorMessage' =>
+                    '"fpassthru" PHP function needs to be enabled.',
+            ],
+            'Curl' => [
+                'result' => extension_loaded('curl'),
+                'errorMessage' => 'PHP curl functionality needs to be enabled.',
+            ],
+            'Zip' => [
+                'result' => class_exists('ZipArchive'),
+                'errorMessage' =>
+                    'PHP ZipArchive extension needs to be installed.',
+            ],
         ];
 
-        $allPass = array_filter($result, function($item) {
+        $allPass = array_filter($result, function ($item) {
             return !$item['result'];
         });
 
-        $this->log('Check requirements: end', ($allPass ? '+OK' : '=FAIL'));
+        $this->log('Check requirements: end', $allPass ? '+OK' : '=FAIL');
 
         return $result;
     }
@@ -93,26 +149,31 @@ class Installer
         foreach ($directories as $directory) {
             $path = rtrim("{$this->baseDirectory}/$directory", '/');
             $writable = is_writable($path);
-            $result = ['path' => $path, 'result' => $writable, 'errorMessage' => ''];
-            if ( ! $writable) {
-                $result['errorMessage'] = is_dir($path) ?
-                    'Make this directory writable by giving it 0755 or 0777 permissions via file manager.' :
-                    'Make this directory writable by giving it 644 permissions via file manager.';
+            $result = [
+                'path' => $path,
+                'result' => $writable,
+                'errorMessage' => '',
+            ];
+            if (!$writable) {
+                $result['errorMessage'] = is_dir($path)
+                    ? 'Make this directory writable by giving it 0755 or 0777 permissions via file manager.'
+                    : 'Make this directory writable by giving it 644 permissions via file manager.';
             }
 
             $results[] = $result;
         }
 
-        $files = [
-            '.htaccess',
-            'public/.htaccess',
-        ];
+        $files = ['.htaccess', 'public/.htaccess'];
 
-        if ( ! $this->fileExistsAndNotEmpty('.env') && ! $this->fileExistsAndNotEmpty('env.example')) {
+        if (
+            !$this->fileExistsAndNotEmpty('.env') &&
+            !$this->fileExistsAndNotEmpty('env.example')
+        ) {
             $results[] = [
                 'path' => $this->baseDirectory,
                 'result' => false,
-                'errorMessage' => "Make sure <strong>env.example</strong> or <strong>.env</strong> file has been uploaded properly to the directory above and is writable.",
+                'errorMessage' =>
+                    'Make sure <strong>env.example</strong> or <strong>.env</strong> file has been uploaded properly to the directory above and is writable.',
             ];
         }
 
@@ -120,15 +181,19 @@ class Installer
             $results[] = [
                 'path' => "{$this->baseDirectory}/$file",
                 'result' => $this->fileExistsAndNotEmpty($file),
-                'errorMessage' => "Make sure <strong>$file</strong> file has been uploaded properly to your server and is writable."
+                'errorMessage' => "Make sure <strong>$file</strong> file has been uploaded properly to your server and is writable.",
             ];
         }
 
-        $allPass = array_filter($results, function($item) {
+        $allPass = array_filter($results, function ($item) {
             return !$item['result'];
         });
 
-        $this->log('Check filesystem: end', $results, ($allPass ? '+OK' : '=FAIL'));
+        $this->log(
+            'Check filesystem: end',
+            $results,
+            $allPass ? '+OK' : '=FAIL',
+        );
 
         return $results;
     }
@@ -148,23 +213,47 @@ class Installer
     protected function onValidateAndInsertDatabaseCredentials()
     {
         if (!strlen($this->post('db_host'))) {
-            throw new InstallerException('Please specify a database host.', 'db_host');
+            throw new InstallerException(
+                'Please specify a database host.',
+                'db_host',
+            );
         }
 
         if (!strlen($this->post('db_database'))) {
-            throw new InstallerException('Please specify the database name.', 'db_database');
+            throw new InstallerException(
+                'Please specify the database name.',
+                'db_database',
+            );
         }
 
-        $config = ['db_host' => null, 'db_database' => null, 'db_port' => null, 'db_username' => null, 'db_password' => null, 'db_prefix' => null];
+        $config = [
+            'db_host' => null,
+            'db_database' => null,
+            'db_port' => null,
+            'db_username' => null,
+            'db_password' => null,
+            'db_prefix' => null,
+        ];
         array_walk($config, function (&$value, $key) {
             $value = $value ?: $this->post($key);
         });
 
-        $dsn = 'mysql:host=' . $config['db_host'] . ';dbname=' . $config['db_database'];
-        if ($config['port']) $dsn .= ";port=" . $config['port'];
+        $dsn =
+            'mysql:host=' .
+            $config['db_host'] .
+            ';dbname=' .
+            $config['db_database'];
+        if ($config['port']) {
+            $dsn .= ';port=' . $config['port'];
+        }
 
         try {
-            $db = new PDO($dsn, $config['db_username'], $config['db_password'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $db = new PDO(
+                $dsn,
+                $config['db_username'],
+                $config['db_password'],
+                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
+            );
         } catch (PDOException $ex) {
             throw new Exception('Connection failed: ' . $ex->getMessage());
         }
@@ -175,10 +264,17 @@ class Installer
         $fetch = $db->query('show tables', PDO::FETCH_NUM);
 
         $tables = 0;
-        while ($result = $fetch->fetch()) $tables++;
+        while ($result = $fetch->fetch()) {
+            $tables++;
+        }
 
         if ($tables > 0) {
-            throw new Exception(sprintf('Database "%s" is not empty. Please empty the database or specify another database.', $this->e($config['db_database'])));
+            throw new Exception(
+                sprintf(
+                    'Database "%s" is not empty. Please empty the database or specify another database.',
+                    $this->e($config['db_database']),
+                ),
+            );
         }
 
         $this->insertDBCredentials($config);
@@ -186,19 +282,56 @@ class Installer
 
     protected function onValidateAdminAccount()
     {
-        if (!strlen($this->post('email'))) throw new InstallerException('Please specify administrator email address', 'email');
+        if (!strlen($this->post('email'))) {
+            throw new InstallerException(
+                'Please specify administrator email address',
+                'email',
+            );
+        }
 
-        if (!filter_var($this->post('email'), FILTER_VALIDATE_EMAIL)) throw new InstallerException('Please specify valid email address', 'email');
+        if (!filter_var($this->post('email'), FILTER_VALIDATE_EMAIL)) {
+            throw new InstallerException(
+                'Please specify valid email address',
+                'email',
+            );
+        }
 
-        if (!strlen($this->post('password'))) throw new InstallerException('Please specify password', 'password');
+        if (!strlen($this->post('password'))) {
+            throw new InstallerException('Please specify password', 'password');
+        }
 
-        if (strlen($this->post('password')) < 4) throw new InstallerException('Please specify password length more than 4 characters', 'password');
+        if (strlen($this->post('password')) < 4) {
+            throw new InstallerException(
+                'Please specify password length more than 4 characters',
+                'password',
+            );
+        }
 
-        if (strlen($this->post('password')) > 255) throw new InstallerException('Please specify password length less than 64 characters', 'password');
+        if (strlen($this->post('password')) > 255) {
+            throw new InstallerException(
+                'Please specify password length less than 64 characters',
+                'password',
+            );
+        }
 
-        if (!strlen($this->post('password_confirmation'))) throw new InstallerException('Please confirm chosen password', 'password_confirmation');
+        if (!strlen($this->post('password_confirmation'))) {
+            throw new InstallerException(
+                'Please confirm chosen password',
+                'password_confirmation',
+            );
+        }
 
-        if (strcmp($this->post('password'), $this->post('password_confirmation'))) throw new InstallerException('Specified password does not match the confirmed password', 'password');
+        if (
+            strcmp(
+                $this->post('password'),
+                $this->post('password_confirmation'),
+            )
+        ) {
+            throw new InstallerException(
+                'Specified password does not match the confirmed password',
+                'password',
+            );
+        }
     }
 
     protected function onInstallApplication()
@@ -209,22 +342,25 @@ class Installer
         Schema::defaultStringLength(191);
 
         // Generate key
-        $appKey = 'base64:'.base64_encode(
-            Encrypter::generateKey(config('app.cipher') )
-        );
+        $appKey =
+            'base64:' .
+            base64_encode(Encrypter::generateKey(config('app.cipher')));
 
         app(DotEnvEditor::class)->write([
             'app_key' => $appKey,
         ]);
 
-        app(MigrateAndSeed::class)->execute(function() {
+        app(MigrateAndSeed::class)->execute(function () {
             $this->createAdminAccount();
         });
 
         $this->putAppInProductionEnv();
 
         // move default favicons
-        File::copyDirectory("$this->baseDirectory/assets/favicons", public_path(UploadFaviconController::FAVICON_DIR));
+        File::copyDirectory(
+            "$this->baseDirectory/assets/favicons",
+            public_path(UploadFaviconController::FAVICON_DIR),
+        );
 
         Cache::flush();
 
@@ -251,12 +387,11 @@ class Installer
                 'group' => 'admin',
                 'display_name' => 'Super Admin',
                 'description' => 'Give all permissions to user.',
-            ]
+            ],
         );
         $user->permissions()->attach($adminPermission->id);
         Auth::login($user);
     }
-
 
     /**
      * Insert user supplied db credentials into .env file.
@@ -272,10 +407,9 @@ class Installer
         $envExampleFile = $this->baseDirectory . '/env.example';
         $envExists = file_exists($envFile);
 
-        (new DotEnvEditor)
-            ->write($credentials, $this->envFileName());
+        (new DotEnvEditor())->write($credentials, $this->envFileName());
 
-        if ( ! $envExists) {
+        if (!$envExists) {
             // rename env.example to .env
             rename($envExampleFile, $envFile);
         }
@@ -292,28 +426,41 @@ class Installer
         ]);
     }
 
-    protected function createHtaccessFiles($force = false, $alternative = false) {
+    protected function createHtaccessFiles($force = false, $alternative = false)
+    {
         $rootHtaccess = "{$this->baseDirectory}/.htaccess";
         $rootHtaccessStub = "{$this->baseDirectory}/htaccess.example";
         $publicHtaccess = "{$this->baseDirectory}/public/.htaccess";
         $publicHtaccessStub = "{$this->baseDirectory}/public/htaccess.example";
         $parts = parse_url($this->getBaseUrl());
 
-        if ( ! file_exists($rootHtaccess) || $force) {
+        if (!file_exists($rootHtaccess) || $force) {
             $contents = file_get_contents($rootHtaccessStub);
             if ($alternative) {
                 $path = isset($parts['path']) ? $parts['path'] : '/';
-                $contents = str_replace('# RewriteBase /', "RewriteBase $path", $contents);
+                $contents = str_replace(
+                    '# RewriteBase /',
+                    "RewriteBase $path",
+                    $contents,
+                );
             }
             file_put_contents($rootHtaccess, $contents);
         }
 
-        if ( ! file_exists($publicHtaccess) || $force) {
+        if (!file_exists($publicHtaccess) || $force) {
             $contents = file_get_contents($publicHtaccessStub);
             if ($alternative) {
                 $path = isset($parts['path']) ? $parts['path'] : '';
-                $contents = str_replace('index.php', "{$path}/index.php", $contents);
-                $contents = str_replace('# RewriteBase /', "RewriteBase $path", $contents);
+                $contents = str_replace(
+                    'index.php',
+                    "{$path}/index.php",
+                    $contents,
+                );
+                $contents = str_replace(
+                    '# RewriteBase /',
+                    "RewriteBase $path",
+                    $contents,
+                );
             }
             file_put_contents($publicHtaccess, $contents);
         }
@@ -323,8 +470,14 @@ class Installer
     {
         $dir = $this->baseDirectory . '/public/install_files';
 
-        $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
-        $files = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
+        $it = new RecursiveDirectoryIterator(
+            $dir,
+            RecursiveDirectoryIterator::SKIP_DOTS,
+        );
+        $files = new RecursiveIteratorIterator(
+            $it,
+            RecursiveIteratorIterator::CHILD_FIRST,
+        );
 
         foreach ($files as $file) {
             if ($file->isDir()) {
@@ -339,26 +492,50 @@ class Installer
 
     public function startNewLogSection()
     {
-        file_put_contents($this->logFile, '"========================== INSTALLATION LOG SECTION ========================"' . PHP_EOL, FILE_APPEND);
+        file_put_contents(
+            $this->logFile,
+            '"========================== INSTALLATION LOG SECTION ========================"' .
+                PHP_EOL,
+            FILE_APPEND,
+        );
     }
 
     public function logPost()
     {
-        if (!isset($_POST) || !count($_POST)) return;
+        if (!isset($_POST) || !count($_POST)) {
+            return;
+        }
         $postData = $_POST;
 
-        if (array_key_exists('disableLog', $postData)) $postData = array('disableLog' => true);
+        if (array_key_exists('disableLog', $postData)) {
+            $postData = ['disableLog' => true];
+        }
 
         /*
          * Sensitive data fields
          */
-        if (isset($postData['admin_email'])) $postData['admin_email'] = '*******@*****.com';
-        $fieldsToErase = array('encryption_code', 'admin_password', 'admin_confirm_password', 'db_pass', 'project_id',);
+        if (isset($postData['admin_email'])) {
+            $postData['admin_email'] = '*******@*****.com';
+        }
+        $fieldsToErase = [
+            'encryption_code',
+            'admin_password',
+            'admin_confirm_password',
+            'db_pass',
+            'project_id',
+        ];
         foreach ($fieldsToErase as $field) {
-            if (isset($postData[$field])) $postData[$field] = '*******';
+            if (isset($postData[$field])) {
+                $postData[$field] = '*******';
+            }
         }
 
-        file_put_contents($this->logFile, '.============================ POST REQUEST ==========================.' . PHP_EOL, FILE_APPEND);
+        file_put_contents(
+            $this->logFile,
+            '.============================ POST REQUEST ==========================.' .
+                PHP_EOL,
+            FILE_APPEND,
+        );
         $this->log('Postback payload: %s', print_r($postData, true));
     }
 
@@ -367,9 +544,16 @@ class Installer
         $args = func_get_args();
         $message = array_shift($args);
 
-        if (is_array($message)) $message = implode(PHP_EOL, $message);
+        if (is_array($message)) {
+            $message = implode(PHP_EOL, $message);
+        }
 
-        $message = "[" . date("Y/m/d h:i:s", time()) . "] " . vsprintf($message, $args) . PHP_EOL;
+        $message =
+            '[' .
+            date('Y/m/d h:i:s', time()) .
+            '] ' .
+            vsprintf($message, $args) .
+            PHP_EOL;
 
         try {
             file_put_contents($this->logFile, $message, FILE_APPEND);
@@ -382,13 +566,17 @@ class Installer
     {
         $autoloadFile = $this->baseDirectory . '/vendor/autoload.php';
         if (!file_exists($autoloadFile)) {
-            throw new Exception('Unable to find autoloader: ~/vendor/autoload.php');
+            throw new Exception(
+                'Unable to find autoloader: ~/vendor/autoload.php',
+            );
         }
         require $autoloadFile;
 
         $appFile = $this->baseDirectory . '/bootstrap/app.php';
         if (!file_exists($appFile)) {
-            throw new Exception('Unable to find app loader: ~/bootstrap/app.php');
+            throw new Exception(
+                'Unable to find app loader: ~/bootstrap/app.php',
+            );
         }
         /** @var Application $app */
         $app = require_once $appFile;
@@ -400,7 +588,9 @@ class Installer
     {
         if (array_key_exists($var, $_REQUEST)) {
             $result = $_REQUEST[$var];
-            if (is_string($result)) $result = trim($result);
+            if (is_string($result)) {
+                $result = trim($result);
+            }
             return $result;
         }
 
@@ -410,9 +600,17 @@ class Installer
     public function getBaseUrl($suffix = null)
     {
         if (isset($_SERVER['HTTP_HOST'])) {
-            $baseUrl = !empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
+            $baseUrl =
+                !empty($_SERVER['HTTPS']) &&
+                strtolower($_SERVER['HTTPS']) !== 'off'
+                    ? 'https'
+                    : 'http';
             $baseUrl .= '://' . $_SERVER['HTTP_HOST'];
-            $baseUrl .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+            $baseUrl .= str_replace(
+                basename($_SERVER['SCRIPT_NAME']),
+                '',
+                $_SERVER['SCRIPT_NAME'],
+            );
         } else {
             $baseUrl = 'http://localhost/';
         }
@@ -422,7 +620,7 @@ class Installer
         $baseUrl = str_replace('install_files', '', $baseUrl);
         $baseUrl = trim($baseUrl);
 
-        return rtrim(($suffix ? "$baseUrl/$suffix" : $baseUrl), '/');
+        return rtrim($suffix ? "$baseUrl/$suffix" : $baseUrl, '/');
     }
 
     public function e($value)
@@ -432,6 +630,8 @@ class Installer
 
     private function envFileName()
     {
-        return file_exists("$this->baseDirectory/.env") ? '.env' : 'env.example';
+        return file_exists("$this->baseDirectory/.env")
+            ? '.env'
+            : 'env.example';
     }
 }

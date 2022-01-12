@@ -32,6 +32,6 @@ export class InvoiceIndexComponent implements OnInit {
     }
 
     public getInvoiceUrl(invoice: Invoice) {
-        return this.settings.getBaseUrl(true) + 'secure/billing/invoice/' + invoice.uuid;
+        return this.settings.getBaseUrl(true) + '/secure/billing/invoice/' + invoice.uuid;
     }
 }

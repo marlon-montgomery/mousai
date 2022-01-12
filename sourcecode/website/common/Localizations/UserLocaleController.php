@@ -2,6 +2,7 @@
 
 namespace Common\Localizations;
 
+use Carbon\Carbon;
 use Common\Core\BaseController;
 
 class UserLocaleController extends BaseController
@@ -18,7 +19,16 @@ class UserLocaleController extends BaseController
         if ($user = request()->user()) {
             $user->fill(['language' => $localeCode])->save();
         } else {
-            cookie()->queue(self::COOKIE_NAME, $localeCode, -2628000, null, null, null, false);
+            cookie()->queue(
+                self::COOKIE_NAME,
+                $localeCode,
+                1260,
+                null,
+                null,
+                null,
+                false,
+                false,
+            );
         }
 
         $locale = app(LocalizationsRepository::class)->getByNameOrCode(

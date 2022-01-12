@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {MatSnackBar, MatSnackBarRef, SimpleSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
 import {Settings} from '../config/settings.service';
 import {Translations} from '../translations/translations.service';
 import {ComponentType} from '@angular/cdk/portal';
@@ -38,7 +38,7 @@ export class Toast {
         return this.snackbar.open(this.i18n.t(translatedMsg), this.i18n.t(config.action), {duration: config.duration});
     }
 
-    public openComponent<T>(component: ComponentType<T>, config?: {duration?: number, data?: {[key: string]: any}}) {
+    public openComponent<T>(component: ComponentType<T>, config?: MatSnackBarConfig) {
         return this.snackbar.openFromComponent(component, config);
     }
 }

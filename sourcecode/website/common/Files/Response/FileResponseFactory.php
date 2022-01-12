@@ -28,7 +28,7 @@ class FileResponseFactory
 
         if ($this->shouldRedirectToRemoteUrl($entry)) {
             return new RemoteFileResponse;
-        } else if ($isLocalDrive && !$entry->publicspotify && $staticFileDelivery) {
+        } else if ($isLocalDrive && !$entry->public && $staticFileDelivery) {
             return $staticFileDelivery === 'xsendfile' ?
                 new XSendFileResponse :
                 new XAccelRedirectFileResponse;

@@ -12,7 +12,7 @@ material-navbar {
     &.primary {
       background-color: mat-color($app-primary, default);
 
-      .nav-searchbar input {
+      .nav-searchbar {
         background-color: mat-color($app-primary, lighter);
       }
     }
@@ -20,7 +20,7 @@ material-navbar {
     &.accent {
       background-color: mat-color($app-accent, default);
 
-      .nav-searchbar input {
+      .nav-searchbar {
         background-color: mat-color($app-accent, emphasis);
       }
     }
@@ -86,9 +86,10 @@ material-navbar {
   }
 
   &.primary .nav-searchbar, &.accent .nav-searchbar {
-    height: 65%;
-    max-height: 48px;
+    height: 45px;
     max-width: 650px;
+    transition: background-color, color 0.1s ease-in-out;
+    border-radius: 4px;
 
     // separate logo and search bar
     margin-left: 30px;
@@ -97,45 +98,33 @@ material-navbar {
     // on small screens, if there's no menu items
     margin-right: 30px;
 
-    input, form {
-      height: 100%;
-    }
-
-    input {
-      transition: background-color, color 0.1s ease-in-out;
-      outline: none;
-      border: none;
+    &:focus-within, &.always-white {
+      background-color: mat-color($app-background, dialog);
+      color: mat-color($app-foreground, text);
 
       &::placeholder {
-        color: rgba(255, 255, 255, 0.7);
+        color: mat-color($app-foreground, text);
+      }
+
+      & + .mat-icon-button {
+        color: mat-color($app-foreground, text);
+      }
+    }
+
+    .nav-searchbar-input {
+      height: 100%;
+      outline: none;
+      border: none;
+      transition: none;
+
+      &::placeholder {
+        color: currentColor;
       }
 
       &[aria-expanded=true] {
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
         border-bottom: 1px solid mat-color($app-foreground, divider-lighter);
-      }
-
-      &.always-white {
-        background-color: mat-color($app-background, dialog);
-        color: mat-color($app-foreground, secondary-text);
-
-        &::placeholder {
-          color: mat-color($app-foreground, secondary-text);
-        }
-      }
-
-      &:active, &:focus {
-        background-color: mat-color($app-background, dialog);
-        color: mat-color($app-foreground, text);
-
-        &::placeholder {
-          color: mat-color($app-foreground, text);
-        }
-
-        & + .mat-icon-button {
-          color: mat-color($app-foreground, text);
-        }
       }
     }
   }
@@ -201,6 +190,10 @@ material-navbar {
 
     .custom-menu {
       display: none;
+    }
+
+    .right-side-actions {
+      padding-left: 10px;
     }
   }
 }

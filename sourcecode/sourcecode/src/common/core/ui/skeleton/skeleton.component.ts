@@ -7,16 +7,16 @@ import {ThemeService} from '../../theme.service';
     styleUrls: ['./skeleton.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
+        role: 'progressbar',
         'aria-busy': 'true',
         'aria-valuemin': '0',
         'aria-valuemax': '100',
         'aria-valuetext': 'Loading...',
-        'role': 'progressbar',
     }
 })
 export class SkeletonComponent {
     @Input() animation: 'pulsate' | 'wave' = 'wave';
-    @Input() variant: 'avatar' | 'text' | 'rect' = 'text';
+    @Input() variant: 'avatar' | 'text' | 'rect' | 'icon' = 'text';
     @HostBinding('class.dark') dark = this.theme.isDarkMode();
 
     @HostBinding('class.pulsate') get pulsate() {
@@ -37,6 +37,10 @@ export class SkeletonComponent {
 
     @HostBinding('class.rect') get rect() {
         return this.variant === 'rect';
+    }
+
+    @HostBinding('class.icon') get icon() {
+        return this.variant === 'icon';
     }
 
     constructor(private theme: ThemeService) {}

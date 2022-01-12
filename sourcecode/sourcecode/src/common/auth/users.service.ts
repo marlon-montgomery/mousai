@@ -12,15 +12,25 @@ import {FileEntry} from '@common/uploads/types/file-entry';
 })
 export class Users {
     static BASE_URI = 'users';
+    static EXPORT_CSV_URI = 'users/csv/export';
 
     constructor(private http: AppHttpClient) {}
 
-    public get(id: number, params?: { with?: string }): BackendResponse<{user: User}> {
+    public get(id: number, params?: {with?: string[]}): BackendResponse<{user: User}> {
         return this.http.get(`users/${id}`, params);
     }
 
-    public getAll(params: {perPage?: number, permission?: string, query?: string, limit?: number} = {}): Observable<User[]> {
-        return this.http.get(Users.BASE_URI, params).pipe(map(response => response['pagination']['data']));
+    public getAll(
+        params: {
+            perPage?: number;
+            permission?: string;
+            query?: string;
+            limit?: number;
+        } = {}
+    ): Observable<User[]> {
+        return this.http
+            .get(Users.BASE_URI, params)
+            .pipe(map(response => response['pagination']['data']));
     }
 
     public create(payload: object) {
@@ -43,15 +53,18 @@ export class Users {
         return this.http.post(`${Users.BASE_URI}/${id}/roles/detach`, payload);
     }
 
-    public addPermissions(id: number, payload = {}): Observable<{ data: User }> {
+    public addPermissions(id: number, payload = {}): Observable<{data: User}> {
         return this.http.post(`${Users.BASE_URI}/${id}/permissions/add`, payload);
     }
 
-    public removePermissions(id: number, payload = {}): Observable<{ data: User }> {
+    public removePermissions(id: number, payload = {}): Observable<{data: User}> {
         return this.http.post(`${Users.BASE_URI}/${id}/permissions/remove`, payload);
     }
 
-    public uploadAvatar(id: number, files: UploadedFile[]): BackendResponse<{user: User, fileEntry: FileEntry}> {
+    public uploadAvatar(
+        id: number,
+        files: UploadedFile[]
+    ): BackendResponse<{user: User; fileEntry: FileEntry}> {
         const payload = new FormData();
         payload.append('file', files[0].native);
         return this.http.post(`${Users.BASE_URI}/${id}/avatar`, payload);
@@ -61,23 +74,17 @@ export class Users {
         return this.http.delete(`${Users.BASE_URI}/${id}/avatar`);
     }
 
-    public delete(ids: number[]) {
-        return this.http.delete(`${Users.BASE_URI}/${ids}`);
+    public delete(ids: number[], params: {deleteCurrentUser?: boolean} = {}) {
+        return this.http.delete(`${Users.BASE_URI}/${ids}`, params);
     }
 
-    //
+    // bedesk
 
-    /**
-     * Sync specified user tags.
-     */
-    public syncTags(id: number, payload: object): Observable<object> {
+    syncTags(id: number, payload: object): Observable<object> {
         return this.http.post('users/' + id + '/tags/sync', payload);
     }
 
-    /**
-     * Update details about user.
-     */
-    public updateDetails(id: number, payload: object): Observable<User> {
+    updateDetails(id: number, payload: object): BackendResponse<{user: User}> {
         return this.http.put('users/' + id + '/details', payload);
     }
 

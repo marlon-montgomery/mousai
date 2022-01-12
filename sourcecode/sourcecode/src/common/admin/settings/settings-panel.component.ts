@@ -8,16 +8,13 @@ import {Modal} from '../../core/ui/dialogs/modal.service';
 import {CustomHomepage} from '../../pages/shared/custom-homepage.service';
 import {AppHttpClient} from '../../core/http/app-http-client.service';
 import {SettingsPayload} from '../../core/config/settings-payload';
-import {BehaviorSubject} from 'rxjs';
 import {ValueLists} from '@common/core/services/value-lists.service';
 import {scrollInvalidInputIntoView} from '@common/core/utils/scroll-invalid-input-into-view';
 import {BackendErrorResponse} from '@common/core/types/backend-error-response';
+import {SocialAuthService} from '../../auth/social-auth.service';
 
 @Directive()
 export abstract class SettingsPanelComponent implements OnDestroy {
-    public loading$ = new BehaviorSubject<boolean>(false);
-    public errors$ = new BehaviorSubject<{[key: string]: string}>({});
-
     constructor(
         public settings: Settings,
         protected toast: Toast,
@@ -28,6 +25,7 @@ export abstract class SettingsPanelComponent implements OnDestroy {
         protected valueLists: ValueLists,
         protected cd: ChangeDetectorRef,
         protected router: Router,
+        protected social: SocialAuthService,
         public state: SettingsState,
     ) {}
 
@@ -46,10 +44,10 @@ export abstract class SettingsPanelComponent implements OnDestroy {
     }
 
     public saveSettings(settings?: SettingsPayload) {
-        this.loading$.next(true);
+        this.state.loading$.next(true);
         const changedSettings = settings || this.state.getModified();
         this.settings.save(changedSettings)
-            .pipe(finalize(() => this.loading$.next(false)))
+            .pipe(finalize(() => this.state.loading$.next(false)))
             .subscribe(() => {
                 this.toast.open('Settings saved.');
                 this.clearErrors();
@@ -58,12 +56,12 @@ export abstract class SettingsPanelComponent implements OnDestroy {
                 // navigating between setting panels
                 this.state.updateInitial(changedSettings);
             }, (errResponse: BackendErrorResponse) => {
-                this.errors$.next(errResponse.errors);
-                scrollInvalidInputIntoView(this.errors$.value);
+                this.state.errors$.next(errResponse.errors);
+                scrollInvalidInputIntoView(this.state.errors$.value);
             });
     }
 
     public clearErrors() {
-        this.errors$.next({});
+        this.state.errors$.next({});
     }
 }

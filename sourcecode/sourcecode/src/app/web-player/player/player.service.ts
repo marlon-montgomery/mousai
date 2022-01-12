@@ -307,13 +307,14 @@ export class Player {
                 previoustrack: () => this.playPrevious(),
                 nexttrack: () => this.playNext(),
                 stop: () => this.stop(),
-                seekbackward: (details) => this.seekTo(this.getCurrentTime() - 10),
-                seekforward: (details) => this.seekTo(this.getCurrentTime() + 10),
+                seekbackward: () => this.seekTo(this.getCurrentTime() - 10),
+                seekforward: () => this.seekTo(this.getCurrentTime() + 10),
                 seekto: (details) => this.seekTo(details.seekTime),
             };
+            // tslint:disable-next-line:forin
             for (const key in actionHandlers) {
                 try {
-                    navigator.mediaSession.setActionHandler(key as MediaSessionAction, destroy ? null : actionHandlers[key]);
+                    navigator.mediaSession.setActionHandler(key, destroy ? null : actionHandlers[key]);
                 } catch (error) {}
             }
             if (destroy) {
@@ -344,8 +345,9 @@ export class Player {
 
     private putQueueIntoLocalStorage(queue: {tracks: Track[], queuedItemId?: string}) {
         if ( ! queue.tracks) return;
-        queue.tracks = queue.tracks.slice(0, 15);
-        this.storage.set('player.queue', queue);
+        const copy = {...queue};
+        copy.tracks = copy.tracks.slice(0, 15);
+        this.storage.set('player.queue', copy);
     }
 
     private setStrategy(track: Track): PlaybackStrategy {
@@ -428,11 +430,11 @@ export class Player {
             if (e.keyCode === SPACE) {
                 this.togglePlayback(); e.preventDefault();
 
-            // ctrl+right - play next track
+                // ctrl+right - play next track
             } else if (e.ctrlKey && e.keyCode === RIGHT_ARROW) {
                 this.playNext(); e.preventDefault();
 
-            // ctrl+left - play previous track
+                // ctrl+left - play previous track
             } else if (e.ctrlKey && e.keyCode === LEFT_ARROW) {
                 this.playPrevious(); e.preventDefault();
             }

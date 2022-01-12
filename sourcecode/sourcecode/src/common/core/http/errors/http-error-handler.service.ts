@@ -1,10 +1,10 @@
-import {HttpErrorResponse} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {Translations} from '../../translations/translations.service';
-import {BackendErrorResponse} from '../../types/backend-error-response';
-import {Injectable} from '@angular/core';
-import {Toast} from '@common/core/ui/toast.service';
-import {HttpErrors} from '@common/core/http/errors/http-errors.enum';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { Translations } from '../../translations/translations.service';
+import { BackendErrorResponse } from '../../types/backend-error-response';
+import { Injectable } from '@angular/core';
+import { Toast } from '@common/core/ui/toast.service';
+import { HttpErrors } from '@common/core/http/errors/http-errors.enum';
 
 @Injectable({
     providedIn: 'root'
@@ -13,17 +13,14 @@ export abstract class HttpErrorHandler {
     protected constructor(
         protected i18n: Translations,
         protected toast: Toast,
-    ) {
-    }
+    ) {}
 
-    public handle(response: HttpErrorResponse, uri?: string, options: { [key: string]: any } = {}): Observable<never> {
-        const hasError = typeof response.error === 'object' && response.error !== null;
-        const errResponse = (hasError ? {...response.error} : {}) as BackendErrorResponse;
-
+    public handle(response: HttpErrorResponse, uri?: string, options: {[key: string]: any} = {}): Observable<never> {
+        const errResponse = ((typeof response.error === 'object' && response.error !== null) ? response.error : {}) as BackendErrorResponse;
         errResponse.status = response.status;
         errResponse.type = 'http';
 
-        if (!errResponse.errors) {
+        if ( ! errResponse.errors) {
             errResponse.errors = {};
         }
 

@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 import {Modal} from '@common/core/ui/dialogs/modal.service';
 import {ImportMediaModalComponent} from '../import-media-modal/import-media-modal.component';
 import {Settings} from '@common/core/config/settings.service';
+import {ARTIST_INDEX_FILTERS} from './artist-index-filters';
 
 @Component({
     selector: 'artist-index',
@@ -17,6 +18,7 @@ import {Settings} from '@common/core/config/settings.service';
 })
 export class ArtistIndexComponent implements OnInit {
     public artists$ = this.datatable.data$ as Observable<Artist[]>;
+    filters = ARTIST_INDEX_FILTERS;
     constructor(
         public datatable: DatatableService<Artist>,
         private artists: Artists,

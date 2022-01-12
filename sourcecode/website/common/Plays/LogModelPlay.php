@@ -52,7 +52,7 @@ class LogModelPlay
 
     protected function getAnalyticProps(): array
     {
-        $ip = getIp($this->request);
+        $ip = getIp();
         return [
             'location' => $this->getLocation($ip),
             'platform' => strtolower($this->agent->platform()),

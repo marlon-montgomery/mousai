@@ -22,7 +22,7 @@ export class ApiDocsComponent implements OnInit {
             .then(() => {
                 SwaggerUI({
                     domNode: this.apiDocsEl.nativeElement,
-                    url: this.settings.getBaseUrl(true) + 'swagger.yaml',
+                    url: this.settings.getBaseUrl(true) + '/swagger.yaml',
                     plugins: [
                         {
                             statePlugins: {
@@ -33,14 +33,14 @@ export class ApiDocsComponent implements OnInit {
                                                 // Replace site name
                                                 spec = spec.replaceAll('SITE_NAME', this.settings.get('branding.site_name'));
                                                 // Replace site url
-                                                spec = spec.replaceAll('https://bedrive.vebto.com', this.settings.getBaseUrl(true));
+                                                spec = spec.replaceAll('SITE_URL', this.settings.getBaseUrl(true));
                                                 return oriAction(spec);
                                             };
                                         },
                                         // Add current server url to docs
                                         updateJsonSpec: (oriAction) => {
                                             return (spec) => {
-                                                spec.servers = [{url: this.settings.getBaseUrl(true) + 'api/v1'}];
+                                                spec.servers = [{url: this.settings.getBaseUrl(true) + '/api/v1'}];
                                                 return oriAction(spec);
                                             };
                                         }

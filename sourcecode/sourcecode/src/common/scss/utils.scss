@@ -127,3 +127,15 @@ input.mat-menu-item {
     border-radius: 3px;
   }
 }
+
+.btn-with-dropdown-icon {
+  padding-right: 10px !important;
+
+  .mat-icon {
+    margin-left: 8px;
+  }
+
+  svg {
+    display: block;
+  }
+}

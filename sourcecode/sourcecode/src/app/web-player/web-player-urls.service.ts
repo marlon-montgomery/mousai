@@ -40,7 +40,7 @@ export class WebPlayerUrls {
     }
 
     public genre(genre: Genre) {
-        return ['/channel/genre', this.encodeItemName(genre.name)];
+        return ['/channel/genre', genre.name.normalize().toLowerCase()];
     }
 
     public track(track: Track) {
@@ -48,7 +48,7 @@ export class WebPlayerUrls {
     }
 
     public trackDownload(track: Track) {
-        return this.settings.getBaseUrl(true) + 'secure/tracks/' + track.id + '/download';
+        return this.settings.getBaseUrl(true) + '/secure/tracks/' + track.id + '/download';
     }
 
     public playlist(playlist: Playlist) {
@@ -104,6 +104,6 @@ export class WebPlayerUrls {
             }
             return command;
         }).join('/').replace(/^\/|\/$/g, '');
-        return (this.settings.getBaseUrl() + uri);
+        return (this.settings.getBaseUrl() + '/' + uri);
     }
 }

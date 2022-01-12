@@ -101,6 +101,7 @@ export class TrackFormComponent implements OnInit, OnChanges {
         duration: [null],
         url: [''],
         youtube_id: [''],
+        spotify_id: [''],
         spotify_popularity: [''],
         album: [null],
         artists: [[]],

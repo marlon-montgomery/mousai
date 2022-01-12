@@ -12,7 +12,7 @@ trait FindsCurrentUserPlays
         if (Auth::check()) {
             return $builder->where('user_id', Auth::id());
         } else {
-            return $builder->where('ip', getIp(request()));
+            return $builder->where('ip', getIp());
         }
     }
 }

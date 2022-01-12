@@ -9,14 +9,21 @@ export class FormattedDatePipe implements PipeTransform {
     private readonly format: string;
     private angularPipe: DatePipe;
 
+    // tslint:disable-next-line:variable-name
     constructor(private settings: Settings, @Inject(LOCALE_ID) private _locale: string) {
         this.format = this.settings.get('dates.format', 'yyyy-MM-dd');
         this.angularPipe = new DatePipe(_locale);
     }
 
     transform(value: any, format?: string, timezone?: string, locale?: string): string | null {
-        // slash as separator for date will cause parse errors
-        value = (value && typeof value === 'string') ? value.replace(/\//g, '-') : value;
+        if (value && typeof value === 'string') {
+            // 2 days ago
+            if (value.endsWith('ago')) {
+                return value;
+            }
+            // slash as separator for date will cause parse errors
+            value = value.replace(/\//g, '-');
+        }
         return this.angularPipe.transform(value, format || this.format, timezone, locale);
     }
 }

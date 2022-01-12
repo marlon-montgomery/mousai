@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "../../../../../scss/variables";
 
 .be-light-mode player-seekbar .progress-handle {
@@ -30,7 +31,7 @@ player-seekbar {
     .progress-track {
       position: absolute;
       left: 0;
-      top: calc(50% - #{$wp-controls-progress-height / 2});
+      top: calc(50% - #{math.div($wp-controls-progress-height, 2)});
       height: 5px;
       background-color: mat-color($app-accent, default);
       width: 0;
@@ -40,7 +41,7 @@ player-seekbar {
   .progress-handle {
     position: absolute;
     left: 0;
-    top: calc(50% - #{$wp-controls-handle-height / 2});
+    top: calc(50% - #{math.div($wp-controls-handle-height, 2)});
     width: $wp-controls-handle-height;
     height: $wp-controls-handle-height;
     background-color: mat-color($app-accent, default-contrast);

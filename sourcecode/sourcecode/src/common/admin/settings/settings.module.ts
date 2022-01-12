@@ -40,9 +40,10 @@ import {MatRadioModule} from '@angular/material/radio';
 import {TranslationsModule} from '@common/core/translations/translations.module';
 import {MatIconModule} from '@angular/material/icon';
 import {FormatPipesModule} from '@common/core/ui/format-pipes/format-pipes.module';
-import { GdprSettingsComponent } from './gdpr-settings/gdpr-settings.component';
+import {GdprSettingsComponent} from './gdpr-settings/gdpr-settings.component';
 import {RECAPTCHA_ACTIONS} from '@common/admin/settings/recaptcha/recaptcha-actions.token';
 import {SearchSettingsComponent} from '@common/admin/settings/search/search-settings.component';
+import {InfoPopoverModule} from '../../core/ui/info-popover/info-popover.module';
 
 @NgModule({
     imports: [
@@ -54,6 +55,7 @@ import {SearchSettingsComponent} from '@common/admin/settings/search/search-sett
         ChipsModule,
         TranslationsModule,
         FormatPipesModule,
+        InfoPopoverModule,
 
         // material
         MatButtonModule,
@@ -98,14 +100,23 @@ import {SearchSettingsComponent} from '@common/admin/settings/search/search-sett
     providers: [
         SettingsResolve,
         SettingsState,
-        {provide: RECAPTCHA_ACTIONS, multi: true, useValue: [
-            {name: 'Registration Recaptcha', key: 'recaptcha.enable_for_registration', description: 'Enable recaptcha integration for registration page.'},
-            {name: 'Contact Recaptcha', key: 'recaptcha.enable_for_contact', description: 'Enable recaptcha integration for "contact us" page.'},
-        ]}
+        {
+            provide: RECAPTCHA_ACTIONS,
+            multi: true,
+            useValue: [
+                {
+                    name: 'Registration Recaptcha',
+                    key: 'recaptcha.enable_for_registration',
+                    description: 'Enable recaptcha integration for registration page.',
+                },
+                {
+                    name: 'Contact Recaptcha',
+                    key: 'recaptcha.enable_for_contact',
+                    description: 'Enable recaptcha integration for "contact us" page.',
+                },
+            ],
+        },
     ],
-    exports: [
-        ChipsModule,
-    ]
+    exports: [ChipsModule],
 })
-export class SettingsModule {
-}
+export class SettingsModule {}

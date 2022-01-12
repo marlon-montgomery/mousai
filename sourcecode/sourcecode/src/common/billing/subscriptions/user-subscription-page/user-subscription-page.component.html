@@ -28,9 +28,9 @@
             <div class="main-section-title" trans>Payment Method</div>
             <div class="main-title-description" trans>Change your preferred payment method below. You can use a credit card or PayPal.</div>
 
-            <p>{{ 'Current payment Method' | trans }}: <strong>{{activeSubscription.gateway === 'paypal' ? 'PayPal' : ('Credit Card' | trans)}}</strong></p>
+            <p>{{ 'Current payment Method' | trans }}: <strong>{{activeSubscription.gateway_name === 'paypal' ? 'PayPal' : ('Credit Card' | trans)}}</strong></p>
 
-            <div class="card-preview" *ngIf="activeSubscription.gateway === 'stripe'">
+            <div class="card-preview" *ngIf="activeSubscription.gateway_name === 'stripe'">
                 <div class="icon"><mat-icon svgIcon="credit-card"></mat-icon></div>
                 <div class="info">{{currentUser.get('card_brand')}} **** {{currentUser.get('card_last_four')}}</div>
             </div>
@@ -40,7 +40,7 @@
                     (loading)="loading$.next($event)"
                     [plan]="getPlan()"
                     [from]="activeSubscription"
-                    [disablePaypalTab]="activeSubscription.gateway === 'paypal'"
+                    [disablePaypalTab]="activeSubscription.gateway_name === 'paypal'"
                     submitText="Change Payment Method"
             ></create-subscription-panel>
         </div>

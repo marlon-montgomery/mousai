@@ -15,11 +15,11 @@ const BASE_URI = 'notifications';
     providedIn: 'root'
 })
 export class NotificationService {
-    public all$ = new BehaviorSubject<DatabaseNotification[]>(null);
-    public loading$ = new BehaviorSubject(false);
-    public canLoadMore = new BehaviorSubject(false);
-    public unreadCount$ = new BehaviorSubject(null);
-    public clickedOnNotification$ = new Subject<{
+    all$ = new BehaviorSubject<DatabaseNotification[]>(null);
+    loading$ = new BehaviorSubject(false);
+    canLoadMore = new BehaviorSubject(false);
+    unreadCount$ = new BehaviorSubject(null);
+    clickedOnNotification$ = new Subject<{
         notification: DatabaseNotification,
         action: DatabaseNotificationAction,
     }>();
@@ -77,7 +77,7 @@ export class NotificationService {
             this.all$.next([notification, ...this.all$.value]);
         }
     }
-    
+
     public delete(notifications: DatabaseNotification[]): BackendResponse<unknown> {
         const unreadCount = notifications.filter(n => !n.read_at).length;
         const ids = notifications.map(n => n.id);

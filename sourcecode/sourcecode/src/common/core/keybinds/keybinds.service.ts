@@ -16,17 +16,28 @@ interface ParsedKeybind {
 export class Keybinds {
     private bindings = [];
 
-    public add(keybind: string, callback: (e: KeyboardEvent) => void) {
-        this.bindings.push({keybind: this.parseKeybindString(keybind), keybindString: keybind, callback});
+    private static bindingMatches(keybind: ParsedKeybind, e: KeyboardEvent) {
+        return Keycodes[keybind.key.toUpperCase()] === e.keyCode &&
+            (e.ctrlKey === keybind.ctrl || e.metaKey === keybind.ctrl) &&
+            e.shiftKey === keybind.shift;
     }
 
-    public addWithPreventDefault(keybind: string, callback: Function) {
+    public add(keybinds: string|string[], callback: (e: KeyboardEvent) => void) {
+        if ( ! Array.isArray(keybinds)) {
+            keybinds = [keybinds];
+        }
+        keybinds.forEach(keybind => {
+            this.bindings.push({keybind: this.parseKeybindString(keybind), keybindString: keybind, callback});
+        });
+    }
+
+    public addWithPreventDefault(keybind: string, callback: () => any) {
         this.bindings.push({keybind: this.parseKeybindString(keybind), keybindString: keybind, callback, preventDefault: true});
     }
 
-    public listenOn(el: HTMLElement|Document): Subscription {
+    public listenOn(el: HTMLElement|Document, options: {fireIfInputFocused?: boolean} = {}): Subscription {
         return fromEvent(el, 'keydown').subscribe((e: KeyboardEvent) => {
-            if ( ! ['input', 'select'].includes(document.activeElement.nodeName.toLowerCase())) {
+            if (options.fireIfInputFocused || !['input', 'select'].includes(document.activeElement.nodeName.toLowerCase())) {
                 this.executeBindings(e);
             }
         });
@@ -34,14 +45,10 @@ export class Keybinds {
 
     private executeBindings(e: KeyboardEvent) {
         this.bindings.forEach(binding => {
-            if ( ! this.bindingMatches(binding.keybind, e)) return;
+            if ( ! Keybinds.bindingMatches(binding.keybind, e)) return;
             if (binding.preventDefault && e.preventDefault) e.preventDefault();
             binding.callback(e);
         });
-    }
-
-    private bindingMatches(keybind: ParsedKeybind, e: KeyboardEvent) {
-        return Keycodes[keybind.key.toUpperCase()] === e.keyCode && e.ctrlKey === keybind.ctrl && e.shiftKey === keybind.shift;
     }
 
     /**

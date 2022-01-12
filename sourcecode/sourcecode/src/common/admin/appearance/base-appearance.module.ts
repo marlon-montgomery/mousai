@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppearanceComponent} from './appearance.component';
 import {MenusAppearancePanelComponent} from './panels/menus-appearance-panel/menus-appearance-panel.component';
-import {AddMenuItemPanelComponent} from './panels/menus-appearance-panel/menus/add-menu-item-panel/add-menu-item-panel.component';
+import {SelectMenuItemActionComponent} from './panels/menus-appearance-panel/menus/add-menu-item-panel/select-menu-item-action.component';
 import {AppearancePanelMetaComponent} from './appearance-panel-meta/appearance-panel-meta.component';
 import {MenuItemsComponent} from './panels/menus-appearance-panel/menus/menu-items/menu-items.component';
 import {AppearanceRoutingModule} from './appearance-routing.module';
@@ -27,11 +27,14 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatButtonModule} from '@angular/material/button';
-import {MatSidenavModule} from '@angular/material/sidenav';
 import {ColorPickerInputModule} from '@common/core/ui/color-picker/color-picker-input/color-picker-input.module';
 import {PortalModule} from '@angular/cdk/portal';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {APPEARANCE_EDITOR_CONFIG, DEFAULT_APPEARANCE_EDITOR_CONFIG} from './appearance-editor-config.token';
+import {
+    APPEARANCE_EDITOR_CONFIG,
+    DEFAULT_APPEARANCE_EDITOR_CONFIG,
+} from './appearance-editor-config.token';
+import {SidenavModule} from '@common/shared/sidenav/sidenav.module';
 
 @NgModule({
     imports: [
@@ -44,6 +47,7 @@ import {APPEARANCE_EDITOR_CONFIG, DEFAULT_APPEARANCE_EDITOR_CONFIG} from './appe
         ImageOrIconModule,
         LoadingIndicatorModule,
         ColorPickerInputModule,
+        SidenavModule,
 
         // material
         MatMenuModule,
@@ -53,7 +57,6 @@ import {APPEARANCE_EDITOR_CONFIG, DEFAULT_APPEARANCE_EDITOR_CONFIG} from './appe
         MatDialogModule,
         MatExpansionModule,
         DragDropModule,
-        MatSidenavModule,
         PortalModule,
         MatSlideToggleModule,
     ],
@@ -64,7 +67,7 @@ import {APPEARANCE_EDITOR_CONFIG, DEFAULT_APPEARANCE_EDITOR_CONFIG} from './appe
     ],
     declarations: [
         AppearanceComponent,
-        AddMenuItemPanelComponent,
+        SelectMenuItemActionComponent,
         AppearancePanelMetaComponent,
         MenuItemsComponent,
         CodeEditorModalComponent,
@@ -83,8 +86,7 @@ import {APPEARANCE_EDITOR_CONFIG, DEFAULT_APPEARANCE_EDITOR_CONFIG} from './appe
             provide: APPEARANCE_EDITOR_CONFIG,
             useValue: DEFAULT_APPEARANCE_EDITOR_CONFIG,
             multi: true,
-        }
-    ]
+        },
+    ],
 })
-export class BaseAppearanceModule {
-}
+export class BaseAppearanceModule {}

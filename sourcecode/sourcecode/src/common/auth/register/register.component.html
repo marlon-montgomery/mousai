@@ -41,7 +41,7 @@
         <div class="policies" *ngIf="registerPolicies.length">
             <mat-checkbox name="remember-me" class="policy-checkbox" *ngFor="let policy of registerPolicies" [formControlName]="policy.id" color="accent" required trans>
                 <span trans>I accept the</span>&ngsp;
-                <a [href]="policy.type === 'link' ? policy.action : (settings.getBaseUrl() + policy.action)" *ngIf="policy.action" target="_blank">
+                <a [href]="policy.type === 'link' ? policy.action : (settings.getBaseUrl() + '/' + policy.action)" *ngIf="policy.action" target="_blank">
                     <strong>{{policy.label | trans}}</strong>
                 </a>
                 <strong *ngIf=!policy.action>{{policy.label | trans}}</strong>

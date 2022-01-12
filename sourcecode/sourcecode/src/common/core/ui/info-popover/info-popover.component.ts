@@ -1,7 +1,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
+    ElementRef, Input,
     TemplateRef,
     ViewChild,
     ViewContainerRef,
@@ -21,6 +21,7 @@ import {OverlayPanel} from '@common/core/ui/overlay-panel/overlay-panel.service'
 export class InfoPopoverComponent {
     @ViewChild('infoIcon', { read: ElementRef }) infoButton: ElementRef<HTMLElement>;
     @ViewChild('popoverContent') content: TemplateRef<any>;
+    @Input() wider: boolean;
     private overlayRef: OverlayPanelRef;
 
     constructor(
@@ -34,13 +35,14 @@ export class InfoPopoverComponent {
         }
         const position = {...RIGHT_POSITION};
         position[0].offsetY = -15;
+
         this.overlayRef = this.overlay.open(this.content, {
             origin: this.infoButton,
             position: RIGHT_POSITION,
             hasBackdrop: false,
             scrollStrategy: 'close',
             viewContainerRef: this.viewContainerRef,
-            panelClass: 'info-popover-panel'
+            panelClass: ['info-popover-panel', this.wider ? 'wider' : null],
         });
 
         this.overlayRef.getPanelEl().addEventListener('mouseleave', () => {

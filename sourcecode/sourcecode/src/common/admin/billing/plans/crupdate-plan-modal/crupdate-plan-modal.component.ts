@@ -164,17 +164,19 @@ export class CrupdatePlanModalComponent implements OnInit {
 
     public getMinAmount(): number {
         // child plans can't be set as free,
-        // so should have amount more then 0
+        // so should have amount more than 0
         return this.form.get('parent_id').value ? 1 : 0;
     }
 
     public getMaxAmount(): number {
-        if (this.form.get('parent_id').value) {
-            // child plan amount per interval should be cheaper then parent
-            const parent = this.allPlans$.value.find(p => p.id === this.form.get('parent_id').value);
-            return ((parent.amount / parent.interval_count) * this.form.get('interval_count').value) - 0.01;
-        } else {
-            return null;
-        }
+        return null;
+        // TODO: fix this using interval/interval count
+        // if (this.form.get('parent_id').value) {
+        //     // child plan amount per interval should be cheaper then parent
+        //     const parent = this.allPlans$.value.find(p => p.id === this.form.get('parent_id').value);
+        //     return ((parent.amount / parent.interval_count) * this.form.get('interval_count').value) - 0.01;
+        // } else {
+        //     return null;
+        // }
     }
 }

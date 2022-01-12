@@ -10,6 +10,7 @@ import {LyricsModalComponent} from '../../lyrics/lyrics-modal/lyrics-modal.compo
 import {downloadFileFromUrl} from '@common/uploads/utils/download-file-from-url';
 import {ConfirmModalComponent} from '@common/core/ui/confirm-modal/confirm-modal.component';
 import {Tracks} from '../tracks.service';
+import {Playlist} from '../../../models/Playlist';
 
 @Component({
     selector: 'track-context-menu',
@@ -21,7 +22,7 @@ import {Tracks} from '../tracks.service';
 export class TrackContextMenuComponent extends ContextMenuComponent<Track> implements OnInit {
     public canEditTrack = false;
     public canDeleteTrack = false;
-    public data: {selectedTracks?: SelectedTracks, playlistId?: number, item: Track};
+    public data: {selectedTracks?: SelectedTracks, playlist?: Playlist, item: Track};
     public shouldHideDownloadButton: boolean;
 
     constructor(
@@ -32,13 +33,13 @@ export class TrackContextMenuComponent extends ContextMenuComponent<Track> imple
         protected tracks: Tracks,
     ) {
         super(injector);
-        this.shouldHideDownloadButton = !this.settings.get('player.enable_download') || !this.currentUser.hasPermission('tracks.download');
+        this.shouldHideDownloadButton = !this.settings.get('player.enable_download') || !this.currentUser.hasPermission('music.download');
     }
 
     ngOnInit() {
         const trackArtistIds = this.data.item.artists.map(a => a.id);
         if (this.currentUser.isLoggedIn()) {
-            const managesTrack = !!this.currentUser.get('artists').find(a => trackArtistIds.includes(a.id as number));
+            const managesTrack = !!this.currentUser.get('artists')?.find(a => trackArtistIds.includes(a.id as number));
             this.canEditTrack = this.currentUser.hasPermissions(['tracks.update', 'music.update']) || managesTrack;
             this.canDeleteTrack = this.currentUser.hasPermissions(['tracks.delete', 'music.delete']) || managesTrack;
         }

@@ -8,8 +8,9 @@ import {DatatableService} from '@common/datatable/datatable.service';
 import {Observable} from 'rxjs';
 import {WebPlayerUrls} from '../../web-player/web-player-urls.service';
 import {ImportMediaModalComponent} from '../import-media-modal/import-media-modal.component';
-import {ARTIST_MODEL} from '../../models/Artist';
 import {Modal} from '@common/core/ui/dialogs/modal.service';
+import {Settings} from '@common/core/config/settings.service';
+import {PLAYLIST_INDEX_FILTERS} from './playlist-index-filters';
 
 @Component({
     selector: 'playlists-page',
@@ -18,11 +19,13 @@ import {Modal} from '@common/core/ui/dialogs/modal.service';
     providers: [DatatableService],
 })
 export class PlaylistsPageComponent implements OnInit {
-    public playlists$ = this.datatable.data$ as Observable<Playlist[]>;
+    playlists$ = this.datatable.data$ as Observable<Playlist[]>;
+    filters = PLAYLIST_INDEX_FILTERS;
     constructor(
         public datatable: DatatableService<Playlist>,
         private playlists: Playlists,
         public currentUser: CurrentUser,
+        public settings: Settings,
         public wpImages: WebPlayerImagesService,
         public urls: WebPlayerUrls,
         private modal: Modal,
@@ -43,7 +46,7 @@ export class PlaylistsPageComponent implements OnInit {
     }
 
     public confirmPlaylistsDeletion() {
-        this.datatable.confirmResourceDeletion('playlists').subscribe(confirmed => {
+        this.datatable.confirmResourceDeletion('playlists').subscribe(() => {
             const ids = this.datatable.selectedRows$.value;
             this.playlists.delete(ids).subscribe(() => {
                 this.datatable.reset();

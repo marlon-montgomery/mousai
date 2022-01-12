@@ -7,13 +7,14 @@
             "stripe-v3",
             "hammerjs",
             "youtube",
-            "wicg-mediasession"
+            "wicg-mediasession",
+            "resize-observer-browser",
         ]
     },
     "files": [
-      "src/main.ts",
-      "src/polyfills.ts",
-      "node_modules/@types/google.analytics/index.d.ts"
+        "src/main.ts",
+        "src/polyfills.ts",
+        "node_modules/@types/google.analytics/index.d.ts"
     ],
     "include": [
         "src/**/*.d.ts",

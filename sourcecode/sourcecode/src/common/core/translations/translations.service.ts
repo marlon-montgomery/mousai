@@ -1,36 +1,34 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { Localization } from '../types/models/Localization';
-import { Settings } from '../config/settings.service';
-import { LocalizationWithLines } from '../types/localization-with-lines';
+import {EventEmitter, Injectable} from '@angular/core';
+import {Settings} from '../config/settings.service';
+import {LocalizationWithLines} from '../types/localization-with-lines';
+import {Localization} from '@common/core/types/models/Localization';
 
 @Injectable({
     providedIn: 'root',
 })
 export class Translations {
+    localizationChange = new EventEmitter();
 
-    /**
-     * Fired when active localization changes.
-     */
-    public localizationChange = new EventEmitter();
-
-    /**
-     * Currently active localization.
-     */
-    private localization: LocalizationWithLines = {model: new Localization(), name: '', lines: {}};
+    public localization: LocalizationWithLines = {
+        model: {name: 'English', id: 1, language: 'en'},
+        name: '',
+        lines: {},
+    };
 
     constructor(private settings: Settings) {}
 
-    public t(transKey: string, values?: object): string {
-        if ( ! transKey) return '';
-        if ( ! this.translationsEnabled()) {
+    t(transKey: string, values?: object): string {
+        if (!transKey) return '';
+        if (!this.translationsEnabled()) {
             return this.replacePlaceholders(transKey, values);
         }
-        const translation = this.localization.lines[transKey.toLowerCase().trim()] || transKey;
+        const translation =
+            this.localization.lines[transKey.toLowerCase().trim()] || transKey;
         return this.replacePlaceholders(translation, values);
     }
 
     private replacePlaceholders(message: string, values: object): string {
-        if ( ! values) return message;
+        if (!values) return message;
 
         const keys = Object.keys(values);
 
@@ -42,17 +40,11 @@ export class Translations {
         return message;
     }
 
-    /**
-     * Get currently active localization.
-     */
-    public getActive(): LocalizationWithLines {
-        return this.localization;
+    isActive(loc: Localization): boolean {
+        return loc.id === this.localization.model.id;
     }
 
-    /**
-     * Set active localization.
-     */
-    public setLocalization(localization: LocalizationWithLines) {
+    setLocalization(localization: LocalizationWithLines) {
         if (!localization || !localization.lines || !localization.model) return;
         if (this.localization.model.name === localization.model.name) return;
 
@@ -72,10 +64,13 @@ export class Translations {
         return newObject;
     }
 
-    /**
-     * Check if i18n functionality is enabled.
-     */
-    private translationsEnabled(): boolean {
-        return this.settings.get('i18n.enable');
+    translationsEnabled(): boolean {
+        return (
+            this.settings.get('i18n.enable') &&
+            // if selected language is english and no lines
+            // were changed, then there's no need to translate
+            (this.localization.model.language !== 'en' ||
+                this.localization.model.created_at !== this.localization.model.updated_at)
+        );
     }
 }

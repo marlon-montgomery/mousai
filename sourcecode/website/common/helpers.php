@@ -55,7 +55,7 @@ if (!function_exists('modelTypeToNamespace')) {
 }
 
 if (!function_exists('getIp')) {
-    function getIp(Request $request): string
+    function getIp(): string
     {
         foreach (
             [
@@ -85,6 +85,6 @@ if (!function_exists('getIp')) {
                 }
             }
         }
-        return $request->ip();
+        return request()->ip();
     }
 }

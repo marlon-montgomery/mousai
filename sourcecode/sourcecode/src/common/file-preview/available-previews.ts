@@ -5,6 +5,7 @@ import { ImagePreviewComponent } from './image-preview/image-preview.component';
 import { PdfPreviewComponent } from './pdf-preview/pdf-preview.component';
 import { AudioPreviewComponent } from './audio-preview/audio-preview.component';
 import { GoogleDocsViewerComponent } from './google-docs-viewer/google-docs-viewer.component';
+import {DefaultPreviewComponent} from './default-preview/default-preview.component';
 
 export const AVAILABLE_PREVIEWS = new InjectionToken<any>('AVAILABLE_PREVIEWS');
 
@@ -18,5 +19,6 @@ export class DefaultPreviews {
     spreadsheet = GoogleDocsViewerComponent;
     powerPoint = GoogleDocsViewerComponent;
     word = GoogleDocsViewerComponent;
+    'text/rtf' = DefaultPreviewComponent;
 }
 

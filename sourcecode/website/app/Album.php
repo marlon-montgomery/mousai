@@ -50,7 +50,7 @@ class Album extends Model {
         'auto_update' => 'boolean',
         'owner_id' => 'integer',
     ];
-    
+
     protected $guarded = ['id', 'views'];
     protected $hidden = [
         'pivot',

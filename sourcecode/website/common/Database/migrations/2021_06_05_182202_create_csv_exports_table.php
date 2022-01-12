@@ -17,7 +17,7 @@ class CreateCsvExportsTable extends Migration
         Schema::create('csv_exports', function (Blueprint $table) {
             $table->id();
             $table->string('cache_name', 50)->unique()->index()->nullable();
-            $table->integer('user_id')->index();
+            $table->integer('user_id')->nullable()->index();
             $table->string('download_name', 50);
             $table->uuid('uuid');
             $table->timestamps();

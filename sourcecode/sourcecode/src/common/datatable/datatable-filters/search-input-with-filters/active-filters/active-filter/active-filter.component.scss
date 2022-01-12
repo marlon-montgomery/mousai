@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "src/scss/variables";
 
 $active-filter-height: $datatable-filter-bar-height - 6px - 2px;
@@ -36,7 +37,7 @@ $active-filter-height: $datatable-filter-bar-height - 6px - 2px;
 
 .caret-svg {
   position: absolute;
-  top: ($active-filter-height / 2) - 9px;
+  top: math.div($active-filter-height, 2) - 9px;
   right: 5px;
   z-index: 11;
   fill: mat-color($app-accent, default-contrast);

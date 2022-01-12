@@ -6,6 +6,7 @@ import {CurrentUser} from '@common/auth/current-user';
 import {WebPlayerUrls} from '../../web-player/web-player-urls.service';
 import {DatatableService} from '@common/datatable/datatable.service';
 import {Observable} from 'rxjs';
+import {GENRE_INDEX_FILTERS} from './genre-index-filters';
 
 interface IndexGenre extends Genre {
     artists_count?: number;
@@ -20,7 +21,8 @@ interface IndexGenre extends Genre {
     providers: [DatatableService],
 })
 export class GenresComponent implements OnInit {
-    public genres$ = this.datatable.data$ as Observable<IndexGenre[]>;
+    genres$ = this.datatable.data$ as Observable<IndexGenre[]>;
+    filters = GENRE_INDEX_FILTERS;
     constructor(
         public datatable: DatatableService<IndexGenre>,
         private genres: Genres,

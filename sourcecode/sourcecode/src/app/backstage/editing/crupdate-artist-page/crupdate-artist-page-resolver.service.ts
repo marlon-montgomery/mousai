@@ -24,6 +24,7 @@ export class EditArtistPageResolver implements Resolve<GetArtistResponse> {
         const params = {
             with: ['simplifiedAlbums', 'genres', 'profile'],
             albumsPerPage: 50,
+            forEditing: true,
         };
         const id = +route.paramMap.get('id');
         return this.artists.get(id, params).pipe(

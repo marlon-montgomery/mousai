@@ -26,7 +26,7 @@ class MobileBootstrapData extends BaseBootstrapData
             'user' => $this->getCurrentUser(),
             'menus' => $this->getMobileMenus(),
             'settings' => [
-                'social.google.enable' => $this->settings->get(
+                'social.google.enable' => (bool) $this->settings->get(
                     'social.google.enable',
                 ),
             ],

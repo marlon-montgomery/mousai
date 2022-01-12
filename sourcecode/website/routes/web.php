@@ -178,11 +178,11 @@ Route::get('search/{query}', [SearchController::class, 'index'])->middleware('pr
 Route::get('search/{query}/{tab}', [SearchController::class, 'index'])->middleware('prerenderIfCrawler');
 
 // REDIRECT LEGACY ROUTES
-Route::get('genre/{name}', function ($genre) {
+Route::get('genre/{name}', function($genre) {
     return redirect("channel/genre/$genre", 301);
 });
 
-Route::get('channels/{name}', function ($name) {
+Route::get('channels/{name}', function($name) {
     return redirect("channel/$name", 301);
 });
 

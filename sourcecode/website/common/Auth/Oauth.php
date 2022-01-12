@@ -2,6 +2,7 @@
 
 use App\User;
 use Auth;
+use Carbon\Carbon;
 use Common\Core\Bootstrap\MobileBootstrapData;
 use Common\Settings\Settings;
 use Exception;
@@ -9,6 +10,8 @@ use Illuminate\Contracts\View\View as ViewContract;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Laravel\Socialite\Contracts\Factory as SocialiteFactory;
+use Laravel\Socialite\One\User as OneUser;
+use Laravel\Socialite\Two\User as TwoUser;
 use Session;
 use View;
 
@@ -216,15 +219,33 @@ class Oauth
         $user
             ->social_profiles()
             ->create(
-                $this->transformSocialProfileData($service, $profile, $user),
+                $this->transformSocialProfileData(
+                    $service,
+                    $profile,
+                    $user->id
+                ),
             );
 
         //save data about user supplied envato purchase code
         if ($purchases = $this->getPersistedData('envato_purchases')) {
-            $user->updatePurchases($purchases, $profile->nickname);
+            $user->updatePurchases($purchases);
         }
 
         return $this->logUserIn($user);
+    }
+
+    public function updateSocialProfileData(
+        SocialProfile $profile,
+        string $service,
+        $data
+    ) {
+        $data = $this->transformSocialProfileData(
+            $service,
+            $data,
+            $profile->user_id,
+        );
+
+        $profile->fill($data)->save();
     }
 
     /**
@@ -238,12 +259,17 @@ class Oauth
      */
     public function attachProfileToExistingUser($user, $profile, $service)
     {
-        $payload = $this->transformSocialProfileData($service, $profile, $user);
+        $payload = $this->transformSocialProfileData(
+            $service,
+            $profile,
+            $user->id,
+        );
 
         //if this social account is already attached to some user
         //we will re-attach it to specified user
         if ($existing = $this->getExistingProfile($profile)) {
             $existing->forceFill($payload)->save();
+            $this->updateSocialProfileData($existing, $service, $profile);
 
             //if social account is not attached to any user, we will
             //create a model for it and attach it to specified user
@@ -253,7 +279,7 @@ class Oauth
 
         //save data about user supplied envato purchase code
         if ($purchases = $this->getPersistedData('envato_purchases')) {
-            $user->updatePurchases($purchases, $profile->nickname);
+            $user->updatePurchases($purchases);
         }
 
         $user = $user
@@ -267,21 +293,23 @@ class Oauth
     }
 
     /**
-     * Transform social profile into data acceptable by SocialProfile model.
-     *
-     * @param string $service
-     * @param Object $profile
-     * @param User $user
-     *
-     * @return array
+     * @param TwoUser|OneUser $data
      */
-    private function transformSocialProfileData($service, $profile, $user)
-    {
+    private function transformSocialProfileData(
+        string $service,
+        $data,
+        int $userId
+    ): array {
         return [
             'service_name' => $service,
             'user_service_id' => $this->getUsersIdentifierOnService($profile),
-            'user_id' => $user->id,
-            'username' => $profile->name,
+            'user_id' => $userId,
+            'username' => $data->name,
+            'access_token' => $data->token ?? null,
+            'refresh_token' => $data->refreshToken ?? null,
+            'access_expires_at' => $data->expiresIn
+                ? Carbon::now()->addSeconds($data->expiresIn)
+                : null,
         ];
     }
 

@@ -47,7 +47,12 @@ class Role extends Model
     /**
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'default' => 'boolean', 'guests' => 'boolean'];
+    protected $casts = [
+        'id' => 'integer',
+        'default' => 'boolean',
+        'guests' => 'boolean',
+        'internal' => 'boolean',
+    ];
 
     /**
      * Get default role for assigning to new users.
@@ -61,7 +66,6 @@ class Role extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_role')
-            ->withPivot('created_at');
+        return $this->belongsToMany(User::class, 'user_role')->withPivot('created_at');
     }
 }

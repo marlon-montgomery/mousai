@@ -1,66 +1,94 @@
+<div class="datatable-page-header">
+  <h1 trans>Albums</h1>
+  <div class="header">
+    <datatable-filters pluralName="albums" [filters]="filters"></datatable-filters>
+    <div class="action-buttons">
+      <button mat-raised-button color="accent" class="button-with-icon" [matMenuTriggerFor]="menu">
+        <mat-icon svgIcon="add"></mat-icon>
+        <span trans>New Album</span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a
+          mat-menu-item
+          *ngIf="currentUser.hasPermission('albums.create')"
+          routerLink="/admin/backstage/albums/new"
+          class="button-with-icon"
+          trans
+        >
+          Create Album
+        </a>
+        <a
+          mat-menu-item
+          *ngIf="currentUser.hasPermission('albums.create')"
+          routerLink="/admin/backstage/upload"
+          class="button-with-icon"
+          trans
+        >
+          Upload Tracks
+        </a>
+        <button
+          mat-menu-item
+          type="button"
+          *ngIf="settings.get('spotify_is_setup')"
+          (click)="openImportMedialModal()"
+          trans
+        >
+          Import Album
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>
+
 <div class="datatable responsive-table">
-    <datatable-header pluralResourceName="albums">
-        <ng-container leftContent>
-            <button mat-raised-button color="accent" [matMenuTriggerFor]="menu" trans>New Album</button>
-            <mat-menu #menu="matMenu">
-                <a mat-menu-item routerLink="/admin/backstage/upload" *ngIf="currentUser.hasPermission('albums.create')">
-                    <mat-icon svgIcon="file-upload"></mat-icon>
-                    <span trans>Upload Tracks</span>
-                </a>
-                <a mat-menu-item routerLink="/admin/backstage/albums/new" *ngIf="currentUser.hasPermission('albums.create')">
-                    <mat-icon svgIcon="add"></mat-icon>
-                    <span trans>Create Manually</span>
-                </a>
-                <button mat-menu-item type="button" *ngIf="settings.get('spotify_is_setup')" (click)="openImportMedialModal()">
-                    <mat-icon svgIcon="sync"></mat-icon>
-                    <span trans>Import</span>
-                </button>
-            </mat-menu>
-        </ng-container>
-        <button rightContent mat-raised-button color="accent" (click)="maybeDeleteSelectedAlbums()" *ngIf="currentUser.hasPermission('albums.delete')" trans>Delete Selected</button>
-    </datatable-header>
-    <table class="material-table">
-        <thead>
-        <tr>
-            <th table-header-checkbox></th>
-            <th trans>Album</th>
-            <th trans>Artist</th>
-            <th table-sort-header trans>Release Date</th>
-            <th trans>Number Of Tracks</th>
-            <th table-sort-header="plays" trans>Plays</th>
-            <th table-sort-header="updated_at" trans>Last Updated</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let album of albums$ | async">
-            <td [table-body-checkbox]="album.id"></td>
-            <td>
-                <div class="column-with-image">
-                    <media-image [media]="album" default="album"></media-image>
-                    <a [routerLink]="urls.album(album)" class="link">{{album.name}}</a>
-                </div>
-            </td>
-            <td data-label="Artist">
-                <div class="column-with-image" *ngIf="album.artists[0] as artist">
-                    <media-image [media]="artist" default="artist"></media-image>
-                    <a [routerLink]="urls.artist(artist)" class="link">{{artist.name}}</a>
-                </div>
-            </td>
-            <td data-label="Release Date">{{album.release_date ? album.release_date: '&ndash;'}}</td>
-            <td data-label="Number of Tracks">{{album.tracks_count ? album.tracks_count: '&ndash;'}}</td>
-            <td data-label="Views">{{album.plays ? (album.plays | number) : '&ndash;'}}</td>
-            <td data-label="Last Updated">{{album.updated_at | formattedDate}}</td>
-            <td class="edit-column">
-                <a mat-icon-button [routerLink]="urls.editAlbum(album, true)" *ngIf="currentUser.hasPermission('albums.update')" [matTooltip]="'Edit album' | trans">
-                    <mat-icon svgIcon="edit"></mat-icon>
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <no-results-message svgImage="music.svg" *ngIf="datatable.paginator.noResults$ | async">
-        <span primary-text>No albums have been created yet</span>
-    </no-results-message>
-    <datatable-footer></datatable-footer>
+  <mat-progress-bar
+    class="loading-bar"
+    mode="indeterminate"
+    color="accent"
+    *ngIf="datatable.paginator && datatable.paginator.loading$ | async"
+  ></mat-progress-bar>
+  <table class="material-table">
+    <thead>
+    <tr>
+      <th table-header-checkbox></th>
+      <th trans>Album</th>
+      <th trans>Artist</th>
+      <th table-sort-header trans>Release Date</th>
+      <th trans>Number Of Tracks</th>
+      <th table-sort-header="plays" trans>Plays</th>
+      <th table-sort-header="updated_at" trans>Last Updated</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let album of albums$ | async">
+      <td [table-body-checkbox]="album.id"></td>
+      <td>
+        <div class="column-with-image">
+          <media-image [media]="album" default="album"></media-image>
+          <a [routerLink]="urls.album(album)" class="link">{{album.name}}</a>
+        </div>
+      </td>
+      <td data-label="Artist">
+        <div class="column-with-image" *ngIf="album.artists[0] as artist">
+          <media-image [media]="artist" default="artist"></media-image>
+          <a [routerLink]="urls.artist(artist)" class="link">{{artist.name}}</a>
+        </div>
+      </td>
+      <td data-label="Release Date">{{album.release_date ? album.release_date: '&ndash;'}}</td>
+      <td data-label="Number of Tracks">{{album.tracks_count ? album.tracks_count: '&ndash;'}}</td>
+      <td data-label="Views">{{album.plays ? (album.plays | number) : '&ndash;'}}</td>
+      <td data-label="Last Updated">{{album.updated_at | formattedDate}}</td>
+      <td class="edit-column">
+        <a mat-icon-button [routerLink]="urls.editAlbum(album, true)" *ngIf="currentUser.hasPermission('albums.update')" [matTooltip]="'Edit album' | trans">
+          <mat-icon svgIcon="edit"></mat-icon>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <no-results-message svgImage="music.svg" *ngIf="datatable.paginator.noResults$ | async">
+    <span primary-text>No albums have been created yet</span>
+  </no-results-message>
+  <datatable-footer></datatable-footer>
 </div>

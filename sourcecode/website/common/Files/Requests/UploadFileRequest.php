@@ -73,13 +73,13 @@ class UploadFileRequest extends BaseFormRequest
             }
 
             // check if user has enough space left to upload all files.
-            if ($this->spaceUsage->userIsOutOfSpace($this->file('file'))) {
+            if ( ! $this->spaceUsage->hasEnoughSpaceToUpload($this->file('file')->getSize())) {
                 $validator->errors()->add(
                     'file',
                     __(
                         'You have exhausted your allowed space of :space. Delete some files or upgrade your plan.',
                         [
-                            'space' => $this->formatBytes(
+                            'space' => self::formatBytes(
                                 $this->spaceUsage->getAvailableSpace(),
                             ),
                         ],
@@ -89,7 +89,7 @@ class UploadFileRequest extends BaseFormRequest
         });
     }
 
-    private function formatBytes($bytes, $unit = 'MB')
+    public static function formatBytes($bytes, $unit = 'MB'): string
     {
         if ((!$unit && $bytes >= 1 << 30) || $unit == 'GB') {
             return number_format($bytes / (1 << 30), 1) . 'GB';

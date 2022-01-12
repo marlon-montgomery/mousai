@@ -3,7 +3,6 @@ import {Track} from '../../models/Track';
 import {PlayerState} from './player-state.service';
 import {shuffler} from './shuffler';
 import {LocalStorage} from '@common/core/services/local-storage.service';
-import {Settings} from '@common/core/config/settings.service';
 import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
@@ -56,7 +55,7 @@ export class PlayerQueue {
 
     public override(params: {tracks: Track[], queuedItemId?: string}, queuePointer: number = 0) {
         this.queuedMediaItemId = params.queuedItemId;
-        this.shuffledQueue$.next(params.tracks.slice());
+        this.shuffledQueue$.next([...params.tracks]);
         if (this.state.shuffling) this.shuffle(true);
         this.originalQueue = params.tracks.slice();
         this.set(queuePointer);

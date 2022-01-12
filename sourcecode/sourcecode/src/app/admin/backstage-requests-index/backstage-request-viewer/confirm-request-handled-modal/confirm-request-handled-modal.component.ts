@@ -11,7 +11,7 @@ export interface ConfirmRequestApprovalModalData {
 
 export interface ConfirmRequestApprovalResult {
     confirmed: boolean;
-    verify?: boolean;
+    verifyArtist?: boolean;
     notes?: string;
 }
 

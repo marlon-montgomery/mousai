@@ -1,69 +1,84 @@
 <div class="material-panel">
-    <form class="edit-main-info" (ngSubmit)="createOrUpdate()" [formGroup]="form" ngNativeValidate>
-        <div class="left-col">
-            <upload-image-control formControlName="image_small" diskPrefix="artist"></upload-image-control>
-            <button type="submit" mat-raised-button color="accent" class="main-button" *ngIf="artist" trans>Update</button>
-            <button type="submit" mat-raised-button color="accent" class="main-button" *ngIf="!artist" trans>Create</button>
-        </div>
-        <div class="right-col many-inputs admin-artist-edit-inputs">
+  <form class="edit-main-info" (ngSubmit)="createOrUpdate()" [formGroup]="form" ngNativeValidate>
+    <div class="left-col">
+      <upload-image-control formControlName="image_small"
+                            diskPrefix="artist"></upload-image-control>
+      <button type="submit" mat-raised-button color="accent" class="main-button" *ngIf="artist"
+              trans>Update
+      </button>
+      <button type="submit" mat-raised-button color="accent" class="main-button" *ngIf="!artist"
+              trans>Create
+      </button>
+    </div>
+    <div class="right-col many-inputs admin-artist-edit-inputs">
 
-            <mat-tab-group color="accent" animationDuration="0ms">
-                <mat-tab [label]="'Details' | trans">
-                    <div class="many-inputs tab">
-                        <div class="input-container">
-                            <label for="artist-name" trans>Name</label>
-                            <input type="text" formControlName="name" id="artist-name" [readOnly]="!insideAdmin" required>
-                            <div class="error" *ngIf="errors.name">{{errors.name}}</div>
-                        </div>
-                        <div class="input-container">
-                            <label for="artist-genres" trans>Genres</label>
-                            <chip-input placeholder="+Add genre" id="artist-genres" [suggestFn]="suggestGenreFn" formControlName="genres"></chip-input>
-                            <div class="error" *ngIf="errors.genres">{{errors.genres}}</div>
-                        </div>
-                        <div class="input-container">
-                            <label for="artist-bitclout" trans>Bitclout Username</label>
-                            <input type="text" formControlName="bitclout" id="artist-bitclout" [readOnly]="!insideAdmin">
-                        </div>
-                        <div class="setting-toggle-container" *ngIf="insideAdmin">
-                            <mat-slide-toggle formControlName="verified" trans>Verified</mat-slide-toggle>
-                            <div class="error" *ngIf="errors.verified">{{errors.verified}}</div>
-                        </div>
-                    </div>
-                </mat-tab>
-                <mat-tab [label]="'Links' | trans">
-                    <profile-links-form-control formControlName="links"></profile-links-form-control>
-                </mat-tab>
-                <mat-tab [label]="'Biography' | trans">
-                    <div class="many-inputs tab">
-                        <div class="input-container">
-                            <label for="artist-country" trans>Country</label>
-                            <input formControlName="country" id="artist-country">
-                        </div>
-                        <div class="input-container">
-                            <label for="artist-city" trans>City</label>
-                            <input formControlName="city" id="artist-city">
-                        </div>
-                        <div class="input-container">
-                            <label for="artist-bio" trans>Biography</label>
-                            <textarea formControlName="description" id="artist-bio" rows="8"></textarea>
-                        </div>
-                        <div class="profile-images">
-                            <div class="profile-images-title" trans>Biography Images</div>
-                            <div class="profile-images-wrapper" formArrayName="profile_images">
-                                <upload-image-control
-                                    *ngFor="let image of profileImagesArray().controls; index as i"
-                                    [formControlName]="i"
-                                    (fileDeleted)="removeProfileImage(i)"
-                                    [uploadConfig]="{httpParams: {diskPrefix: 'bio'}}"
-                                    [buttonText]="image.value ? 'Replace Image' : 'Upload Image'"
-                                ></upload-image-control>
-                            </div>
-                        </div>
-                    </div>
-                </mat-tab>
-            </mat-tab-group>
-        </div>
-    </form>
+      <mat-tab-group color="accent" animationDuration="0ms">
+        <mat-tab [label]="'Details' | trans">
+          <div class="many-inputs tab">
+            <div class="input-container">
+              <label for="artist-name" trans>Name</label>
+              <input type="text" formControlName="name" id="artist-name" [readOnly]="!insideAdmin"
+                     required>
+              <div class="error" *ngIf="errors.name">{{errors.name}}</div>
+            </div>
+            <div class="input-container">
+              <label for="artist-genres" trans>Genres</label>
+              <chip-input placeholder="+Add genre" id="artist-genres" [suggestFn]="suggestGenreFn"
+                          formControlName="genres"></chip-input>
+              <div class="error" *ngIf="errors.genres">{{errors.genres}}</div>
+            </div>
+            <div class="input-container">
+              <label for="artist-bitclout" trans>Bitclout Username</label>
+              <input type="text" formControlName="bitclout" id="artist-bitclout"
+                     [readOnly]="!insideAdmin">
+            </div>
+            <ng-container *ngIf="insideAdmin">
+              <div class="input-container" *ngIf="settings.get('spotify_is_setup')">
+                <label for="artist-spotify-id" trans>Spotify ID</label>
+                <input type="text" id="artist-spotify-id" formControlName="spotify_id"
+                       minlength="22" maxlength="22">
+              </div>
+              <div class="setting-toggle-container">
+                <mat-slide-toggle formControlName="verified" trans>Verified</mat-slide-toggle>
+                <div class="error" *ngIf="errors.verified">{{errors.verified}}</div>
+              </div>
+            </ng-container>
+          </div>
+        </mat-tab>
+        <mat-tab [label]="'Links' | trans">
+          <profile-links-form-control formControlName="links"></profile-links-form-control>
+        </mat-tab>
+        <mat-tab [label]="'Biography' | trans">
+          <div class="many-inputs tab">
+            <div class="input-container">
+              <label for="artist-country" trans>Country</label>
+              <input formControlName="country" id="artist-country">
+            </div>
+            <div class="input-container">
+              <label for="artist-city" trans>City</label>
+              <input formControlName="city" id="artist-city">
+            </div>
+            <div class="input-container">
+              <label for="artist-bio" trans>Biography</label>
+              <textarea formControlName="description" id="artist-bio" rows="8"></textarea>
+            </div>
+            <div class="profile-images">
+              <div class="profile-images-title" trans>Biography Images</div>
+              <div class="profile-images-wrapper" formArrayName="profile_images">
+                <upload-image-control
+                  *ngFor="let image of profileImagesArray().controls; index as i"
+                  [formControlName]="i"
+                  (fileDeleted)="removeProfileImage(i)"
+                  [uploadConfig]="{httpParams: {diskPrefix: 'bio'}}"
+                  [buttonText]="image.value ? 'Replace Image' : 'Upload Image'"
+                ></upload-image-control>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </form>
 
-    <artist-albums-table [albums]="albums" [artist]="artist"></artist-albums-table>
+  <artist-albums-table [albums]="albums" [artist]="artist"></artist-albums-table>
 </div>

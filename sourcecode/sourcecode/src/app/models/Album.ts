@@ -10,6 +10,7 @@ export interface Album {
     name: string;
     model_type: 'album';
     release_date?: string;
+    spotify_id?: string;
     image?: string;
     artists?: Artist[];
     reposts_count?: number;

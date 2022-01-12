@@ -1,48 +1,112 @@
+<div class="datatable-page-header">
+  <h1 trans>Artists</h1>
+  <div class="header">
+    <datatable-filters pluralName="artists" [filters]="filters"></datatable-filters>
+    <div class="action-buttons">
+      <button
+        mat-raised-button
+        color="accent"
+        class="button-with-icon"
+        [matMenuTriggerFor]="menu"
+      >
+        <mat-icon svgIcon="add"></mat-icon>
+        <span trans>New Artist</span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a
+          mat-menu-item
+          *ngIf="currentUser.hasPermission('artists.create')"
+          routerLink="/admin/backstage/artists/new"
+          class="button-with-icon"
+          trans
+        >
+          Create Artist
+        </a>
+        <button
+          mat-menu-item
+          type="button"
+          *ngIf="settings.get('spotify_is_setup')"
+          (click)="openImportMedialModal()"
+          trans
+        >
+          Import Artist
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>
+
 <div class="datatable responsive-table">
-    <datatable-header pluralResourceName="artists">
-        <ng-container leftContent>
-            <a mat-raised-button color="accent" routerLink="/admin/backstage/artists/new" *ngIf="currentUser.hasPermission('artists.create')" headerActions trans>Add</a>
-            <button mat-button type="button" *ngIf="settings.get('spotify_is_setup')" (click)="openImportMedialModal()" trans>Import</button>
-        </ng-container>
-        '<button rightContent mat-raised-button color="accent" (click)="maybeDeleteSelectedArtists()" *ngIf="currentUser.hasPermission('artists.delete')" trans>Delete Selected</button>
-    </datatable-header>
-    <table class="material-table">
-        <thead>
-        <tr>
-            <th table-header-checkbox></th>
-            <th trans>Artist</th>
-            <th trans>Bitclout Username</th>
-            <th trans>Number of Albums</th>
-            <th table-sort-header="plays" trans>Total Plays</th>
-            <th table-sort-header="views" trans>Page Views</th>
-            <th table-sort-header="updated_at" trans>Last Updated</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let artist of artists$ | async">
-            <td [table-body-checkbox]="artist.id"></td>
-            <td>
-                <div class="column-with-image">
-                    <media-image [media]="artist"></media-image>
-                    <a [routerLink]="urls.artist(artist)" class="link" target="_blank">{{artist.name}}</a>
-                </div>
-            </td>
-            <td data-label="Bitclout Username">{{artist.bitclout}}</td>
-            <td data-label="Number of Albums">{{artist.albums_count}}</td>
-            <td data-label="Popularity">{{artist.plays | number}}</td>
-            <td data-label="Page Views">{{artist.views | number}}</td>
-            <td data-label="Last Updated">{{artist.updated_at | formattedDate}}</td>
-            <td class="edit-column">
-                <a mat-icon-button [routerLink]="urls.editArtist(artist.id, true)" *ngIf="currentUser.hasPermission('artists.update')" [matTooltip]="'Edit artist' | trans">
-                    <mat-icon svgIcon="edit"></mat-icon>
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <no-results-message svgImage="music.svg" *ngIf="datatable.paginator.noResults$ | async">
-        <span primary-text>No artists have been created yet</span>
-    </no-results-message>
-    <datatable-footer></datatable-footer>
+  <mat-progress-bar
+    class="loading-bar"
+    mode="indeterminate"
+    color="accent"
+    *ngIf="datatable.paginator && datatable.paginator.loading$ | async"
+  ></mat-progress-bar>
+  <table class="material-table">
+    <thead>
+      <tr>
+        <th table-header-checkbox></th>
+        <th trans>Artist</th>
+        <th trans>Bitclout Username</th>
+        <th table-sort-header="albums_count" trans>Number of Albums</th>
+        <th table-sort-header="plays" trans>Total Plays</th>
+        <th table-sort-header="views" trans>Page Views</th>
+        <th table-sort-header="updated_at" trans>Last Updated</th>
+        <th></th>
+      </tr>
+      <tr *ngIf="datatable.selectedRows$.value.length as selectedCount">
+        <th colspan="7">
+          <div
+            class="bulk-actions-title"
+            [transValues]="{count: selectedCount, resource: 'artist(s)'}"
+            trans
+          >
+            :count :resource selected:
+          </div>
+          <div class="bulk-actions">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="maybeDeleteSelectedArtists()"
+              *ngIf="currentUser.hasPermission('artists.delete')"
+              trans
+            >
+              Delete
+            </button>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let artist of artists$ | async">
+        <td [table-body-checkbox]="artist.id"></td>
+        <td>
+          <div class="column-with-image">
+            <media-image [media]="artist"></media-image>
+            <a [routerLink]="urls.artist(artist)" class="link" target="_blank">{{ artist.name }}</a>
+          </div>
+        </td>
+        <td data-label="Bitclout Username">{{artist.bitclout}}</td>
+        <td data-label="Number of Albums">{{ artist.albums_count }}</td>
+        <td data-label="Popularity">{{ artist.plays | number }}</td>
+        <td data-label="Page Views">{{ artist.views | number }}</td>
+        <td data-label="Last Updated">{{ artist.updated_at | formattedDate }}</td>
+        <td class="edit-column">
+          <a
+            mat-icon-button
+            [routerLink]="urls.editArtist(artist.id, true)"
+            *ngIf="currentUser.hasPermission('artists.update')"
+            [matTooltip]="'Edit artist' | trans"
+          >
+            <mat-icon svgIcon="edit"></mat-icon>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <no-results-message svgImage="music.svg" *ngIf="datatable.paginator.noResults$ | async">
+    <span primary-text>No artists have been created yet</span>
+  </no-results-message>
+  <datatable-footer></datatable-footer>
 </div>

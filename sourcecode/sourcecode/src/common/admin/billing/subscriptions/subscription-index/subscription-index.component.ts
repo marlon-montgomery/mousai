@@ -7,8 +7,9 @@ import {CurrentUser} from '@common/auth/current-user';
 import {Toast} from '@common/core/ui/toast.service';
 import {ConfirmModalComponent} from '@common/core/ui/confirm-modal/confirm-modal.component';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {DatatableService} from '../../../../datatable/datatable.service';
-import {Modal} from '../../../../core/ui/dialogs/modal.service';
+import {DatatableService} from '@common/datatable/datatable.service';
+import {Modal} from '@common/core/ui/dialogs/modal.service';
+import { SUBSCRIPTION_INDEX_FILTERS } from '@common/admin/billing/subscriptions/subscription-index/subscription-index-filters';
 
 @Component({
     selector: 'subscription-index',
@@ -18,8 +19,9 @@ import {Modal} from '../../../../core/ui/dialogs/modal.service';
     providers: [DatatableService],
 })
 export class SubscriptionIndexComponent implements OnInit {
-    public loading$ = new BehaviorSubject<boolean>(false);
-    public subscriptions$ = this.datatable.data$ as Observable<Subscription[]>;
+    filters = SUBSCRIPTION_INDEX_FILTERS;
+    loading$ = new BehaviorSubject<boolean>(false);
+    subscriptions$ = this.datatable.data$ as Observable<Subscription[]>;
 
     constructor(
         private modal: Modal,

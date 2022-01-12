@@ -326,7 +326,7 @@ Search results include hits from all the specified types.'
         '403':
           $ref: '#/components/schemas/403-Response'
   /playlists/{id}/tracks/add:
-    get:
+    post:
       tags:
         - Playlists
       summary: Add one or more tracks to a user's playlist
@@ -366,7 +366,7 @@ Search results include hits from all the specified types.'
         '403':
           $ref: '#/components/schemas/403-Response'
   /playlists/{id}/tracks/remove:
-    get:
+    post:
       tags:
         - Playlists
       summary: Remove one or more tracks from a user's playlist

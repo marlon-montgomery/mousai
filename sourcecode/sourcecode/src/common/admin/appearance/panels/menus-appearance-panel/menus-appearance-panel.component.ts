@@ -5,9 +5,10 @@ import {Modal} from '@common/core/ui/dialogs/modal.service';
 import {Settings} from '@common/core/config/settings.service';
 import {OverlayPanel} from '@common/core/ui/overlay-panel/overlay-panel.service';
 import {RIGHT_POSITION} from '@common/core/ui/overlay-panel/positions/right-position';
-import {AddMenuItemPanelComponent} from '@common/admin/appearance/panels/menus-appearance-panel/menus/add-menu-item-panel/add-menu-item-panel.component';
+import {SelectMenuItemActionComponent} from '@common/admin/appearance/panels/menus-appearance-panel/menus/add-menu-item-panel/select-menu-item-action.component';
 import {Menu} from '@common/core/ui/custom-menu/menu';
 import {ConfirmModalComponent} from '@common/core/ui/confirm-modal/confirm-modal.component';
+import {MenuItem} from '@common/core/ui/custom-menu/menu-item';
 
 @Component({
     selector: 'menus-appearance-panel',
@@ -22,7 +23,7 @@ export class MenusAppearancePanelComponent {
         private modal: Modal,
         private settings: Settings,
         private panel: OverlayPanel,
-        private el: ElementRef<HTMLElement>,
+        private el: ElementRef<HTMLElement>
     ) {
         this.menus.setFromJson(this.settings.get('menus'));
     }
@@ -31,11 +32,18 @@ export class MenusAppearancePanelComponent {
         const position = RIGHT_POSITION.slice();
         position[0].offsetX = 10;
         position[1].offsetX = 10;
-        this.panel.open(AddMenuItemPanelComponent, {
-            position: position,
-            origin: this.el,
-            panelClass: 'add-menu-item-panel-container'
-        });
+        this.panel
+            .open(SelectMenuItemActionComponent, {
+                position,
+                origin: this.el,
+                panelClass: 'add-menu-item-panel-container',
+            })
+            .afterClosed()
+            .subscribe((val: Partial<MenuItem>) => {
+                if (val) {
+                    this.menus.addItem(new MenuItem(val));
+                }
+            });
     }
 
     public openPreviousPanel() {
@@ -51,14 +59,17 @@ export class MenusAppearancePanelComponent {
     }
 
     public confirmMenuDeletion() {
-        this.modal.show(ConfirmModalComponent, {
-            title: 'Delete Menu',
-            body: 'Are you sure you want to delete this menu?',
-            ok: 'Delete'
-        }).afterClosed().subscribe(confirmed => {
-            if ( ! confirmed) return;
-            this.menus.deleteActive();
-        });
+        this.modal
+            .show(ConfirmModalComponent, {
+                title: 'Delete Menu',
+                body: 'Are you sure you want to delete this menu?',
+                ok: 'Delete',
+            })
+            .afterClosed()
+            .subscribe(confirmed => {
+                if (!confirmed) return;
+                this.menus.deleteActive();
+            });
     }
 
     public getDisplayName(name: string) {

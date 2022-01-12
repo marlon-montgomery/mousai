@@ -1,7 +1,5 @@
-import {Model} from '../../core/types/models/model';
-
-export function filterDatatableData<T extends Model>(data: T[], filter: string): T[] {
-    return data.filter(obj => filterPredicate(obj, filter));
+export function filterDatatableData<T = object>(data: T[], filter: string): T[] {
+    return data.filter(obj => filterPredicate(obj as any, filter));
 }
 /**
  * Checks if a data object matches the data source's filter string. By default, each data object
@@ -13,9 +11,9 @@ export function filterDatatableData<T extends Model>(data: T[], filter: string):
  * @param filter Filter string that has been set on the data source.
  * @returns Whether the filter matches against the data
  */
-function filterPredicate(data: object, filter: string): boolean {
+function filterPredicate(data: object|string, filter: string): boolean {
     // Transform the data into a lowercase string of all property values.
-    const dataStr = objectToStr(data);
+    const dataStr = typeof data === 'string' ? data : objectToStr(data);
 
     // Transform the filter by converting it to lowercase and removing whitespace.
     const transformedFilter = filter.trim().toLowerCase();

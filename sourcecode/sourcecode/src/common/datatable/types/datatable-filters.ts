@@ -4,5 +4,5 @@ export type DatatableFilterValue = Model|string|number;
 
 export interface DatatableFilters {
     query?: string;
-    [key: string]: DatatableFilterValue;
+    [key: string]: any;
 }

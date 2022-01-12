@@ -19,7 +19,7 @@
         [title]="notification.data.mainAction?.label || ''"
         (click)="performAction(notification.data.mainAction, notification, $event)"
     >
-        <image-or-icon class="inherit-size" [src]="notification.data.image"></image-or-icon>
+        <image-or-icon class="main-image inherit-size" [src]="notification.data.image"></image-or-icon>
         <div class="middle-column">
             <div class="line"
                  [ngClass]="line.type ? line.type : (index === 0 ? 'primary' : 'secondary')"
@@ -28,7 +28,7 @@
                  *ngFor="let line of notification.data.lines; index as index"
                  [class.has-action]="line.action"
             >
-                <mat-icon [svgIcon]="line.icon" *ngIf="line.icon"></mat-icon>
+                <image-or-icon class="line-icon" [src]="line.icon" *ngIf="line.icon"></image-or-icon>
                 <span [innerHTML]="line.content"></span>
             </div>
             <div class="line button-actions" *ngIf="notification.data.buttonActions">

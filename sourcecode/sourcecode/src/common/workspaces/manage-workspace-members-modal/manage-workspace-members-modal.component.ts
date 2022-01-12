@@ -1,4 +1,9 @@
-import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Inject,
+    OnInit,
+} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {Role} from '@common/core/types/models/Role';
@@ -16,6 +21,7 @@ import {ConfirmModalComponent} from '@common/core/ui/confirm-modal/confirm-modal
 import {Modal} from '@common/core/ui/dialogs/modal.service';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {LEAVE_WORKSPACE_CONFIRMATION} from '../leave-workspace-confirmation';
+import {SKELETON_ANIMATIONS} from '@common/core/ui/skeleton/skeleton-animations';
 
 export interface ManageWorkspaceMembersModalData {
     workspace?: Workspace;
@@ -28,31 +34,16 @@ type MemberOrInvite = WorkspaceMember | WorkspaceInvite;
     templateUrl: './manage-workspace-members-modal.component.html',
     styleUrls: ['./manage-workspace-members-modal.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: [
-        trigger('fadeIn', [
-            transition(':enter', [
-                style({opacity: 0}),
-                animate('325ms ease-in', style({
-                    opacity: 1,
-                }))
-            ])
-        ]),
-        trigger('fadeOut', [
-            transition(':leave', [
-                style({opacity: 1, position: 'absolute', left: '0', right: '0'}),
-                animate('325ms ease-out', style({
-                    opacity: 0
-                }))
-            ])
-        ])
-    ]
+    animations: SKELETON_ANIMATIONS,
 })
 export class ManageWorkspaceMembersModalComponent implements OnInit {
     public inviting$ = new BehaviorSubject(false);
     public deleting$ = new BehaviorSubject(false);
     public loadingMembers$ = new BehaviorSubject(false);
     public workspaceRoles$ = new BehaviorSubject<Role[]>([]);
-    public members$ = new BehaviorSubject<(WorkspaceMember|WorkspaceInvite)[]>([]);
+    public members$ = new BehaviorSubject<
+        (WorkspaceMember | WorkspaceInvite)[]
+    >([]);
     public peopleToInvite = new FormControl([]);
 
     public canInvite = false;
@@ -66,7 +57,7 @@ export class ManageWorkspaceMembersModalComponent implements OnInit {
         private toast: Toast,
         private valueLists: ValueLists,
         public currentUser: CurrentUser,
-        private modal: Modal,
+        private modal: Modal
     ) {}
 
     ngOnInit() {
@@ -74,12 +65,13 @@ export class ManageWorkspaceMembersModalComponent implements OnInit {
         this.valueLists.get(['workspaceRoles']).subscribe(response => {
             this.workspaceRoles$.next(response.workspaceRoles);
         });
-        this.workspaces.get(this.data.workspace.id)
+        this.workspaces
+            .get(this.data.workspace.id)
             .pipe(finalize(() => this.loadingMembers$.next(false)))
             .subscribe(response => {
                 this.members$.next([
                     ...response.workspace.invites,
-                    ...response.workspace.members
+                    ...response.workspace.members,
                 ]);
                 this.setCurrentUserPermissions();
             });
@@ -93,20 +85,27 @@ export class ManageWorkspaceMembersModalComponent implements OnInit {
         const emails = this.peopleToInvite.value.filter(email => {
             return !this.members$.value.find(m => m.email === email);
         });
-        if ( ! emails.length) {
+        if (!emails.length) {
             this.peopleToInvite.reset();
             this.toast.open('All invited people are already members.');
             return;
         }
         const payload = {
             emails,
-            roleId: (this.workspaceRoles$.value.find(r => r.default) || this.workspaceRoles$.value[0]).id,
+            roleId: (
+                this.workspaceRoles$.value.find(r => r.default) ||
+                this.workspaceRoles$.value[0]
+            ).id,
         };
         this.inviting$.next(true);
-        this.workspaces.invitePeople(this.data.workspace.id, payload)
+        this.workspaces
+            .invitePeople(this.data.workspace.id, payload)
             .pipe(finalize(() => this.inviting$.next(false)))
             .subscribe(response => {
-                this.members$.next([...this.members$.value, ...response.invites]);
+                this.members$.next([
+                    ...this.members$.value,
+                    ...response.invites,
+                ]);
                 this.peopleToInvite.reset();
                 this.toast.open(WorkspaceMessages.INVITES_SENT);
             });
@@ -114,15 +113,17 @@ export class ManageWorkspaceMembersModalComponent implements OnInit {
 
     public resendInvite(invite: WorkspaceInvite) {
         this.inviting$.next(true);
-        this.workspaces.resendInvite(this.data.workspace.id, invite.id)
+        this.workspaces
+            .resendInvite(this.data.workspace.id, invite.id)
             .pipe(finalize(() => this.inviting$.next(false)))
             .subscribe(() => {
                 this.toast.open(WorkspaceMessages.INVITE_RESENT);
             });
     }
 
-    public changeRole(member: WorkspaceMember|WorkspaceInvite, role: Role) {
-        this.workspaces.changeRole(this.data.workspace.id, member, role.id)
+    public changeRole(member: WorkspaceMember | WorkspaceInvite, role: Role) {
+        this.workspaces
+            .changeRole(this.data.workspace.id, member, role.id)
             .subscribe(() => {
                 this.toast.open(WorkspaceMessages.ROLE_ASSIGNED);
                 const members = [...this.members$.value];
@@ -135,14 +136,21 @@ export class ManageWorkspaceMembersModalComponent implements OnInit {
 
     public deleteMember(member: MemberOrInvite) {
         this.deleting$.next(true);
-        const request = member.model_type === 'member' ?
-            this.workspaces.deleteMember(this.data.workspace.id, member.id) :
-            this.workspaces.deleteInvite(member.id);
+        const request =
+            member.model_type === 'member'
+                ? this.workspaces.deleteMember(
+                      this.data.workspace.id,
+                      member.id
+                  )
+                : this.workspaces.deleteInvite(member.id);
         request
             .pipe(finalize(() => this.deleting$.next(false)))
             .subscribe(() => {
                 const value = [...this.members$.value];
-                const i = value.findIndex((m: MemberOrInvite) => member.id && m.model_type === member.model_type);
+                const i = value.findIndex(
+                    (m: MemberOrInvite) =>
+                        member.id && m.model_type === member.model_type
+                );
                 value.splice(i, 1);
                 this.members$.next(value);
                 if (member.id === this.currentUser.get('id')) {
@@ -190,9 +198,23 @@ export class ManageWorkspaceMembersModalComponent implements OnInit {
     }
 
     private setCurrentUserPermissions() {
-        const member = this.members$.value.find(m => m.id === this.currentUser.get('id')) as WorkspaceMember;
-        this.canInvite = member.is_owner || !!member.permissions.find(p => p.name === 'workspace_members.invite');
-        this.canEdit = member.is_owner || !!member.permissions.find(p => p.name === 'workspace_members.update');
-        this.canDelete = member.is_owner || !!member.permissions.find(p => p.name === 'workspace_members.delete');
+        const member = this.members$.value.find(
+            m => m.id === this.currentUser.get('id')
+        ) as WorkspaceMember;
+        this.canInvite =
+            member.is_owner ||
+            !!member.permissions.find(
+                p => p.name === 'workspace_members.invite'
+            );
+        this.canEdit =
+            member.is_owner ||
+            !!member.permissions.find(
+                p => p.name === 'workspace_members.update'
+            );
+        this.canDelete =
+            member.is_owner ||
+            !!member.permissions.find(
+                p => p.name === 'workspace_members.delete'
+            );
     }
 }

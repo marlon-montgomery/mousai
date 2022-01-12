@@ -5,17 +5,20 @@ import {
     HostBinding,
     Input,
     OnDestroy,
-    OnInit
+    OnInit,
 } from '@angular/core';
 import {Subscription} from 'rxjs';
 import {CurrentUser} from '@common/auth/current-user';
 import {Menu} from '@common/core/ui/custom-menu/menu';
 import {Settings} from '@common/core/config/settings.service';
 import {snakeCase} from '@common/core/utils/snake-case';
-import {MenuItem, MenuItemCondition} from '@common/core/ui/custom-menu/menu-item';
+import {
+    MenuItem,
+    MenuItemCondition,
+} from '@common/core/ui/custom-menu/menu-item';
 import {getQueryParams} from '@common/core/utils/get-query-params';
 import {AppearanceListenerService} from '@common/shared/appearance/appearance-listener.service';
-import {distinctUntilKeyChanged, skip, startWith} from 'rxjs/operators';
+import {distinctUntilKeyChanged, skip} from 'rxjs/operators';
 
 @Component({
     selector: 'custom-menu',
@@ -28,7 +31,7 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
     @Input() @HostBinding('class.vertical') vertical = false;
     @Input() @HostBinding('class.horizontal') horizontal = false;
     @Input() @HostBinding('class.compact') compact = false;
-    @Input() position: string|MenuItem[];
+    @Input() position: string | MenuItem[];
     @Input() showTitle = false;
     @Input() itemClass: string;
     public menu = new Menu();
@@ -39,7 +42,7 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
         private currentUser: CurrentUser,
         private changeDetector: ChangeDetectorRef,
         private appearance: AppearanceListenerService,
-        private cd: ChangeDetectorRef,
+        private cd: ChangeDetectorRef
     ) {}
 
     ngOnInit() {
@@ -49,7 +52,8 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
 
         // re-render if menu setting is changed
         if (this.appearance.active) {
-            const sub = this.settings.all$()
+            const sub = this.settings
+                .all$()
                 // skip first settings change, as menu will
                 // already by initiated with initial settings above
                 .pipe(skip(1), distinctUntilKeyChanged('menus'))
@@ -68,16 +72,17 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
     }
 
     public toSnakeCase(string: string) {
+        if ( ! string) return null;
         return snakeCase(string);
     }
 
     public shouldShow(condition: MenuItemCondition): boolean {
-        if ( ! condition) return true;
+        if (!condition) return true;
 
         if (Array.isArray(condition)) {
             return condition.every(c => this.shouldShow(c));
         }
-        
+
         if (typeof condition === 'function') {
             return condition(this.currentUser, this.settings);
         }
@@ -96,7 +101,10 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
                     negate = true;
                 }
                 if (condition.startsWith('permission:')) {
-                    return negate !== this.currentUser.hasPermission(condition.split(':')[1]);
+                    return (
+                        negate !==
+                        this.currentUser.hasPermission(condition.split(':')[1])
+                    );
                 } else {
                     return true;
                 }
@@ -104,8 +112,10 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
     }
 
     public getItemType(item: MenuItem): string {
-        if (item.type === 'link' && item.action.indexOf('//') === -1) return 'route';
-        if (item.action.indexOf(this.settings.getBaseUrl(true)) > -1) return 'route';
+        if (item.type === 'link' && item.action.indexOf('//') === -1)
+            return 'route';
+        if (item.action.indexOf(this.settings.getBaseUrl(true)) > -1)
+            return 'route';
         return item.type;
     }
 
@@ -124,12 +134,12 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
         // get stored custom menus
         const json = this.settings.get('menus');
         const menus = JSON.parse(json);
-        if ( ! menus) return this.shouldHide = true;
+        if (!menus) return (this.shouldHide = true);
 
         // find first menu for specified position
         const menuConfig = menus.find(menu => menu.position === this.position);
-        if ( ! menuConfig) {
-            return this.shouldHide = true;
+        if (!menuConfig) {
+            return (this.shouldHide = true);
         }
 
         this.menu = new Menu(menuConfig);

@@ -22,9 +22,7 @@ class AlgoliaFilterer extends BaseFilterer
                     $options['filters'] = $filters;
                 }
                 return $algolia->search($query, $options);
-            })
-            ->keys()
-            ->toArray();
+            });
     }
 
     private function coerceFilterValuesToString(): array
@@ -42,6 +40,10 @@ class AlgoliaFilterer extends BaseFilterer
 
             if ( ! is_numeric($filter['value']) && $filter['operator'] === '=') {
                 $filter['operator'] = ':';
+            }
+
+            if (is_array($filter['value'])) {
+                $filter['value'] = implode(',', $filter['value']);
             }
 
             return $prefix . implode('', $filter);

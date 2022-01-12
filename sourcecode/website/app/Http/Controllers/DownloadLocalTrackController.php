@@ -38,7 +38,7 @@ class DownloadLocalTrackController extends BaseController
             abort(404);
         }
 
-        preg_match('/.+?\/storage\/track_media\/(.+?\.[a-z0-9]+)/', $track->url, $matches);
+        preg_match('/.+?\/?storage\/track_media\/(.+?\.[a-z0-9]+)/', $track->url, $matches);
 
         // track is local
         if (isset($matches[1])) {
@@ -55,10 +55,14 @@ class DownloadLocalTrackController extends BaseController
             $response = response()->stream(function() use($track) {
                 echo file_get_contents($track->url);
             });
+
+            $path = parse_url($track->url, PHP_URL_PATH);
+            $extension = pathinfo($path, PATHINFO_EXTENSION) ?: 'mp3';
+
             $disposition = $response->headers->makeDisposition(
                 ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-                "$track->name.mp3",
-                str_replace('%', '', Str::ascii("$track->name.mp3"))
+                "$track->name.$extension",
+                str_replace('%', '', Str::ascii("$track->name.$extension"))
             );
 
             $response->headers->replace([

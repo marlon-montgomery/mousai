@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "../../../../../scss/variables";
 
 volume-controls {
@@ -30,7 +31,7 @@ volume-controls {
     .progress-track {
       position: absolute;
       left: 0;
-      top: ceil(($wp-controls-height / 2) - ($wp-controls-progress-height / 2));
+      top: ceil(math.div($wp-controls-height, 2) - math.div($wp-controls-progress-height, 2));
       height: 5px;
       background-color: mat-color($app-foreground, hint-text);
       width: 0;
@@ -41,7 +42,7 @@ volume-controls {
     display: none;
     position: absolute;
     left: 0;
-    top: ceil(($wp-controls-height / 2) - ($wp-controls-handle-height / 2));
+    top: ceil(math.div($wp-controls-height, 2) - math.div($wp-controls-handle-height, 2));
     width: 12px;
     height: 12px;
     background-color: mat-color($app-foreground, text);

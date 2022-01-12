@@ -7,6 +7,7 @@ export interface CustomPage {
     slug: string;
     type: string;
     user?: User;
+    user_id?: number;
     hide_nav: boolean;
     created_at?: string;
     updated_at?: string;

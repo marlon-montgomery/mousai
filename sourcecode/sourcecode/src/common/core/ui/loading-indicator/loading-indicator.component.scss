@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "variables";
 
 // full screen overlay
@@ -12,8 +13,8 @@
 
   .spinner {
     position: absolute;
-    top: calc(50% - #{$loading-indicator-height / 2});
-    left: calc(50% - #{$loading-indicator-width / 2});
+    top: calc(50% - #{math.div($loading-indicator-height, 2)});
+    left: calc(50% - #{math.div($loading-indicator-width, 2)});
   }
 }
 
@@ -25,18 +26,18 @@
 }
 
 :host-context(.small) {
-  width: $loading-indicator-width / 2.8;
-  height: $loading-indicator-height / 2.8;
+  width: math.div($loading-indicator-width, 2.8);
+  height: math.div($loading-indicator-height, 2.8);
 
   .spinner {
-    width: $loading-indicator-width / 2.8;
-    height: $loading-indicator-height / 2.8;
+    width: math.div($loading-indicator-width, 2.8);
+    height: math.div($loading-indicator-height, 2.8);
 
     > div {
-      width: ($loading-indicator-width / 4) / 2.8;
-      height: ($loading-indicator-width / 4) / 2.8;
-      margin-top: (-(($loading-indicator-width / 4) / 2)) / 2.8;
-      margin-left: (-(($loading-indicator-width / 4) / 2)) / 2.8;
+      width: math.div($loading-indicator-width, 4 * 2.8);
+      height: math.div($loading-indicator-width, 4 * 2.8);
+      margin-top: -1 * math.div($loading-indicator-width, 4 * 2 * 2.8);
+      margin-left: -1 * math.div($loading-indicator-width, 4 * 2 * 2.8);
     }
   }
 }
@@ -70,10 +71,10 @@
   color: $loading-indicator-color;
 
   > div {
-    width: $loading-indicator-width / 4;
-    height: $loading-indicator-width / 4;
-    margin-top: -(($loading-indicator-width / 4) / 2);
-    margin-left: -(($loading-indicator-width / 4) / 2);
+    width: math.div($loading-indicator-width, 4);
+    height: math.div($loading-indicator-width, 4);
+    margin-top: -1 * math.div($loading-indicator-width, 4 * 2);
+    margin-left: -1 * math.div($loading-indicator-width, 4 * 2);
   }
 }
 
@@ -84,8 +85,8 @@
 }
 
 :host-context(.center) {
-  top: calc(50% - #{$loading-indicator-height / 2});
-  left: calc(50% - #{$loading-indicator-width / 2});
+  top: calc(50% - #{math.div($loading-indicator-height, 2)});
+  left: calc(50% - #{math.div($loading-indicator-width, 2)});
 }
 
 :host-context(.overlay-light) {

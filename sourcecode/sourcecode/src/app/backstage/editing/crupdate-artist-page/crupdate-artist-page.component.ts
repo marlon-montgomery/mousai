@@ -36,9 +36,10 @@ export class CrupdateArtistPageComponent implements OnInit, ComponentCanDeactiva
 
     public form = this.fb.group({
         name: [''],
-        bitclout: [''],
         verified: [''],
         image_small: [''],
+        spotify_id: [''],
+        bitclout: [''],
         genres: [[]],
         description: [''],
         country: [''],
@@ -48,7 +49,7 @@ export class CrupdateArtistPageComponent implements OnInit, ComponentCanDeactiva
     });
 
     constructor(
-        private settings: Settings,
+        public settings: Settings,
         private uploadQueue: UploadQueueService,
         private artists: Artists,
         private route: ActivatedRoute,
@@ -104,9 +105,10 @@ export class CrupdateArtistPageComponent implements OnInit, ComponentCanDeactiva
                 this.albums = data.api.albums;
                 this.form.patchValue({
                     name: data.api.artist.name,
-                    bitclout: data.api.artist.bitclout,
                     verified: data.api.artist.verified,
                     image_small: data.api.artist.image_small,
+                    spotify_id: data.api.artist.spotify_id,
+                    bitclout: data.api.artist.bitclout,
                     genres: (data.api.artist.genres || []).map(g => g.name),
                     description: data.api.artist.profile?.description,
                     country: data.api.artist.profile?.country,

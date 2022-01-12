@@ -57,7 +57,9 @@ export class SocialAuthService {
      * Log user in with specified social account.
      */
     public loginWith(serviceName: string): Promise<User> {
-        return this.openNewSocialAuthWindow('secure/auth/social/' + serviceName + '/login');
+        return this.openNewSocialAuthWindow(
+            `secure/auth/social/${serviceName}/login`
+        );
     }
 
     public async loginWithBitclout() {
@@ -80,25 +82,29 @@ export class SocialAuthService {
     /**
      * Connect specified social account to current user.
      */
-    public connect(serviceName: string): Promise<User> {
-        return this.openNewSocialAuthWindow('secure/auth/social/' + serviceName + '/connect');
+    connect(serviceName: string): Promise<User> {
+        return this.openNewSocialAuthWindow(
+            'secure/auth/social/' + serviceName + '/connect'
+        );
     }
 
-    public retrieveProfile(serviceName: string): Promise<ExternalSocialProfile> {
-        return this.openNewSocialAuthWindow('secure/auth/social/' + serviceName + '/retrieve-profile');
+    retrieveProfile(serviceName: string): Promise<ExternalSocialProfile> {
+        return this.openNewSocialAuthWindow(
+            'secure/auth/social/' + serviceName + '/retrieve-profile'
+        );
     }
 
     /**
      * Disconnect specified social account from current user.
      */
-    public disconnect(serviceName: string) {
+    disconnect(serviceName: string) {
         return this.httpClient.post('auth/social/' + serviceName + '/disconnect');
     }
 
     /**
      * Handle social login callback, based on returned status.
      */
-    public socialLoginCallback(status: string, data = null) {
+    socialLoginCallback(status: string, data = null) {
         if (!status) return;
         switch (status.toUpperCase()) {
             case 'SUCCESS':
@@ -108,9 +114,6 @@ export class SocialAuthService {
             case 'SUCCESS_CONNECTED':
                 if (this.resolve) this.resolve(data.user);
                 break;
-            case 'SUCCESS_PROFILE_RETRIEVE':
-                if (this.resolve) this.resolve(data.profile);
-                break;
             case 'ALREADY_LOGGED_IN':
                 this.router.navigate([this.auth.getRedirectUri()]);
                 break;
@@ -118,8 +121,13 @@ export class SocialAuthService {
                 this.showRequestExtraCredentialsModal({credentials: data});
                 break;
             case 'ERROR':
-                const message = data ? data : this.i18n.t('An error occurred. Please try again later');
+                const message = data
+                    ? data
+                    : this.i18n.t('An error occurred. Please try again later');
                 this.toast.open(message, {duration: 6000});
+                break;
+            default:
+                if (this.resolve) this.resolve(data.profile);
         }
     }
 
@@ -127,7 +135,10 @@ export class SocialAuthService {
      * Open extra credentials modal and subscribe to modal events.
      */
     public showRequestExtraCredentialsModal(config: object) {
-        this.extraCredentialsModal = this.modal.open(RequestExtraCredentialsModalComponent, config);
+        this.extraCredentialsModal = this.modal.open(
+            RequestExtraCredentialsModalComponent,
+            config
+        );
         this.extraCredentialsModal.componentInstance.onSubmit$.subscribe(credentials => {
             if (!credentials) return;
             this.sendExtraCredentialsToBackend(credentials);
@@ -137,30 +148,36 @@ export class SocialAuthService {
     /**
      * Send specified credentials to backend and handle success/error.
      */
-    public sendExtraCredentialsToBackend(params: object) {
-        this.httpClient.post('auth/social/extra-credentials', params).subscribe(({data}) => {
-            this.currentUser.assignCurrent(data);
-            this.extraCredentialsModal.close();
-            this.router.navigate([this.auth.getRedirectUri()]).then(() => {
-                this.toast.open('Accounts connected');
-            });
-        }, this.extraCredentialsModal.componentInstance.handleErrors.bind(this.extraCredentialsModal.componentInstance));
+    public sendExtraCredentialsToBackend(data: object) {
+        this.httpClient
+            .post('auth/social/extra-credentials', data)
+            .subscribe(response => {
+                this.currentUser.assignCurrent(response['data']);
+                this.extraCredentialsModal.close();
+                this.router.navigate([this.auth.getRedirectUri()]).then(() => {
+                    this.toast.open('Accounts connected');
+                });
+            }, this.extraCredentialsModal.componentInstance.handleErrors.bind(this.extraCredentialsModal.componentInstance));
     }
 
-    /**
-     * Open new browser window with given url.
-     */
-    private openNewSocialAuthWindow(url: string): Promise<any> {
-        const left = (screen.width / 2) - (this.windowWidth / 2);
-        const top = (screen.height / 2) - (this.windowHeight / 2);
+    openNewSocialAuthWindow(url: string): Promise<any> {
+        const left = screen.width / 2 - this.windowWidth / 2;
+        const top = screen.height / 2 - this.windowHeight / 2;
 
         return new Promise(resolve => {
             this.resolve = resolve;
             window.open(
                 url,
                 'Authenticate Account',
-                'menubar=0, location=0, toolbar=0, titlebar=0, status=0, scrollbars=1, width=' + this.windowWidth
-                + ', height=' + this.windowHeight + ', ' + 'left=' + left + ', top=' + top
+                'menubar=0, location=0, toolbar=0, titlebar=0, status=0, scrollbars=1, width=' +
+                    this.windowWidth +
+                    ', height=' +
+                    this.windowHeight +
+                    ', ' +
+                    'left=' +
+                    left +
+                    ', top=' +
+                    top
             );
         });
     }
@@ -170,9 +187,17 @@ export class SocialAuthService {
      * window and call "socialLoginCallback" once received
      */
     private listenForMessageFromPopup() {
-        window.addEventListener('message', e => {
-            if (e.data.type !== 'social-auth' || this.settings.getBaseUrl().indexOf(e.origin) === -1) return;
-            this.socialLoginCallback(e.data.status, e.data.callbackData);
-        }, false);
+        window.addEventListener(
+            'message',
+            e => {
+                if (
+                    e.data.type !== 'social-auth' ||
+                    this.settings.getBaseUrl().indexOf(e.origin) === -1
+                )
+                    return;
+                this.socialLoginCallback(e.data.status, e.data['callbackData']);
+            },
+            false
+        );
     }
 }

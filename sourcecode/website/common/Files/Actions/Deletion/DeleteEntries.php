@@ -8,12 +8,14 @@ use Gate;
 
 class DeleteEntries
 {
-    public function execute(array $params)
+    public function execute(array $params, $authorize = true)
     {
         $entryIds = $params['entryIds'] ?? $this->idsFromPaths($params['paths']);
 
         if (count($entryIds)) {
-            Gate::authorize('destroy', [FileEntry::class, $entryIds]);
+            if ($authorize) {
+                Gate::authorize('destroy', [FileEntry::class, $entryIds]);
+            }
 
             if (Arr::get($params, 'soft')) {
                 app(SoftDeleteEntries::class)->execute($entryIds);

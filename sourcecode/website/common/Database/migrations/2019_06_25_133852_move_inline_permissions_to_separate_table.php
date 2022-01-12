@@ -23,31 +23,58 @@ class MoveInlinePermissionsToSeparateTable extends Migration
     public function up()
     {
         $models = [Role::class, User::class, BillingPlan::class];
-        $this->staticPermissions = collect(app(GetStaticPermissions::class)->execute())->toArray();
+        $this->staticPermissions = collect(
+            app(GetStaticPermissions::class)->execute()
+        )->toArray();
 
         foreach ($models as $model) {
+            if (
+                !Schema::hasColumn(
+                    app($model)->getTable(),
+                    'legacy_permissions',
+                )
+            ) {
+                continue;
+            }
+
             app($model)
                 ->whereNotNull('legacy_permissions')
                 ->orderBy('id')
                 ->chunk(50, function(Collection $models) {
                     $models->each(function($model) {
                         try {
-                            $permissions = array_keys(json_decode($model->legacy_permissions, true));
+                            $permissions = array_keys(
+                                json_decode($model->legacy_permissions, true)
+                            );
                         } catch (Exception $e) {
                            return;
                         }
-                        $permissions = collect($permissions)->map(function($permissionName) {
-                            if ($existing = app(Permission::class)->where('name', $permissionName)->first()) {
-                                return $existing;
-                            } else {
-                                $permissionConfig = $this->getPermissionConfig($permissionName);
-                                if ( ! $permissionConfig) {
-                                    $permissionConfig = ['name' => $permissionName];
+                        $permissions = collect($permissions)
+                            ->map(function($permissionName) {
+                                if (
+                                    $existing = app(Permission::class)
+                                        ->where('name', $permissionName)
+                                        ->first()
+                                ) {
+                                    return $existing;
+                                } else {
+                                    $permissionConfig = $this->getPermissionConfig(
+                                        $permissionName
+                                    );
+                                    if ( ! $permissionConfig) {
+                                        $permissionConfig = [
+                                            'name' => $permissionName
+                                        ];
+                                    }
+                                    return app(Permission::class)->create(
+                                        $permissionConfig,
+                                    );
                                 }
-                                return app(Permission::class)->create($permissionConfig);
-                            }
-                        })->filter();
-                        $model->permissions()->syncWithoutDetaching($permissions->pluck('id'));
+                            })
+                            ->filter();
+                        $model
+                            ->permissions()
+                            ->syncWithoutDetaching($permissions->pluck('id'));
                     });
                 });
         }

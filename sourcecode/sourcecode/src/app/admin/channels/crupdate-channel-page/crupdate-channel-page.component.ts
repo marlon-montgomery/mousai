@@ -3,7 +3,7 @@ import {
     ChangeDetectorRef,
     Component,
     OnInit,
-    ViewChild
+    ViewChild,
 } from '@angular/core';
 import {FormBuilder, FormControl} from '@angular/forms';
 import {BehaviorSubject, of} from 'rxjs';
@@ -15,7 +15,7 @@ import {
     distinctUntilChanged,
     filter,
     finalize,
-    switchMap
+    switchMap,
 } from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ChannelContentItem} from '../channel-content-item';
@@ -28,7 +28,7 @@ import {
     CdkDragMove,
     CdkDropList,
     CdkDropListGroup,
-    moveItemInArray
+    moveItemInArray,
 } from '@angular/cdk/drag-drop';
 import {ViewportRuler} from '@angular/cdk/overlay';
 import {CHANNEL_MODEL_TYPES} from '../../../models/model_types';
@@ -39,7 +39,7 @@ import {GenericBackendResponse} from '@common/core/types/backend-response';
     selector: 'crupdate-channel-page',
     templateUrl: './crupdate-channel-page.component.html',
     styleUrls: ['./crupdate-channel-page.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CrupdateChannelPageComponent implements OnInit {
     public modelTypes = CHANNEL_MODEL_TYPES;
@@ -47,10 +47,28 @@ export class CrupdateChannelPageComponent implements OnInit {
     public channelContent$ = new BehaviorSubject<ChannelContentItem[]>([]);
 
     public readonly autoUpdateMethods = {
-        spotifyTopTracks: {name: 'Spotify: Popular Tracks', model: CHANNEL_MODEL_TYPES.track, active: this.settings.get('spotify_is_setup')},
-        spotifyNewAlbums: {name: 'Spotify: New Releases', model: CHANNEL_MODEL_TYPES.album, active: this.settings.get('spotify_is_setup')},
-        spotifyPlaylistTracks: {name: 'Spotify: Playlist Tracks', model: CHANNEL_MODEL_TYPES.track, hasValue: true, valueName: 'Playlist ID', active: this.settings.get('spotify_is_setup')},
-        lastfmTopGenres: {name: 'Last.fm: Popular genres', model: CHANNEL_MODEL_TYPES.genre, active: this.settings.get('lastfm_is_setup')},
+        spotifyTopTracks: {
+            name: 'Spotify: Popular Tracks',
+            model: CHANNEL_MODEL_TYPES.track,
+            active: this.settings.get('spotify_is_setup'),
+        },
+        spotifyNewAlbums: {
+            name: 'Spotify: New Releases',
+            model: CHANNEL_MODEL_TYPES.album,
+            active: this.settings.get('spotify_is_setup'),
+        },
+        spotifyPlaylistTracks: {
+            name: 'Spotify: Playlist Tracks',
+            model: CHANNEL_MODEL_TYPES.track,
+            hasValue: true,
+            valueName: 'Playlist ID',
+            active: this.settings.get('spotify_is_setup'),
+        },
+        lastfmTopGenres: {
+            name: 'Last.fm: Popular genres',
+            model: CHANNEL_MODEL_TYPES.genre,
+            active: this.settings.get('lastfm_is_setup'),
+        },
     };
 
     public form = this.fb.group({
@@ -94,7 +112,7 @@ export class CrupdateChannelPageComponent implements OnInit {
         private cd: ChangeDetectorRef,
         public settings: Settings,
         private router: Router,
-        private viewportRuler: ViewportRuler,
+        private viewportRuler: ViewportRuler
     ) {}
 
     ngOnInit() {
@@ -106,41 +124,64 @@ export class CrupdateChannelPageComponent implements OnInit {
             }
         });
 
-        this.form.get('slug').valueChanges
-            .pipe(filter(value => !!value), distinctUntilChanged())
+        this.form
+            .get('slug')
+            .valueChanges.pipe(
+                filter(value => !!value),
+                distinctUntilChanged()
+            )
             .subscribe(value => {
-                this.channelUrl$.next(this.settings.getBaseUrl() + 'channels/' + value);
+                this.channelUrl$.next(
+                    this.settings.getBaseUrl() + '/channels/' + value
+                );
             });
 
-        if ( ! this.channel?.config?.lockSlug) {
-            this.form.get('name').valueChanges
-                .pipe(filter(value => !!value), distinctUntilChanged())
+        if (!this.channel?.config?.lockSlug) {
+            this.form
+                .get('name')
+                .valueChanges.pipe(
+                    filter(value => !!value),
+                    distinctUntilChanged()
+                )
                 .subscribe(value => {
-                    if ( ! this.form.get('slug').dirty) {
+                    if (!this.form.get('slug').dirty) {
                         this.form.get('slug').setValue(slugifyString(value));
                     }
                 });
         }
 
         this.form.get('config.contentType').valueChanges.subscribe(value => {
-            this.form.get('config.autoUpdateMethod').setValue(
-                value === 'autoUpdate' ? Object.keys(this.autoUpdateMethods)[0] : null
-            );
+            this.form
+                .get('config.autoUpdateMethod')
+                .setValue(
+                    value === 'autoUpdate'
+                        ? Object.keys(this.autoUpdateMethods)[0]
+                        : null
+                );
             this.form.get('config.autoUpdateValue').setValue(null);
+
+            // prevent "listAll" from having order by "channelables.order"
+            this.form.get('config.contentOrder').setValue('popularity:desc');
         });
 
-        this.form.get('config.autoUpdateMethod').valueChanges.subscribe((value: string) => {
-            const contentModel = this.form.get('config.contentModel');
-            if ( ! value) {
-                contentModel.enable();
-            } else {
-                contentModel.setValue(this.autoUpdateMethods[value].model);
-                contentModel.disable();
-            }
-        });
+        this.form
+            .get('config.autoUpdateMethod')
+            .valueChanges.subscribe((value: string) => {
+                const contentModel = this.form.get('config.contentModel');
+                if (!value) {
+                    contentModel.enable();
+                } else {
+                    contentModel.setValue(this.autoUpdateMethods[value].model);
+                    contentModel.disable();
+                }
+            });
 
-        this.form.get('config.contentModel').valueChanges
-            .pipe(filter(value => !!value), distinctUntilChanged())
+        this.form
+            .get('config.contentModel')
+            .valueChanges.pipe(
+                filter(value => !!value),
+                distinctUntilChanged()
+            )
             .subscribe(value => {
                 this.searchResults$.next([]);
                 const orderControl = this.form.get('config.contentOrder');
@@ -181,18 +222,24 @@ export class CrupdateChannelPageComponent implements OnInit {
                 this.toast.open('Channel saved.');
             };
         }
-        if (this.form.get('config.autoUpdateMethod').dirty || this.form.get('config.autoUpdateValue').dirty) {
+        if (
+            this.form.get('config.autoUpdateMethod').dirty ||
+            this.form.get('config.autoUpdateValue').dirty
+        ) {
             params.updateContent = true;
         }
         this.loading$.next(true);
         const payload = {...this.form.getRawValue(), ...params};
-        if ( ! this.channel) {
-            payload.content = this.channelContent$.value.map(i => this.partialItem(i));
+        if (!this.channel) {
+            payload.content = this.channelContent$.value.map(i =>
+                this.partialItem(i)
+            );
         }
-        const request = this.channel ?
-            this.channels.update(this.channel.id, payload) :
-            this.channels.create(payload);
-        request.pipe(finalize(() => this.loading$.next(false)))
+        const request = this.channel
+            ? this.channels.update(this.channel.id, payload)
+            : this.channels.create(payload);
+        request
+            .pipe(finalize(() => this.loading$.next(false)))
             .subscribe(successFn, (errResponse: BackendErrorResponse) => {
                 this.errors = errResponse.errors;
                 this.cd.markForCheck();
@@ -202,35 +249,47 @@ export class CrupdateChannelPageComponent implements OnInit {
     public detachContentItem(item: ChannelContentItem) {
         if (this.channel) {
             this.detaching = item.id;
-            this.channels.detachItem(this.channel.id, item)
-                .pipe(finalize(() => this.detaching = null))
+            this.channels
+                .detachItem(this.channel.id, item)
+                .pipe(finalize(() => (this.detaching = null)))
                 .subscribe(() => {
                     this.removeContentItem(item);
                     this.toast.open('Item detached.');
                 });
         } else {
-           this.removeContentItem(item);
+            this.removeContentItem(item);
         }
     }
 
     private removeContentItem(item: ChannelContentItem) {
         const newContent = [...this.channelContent$.value];
-        const index = newContent.findIndex(c => c.id === item.id && c.model_type === item.model_type);
+        const index = newContent.findIndex(
+            c => c.id === item.id && c.model_type === item.model_type
+        );
         newContent.splice(index, 1);
         this.channelContent$.next(newContent);
     }
 
     public attachContentItem(item: ChannelContentItem) {
-        const alreadyAttached = this.channelContent$.value.find(attachedItem => {
-            return attachedItem.id === item.id && attachedItem.model_type === item.model_type;
-        });
+        const alreadyAttached = this.channelContent$.value.find(
+            attachedItem => {
+                return (
+                    attachedItem.id === item.id &&
+                    attachedItem.model_type === item.model_type
+                );
+            }
+        );
         if (alreadyAttached) {
             return;
         }
         if (this.channel) {
-            this.channels.attachItem(this.channel.id, this.partialItem(item))
-                .subscribe(() => {
-                    this.channelContent$.next([...this.channelContent$.value, item]);
+            this.channels
+                .attachItem(this.channel.id, this.partialItem(item))
+                .subscribe(
+                    () => {
+                        this.channelContent$.next([
+                            ...this.channelContent$.value,
+                            item]);
                     this.toast.open('Item attached.');
                 }, (errResponse: BackendErrorResponse) => {
                     if (errResponse.message) {
@@ -258,7 +317,9 @@ export class CrupdateChannelPageComponent implements OnInit {
     }
 
     public getValueName(): string {
-        return this.autoUpdateMethods[this.form.get('config.autoUpdateMethod').value]?.valueName;
+        return this.autoUpdateMethods[
+            this.form.get('config.autoUpdateMethod').value
+        ]?.valueName;
     }
 
     private partialItem(item: ChannelContentItem) {
@@ -281,7 +342,7 @@ export class CrupdateChannelPageComponent implements OnInit {
     }
 
     dropListDropped() {
-        if ( ! this.target) return;
+        if (!this.target) return;
 
         const phElement = this.placeholder.element.nativeElement;
         const parent = phElement.parentElement;
@@ -290,7 +351,10 @@ export class CrupdateChannelPageComponent implements OnInit {
 
         parent.removeChild(phElement);
         parent.appendChild(phElement);
-        parent.insertBefore(this.source.element.nativeElement, parent.children[this.sourceIndex]);
+        parent.insertBefore(
+            this.source.element.nativeElement,
+            parent.children[this.sourceIndex]
+        );
 
         this.target = null;
         this.source = null;
@@ -301,7 +365,9 @@ export class CrupdateChannelPageComponent implements OnInit {
             this.channelContent$.next(channelContent);
             if (this.channel) {
                 const order = {};
-                channelContent.forEach((item, i) => order[i] = item.channelable_id);
+                channelContent.forEach(
+                    (item, i) => (order[i] = item.channelable_id)
+                );
                 this.channels.changeOrder(this.channel.id, order).subscribe();
             }
         }
@@ -309,7 +375,6 @@ export class CrupdateChannelPageComponent implements OnInit {
 
     dropListEnterPredicate = (drag: CdkDrag, drop: CdkDropList) => {
         if (drop === this.placeholder) return true;
-
 
         if (drop !== this.activeContainer) return false;
 
@@ -334,23 +399,31 @@ export class CrupdateChannelPageComponent implements OnInit {
         this.target = drop;
 
         phElement.style.display = '';
-        dropElement.parentElement.insertBefore(phElement, (dropIndex > dragIndex
-            ? dropElement.nextSibling : dropElement));
+        dropElement.parentElement.insertBefore(
+            phElement,
+            dropIndex > dragIndex ? dropElement.nextSibling : dropElement
+        );
 
         // this.placeholder.enterPredicate(drag, drag.element.nativeElement.offsetLeft, drag.element.nativeElement.offsetTop);
-        this.placeholder._dropListRef.enter(drag._dragRef, drag.element.nativeElement.offsetLeft, drag.element.nativeElement.offsetTop);
+        this.placeholder._dropListRef.enter(
+            drag._dragRef,
+            drag.element.nativeElement.offsetLeft,
+            drag.element.nativeElement.offsetTop
+        );
         return false;
-    }
+    };
 
     /** Determines the point of the page that was touched by the user. */
     getPointerPositionOnPage(event: MouseEvent | TouchEvent) {
         // `touches` will be empty for start/end events so we have to fall back to `changedTouches`.
-        const point = __isTouchEvent(event) ? (event.touches[0] || event.changedTouches[0]) : event;
+        const point = __isTouchEvent(event)
+            ? event.touches[0] || event.changedTouches[0]
+            : event;
         const scrollPosition = this.viewportRuler.getViewportScrollPosition();
 
         return {
             x: point.pageX - scrollPosition.left,
-            y: point.pageY - scrollPosition.top
+            y: point.pageY - scrollPosition.top,
         };
     }
 }

@@ -25,7 +25,7 @@ export class TrackPageResolver implements Resolve<BackendResponse<{track: Track}
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): BackendResponse<{track: Track}> {
         this.state.loading = true;
         const id = +route.paramMap.get('id');
-        return this.tracks.get(id, {defaultRelations: true}).pipe(
+        return this.tracks.get(id, {defaultRelations: true, forEditing: true}).pipe(
             catchError(() => {
                 this.state.loading = false;
                 this.router.navigate(['/']);

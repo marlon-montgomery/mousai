@@ -9,21 +9,24 @@ import {CrupdateCustomDomainModalComponent} from '../crupdate-custom-domain-moda
 import {CustomDomain} from '../custom-domain';
 import {CustomDomainService} from '../custom-domain.service';
 import {Observable} from 'rxjs';
+import {CUSTOM_DOMAIN_FILTERS} from '@common/custom-domain/custom-domain-index/custom-domain-filters';
 
 @Component({
     selector: 'custom-domain-index',
     templateUrl: './custom-domain-index.component.html',
+    styleUrls: ['./custom-domain-index.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [DatatableService],
 })
 export class CustomDomainIndexComponent implements OnInit {
-    public domains$ = this.datatable.data$ as Observable<CustomDomain[]>;
+    filters = CUSTOM_DOMAIN_FILTERS;
+    domains$ = this.datatable.data$ as Observable<CustomDomain[]>;
     constructor(
         public datatable: DatatableService<CustomDomain>,
         public currentUser: CurrentUser,
         protected customDomains: CustomDomainService,
         protected toast: Toast,
-        protected router: Router,
+        protected router: Router
     ) {}
 
     ngOnInit() {
@@ -32,20 +35,29 @@ export class CustomDomainIndexComponent implements OnInit {
         });
     }
 
-    public maybeDeleteSelectedDomains() {
-        this.datatable.confirmResourceDeletion('domains')
-            .subscribe(() => {
-                this.customDomains.delete(this.datatable.selectedRows$.value).subscribe(() => {
-                    this.datatable.reset();
-                    this.toast.open('Domains deleted.');
-                }, (errResponse: BackendErrorResponse) => {
-                    this.toast.open(errResponse.message || HttpErrors.Default);
-                });
-            });
+    public maybeDeleteSelectedDomains(domainIds?: number[]) {
+        this.datatable.confirmResourceDeletion('domains').subscribe(() => {
+            this.customDomains
+                .delete(domainIds || this.datatable.selectedRows$.value)
+                .subscribe(
+                    () => {
+                        this.datatable.reset();
+                        this.toast.open('Domains deleted.');
+                    },
+                    (errResponse: BackendErrorResponse) => {
+                        this.toast.open(
+                            errResponse.message || HttpErrors.Default
+                        );
+                    }
+                );
+        });
     }
 
     public showCrupdateDomainModal(domain?: CustomDomain) {
-        this.datatable.openCrupdateResourceModal(CrupdateCustomDomainModalComponent, {domain})
+        this.datatable
+            .openCrupdateResourceModal(CrupdateCustomDomainModalComponent, {
+                domain,
+            })
             .subscribe();
     }
 

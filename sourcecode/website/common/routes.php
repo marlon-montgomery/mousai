@@ -1,5 +1,6 @@
 <?php
 
+use Common\Admin\ImpersonateUserController;
 use Common\Auth\Controllers\AccessTokenController;
 use Common\Auth\Controllers\UserController;
 use Common\Comments\Controllers\CommentableController;
@@ -123,6 +124,7 @@ Route::group(['prefix' => 'secure', 'middleware' => 'web'], function () {
     //OTHER ADMIN ROUTES
     Route::get('admin/analytics/stats', 'Common\Admin\Analytics\AnalyticsController@stats');
     Route::post('cache/flush', 'Common\Admin\CacheController@flush');
+    Route::post('admin/users/impersonate/{id}', [ImpersonateUserController::class, 'impersonate']);
 
     // SEARCH
     Route::get('search/global/model', [ModelSearchController::class, 'index']);

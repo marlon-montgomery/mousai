@@ -1,28 +1,31 @@
-import {Directive, ElementRef, EventEmitter, OnInit, Output, Renderer2} from '@angular/core';
+import { Directive, ElementRef, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { fromEvent, Subscription } from 'rxjs';
 
 @Directive({
-    selector: '[enterKeybind]'
+    // tslint:disable-next-line:directive-selector
+    selector: '[enterKeybind]',
 })
-export class EnterKeybindDirective implements OnInit {
+export class EnterKeybindDirective implements OnInit, OnDestroy {
+    @Output() enterPressed = new EventEmitter();
+    private subscription: Subscription;
 
-    /**
-     * Fired when enter key is pressed on element.
-     */
-    @Output() enterKeybind = new EventEmitter();
-
-    /**
-     * EnterKeybindDirective Constructor.
-     */
-    constructor(private renderer: Renderer2, private el: ElementRef) {}
+    constructor(private el: ElementRef) {}
 
     ngOnInit() {
-        this.renderer.listen(this.el.nativeElement, 'keydown', e => {
+        this.subscription = fromEvent(
+            this.el.nativeElement,
+            'keydown'
+        ).subscribe((e: KeyboardEvent) => {
             if (e.keyCode === 13) {
                 e.preventDefault();
                 e.stopPropagation();
                 this.el.nativeElement.blur();
-                this.enterKeybind.emit(e);
+                this.enterPressed.emit(e);
             }
         });
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 }

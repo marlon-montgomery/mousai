@@ -16,7 +16,7 @@
         <tr *ngFor="let invoice of invoices$ | async">
             <td>{{invoice.created_at | formattedDate}}</td>
             <td>{{invoice.subscription.plan.currency_symbol + invoice.subscription.plan.amount}}</td>
-            <td>{{(invoice.paid ? 'Paid' : 'Pending' | trans)}}</td>
+            <td>{{((invoice.paid ? 'Paid' : 'Pending') | trans)}}</td>
             <td>
                 <a [href]="getInvoiceUrl(invoice)" target="_blank" trans>View</a>
             </td>

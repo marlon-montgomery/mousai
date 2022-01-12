@@ -13,28 +13,38 @@ import {ChannelResolverService} from './channels/crupdate-channel-page/channel-r
 import {InterfaceComponent} from './settings/interface/interface.component';
 import {BackstageRequestsIndexComponent} from './backstage-requests-index/backstage-requests-index.component';
 import {BackstageRequestViewerComponent} from './backstage-requests-index/backstage-request-viewer/backstage-request-viewer.component';
-import {SearchSettingsComponent} from './settings/search/search-settings.component';
 import {CommentIndexComponent} from './comments/comment-index.component';
+import {SearchSettingsComponent} from '@common/admin/settings/search/search-settings.component';
 
 export const APP_ADMIN_ROUTES: Routes = [
-    {path: 'backstage', loadChildren: () => import('src/app/backstage/backstage.module').then(m => m.BackstageModule)},
+    {
+        path: 'backstage',
+        loadChildren: () =>
+            import('src/app/backstage/backstage.module').then(
+                m => m.BackstageModule
+            ),
+    },
 
     // CHANNELS
     {
         path: 'channels',
         component: ChannelIndexComponent,
-        data: {permissions: ['channels.view']}
+        data: {permissions: ['channels.view']},
     },
     {
         path: 'channels/new',
         component: CrupdateChannelPageComponent,
-        data: {permissions: ['channels.create']}
+        data: {permissions: ['channels.create']},
     },
     {
         path: 'channels/:id',
         component: CrupdateChannelPageComponent,
         resolve: {api: ChannelResolverService},
-        data: {permissions: ['channels.update'], failRedirectUri: '/admin/channels', forAdmin: true},
+        data: {
+            permissions: ['channels.update'],
+            failRedirectUri: '/admin/channels',
+            forAdmin: true,
+        },
     },
 
     {
@@ -44,27 +54,27 @@ export const APP_ADMIN_ROUTES: Routes = [
     {
         path: 'albums',
         component: AlbumIndexComponent,
-        data: {permissions: ['albums.view']}
+        data: {permissions: ['albums.view']},
     },
     {
         path: 'tracks',
         component: TrackIndexComponent,
-        data: {permissions: ['tracks.view']}
+        data: {permissions: ['tracks.view']},
     },
     {
         path: 'genres',
         component: GenresComponent,
-        data: {permissions: ['genres.view']}
+        data: {permissions: ['genres.view']},
     },
     {
         path: 'lyrics',
         component: LyricsPageComponent,
-        data: {permissions: ['lyrics.view']}
+        data: {permissions: ['lyrics.view']},
     },
     {
         path: 'playlists',
         component: PlaylistsPageComponent,
-        data: {permissions: ['playlists.view']}
+        data: {permissions: ['playlists.view']},
     },
 
     // REQUESTS
@@ -81,7 +91,7 @@ export const APP_ADMIN_ROUTES: Routes = [
     {
         path: 'comments',
         component: CommentIndexComponent,
-    }
+    },
 ];
 
 export const APP_SETTING_ROUTES: Routes = [

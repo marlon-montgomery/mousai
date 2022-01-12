@@ -1,4 +1,9 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Inject,
+} from '@angular/core';
 import {SettingsPanelComponent} from '../settings-panel.component';
 import {Settings} from '@common/core/config/settings.service';
 import {Toast} from '@common/core/ui/toast.service';
@@ -11,12 +16,13 @@ import {SettingsState} from '@common/admin/settings/settings-state.service';
 import {RECAPTCHA_ACTIONS} from '@common/admin/settings/recaptcha/recaptcha-actions.token';
 import {RecaptchaAction} from '@common/admin/settings/recaptcha/recaptcha-action';
 import {flattenArray} from '@common/core/utils/flatten-array';
+import {SocialAuthService} from '@common/auth/social-auth.service';
 
 @Component({
     selector: 'recaptcha-settings',
     templateUrl: './recaptcha-settings.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    host: {'class': 'settings-panel'},
+    host: {class: 'settings-panel'},
 })
 export class RecaptchaSettingsComponent extends SettingsPanelComponent {
     public readonly actions: RecaptchaAction[];
@@ -30,10 +36,23 @@ export class RecaptchaSettingsComponent extends SettingsPanelComponent {
         protected valueLists: ValueLists,
         protected cd: ChangeDetectorRef,
         protected router: Router,
+        protected social: SocialAuthService,
         public state: SettingsState,
-        @Inject(RECAPTCHA_ACTIONS) private recaptchaActions: RecaptchaAction[][],
+        @Inject(RECAPTCHA_ACTIONS) private recaptchaActions: RecaptchaAction[][]
     ) {
-        super(settings, toast, http, modal, route, customHomepage, valueLists, cd, router, state);
+        super(
+            settings,
+            toast,
+            http,
+            modal,
+            route,
+            customHomepage,
+            valueLists,
+            cd,
+            router,
+            social,
+            state,
+        );
         this.actions = flattenArray(this.recaptchaActions).reverse();
     }
 }

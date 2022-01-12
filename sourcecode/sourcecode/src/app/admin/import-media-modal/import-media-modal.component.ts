@@ -9,6 +9,7 @@ import {ARTIST_MODEL} from '../../models/Artist';
 import {ALBUM_MODEL} from '../../models/Album';
 import {TRACK_MODEL} from '../../models/Track';
 import {PLAYLIST_MODEL} from '../../models/Playlist';
+import {BackendErrorResponse} from '@common/core/types/backend-error-response';
 
 interface ImportMediaModalData {
     modelType: string;
@@ -56,7 +57,9 @@ export class ImportMediaModalComponent implements OnInit {
             .subscribe(response => {
                 this.toast.open(`${this.resourceName} imported`);
                 this.close(response);
-            }, () => this.toast.open('Could not import media.'));
+            }, (err: BackendErrorResponse) => {
+                this.toast.open(err.message || 'Could not import media.');
+            });
     }
 
     public close(response?: any) {

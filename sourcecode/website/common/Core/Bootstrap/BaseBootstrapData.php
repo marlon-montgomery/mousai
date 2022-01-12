@@ -8,6 +8,7 @@ use Common\Localizations\Localization;
 use Common\Localizations\LocalizationsRepository;
 use Common\Localizations\UserLocaleController;
 use Common\Settings\Settings;
+use Cookie;
 use Illuminate\Http\Request;
 use Negotiation\LanguageNegotiator;
 
@@ -179,8 +180,7 @@ class BaseBootstrapData implements BootstrapData
         // Priority: Query param > account settings > cookie > browser preferences > default
         $langCode =
             $this->request->get('lang') ??
-            ($this->request->user()->language ??
-                Arr::get($_COOKIE, UserLocaleController::COOKIE_NAME));
+            $this->request->user()->language ?? Cookie::get(UserLocaleController::COOKIE_NAME);
         if (
             !$langCode &&
             ($header = $this->request->header('Accept-Language'))

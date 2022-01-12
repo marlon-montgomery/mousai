@@ -107,7 +107,7 @@ export class Bootstrapper {
     }
 
     protected registerIcons() {
-        const iconUrl = this.settings.getAssetUrl('icons/merged.svg?v3');
+        const iconUrl = this.settings.getAssetUrl('icons/merged.svg?v6');
         this.injector.get(MatIconRegistry).addSvgIconSet(
             this.injector.get(DomSanitizer).bypassSecurityTrustResourceUrl(iconUrl),
         );

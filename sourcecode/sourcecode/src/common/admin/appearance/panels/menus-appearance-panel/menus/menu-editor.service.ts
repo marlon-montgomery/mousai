@@ -71,7 +71,7 @@ export class MenuEditor {
     public commitChanges() {
         const menus = JSON.stringify(this.allMenus$.value);
         this.appearance.setConfig('menus', menus);
-        this.appearance.addChanges({'menus': menus});
+        this.appearance.addChanges({menus});
     }
 
     public setFromJson(json: string) {

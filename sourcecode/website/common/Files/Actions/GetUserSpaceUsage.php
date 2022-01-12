@@ -67,13 +67,7 @@ class GetUserSpaceUsage
         }
     }
 
-    /**
-     * Return if user has used up his disk space.
-     *
-     * @param UploadedFile $file
-     * @return bool
-     */
-    public function userIsOutOfSpace(UploadedFile $file)
+    public function hasEnoughSpaceToUpload(int $bytes): bool
     {
         $availableSpace = $this->getAvailableSpace();
 
@@ -81,6 +75,6 @@ class GetUserSpaceUsage
         if (is_null($availableSpace)) {
             return false;
         }
-        return $this->getSpaceUsed() + $file->getSize() > $availableSpace;
+        return ($this->getSpaceUsed() + $bytes) <= $availableSpace;
     }
 }

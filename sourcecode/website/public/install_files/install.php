@@ -155,7 +155,7 @@
 
                             <div class="input-container">
                                 <label for="prefix">Database Prefix</label>
-                                <input id="prefix" type="text" v-model="databaseForm.prefix" placeholder="Optional">
+                                <input id="prefix" type="text" v-model="databaseForm.db_prefix" placeholder="Optional">
                             </div>
 
                             <v-btn type="submit" color="primary" :disabled="loading">Continue</v-btn>

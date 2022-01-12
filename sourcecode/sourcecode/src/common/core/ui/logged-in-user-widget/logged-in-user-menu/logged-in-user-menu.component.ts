@@ -1,10 +1,17 @@
-import {ChangeDetectionStrategy, Component, Input, Output, EventEmitter} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Input,
+    Output,
+    EventEmitter,
+} from '@angular/core';
 import {CurrentUser} from '@common/auth/current-user';
 import {AuthService} from '@common/auth/auth.service';
 import {Settings} from '@common/core/config/settings.service';
 import {BreakpointsService} from '@common/core/ui/breakpoints.service';
 import {ThemeService} from '@common/core/theme.service';
 import {NavbarDropdownItem} from '@common/core/config/app-config';
+import {UrlGeneratorService} from '@common/core/services/url-generator.service';
 
 @Component({
     selector: 'logged-in-user-menu',
@@ -17,6 +24,7 @@ export class LoggedInUserMenuComponent {
     @Input() hideConfigItems = false;
     @Input() forceNotifButton = false;
     @Output() itemClicked = new EventEmitter();
+    profileUrl: string;
 
     constructor(
         public currentUser: CurrentUser,
@@ -25,13 +33,19 @@ export class LoggedInUserMenuComponent {
         public breakpoints: BreakpointsService,
         public theme: ThemeService,
         public settings: Settings,
-    ) {}
-
+        public url: UrlGeneratorService
+    ) {
+        if (typeof this.url['user'] === 'function') {
+            this.profileUrl = this.url['user'](this.currentUser.getModel());
+        }
+    }
 
     public shouldShowMenuItem(item: NavbarDropdownItem): boolean {
-        const hasPermission = !item.permission || this.currentUser.hasPermission(item.permission);
+        const hasPermission =
+            !item.permission || this.currentUser.hasPermission(item.permission);
         const hasRole = !item.role || this.currentUser.hasRole(item.role);
-        const passes = !item.showFn || item.showFn(this.settings, this.currentUser);
+        const passes =
+            !item.showFn || item.showFn(this.settings, this.currentUser);
         return hasPermission && hasRole && passes;
     }
 

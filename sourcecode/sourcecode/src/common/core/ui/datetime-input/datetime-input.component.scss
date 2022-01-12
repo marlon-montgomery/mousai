@@ -16,5 +16,17 @@
 }
 
 legend {
+  display: flex;
+  align-items: center;
   color: mat-color($app-foreground, label);
+  width: 100%;
+}
+
+.legend-label {
+  margin-right: auto;
+}
+
+.clear-btn {
+  margin-left: 10px;
+  line-height: 28px;
 }

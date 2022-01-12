@@ -10,6 +10,7 @@ import {BackendErrorResponse} from '@common/core/types/backend-error-response';
 import {DatatableService} from '@common/datatable/datatable.service';
 import {Observable} from 'rxjs';
 import {WebPlayerUrls} from '../../../web-player/web-player-urls.service';
+import {CHANNEL_INDEX_FILTERS} from './channel-index-filters';
 
 @Component({
     selector: 'channel-index',
@@ -19,7 +20,8 @@ import {WebPlayerUrls} from '../../../web-player/web-player-urls.service';
     providers: [DatatableService],
 })
 export class ChannelIndexComponent implements OnInit {
-    public channels$ = this.datatable.data$ as Observable<Channel[]>;
+    channels$ = this.datatable.data$ as Observable<Channel[]>;
+    filters = CHANNEL_INDEX_FILTERS;
     constructor(
         public datatable: DatatableService<Channel>,
         private channels: ChannelService,

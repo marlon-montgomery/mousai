@@ -89,6 +89,8 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\EngineManager;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\SocialiteServiceProvider;
+use Matchish\ScoutElasticSearch\ElasticSearchServiceProvider;
+use Matchish\ScoutElasticSearch\Engines\ElasticSearchEngine;
 use Session;
 use Validator;
 
@@ -191,6 +193,9 @@ class CommonServiceProvider extends ServiceProvider
         resolve(EngineManager::class)->extend('mysql', function () {
             return new MysqlSearchEngine();
         });
+        if (config('scout.driver') === ElasticSearchEngine::class) {
+            $this->app->register(ElasticSearchServiceProvider::class);
+        }
     }
 
     private function mergeConfig()

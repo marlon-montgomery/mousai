@@ -14,6 +14,7 @@ import { NoResultsMessageModule } from '@common/core/ui/no-results-message/no-re
 import { CreateAccessTokenDialogComponent } from './create-access-token-dialog/create-access-token-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormatPipesModule } from '@common/core/ui/format-pipes/format-pipes.module';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
     imports:      [
@@ -31,6 +32,7 @@ import { FormatPipesModule } from '@common/core/ui/format-pipes/format-pipes.mod
         MatButtonModule,
         MatIconModule,
         MatMenuModule,
+        MatTabsModule,
     ],
     declarations: [
         AccountSettingsComponent,

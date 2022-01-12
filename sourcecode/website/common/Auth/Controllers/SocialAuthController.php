@@ -144,6 +144,7 @@ class SocialAuthController extends BaseController
 
         // if we have already created a user for this social account, log user in
         if ($existingProfile && $existingProfile->user) {
+            $this->oauth->updateSocialProfileData($existingProfile, $provider, $externalProfile);
             return $this->oauth->logUserIn($existingProfile->user);
         }
 

@@ -8,20 +8,22 @@ import {Settings} from '@common/core/config/settings.service';
 import {LazyLoaderService} from '@common/core/utils/lazy-loader.service';
 import {requestFullScreen} from '@common/core/utils/request-full-screen';
 import {AppHttpClient} from '@common/core/http/app-http-client.service';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError, take, tap} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class YoutubeStrategy implements PlaybackStrategy {
     private bootstrapped = false;
     private bootstrapping: Promise<any>;
-    private pendingVolume: number|null = null;
+    private pendingVolume: number | null = null;
     private youtube: YT.Player;
     private tracksSkippedDueToError = 0;
 
     private activeTrack: Track;
-    private searchResults: ({title: string, id: string}[])|null = null;
+    private searchResults: {title: string; id: string}[] | null = null;
+    private youtubeVideoCued$ = new Subject();
 
     constructor(
         private queue: PlayerQueue,
@@ -30,16 +32,19 @@ export class YoutubeStrategy implements PlaybackStrategy {
         private zone: NgZone,
         private settings: Settings,
         private lazyLoader: LazyLoaderService,
-        private http: AppHttpClient,
+        private http: AppHttpClient
     ) {}
 
     public play() {
-        this.cueTrack(this.queue.getCurrent()).then(() => {
-            this.youtube.playVideo();
-            this.state.playing = true;
-        }, () => {
-            this.state.playing = false;
-        });
+        this.cueTrack(this.queue.getCurrent()).then(
+            () => {
+                this.youtube.playVideo();
+                this.state.playing = true;
+            },
+            () => {
+                this.state.playing = false;
+            }
+        );
     }
 
     public pause() {
@@ -57,8 +62,10 @@ export class YoutubeStrategy implements PlaybackStrategy {
     }
 
     public getDuration(): number {
-        return this.youtube ?
-            (this.youtube.getDuration ? this.youtube.getDuration() : 0)
+        return this.youtube
+            ? this.youtube.getDuration
+                ? this.youtube.getDuration()
+                : 0
             : 0;
     }
 
@@ -67,7 +74,7 @@ export class YoutubeStrategy implements PlaybackStrategy {
     }
 
     public setVolume(number: number) {
-        if ( ! this.youtube || ! this.youtube.setVolume) {
+        if (!this.youtube || !this.youtube.setVolume) {
             this.pendingVolume = number;
         } else {
             this.youtube.setVolume(number);
@@ -98,12 +105,17 @@ export class YoutubeStrategy implements PlaybackStrategy {
         this.activeTrack = track;
         this.setState('buffering', true);
 
-        if ( ! track.youtube_id) {
+        if (!track.youtube_id) {
             await this.searchYoutubeForVideoMatches();
             this.assignFirstSearchResult();
         }
 
-        return this.bootstrap(track.youtube_id).then(() => {
+        // need to wait for youtube 'cued' event, otherwise "play" method will not work
+        return new Promise(async resolve => {
+            this.youtubeVideoCued$.pipe(take(1)).subscribe(() => {
+                resolve(null);
+            });
+            await this.bootstrap(track.youtube_id);
             this.cueYoutubeVideo(track);
         });
     }
@@ -122,8 +134,13 @@ export class YoutubeStrategy implements PlaybackStrategy {
 
     private cueYoutubeVideo(track: Track) {
         if (track.youtube_id && track.youtube_id !== this.getYoutubeId()) {
-            const suggestedQuality = this.settings.get('youtube.suggested_quality');
-            this.youtube.cueVideoById({videoId: track.youtube_id, suggestedQuality});
+            const suggestedQuality = this.settings.get(
+                'youtube.suggested_quality'
+            );
+            this.youtube.cueVideoById({
+                videoId: track.youtube_id,
+                suggestedQuality,
+            });
         }
         this.activeTrack = track;
     }
@@ -141,20 +158,25 @@ export class YoutubeStrategy implements PlaybackStrategy {
     }
 
     private searchYoutubeForVideoMatches() {
-        const artist = this.activeTrack?.artists?.[0]?.name ||
+        const artist =
+            this.activeTrack?.artists?.[0]?.name ||
             this.activeTrack?.album?.artists?.[0]?.name;
-        return this.search.videoId(artist, this.activeTrack)
+        return this.search
+            .videoId(artist, this.activeTrack)
             .pipe(
                 catchError(() => []),
-                tap(results => this.searchResults = results)
-            ).toPromise();
+                tap(results => (this.searchResults = results))
+            )
+            .toPromise();
     }
 
     private bootstrap(videoId: string): Promise<any> {
         if (this.bootstrapped) return new Promise<void>(resolve => resolve());
         if (this.bootstrapping) return this.bootstrapping;
 
-        this.lazyLoader.loadAsset('https://www.youtube.com/iframe_api', {type: 'js'});
+        this.lazyLoader.loadAsset('https://www.youtube.com/iframe_api', {
+            type: 'js',
+        });
 
         this.bootstrapping = new Promise((resolve, reject) => {
             if (window['onYouTubeIframeAPIReady']) {
@@ -176,8 +198,8 @@ export class YoutubeStrategy implements PlaybackStrategy {
             events: {
                 onReady: () => this.onYoutubeReady(resolve),
                 onError: this.onYoutubeError.bind(this),
-                onStateChange: this.onYoutubeStateChange.bind(this)
-            }
+                onStateChange: this.onYoutubeStateChange.bind(this),
+            },
         });
     }
 
@@ -185,6 +207,7 @@ export class YoutubeStrategy implements PlaybackStrategy {
         if (this.state.muted) this.mute();
         this.bootstrapped = true;
         this.bootstrapping = null;
+        this.youtubeVideoCued$.next();
         resolve();
         this.state.fireReadyEvent();
 
@@ -195,8 +218,14 @@ export class YoutubeStrategy implements PlaybackStrategy {
     }
 
     private async onYoutubeError(e: YT.OnErrorEvent) {
-        this.http.post('youtube/log-client-error', {code: e.data, videoUrl: this.youtube.getVideoUrl()})
+        this.http
+            .post('youtube/log-client-error', {
+                code: e.data,
+                videoUrl: this.youtube.getVideoUrl(),
+            })
             .subscribe();
+
+        this.youtubeVideoCued$.next();
 
         // if we had a youtube_id set on track and it was invalid, search for valid videos to play
         if (this.activeTrack?.youtube_id && this.searchResults === null) {
@@ -209,7 +238,7 @@ export class YoutubeStrategy implements PlaybackStrategy {
             this.cueYoutubeVideo(this.activeTrack);
             this.youtube.playVideo();
 
-        // there are no more alternative videos to try, we can error out
+            // there are no more alternative videos to try, we can error out
         } else {
             this.activeTrack = null;
             this.searchResults = null;
@@ -238,6 +267,9 @@ export class YoutubeStrategy implements PlaybackStrategy {
             case YT.PlayerState.PAUSED:
                 this.setState('playing', false);
                 break;
+            case YT.PlayerState.CUED:
+                this.youtubeVideoCued$.next();
+                break;
         }
     }
 
@@ -255,7 +287,7 @@ export class YoutubeStrategy implements PlaybackStrategy {
     }
 
     private setState(name: string, value: boolean) {
-        this.zone.run(() => this.state[name] = value);
+        this.zone.run(() => (this.state[name] = value));
     }
 
     public maximize() {

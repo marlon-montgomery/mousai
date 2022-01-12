@@ -43,7 +43,7 @@ class TrackPolicy extends BasePolicy
         }
 
         // user does not have any restriction on track minutes
-        $maxMinutes = $user->getRestrictionValue('tracks.create', 'minutes');
+        $maxMinutes = $user->getRestrictionValue('music.create', 'minutes');
         if (is_null($maxMinutes)) {
             return true;
         }

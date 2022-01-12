@@ -13,28 +13,29 @@ export const ignoredErrors = [
     'Non-Error exception captured with keys:',
 
     // TINYMCE
-    "Uncaught (in promise): TypeError: Cannot read property 'setAttribute' of undefined",
-    "Uncaught (in promise): TypeError: Cannot read property 'getRng' of undefined",
+    'Uncaught (in promise): TypeError: Cannot read property \'setAttribute\' of undefined',
+    'Uncaught (in promise): TypeError: Cannot read property \'getRng\' of undefined',
 
     // TEMP html2canvas
-    "Cannot assign to read only property 'className' of object '[object SVGSVGElement]'",
+    'Cannot assign to read only property \'className\' of object \'[object SVGSVGElement]\'',
 
     // TEMP ANIMATIONS
     'The animation trigger "transform" has failed to build due to the following errors',
-    "NotSupportedError: Failed to execute 'animate' on 'Element': Partial keyframes are not supported.",
-    "Cannot call method 'split' of undefined",
-    "Cannot call method 'trim' of undefined",
+    'NotSupportedError: Failed to execute \'animate\' on \'Element\': Partial keyframes are not supported.',
+    'Cannot call method \'split\' of undefined',
+    'Cannot call method \'trim\' of undefined',
     'undefined is not a function',
 
     // TEMP "CLOSEST" DOM POLYFILL
-    "has no method 'closest'",
-    "Object doesn't support property or method 'closest'",
+    'has no method \'closest\'',
+    'Object doesn\'t support property or method \'closest\'',
 
     // NOT SUPPORTED BROWSERS
-    "Object doesn't support property or method 'setPrototypeOf'",
+    'Object doesn\'t support property or method \'setPrototypeOf\'',
     'requestAnimationFrame is not defined',
-    "Object [object DOMWindow] has no method 'cancelAnimationFrame'",
-    "'block' member of ScrollIntoViewOptions 'center' is not a valid value for enumeration ScrollLogicalPosition.",
+    'Object [object DOMWindow] has no method \'cancelAnimationFrame\'',
+    '\'block\' member of ScrollIntoViewOptions \'center\' is not a valid value for enumeration ScrollLogicalPosition.',
+    'has no method \'normalize\'',
 
     // PLYR
     'Setting the playback rate is not enabled for this video.',

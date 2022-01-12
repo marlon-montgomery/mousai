@@ -11,7 +11,7 @@ import {finalize} from 'rxjs/operators';
 import {BackstageRequest} from '../../../models/backstage-request';
 import {
     ConfirmRequestHandledModalComponent,
-    ConfirmRequestApprovalResult
+    ConfirmRequestApprovalResult,
 } from './confirm-request-handled-modal/confirm-request-handled-modal.component';
 import {WebPlayerUrls} from '../../../web-player/web-player-urls.service';
 
@@ -32,7 +32,7 @@ export class BackstageRequestViewerComponent implements OnInit {
         private modal: Modal,
         private toast: Toast,
         private router: Router,
-        public urls: WebPlayerUrls,
+        public urls: WebPlayerUrls
     ) {}
 
     ngOnInit(): void {
@@ -52,23 +52,40 @@ export class BackstageRequestViewerComponent implements OnInit {
             hasBackdrop: true,
             data: {
                 images: [this.request$.value.data.passportScanEntry],
-            }
+            },
         });
     }
 
-    public handleRequest(type: 'approve'|'deny') {
-        this.modal.show(ConfirmRequestHandledModalComponent, {request: this.request$.value, type})
-            .afterClosed().subscribe((r: ConfirmRequestApprovalResult) => {
-                if ( ! r.confirmed) return;
+    public handleRequest(type: 'approve' | 'deny') {
+        this.modal
+            .show(ConfirmRequestHandledModalComponent, {
+                request: this.request$.value,
+                type,
+            })
+            .afterClosed()
+            .subscribe((r: ConfirmRequestApprovalResult) => {
+                if (!r.confirmed) return;
                 this.loading$.next(true);
-                const request = type === 'approve' ?
-                    this.backstage.approveRequest(this.request$.value.id, {markArtistAsVerified: r.verify, notes: r.notes}) :
-                    this.backstage.denyRequest(this.request$.value.id, {notes: r.notes});
+                const request =
+                    type === 'approve'
+                        ? this.backstage.approveRequest(
+                              this.request$.value.id,
+                              {
+                                  markArtistAsVerified: r.verifyArtist,
+                                  notes: r.notes,
+                              }
+                          )
+                        : this.backstage.denyRequest(this.request$.value.id, {
+                              notes: r.notes,
+                          });
                 request
                     .pipe(finalize(() => this.loading$.next(false)))
                     .subscribe(() => {
                         this.router.navigate(['/admin/backstage-requests']);
-                        this.toast.open('Request ' + (type === 'approve' ? 'approved' : 'denied'));
+                        this.toast.open(
+                            'Request ' +
+                                (type === 'approve' ? 'approved' : 'denied')
+                        );
                     });
             });
     }

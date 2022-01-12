@@ -22,16 +22,16 @@ export class SearchSettingsComponent extends SettingsPanelComponent implements O
     public searchableModelControl = new FormControl(null);
 
     public importRecords() {
-        this.loading$.next(true);
+        this.state.loading$.next(true);
         this.http.post('admin/search/import', {
             model: this.searchableModelControl.value,
             driver: this.state.server.scout_driver
-        }).pipe(finalize(() => this.loading$.next(false)))
+        }).pipe(finalize(() => this.state.loading$.next(false)))
         .subscribe(() => {
             this.toast.open('Records imported');
         }, (err: BackendErrorResponse) => {
-            this.errors$.next({search_group: 'Could not import records: ' + err.message});
-            scrollInvalidInputIntoView(this.errors$.value);
+            this.state.errors$.next({search_group: 'Could not import records: ' + err.message});
+            scrollInvalidInputIntoView(this.state.errors$.value);
         });
     }
 

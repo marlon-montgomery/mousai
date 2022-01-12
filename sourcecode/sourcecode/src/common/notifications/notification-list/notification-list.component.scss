@@ -37,7 +37,7 @@ h1 {
   &.compact {
     border-bottom: 1px solid mat-color($app-foreground, divider);
 
-    image-or-icon {
+    .main-image {
       width: 32px;
       height: 32px;
       margin-right: 14px;
@@ -69,7 +69,7 @@ h1 {
       background-color: #fff8f9;
     }
 
-    image-or-icon {
+    .main-image {
       color: mat-color($app-warn, default);
     }
   }
@@ -88,16 +88,7 @@ h1 {
     color: mat-color($app-foreground, text);
   }
 
-  .mat-icon {
-    vertical-align: middle;
-    color: mat-color($app-foreground, icon);
-    width: 18px;
-    height: 18px;
-    line-height: 18px;
-    margin-right: 5px;
-  }
-
-  image-or-icon {
+  .main-image {
     display: block;
     width: 55px;
     height: 55px;
@@ -105,6 +96,16 @@ h1 {
     margin-right: 12px;
     border-radius: 4px;
     overflow: hidden;
+  }
+
+  .line-icon {
+    display: inline-block;
+    vertical-align: middle;
+    color: mat-color($app-foreground, icon);
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    margin-right: 5px;
   }
 }
 

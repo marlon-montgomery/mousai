@@ -82,6 +82,10 @@ abstract class BaseCsvExportJob implements ShouldQueue
 
     protected function sendNotification(CsvExport $export)
     {
+        if (!$this->requesterId) {
+            return;
+        }
+
         User::find($this->requesterId)->notify(
             new CsvExportReadyNotif($export, $this->notificationName()),
         );

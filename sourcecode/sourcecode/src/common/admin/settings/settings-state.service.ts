@@ -1,13 +1,16 @@
 import {Injectable} from '@angular/core';
 import {SettingsPayload} from '../../core/config/settings-payload';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class SettingsState {
-    public initial: SettingsPayload = {server: {}, client: {}};
-    public server: {[key: string]: string|number} = {};
-    public client: {[key: string]: string|number} = {};
+    loading$ = new BehaviorSubject<boolean>(false);
+    errors$ = new BehaviorSubject<{[key: string]: string}>({});
+    initial: SettingsPayload = {server: {}, client: {}};
+    server: {[key: string]: string|number} = {};
+    client: {[key: string]: string|number} = {};
 
     public getModified() {
         return {
