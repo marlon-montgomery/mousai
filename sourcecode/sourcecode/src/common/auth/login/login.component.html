@@ -12,7 +12,7 @@
     <div class="many-inputs">
       <div class="input-container">
         <label for="login-email" trans>Email</label>
-        <input type="email" formControlName="email" id="login-email" required />
+        <input type="email" formControlName="email" id="login-email" required/>
         <p class="error big-error" *ngIf="errors.email">
           <mat-icon svgIcon="warning"></mat-icon>
           <span>{{ errors.email }}</span>
@@ -23,10 +23,10 @@
         <div class="label-with-action">
           <label for="login-password" trans>Password</label>
           <a class="forgot-password" [routerLink]="['/forgot-password']" tabindex="-1" trans
-            >Forgot your password?</a
+          >Forgot your password?</a
           >
         </div>
-        <input type="password" formControlName="password" id="login-password" required />
+        <input type="password" formControlName="password" id="login-password" required/>
         <p class="error big-error" *ngIf="errors.password">
           <mat-icon svgIcon="warning"></mat-icon>
           <span>{{ errors.password }}</span>
@@ -40,7 +40,8 @@
       color="accent"
       formControlName="remember"
       trans
-      >Stay signed in for a month</mat-checkbox
+    >Stay signed in for a month
+    </mat-checkbox
     >
 
     <button
@@ -96,6 +97,10 @@
             [matTooltip]="'Login with twitter' | trans"
           >
             <mat-icon svgIcon="twitter"></mat-icon>
+          </button>
+          <button type="button" mat-icon-button (click)="socialAuth.loginWithBitclout()"
+                  class="social-icon no-style bitclout" [matTooltip]="'Login with DeSo' | trans">
+            <mat-icon svgIcon="bitclout"></mat-icon>
           </button>
         </div>
       </ng-container>
